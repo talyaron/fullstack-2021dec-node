@@ -34,35 +34,61 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-function handleGetUser1() {
+function handleGetImg1() {
     try {
-        console.log("get user 12");
         renderLoader();
         // @ts-ignore
         axios
-            .get("/api/user1")
+            .get("/api/img1")
             .then(function (_a) {
             var data = _a.data;
             console.log(data);
-            var user = data.user, error = data.error;
+            var image = data.image, error = data.error;
             if (error)
                 throw new Error(error);
-            console.log(user);
+            console.log(image);
             renderLoader();
-            renderUser(user);
+            renderUser(image);
         })["catch"](function (err) { return console.error(err); });
     }
     catch (error) {
         console.error(error);
     }
 }
-function renderUser(user) {
+function handleGetImg2() {
+    return __awaiter(this, void 0, void 0, function () {
+        var data, image, error, error_1;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    renderLoader();
+                    return [4 /*yield*/, axios.get("/api/img2")];
+                case 1:
+                    data = (_a.sent()).data;
+                    renderLoader();
+                    console.log(data);
+                    image = data.image, error = data.error;
+                    if (error)
+                        throw new Error(error);
+                    renderUser(image);
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_1 = _a.sent();
+                    console.error(error_1);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
+}
+function renderUser(img) {
     var root = document.querySelector("#root");
-    root.innerHTML = "user " + user.name + " is " + user.age + " years old";
+    root.innerHTML = "user " + img.name + " is " + img.src + " years old";
 }
 function handleDelete(userId) {
     return __awaiter(this, void 0, void 0, function () {
-        var data, users, error, error_1;
+        var data, image, error, error_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -74,15 +100,14 @@ function handleDelete(userId) {
                 case 1:
                     data = (_a.sent()).data;
                     renderLoader();
-                    users = data.users, error = data.error;
+                    image = data.image, error = data.error;
                     if (error)
                         throw new Error(error);
-                    console.log(users);
-                    renderUsers(users);
+                    renderUsers(image);
                     return [3 /*break*/, 3];
                 case 2:
-                    error_1 = _a.sent();
-                    console.error(error_1);
+                    error_2 = _a.sent();
+                    console.error(error_2);
                     return [3 /*break*/, 3];
                 case 3: return [2 /*return*/];
             }

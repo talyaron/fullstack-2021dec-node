@@ -1,5 +1,7 @@
+// @ts-ignore
 var express = require("express");
 var app = express();
+// @ts-ignore
 var port = process.env.PORT || 3000;
 app.use(express.json()); // to get body from client (body = data from client)
 app.use(express.static("public"));
@@ -14,6 +16,14 @@ var images = [{
 app.get("/api/img1", function (req, res) {
     try {
         res.send({ img: images[0] });
+    }
+    catch (error) {
+        res.send({ error: error.message });
+    }
+});
+app.get("/api/img2", function (req, res) {
+    try {
+        res.send({ img: images[1] });
     }
     catch (error) {
         res.send({ error: error.message });
