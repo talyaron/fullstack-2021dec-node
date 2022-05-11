@@ -5,20 +5,20 @@ const port = process.env.PORT || 3000;
 app.use(express.json()); // to get body from client (body = data from client)
 app.use(express.static("public"));
 
-interface image {
+interface Image {
   name: string;
   src: string;
   id: string;
 }
 
-let images: Array<image> = [
-  { name: "Img1", src:"./images/img1.png", id: "aaa" },
-  { name: "Img2", src:"./images/img1.png", id: "bbb" },
+let images: Array<Image> = [
+  { name: "Img1", src:"./images/img1.jpg", id: "aaa" },
+  { name: "Img2", src:"./images/img2.jpg", id: "bbb" },
 ];
 
 app.get("/api/img1", (req, res) => {
   try {
-      res.send({ images: images[0] });
+      res.send({ image: images[0] });
   } catch (error) {
     res.send({ error: error.message });
   }
@@ -26,11 +26,19 @@ app.get("/api/img1", (req, res) => {
 
 app.get("/api/img2", (req, res) => {
   try {
-      res.send({ images: images[1] });
+      res.send({ image: images[1] });
   } catch (error) {
     res.send({ error: error.message });
   }
 });
+
+app.get("/api/get-imgs", (req, res) => {
+    try {
+      res.send({ images });
+    } catch (error) {
+      res.send({ error: error.message });
+    }
+  });
 
 
 

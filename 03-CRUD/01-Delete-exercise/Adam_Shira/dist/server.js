@@ -4,12 +4,12 @@ var port = process.env.PORT || 3000;
 app.use(express.json()); // to get body from client (body = data from client)
 app.use(express.static("public"));
 var images = [
-    { name: "Img1", src: "./images/img1.png", id: "aaa" },
-    { name: "Img2", src: "./images/img1.png", id: "bbb" },
+    { name: "Img1", src: "./images/img1.jpg", id: "aaa" },
+    { name: "Img2", src: "./images/img2.jpg", id: "bbb" },
 ];
 app.get("/api/img1", function (req, res) {
     try {
-        res.send({ images: images[0] });
+        res.send({ image: images[0] });
     }
     catch (error) {
         res.send({ error: error.message });
@@ -17,7 +17,15 @@ app.get("/api/img1", function (req, res) {
 });
 app.get("/api/img2", function (req, res) {
     try {
-        res.send({ images: images[1] });
+        res.send({ image: images[1] });
+    }
+    catch (error) {
+        res.send({ error: error.message });
+    }
+});
+app.get("/api/get-imgs", function (req, res) {
+    try {
+        res.send({ images: images });
     }
     catch (error) {
         res.send({ error: error.message });
