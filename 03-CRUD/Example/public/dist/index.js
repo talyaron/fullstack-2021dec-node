@@ -108,13 +108,13 @@ function renderUser(user) {
     root.innerText = "user " + user.name + " is " + user.age + " years old";
 }
 function renderLoader() {
-    var loader = document.querySelector('#loader');
-    if (!loader.classList.contains('lds-dual-ring')) {
-        loader.classList.add('lds-dual-ring');
-        console.log('add');
+    var loader = document.querySelector("#loader");
+    if (!loader.classList.contains("lds-dual-ring")) {
+        loader.classList.add("lds-dual-ring");
+        console.log("add");
     }
     else {
-        loader.classList.remove('lds-dual-ring');
-        console.log('remove');
+        loader.classList.remove("lds-dual-ring");
+        console.log("remove");
     }
 }
