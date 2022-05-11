@@ -12,3 +12,4 @@ To install nodemon
 (windows: change from powershell to cmd, by writing `cmd`);
 
 npm i -D '@types/node'
+
