@@ -10,3 +10,6 @@ To install nodemon
 `npm i -g nodemon`
 (Mac): `sudo npm i -g nodemon`
 (windows: change from powershell to cmd, by writing `cmd`);
+
+npm i -D '@types/node'
+
