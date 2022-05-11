@@ -1,0 +1,25 @@
+body {
+  background-color: pink;
+}
+body h1 {
+  text-align: center;
+}
+body #image {
+  display: flex;
+  justify-content: space-around;
+}
+body #image div {
+  position: relative;
+}
+body #image div .title {
+  color: aliceblue;
+  position: absolute;
+  padding: 30px;
+  text-align: center;
+  align-items: center;
+  left: 100px;
+}
+body #image div img {
+  width: 400px;
+  padding: 30px;
+}
