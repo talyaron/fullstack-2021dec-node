@@ -38,6 +38,7 @@ function handleGetUser1() {
     try {
         console.log("get user 12");
         renderLoader();
+        // @ts-ignore
         axios
             .get("/api/user1")
             .then(function (_a) {
@@ -89,6 +90,7 @@ function handleGetUser2() {
 function handleGetUser3() {
     try {
         renderLoader();
+        // @ts-ignore
         axios.get("/api/user3").then(function (_a) {
             var data = _a.data;
             console.log(data);
@@ -103,9 +105,45 @@ function handleGetUser3() {
         console.error(error);
     }
 }
+function handleGetAllUsers() {
+    getAllUsers();
+}
+function getAllUsers() {
+    return __awaiter(this, void 0, void 0, function () {
+        var data, users, error, err_1;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    return [4 /*yield*/, axios.get("/api/get-users")];
+                case 1:
+                    data = (_a.sent()).data;
+                    console.log(data);
+                    users = data.users, error = data.error;
+                    if (error)
+                        throw new Error(error);
+                    renderUsers(users);
+                    return [3 /*break*/, 3];
+                case 2:
+                    err_1 = _a.sent();
+                    console.error(err_1);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
+}
 function renderUser(user) {
     var root = document.querySelector("#root");
-    root.innerText = "user " + user.name + " is " + user.age + " years old";
+    root.innerHTML = "user " + user.name + " is " + user.age + " years old";
+}
+function renderUsers(users) {
+    var root = document.querySelector("#root");
+    var html = "";
+    users.forEach(function (user) {
+        html += "<p>user " + user.name + " is " + user.age + " years old <button onclick='handleDelete(\"" + user.id + "\")'>DELETE</button></p>";
+    });
+    root.innerHTML = html;
 }
 function renderLoader() {
     var loader = document.querySelector("#loader");
@@ -117,4 +155,33 @@ function renderLoader() {
         loader.classList.remove("lds-dual-ring");
         console.log("remove");
     }
+}
+function handleDelete(userId) {
+    return __awaiter(this, void 0, void 0, function () {
+        var data, users, error, error_2;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    console.log(userId);
+                    //@ts-ignore
+                    renderLoader();
+                    return [4 /*yield*/, axios["delete"]("/api/delete-user", { data: { userId: userId } })];
+                case 1:
+                    data = (_a.sent()).data;
+                    renderLoader();
+                    users = data.users, error = data.error;
+                    if (error)
+                        throw new Error(error);
+                    console.log(users);
+                    renderUsers(users);
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_2 = _a.sent();
+                    console.error(error_2);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
 }
