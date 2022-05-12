@@ -57,23 +57,39 @@ app.get("/api/get-users", (req, res) => {
 
 app.delete("/api/delete-user", (req, res) => {
   try {
-    console.log(req.body);
     const { userId } = req.body;
-    console.log(userId);
+    if (!userId) throw new Error("userId is required");
 
-    const index: number = users.findIndex((user) => user.id === userId);
+    const userIndex = users.findIndex(user => user.id === userId);
+    if (userIndex === -1) throw new Error("user not found");
 
-    if (index === -1) throw new Error("Couldnt find user to delete");
+    users = users.filter(user => user.id !== userId);
+    console.log(users)
+    res.send({ users });
 
-    //delete user from users
-    users = users.filter((user) => user.id !== userId);
-    setTimeout(() => {
-      res.send({ users });
-    }, 4000);
   } catch (error) {
     res.send({ error: error.message });
   }
 });
+
+app.put('/api/update-user', (req, res) => {
+  try {
+    const { userId, age } = req.body;
+    if (!userId) throw new Error("userId is required");
+    if (!age) throw new Error("age is required");
+
+    const userIndex = users.findIndex(user => user.id === userId);
+    if (userIndex === -1) throw new Error("user not found");
+
+    users[userIndex].age = age;
+
+    res.send({ users });
+    
+  } catch (error) {
+    res.send({ error: error.message });
+  }
+})
+
 
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
