@@ -48,17 +48,32 @@ app.get("/api/get-users", function (req, res) {
 });
 app["delete"]("/api/delete-user", function (req, res) {
     try {
-        console.log(req.body);
         var userId_1 = req.body.userId;
-        console.log(userId_1);
-        var index = users.findIndex(function (user) { return user.id === userId_1; });
-        if (index === -1)
-            throw new Error("Couldnt find user to delete");
-        //delete user from users
+        if (!userId_1)
+            throw new Error("userId is required");
+        var userIndex = users.findIndex(function (user) { return user.id === userId_1; });
+        if (userIndex === -1)
+            throw new Error("user not found");
         users = users.filter(function (user) { return user.id !== userId_1; });
-        setTimeout(function () {
-            res.send({ users: users });
-        }, 4000);
+        console.log(users);
+        res.send({ users: users });
+    }
+    catch (error) {
+        res.send({ error: error.message });
+    }
+});
+app.put('/api/update-user', function (req, res) {
+    try {
+        var _a = req.body, userId_2 = _a.userId, age = _a.age;
+        if (!userId_2)
+            throw new Error("userId is required");
+        if (!age)
+            throw new Error("age is required");
+        var userIndex = users.findIndex(function (user) { return user.id === userId_2; });
+        if (userIndex === -1)
+            throw new Error("user not found");
+        users[userIndex].age = age;
+        res.send({ users: users });
     }
     catch (error) {
         res.send({ error: error.message });

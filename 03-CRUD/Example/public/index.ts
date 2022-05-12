@@ -30,6 +30,8 @@ async function handleGetUser2() {
     console.log("get user (1)");
     console.log("get user After fetch (2)");
     renderLoader();
+
+    // @ts-ignore
     const { data } = await axios.get("/api/user2");
     renderLoader();
     console.log(data);
@@ -70,7 +72,6 @@ async function getAllUsers() {
   try {
     // @ts-ignore
     const { data } = await axios.get("/api/get-users");
-    console.log(data);
 
     const { users, error } = data;
     if (error) throw new Error(error);
@@ -80,6 +81,44 @@ async function getAllUsers() {
     console.error(err);
   }
 }
+
+async function handleDeleteUser(userId: string) {
+  try {
+    // send to server the Id of the user that we wnat to delete
+    // @ts-ignore
+    const { data } = await axios.delete('/api/delete-user', { data: { userId } });
+
+    const { users, error } = data;
+    if (error) throw new Error(error);
+
+    renderUsers(users);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+
+async function handleUpdateAge(event: any, userId: string) {
+  try {
+   
+    const age:number = event.target.valueAsNumber;
+  
+    // @ts-ignore
+    const { data } = await axios.put('/api/update-user', { userId, age });
+
+    const { users, error } = data;
+    if (error) throw new Error(error);
+
+    renderUsers(users);
+
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+
+// renders
+
 
 function renderUser(user: User) {
   const root: HTMLElement = document.querySelector("#root");
@@ -92,7 +131,8 @@ function renderUsers(users: Array<User>) {
 
   let html = "";
   users.forEach((user) => {
-    html += `<p>user ${user.name} is ${user.age} years old <button onclick='handleDelete("${user.id}")'>DELETE</button></p>`;
+    html += `<p>user ${user.name} is ${user.age} years old <button onclick="handleDeleteUser('${user.id}')">DELETE</button>
+    <input type="number" placeholder="Age" onblur="handleUpdateAge(event, '${user.id}')" /></p>`;
   });
   root.innerHTML = html;
 }
@@ -108,20 +148,3 @@ function renderLoader() {
   }
 }
 
-async function handleDelete(userId: string) {
-  try {
-    console.log(userId);
-
-    //@ts-ignore
-    renderLoader()
-    const { data } = await axios.delete("/api/delete-user", { data: { userId } });
-    renderLoader()
-    const { users, error } = data;
-    if (error) throw new Error(error);
-    console.log(users);
-    renderUsers(users);
-     
-  } catch (error) {
-    console.error(error);
-  }
-}
