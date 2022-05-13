@@ -1,5 +1,6 @@
+// @ts-ignore
 const express = require("express");
-const app = express();
+const app = express();// @ts-ignore
 const port = process.env.PORT || 3000;
 
 app.use(express.json()); // to get body from client (body = data from client)
