@@ -1,7 +1,7 @@
 // @ts-ignore
 const express = require("express");
 const app = express();// @ts-ignore
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 4000;
 
 app.use(express.json()); // to get body from client (body = data from client)
 app.use(express.static("public"));

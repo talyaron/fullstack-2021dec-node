@@ -41,7 +41,7 @@ function handleGetImg1() {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    // @ts-ignore
+                    // @ts-ignoreb
                     return [4 /*yield*/, axios
                             .get("/api/img1")
                             .then(function (_a) {
@@ -54,7 +54,7 @@ function handleGetImg1() {
                             renderImg(image);
                         })["catch"](function (err) { return console.error(err); })];
                 case 1:
-                    // @ts-ignore
+                    // @ts-ignoreb
                     _a.sent();
                     return [3 /*break*/, 3];
                 case 2:
@@ -91,40 +91,48 @@ function handleGetImg2() {
         });
     });
 }
-//   function handleGetAllImages() {
-//     getAllImgs();
-//   }
-//   async function getAllImgs() {
-//     try {
-//       // @ts-ignore
-//       const { data } = await axios.get("/api/get-imgs");
-//       console.log(data);
-//       const { image, error } = data;
-//       if (error) throw new Error(error);
-//       renderImgs(images);
-//     } catch (err: any) {
-//       console.error(err);
-//     }
-//   }
-//   function renderImg(images) {
-//     const root: HTMLDivElement = document.querySelector("#root");
-//     console.log(images.src)
-//     root.innerHTML = `<img src="${images.src}" alt="image"/>`;
-//   }
-//   function renderImgs(images: Array<Image>) {
-//     const root: HTMLElement = document.querySelector("#root");
-//     let html = "";
-//     images.forEach((image) => {
-//     //   html += `<p>user ${image.name} is ${image.src} years old <button onclick='handleDelete("${user.id}")'>DELETE</button></p>`;
-//       html += `<img src="${image.src}" alt="image"/>`;
-//     //   root.innerHTML = `<img src="${images.src}" alt="image"/>`;
-//     });
-//     root.innerHTML = html;
-//   }
+function handleGetAllImages() {
+    getAllImgs();
+}
+function getAllImgs() {
+    return __awaiter(this, void 0, void 0, function () {
+        var data, images, error, err_1;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    return [4 /*yield*/, axios.get("/api/get-imgs")];
+                case 1:
+                    data = (_a.sent()).data;
+                    console.log(data);
+                    images = data.images, error = data.error;
+                    if (error)
+                        throw new Error(error);
+                    renderAllImgs(images);
+                    return [3 /*break*/, 3];
+                case 2:
+                    err_1 = _a.sent();
+                    console.error(err_1);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
+}
 function renderImg(images) {
     var root = document.querySelector("#root");
     console.log(images.src);
     root.innerHTML = "<img src=\"" + images.src + "\" alt=\"image\"/>";
+}
+function renderAllImgs(images) {
+    var root = document.querySelector("#root");
+    var html = "";
+    images.forEach(function (image) {
+        //   html += `<p>user ${image.name} is ${image.src} years old <button onclick='handleDelete("${user.id}")'>DELETE</button></p>`;
+        html += "<img src=\"" + image.src + "\" alt=\"image\"/>";
+        //   root.innerHTML = `<img src="${images.src}" alt="image"/>`;
+    });
+    root.innerHTML = html;
 }
 //   async function handleDelete(userId: string) {
 //     try {

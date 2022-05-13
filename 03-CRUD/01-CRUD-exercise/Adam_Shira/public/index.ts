@@ -1,4 +1,4 @@
-interface image {
+interface Image {
     name: string;
     src: string;
     id: string;
@@ -7,7 +7,7 @@ interface image {
 
 async function handleGetImg1() {
     try {
-      // @ts-ignore
+      // @ts-ignoreb
        await axios
         .get("/api/img1")
         .then(({ data }) => {
@@ -37,54 +37,50 @@ async function handleGetImg1() {
     }
   }
 
-//   function handleGetAllImages() {
-//     getAllImgs();
-//   }
+  function handleGetAllImages() {
+    getAllImgs();
+  }
   
-//   async function getAllImgs() {
-//     try {
-//       // @ts-ignore
-//       const { data } = await axios.get("/api/get-imgs");
-//       console.log(data);
+  async function getAllImgs() {
+    try {
+      // @ts-ignore
+      const { data } = await axios.get("/api/get-imgs");
+      console.log(data);
   
-//       const { image, error } = data;
-//       if (error) throw new Error(error);
+      const { images, error } = data;
+      if (error) throw new Error(error);
   
-//       renderImgs(images);
-//     } catch (err: any) {
-//       console.error(err);
-//     }
-//   }
+      renderAllImgs(images);
+    } catch (err: any) {
+      console.error(err);
+    }
+  }
   
-  
-//   function renderImg(images) {
-//     const root: HTMLDivElement = document.querySelector("#root");
-//     console.log(images.src)
-//     root.innerHTML = `<img src="${images.src}" alt="image"/>`;
-//   }
-  
-//   function renderImgs(images: Array<Image>) {
-//     const root: HTMLElement = document.querySelector("#root");
-  
-//     let html = "";
-//     images.forEach((image) => {
-//     //   html += `<p>user ${image.name} is ${image.src} years old <button onclick='handleDelete("${user.id}")'>DELETE</button></p>`;
-//       html += `<img src="${image.src}" alt="image"/>`;
-
-//     //   root.innerHTML = `<img src="${images.src}" alt="image"/>`;
-//     });
-//     root.innerHTML = html;
-//   }
-
-  
-
-
   
   function renderImg(images) {
     const root: HTMLDivElement = document.querySelector("#root");
     console.log(images.src)
     root.innerHTML = `<img src="${images.src}" alt="image"/>`;
   }
+  
+  function renderAllImgs(images: Array<Image>) {
+    const root: HTMLElement = document.querySelector("#root");
+  
+    let html = "";
+    images.forEach((image) => {
+    //   html += `<p>user ${image.name} is ${image.src} years old <button onclick='handleDelete("${user.id}")'>DELETE</button></p>`;
+      html += `<img src="${image.src}" alt="image"/>`;
+
+    //   root.innerHTML = `<img src="${images.src}" alt="image"/>`;
+    });
+    root.innerHTML = html;
+  }
+
+  
+
+
+  
+
   
 
   

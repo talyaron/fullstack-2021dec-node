@@ -1,7 +1,7 @@
 // @ts-ignore
 var express = require("express");
 var app = express(); // @ts-ignore
-var port = process.env.PORT || 3000;
+var port = process.env.PORT || 4000;
 app.use(express.json()); // to get body from client (body = data from client)
 app.use(express.static("public"));
 var images = [
