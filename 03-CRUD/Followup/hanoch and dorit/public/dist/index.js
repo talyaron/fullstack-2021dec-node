@@ -62,7 +62,9 @@ function renderPictures(pictures) {
     var root = document.querySelector("#root");
     var html = "";
     pictures.forEach(function (picture) {
-        html += " <img src=\"" + picture.src + "\"> <p>" + picture.dis + "</p>  <button onclick='handleDelete(\"" + picture.id + "\")'>DELETE</button>";
+        html += " <img src=\"" + picture.src + "\" width=\"200px\" height=\"200px\"> <br> <p>" + picture.dis + "</p>  <button onclick='handleDelete(\"" + picture.id + "\")'>DELETE</button> <br> <br>";
     });
     root.innerHTML = html;
+}
+function handleDelete(id) {
 }

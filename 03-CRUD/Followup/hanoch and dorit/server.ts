@@ -36,6 +36,16 @@ app.get("/api/get-pictures", (req, res) => {
     }
   });
 
+  app.delete("/api/delete-image", (req, res) => {
+    try {
+      req.send({ ID:id });
+    } catch (error) {
+      res.send({ error: error.message });
+    }
+  });
+
+
+
 
 
 app.listen(port, () => {

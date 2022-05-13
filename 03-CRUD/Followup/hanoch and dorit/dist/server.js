@@ -25,6 +25,14 @@ app.get("/api/get-pictures", function (req, res) {
         res.send({ error: error.message });
     }
 });
+app["delete"]("/api/delete-image", function (req, res) {
+    try {
+        req.send({ ID: id });
+    }
+    catch (error) {
+        res.send({ error: error.message });
+    }
+});
 app.listen(port, function () {
     console.log("Server listening on port " + port);
 });

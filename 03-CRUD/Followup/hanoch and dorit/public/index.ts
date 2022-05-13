@@ -17,8 +17,12 @@ function renderPictures(pictures){
 
     let html = "";
     pictures.forEach((picture) => {
-      html += ` <img src="${picture.src}"> <p>${picture.dis}</p>  <button onclick='handleDelete("${picture.id}")'>DELETE</button>`;
+      html += ` <img src="${picture.src}" width="200px" height="200px"> <br> <p>${picture.dis}</p>  <button onclick='handleDelete("${picture.id}")'>DELETE</button> <br> <br>`;
     });
     root.innerHTML = html;
+
+}
+function handleDelete(id:string){
+  
 
 }
