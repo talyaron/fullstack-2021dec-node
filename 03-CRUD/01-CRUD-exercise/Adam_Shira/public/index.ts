@@ -40,6 +40,24 @@ async function handleGetImg1() {
   function handleGetAllImages() {
     getAllImgs();
   }
+
+  async function handleDelete(Id: string) {
+    try {
+      // send to server the Id of the user that we wnat to delete
+      // @ts-ignore
+      const { data } = await axios.delete('/api/delete-user', { data: { Id } });
+  
+      const { users, error } = data;
+      if (error) throw new Error(error);
+  
+      renderUsers(users);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  
+
+
   
   async function getAllImgs() {
     try {
@@ -68,7 +86,7 @@ async function handleGetImg1() {
   
     let html = "";
     images.forEach((image) => {
-    //   html += `<p>user ${image.name} is ${image.src} years old <button onclick='handleDelete("${user.id}")'>DELETE</button></p>`;
+      html += `<p>image ${image.name} is ${image.src} years old <button onclick='handleDelete("${image.id}")'>DELETE</button></p>`;
       html += `<img src="${image.src}" alt="image"/>`;
 
     //   root.innerHTML = `<img src="${images.src}" alt="image"/>`;

@@ -32,22 +32,23 @@ app.get("/api/get-imgs", function (req, res) {
         res.send({ error: error.message });
     }
 });
-// app.delete("/api/delete-user", (req, res) => {
-//   try {
-//     console.log(req.body);
-//     const { userId } = req.body;
-//     console.log(userId);
-//     const index: number = users.findIndex((user) => user.id === userId);
-//     if (index === -1) throw new Error("Couldnt find user to delete");
-//     //delete user from users
-//     users = users.filter((user) => user.id !== userId);
-//     setTimeout(() => {
-//       res.send({ users });
-//     }, 4000);
-//   } catch (error) {
-//     res.send({ error: error.message });
-//   }
-// });
+app["delete"]("/api/delete-Image", function (req, res) {
+    try {
+        console.log(req.body);
+        var imageId_1 = req.body.imageId;
+        var index = images.findIndex(function (user) { return user.id === imageId_1; });
+        if (index === -1)
+            throw new Error("Couldnt find user to delete");
+        //delete user from users
+        images = images.filter(function (user) { return user.id !== imageId_1; });
+        setTimeout(function () {
+            res.send({ images: images });
+        }, 1000);
+    }
+    catch (error) {
+        res.send({ error: error.message });
+    }
+});
 app.listen(port, function () {
     console.log("Server listening on port " + port);
 });

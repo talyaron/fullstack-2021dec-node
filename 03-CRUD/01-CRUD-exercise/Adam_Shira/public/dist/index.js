@@ -94,6 +94,30 @@ function handleGetImg2() {
 function handleGetAllImages() {
     getAllImgs();
 }
+function handleDelete(Id) {
+    return __awaiter(this, void 0, void 0, function () {
+        var data, users, error, error_3;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    return [4 /*yield*/, axios["delete"]('/api/delete-user', { data: { Id: Id } })];
+                case 1:
+                    data = (_a.sent()).data;
+                    users = data.users, error = data.error;
+                    if (error)
+                        throw new Error(error);
+                    renderUsers(users);
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_3 = _a.sent();
+                    console.error(error_3);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
+}
 function getAllImgs() {
     return __awaiter(this, void 0, void 0, function () {
         var data, images, error, err_1;
@@ -128,7 +152,7 @@ function renderAllImgs(images) {
     var root = document.querySelector("#root");
     var html = "";
     images.forEach(function (image) {
-        //   html += `<p>user ${image.name} is ${image.src} years old <button onclick='handleDelete("${user.id}")'>DELETE</button></p>`;
+        html += "<p>image " + image.name + " is " + image.src + " years old <button onclick='handleDelete(\"" + image.id + "\")'>DELETE</button></p>";
         html += "<img src=\"" + image.src + "\" alt=\"image\"/>";
         //   root.innerHTML = `<img src="${images.src}" alt="image"/>`;
     });
