@@ -3,7 +3,7 @@
 async function getRandomSpaceGif() {
     try {
       console.log("getRandomSpaceGif");
-    console.log("get user After fetch (2)");
+    console.log("get Gif After fetch (2)");
       
       
       const { data } = await axios.get("/api/SpaceGif");
@@ -24,7 +24,8 @@ async function getRandomSpaceGif() {
 
 function placeSpaceGifOnDiv(spaceGif) {
     const spaceGifDiv: HTMLElement = document.querySelector("#RandomSpaceGif");
-    spaceGifDiv.innerHTML = `<img src= ${spaceGif} alt="meme"/>`;
+    spaceGifDiv.innerHTML = `<img src="${spaceGif}" alt="" srcset=""/>`;
+    
   }
 
 

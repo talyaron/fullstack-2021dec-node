@@ -42,7 +42,7 @@ function getRandomSpaceGif() {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
                     console.log("getRandomSpaceGif");
-                    console.log("get user After fetch (2)");
+                    console.log("get Gif After fetch (2)");
                     return [4 /*yield*/, axios.get("/api/SpaceGif")];
                 case 1:
                     data = (_a.sent()).data;
@@ -65,5 +65,5 @@ function getRandomSpaceGif() {
 }
 function placeSpaceGifOnDiv(spaceGif) {
     var spaceGifDiv = document.querySelector("#RandomSpaceGif");
-    spaceGifDiv.innerHTML = "<img src= " + spaceGif + " alt=\"meme\"/>";
+    spaceGifDiv.innerHTML = "<img src=\"" + spaceGif + "\" alt=\"\" srcset=\"\"/>";
 }
