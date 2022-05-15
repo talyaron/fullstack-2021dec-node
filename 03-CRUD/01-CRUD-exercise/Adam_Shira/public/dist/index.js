@@ -34,49 +34,28 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-function handleGetUser1() {
-    try {
-        console.log("get user 12");
-        renderLoader();
-        // @ts-ignore
-        axios
-            .get("/api/user1")
-            .then(function (_a) {
-            var data = _a.data;
-            console.log(data);
-            var user = data.user, error = data.error;
-            if (error)
-                throw new Error(error);
-            console.log(user);
-            renderLoader();
-            renderUser(user);
-        })["catch"](function (err) { return console.error(err); });
-    }
-    catch (error) {
-        console.error(error);
-    }
-}
-function handleGetUser2() {
+function handleGetImg1() {
     return __awaiter(this, void 0, void 0, function () {
-        var data, user, error, error_1;
+        var error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    console.log("get user (1)");
-                    console.log("get user After fetch (2)");
-                    renderLoader();
-                    return [4 /*yield*/, axios.get("/api/user2")];
+                    // @ts-ignoreb
+                    return [4 /*yield*/, axios
+                            .get("/api/img1")
+                            .then(function (_a) {
+                            var data = _a.data;
+                            console.log(data);
+                            var image = data.image, error = data.error;
+                            if (error)
+                                throw new Error(error);
+                            console.log(image);
+                            renderImg(image);
+                        })["catch"](function (err) { return console.error(err); })];
                 case 1:
-                    data = (_a.sent()).data;
-                    renderLoader();
-                    console.log(data);
-                    console.log("get user After fetch (2.5)");
-                    user = data.user, error = data.error;
-                    if (error)
-                        throw new Error(error);
-                    renderUser(user);
-                    console.log("get user After the end of fetch (3)");
+                    // @ts-ignoreb
+                    _a.sent();
                     return [3 /*break*/, 3];
                 case 2:
                     error_1 = _a.sent();
@@ -87,65 +66,21 @@ function handleGetUser2() {
         });
     });
 }
-function handleGetUser3() {
-    try {
-        renderLoader();
-        // @ts-ignore
-        axios.get("/api/user3").then(function (_a) {
-            var data = _a.data;
-            console.log(data);
-            var user = data.user, error = data.error;
-            if (error)
-                throw new Error(error);
-            renderUser(user);
-            renderLoader();
-        });
-    }
-    catch (error) {
-        console.error(error);
-    }
-}
-function handleGetAllUsers() {
-    getAllUsers();
-}
-function getAllUsers() {
+function handleGetImg2() {
     return __awaiter(this, void 0, void 0, function () {
-        var data, users, error, err_1;
+        var data, image, error, error_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, axios.get("/api/get-users")];
+                    return [4 /*yield*/, axios.get("/api/img2")];
                 case 1:
                     data = (_a.sent()).data;
-                    users = data.users, error = data.error;
+                    console.log(data);
+                    image = data.image, error = data.error;
                     if (error)
                         throw new Error(error);
-                    renderUsers(users);
-                    return [3 /*break*/, 3];
-                case 2:
-                    err_1 = _a.sent();
-                    console.error(err_1);
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
-            }
-        });
-    });
-}
-function handleDeleteUser(userId) {
-    return __awaiter(this, void 0, void 0, function () {
-        var data, users, error, error_2;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    _a.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, axios["delete"]('/api/delete-user', { data: { userId: userId } })];
-                case 1:
-                    data = (_a.sent()).data;
-                    users = data.users, error = data.error;
-                    if (error)
-                        throw new Error(error);
-                    renderUsers(users);
+                    renderImg(image);
                     return [3 /*break*/, 3];
                 case 2:
                     error_2 = _a.sent();
@@ -156,15 +91,17 @@ function handleDeleteUser(userId) {
         });
     });
 }
-function handleUpdateAge(event, userId) {
+function handleGetAllImages() {
+    getAllImgs();
+}
+function handleDelete(Id) {
     return __awaiter(this, void 0, void 0, function () {
-        var age, data, users, error, error_3;
+        var data, users, error, error_3;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    age = event.target.valueAsNumber;
-                    return [4 /*yield*/, axios.put('/api/update-user', { userId: userId, age: age })];
+                    return [4 /*yield*/, axios["delete"]('/api/delete-user', { data: { Id: Id } })];
                 case 1:
                     data = (_a.sent()).data;
                     users = data.users, error = data.error;
@@ -181,56 +118,58 @@ function handleUpdateAge(event, userId) {
         });
     });
 }
-function handleAddUser(ev) {
+function getAllImgs() {
     return __awaiter(this, void 0, void 0, function () {
-        var name, age, data, users, error, error_4;
+        var data, images, error, err_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    ev.preventDefault();
-                    name = ev.target.elements.name.value;
-                    age = ev.target.elements.age.valueAsNumber;
-                    if (!name || !age)
-                        throw new Error("Name and age are required");
-                    return [4 /*yield*/, axios.post('/api/add-user', { name: name, age: age })];
+                    return [4 /*yield*/, axios.get("/api/get-imgs")];
                 case 1:
                     data = (_a.sent()).data;
-                    users = data.users, error = data.error;
+                    console.log(data);
+                    images = data.images, error = data.error;
                     if (error)
                         throw new Error(error);
-                    renderUsers(users);
+                    renderAllImgs(images);
                     return [3 /*break*/, 3];
                 case 2:
-                    error_4 = _a.sent();
-                    console.error(error_4);
+                    err_1 = _a.sent();
+                    console.error(err_1);
                     return [3 /*break*/, 3];
                 case 3: return [2 /*return*/];
             }
         });
     });
 }
-// renders
-function renderUser(user) {
+function renderImg(images) {
     var root = document.querySelector("#root");
-    root.innerHTML = "user " + user.name + " is " + user.age + " years old";
+    console.log(images.src);
+    root.innerHTML = "<img src=\"" + images.src + "\" alt=\"image\"/>";
 }
-function renderUsers(users) {
+function renderAllImgs(images) {
     var root = document.querySelector("#root");
     var html = "";
-    users.forEach(function (user) {
-        html += "<p>user " + user.name + " is " + user.age + " years old <button onclick=\"handleDeleteUser('" + user.id + "')\">DELETE</button>\n    <input type=\"number\" placeholder=\"Age\" onblur=\"handleUpdateAge(event, '" + user.id + "')\" /></p>";
+    images.forEach(function (image) {
+        html += "<p>image " + image.name + " is " + image.src + " years old <button onclick='handleDelete(\"" + image.id + "\")'>DELETE</button></p>";
+        html += "<img src=\"" + image.src + "\" alt=\"image\"/>";
+        //   root.innerHTML = `<img src="${images.src}" alt="image"/>`;
     });
     root.innerHTML = html;
 }
-function renderLoader() {
-    var loader = document.querySelector("#loader");
-    if (!loader.classList.contains("lds-dual-ring")) {
-        loader.classList.add("lds-dual-ring");
-        console.log("add");
-    }
-    else {
-        loader.classList.remove("lds-dual-ring");
-        console.log("remove");
-    }
-}
+//   async function handleDelete(userId: string) {
+//     try {
+//       console.log(userId);
+//       //@ts-ignore
+//       renderLoader()
+//       const { data } = await axios.delete("/api/delete-user", { data: { userId } });
+//       renderLoader()
+//       const { users, error } = data;
+//       if (error) throw new Error(error);
+//       console.log(users);
+//       renderUsers(users);
+//     } catch (error) {
+//       console.error(error);
+//     }
+//   }
