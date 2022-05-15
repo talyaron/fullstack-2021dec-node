@@ -51,9 +51,8 @@ app["delete"]("/api/delete-user", function (req, res) {
         var userId_1 = req.body.userId;
         if (!userId_1)
             throw new Error("userId is required");
-        var userIndex = users.findIndex(function (user) { return user.id === userId_1; });
-        if (userIndex === -1)
-            throw new Error("user not found");
+        // const userIndex = users.findIndex(user => user.id === userId);
+        // if (userIndex === -1) throw new Error("user not found");
         users = users.filter(function (user) { return user.id !== userId_1; });
         console.log(users);
         res.send({ users: users });
