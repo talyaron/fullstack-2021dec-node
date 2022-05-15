@@ -79,6 +79,24 @@ app.put('/api/update-user', function (req, res) {
         res.send({ error: error.message });
     }
 });
+app.post('/api/add-user', function (req, res) {
+    try {
+        var _a = req.body, name = _a.name, age = _a.age;
+        if (!age)
+            throw new Error("age is required");
+        if (!name)
+            throw new Error("name is required");
+        var user = { name: name, age: age, id: uid() };
+        users.push(user);
+        res.send({ users: users });
+    }
+    catch (error) {
+        res.send({ error: error.message });
+    }
+});
 app.listen(port, function () {
     console.log("Server listening on port " + port);
 });
+function uid() {
+    return Date.now().toString(36) + Math.random().toString(36).substr(2);
+}

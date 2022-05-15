@@ -84,7 +84,24 @@ app.put('/api/update-user', (req, res) => {
     users[userIndex].age = age;
 
     res.send({ users });
-    
+
+  } catch (error) {
+    res.send({ error: error.message });
+  }
+});
+
+app.post('/api/add-user', (req, res) => {
+  try {
+    const { name, age } = req.body;
+    if (!age) throw new Error("age is required");
+    if(!name) throw new Error("name is required");
+
+    const user: User = {name, age, id:uid()};
+
+    users.push(user);
+
+    res.send({ users });
+
   } catch (error) {
     res.send({ error: error.message });
   }
@@ -94,3 +111,7 @@ app.put('/api/update-user', (req, res) => {
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
 });
+
+function uid(){
+  return Date.now().toString(36) + Math.random().toString(36).substr(2);
+}

@@ -116,6 +116,28 @@ async function handleUpdateAge(event: any, userId: string) {
   }
 }
 
+async function handleAddUser(ev:any){
+  try {
+    ev.preventDefault();
+
+    const name = ev.target.elements.name.value;
+    const age = ev.target.elements.age.valueAsNumber;
+
+    if(!name || !age) throw new Error("Name and age are required");
+
+    // @ts-ignore
+    const { data } = await axios.post('/api/add-user', { name, age });
+
+    const { users, error } = data;
+    if (error) throw new Error(error);
+
+    renderUsers(users);
+    
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 
 // renders
 

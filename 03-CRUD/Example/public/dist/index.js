@@ -181,6 +181,35 @@ function handleUpdateAge(event, userId) {
         });
     });
 }
+function handleAddUser(ev) {
+    return __awaiter(this, void 0, void 0, function () {
+        var name, age, data, users, error, error_4;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    ev.preventDefault();
+                    name = ev.target.elements.name.value;
+                    age = ev.target.elements.age.valueAsNumber;
+                    if (!name || !age)
+                        throw new Error("Name and age are required");
+                    return [4 /*yield*/, axios.post('/api/add-user', { name: name, age: age })];
+                case 1:
+                    data = (_a.sent()).data;
+                    users = data.users, error = data.error;
+                    if (error)
+                        throw new Error(error);
+                    renderUsers(users);
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_4 = _a.sent();
+                    console.error(error_4);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
+}
 // renders
 function renderUser(user) {
     var root = document.querySelector("#root");
