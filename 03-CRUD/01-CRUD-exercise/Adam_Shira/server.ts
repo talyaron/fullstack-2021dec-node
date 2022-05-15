@@ -1,6 +1,7 @@
+// @ts-ignore
 const express = require("express");
-const app = express();
-const port = process.env.PORT || 3000;
+const app = express();// @ts-ignore
+const port = process.env.PORT || 4000;
 
 app.use(express.json()); // to get body from client (body = data from client)
 app.use(express.static("public"));
@@ -42,25 +43,25 @@ app.get("/api/get-imgs", (req, res) => {
 
 
 
-// app.delete("/api/delete-user", (req, res) => {
-//   try {
-//     console.log(req.body);
-//     const { userId } = req.body;
-//     console.log(userId);
+app.delete("/api/delete-Image", (req, res) => {
+  try {
+    console.log(req.body);
+    const { imageId } = req.body;
+   
 
-//     const index: number = users.findIndex((user) => user.id === userId);
+    const index: number = images.findIndex((user) => user.id === imageId);
 
-//     if (index === -1) throw new Error("Couldnt find user to delete");
+    if (index === -1) throw new Error("Couldnt find user to delete");
 
-//     //delete user from users
-//     users = users.filter((user) => user.id !== userId);
-//     setTimeout(() => {
-//       res.send({ users });
-//     }, 4000);
-//   } catch (error) {
-//     res.send({ error: error.message });
-//   }
-// });
+    //delete user from users
+    images = images.filter((user) => user.id !== imageId);
+    setTimeout(() => {
+      res.send({ images });
+    }, 1000);
+  } catch (error) {
+    res.send({ error: error.message });
+  }
+});
 
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
