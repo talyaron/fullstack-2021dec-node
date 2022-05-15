@@ -1,0 +1,12 @@
+.gameBoard{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 500px;
+    height: 500px;
+   .box{
+        background-color: rgb(204, 204, 153);
+        border: 1px solid rgba(0, 0, 0, 0.236);
+        font-size: 50px;
+        text-align:center;
+   }
+}
