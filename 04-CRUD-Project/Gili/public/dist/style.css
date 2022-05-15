@@ -1,0 +1,20 @@
+body {
+  margin: 0%;
+}
+
+.game_wrapper {
+  margin: auto;
+  width: 902px;
+  height: 902px;
+  background-color: gray;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  padding-top: 50px;
+}
+.game_wrapper .squre {
+  width: 250px;
+  height: 250px;
+  background-color: lightblue;
+  border: 1px solid black;
+}
