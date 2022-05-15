@@ -51,7 +51,7 @@ app.get("/api/SpaceGif", (req, res) => {
   }
 });
 
-function randomGif() {
+function randomGif():number {
   return Math.floor(Math.random() * 7);
 }
 
