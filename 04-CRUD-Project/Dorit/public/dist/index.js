@@ -42,7 +42,7 @@ function handleGetCake(event, cakeName) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
                     cakeName_1 = event.target.value;
-                    return [4 /*yield*/, axios.put('/api/get-cake', { cakeName: cakeName_1 })];
+                    return [4 /*yield*/, axios.get('/api/get-cake', { cakeName: cakeName_1 })];
                 case 1:
                     data = (_a.sent()).data;
                     fullCake = data.fullCake, error = data.error;
