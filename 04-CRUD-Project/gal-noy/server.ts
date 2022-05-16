@@ -37,5 +37,5 @@ let gamePlay: Array<Game> = [
     { TeamB: "Barcelona"},
   ];
 
-  
+  //@ts-ignore: cannot find module 'axios'
   
