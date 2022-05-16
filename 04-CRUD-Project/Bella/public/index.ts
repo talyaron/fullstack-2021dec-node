@@ -1,73 +1,46 @@
 
-  // function handleGetMeme1() {
-  //   try {
-  //     axios
-  //     .get("/api/meme1")
-  //     .then(({ data }) => {
-  //       console.log(data);
-  //       const { meme, error } = data;
-  //       if (error) throw new Error(error);
-  //       renderMeme(meme);
-  //     });
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // }
+
+  function handleLoadData() {
+    loadData();
+  }
   
-  // function handleGetMeme2() {
-  //   try {
-  //     axios
-  //     .get("/api/meme2")
-  //     .then(({ data }) => {
-  //       console.log(data);
-  //       const { meme, error } = data;
-  //       if (error) throw new Error(error);
-  //       renderMeme(meme);
-  //     });
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // }
+  function handleAddUser() {
+   addUser();
+  }
   
-  // function handleGetMeme3() {
-  //   try {
-  //     axios
-  //     .get("/api/meme3")
-  //     .then(({ data }) => {
-  //       console.log(data);
-  //       const { meme, error } = data;
-  //       if (error) throw new Error(error);
-  //       renderMeme(meme);
-  //     });
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // }
-  
-  function handleGetmemeSurprise() {
+  async function loadData() {
     try {
-      axios
-      .get("/api/memeSurprise")
-      .then(({ data }) => {
-        console.log(data);
-        const { meme, error } = data;
-        if (error) throw new Error(error);
-        renderMeme(meme);
-      });
-    } catch (error) {
-      console.error(error);
+      // @ts-ignore
+      const { data } = await axios.get("/api/AllUsers");
+  
+      const { users, error } = data;
+      if (error) throw new Error(error);
+  
+      renderData(users);
+    } catch (err: any) {
+      console.error(err);
     }
   }
   
-//   function choosemMeme() {
-//     const randomMeme = Math.floor(Math.random() * memes.length);
-//     // console.log(randomMeme);
-//   }
+  async function addUser() {
+    try {
+      // @ts-ignore
+      const { data } = await axios.get("/api/addUser");
   
-  function renderMeme(meme: meme) {
-    const root: HTMLElement = document.querySelector("#root");
+      const { users, error } = data;
+      if (error) throw new Error(error);
   
-    root.innerHTML = `<img src= ${meme.src} alt="meme"/>`;
+      renderData(users);
+    } catch (err: any) {
+      console.error(err);
+    }
   }
+  
+  function renderData(user) {
+    const table: HTMLElement = document.querySelector("table");
+  
+    table.innerHTML = `<img src= ${user.src} alt="user"/>`;
+  }
+  
   
   

@@ -11,15 +11,28 @@
 </head>
 
 <body>
-    <h1>Welcome to the memes generator</h1>
-    <h3>I dare you to press the button!</h3>
-    <div class="buttons">
-        <!-- <button onclick="handleGetMeme1()">First button</button>
-        <button onclick="handleGetMeme2()">Second button</button>
-        <button onclick="handleGetMeme3()">Third button</button> -->
-        <button onclick="handleGetmemeSurprise()">Surprise meme button</button>
-    </div>
-    <div id="root"></div>
+    <h1>Users Table</h1>
+    <button onclick="handleAddUser()">Add new user</button>
+    <table onload="handleLoadData()">
+        <thead>
+            <tr>
+                <th>User Name</th>
+                <th>Email</th>
+                <th>User Uniq ID</th>
+                <th>Permissions</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Jim Morrison</td>
+                <td>Jim1234@gmail.com</td>
+                <td>#645473BghU</td>
+                <td>Admin</td>
+                <td>Delete/Edit</td>
+            </tr>
+        </tbody>
+    </table>
 
 
     <script src="./dist/index.js"></script>
