@@ -18,3 +18,11 @@ body {
   background-color: lightblue;
   border: 1px solid black;
 }
+
+.squre.black {
+  background-color: black;
+}
+
+.squre.wheat {
+  background-color: wheat;
+}

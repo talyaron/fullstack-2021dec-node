@@ -70,7 +70,7 @@ const squreArr = [
 	}
 ];
 
-app.post('/api/drawSymbol', (req, res) => {
+app.post('/api/next-turn', (req, res) => {
 	try {
 		const { squreId } = req.body;
 		if (!squreId) throw new Error('squreId is required');
@@ -107,3 +107,4 @@ function nextTurn() {
 	}
 }
 // console.log(window.location.search.substr(1))
+
