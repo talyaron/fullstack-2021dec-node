@@ -1,4 +1,4 @@
-async function hundleClick(squreId: number) {
+async function hundleClick(squreId: string) {
 	console.log(squreId);
 	try {
 		// @ts-ignore
