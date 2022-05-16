@@ -50,18 +50,13 @@ var cubeArr = [
         isFullX: 0
     }
 ];
-app.post('/api/postShapes', function (req, res) {
-    try {
-        var squreId = req.body.squreId;
-        if (!squreId)
-            throw new Error('squreId is required');
-        renderSymbol(squreId);
-        res.send({ squreArr: squreArr });
-    }
-    catch (error) {
-        res.send({ error: error.message });
-    }
-});
+// app.get("/api/get-boxes", (req, res) => {
+//     try {
+//       res.send({ boxes });
+//     } catch (error) {
+//       res.send({ error: error.message });
+//     }
+//   });
 app.listen(port, function () {
     console.log("Server listening on port " + port);
 });

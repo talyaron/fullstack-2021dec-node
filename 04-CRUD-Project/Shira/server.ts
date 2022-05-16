@@ -53,16 +53,13 @@ const cubeArr = [
   }
 ]
 
-app.post('/api/postShapes', (req, res) => {
-	try {
-		const { squreId } = req.body;
-		if (!squreId) throw new Error('squreId is required');
-        renderSymbol(squreId);
-        res.send({ squreArr })
-	} catch (error) {
-		res.send({ error: error.message });
-	}
-});
+// app.get("/api/get-boxes", (req, res) => {
+//     try {
+//       res.send({ boxes });
+//     } catch (error) {
+//       res.send({ error: error.message });
+//     }
+//   });
 
 
 
