@@ -64,7 +64,7 @@ var squreArr = [
         isSqureO: 0
     }
 ];
-app.post('/api/drawSymbol', function (req, res) {
+app.post('/api/next-turn', function (req, res) {
     try {
         var squreId = req.body.squreId;
         if (!squreId)
