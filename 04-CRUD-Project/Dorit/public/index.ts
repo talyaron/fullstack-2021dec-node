@@ -5,14 +5,14 @@ interface Cake {
   }
 
 
-
 async function handleGetCake(event: any, cakeName: string){
     try {
         const cakeName:string = event.target.value;
         // @ts-ignore
-        const { data } = await axios.put('/api/get-cake', { cakeName });
+        const { data } = await axios.get('/api/get-cake', { cakeName });
         const { fullCake, error } = data;
         console.log(data);
+
 
         if (error) throw new Error(error);
         renderFullCake(fullCake);
