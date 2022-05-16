@@ -1,5 +1,8 @@
 body {
   margin: 0%;
+  width: 100vw;
+  overflow: hidden;
+  font-family: "Mukta", sans-serif;
 }
 
 .game_wrapper {
@@ -25,4 +28,22 @@ body {
 
 .squre.wheat {
   background-color: wheat;
+}
+
+.wrapper {
+  margin: auto;
+  width: 70vw;
+  text-align: center;
+}
+.wrapper img {
+  width: 40%;
+}
+.wrapper h1 {
+  font-size: 6rem;
+}
+.wrapper h2 {
+  font-size: 3rem;
+}
+.wrapper p {
+  font-size: 1.5rem;
 }

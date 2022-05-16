@@ -81,6 +81,10 @@ app.post('/api/next-turn', (req, res) => {
 	}
 });
 
+app.get('/api/table-status', (req, res) => {
+	res.send({ squreArr });
+})
+
 function renderSymbol(squreId) {
 	squreArr.forEach((squre) => {
 		if (squre.id === squreId) {

@@ -5,31 +5,33 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gili-Tic-Tak-Toe</title>
     <link rel="stylesheet" href="dist/style.css">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.js"
-        integrity="sha512-rozBdNtS7jw9BlC76YF1FQGjz17qQ0J/Vu9ZCFIW374sEy4EZRbRcUZa2RU/MZ90X2mnLU56F75VfdToGV0RiA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <title>Main-Tic Tac Toe</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mukta:wght@200;300;400;800&display=swap" rel="stylesheet">
 </head>
 
 <body>
-    <div class="game_wrapper">
-        <div id="sq0" class="squre" onclick="hundleClick('sq0')"></div>
-        <div id="sq1" class="squre" onclick="hundleClick('sq1')"></div>
-        <div id="sq2" class="squre" onclick="hundleClick('sq2')"></div>
-        <div id="sq3" class="squre" onclick="hundleClick('sq3')"></div>
-        <div id="sq4" class="squre" onclick="hundleClick('sq4')"></div>
-        <div id="sq5" class="squre" onclick="hundleClick('sq5')"></div>
-        <div id="sq6" class="squre" onclick="hundleClick('sq6')"></div>
-        <div id="sq7" class="squre" onclick="hundleClick('sq7')"></div>
-        <div id="sq8" class="squre" onclick="hundleClick('sq8')"></div>
+    <div class="wrapper">
+        <h1>Tic Tac Toe</h1>
+        <img src="https://miro.medium.com/max/512/1*Syzc_BbO0QHTx74NLHcpiQ.png" alt="" srcset="">
+    <h2>How to play?</h2>
+    <p>Choose a room </br>
+    your goal is to make 3 X's or O's in a row </br>
+    Good luck!</p>
     </div>
-
-    <script src="dist/app.js"></script>
+    <div class="room_button_wrapper">
+        <button>
+            <a href="room.html?1">Room 1</a>
+        </button>
+        <button>
+            <a href="room.html?2">Room 2</a>
+        </button>
+        <button>
+            <a href="room.html?3">Room 3</a>
+        </button>
+    </div>
 </body>
 
 </html>

@@ -76,6 +76,9 @@ app.post('/api/next-turn', function (req, res) {
         res.send({ error: error.message });
     }
 });
+app.get('/api/table-status', function (req, res) {
+    res.send({ squreArr: squreArr });
+});
 function renderSymbol(squreId) {
     squreArr.forEach(function (squre) {
         if (squre.id === squreId) {

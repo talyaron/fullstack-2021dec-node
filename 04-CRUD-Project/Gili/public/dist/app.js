@@ -68,6 +68,31 @@ function hundleClick(squreId) {
         });
     });
 }
+function getTableStatus() {
+    return __awaiter(this, void 0, void 0, function () {
+        var data, squreArr, error, error_2;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    return [4 /*yield*/, axios.get('/api/table-status')];
+                case 1:
+                    data = (_a.sent()).data;
+                    squreArr = data.squreArr;
+                    renderSqure(squreArr);
+                    error = data.error;
+                    if (error)
+                        throw new Error(error);
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_2 = _a.sent();
+                    console.error(error_2);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
+}
 function renderSqure(squreArr) {
     gameWrapper.innerHTML = '';
     var html = '';
@@ -87,34 +112,34 @@ function renderSqure(squreArr) {
 }
 function checkIfWin(squreArr) {
     if (squreArr[0].isSqureX && squreArr[1].isSqureX && squreArr[2].isSqureX) {
-        return isGameWinX = true;
+        return (isGameWinX = true);
     }
     else if (squreArr[3].isSqureX && squreArr[4].isSqureX && squreArr[5].isSqureX) {
-        return isGameWinX = true;
+        return (isGameWinX = true);
     }
     else if (squreArr[6].isSqureX && squreArr[7].isSqureX && squreArr[8].isSqureX) {
-        return isGameWinX = true;
+        return (isGameWinX = true);
     }
     else if (squreArr[0].isSqureX && squreArr[4].isSqureX && squreArr[8].isSqureX) {
-        return isGameWinX = true;
+        return (isGameWinX = true);
     }
     else if (squreArr[2].isSqureX && squreArr[4].isSqureX && squreArr[6].isSqureX) {
-        return isGameWinX = true;
+        return (isGameWinX = true);
     }
     else if (squreArr[0].isSqureO && squreArr[1].isSqureO && squreArr[2].isSqureO) {
-        return isGameWinO = true;
+        return (isGameWinO = true);
     }
     else if (squreArr[3].isSqureO && squreArr[4].isSqureO && squreArr[5].isSqureO) {
-        return isGameWinO = true;
+        return (isGameWinO = true);
     }
     else if (squreArr[6].isSqureO && squreArr[7].isSqureO && squreArr[8].isSqureO) {
-        return isGameWinO = true;
+        return (isGameWinO = true);
     }
     else if (squreArr[0].isSqureO && squreArr[4].isSqureO && squreArr[8].isSqureO) {
-        return isGameWinO = true;
+        return (isGameWinO = true);
     }
     else if (squreArr[2].isSqureO && squreArr[4].isSqureO && squreArr[6].isSqureO) {
-        return isGameWinO = true;
+        return (isGameWinO = true);
     }
 }
 function whoWon(win) {
@@ -125,15 +150,12 @@ function whoWon(win) {
         alert("User X won!");
     }
 }
-// if (squreArr[squreId].isSqurefull === 0) {
-//     if(squreArr[squreId].isSqureX) {
-//         squreArr[squreId].isSqurefull = 1;
-//         const drawSpace = document.getElementById(`sq${squreArr[squreId].id}`);
-//         drawSpace.style.backgroundColor = "black";
-//     } else if(squreArr[squreId].isSqureO) {
-//         squreArr[squreId].isSqurefull = 1;
-//         const drawSpace = document.getElementById(`sq${squreArr[squreId].id}`);
-//         drawSpace.style.backgroundColor = "white";
-//     }
+setInterval(getTableStatus, 1000);
+// const link = document.querySelector('.link')
+// const randomNum = () => {
+//     return Math.round(Math.random() * 10)
 // }
-// };
+// console.log(randomNum())
+// link.addEventListener('click', () => {
+//     link.href = `room.html?${randomNum()}`
+// })
