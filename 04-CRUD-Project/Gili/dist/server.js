@@ -10,59 +10,59 @@ app.listen(port, function () {
 });
 var squreArr = [
     {
-        id: 0,
+        id: 'sq0',
         isSqurefull: 0,
         isSqureX: 0,
         isSqureO: 0
     },
     {
-        id: 1,
+        id: 'sq1',
         isSqurefull: 0,
         isSqureX: 0,
         isSqureO: 0
     },
     {
-        id: 2,
+        id: 'sq2',
         isSqurefull: 0,
         isSqureX: 0,
         isSqureO: 0
     },
     {
-        id: 3,
+        id: 'sq3',
         isSqurefull: 0,
         isSqureX: 0,
         isSqureO: 0
     },
     {
-        id: 4,
+        id: 'sq4',
         isSqurefull: 0,
         isSqureX: 0,
         isSqureO: 0
     },
     {
-        id: 5,
+        id: 'sq5',
         isSqurefull: 0,
         isSqureX: 0,
         isSqureO: 0
     },
     {
-        id: 6,
+        id: 'sq6',
         isSqurefull: 0,
         isSqureX: 0,
         isSqureO: 0
     },
     {
-        id: 7,
+        id: 'sq7',
         isSqurefull: 0,
         isSqureX: 0,
         isSqureO: 0
     },
     {
-        id: 8,
+        id: 'sq8',
         isSqurefull: 0,
         isSqureX: 0,
         isSqureO: 0
-    },
+    }
 ];
 app.post('/api/drawSymbol', function (req, res) {
     try {
@@ -70,25 +70,30 @@ app.post('/api/drawSymbol', function (req, res) {
         if (!squreId)
             throw new Error('squreId is required');
         renderSymbol(squreId);
-        res.send({ squreArr: squreArr });
+        res.send({ squreArr: squreArr, isXturn: isXturn });
     }
     catch (error) {
         res.send({ error: error.message });
     }
 });
 function renderSymbol(squreId) {
-    if (squreArr[squreId].isSqurefull === 0) {
-        if (isXturn) {
-            squreArr[squreId].isSqurefull = 1;
-            squreArr[squreId].isSqureX = 1;
+    squreArr.forEach(function (squre) {
+        if (squre.id === squreId) {
+            if (squre.isSqurefull === 0) {
+                if (isXturn) {
+                    squre.isSqurefull = 1;
+                    squre.isSqureX = 1;
+                    nextTurn();
+                }
+                else if (!isXturn) {
+                    squre.isSqurefull = 1;
+                    squre.isSqureO = 1;
+                    nextTurn();
+                }
+            }
         }
-        else if (!isXturn) {
-            squreArr[squreId].isSqurefull = 1;
-            squreArr[squreId].isSqureO = 1;
-        }
-    }
+    });
 }
-;
 function nextTurn() {
     if (isXturn) {
         isXturn = false;
