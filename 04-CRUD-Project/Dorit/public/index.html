@@ -9,7 +9,10 @@
 </head>
 <body>
     <div id="root"></div>
-    <button onclick="handleGetCake()">GET cake through name</button> 
+    <form onsubmit="handleGetCake(event)">
+        <input type="text" name="cakeName" placeholder="Cake Name" required>
+        <button type="submit">Get Cake</button>
+    </form>
     <script src="./dist/index.js"></script>
 </body>
 </html>

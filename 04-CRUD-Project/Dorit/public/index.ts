@@ -5,22 +5,28 @@ interface Cake {
   }
 
 
-async function handleGetCake(event: any, cakeName: string){
-    try {
-        const cakeName:string = event.target.value;
-        // @ts-ignore
-        const { data } = await axios.get('/api/get-cake', { cakeName });
-        const { fullCake, error } = data;
-        console.log(data);
+ function handleGetCake(event: any){
+    event.preventDefault();
+    console.dir(event)
+    console.dir(event.target.elements.cakeName.value)
+    
+    // try {
+    //     const cakeName:string = event.target.value;
+    //     console.log(`${cakeName}`)
+    //     // @ts-ignore
+    //     const { data } = await axios.put('/api/get-cake', { cakeName });
+    //     const { fullCake, error } = data;
+    //     console.log(fullCake);
 
 
-        if (error) throw new Error(error);
-        renderFullCake(fullCake);
+    //     if (error) throw new Error(error);
+    //     renderFullCake(fullCake);
 
-    } catch (error) {
-        console.error(error);
-    } 
+    // } catch (error) {
+    //     console.error(error);
+    // } 
 }
+
 
 function renderFullCake(fullCake:Cake){
     let root: HTMLElement = document.querySelector("#root");

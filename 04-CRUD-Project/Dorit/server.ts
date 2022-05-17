@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 4000;
 
 app.use(express.json()); // to get body from client (body = data from client)
 app.use(express.static("public"));
@@ -12,7 +12,7 @@ interface Cake {
   }
   
   let cakes: Array<Cake> = [
-    { name: "NoneyCake", 
+    { name: "HoneyCake", 
     ingredients:["honey 30 gr","sugar 0.5 glass","flower 2 glasses","eggs 3"],
      prepareMode: ["put into a bowel all the ingredients","stir until very smooth","put on the oven on 175 degrees","bake for 45 minutes"]},
      { name: "vanillaCake", 
@@ -20,38 +20,17 @@ interface Cake {
       prepareMode: ["put into a bowel all the ingredients","stir until very smooth","put on the oven on 175 degrees","bake for 45 minutes"]},
   ];
 //route
-app.get("/api/get-cake", (req, res) => {
+app.put("/api/get-cake", (req, res) => {
     try {
-        const cakeName = req.body
-
-      res.send({ user: users[2] });
-      }, 10000);
-    } catch (error) {
+        const {cakeName} = req.body
+        if (!cakeName) throw new Error("cakeName is required");
+        const cakeIndex = cakes.findIndex(cake => cake.name === cakeName);
+        res.send({ cake: cakes[cakeIndex] });
+      }
+     catch (error) {
       res.send({ error: error.message });
     }
-
-    
-    app.put('/api/update-user', (req, res) => {
-        try {
-          const { userId, age } = req.body;
-          if (!userId) throw new Error("userId is required");
-          if (!age) throw new Error("age is required");
-      
-          const userIndex = users.findIndex(user => user.id === userId);
-          if (userIndex === -1) throw new Error("user not found");
-      
-          users[userIndex].age = age;
-      
-          res.send({ users });
-      
-        } catch (error) {
-          res.send({ error: error.message });
-        }
-      });
-
-                    
-
-
+})
 
 app.listen(port, () => {
     console.log(`Server listening on port ${port}`);
