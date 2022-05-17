@@ -92,3 +92,105 @@ function renderData(user) {
     var table = document.querySelector("table");
     table.innerHTML = "<img src= " + user.src + " alt=\"user\"/>";
 }
+function handleDeleteUser(userId) {
+    return __awaiter(this, void 0, void 0, function () {
+        var data, users, error, error_1;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    return [4 /*yield*/, axios["delete"]('/api/delete-user', { data: { userId: userId } })];
+                case 1:
+                    data = (_a.sent()).data;
+                    users = data.users, error = data.error;
+                    if (error)
+                        throw new Error(error);
+                    renderUsers(users);
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_1 = _a.sent();
+                    console.error(error_1);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
+}
+function handleUpdateAge(event, userId) {
+    return __awaiter(this, void 0, void 0, function () {
+        var age, data, users, error, error_2;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    age = event.target.valueAsNumber;
+                    return [4 /*yield*/, axios.put('/api/update-user', { userId: userId, age: age })];
+                case 1:
+                    data = (_a.sent()).data;
+                    users = data.users, error = data.error;
+                    if (error)
+                        throw new Error(error);
+                    renderUsers(users);
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_2 = _a.sent();
+                    console.error(error_2);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
+}
+function handleAddUser(ev) {
+    return __awaiter(this, void 0, void 0, function () {
+        var name, age, data, users, error, error_3;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    ev.preventDefault();
+                    name = ev.target.elements.name.value;
+                    age = ev.target.elements.age.valueAsNumber;
+                    if (!name || !age)
+                        throw new Error("Name and age are required");
+                    return [4 /*yield*/, axios.post('/api/add-user', { name: name, age: age })];
+                case 1:
+                    data = (_a.sent()).data;
+                    users = data.users, error = data.error;
+                    if (error)
+                        throw new Error(error);
+                    renderUsers(users);
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_3 = _a.sent();
+                    console.error(error_3);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
+}
+// renders
+function renderUser(user) {
+    var root = document.querySelector("#root");
+    root.innerHTML = "user " + user.name + " is " + user.age + " years old";
+}
+function renderUsers(users) {
+    var root = document.querySelector("#root");
+    var html = "";
+    users.forEach(function (user) {
+        html += "<p>user " + user.name + " is " + user.age + " years old <button onclick=\"handleDeleteUser('" + user.id + "')\">DELETE</button>\n    <input type=\"number\" placeholder=\"Age\" onblur=\"handleUpdateAge(event, '" + user.id + "')\" /></p>";
+    });
+    root.innerHTML = html;
+}
+function renderLoader() {
+    var loader = document.querySelector("#loader");
+    if (!loader.classList.contains("lds-dual-ring")) {
+        loader.classList.add("lds-dual-ring");
+        console.log("add");
+    }
+    else {
+        loader.classList.remove("lds-dual-ring");
+        console.log("remove");
+    }
+}
