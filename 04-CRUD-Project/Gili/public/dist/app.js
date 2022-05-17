@@ -37,20 +37,31 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 var gameWrapper = document.querySelector('.game_wrapper');
 var isGameWinX = false;
 var isGameWinO = false;
+function getRoomID() {
+    return __awaiter(this, void 0, void 0, function () {
+        var roomId, data;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    roomId = window.location.search.substr(1);
+                    return [4 /*yield*/, axios.send('/api/roomID', { roomId: roomId })];
+                case 1:
+                    data = (_a.sent()).data;
+                    return [2 /*return*/];
+            }
+        });
+    });
+}
 function hundleClick(squreId) {
     return __awaiter(this, void 0, void 0, function () {
         var data, squreArr, isXturn, win, error, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    console.log(squreId);
-                    _a.label = 1;
-                case 1:
-                    _a.trys.push([1, 3, , 4]);
+                    _a.trys.push([0, 2, , 3]);
                     return [4 /*yield*/, axios.post('/api/next-turn', { squreId: squreId })];
-                case 2:
+                case 1:
                     data = (_a.sent()).data;
-                    console.log(data);
                     squreArr = data.squreArr, isXturn = data.isXturn;
                     renderSqure(squreArr);
                     win = checkIfWin(squreArr);
@@ -58,12 +69,12 @@ function hundleClick(squreId) {
                     error = data.error;
                     if (error)
                         throw new Error(error);
-                    return [3 /*break*/, 4];
-                case 3:
+                    return [3 /*break*/, 3];
+                case 2:
                     error_1 = _a.sent();
                     console.error(error_1);
-                    return [3 /*break*/, 4];
-                case 4: return [2 /*return*/];
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
             }
         });
     });

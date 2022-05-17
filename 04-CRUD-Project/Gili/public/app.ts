@@ -3,12 +3,15 @@ const gameWrapper = document.querySelector('.game_wrapper');
 let isGameWinX = false;
 let isGameWinO = false;
 
+async function getRoomID(){
+	const roomId = window.location.search.substr(1);
+	const { data } = await axios.send('/api/roomID', { roomId });
+}
+
 async function hundleClick(squreId: string) {
-	console.log(squreId);
 	try {
 		// @ts-ignore
 		const { data } = await axios.post('/api/next-turn', { squreId });
-		console.log(data);
 		const { squreArr, isXturn } = data;
 		renderSqure(squreArr);
 		const win = checkIfWin(squreArr);
