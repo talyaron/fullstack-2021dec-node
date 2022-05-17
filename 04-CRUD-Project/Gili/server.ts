@@ -70,7 +70,7 @@ const squreArr = [
 	}
 ];
 
-app.post('/api/drawSymbol', (req, res) => {
+app.post('/api/next-turn', (req, res) => {
 	try {
 		const { squreId } = req.body;
 		if (!squreId) throw new Error('squreId is required');
@@ -80,6 +80,10 @@ app.post('/api/drawSymbol', (req, res) => {
 		res.send({ error: error.message });
 	}
 });
+
+app.get('/api/table-status', (req, res) => {
+	res.send({ squreArr });
+})
 
 function renderSymbol(squreId) {
 	squreArr.forEach((squre) => {
@@ -107,3 +111,4 @@ function nextTurn() {
 	}
 }
 // console.log(window.location.search.substr(1))
+

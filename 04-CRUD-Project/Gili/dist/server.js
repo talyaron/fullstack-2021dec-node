@@ -64,7 +64,7 @@ var squreArr = [
         isSqureO: 0
     }
 ];
-app.post('/api/drawSymbol', function (req, res) {
+app.post('/api/next-turn', function (req, res) {
     try {
         var squreId = req.body.squreId;
         if (!squreId)
@@ -75,6 +75,9 @@ app.post('/api/drawSymbol', function (req, res) {
     catch (error) {
         res.send({ error: error.message });
     }
+});
+app.get('/api/table-status', function (req, res) {
+    res.send({ squreArr: squreArr });
 });
 function renderSymbol(squreId) {
     squreArr.forEach(function (squre) {
