@@ -37,21 +37,10 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 var gameWrapper = document.querySelector('.game_wrapper');
 var isGameWinX = false;
 var isGameWinO = false;
-function getRoomID() {
-    return __awaiter(this, void 0, void 0, function () {
-        var roomId, data;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    roomId = window.location.search.substr(1);
-                    return [4 /*yield*/, axios.send('/api/roomID', { roomId: roomId })];
-                case 1:
-                    data = (_a.sent()).data;
-                    return [2 /*return*/];
-            }
-        });
-    });
-}
+// async function getRoomID(){
+// 	const roomId = window.location.search.substr(1);
+// 	const { data } = await axios.send('/api/roomID', { roomId });
+// }
 function hundleClick(squreId) {
     return __awaiter(this, void 0, void 0, function () {
         var data, squreArr, isXturn, win, error, error_1;

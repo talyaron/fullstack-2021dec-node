@@ -18,19 +18,21 @@ app.listen(port, () => {
 	console.log(`server is listening on port ${port}`);
 });
 
-class Squre {
-	id:string;
-	isSqurefull:number;
-	isSqureX:number;
-	isSqureO:number;
 
-	constructor(id:string, isSqurefull:number, isSqureX:number, isSqureO:number) {
-		this.id = id;
-		this.isSqurefull = isSqurefull;
-		this.isSqureX = isSqureX;
-		this.isSqureO = isSqureO;
-	}
-}
+
+// class Squre {
+// 	id:string;
+// 	isSqurefull:number;
+// 	isSqureX:number;
+// 	isSqureO:number;
+
+// 	constructor(id:string, isSqurefull:number, isSqureX:number, isSqureO:number) {
+// 		this.id = id;
+// 		this.isSqurefull = isSqurefull;
+// 		this.isSqureX = isSqureX;
+// 		this.isSqureO = isSqureO;
+// 	}
+// }
 
 const squreArr = [
 	{
@@ -89,35 +91,35 @@ const squreArr = [
 	}
 ];
 
-function NewArrayByRoom(roomId){
+// function NewArrayByRoom(roomId){
 	
-	if(roomId === 1) {
-		const fullArr1 = CreateArray(room1arr)
-		return fullArr1;
-	} else if (roomId === 2){
-		const fullArr2 = CreateArray(room2arr)
-		return fullArr2;
-	} else if (roomId === 3){
-		const fullArr3 = CreateArray(room3arr)
-		return fullArr3;
-	}
+// 	if(roomId === 1) {
+// 		const fullArr1 = CreateArray(room1arr)
+// 		return fullArr1;
+// 	} else if (roomId === 2){
+// 		const fullArr2 = CreateArray(room2arr)
+// 		return fullArr2;
+// 	} else if (roomId === 3){
+// 		const fullArr3 = CreateArray(room3arr)
+// 		return fullArr3;
+// 	}
 	
-}
+// }
 
-function CreateArray(arr) {
-	for(let i = 0; i < 9; i++) {
-		const newSqure = new Squre(`sq${i}`,0,0,0)
-		arr.push(newSqure);
-	}
-	return arr;
-}
+// function CreateArray(arr) {
+// 	for(let i = 0; i < 9; i++) {
+// 		const newSqure = new Squre(`sq${i}`,0,0,0)
+// 		arr.push(newSqure);
+// 	}
+// 	return arr;
+// }
 
-app.send('/api/roomID', (req, res) => {
-	const { roomId } = req.body;
-	if (!roomId) throw new Error('roomId is required');
-	NewArrayByRoom(roomId);
-	res.send({})
-})
+// app.send('/api/roomID', (req, res) => {
+// 	const { roomId } = req.body;
+// 	if (!roomId) throw new Error('roomId is required');
+// 	NewArrayByRoom(roomId);
+// 	res.send({})
+// })
 
 app.post('/api/next-turn', (req, res) => {
 	try {
