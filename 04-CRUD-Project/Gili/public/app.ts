@@ -3,10 +3,10 @@ const gameWrapper = document.querySelector('.game_wrapper');
 let isGameWinX = false;
 let isGameWinO = false;
 
-async function getRoomID(){
-	const roomId = window.location.search.substr(1);
-	const { data } = await axios.send('/api/roomID', { roomId });
-}
+// async function getRoomID(){
+// 	const roomId = window.location.search.substr(1);
+// 	const { data } = await axios.send('/api/roomID', { roomId });
+// }
 
 async function hundleClick(squreId: string) {
 	try {
