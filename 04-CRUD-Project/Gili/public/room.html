@@ -14,7 +14,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.js"
         integrity="sha512-rozBdNtS7jw9BlC76YF1FQGjz17qQ0J/Vu9ZCFIW374sEy4EZRbRcUZa2RU/MZ90X2mnLU56F75VfdToGV0RiA=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-</head>
+        <script src="https://kit.fontawesome.com/ef6c5070b7.js" crossorigin="anonymous"></script>
+    </head>
 
 <body>
     <div class="game_wrapper">
@@ -28,14 +29,19 @@
         <div id="sq7" class="squre" onclick="hundleClick('sq7')"></div>
         <div id="sq8" class="squre" onclick="hundleClick('sq8')"></div>
     </div>
-    <div class="roomIdContainer">this rooms Id is:<span id="idForRoomSpan"></span></div>
-    <div class="end-match">
-        <form action="/end" id="end_match" style="margin-top: 2em;">
-            <div class="input-fiel">
-            <button class="waves-effect waves-light btn" type="submit" title="End Game">X</button>
-            </div>
-        </form>
+    <div class="buttonsContainer">
+        <button id="reset" type="submit" onclick="handleResetGame()">Reset Game Here</button>
+        <button id="resetCounters" onclick="handleResetCounters()">Reset Counters Here</button>
     </div>
+
+    <div class="countersContainer">
+        <p>X Won: <span id="Xwin"></span> times</p>
+        <p>O Won: <span id="Owin"></span> times</p>
+    </div>
+
+    <div class="winningMessege"></div>
+        
+
     <script src="/socket.io/socket.io.js"></script>
     <script>
         var socket = io();

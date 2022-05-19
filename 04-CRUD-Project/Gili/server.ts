@@ -4,27 +4,23 @@ const express = require('express');
 const app = express();
 const http = require('http');
 const server = http.createServer(app);
-const { Server } = require("socket.io");
+const { Server } = require('socket.io');
 const io = new Server(server);
 
 let users = 0;
-  
-  server.listen(3000, () => {
-	console.log('listening on *:3000');
-  });
 
-  io.on('connection', (socket) => {
-	  users++;
+server.listen(3000, () => {
+	console.log('listening on *:3000');
+});
+
+io.on('connection', (socket) => {
+	users++;
 	console.log(`user number ${users} has connected to room`);
 	socket.on('disconnect', () => {
 		users--;
-	  console.log(`user number ${users} has connected to room`);
+		console.log(`user number ${users} has connected to room`);
 	});
-  });
-
-// io.listen(3000);
-// // //@ts-ignore
-// const port = process.env.PORT || 3000;
+});
 
 app.use(express.json());
 
@@ -35,25 +31,6 @@ const room2arr = [];
 const room3arr = [];
 
 app.use(express.static('public'));
-// app.listen(port, () => {
-// 	console.log(`server is listening on port ${port}`);
-// });
-
-
-
-// class Squre {
-// 	id:string;
-// 	isSqurefull:number;
-// 	isSqureX:number;
-// 	isSqureO:number;
-
-// 	constructor(id:string, isSqurefull:number, isSqureX:number, isSqureO:number) {
-// 		this.id = id;
-// 		this.isSqurefull = isSqurefull;
-// 		this.isSqureX = isSqureX;
-// 		this.isSqureO = isSqureO;
-// 	}
-// }
 
 const squreArr = [
 	{
@@ -112,42 +89,19 @@ const squreArr = [
 	}
 ];
 
-// function NewArrayByRoom(roomId){
-	
-// 	if(roomId === 1) {
-// 		const fullArr1 = CreateArray(room1arr)
-// 		return fullArr1;
-// 	} else if (roomId === 2){
-// 		const fullArr2 = CreateArray(room2arr)
-// 		return fullArr2;
-// 	} else if (roomId === 3){
-// 		const fullArr3 = CreateArray(room3arr)
-// 		return fullArr3;
-// 	}
-	
-// }
-
-// function CreateArray(arr) {
-// 	for(let i = 0; i < 9; i++) {
-// 		const newSqure = new Squre(`sq${i}`,0,0,0)
-// 		arr.push(newSqure);
-// 	}
-// 	return arr;
-// }
-
 app.get('/api/roomID', (req, res) => {
 	const { roomId } = req.body;
 	if (!roomId) throw new Error('roomId is required');
 	// NewArrayByRoom(roomId);
-	res.send({data : `approved roomId is: ${roomId}`})
-})
+	res.send({ data: `approved roomId is: ${roomId}` });
+});
 
 app.post('/api/next-turn', (req, res) => {
 	try {
 		const { squreId } = req.body;
 		if (!squreId) throw new Error('squreId is required');
 		renderSymbol(squreId);
-		res.send({ squreArr , isXturn});
+		res.send({ squreArr, isXturn });
 	} catch (error) {
 		res.send({ error: error.message });
 	}
@@ -155,7 +109,20 @@ app.post('/api/next-turn', (req, res) => {
 
 app.get('/api/table-status', (req, res) => {
 	res.send({ squreArr });
-})
+});
+
+app.get('/api/reset-game', (req, res) => {
+	if(!isXturn) {isXturn = true};
+	squreArr.forEach((squre) => {
+		if (squre.isSqurefull) {
+			squre.isSqurefull = 0;
+			squre.isSqureX = 0;
+			squre.isSqureO = 0;
+		}
+	});
+	
+	res.send({ squreArr , isXturn});
+});
 
 function renderSymbol(squreId) {
 	squreArr.forEach((squre) => {
@@ -164,11 +131,11 @@ function renderSymbol(squreId) {
 				if (isXturn) {
 					squre.isSqurefull = 1;
 					squre.isSqureX = 1;
-                    nextTurn()
+					nextTurn();
 				} else if (!isXturn) {
 					squre.isSqurefull = 1;
 					squre.isSqureO = 1;
-                    nextTurn()
+					nextTurn();
 				}
 			}
 		}
@@ -183,4 +150,3 @@ function nextTurn() {
 	}
 }
 // console.log(window.location.search.substr(1))
-
