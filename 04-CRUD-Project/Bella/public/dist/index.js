@@ -35,12 +35,6 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 function handleLoadData() {
-    loadData();
-}
-function handleAddUser() {
-    addUser();
-}
-function loadData() {
     return __awaiter(this, void 0, void 0, function () {
         var data, users, error, err_1;
         return __generator(this, function (_a) {
@@ -64,48 +58,33 @@ function loadData() {
         });
     });
 }
-function addUser() {
+function handleAddUser(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var data, users, error, err_2;
+        var elements, userName, email, uniqID, permissions, data, users, error, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, axios.get("/api/addUser")];
+                    ev.preventDefault();
+                    elements = ev.target.elements;
+                    userName = elements.userName.value;
+                    email = elements.email.value;
+                    uniqID = elements.uniqID.value;
+                    permissions = elements.permissions.value;
+                    if (!userName || !email || !uniqID || !permissions)
+                        throw new Error("Details are required");
+                    return [4 /*yield*/, axios.post('/api/add-user', {
+                            userName: userName,
+                            email: email,
+                            uniqID: uniqID,
+                            permissions: permissions
+                        })];
                 case 1:
                     data = (_a.sent()).data;
                     users = data.users, error = data.error;
                     if (error)
                         throw new Error(error);
                     renderData(users);
-                    return [3 /*break*/, 3];
-                case 2:
-                    err_2 = _a.sent();
-                    console.error(err_2);
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
-            }
-        });
-    });
-}
-function renderData(user) {
-    var table = document.querySelector("table");
-    table.innerHTML = "<img src= " + user.src + " alt=\"user\"/>";
-}
-function handleDeleteUser(userId) {
-    return __awaiter(this, void 0, void 0, function () {
-        var data, users, error, error_1;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    _a.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, axios["delete"]('/api/delete-user', { data: { userId: userId } })];
-                case 1:
-                    data = (_a.sent()).data;
-                    users = data.users, error = data.error;
-                    if (error)
-                        throw new Error(error);
-                    renderUsers(users);
                     return [3 /*break*/, 3];
                 case 2:
                     error_1 = _a.sent();
@@ -116,21 +95,32 @@ function handleDeleteUser(userId) {
         });
     });
 }
-function handleUpdateAge(event, userId) {
+function renderData(users) {
+    var dataTable = document.querySelector("table");
+    var html = "";
+    users.forEach(function (user) {
+        html += "\n    <tbody>\n    <tr>\n      <td>" + user.userName + "</td>\n      <td>" + user.email + "</td>\n      <td>" + user.uniqID + "</td>\n      <td>" + user.permissions + "</td>\n    </tr> \n    <button onclick=\"handleDeleteUser('" + user.uniqID + "')\">DELETE</button>\n    <input type=\"number\" placeholder=\"Age\" onblur=\"handleUpdateAge(event, '" + user.uniqID + "')\"/></tbody>";
+    });
+    dataTable.innerHTML = html;
+}
+function handleDeleteUser(uniqID) {
     return __awaiter(this, void 0, void 0, function () {
-        var age, data, users, error, error_2;
+        var data, users, error, error_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    age = event.target.valueAsNumber;
-                    return [4 /*yield*/, axios.put('/api/update-user', { userId: userId, age: age })];
+                    return [4 /*yield*/, axios["delete"]('/api/delete-user', {
+                            data: {
+                                uniqID: uniqID
+                            }
+                        })];
                 case 1:
                     data = (_a.sent()).data;
                     users = data.users, error = data.error;
                     if (error)
                         throw new Error(error);
-                    renderUsers(users);
+                    renderData(users);
                     return [3 /*break*/, 3];
                 case 2:
                     error_2 = _a.sent();
@@ -141,19 +131,25 @@ function handleUpdateAge(event, userId) {
         });
     });
 }
-function handleAddUser(ev) {
+function handleUpdateUser(event, uniqID) {
     return __awaiter(this, void 0, void 0, function () {
-        var name, age, data, users, error, error_3;
+        var elements, userName, email, uniqID_1, permissions, data, users, error, error_3;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    ev.preventDefault();
-                    name = ev.target.elements.name.value;
-                    age = ev.target.elements.age.valueAsNumber;
-                    if (!name || !age)
-                        throw new Error("Name and age are required");
-                    return [4 /*yield*/, axios.post('/api/add-user', { name: name, age: age })];
+                    event.preventDefault();
+                    elements = event.target.elements;
+                    userName = elements.userName.value;
+                    email = elements.email.value;
+                    uniqID_1 = elements.uniqID.value;
+                    permissions = elements.permissions.value;
+                    return [4 /*yield*/, axios.put('/api/update-user', {
+                            userName: userName,
+                            email: email,
+                            uniqID: uniqID_1,
+                            permissions: permissions
+                        })];
                 case 1:
                     data = (_a.sent()).data;
                     users = data.users, error = data.error;
@@ -171,18 +167,6 @@ function handleAddUser(ev) {
     });
 }
 // renders
-function renderUser(user) {
-    var root = document.querySelector("#root");
-    root.innerHTML = "user " + user.name + " is " + user.age + " years old";
-}
-function renderUsers(users) {
-    var root = document.querySelector("#root");
-    var html = "";
-    users.forEach(function (user) {
-        html += "<p>user " + user.name + " is " + user.age + " years old <button onclick=\"handleDeleteUser('" + user.id + "')\">DELETE</button>\n    <input type=\"number\" placeholder=\"Age\" onblur=\"handleUpdateAge(event, '" + user.id + "')\" /></p>";
-    });
-    root.innerHTML = html;
-}
 function renderLoader() {
     var loader = document.querySelector("#loader");
     if (!loader.classList.contains("lds-dual-ring")) {

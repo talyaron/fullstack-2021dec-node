@@ -9,7 +9,6 @@ interface user {
         email: string,
         uniqID: string,
         permissions: string,
-        actions: string;
 }
 
 const users: Array < user > = [];
