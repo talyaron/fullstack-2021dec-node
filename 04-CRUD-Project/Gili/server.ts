@@ -2,8 +2,29 @@ console.log(`Connected!`);
 //@ts-ignore
 const express = require('express');
 const app = express();
-//@ts-ignore
-const port = process.env.PORT || 3000;
+const http = require('http');
+const server = http.createServer(app);
+const { Server } = require("socket.io");
+const io = new Server(server);
+
+let users = 0;
+  
+  server.listen(3000, () => {
+	console.log('listening on *:3000');
+  });
+
+  io.on('connection', (socket) => {
+	  users++;
+	console.log(`user number ${users} has connected to room`);
+	socket.on('disconnect', () => {
+		users--;
+	  console.log(`user number ${users} has connected to room`);
+	});
+  });
+
+// io.listen(3000);
+// // //@ts-ignore
+// const port = process.env.PORT || 3000;
 
 app.use(express.json());
 
@@ -14,9 +35,9 @@ const room2arr = [];
 const room3arr = [];
 
 app.use(express.static('public'));
-app.listen(port, () => {
-	console.log(`server is listening on port ${port}`);
-});
+// app.listen(port, () => {
+// 	console.log(`server is listening on port ${port}`);
+// });
 
 
 
@@ -114,12 +135,12 @@ const squreArr = [
 // 	return arr;
 // }
 
-// app.send('/api/roomID', (req, res) => {
-// 	const { roomId } = req.body;
-// 	if (!roomId) throw new Error('roomId is required');
-// 	NewArrayByRoom(roomId);
-// 	res.send({})
-// })
+app.get('/api/roomID', (req, res) => {
+	const { roomId } = req.body;
+	if (!roomId) throw new Error('roomId is required');
+	// NewArrayByRoom(roomId);
+	res.send({data : `approved roomId is: ${roomId}`})
+})
 
 app.post('/api/next-turn', (req, res) => {
 	try {

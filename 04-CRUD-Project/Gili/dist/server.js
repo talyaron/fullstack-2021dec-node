@@ -2,8 +2,25 @@ console.log("Connected!");
 //@ts-ignore
 var express = require('express');
 var app = express();
-//@ts-ignore
-var port = process.env.PORT || 3000;
+var http = require('http');
+var server = http.createServer(app);
+var Server = require("socket.io").Server;
+var io = new Server(server);
+var users = 0;
+server.listen(3000, function () {
+    console.log('listening on *:3000');
+});
+io.on('connection', function (socket) {
+    users++;
+    console.log("user number " + users + " has connected to room");
+    socket.on('disconnect', function () {
+        users--;
+        console.log("user number " + users + " has connected to room");
+    });
+});
+// io.listen(3000);
+// // //@ts-ignore
+// const port = process.env.PORT || 3000;
 app.use(express.json());
 var isXturn = true;
 var sq = 'sq';
@@ -11,9 +28,9 @@ var room1arr = [];
 var room2arr = [];
 var room3arr = [];
 app.use(express.static('public'));
-app.listen(port, function () {
-    console.log("server is listening on port " + port);
-});
+// app.listen(port, () => {
+// 	console.log(`server is listening on port ${port}`);
+// });
 // class Squre {
 // 	id:string;
 // 	isSqurefull:number;
@@ -101,12 +118,13 @@ var squreArr = [
 // 	}
 // 	return arr;
 // }
-// app.send('/api/roomID', (req, res) => {
-// 	const { roomId } = req.body;
-// 	if (!roomId) throw new Error('roomId is required');
-// 	NewArrayByRoom(roomId);
-// 	res.send({})
-// })
+app.get('/api/roomID', function (req, res) {
+    var roomId = req.body.roomId;
+    if (!roomId)
+        throw new Error('roomId is required');
+    // NewArrayByRoom(roomId);
+    res.send({ data: "approved roomId is: " + roomId });
+});
 app.post('/api/next-turn', function (req, res) {
     try {
         var squreId = req.body.squreId;

@@ -1,12 +1,17 @@
 const gameWrapper = document.querySelector('.game_wrapper');
+const idForRoomSpan = document.querySelector('#idForRoomSpan') as HTMLSpanElement;
+
+const socket = io('http://localhost:3000');
 
 let isGameWinX = false;
 let isGameWinO = false;
 
-// async function getRoomID(){
-// 	const roomId = window.location.search.substr(1);
-// 	const { data } = await axios.send('/api/roomID', { roomId });
-// }
+async function getRoomID(){
+	const roomId = window.location.search.substr(1);
+	const { data } = await axios.get('/api/roomID', { roomId });
+	console.log(data)
+	idForRoomSpan.innerText = data;
+}
 
 async function hundleClick(squreId: string) {
 	try {
@@ -47,7 +52,7 @@ function renderSqure(squreArr) {
 			html += `<div id='${squre.id}' class="squre" onclick="hundleClick('${squre.id}')"></div> `;
 		}
 	});
-	console.log(html);
+
 	gameWrapper.innerHTML = html;
 }
 
@@ -96,3 +101,4 @@ setInterval(getTableStatus,1000)
 // link.addEventListener('click', () => {
 //     link.href = `room.html?${randomNum()}`
 // })
+

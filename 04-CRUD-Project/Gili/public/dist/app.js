@@ -35,12 +35,27 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 var gameWrapper = document.querySelector('.game_wrapper');
+var idForRoomSpan = document.querySelector('#idForRoomSpan');
+var socket = io('http://localhost:3000');
 var isGameWinX = false;
 var isGameWinO = false;
-// async function getRoomID(){
-// 	const roomId = window.location.search.substr(1);
-// 	const { data } = await axios.send('/api/roomID', { roomId });
-// }
+function getRoomID() {
+    return __awaiter(this, void 0, void 0, function () {
+        var roomId, data;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    roomId = window.location.search.substr(1);
+                    return [4 /*yield*/, axios.get('/api/roomID', { roomId: roomId })];
+                case 1:
+                    data = (_a.sent()).data;
+                    console.log(data);
+                    idForRoomSpan.innerText = data;
+                    return [2 /*return*/];
+            }
+        });
+    });
+}
 function hundleClick(squreId) {
     return __awaiter(this, void 0, void 0, function () {
         var data, squreArr, isXturn, win, error, error_1;
@@ -107,7 +122,6 @@ function renderSqure(squreArr) {
             html += "<div id='" + squre.id + "' class=\"squre\" onclick=\"hundleClick('" + squre.id + "')\"></div> ";
         }
     });
-    console.log(html);
     gameWrapper.innerHTML = html;
 }
 function checkIfWin(squreArr) {

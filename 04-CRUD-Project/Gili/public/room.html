@@ -28,7 +28,18 @@
         <div id="sq7" class="squre" onclick="hundleClick('sq7')"></div>
         <div id="sq8" class="squre" onclick="hundleClick('sq8')"></div>
     </div>
-    <div class="roomIdContainer">this rooms Id is:<span id="IdFirRoomSpan"></span></div>
+    <div class="roomIdContainer">this rooms Id is:<span id="idForRoomSpan"></span></div>
+    <div class="end-match">
+        <form action="/end" id="end_match" style="margin-top: 2em;">
+            <div class="input-fiel">
+            <button class="waves-effect waves-light btn" type="submit" title="End Game">X</button>
+            </div>
+        </form>
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        var socket = io();
+    </script>
     <script src="dist/app.js"></script>
 </body>
 
