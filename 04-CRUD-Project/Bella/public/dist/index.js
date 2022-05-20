@@ -70,10 +70,22 @@ function handleAddUser(ev) {
     });
 }
 function renderData(users) {
-    var usersTable = document.querySelector("#usersTable");
+    var usersTable = document.querySelector("#tableBody");
     var html = "";
     users.forEach(function (user) {
-        html += "\n    <tr>\n      <td>" + user.userName + "</td>\n      <td>" + user.email + "</td>\n      <td>" + user.uniqID + "</td>\n      <td>" + user.permissions + "</td>\n    </tr> \n    <button onclick=\"handleDeleteUser('" + user.uniqID + "')\">DELETE</button>\n    <input type=\"number\" placeholder=\"Age\" onClick=\"handleUpdateAge(event, '" + user.uniqID + "')\"/>";
+        html += "\n    <tr>\n      <td>" + user.userName + "</td>\n      <td>" + user.email + "</td>\n      <td>" + user.uniqID + "</td>\n      <td>" + user.permissions + "</td>\n      <td onclick=\"handleDeleteUser('" + user.uniqID + "')\">Delete</td>\n      <td onclick=\"handleEditUser('" + user.uniqID + "')\">Edit</td>\n    </tr>";
     });
     usersTable.innerHTML = html;
 }
+// let html = "";
+// users.forEach((user) => {
+//   html += `
+//   <tr>
+//     <td>${user.userName}</td>
+//     <td>${user.email}</td>
+//     <td>${user.uniqID}</td>
+//     <td>${user.permissions}</td>
+//   </tr> 
+//   <button onclick="handleDeleteUser('${user.uniqID}')">DELETE</button>
+//   <input type="number" placeholder="Age" onClick="handleUpdateAge(event, '${user.uniqID}')"/>`;
+// });

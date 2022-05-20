@@ -43,7 +43,7 @@ async function handleAddUser(ev: any) {
 
 
 function renderData(users: Array < user > ) {
-  const usersTable: HTMLElement = document.querySelector("#usersTable");
+  const usersTable:HTMLTableElement = document.querySelector("#tableBody");
 
   let html = "";
   users.forEach((user) => {
@@ -53,12 +53,23 @@ function renderData(users: Array < user > ) {
       <td>${user.email}</td>
       <td>${user.uniqID}</td>
       <td>${user.permissions}</td>
-    </tr> 
-    <button onclick="handleDeleteUser('${user.uniqID}')">DELETE</button>
-    <input type="number" placeholder="Age" onClick="handleUpdateAge(event, '${user.uniqID}')"/>`;
+      <td onclick="handleDeleteUser('${user.uniqID}')">Delete</td>
+      <td onclick="handleEditUser('${user.uniqID}')">Edit</td>
+    </tr>`;
   });
   usersTable.innerHTML = html;
 }
 
-
+// let html = "";
+// users.forEach((user) => {
+//   html += `
+//   <tr>
+//     <td>${user.userName}</td>
+//     <td>${user.email}</td>
+//     <td>${user.uniqID}</td>
+//     <td>${user.permissions}</td>
+//   </tr> 
+//   <button onclick="handleDeleteUser('${user.uniqID}')">DELETE</button>
+//   <input type="number" placeholder="Age" onClick="handleUpdateAge(event, '${user.uniqID}')"/>`;
+// });
 
