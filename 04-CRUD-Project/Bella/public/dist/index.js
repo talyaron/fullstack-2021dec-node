@@ -34,33 +34,9 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-function handleLoadData() {
-    return __awaiter(this, void 0, void 0, function () {
-        var data, users, error, err_1;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    _a.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, axios.get("/api/AllUsers")];
-                case 1:
-                    data = (_a.sent()).data;
-                    users = data.users, error = data.error;
-                    if (error)
-                        throw new Error(error);
-                    renderData(users);
-                    return [3 /*break*/, 3];
-                case 2:
-                    err_1 = _a.sent();
-                    console.error(err_1);
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
-            }
-        });
-    });
-}
 function handleAddUser(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var elements, userName, email, uniqID, permissions, data, users, error, error_1;
+        var elements, userName, email, permissions, data, users, error, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -69,14 +45,12 @@ function handleAddUser(ev) {
                     elements = ev.target.elements;
                     userName = elements.userName.value;
                     email = elements.email.value;
-                    uniqID = elements.uniqID.value;
                     permissions = elements.permissions.value;
-                    if (!userName || !email || !uniqID || !permissions)
+                    if (!userName || !email || !permissions)
                         throw new Error("Details are required");
                     return [4 /*yield*/, axios.post('/api/add-user', {
                             userName: userName,
                             email: email,
-                            uniqID: uniqID,
                             permissions: permissions
                         })];
                 case 1:
@@ -96,85 +70,10 @@ function handleAddUser(ev) {
     });
 }
 function renderData(users) {
-    var dataTable = document.querySelector("table");
+    var usersTable = document.querySelector("#usersTable");
     var html = "";
     users.forEach(function (user) {
-        html += "\n    <tbody>\n    <tr>\n      <td>" + user.userName + "</td>\n      <td>" + user.email + "</td>\n      <td>" + user.uniqID + "</td>\n      <td>" + user.permissions + "</td>\n    </tr> \n    <button onclick=\"handleDeleteUser('" + user.uniqID + "')\">DELETE</button>\n    <input type=\"number\" placeholder=\"Age\" onblur=\"handleUpdateAge(event, '" + user.uniqID + "')\"/></tbody>";
+        html += "\n    <tr>\n      <td>" + user.userName + "</td>\n      <td>" + user.email + "</td>\n      <td>" + user.uniqID + "</td>\n      <td>" + user.permissions + "</td>\n    </tr> \n    <button onclick=\"handleDeleteUser('" + user.uniqID + "')\">DELETE</button>\n    <input type=\"number\" placeholder=\"Age\" onClick=\"handleUpdateAge(event, '" + user.uniqID + "')\"/>";
     });
-    dataTable.innerHTML = html;
-}
-function handleDeleteUser(uniqID) {
-    return __awaiter(this, void 0, void 0, function () {
-        var data, users, error, error_2;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    _a.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, axios["delete"]('/api/delete-user', {
-                            data: {
-                                uniqID: uniqID
-                            }
-                        })];
-                case 1:
-                    data = (_a.sent()).data;
-                    users = data.users, error = data.error;
-                    if (error)
-                        throw new Error(error);
-                    renderData(users);
-                    return [3 /*break*/, 3];
-                case 2:
-                    error_2 = _a.sent();
-                    console.error(error_2);
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
-            }
-        });
-    });
-}
-function handleUpdateUser(event, uniqID) {
-    return __awaiter(this, void 0, void 0, function () {
-        var elements, userName, email, uniqID_1, permissions, data, users, error, error_3;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    _a.trys.push([0, 2, , 3]);
-                    event.preventDefault();
-                    elements = event.target.elements;
-                    userName = elements.userName.value;
-                    email = elements.email.value;
-                    uniqID_1 = elements.uniqID.value;
-                    permissions = elements.permissions.value;
-                    return [4 /*yield*/, axios.put('/api/update-user', {
-                            userName: userName,
-                            email: email,
-                            uniqID: uniqID_1,
-                            permissions: permissions
-                        })];
-                case 1:
-                    data = (_a.sent()).data;
-                    users = data.users, error = data.error;
-                    if (error)
-                        throw new Error(error);
-                    renderUsers(users);
-                    return [3 /*break*/, 3];
-                case 2:
-                    error_3 = _a.sent();
-                    console.error(error_3);
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
-            }
-        });
-    });
-}
-// renders
-function renderLoader() {
-    var loader = document.querySelector("#loader");
-    if (!loader.classList.contains("lds-dual-ring")) {
-        loader.classList.add("lds-dual-ring");
-        console.log("add");
-    }
-    else {
-        loader.classList.remove("lds-dual-ring");
-        console.log("remove");
-    }
+    usersTable.innerHTML = html;
 }
