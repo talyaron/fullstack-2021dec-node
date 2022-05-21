@@ -40,7 +40,7 @@ function handleGetRecipe() {
     if (forms)
         forms.remove();
     var html = "";
-    html = "\n    <div id=\"forms\">\n    <form onsubmit=\"GetRecipe(event)\">\n    <input type=\"text\" name=\"cakeName\" placeholder=\"Recipe Name\">\n    <button type=\"submit\">Get Recipe</button>\n    </form>\n    </div>";
+    html = "\n    <div id=\"forms\">\n    <form onsubmit=\"GetRecipe(event)\">\n    <input type=\"text\" name=\"recipeName\" placeholder=\"Recipe Name\">\n    <button type=\"submit\">Get Recipe</button>\n    </form>\n    </div>";
     var root = document.querySelector("#root");
     root.innerHTML = html;
     root.style.position = "relative";
@@ -49,26 +49,26 @@ function handleGetRecipe() {
 }
 function GetRecipe(event) {
     return __awaiter(this, void 0, void 0, function () {
-        var cakeName, data, cake, error, error_1;
+        var recipeName, data, recipe, error, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     console.log("getRecipe");
                     event.preventDefault();
-                    cakeName = event.target.elements.cakeName.value;
+                    recipeName = event.target.elements.recipeName.value;
                     _a.label = 1;
                 case 1:
                     _a.trys.push([1, 3, , 4]);
-                    console.log("" + cakeName);
-                    return [4 /*yield*/, axios.put('/api/get-cake', { cakeName: cakeName })];
+                    console.log("" + recipeName);
+                    return [4 /*yield*/, axios.put('/api/get-recipe', { recipeName: recipeName })];
                 case 2:
                     data = (_a.sent()).data;
                     console.log({ data: data });
-                    cake = data.cake, error = data.error;
-                    console.log(cake);
+                    recipe = data.recipe, error = data.error;
+                    console.log(recipe);
                     if (error)
                         throw new Error(error);
-                    renderFullCake(cake);
+                    renderFullRecipe(recipe);
                     return [3 /*break*/, 4];
                 case 3:
                     error_1 = _a.sent();
@@ -79,27 +79,146 @@ function GetRecipe(event) {
         });
     });
 }
-function renderFullCake(fullCake) {
-    console.log("fullCake from server:" + fullCake);
+function handleAddRepipe() {
+    console.log("handleAddRecipe");
+    var forms = document.querySelector("#forms");
+    if (forms)
+        forms.remove();
+    var html = "";
+    html = "\n    <div id=\"forms\">\n        <form onsubmit=\"PostRecipe(event)\">\n            <input type=\"text\" name=\"recipeName\" placeholder=\"Recipe Name\">";
+    html += "        \n            <input type=\"text\" name=\"array1[]\" placeholder=\"Ingredients\"/><br>"
+        < input;
+    type = "text";
+    name = "array[]";
+    placeholder = "PrepareMode" /  > onclick;
+    type;
+    "text";
+    name = "adderName";
+    placeholder = "Name of Adder" /  >
+        type;
+    "text";
+    name = "ingredients";
+    placeholder = "Ingredients" >
+        type;
+    "text";
+    name = "prepareMode";
+    placeholder = "Prepare Mode" >
+        type;
+    "text";
+    name = "adderName";
+    placeholder = "Adder Name" >
+        type;
+    "submit" > Post;
+    Recipe < /button>
+        < /form>
+        < /div>` ;
+    var root = document.querySelector("#root");
+    root.innerHTML = html;
+    root.style.position = "relative";
+    root.style.top = "200px";
+    root.style.left = "350px";
+}
+/** @class */ (function () {
+    function class_1() {
+    }
+    return class_1;
+}());
+"";
+action = "index.html";
+method = "post" >
+    type;
+"text";
+name = "array[]";
+value = "" /  > type;
+"text";
+name = "array[]";
+value = "" /  > type;
+"text";
+name = "array[]";
+value = "" /  > type;
+"text";
+name = "array[]";
+value = "" /  > type;
+"text";
+name = "array[]";
+value = "" /  > type;
+"button";
+name = "button";
+onclick = "ns()" >
+    Submit
+    < /button> 
+    < /form> 
+    < br >
+    id;
+"var" > /p> 
+    < script;
+type = "text/javascript" >
+;
+var v = "The respective values are :";
+function ns() {
+    var input = document.getElementsByName('array[]');
+    for (var i = 0; i < input.length; i++) {
+        var p = input[i];
+        v = v + "array[" + i + "].value= "
+            + p.value + " ";
+    }
+    document.getElementById("var").innerHTML = v;
+    document.getElementById("mv").innerHTML = "Output";
+}
+/script> ;
+function PostRecipe(event) {
+    return __awaiter(this, void 0, void 0, function () {
+        var myRecipe, data, myRecipe_1, error, error_2;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    console.log("PostRecipe");
+                    event.preventDefault();
+                    myRecipe = { event: event, : .target.elements.recipeName.value, event: event, : .target.elements.ingredients.value, event: event, : .target.elements.prepareMode.value, event: event, : .target.elements.adderName.value };
+                    _a.label = 1;
+                case 1:
+                    _a.trys.push([1, 3, , 4]);
+                    console.log("" + myRecipe_1);
+                    return [4 /*yield*/, axios.post('/api/add-recipe', { myRecipe: myRecipe_1 })];
+                case 2:
+                    data = (_a.sent()).data;
+                    console.log({ data: data });
+                    myRecipe_1 = data.myRecipe, error = data.error;
+                    console.log(myRecipe_1);
+                    if (error)
+                        throw new Error(error);
+                    renderFullRecipe(myRecipe_1);
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_2 = _a.sent();
+                    console.error(error_2);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
+}
+function renderFullRecipe(fullRecipe) {
+    console.log("fullRecipe from server:" + fullRecipe);
     var forms = document.querySelector("#forms");
     var html = "";
-    html = "<div id=\"name\" color=\"red\">" + fullCake.name + "</div>";
+    html = "<div id=\"name\" color=\"red\">" + fullRecipe.name + "</div>";
     html += "===================================";
     html += "<div id=\"ing\" color=\"red\">Ingredients</div>";
     html += "===================================";
     html += "<br>";
-    var ingNo = fullCake.ingredients.length;
+    var ingNo = fullRecipe.ingredients.length;
     for (var i = 0; i < ingNo; i++) {
-        html += "<div class=\"ingredients\">" + fullCake.ingredients[i] + "</div>";
+        html += "<div class=\"ingredients\">" + fullRecipe.ingredients[i] + "</div>";
     }
     html += "===================================";
     html += "<br>";
     html += "<div id=\"pre\" color=\"red\">Prepare Mode</div>";
     html += "===================================";
     html += "<br>";
-    var preNo = fullCake.prepareMode.length;
+    var preNo = fullRecipe.prepareMode.length;
     for (var j = 0; j < preNo; j++) {
-        html += "<div class=\"prepares\">" + fullCake.prepareMode[j] + "</div>";
+        html += "<div class=\"prepares\">" + fullRecipe.prepareMode[j] + "</div>";
     }
     forms.innerHTML = html;
     forms.style.position = "absolute";
