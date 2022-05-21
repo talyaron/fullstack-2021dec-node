@@ -25,6 +25,7 @@ app.put("/api/get-cake", (req, res) => {
         const {cakeName} = req.body
         if (!cakeName) throw new Error("cakeName is required");
         const cakeIndex = cakes.findIndex(cake => cake.name === cakeName);
+        if (cakeIndex===-1) throw new Error("cakeName not found")
         res.send({ cake: cakes[cakeIndex] });
       }
      catch (error) {

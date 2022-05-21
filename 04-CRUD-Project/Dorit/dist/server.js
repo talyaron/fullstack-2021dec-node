@@ -18,6 +18,8 @@ app.put("/api/get-cake", function (req, res) {
         if (!cakeName_1)
             throw new Error("cakeName is required");
         var cakeIndex = cakes.findIndex(function (cake) { return cake.name === cakeName_1; });
+        if (cakeIndex === -1)
+            throw new Error("cakeName not found");
         res.send({ cake: cakes[cakeIndex] });
     }
     catch (error) {
