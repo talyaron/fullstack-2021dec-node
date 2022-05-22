@@ -85,105 +85,54 @@ function handleAddRepipe() {
     if (forms)
         forms.remove();
     var html = "";
-    html = "\n    <div id=\"forms\">\n        <form onsubmit=\"PostRecipe(event)\">\n            <input type=\"text\" name=\"recipeName\" placeholder=\"Recipe Name\">";
-    html += "        \n            <input type=\"text\" name=\"array1[]\" placeholder=\"Ingredients\"/><br>"
-        < input;
-    type = "text";
-    name = "array[]";
-    placeholder = "PrepareMode" /  > onclick;
-    type;
-    "text";
-    name = "adderName";
-    placeholder = "Name of Adder" /  >
-        type;
-    "text";
-    name = "ingredients";
-    placeholder = "Ingredients" >
-        type;
-    "text";
-    name = "prepareMode";
-    placeholder = "Prepare Mode" >
-        type;
-    "text";
-    name = "adderName";
-    placeholder = "Adder Name" >
-        type;
-    "submit" > Post;
-    Recipe < /button>
-        < /form>
-        < /div>` ;
+    html = "\n    <div id=\"forms\">\n        <form onsubmit=\"PostRecipe(event)\">\n            <input type=\"text\" name=\"name\" placeholder=\"Recipe Name\"><br>";
+    html += "        \n            <input type=\"text\" name=\"array1[]\" placeholder=\"Ingredients\"/><br>\n            <input type=\"text\" name=\"array1[]\" placeholder=\"Ingredients\"/><br>\n            <input type=\"text\" name=\"array1[]\" placeholder=\"Ingredients\"/><br>\n            <input type=\"text\" name=\"array1[]\" placeholder=\"Ingredients\"/><br>\n            <input type=\"text\" name=\"array1[]\" placeholder=\"Ingredients\"/><br>\n            <input type=\"text\" name=\"array1[]\" placeholder=\"Ingredients\"/><br>";
+    html += "\n            <input type=\"text\" name=\"array2[]\" placeholder=\"Prepare Mode\"/><br>\n            <input type=\"text\" name=\"array2[]\" placeholder=\"Prepare Mode\"/><br>\n            <input type=\"text\" name=\"array2[]\" placeholder=\"Prepare Mode\"/><br>\n            <input type=\"text\" name=\"array2[]\" placeholder=\"Prepare Mode\"/><br>\n            <input type=\"text\" name=\"array2[]\" placeholder=\"Prepare Mode\"/><br>\n            <input type=\"text\" name=\"array2[]\" placeholder=\"Prepare Mode\"/><br>";
+    html += "\n            <input type=\"text\" name=\"adderName\" placeholder=\"name of adder\"/>\n            <button type=\"submit\">Post Recipe</button>        \n            </form>\n    </div>";
     var root = document.querySelector("#root");
     root.innerHTML = html;
     root.style.position = "relative";
-    root.style.top = "200px";
-    root.style.left = "350px";
+    root.style.top = "10px";
+    root.style.left = "10px";
 }
-/** @class */ (function () {
-    function class_1() {
-    }
-    return class_1;
-}());
-"";
-action = "index.html";
-method = "post" >
-    type;
-"text";
-name = "array[]";
-value = "" /  > type;
-"text";
-name = "array[]";
-value = "" /  > type;
-"text";
-name = "array[]";
-value = "" /  > type;
-"text";
-name = "array[]";
-value = "" /  > type;
-"text";
-name = "array[]";
-value = "" /  > type;
-"button";
-name = "button";
-onclick = "ns()" >
-    Submit
-    < /button> 
-    < /form> 
-    < br >
-    id;
-"var" > /p> 
-    < script;
-type = "text/javascript" >
-;
-var v = "The respective values are :";
-function ns() {
-    var input = document.getElementsByName('array[]');
-    for (var i = 0; i < input.length; i++) {
-        var p = input[i];
-        v = v + "array[" + i + "].value= "
-            + p.value + " ";
-    }
-    document.getElementById("var").innerHTML = v;
-    document.getElementById("mv").innerHTML = "Output";
-}
-/script> ;
 function PostRecipe(event) {
     return __awaiter(this, void 0, void 0, function () {
-        var myRecipe, data, myRecipe_1, error, error_2;
+        var name, ingredients, i, prepareMode, i, adderName, myRecipe, data, myRecipe_1, error, error_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     console.log("PostRecipe");
+                    console.dir(event);
                     event.preventDefault();
-                    myRecipe = { event: event, : .target.elements.recipeName.value, event: event, : .target.elements.ingredients.value, event: event, : .target.elements.prepareMode.value, event: event, : .target.elements.adderName.value };
+                    name = event.target.elements.name.value;
+                    console.log(name);
+                    console.dir(event.target.elements[0].value);
+                    ingredients = [];
+                    for (i = 1; i < 7; i++) {
+                        if (event.target.elements[i].value !== "") {
+                            ingredients.push(event.target.elements[i].value);
+                        }
+                    }
+                    console.log(ingredients);
+                    prepareMode = [];
+                    for (i = 7; i < 13; i++) {
+                        if (event.target.elements[i].value !== "") {
+                            prepareMode.push(event.target.elements[i].value);
+                        }
+                    }
+                    console.log(prepareMode);
+                    adderName = event.target.elements.adderName.value;
+                    myRecipe = { name: name, ingredients: ingredients, prepareMode: prepareMode, adderName: adderName };
                     _a.label = 1;
                 case 1:
                     _a.trys.push([1, 3, , 4]);
                     console.log("" + myRecipe_1);
-                    return [4 /*yield*/, axios.post('/api/add-recipe', { myRecipe: myRecipe_1 })];
+                    return [4 /*yield*/, axios.post('/api/add-recipe', { name: name, ingredients: ingredients, prepareMode: prepareMode, adderName: adderName })];
                 case 2:
                     data = (_a.sent()).data;
                     console.log({ data: data });
                     myRecipe_1 = data.myRecipe, error = data.error;
+                    //const myRecipe:Recipe={name,ingredients,prepareMode,adderName}
                     console.log(myRecipe_1);
                     if (error)
                         throw new Error(error);

@@ -52,76 +52,64 @@ interface Recipe {
     html=`
     <div id="forms">
         <form onsubmit="PostRecipe(event)">
-            <input type="text" name="recipeName" placeholder="Recipe Name">`
+            <input type="text" name="name" placeholder="Recipe Name"><br>`
     html+=`        
+            <input type="text" name="array1[]" placeholder="Ingredients"/><br>
+            <input type="text" name="array1[]" placeholder="Ingredients"/><br>
+            <input type="text" name="array1[]" placeholder="Ingredients"/><br>
+            <input type="text" name="array1[]" placeholder="Ingredients"/><br>
+            <input type="text" name="array1[]" placeholder="Ingredients"/><br>
             <input type="text" name="array1[]" placeholder="Ingredients"/><br>`
-            <input type="text" name="array[]" placeholder="PrepareMode"/><button onclick = <br>
-            <input type="text" name="adderName" placeholder="Name of Adder"/>
-
-            <input type="text" name="ingredients" placeholder="Ingredients">
-            <input type="text" name="prepareMode" placeholder="Prepare Mode">
-            <input type="text" name = "adderName" placeholder="Adder Name">
-            <button type="submit">Post Recipe</button>
-        </form>
+    html+=`
+            <input type="text" name="array2[]" placeholder="Prepare Mode"/><br>
+            <input type="text" name="array2[]" placeholder="Prepare Mode"/><br>
+            <input type="text" name="array2[]" placeholder="Prepare Mode"/><br>
+            <input type="text" name="array2[]" placeholder="Prepare Mode"/><br>
+            <input type="text" name="array2[]" placeholder="Prepare Mode"/><br>
+            <input type="text" name="array2[]" placeholder="Prepare Mode"/><br>`
+    html+=`
+            <input type="text" name="adderName" placeholder="name of adder"/>
+            <button type="submit">Post Recipe</button>        
+            </form>
     </div>` 
     let root:HTMLDivElement=document.querySelector("#root")  
     root.innerHTML=html
     root.style.position="relative" 
-    root.style.top="200px"
-    root.style.left="350px"
+    root.style.top="10px"
+    root.style.left="10px"
 }
-
-
-
-<form class="" action="index.html" method="post"> 
-    <input type="text" name="array[]" value="" /><br> 
-    <input type="text" name="array[]" value="" /><br> 
-    <input type="text" name="array[]" value="" /><br> 
-    <input type="text" name="array[]" value="" /><br> 
-    <input type="text" name="array[]" value="" /><br> 
-    <button type="button" name="button" onclick="ns()"> 
-        Submit 
-    </button> 
-</form> 
-<br> 
-
-<p id="var"></p> 
-
-<script type="text/javascript"> 
-    var v = "The respective values are :"; 
-    function ns() { 
-        var input = document.getElementsByName('array[]'); 
-
-        for (var i = 0; i < input.length; i++) { 
-            var p = input[i]; 
-            v = v + "array[" + i + "].value= " 
-                            + p.value + " "; 
-        } 
-
-        document.getElementById("var").innerHTML = v; 
-        document.getElementById("mv").innerHTML = "Output"; 
-    } 
-</script> 
-
-
-
-
 
 async function PostRecipe(event: any){
     console.log("PostRecipe")
+    console.dir(event)
     event.preventDefault();
-   //console.dir(event)
-   //console.dir(event.target.elements.cakeName.value)
-    const myRecipe:Recipe = {event.target.elements.recipeName.value,
-    event.target.elements.ingredients.value,
-    event.target.elements.prepareMode.value,
-    event.target.elements.adderName.value}
+    const name:string = event.target.elements.name.value
+    console.log(name)
+    console.dir(event.target.elements[0].value)
+    let ingredients:Array<string>=[]
+    for(let i:number=1;i<7;i++){
+        if(event.target.elements[i].value!==""){
+        ingredients.push(event.target.elements[i].value)
+        }
+    }
+    console.log(ingredients)
+    let prepareMode:Array<string>=[]
+    for(let i:number=7;i<13;i++){
+        if(event.target.elements[i].value!==""){
+        prepareMode.push(event.target.elements[i].value)
+        }
+    }
+    console.log(prepareMode)
+    //const ingredients:string = event.target.elements.array1.values
+    const adderName:string=event.target.elements.adderName.value
+    const myRecipe:Recipe={name,ingredients,prepareMode,adderName}
     try {
         console.log(`${myRecipe}`)
         // @ts-ignore
-        const { data } = await axios.post('/api/add-recipe', { myRecipe });
+        const { data } = await axios.post('/api/add-recipe', {name,ingredients,prepareMode,adderName });
         console.log({data})
-        const { myRecipe, error } = data;
+        const { myRecipe,error} = data;
+        //const myRecipe:Recipe={name,ingredients,prepareMode,adderName}
         console.log(myRecipe);
         if (error) throw new Error(error);
         renderFullRecipe(myRecipe);
