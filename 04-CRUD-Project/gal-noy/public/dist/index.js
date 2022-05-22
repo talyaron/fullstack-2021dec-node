@@ -76,7 +76,6 @@ function renderLoader() {
 }
 function build_gameStatistic() {
     var GameStatsDiv = document.querySelector('.gameStats');
-    console.log(GameStatsDiv);
-    GameStatsDiv.innerHTML = "<div class=\"stat_row\"><div>" + gamesPlay.TeamA.stat.shots + "</div><div>SHOTS</div><div>" + gamePlay.TeamB.stat.shots + "</div></div>";
+    // GameStatsDiv.innerHTML = `<div class="stat_row"><div>${gamesPlay.TeamA.stat.shots}</div><div>SHOTS</div><div>${gamePlay.TeamB.stat.shots}</div></div>`
 }
 build_gameStatistic();
