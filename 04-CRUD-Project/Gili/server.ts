@@ -25,10 +25,6 @@ io.on('connection', (socket) => {
 app.use(express.json());
 
 let isXturn = true;
-const sq = 'sq';
-const room1arr = [];
-const room2arr = [];
-const room3arr = [];
 
 app.use(express.static('public'));
 

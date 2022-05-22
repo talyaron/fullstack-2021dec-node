@@ -36,7 +36,6 @@ app.post('/api/add-user', (req, res) => {
             uniqID: uid(),
             permissions
         };
-        console.log(uid())
 
         users.push(user);
 
@@ -47,8 +46,32 @@ app.post('/api/add-user', (req, res) => {
     }
 })
 
-// UUid function
+app.put('/api/update-user', (req, res) => {
+    try {
+        const {userName, email, uniqID, permissions} = req.body;
+        if (!userName) 
+            throw new Error("User name is required");
+        if (!email) 
+            throw new Error("Email is required");
+        if (!permissions) 
+            throw new Error("Permissions are required");
+        
+        const userIndex = users.findIndex(user => user.uniqID === uniqID);
+        if (userIndex === -1) 
+            throw new Error("user not found");
+        
+        users[userIndex].userName = userName;
+        users[userIndex].email = email;
+        users[userIndex].permissions = permissions;
 
+        res.send({users});
+
+    } catch (error) {
+        res.send({error: error.message});
+    }
+});
+
+// UUid function
 const uid = function () {
     return Date
         .now()
@@ -61,3 +84,4 @@ const uid = function () {
 app.listen(port, () => {
     console.log(`Server listening on port ${port}`)
 });
+
