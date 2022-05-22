@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The memes generator</title>
+    <link rel="stylesheet" href="./dist/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.js" integrity="sha512-rozBdNtS7jw9BlC76YF1FQGjz17qQ0J/Vu9ZCFIW374sEy4EZRbRcUZa2RU/MZ90X2mnLU56F75VfdToGV0RiA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+
+<body>
+    <h1>Users Table</h1>
+    <!-- <button onclick="handleAddUser()">Add new user</button> -->
+    <form onsubmit="handleAddUser(event)">
+        <input type="text" name="userName" placeholder="User name" required>
+        <input type="email" name="email" placeholder="email" required>
+        <input type="select" name="permissions" placeholder="permissions" required>
+        <button type="submit ">Add User</button>
+    </form>
+    <table id="usersTable">
+        <thead>
+            <tr>
+                <th>User Name</th>
+                <th>Email</th>
+                <th>User Uniq ID</th>
+                <th>Permissions</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody">
+            <tr>
+                <td>Jim Morrison</td>
+                <td>Jim1234@gmail.com</td>
+                <td>#645473BghU</td>
+                <td>Admin</td>
+                <td>Delete/Edit</td>
+            </tr>
+        </tbody>
+    </table>
+
+
+    <script src="./dist/index.js "></script>
+</body>
+
+</html>

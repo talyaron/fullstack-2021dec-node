@@ -88,3 +88,4 @@ typings/
 .dynamodb/
 
 .DS_Store
+04-CRUD-Project/Bella/server.ts

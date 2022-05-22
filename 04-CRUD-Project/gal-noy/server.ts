@@ -21,19 +21,37 @@ interface GameStats{
 }
 
 interface Game{
-    teamA: Team;
-    teamB: Team;
+    TeamA: Team;
+    TeamB: Team;
 }
 
 interface Team{
     name: string;
-    logo: HTMLImageElement;
+    // logo: HTMLImageElement;
     id: string; 
-    stat: GameStats;
+    // stat: GameStats;
 }
 
-let gamePlay: Array<Game> = [
-    { TeamA: "ManUnd", },
-    { TeamB: "Barcelona"},
+let gamePlay: Array<Team> = [
+    { name: 'ManUnd', id: '12345'},
+    { name: 'Barcelona', id: '2324' },
   ];
+
+  app.get('/api/user1', (req, res)=>{
+    try {
+        setTimeout(()=>{
+            res.send({play:gamePlay[0]});
+        },200)
+       
+    } catch (error) {
+        res.send({error:error.message})
+    }
+});
+
+
+app.listen(port, () => {
+    console.log(`Server listening on port ${port}`)
+  })
+    //@ts-ignore: cannot find module 'axios'
+
   

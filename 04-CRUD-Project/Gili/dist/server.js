@@ -1,94 +1,140 @@
 console.log("Connected!");
+//@ts-ignore
 var express = require('express');
 var app = express();
-var port = process.env.PORT || 3000;
+var http = require('http');
+var server = http.createServer(app);
+var Server = require('socket.io').Server;
+var io = new Server(server);
+var users = 0;
+server.listen(3000, function () {
+    console.log('listening on *:3000');
+});
+io.on('connection', function (socket) {
+    users++;
+    console.log("user number " + users + " has connected to room");
+    socket.on('disconnect', function () {
+        users--;
+        console.log("user number " + users + " has connected to room");
+    });
+});
 app.use(express.json());
 var isXturn = true;
+var sq = 'sq';
+var room1arr = [];
+var room2arr = [];
+var room3arr = [];
 app.use(express.static('public'));
-app.listen(port, function () {
-    console.log("server is listening on port " + port);
-});
 var squreArr = [
     {
-        id: 0,
+        id: 'sq0',
         isSqurefull: 0,
         isSqureX: 0,
         isSqureO: 0
     },
     {
-        id: 1,
+        id: 'sq1',
         isSqurefull: 0,
         isSqureX: 0,
         isSqureO: 0
     },
     {
-        id: 2,
+        id: 'sq2',
         isSqurefull: 0,
         isSqureX: 0,
         isSqureO: 0
     },
     {
-        id: 3,
+        id: 'sq3',
         isSqurefull: 0,
         isSqureX: 0,
         isSqureO: 0
     },
     {
-        id: 4,
+        id: 'sq4',
         isSqurefull: 0,
         isSqureX: 0,
         isSqureO: 0
     },
     {
-        id: 5,
+        id: 'sq5',
         isSqurefull: 0,
         isSqureX: 0,
         isSqureO: 0
     },
     {
-        id: 6,
+        id: 'sq6',
         isSqurefull: 0,
         isSqureX: 0,
         isSqureO: 0
     },
     {
-        id: 7,
+        id: 'sq7',
         isSqurefull: 0,
         isSqureX: 0,
         isSqureO: 0
     },
     {
-        id: 8,
+        id: 'sq8',
         isSqurefull: 0,
         isSqureX: 0,
         isSqureO: 0
-    },
+    }
 ];
-app.post('/api/drawSymbol', function (req, res) {
+app.get('/api/roomID', function (req, res) {
+    var roomId = req.body.roomId;
+    if (!roomId)
+        throw new Error('roomId is required');
+    // NewArrayByRoom(roomId);
+    res.send({ data: "approved roomId is: " + roomId });
+});
+app.post('/api/next-turn', function (req, res) {
     try {
         var squreId = req.body.squreId;
         if (!squreId)
             throw new Error('squreId is required');
         renderSymbol(squreId);
-        res.send({ squreArr: squreArr });
+        res.send({ squreArr: squreArr, isXturn: isXturn });
     }
     catch (error) {
         res.send({ error: error.message });
     }
 });
-function renderSymbol(squreId) {
-    if (squreArr[squreId].isSqurefull === 0) {
-        if (isXturn) {
-            squreArr[squreId].isSqurefull = 1;
-            squreArr[squreId].isSqureX = 1;
-        }
-        else if (!isXturn) {
-            squreArr[squreId].isSqurefull = 1;
-            squreArr[squreId].isSqureO = 1;
-        }
+app.get('/api/table-status', function (req, res) {
+    res.send({ squreArr: squreArr });
+});
+app.get('/api/reset-game', function (req, res) {
+    if (!isXturn) {
+        isXturn = true;
     }
+    ;
+    squreArr.forEach(function (squre) {
+        if (squre.isSqurefull) {
+            squre.isSqurefull = 0;
+            squre.isSqureX = 0;
+            squre.isSqureO = 0;
+        }
+    });
+    res.send({ squreArr: squreArr, isXturn: isXturn });
+});
+function renderSymbol(squreId) {
+    squreArr.forEach(function (squre) {
+        if (squre.id === squreId) {
+            if (squre.isSqurefull === 0) {
+                if (isXturn) {
+                    squre.isSqurefull = 1;
+                    squre.isSqureX = 1;
+                    nextTurn();
+                }
+                else if (!isXturn) {
+                    squre.isSqurefull = 1;
+                    squre.isSqureO = 1;
+                    nextTurn();
+                }
+            }
+        }
+    });
 }
-;
 function nextTurn() {
     if (isXturn) {
         isXturn = false;

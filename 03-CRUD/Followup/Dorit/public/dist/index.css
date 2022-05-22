@@ -1,0 +1,16 @@
+body {
+  background-color: aquamarine;
+  position: relative;
+}
+body #root {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+body #root img {
+  width: 400px;
+  height: 400px;
+}
+body #root p {
+  color: black;
+}
