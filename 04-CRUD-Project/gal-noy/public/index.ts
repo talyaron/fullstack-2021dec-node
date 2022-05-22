@@ -1,23 +1,20 @@
 async function handleGetTeam1() {
     try {
         console.log("get success")
+      //  @ts-ignore: cannot find module 'axios'
+      const { data } = await axios.get("/api/user1");
+      console.log(data)
+      const { play, error } = data;
+      if (error) throw new Error(error);
+      console.log(play)
       renderLoader()
-       //@ts-ignore: cannot find module 'axios'
-      axios
-        .get("/api/user1")
-        .then(({ data }) => {
-          console.log(data);
-          const { play, error } = data;
-          if (error) throw new Error(error);
-          console.log(play);
-          renderLoader()
-          renderUser(play);
-        })
-        .catch((err) => console.error(err));
+      renderUser(play);
+      console.log("get Team 1 & then get Team 2");
     } catch (error) {
       console.error(error);
     }
   }
+  
   
   async function handleGetTeam2() {
     try {
@@ -26,9 +23,9 @@ async function handleGetTeam1() {
       console.log(data)
       const { play, error } = data;
       if (error) throw new Error(error);
-     
+      console.log(play)
+      renderLoader()
       renderUser(play);
-  
       console.log("get Team 2 after you get Team 1");
     } catch (error) {
       console.error(error);
