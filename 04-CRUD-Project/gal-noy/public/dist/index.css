@@ -37,11 +37,26 @@ body {
   background-color: darkgoldenrod;
   width: 80vw;
   height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
-
-#changeBtn {
+.gameEdit .form {
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  margin: 0 auto;
+}
+.gameEdit .form .team_form {
+  margin: 0 auto;
+  justify-content: center;
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+}
+.gameEdit .form .team_form input {
+  margin: 2px;
 }
 
 #hrefBtn {
