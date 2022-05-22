@@ -2,10 +2,11 @@ const express = require("express");
 const app = express();
 const port = process.env.PORT || 3000;
 
-app.use(express.json()); 
+
+app.use(express.json());
 app.use(express.static("public"));
 
-interface GameStats{
+interface GameStats {
     goals: number;
     shots: number;
     shots_on_target: number;
@@ -18,22 +19,34 @@ interface GameStats{
     corners: number;
 }
 
-interface Game{
+interface Game {
     TeamA: Team;
     TeamB: Team;
 }
 
-interface Team{
+interface Team {
     name: string;
     // logo: HTMLImageElement;
-    id: string; 
+    id: string;
     stat: GameStats;
 }
 
-let gameStatistic:GameStats= {
+let gameStatistic1: GameStats = {
     goals: 0,
-    shots: 0,
-    shots_on_target: 0, 
+    shots: 2,
+    shots_on_target: 0,
+    possesion: 0,
+    passes: 0,
+    fouls: 0,
+    yellow_cards: 0,
+    red_cards: 0,
+    offsides: 0,
+    corners: 0,
+}
+let gameStatistic2: GameStats = {
+    goals: 0,
+    shots: 34,
+    shots_on_target: 0,
     possesion: 0,
     passes: 0,
     fouls: 0,
@@ -43,36 +56,36 @@ let gameStatistic:GameStats= {
     corners: 0,
 }
 
-let gamePlay: Array<Team> = [
-    { name: 'ManUnd', id: '12345',stat:gameStatistic},
-    { name: 'Barcelona', id: '2324',stat:gameStatistic},
-  ];
+let team1: Team = {
+    name: 'Barcelona',
+    id: '1234',
+    stat: gameStatistic1,
+}
+let team2: Team = {
+    name: 'Machester City',
+    id: '2356',
+    stat: gameStatistic2,
+}
+let gamesPlay:Array<Game> =[
+    {TeamA: team1,      
+    TeamB: team2} ,
+    
+]
 
-  app.get('/api/user1', (req, res)=>{
+
+app.get('/api/user1', (req, res) => {
     try {
-        setTimeout(()=>{
-            res.send({play:gamePlay[0]});
-        },200)
-       
+        console.log(gamesPlay[0])
+            res.send({ play: gamesPlay[0]});
+
     } catch (error) {
-        res.send({error:error.message})
+        res.send({ error: error.message })
     }
 });
 
-app.get('/api/user2', (req, res)=>{
-    try {
-        setTimeout(()=>{
-            res.send({play:gamePlay[1]});
-        },200)
-       
-    } catch (error) {
-        res.send({error:error.message})
-    }
-});
 
 app.listen(port, () => {
     console.log(`Server listening on port ${port}`)
-  })
+})
     //@ts-ignore: cannot find module 'axios'
 
-  
