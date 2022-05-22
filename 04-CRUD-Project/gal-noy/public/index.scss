@@ -1,12 +1,69 @@
+html{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 16px;
+}
 body{
     margin: 0 auto;
+    background-color: #000000;
 }
 
 .gameStats{
     margin: auto;
+    margin-top: 25px;
+    color:black;
+    background-color:darkgoldenrod;
+    width: 70%;
+    height: 90vh;
+    border: solid rgb(254, 252, 252) 1px;
+}
+
+.gameEdit{
+    margin: auto;
+    margin-top: 25px;
     color:white;
-    background-color: black;
+    background-color:darkgoldenrod;
     width: 80vw;
     height: 90vh;
 }
 
+#changeBtn{
+    display: flex;
+    flex-direction: row;
+     
+}
+
+#hrefBtn{
+    background-color: bisque;
+}
+
+.navBar{
+    margin-left: 20px;
+    display: flex;
+    flex-direction: row;
+
+}
+
+.top_nav{
+    width: 70%;
+    background-color: #ffffff;
+    margin: auto;
+    padding: 1rem;
+    font-size: 2.5rem;
+    font-weight: bolder;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    .teamLogo{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        img{
+            width: 50px;
+            height: 50px;
+        }
+    }
+    .team_name{
+        font-size: 0.7rem;
+        font-weight: bold;
+    }
+}

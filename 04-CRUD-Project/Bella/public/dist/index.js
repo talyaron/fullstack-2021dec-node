@@ -65,17 +65,29 @@ function handleAddUser(ev) {
         });
     });
 }
-function handleEditUser(event, uniqID) {
+function handleEditUser(uniqID) {
     return __awaiter(this, void 0, void 0, function () {
         var userName, email, permissions, data, users, error, error_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    userName = event.target.value;
-                    email = event.target.value;
-                    permissions = event.target.value;
-                    return [4 /*yield*/, axios.put('/api/update-user', { userName: userName, email: email, uniqID: uniqID, permissions: permissions })];
+                    userName = document.querySelector("#userName");
+                    userName.setAttribute("contenteditable", "true");
+                    userName.id = "userName " + uniqID;
+                    userName.innerHTML = event.target.value;
+                    email = document.querySelector("#email");
+                    email.setAttribute("contenteditable", "true");
+                    email.id = "email " + uniqID;
+                    permissions = document.querySelector("#permissions");
+                    permissions.setAttribute("contenteditable", "true");
+                    permissions.id = "permissions " + uniqID;
+                    // const updateButton: any = document.querySelector("#updateButton");
+                    // updateButton.style.display = "block";
+                    userName.focus();
+                    console.dir(userName);
+                    console.log(uniqID);
+                    return [4 /*yield*/, axios.put('/api/update-user', { uniqID: uniqID, userName: userName })];
                 case 1:
                     data = (_a.sent()).data;
                     users = data.users, error = data.error;
@@ -96,7 +108,10 @@ function renderData(users) {
     var usersTable = document.querySelector("#tableBody");
     var html = "";
     users.forEach(function (user) {
-        html += "\n    <tr>\n      <td>" + user.userName + "</td>\n      <td>" + user.email + "</td>\n      <td>" + user.uniqID + "</td>\n      <td>" + user.permissions + "</td>\n      <td onclick=\"handleDeleteUser('" + user.uniqID + "')\">Delete</td>\n      <td onclick=\"handleEditUser('" + user.uniqID + "')\">Edit</td>\n    </tr>";
+        html += "\n    <tr>\n      <td id=\"userName\">" + user.userName + "</td>\n      <td id=\"email\">" + user.email + "</td>\n      <td id=\"uniqID\">" + user.uniqID + "</td>\n      <td id=\"permissions\">" + user.permissions + "</td>\n      <td onclick=\"handleDeleteUser('" + user.uniqID + "')\">Delete</td>\n      <td onclick=\"handleEditUser('" + user.uniqID + "')\">Edit</td>\n    </tr>";
     });
     usersTable.innerHTML = html;
+}
+function querySelectorAll(arg0) {
+    throw new Error("Function not implemented.");
 }
