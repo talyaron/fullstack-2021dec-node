@@ -37,24 +37,14 @@ var team2 = {
     id: '2356',
     stat: gameStatistic2
 };
-var gamePlay = {
-    TeamA: team1,
-    TeamB: team2
-};
+var gamesPlay = [
+    { TeamA: team1,
+        TeamB: team2 },
+];
 app.get('/api/user1', function (req, res) {
     try {
         setTimeout(function () {
-            res.send({ play: gamePlay[0] });
-        }, 200);
-    }
-    catch (error) {
-        res.send({ error: error.message });
-    }
-});
-app.get('/api/user2', function (req, res) {
-    try {
-        setTimeout(function () {
-            res.send({ play: gamePlay[1] });
+            res.send({ play: gamesPlay[0] });
         }, 200);
     }
     catch (error) {
