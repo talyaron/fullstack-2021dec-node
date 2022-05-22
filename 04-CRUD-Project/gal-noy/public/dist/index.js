@@ -35,26 +35,31 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 function handleGetTeam1() {
-    try {
-        console.log("get success");
-        renderLoader();
-        //@ts-ignore: cannot find module 'axios'
-        axios
-            .get("/api/user1")
-            .then(function (_a) {
-            var data = _a.data;
-            console.log(data);
-            var play = data.play, error = data.error;
-            if (error)
-                throw new Error(error);
-            console.log(play);
-            renderLoader();
-            renderUser(play);
-        })["catch"](function (err) { return console.error(err); });
-    }
-    catch (error) {
-        console.error(error);
-    }
+    return __awaiter(this, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            try {
+                console.log("get success");
+                renderLoader();
+                //@ts-ignore: cannot find module 'axios'
+                axios
+                    .get("/api/user1")
+                    .then(function (_a) {
+                    var data = _a.data;
+                    console.log(data);
+                    var play = data.play, error = data.error;
+                    if (error)
+                        throw new Error(error);
+                    console.log(play);
+                    renderLoader();
+                    renderUser(play);
+                })["catch"](function (err) { return console.error(err); });
+            }
+            catch (error) {
+                console.error(error);
+            }
+            return [2 /*return*/];
+        });
+    });
 }
 function handleGetTeam2() {
     return __awaiter(this, void 0, void 0, function () {
