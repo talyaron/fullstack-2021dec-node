@@ -15,6 +15,7 @@ body {
   background-color: darkgoldenrod;
   width: 70%;
   height: 90vh;
+  border: solid #fefcfc 1px;
 }
 
 .gameEdit {

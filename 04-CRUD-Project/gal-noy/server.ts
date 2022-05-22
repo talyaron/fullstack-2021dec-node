@@ -66,16 +66,17 @@ let team2: Team = {
     id: '2356',
     stat: gameStatistic2,
 }
-let gamePlay: Game =
-{
-    TeamA: team1,
-    TeamB: team2
-};
+let gamesPlay:Array<Game> =[
+    {TeamA: team1,      
+    TeamB: team2} ,
+    
+]
+
 
 app.get('/api/user1', (req, res) => {
     try {
         setTimeout(() => {
-            res.send({ play: gamePlay[0] });
+            res.send({ play: gamesPlay[0] });
         }, 200)
 
     } catch (error) {
@@ -83,16 +84,6 @@ app.get('/api/user1', (req, res) => {
     }
 });
 
-app.get('/api/user2', (req, res) => {
-    try {
-        setTimeout(() => {
-            res.send({ play: gamePlay[1] });
-        }, 200)
-
-    } catch (error) {
-        res.send({ error: error.message })
-    }
-});
 
 app.listen(port, () => {
     console.log(`Server listening on port ${port}`)
