@@ -45,13 +45,11 @@ function handleGetGame() {
                     return [4 /*yield*/, axios.get("/api/user1")];
                 case 1:
                     data = (_a.sent()).data;
-                    console.log(data);
                     play = data.play, error = data.error;
                     if (error)
                         throw new Error(error);
                     console.log(play);
-                    renderLoader();
-                    console.log("get Team 1 & then get Team 2");
+                    build_gameStatistic(play);
                     return [3 /*break*/, 3];
                 case 2:
                     error_1 = _a.sent();
@@ -63,19 +61,20 @@ function handleGetGame() {
     });
 }
 handleGetGame();
-function renderLoader() {
-    var loader = document.querySelector('#loader');
-    if (!loader.classList.contains('lds-dual-ring')) {
-        loader.classList.add('lds-dual-ring');
-        console.log('add');
-    }
-    else {
-        loader.classList.remove('lds-dual-ring');
-        console.log('remove');
-    }
-}
-function build_gameStatistic() {
+// function renderLoader() {
+//   const loader: HTMLElement = document.querySelector('#loader')
+//   if (!loader.classList.contains('lds-dual-ring')) {
+//     loader.classList.add('lds-dual-ring');
+//     console.log('add')
+//   } else {
+//     loader.classList.remove('lds-dual-ring');
+//     console.log('remove')
+//   }
+// }
+function build_gameStatistic(play) {
     var GameStatsDiv = document.querySelector('.gameStats');
-    // GameStatsDiv.innerHTML = `<div class="stat_row"><div>${gamesPlay.TeamA.stat.shots}</div><div>SHOTS</div><div>${gamePlay.TeamB.stat.shots}</div></div>`
+    var top_nav = document.querySelector('.top_nav');
+    console.log(play);
+    top_nav.innerHTML = "<div class=\"teamLogo teamLogo__1\">\n  <img src='" + play.TeamA.logo + "'>\n  <span class=\"team_name team_name__1\">" + play.TeamA.name + "</span>\n</div>\n\n<div class=\"scoreTeam1\">\n" + play.TeamA.stat.goals + "\n</div>\n<span>-</span>\n<div class=\"scoreTeam2\">\n" + play.TeamB.stat.goals + "\n</div>\n<div class=\"teamLogo teamLogo__2\">\n<img src=\"" + play.TeamB.logo + "\">\n  <span class=\"team_name team_name__2\">" + play.TeamB.name + "</span>\n</div>\n</div>";
+    GameStatsDiv.innerHTML = "<div class=\"stat_row\"><div> <img src=\"" + play.TeamA.logo + "\"></div><div>GAME STATS</div><div> <img src=\"" + play.TeamB.logo + "\"></div></div>\n  <div class=\"stat_row\"><div>" + play.TeamA.stat.shots + "</div><div>SHOTS</div><div>" + play.TeamB.stat.shots + "</div></div>\n  <div class=\"stat_row\"><div>" + play.TeamA.stat.shots_on_target + "</div><div>SHOTS ON TARGET</div><div>" + play.TeamB.stat.shots_on_target + "</div></div>\n  <div class=\"stat_row\"><div>" + play.TeamA.stat.possesion + "</div><div>POSSESION</div><div>" + play.TeamB.stat.possesion + "</div></div>\n  <div class=\"stat_row\"><div>" + play.TeamA.stat.passes + "</div><div>PASSES</div><div>" + play.TeamB.stat.passes + "</div></div>\n  <div class=\"stat_row\"><div>" + play.TeamA.stat.fouls + "</div><div>FOULS</div><div>" + play.TeamB.stat.fouls + "</div></div>\n  <div class=\"stat_row\"><div>" + play.TeamA.stat.yellow_cards + "</div><div>YELLOW CARDS</div><div>" + play.TeamB.stat.yellow_cards + "</div></div>\n  <div class=\"stat_row\"><div>" + play.TeamA.stat.red_cards + "</div><div>RED CARDS</div><div>" + play.TeamB.stat.red_cards + "</div></div>\n  <div class=\"stat_row\"><div>" + play.TeamA.stat.offsides + "</div><div>OFFSIDES</div><div>" + play.TeamB.stat.offsides + "</div></div>\n  <div class=\"stat_row\"><div>" + play.TeamA.stat.corners + "</div><div>CORNERS</div><div>" + play.TeamB.stat.corners + "</div></div>";
 }
-build_gameStatistic();

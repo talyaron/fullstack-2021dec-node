@@ -13,8 +13,20 @@ body{
     color:black;
     background-color:darkgoldenrod;
     width: 70%;
-    height: 90vh;
     border: solid rgb(254, 252, 252) 1px;
+    padding: 15px;
+    .stat_row{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        img{
+            width:50px;
+        }
+        div{
+            margin: 5px;
+            padding: 2px;
+        }
+    }
 }
 
 .gameEdit{
