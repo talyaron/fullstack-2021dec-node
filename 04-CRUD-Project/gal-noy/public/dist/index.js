@@ -34,7 +34,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var GameStats = document.querySelector('gameStats');
+var GameStatsDiv = document.querySelector('gameStats');
 function handleGetTeam1() {
     return __awaiter(this, void 0, void 0, function () {
         var data, play, error, error_1;
@@ -108,6 +108,6 @@ function renderLoader() {
     }
 }
 function build_gameStatistic() {
-    GameStats.innerHTML = "<div class=\"stat_row\"><div>" + gamePlay.TeamA.stat.shots + "</div><div>SHOTS</div><div>" + gamePlay.TeamB.stat.shots + "</div></div>";
+    GameStatsDiv.innerHTML = "<div class=\"stat_row\"><div>" + gamePlay.TeamA.stat.shots + "</div><div>SHOTS</div><div>" + gamePlay.TeamB.stat.shots + "</div></div>";
 }
 build_gameStatistic();

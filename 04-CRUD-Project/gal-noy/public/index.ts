@@ -1,4 +1,4 @@
-const GameStats: HTMLDivElement = document.querySelector('gameStats');
+const GameStatsDiv: HTMLDivElement = document.querySelector('gameStats');
 
 interface GameStats {
   goals: number;
@@ -78,7 +78,7 @@ function renderLoader() {
 
 
 function build_gameStatistic() {
-  GameStats.innerHTML = `<div class="stat_row"><div>${gamePlay.TeamA.stat.shots}</div><div>SHOTS</div><div>${gamePlay.TeamB.stat.shots}</div></div>`
+  GameStatsDiv.innerHTML = `<div class="stat_row"><div>${gamePlay.TeamA.stat.shots}</div><div>SHOTS</div><div>${gamePlay.TeamB.stat.shots}</div></div>`
 }
 
 build_gameStatistic();
