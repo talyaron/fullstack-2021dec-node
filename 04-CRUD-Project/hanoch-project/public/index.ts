@@ -19,6 +19,25 @@ async function handleGetStory(ev) {
     renderStory(conStory)
 }
 
+async function getStory() {
+    try {
+        // @ts-ignore
+        const {data} = await axios.get("/api/getStory");
+
+        const {conStory, error} = data;
+        if(error) throw new Error(error.message)
+
+        if(conStory){
+            renderStory(conStory)
+        }
+
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+getStory()
+
 function renderStory(addStory: Array <Story>){
     const story = document.querySelector("#story")
     let html = "";
