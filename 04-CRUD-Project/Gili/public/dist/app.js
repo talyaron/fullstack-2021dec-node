@@ -35,12 +35,16 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 var gameWrapper = document.querySelector('.game_wrapper');
+var xWin = document.getElementById('Xwin');
+var oWin = document.getElementById('Owin');
+var socket = io('http://localhost:3000');
 var isGameWinX = false;
 var isGameWinO = false;
-// async function getRoomID(){
-// 	const roomId = window.location.search.substr(1);
-// 	const { data } = await axios.send('/api/roomID', { roomId });
-// }
+var WinningXTimes = 0;
+var WinningOTimes = 0;
+var gameEnded = false;
+var moveCounter = 0;
+drawCountersOnDOM();
 function hundleClick(squreId) {
     return __awaiter(this, void 0, void 0, function () {
         var data, squreArr, isXturn, win, error, error_1;
@@ -56,6 +60,8 @@ function hundleClick(squreId) {
                     win = checkIfWin(squreArr);
                     whoWon(win);
                     error = data.error;
+                    moveCounter++;
+                    checkIfDraw();
                     if (error)
                         throw new Error(error);
                     return [3 /*break*/, 3];
@@ -93,21 +99,54 @@ function getTableStatus() {
         });
     });
 }
+function handleResetGame() {
+    return __awaiter(this, void 0, void 0, function () {
+        var data, squreArr, error, error_3;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    return [4 /*yield*/, axios.get('/api/reset-game')];
+                case 1:
+                    data = (_a.sent()).data;
+                    squreArr = data.squreArr;
+                    renderSqure(squreArr);
+                    isGameWinO = false;
+                    isGameWinX = false;
+                    moveCounter = 0;
+                    gameWrapper.style.pointerEvents = '';
+                    error = data.error;
+                    if (error)
+                        throw new Error(error);
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_3 = _a.sent();
+                    console.error(error_3);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
+}
+function handleResetCounters() {
+    WinningOTimes = 0;
+    WinningXTimes = 0;
+    drawCountersOnDOM();
+}
 function renderSqure(squreArr) {
     gameWrapper.innerHTML = '';
     var html = '';
     squreArr.forEach(function (squre) {
         if (squre.isSqureX) {
-            html += "<div id='" + squre.id + "' class=\"squre black\" onclick=\"hundleClick('" + squre.id + "')\"></div> ";
+            html += "<div id='" + squre.id + "' class=\"squre\" onclick=\"hundleClick('" + squre.id + "')\">\n\t\t\t<i class=\"fa-solid fa-x\"></i>\n\t\t\t</div> ";
         }
         else if (squre.isSqureO) {
-            html += "<div id='" + squre.id + "' class=\"squre wheat\" onclick=\"hundleClick('" + squre.id + "')\"></div> ";
+            html += "<div id='" + squre.id + "' class=\"squre\" onclick=\"hundleClick('" + squre.id + "')\">\n\t\t\t<i class=\"fa-solid fa-o\"></i>\n\t\t\t</div> ";
         }
         else {
             html += "<div id='" + squre.id + "' class=\"squre\" onclick=\"hundleClick('" + squre.id + "')\"></div> ";
         }
     });
-    console.log(html);
     gameWrapper.innerHTML = html;
 }
 function checkIfWin(squreArr) {
@@ -126,6 +165,15 @@ function checkIfWin(squreArr) {
     else if (squreArr[2].isSqureX && squreArr[4].isSqureX && squreArr[6].isSqureX) {
         return (isGameWinX = true);
     }
+    else if (squreArr[0].isSqureX && squreArr[3].isSqureX && squreArr[6].isSqureX) {
+        return (isGameWinX = true);
+    }
+    else if (squreArr[1].isSqureX && squreArr[4].isSqureX && squreArr[7].isSqureX) {
+        return (isGameWinX = true);
+    }
+    else if (squreArr[2].isSqureX && squreArr[5].isSqureX && squreArr[87].isSqureX) {
+        return (isGameWinX = true);
+    }
     else if (squreArr[0].isSqureO && squreArr[1].isSqureO && squreArr[2].isSqureO) {
         return (isGameWinO = true);
     }
@@ -141,21 +189,39 @@ function checkIfWin(squreArr) {
     else if (squreArr[2].isSqureO && squreArr[4].isSqureO && squreArr[6].isSqureO) {
         return (isGameWinO = true);
     }
+    else if (squreArr[0].isSqureO && squreArr[3].isSqureO && squreArr[6].isSqureO) {
+        return (isGameWinO = true);
+    }
+    else if (squreArr[1].isSqureO && squreArr[4].isSqureO && squreArr[7].isSqureO) {
+        return (isGameWinO = true);
+    }
+    else if (squreArr[2].isSqureO && squreArr[5].isSqureO && squreArr[87].isSqureO) {
+        return (isGameWinO = true);
+    }
+}
+function checkIfDraw() {
+    if (moveCounter === 9) {
+        alert('Draw! please reset game');
+    }
 }
 function whoWon(win) {
     if (isGameWinO) {
         alert("User O won!");
+        gameWrapper.style.pointerEvents = 'none';
+        WinningOTimes++;
+        drawCountersOnDOM();
+        handleResetGame();
     }
     else if (isGameWinX) {
         alert("User X won!");
+        gameWrapper.style.pointerEvents = 'none';
+        WinningXTimes++;
+        drawCountersOnDOM();
+        handleResetGame();
     }
 }
+function drawCountersOnDOM() {
+    xWin.innerText = "" + WinningXTimes;
+    oWin.innerText = "" + WinningOTimes;
+}
 setInterval(getTableStatus, 1000);
-// const link = document.querySelector('.link')
-// const randomNum = () => {
-//     return Math.round(Math.random() * 10)
-// }
-// console.log(randomNum())
-// link.addEventListener('click', () => {
-//     link.href = `room.html?${randomNum()}`
-// })

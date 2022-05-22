@@ -1,136 +1,75 @@
-
-
-  function handleLoadData() {
-    loadData();
-  }
-  
-  function handleAddUser() {
-   addUser();
-  }
-  
-  async function loadData() {
-    try {
-      // @ts-ignore
-      const { data } = await axios.get("/api/AllUsers");
-  
-      const { users, error } = data;
-      if (error) throw new Error(error);
-  
-      renderData(users);
-    } catch (err: any) {
-      console.error(err);
-    }
-  }
-  
-  async function addUser() {
-    try {
-      // @ts-ignore
-      const { data } = await axios.get("/api/addUser");
-  
-      const { users, error } = data;
-      if (error) throw new Error(error);
-  
-      renderData(users);
-    } catch (err: any) {
-      console.error(err);
-    }
-  }
-  
-  function renderData(user) {
-    const table: HTMLElement = document.querySelector("table");
-  
-    table.innerHTML = `<img src= ${user.src} alt="user"/>`;
-  }
-  
-  
-async function handleDeleteUser(userId: string) {
-  try {
-    // send to server the Id of the user that we wnat to delete
-    // @ts-ignore
-    const { data } = await axios.delete('/api/delete-user', { data: { userId } });
-
-    const { users, error } = data;
-    if (error) throw new Error(error);
-
-    renderUsers(users);
-  } catch (error) {
-    console.error(error);
-  }
+interface user {
+  userName: string,
+    email: string,
+    uniqID: string,
+    permissions: string,
 }
 
 
-async function handleUpdateAge(event: any, userId: string) {
-  try {
-   
-    const age:number = event.target.valueAsNumber;
-  
-    // @ts-ignore
-    const { data } = await axios.put('/api/update-user', { userId, age });
 
-    const { users, error } = data;
-    if (error) throw new Error(error);
-
-    renderUsers(users);
-
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-async function handleAddUser(ev:any){
+async function handleAddUser(ev: any) {
   try {
     ev.preventDefault();
 
-    const name = ev.target.elements.name.value;
-    const age = ev.target.elements.age.valueAsNumber;
+    const elements = ev.target.elements;
+    const userName = elements.userName.value;
+    const email = elements.email.value;
+    const permissions = elements.permissions.value;
 
-    if(!name || !age) throw new Error("Name and age are required");
+    if (!userName || !email || !permissions) throw new Error("Details are required");
 
     // @ts-ignore
-    const { data } = await axios.post('/api/add-user', { name, age });
+    const {
+      data
+    } = await axios.post('/api/add-user', {
+      userName,
+      email,
+      permissions
+    });
 
-    const { users, error } = data;
+    const {
+      users,
+      error
+    } = data;
     if (error) throw new Error(error);
 
-    renderUsers(users);
-    
+    renderData(users);
+
+
   } catch (error) {
     console.error(error);
   }
 }
 
 
-// renders
-
-
-function renderUser(user: User) {
-  const root: HTMLElement = document.querySelector("#root");
-
-  root.innerHTML = `user ${user.name} is ${user.age} years old`;
-}
-
-function renderUsers(users: Array<User>) {
-  const root: HTMLElement = document.querySelector("#root");
+function renderData(users: Array < user > ) {
+  const usersTable:HTMLTableElement = document.querySelector("#tableBody");
 
   let html = "";
   users.forEach((user) => {
-    html += `<p>user ${user.name} is ${user.age} years old <button onclick="handleDeleteUser('${user.id}')">DELETE</button>
-    <input type="number" placeholder="Age" onblur="handleUpdateAge(event, '${user.id}')" /></p>`;
+    html += `
+    <tr>
+      <td>${user.userName}</td>
+      <td>${user.email}</td>
+      <td>${user.uniqID}</td>
+      <td>${user.permissions}</td>
+      <td onclick="handleDeleteUser('${user.uniqID}')">Delete</td>
+      <td onclick="handleEditUser('${user.uniqID}')">Edit</td>
+    </tr>`;
   });
-  root.innerHTML = html;
+  usersTable.innerHTML = html;
 }
 
-function renderLoader() {
-  const loader: HTMLElement = document.querySelector("#loader");
-  if (!loader.classList.contains("lds-dual-ring")) {
-    loader.classList.add("lds-dual-ring");
-    console.log("add");
-  } else {
-    loader.classList.remove("lds-dual-ring");
-    console.log("remove");
-  }
-}
+// let html = "";
+// users.forEach((user) => {
+//   html += `
+//   <tr>
+//     <td>${user.userName}</td>
+//     <td>${user.email}</td>
+//     <td>${user.uniqID}</td>
+//     <td>${user.permissions}</td>
+//   </tr> 
+//   <button onclick="handleDeleteUser('${user.uniqID}')">DELETE</button>
+//   <input type="number" placeholder="Age" onClick="handleUpdateAge(event, '${user.uniqID}')"/>`;
+// });
 
-
-  
-  
