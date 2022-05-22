@@ -1,3 +1,6 @@
+const logoImg1:any=document.querySelectorAll("teamLogo__1")
+const logoImg2:any=document.querySelectorAll("teamLogo__2")
+
 async function handleGetTeam1() {
     try {
         console.log("get success")
@@ -48,4 +51,8 @@ function renderUser(play: Team) {
         loader.classList.remove('lds-dual-ring');
         console.log('remove')
     }
+}
+
+function addPicture{
+
 }
