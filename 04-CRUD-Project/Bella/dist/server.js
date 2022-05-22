@@ -23,8 +23,28 @@ app.post('/api/add-user', function (req, res) {
             uniqID: uid(),
             permissions: permissions
         };
-        console.log(uid());
         users.push(user);
+        res.send({ users: users });
+    }
+    catch (error) {
+        res.send({ error: error.message });
+    }
+});
+app.put('/api/update-user', function (req, res) {
+    try {
+        var _a = req.body, userName = _a.userName, email = _a.email, uniqID_1 = _a.uniqID, permissions = _a.permissions;
+        if (!userName)
+            throw new Error("User name is required");
+        if (!email)
+            throw new Error("Email is required");
+        if (!permissions)
+            throw new Error("Permissions are required");
+        var userIndex = users.findIndex(function (user) { return user.uniqID === uniqID_1; });
+        if (userIndex === -1)
+            throw new Error("user not found");
+        users[userIndex].userName = userName;
+        users[userIndex].email = email;
+        users[userIndex].permissions = permissions;
         res.send({ users: users });
     }
     catch (error) {

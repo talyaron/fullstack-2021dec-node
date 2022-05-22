@@ -48,11 +48,7 @@ function handleAddUser(ev) {
                     permissions = elements.permissions.value;
                     if (!userName || !email || !permissions)
                         throw new Error("Details are required");
-                    return [4 /*yield*/, axios.post('/api/add-user', {
-                            userName: userName,
-                            email: email,
-                            permissions: permissions
-                        })];
+                    return [4 /*yield*/, axios.post('/api/add-user', { userName: userName, email: email, permissions: permissions })];
                 case 1:
                     data = (_a.sent()).data;
                     users = data.users, error = data.error;
@@ -69,6 +65,33 @@ function handleAddUser(ev) {
         });
     });
 }
+function handleEditUser(event, uniqID) {
+    return __awaiter(this, void 0, void 0, function () {
+        var userName, email, permissions, data, users, error, error_2;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    userName = event.target.value;
+                    email = event.target.value;
+                    permissions = event.target.value;
+                    return [4 /*yield*/, axios.put('/api/update-user', { userName: userName, email: email, uniqID: uniqID, permissions: permissions })];
+                case 1:
+                    data = (_a.sent()).data;
+                    users = data.users, error = data.error;
+                    if (error)
+                        throw new Error(error);
+                    renderData(users);
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_2 = _a.sent();
+                    console.error(error_2);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
+}
 function renderData(users) {
     var usersTable = document.querySelector("#tableBody");
     var html = "";
@@ -77,15 +100,3 @@ function renderData(users) {
     });
     usersTable.innerHTML = html;
 }
-// let html = "";
-// users.forEach((user) => {
-//   html += `
-//   <tr>
-//     <td>${user.userName}</td>
-//     <td>${user.email}</td>
-//     <td>${user.uniqID}</td>
-//     <td>${user.permissions}</td>
-//   </tr> 
-//   <button onclick="handleDeleteUser('${user.uniqID}')">DELETE</button>
-//   <input type="number" placeholder="Age" onClick="handleUpdateAge(event, '${user.uniqID}')"/>`;
-// });
