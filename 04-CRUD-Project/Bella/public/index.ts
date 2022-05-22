@@ -34,15 +34,18 @@ async function handleAddUser(ev : any) {
 async function handleEditUser(event : any, uniqID : string) {
     try {
 
-        const userName = event.target.value;
-        const email = event.target.value;
-        const permissions = event.target.value;
+        const userName: HTMLElement = document.querySelector("#userName");
+        userName.setAttribute("id", "`${uniqID}`");
+        userName.setAttribute("contenteditable", "true");
+        console.log(userName);
+        // const email = event.target.value;
+        // const permissions = event.target.value;
 
-        // @ts-ignore
-        const {data} = await axios.put('/api/update-user', { uniqID, user});
+        // // @ts-ignore
+        // const {data} = await axios.put('/api/update-user', { uniqID, user});
 
-        const {users, error} = data;
-        if (error) 
+        // const {users, error} = data;
+        // if (error) 
             throw new Error(error);
                         
         renderData(users);
@@ -59,10 +62,10 @@ function renderData(users : Array < user >) {
     users.forEach((user) => {
         html += `
     <tr>
-      <td>${user.userName}</td>
-      <td>${user.email}</td>
-      <td>${user.uniqID}</td>
-      <td>${user.permissions}</td>
+      <td id="userName">${user.userName}</td>
+      <td id="email">${user.email}</td>
+      <td id="uniqID">${user.uniqID}</td>
+      <td id="permissions">${user.permissions}</td>
       <td onclick="handleDeleteUser('${user.uniqID}')">Delete</td>
       <td onclick="handleEditUser('${user.uniqID}')">Edit</td>
     </tr>`;

@@ -67,28 +67,26 @@ function handleAddUser(ev) {
 }
 function handleEditUser(event, uniqID) {
     return __awaiter(this, void 0, void 0, function () {
-        var userName, email, permissions, data, users, error, error_2;
+        var userName;
         return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    _a.trys.push([0, 2, , 3]);
-                    userName = event.target.value;
-                    email = event.target.value;
-                    permissions = event.target.value;
-                    return [4 /*yield*/, axios.put('/api/update-user', { uniqID: uniqID, user: user })];
-                case 1:
-                    data = (_a.sent()).data;
-                    users = data.users, error = data.error;
-                    if (error)
-                        throw new Error(error);
-                    renderData(users);
-                    return [3 /*break*/, 3];
-                case 2:
-                    error_2 = _a.sent();
-                    console.error(error_2);
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
+            try {
+                userName = document.querySelector("#userName");
+                userName.setAttribute("id", "`${uniqID}`");
+                userName.setAttribute("contenteditable", "true");
+                console.log(userName);
+                // const email = event.target.value;
+                // const permissions = event.target.value;
+                // // @ts-ignore
+                // const {data} = await axios.put('/api/update-user', { uniqID, user});
+                // const {users, error} = data;
+                // if (error) 
+                throw new Error(error);
+                renderData(users);
             }
+            catch (error) {
+                console.error(error);
+            }
+            return [2 /*return*/];
         });
     });
 }
@@ -96,7 +94,7 @@ function renderData(users) {
     var usersTable = document.querySelector("#tableBody");
     var html = "";
     users.forEach(function (user) {
-        html += "\n    <tr>\n      <td>" + user.userName + "</td>\n      <td>" + user.email + "</td>\n      <td>" + user.uniqID + "</td>\n      <td>" + user.permissions + "</td>\n      <td onclick=\"handleDeleteUser('" + user.uniqID + "')\">Delete</td>\n      <td onclick=\"handleEditUser('" + user.uniqID + "')\">Edit</td>\n    </tr>";
+        html += "\n    <tr>\n      <td id=\"userName\">" + user.userName + "</td>\n      <td id=\"email\">" + user.email + "</td>\n      <td id=\"uniqID\">" + user.uniqID + "</td>\n      <td id=\"permissions\">" + user.permissions + "</td>\n      <td onclick=\"handleDeleteUser('" + user.uniqID + "')\">Delete</td>\n      <td onclick=\"handleEditUser('" + user.uniqID + "')\">Edit</td>\n    </tr>";
     });
     usersTable.innerHTML = html;
 }
