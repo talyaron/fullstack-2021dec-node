@@ -34,7 +34,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-function handleGetGame() {
+var GameStats = document.querySelector('gameStats');
+function handleGetTeam1() {
     return __awaiter(this, void 0, void 0, function () {
         var data, play, error, error_1;
         return __generator(this, function (_a) {
@@ -51,6 +52,7 @@ function handleGetGame() {
                         throw new Error(error);
                     console.log(play);
                     renderLoader();
+                    renderUser(play);
                     console.log("get Team 1 & then get Team 2");
                     return [3 /*break*/, 3];
                 case 2:
@@ -62,21 +64,37 @@ function handleGetGame() {
         });
     });
 }
-handleGetGame();
-function renderLoader() {
-    var loader = document.querySelector('#loader');
-    if (!loader.classList.contains('lds-dual-ring')) {
-        loader.classList.add('lds-dual-ring');
-        console.log('add');
-    }
-    else {
-        loader.classList.remove('lds-dual-ring');
-        console.log('remove');
-    }
+function handleGetTeam2() {
+    return __awaiter(this, void 0, void 0, function () {
+        var data, play, error, error_2;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    return [4 /*yield*/, axios.get("/api/user2")];
+                case 1:
+                    data = (_a.sent()).data;
+                    console.log(data);
+                    play = data.play, error = data.error;
+                    if (error)
+                        throw new Error(error);
+                    console.log(play);
+                    renderLoader();
+                    renderUser(play);
+                    console.log("get Team 2 after you get Team 1");
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_2 = _a.sent();
+                    console.error(error_2);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
 }
-// function build_gameStatistic() {
-//   const GameStatsDiv: HTMLDivElement = document.querySelector('.gameStats');
-//   console.log(GameStatsDiv);
-//   GameStatsDiv.innerHTML = `<div class="stat_row"><div>${gamesPlay.TeamA.stat.shots}</div><div>SHOTS</div><div>${gamePlay.TeamB.stat.shots}</div></div>`
-// }
-// build_gameStatistic();
+function renderUser(play) {
+    var root = document.querySelector("#root");
+    root.innerText = "user " + play.name + " is " + play.id + " years old";
+}
+function addPicture() {
+}
