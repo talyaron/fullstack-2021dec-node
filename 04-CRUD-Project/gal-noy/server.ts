@@ -48,6 +48,16 @@ let gamePlay: Array<Team> = [
     }
 });
 
+app.get('/api/user2', (req, res)=>{
+    try {
+        setTimeout(()=>{
+            res.send({play:gamePlay[1]});
+        },200)
+       
+    } catch (error) {
+        res.send({error:error.message})
+    }
+});
 
 app.listen(port, () => {
     console.log(`Server listening on port ${port}`)

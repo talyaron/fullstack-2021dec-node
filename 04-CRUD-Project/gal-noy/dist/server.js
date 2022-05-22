@@ -17,6 +17,16 @@ app.get('/api/user1', function (req, res) {
         res.send({ error: error.message });
     }
 });
+app.get('/api/user2', function (req, res) {
+    try {
+        setTimeout(function () {
+            res.send({ play: gamePlay[1] });
+        }, 200);
+    }
+    catch (error) {
+        res.send({ error: error.message });
+    }
+});
 app.listen(port, function () {
     console.log("Server listening on port " + port);
 });

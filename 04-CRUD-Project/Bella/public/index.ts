@@ -39,12 +39,12 @@ async function handleEditUser(event : any, uniqID : string) {
         const permissions = event.target.value;
 
         // @ts-ignore
-        const {data} = await axios.put('/api/update-user', {userName, email, uniqID, permissions});
+        const {data} = await axios.put('/api/update-user', { uniqID, user});
 
         const {users, error} = data;
         if (error) 
             throw new Error(error);
-            
+                        
         renderData(users);
 
     } catch (error) {
