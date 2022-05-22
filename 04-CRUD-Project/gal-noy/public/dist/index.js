@@ -36,34 +36,36 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 function handleGetTeam1() {
     return __awaiter(this, void 0, void 0, function () {
+        var data, play, error, error_1;
         return __generator(this, function (_a) {
-            try {
-                console.log("get success");
-                renderLoader();
-                //@ts-ignore: cannot find module 'axios'
-                axios
-                    .get("/api/user1")
-                    .then(function (_a) {
-                    var data = _a.data;
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    console.log("get success");
+                    return [4 /*yield*/, axios.get("/api/user1")];
+                case 1:
+                    data = (_a.sent()).data;
                     console.log(data);
-                    var play = data.play, error = data.error;
+                    play = data.play, error = data.error;
                     if (error)
                         throw new Error(error);
                     console.log(play);
                     renderLoader();
                     renderUser(play);
-                })["catch"](function (err) { return console.error(err); });
+                    console.log("get Team 1 & then get Team 2");
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_1 = _a.sent();
+                    console.error(error_1);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
             }
-            catch (error) {
-                console.error(error);
-            }
-            return [2 /*return*/];
         });
     });
 }
 function handleGetTeam2() {
     return __awaiter(this, void 0, void 0, function () {
-        var data, play, error, error_1;
+        var data, play, error, error_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -75,12 +77,14 @@ function handleGetTeam2() {
                     play = data.play, error = data.error;
                     if (error)
                         throw new Error(error);
+                    console.log(play);
+                    renderLoader();
                     renderUser(play);
                     console.log("get Team 2 after you get Team 1");
                     return [3 /*break*/, 3];
                 case 2:
-                    error_1 = _a.sent();
-                    console.error(error_1);
+                    error_2 = _a.sent();
+                    console.error(error_2);
                     return [3 /*break*/, 3];
                 case 3: return [2 /*return*/];
             }
