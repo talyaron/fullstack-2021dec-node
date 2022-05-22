@@ -1,12 +1,40 @@
 body{
     margin: 0 auto;
+    background-color: bisque;
 }
 
 .gameStats{
     margin: auto;
-    color:white;
-    background-color: black;
+    margin-top: 25px;
+    color:black;
+    background-color:darkgoldenrod;
     width: 80vw;
     height: 90vh;
+}
+
+.gameEdit{
+    margin: auto;
+    margin-top: 25px;
+    color:white;
+    background-color:darkgoldenrod;
+    width: 80vw;
+    height: 90vh;
+}
+
+#changeBtn{
+    display: flex;
+    flex-direction: row;
+     
+}
+
+#hrefBtn{
+    background-color: bisque;
+}
+
+.navBar{
+    margin-left: 20px;
+    display: flex;
+    flex-direction: row;
+
 }
 

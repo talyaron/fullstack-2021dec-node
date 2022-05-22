@@ -11,9 +11,12 @@
     <title>Document</title>
 </head>
 <body>
-    <a href="./index.html">edit stats</a>
-    <button onclick="handleGetTeam1()">change Team 1</button>
+
+    <div class="gameEdit">
+    <button id="hrefBtn"><a href="./index.html">edit stats</a></button>
+    <button id="changeBtn" onclick="handleGetTeam1()">change Team 1</button>
     <button onclick="handleGetTeam2()">change Team 2</button>
+    </div>
     <div id="root"></div>
     <div id="loader"></div>
     <script src="./dist/index.js"></script>

@@ -1,4 +1,4 @@
-function handleGetTeam1() {
+async function handleGetTeam1() {
     try {
         console.log("get success")
       renderLoader()
