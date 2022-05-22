@@ -75,7 +75,7 @@ function handleEditUser(event, uniqID) {
                     userName = event.target.value;
                     email = event.target.value;
                     permissions = event.target.value;
-                    return [4 /*yield*/, axios.put('/api/update-user', { userName: userName, email: email, uniqID: uniqID, permissions: permissions })];
+                    return [4 /*yield*/, axios.put('/api/update-user', { uniqID: uniqID, user: user })];
                 case 1:
                     data = (_a.sent()).data;
                     users = data.users, error = data.error;
