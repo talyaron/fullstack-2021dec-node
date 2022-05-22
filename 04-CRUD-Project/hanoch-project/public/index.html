@@ -5,8 +5,26 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="./dist/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
+
 <body>
+    <h1>An ongoing story</h1>
+    <p>Each user will continue the segment of the story that was before him</p>
+
+    <form action="" onsubmit="handleGetStory(event)">
     
+    <label for="story">inter your name</label>
+    <input type="text" name="name"> <br>
+    <label for="story">continue the story</label>
+    <input type="text" name="story"> <br>
+    
+    <button type="submit">publish</button>
+    </form>
+
+    <div id="story"></div>
+
+    <script src="./dist/index.js"></script>
 </body>
 </html>

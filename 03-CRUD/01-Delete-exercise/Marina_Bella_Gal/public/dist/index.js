@@ -34,47 +34,20 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-function handleGetStory(ev) {
+function handleGetImages() {
     return __awaiter(this, void 0, void 0, function () {
-        var name, story, data, conStory, error;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    ev.preventDefault();
-                    console.dir(ev);
-                    name = ev.target.elements.name.value;
-                    story = ev.target.elements.story.value;
-                    console.log(name);
-                    console.log(story);
-                    return [4 /*yield*/, axios.post('/api/onGo_story', { name: name, story: story })];
-                case 1:
-                    data = (_a.sent()).data;
-                    console.dir(data);
-                    conStory = data.conStory, error = data.error;
-                    if (error)
-                        throw new Error(error);
-                    renderStory(conStory);
-                    return [2 /*return*/];
-            }
-        });
-    });
-}
-function getStory() {
-    return __awaiter(this, void 0, void 0, function () {
-        var data, conStory, error, error_1;
+        var data, img, error, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, axios.get("/api/getStory")];
+                    return [4 /*yield*/, axios.get("/api/getImgs")];
                 case 1:
                     data = (_a.sent()).data;
-                    conStory = data.conStory, error = data.error;
+                    img = data.img, error = data.error;
                     if (error)
-                        throw new Error(error.message);
-                    if (conStory) {
-                        renderStory(conStory);
-                    }
+                        throw new Error(error);
+                    renderImg(img);
                     return [3 /*break*/, 3];
                 case 2:
                     error_1 = _a.sent();
@@ -85,13 +58,17 @@ function getStory() {
         });
     });
 }
-getStory();
-function renderStory(addStory) {
-    var story = document.querySelector("#story");
-    var html = "";
-    console.log(addStory);
-    addStory.forEach(function (elm) {
-        html += "<span>" + elm.name + ":</span> " + elm.story + " <br> <br>";
-    });
-    story.innerHTML = html;
+// function renderImgs() {
+//     let root: HTMLElement = document.querySelector("#root");
+//     root.innerHTML = `<img src= ${Img.src} alt="meme"/>`;
+//     renderLoader();
+//     // let html = "";
+//     // imgs.forEach((img) => {
+//     //   html += `<img ${img.name} ${img.src}> <button onclick='handleDelete("${img.id}")>DELETE</button>`;
+//     // });
+//     // root.innerHTML = html;
+//   }
+function renderImg(imgs) {
+    var root = document.querySelector("#root");
+    root.innerHTML = imgs.name + " " + imgs.src;
 }

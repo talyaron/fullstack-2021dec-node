@@ -3,6 +3,32 @@ body {
     width: 100vw;
     overflow: hidden;
     font-family: 'Mukta', sans-serif;
+
+    .room_button_wrapper {
+        width: 50vw;
+        margin: auto;
+        display: flex;
+        justify-content: center;
+
+
+        button {
+            border: none;
+            padding: 15px 30px;
+            border-radius: 20px;
+            font-size: 1.3rem;
+            font-family: 'Mukta', sans-serif;
+
+            &:hover {
+                cursor: pointer;
+                background-color: rgb(162, 162, 162);
+            }
+
+            a {
+                text-decoration: none;
+                text-decoration-color: black;
+            }
+        }
+    }
 }
 
 .game_wrapper {
@@ -31,18 +57,23 @@ body {
     text-align: center;
 
     img {
-        width: 40%;
+        max-width: 500px;
     }
 
     h1 {
         font-size: 6rem;
+        margin: 5%;
     }
+
     h2 {
         font-size: 3rem;
     }
+
     p {
         font-size: 1.5rem;
     }
+
+   
 }
 
 .buttonsContainer {
@@ -50,18 +81,6 @@ body {
     margin: auto;
     display: flex;
     justify-content: space-between;
-
-    button {
-        border: none;
-        padding: 15px 30px;
-        border-radius: 20px;
-        font-size: 1.3rem;
-        font-family: 'Mukta', sans-serif;
-        &:hover {
-            cursor: pointer;
-            background-color: rgb(162, 162, 162);
-        }
-    }
 }
 
 .countersContainer {
@@ -75,10 +94,24 @@ body {
     font-size: 1.3rem;
 }
 
+#linkButton {
+    border: none;
+    padding: 15px 30px;
+    border-radius: 20px;
+    font-size: 1.3rem;
+    font-family: 'Mukta', sans-serif;
+
+    &:hover {
+        cursor: pointer;
+        background-color: rgb(162, 162, 162);
+    }
+}
+
 #sq0 {
     border-bottom: 3px solid black;
     border-right: 3px solid black;
 }
+
 #sq1 {
     border-bottom: 3px solid black;
     border-right: 3px solid black;

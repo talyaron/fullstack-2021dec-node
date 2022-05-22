@@ -4,6 +4,27 @@ body {
   overflow: hidden;
   font-family: "Mukta", sans-serif;
 }
+body .room_button_wrapper {
+  width: 50vw;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+}
+body .room_button_wrapper button {
+  border: none;
+  padding: 15px 30px;
+  border-radius: 20px;
+  font-size: 1.3rem;
+  font-family: "Mukta", sans-serif;
+}
+body .room_button_wrapper button:hover {
+  cursor: pointer;
+  background-color: #a2a2a2;
+}
+body .room_button_wrapper button a {
+  text-decoration: none;
+  text-decoration-color: black;
+}
 
 .game_wrapper {
   margin: auto;
@@ -30,10 +51,11 @@ body {
   text-align: center;
 }
 .wrapper img {
-  width: 40%;
+  max-width: 500px;
 }
 .wrapper h1 {
   font-size: 6rem;
+  margin: 5%;
 }
 .wrapper h2 {
   font-size: 3rem;
@@ -48,17 +70,6 @@ body {
   display: flex;
   justify-content: space-between;
 }
-.buttonsContainer button {
-  border: none;
-  padding: 15px 30px;
-  border-radius: 20px;
-  font-size: 1.3rem;
-  font-family: "Mukta", sans-serif;
-}
-.buttonsContainer button:hover {
-  cursor: pointer;
-  background-color: #a2a2a2;
-}
 
 .countersContainer {
   width: 50vw;
@@ -69,6 +80,18 @@ body {
   text-align: center;
   justify-content: space-between;
   font-size: 1.3rem;
+}
+
+#linkButton {
+  border: none;
+  padding: 15px 30px;
+  border-radius: 20px;
+  font-size: 1.3rem;
+  font-family: "Mukta", sans-serif;
+}
+#linkButton:hover {
+  cursor: pointer;
+  background-color: #a2a2a2;
 }
 
 #sq0 {
