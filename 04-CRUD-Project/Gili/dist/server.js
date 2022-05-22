@@ -20,10 +20,6 @@ io.on('connection', function (socket) {
 });
 app.use(express.json());
 var isXturn = true;
-var sq = 'sq';
-var room1arr = [];
-var room2arr = [];
-var room3arr = [];
 app.use(express.static('public'));
 var squreArr = [
     {
