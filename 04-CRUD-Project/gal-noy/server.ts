@@ -26,13 +26,13 @@ interface Game {
 
 interface Team {
     name: string;
-    // logo: HTMLImageElement;
+    logo: string;
     id: string;
     stat: GameStats;
 }
 
 let gameStatistic1: GameStats = {
-    goals: 0,
+    goals: 1,
     shots: 2,
     shots_on_target: 0,
     possesion: 0,
@@ -58,25 +58,29 @@ let gameStatistic2: GameStats = {
 
 let team1: Team = {
     name: 'Barcelona',
+    logo: 'https://upload.wikimedia.org/wikipedia/sco/thumb/4/47/FC_Barcelona_%28crest%29.svg/2020px-FC_Barcelona_%28crest%29.svg.png',
     id: '1234',
     stat: gameStatistic1,
 }
 let team2: Team = {
     name: 'Machester City',
+    logo: 'https://upload.wikimedia.org/wikipedia/en/thumb/e/eb/Manchester_City_FC_badge.svg/1200px-Manchester_City_FC_badge.svg.png',
     id: '2356',
     stat: gameStatistic2,
 }
-let gamesPlay:Array<Game> =[
-    {TeamA: team1,      
-    TeamB: team2} ,
-    
+let gamesPlay: Array<Game> = [
+    {
+        TeamA: team1,
+        TeamB: team2
+    },
+
 ]
 
 
 app.get('/api/user1', (req, res) => {
     try {
-        console.log(gamesPlay[0])
-            res.send({ play: gamesPlay[0]});
+        console.log(gamesPlay[0]);
+        res.send({ play: gamesPlay[0] });
 
     } catch (error) {
         res.send({ error: error.message })

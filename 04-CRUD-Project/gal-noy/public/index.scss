@@ -1,49 +1,83 @@
-html{
+html {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 16px;
 }
-body{
+
+body {
     margin: 0 auto;
     background-color: #000000;
 }
 
-.gameStats{
+.gameStats {
     margin: auto;
     margin-top: 25px;
-    color:black;
-    background-color:darkgoldenrod;
+    color: black;
+    background-color: darkgoldenrod;
     width: 70%;
-    height: 90vh;
     border: solid rgb(254, 252, 252) 1px;
+    padding: 15px;
+
+    .stat_row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        img {
+            width: 50px;
+        }
+
+        div {
+            margin: 5px;
+            padding: 2px;
+        }
+    }
 }
 
-.gameEdit{
+.gameEdit {
     margin: auto;
     margin-top: 25px;
-    color:white;
-    background-color:darkgoldenrod;
+    color: white;
+    background-color: darkgoldenrod;
     width: 80vw;
     height: 90vh;
-}
-
-#changeBtn{
     display: flex;
-    flex-direction: row;
-     
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .form {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        margin: 0 auto;
+
+        .team_form {
+            margin: 0 auto;
+            justify-content: center;
+            margin: 20px;
+            display: flex;
+            flex-direction: column;
+
+            input {
+                margin: 2px;
+            }
+        }
+    }
 }
 
-#hrefBtn{
+
+#hrefBtn {
     background-color: bisque;
 }
 
-.navBar{
+.navBar {
     margin-left: 20px;
     display: flex;
     flex-direction: row;
 
 }
 
-.top_nav{
+.top_nav {
     width: 70%;
     background-color: #ffffff;
     margin: auto;
@@ -53,16 +87,19 @@ body{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    .teamLogo{
+
+    .teamLogo {
         display: flex;
         flex-direction: column;
         align-items: center;
-        img{
+
+        img {
             width: 50px;
             height: 50px;
         }
     }
-    .team_name{
+
+    .team_name {
         font-size: 0.7rem;
         font-weight: bold;
     }

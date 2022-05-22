@@ -14,8 +14,20 @@ body {
   color: black;
   background-color: darkgoldenrod;
   width: 70%;
-  height: 90vh;
   border: solid #fefcfc 1px;
+  padding: 15px;
+}
+.gameStats .stat_row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.gameStats .stat_row img {
+  width: 50px;
+}
+.gameStats .stat_row div {
+  margin: 5px;
+  padding: 2px;
 }
 
 .gameEdit {
@@ -25,11 +37,26 @@ body {
   background-color: darkgoldenrod;
   width: 80vw;
   height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
-
-#changeBtn {
+.gameEdit .form {
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  margin: 0 auto;
+}
+.gameEdit .form .team_form {
+  margin: 0 auto;
+  justify-content: center;
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+}
+.gameEdit .form .team_form input {
+  margin: 2px;
 }
 
 #hrefBtn {

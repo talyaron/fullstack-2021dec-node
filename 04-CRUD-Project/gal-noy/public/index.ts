@@ -28,12 +28,11 @@ async function handleGetGame() {
     console.log("get success")
     //  @ts-ignore: cannot find module 'axios'
     const { data } = await axios.get("/api/user1");
-    console.log(data);
+
     const { play, error } = data;
     if (error) throw new Error(error);
     console.log(play);
-    renderLoader();
-    console.log("get Team 1 & then get Team 2");
+    build_gameStatistic(play);
   } catch (error) {
     console.error(error);
   }
@@ -42,21 +41,51 @@ async function handleGetGame() {
 handleGetGame();
 
 
-function renderLoader() {
-  const loader: HTMLElement = document.querySelector('#loader')
-  if (!loader.classList.contains('lds-dual-ring')) {
-    loader.classList.add('lds-dual-ring');
-    console.log('add')
-  } else {
-    loader.classList.remove('lds-dual-ring');
-    console.log('remove')
-  }
-}
+// function renderLoader() {
+//   const loader: HTMLElement = document.querySelector('#loader')
+//   if (!loader.classList.contains('lds-dual-ring')) {
+//     loader.classList.add('lds-dual-ring');
+//     console.log('add')
+//   } else {
+//     loader.classList.remove('lds-dual-ring');
+//     console.log('remove')
+//   }
+// }
 
 
-function build_gameStatistic() {
+function build_gameStatistic(play) {
   const GameStatsDiv: HTMLDivElement = document.querySelector('.gameStats');
-  // GameStatsDiv.innerHTML = `<div class="stat_row"><div>${gamesPlay.TeamA.stat.shots}</div><div>SHOTS</div><div>${gamePlay.TeamB.stat.shots}</div></div>`
+  const top_nav: HTMLDivElement = document.querySelector('.top_nav');
+
+  console.log(play);
+  top_nav.innerHTML = `<div class="teamLogo teamLogo__1">
+  <img src='${play.TeamA.logo}'>
+  <span class="team_name team_name__1">${play.TeamA.name}</span>
+</div>
+
+<div class="scoreTeam1">
+${play.TeamA.stat.goals}
+</div>
+<span>-</span>
+<div class="scoreTeam2">
+${play.TeamB.stat.goals}
+</div>
+<div class="teamLogo teamLogo__2">
+<img src="${play.TeamB.logo}">
+  <span class="team_name team_name__2">${play.TeamB.name}</span>
+</div>
+</div>`
+  GameStatsDiv.innerHTML = `<div class="stat_row"><div> <img src="${play.TeamA.logo}"></div><div>GAME STATS</div><div> <img src="${play.TeamB.logo}"></div></div>
+  <div class="stat_row"><div>${play.TeamA.stat.shots}</div><div>SHOTS</div><div>${play.TeamB.stat.shots}</div></div>
+  <div class="stat_row"><div>${play.TeamA.stat.shots_on_target}</div><div>SHOTS ON TARGET</div><div>${play.TeamB.stat.shots_on_target}</div></div>
+  <div class="stat_row"><div>${play.TeamA.stat.possesion}</div><div>POSSESION</div><div>${play.TeamB.stat.possesion}</div></div>
+  <div class="stat_row"><div>${play.TeamA.stat.passes}</div><div>PASSES</div><div>${play.TeamB.stat.passes}</div></div>
+  <div class="stat_row"><div>${play.TeamA.stat.fouls}</div><div>FOULS</div><div>${play.TeamB.stat.fouls}</div></div>
+  <div class="stat_row"><div>${play.TeamA.stat.yellow_cards}</div><div>YELLOW CARDS</div><div>${play.TeamB.stat.yellow_cards}</div></div>
+  <div class="stat_row"><div>${play.TeamA.stat.red_cards}</div><div>RED CARDS</div><div>${play.TeamB.stat.red_cards}</div></div>
+  <div class="stat_row"><div>${play.TeamA.stat.offsides}</div><div>OFFSIDES</div><div>${play.TeamB.stat.offsides}</div></div>
+  <div class="stat_row"><div>${play.TeamA.stat.corners}</div><div>CORNERS</div><div>${play.TeamB.stat.corners}</div></div>`
+
 }
 
-build_gameStatistic();
+
