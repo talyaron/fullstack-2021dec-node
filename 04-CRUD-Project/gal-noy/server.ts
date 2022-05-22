@@ -75,9 +75,8 @@ let gamesPlay:Array<Game> =[
 
 app.get('/api/user1', (req, res) => {
     try {
-        setTimeout(() => {
-            res.send({ play: gamesPlay[0] });
-        }, 200)
+        console.log(gamesPlay[0])
+            res.send({ play: gamesPlay[0]});
 
     } catch (error) {
         res.send({ error: error.message })

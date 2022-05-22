@@ -54,10 +54,10 @@ function renderLoader() {
 }
 
 
-// function build_gameStatistic() {
-//   const GameStatsDiv: HTMLDivElement = document.querySelector('.gameStats');
-//   console.log(GameStatsDiv);
-//   GameStatsDiv.innerHTML = `<div class="stat_row"><div>${gamesPlay.TeamA.stat.shots}</div><div>SHOTS</div><div>${gamePlay.TeamB.stat.shots}</div></div>`
-// }
+function build_gameStatistic() {
+  const GameStatsDiv: HTMLDivElement = document.querySelector('.gameStats');
+  console.log(GameStatsDiv);
+  GameStatsDiv.innerHTML = `<div class="stat_row"><div>${gamesPlay.TeamA.stat.shots}</div><div>SHOTS</div><div>${gamePlay.TeamB.stat.shots}</div></div>`
+}
 
-// build_gameStatistic();
+build_gameStatistic();
