@@ -34,8 +34,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var logoImg1 = document.querySelectorAll("teamLogo__1");
-var logoImg2 = document.querySelectorAll("teamLogo__2");
+var GameStats = document.querySelector('gameStats');
 function handleGetTeam1() {
     return __awaiter(this, void 0, void 0, function () {
         var data, play, error, error_1;
@@ -96,17 +95,6 @@ function handleGetTeam2() {
 function renderUser(play) {
     var root = document.querySelector("#root");
     root.innerText = "user " + play.name + " is " + play.id + " years old";
-}
-function renderLoader() {
-    var loader = document.querySelector('#loader');
-    if (!loader.classList.contains('lds-dual-ring')) {
-        loader.classList.add('lds-dual-ring');
-        console.log('add');
-    }
-    else {
-        loader.classList.remove('lds-dual-ring');
-        console.log('remove');
-    }
 }
 function addPicture() {
 }
