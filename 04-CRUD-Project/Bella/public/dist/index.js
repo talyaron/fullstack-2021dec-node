@@ -67,26 +67,30 @@ function handleAddUser(ev) {
 }
 function handleEditUser(event, uniqID) {
     return __awaiter(this, void 0, void 0, function () {
-        var userName;
+        var userName, data, users, error, error_2;
         return __generator(this, function (_a) {
-            try {
-                userName = document.querySelector("#userName");
-                userName.setAttribute("id", "`${uniqID}`");
-                userName.setAttribute("contenteditable", "true");
-                console.log(userName);
-                // const email = event.target.value;
-                // const permissions = event.target.value;
-                // // @ts-ignore
-                // const {data} = await axios.put('/api/update-user', { uniqID, user});
-                // const {users, error} = data;
-                // if (error) 
-                throw new Error(error);
-                renderData(users);
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    userName = document.querySelector("#userName");
+                    userName.setAttribute("contenteditable", "true");
+                    userName.focus();
+                    console.log(userName);
+                    console.log("" + uniqID);
+                    return [4 /*yield*/, axios.put('/api/update-user', { uniqID: uniqID, user: user })];
+                case 1:
+                    data = (_a.sent()).data;
+                    users = data.users, error = data.error;
+                    if (error)
+                        throw new Error(error);
+                    renderData(users);
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_2 = _a.sent();
+                    console.error(error_2);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
             }
-            catch (error) {
-                console.error(error);
-            }
-            return [2 /*return*/];
         });
     });
 }

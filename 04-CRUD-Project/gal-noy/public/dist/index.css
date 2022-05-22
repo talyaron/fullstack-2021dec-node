@@ -5,7 +5,7 @@ html {
 
 body {
   margin: 0 auto;
-  background-color: bisque;
+  background-color: #000000;
 }
 
 .gameStats {
@@ -13,7 +13,7 @@ body {
   margin-top: 25px;
   color: black;
   background-color: darkgoldenrod;
-  width: 80vw;
+  width: 70%;
   height: 90vh;
 }
 
@@ -45,6 +45,7 @@ body {
   width: 70%;
   background-color: #ffffff;
   margin: auto;
+  padding: 1rem;
   font-size: 2.5rem;
   font-weight: bolder;
   display: flex;
