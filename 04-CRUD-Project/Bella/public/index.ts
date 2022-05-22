@@ -35,17 +35,18 @@ async function handleEditUser(event : any, uniqID : string) {
     try {
 
         const userName: HTMLElement = document.querySelector("#userName");
-        userName.setAttribute("id", "`${uniqID}`");
         userName.setAttribute("contenteditable", "true");
+        userName.focus();
         console.log(userName);
+        console.log(`${uniqID}`);
         // const email = event.target.value;
         // const permissions = event.target.value;
 
-        // // @ts-ignore
-        // const {data} = await axios.put('/api/update-user', { uniqID, user});
+        // @ts-ignore
+        const {data} = await axios.put('/api/update-user', { uniqID, user});
 
-        // const {users, error} = data;
-        // if (error) 
+        const {users, error} = data;
+        if (error) 
             throw new Error(error);
                         
         renderData(users);
