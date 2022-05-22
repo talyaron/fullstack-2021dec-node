@@ -28,5 +28,5 @@ app.get('/api/getStory', function (req, res) {
     }
 });
 app.listen(port, function () {
-    console.log("Server listening on port " + port + " 123");
+    console.log("Server listening on port " + port);
 });
