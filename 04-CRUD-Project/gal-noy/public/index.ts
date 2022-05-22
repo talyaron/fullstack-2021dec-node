@@ -28,11 +28,11 @@ async function handleGetGame() {
     console.log("get success")
     //  @ts-ignore: cannot find module 'axios'
     const { data } = await axios.get("/api/user1");
-    console.log(data)
+    console.log(data);
     const { play, error } = data;
     if (error) throw new Error(error);
-    console.log(play)
-    renderLoader()
+    console.log(play);
+    renderLoader();
     console.log("get Team 1 & then get Team 2");
   } catch (error) {
     console.error(error);
