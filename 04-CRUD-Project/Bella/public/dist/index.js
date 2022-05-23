@@ -65,10 +65,15 @@ function handleAddUser(ev) {
         });
     });
 }
+<<<<<<< HEAD
 function handleEditUser(ev, uniqID) {
+=======
+function handleEditUser(uniqID) {
+>>>>>>> main
     return __awaiter(this, void 0, void 0, function () {
         var emailCell;
         return __generator(this, function (_a) {
+<<<<<<< HEAD
             try {
                 // const userName = event.target.value;
                 // const email = event.target.value;
@@ -88,6 +93,39 @@ function handleEditUser(ev, uniqID) {
             }
             catch (error) {
                 console.error(error);
+=======
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    userName = document.querySelector("#userName");
+                    userName.setAttribute("contenteditable", "true");
+                    userName.id = "userName " + uniqID;
+                    userName.innerHTML = event.target.value;
+                    email = document.querySelector("#email");
+                    email.setAttribute("contenteditable", "true");
+                    email.id = "email " + uniqID;
+                    permissions = document.querySelector("#permissions");
+                    permissions.setAttribute("contenteditable", "true");
+                    permissions.id = "permissions " + uniqID;
+                    // const updateButton: any = document.querySelector("#updateButton");
+                    // updateButton.style.display = "block";
+                    userName.focus();
+                    console.dir(userName);
+                    console.log(uniqID);
+                    return [4 /*yield*/, axios.put('/api/update-user', { uniqID: uniqID, userName: userName })];
+                case 1:
+                    data = (_a.sent()).data;
+                    users = data.users, error = data.error;
+                    if (error)
+                        throw new Error(error);
+                    renderData(users);
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_2 = _a.sent();
+                    console.error(error_2);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+>>>>>>> main
             }
             return [2 /*return*/];
         });
@@ -97,7 +135,14 @@ function renderData(users) {
     var usersTable = document.querySelector("#tableBody");
     var html = "";
     users.forEach(function (user) {
+<<<<<<< HEAD
         html += "\n    <tr>\n      <td>" + user.userName + "</td>\n      <td id=\"email-" + user.uniqID + "\">" + user.email + "</td>\n      <td>" + user.uniqID + "</td>\n      <td>" + user.permissions + "</td>\n      <td onclick=\"handleDeleteUser('" + user.uniqID + "')\">Delete</td>\n      <td onclick=\"handleEditUser(event, '" + user.uniqID + "')\">Edit</td>\n    </tr>";
+=======
+        html += "\n    <tr>\n      <td id=\"userName\">" + user.userName + "</td>\n      <td id=\"email\">" + user.email + "</td>\n      <td id=\"uniqID\">" + user.uniqID + "</td>\n      <td id=\"permissions\">" + user.permissions + "</td>\n      <td onclick=\"handleDeleteUser('" + user.uniqID + "')\">Delete</td>\n      <td onclick=\"handleEditUser('" + user.uniqID + "')\">Edit</td>\n    </tr>";
+>>>>>>> main
     });
     usersTable.innerHTML = html;
+}
+function querySelectorAll(arg0) {
+    throw new Error("Function not implemented.");
 }
