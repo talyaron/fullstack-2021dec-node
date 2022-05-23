@@ -31,21 +31,28 @@ async function handleAddUser(ev : any) {
     }
 }
 
-async function handleEditUser(event : any, uniqID : string) {
+async function handleEditUser(ev:any,  uniqID : string) {
     try {
 
-        const userName = event.target.value;
-        const email = event.target.value;
-        const permissions = event.target.value;
+        // const userName = event.target.value;
+        // const email = event.target.value;
+        // const permissions = event.target.value;
 
-        // @ts-ignore
-        const {data} = await axios.put('/api/update-user', { uniqID, user});
+        // // @ts-ignore
+        // const {data} = await axios.put('/api/update-user', { uniqID, user});
 
-        const {users, error} = data;
-        if (error) 
-            throw new Error(error);
+        // const {users, error} = data;
+        // if (error) 
+        //     throw new Error(error);
                         
-        renderData(users);
+        // renderData(users);
+
+        //create editable cell
+        console.log(`#email-${uniqID}`)
+        const emailCell:HTMLElement = document.querySelector(`#email-${uniqID}`);
+        console.dir(emailCell)
+        emailCell.setAttribute("contenteditable", "true");
+        emailCell.style.backgroundColor="yellow"
 
     } catch (error) {
         console.error(error);
@@ -60,11 +67,11 @@ function renderData(users : Array < user >) {
         html += `
     <tr>
       <td>${user.userName}</td>
-      <td>${user.email}</td>
+      <td id="email-${user.uniqID}">${user.email}</td>
       <td>${user.uniqID}</td>
       <td>${user.permissions}</td>
       <td onclick="handleDeleteUser('${user.uniqID}')">Delete</td>
-      <td onclick="handleEditUser('${user.uniqID}')">Edit</td>
+      <td onclick="handleEditUser(event, '${user.uniqID}')">Edit</td>
     </tr>`;
     });
     usersTable.innerHTML = html;
