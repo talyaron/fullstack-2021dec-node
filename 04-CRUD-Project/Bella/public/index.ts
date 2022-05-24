@@ -2,7 +2,7 @@ interface user {
     userName : string,
     email : string,
     uniqID : string,
-    permissions : string
+    permissions : any
 }
 
 async function handleAddUser(ev : any) {
@@ -13,6 +13,8 @@ async function handleAddUser(ev : any) {
         const userName = elements.userName.value;
         const email = elements.email.value;
         const permissions = elements.permissions.value;
+        
+        console.dir(permissions.value);
         
         
 
@@ -57,7 +59,7 @@ async function handleEditUser(ev : any, uniqID : string) {
 
         // const email = event.target.value; const permissions = event.target.value;
         // @ts-ignore
-        const {data} = await axios.put('/api/update-user', {uniqID, userName});
+        const {data} = await axios.put('/api/update-user', {uniqID, userName, email, permissions});
 
         const {users, error} = data;
         if (error) 
@@ -80,7 +82,7 @@ function renderData(users : Array < user >) {
       <td id="userName">${user.userName}</td>
       <td id="email">${user.email}</td>
       <td id="uniqID">${user.uniqID}</td>
-      <td id="permissions">${user.permissions}</td>
+      <td id="permissions">${user.permissions.value}</td>
       <td onclick="handleDeleteUser('${user.uniqID}')">Delete</td>
       <td onclick="handleEditUser(event, '${user.uniqID}')">Edit</td>
     </tr>`;

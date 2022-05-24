@@ -46,6 +46,7 @@ function handleAddUser(ev) {
                     userName = elements.userName.value;
                     email = elements.email.value;
                     permissions = elements.permissions.value;
+                    console.dir(permissions.value);
                     if (!userName || !email || !permissions)
                         throw new Error("Details are required");
                     return [4 /*yield*/, axios.post('/api/add-user', { userName: userName, email: email, permissions: permissions })];
@@ -83,7 +84,7 @@ function handleEditUser(ev, uniqID) {
                     permissionsCell = document.querySelector("#permissions");
                     permissionsCell.setAttribute("contenteditable", "true");
                     permissionsCell.id = uniqID;
-                    return [4 /*yield*/, axios.put('/api/update-user', { uniqID: uniqID, userName: userName })];
+                    return [4 /*yield*/, axios.put('/api/update-user', { uniqID: uniqID, userName: userName, email: email, permissions: permissions })];
                 case 1:
                     data = (_a.sent()).data;
                     users = data.users, error = data.error;
@@ -104,7 +105,7 @@ function renderData(users) {
     var usersTable = document.querySelector("#tableBody");
     var html = "";
     users.forEach(function (user) {
-        html += "\n    <tr>\n      <td id=\"userName\">" + user.userName + "</td>\n      <td id=\"email\">" + user.email + "</td>\n      <td id=\"uniqID\">" + user.uniqID + "</td>\n      <td id=\"permissions\">" + user.permissions + "</td>\n      <td onclick=\"handleDeleteUser('" + user.uniqID + "')\">Delete</td>\n      <td onclick=\"handleEditUser(event, '" + user.uniqID + "')\">Edit</td>\n    </tr>";
+        html += "\n    <tr>\n      <td id=\"userName\">" + user.userName + "</td>\n      <td id=\"email\">" + user.email + "</td>\n      <td id=\"uniqID\">" + user.uniqID + "</td>\n      <td id=\"permissions\">" + user.permissions.value + "</td>\n      <td onclick=\"handleDeleteUser('" + user.uniqID + "')\">Delete</td>\n      <td onclick=\"handleEditUser(event, '" + user.uniqID + "')\">Edit</td>\n    </tr>";
     });
     usersTable.innerHTML = html;
 }
