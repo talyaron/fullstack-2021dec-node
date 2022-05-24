@@ -13,6 +13,8 @@ async function handleAddUser(ev : any) {
         const userName = elements.userName.value;
         const email = elements.email.value;
         const permissions = elements.permissions.value;
+        
+        
 
         if (!userName || !email || !permissions) 
             throw new Error("Details are required");
@@ -23,7 +25,6 @@ async function handleAddUser(ev : any) {
         const {users, error} = data;
         if (error) 
             throw new Error(error);
-        
         renderData(users);
 
     } catch (error) {
@@ -31,32 +32,29 @@ async function handleAddUser(ev : any) {
     }
 }
 
-async function handleEditUser(uniqID : string) {
+
+async function handleEditUser(ev : any, uniqID : string) {
     try {
-        // const tableData:any = document.querySelectorAll('td')
-        // for (let i = 0; i < tableData.length; i++) {
-        //     tableData.setAttribute("contenteditable", "true");
-        // }
+        ev.preventDefault();
         
-        const userName : any = document.querySelector("#userName");
-        userName.setAttribute("contenteditable", "true");
-        userName.id = "userName " + uniqID;
-        userName.innerHTML = event.target.value;
+        const userNameCell : HTMLElement = document.querySelector("#userName"); 
+        userNameCell.setAttribute("contenteditable", "true");
+        userNameCell.id = uniqID;
+        userNameCell.focus();
 
-        const email : any = document.querySelector("#email");
-        email.setAttribute("contenteditable", "true");
-        email.id = "email " + uniqID;
-
-        const permissions : any = document.querySelector("#permissions");
-        permissions.setAttribute("contenteditable", "true");
-        permissions.id = "permissions " + uniqID;
+        const emailCell : any = document.querySelector("#email");
+        emailCell.setAttribute("contenteditable", "true");
+        emailCell.id = uniqID;
+        
+        const permissionsCell : any = document.querySelector("#permissions");
+        permissionsCell.setAttribute("contenteditable", "true");
+        permissionsCell.id = uniqID;
+        
+        
 
         // const updateButton: any = document.querySelector("#updateButton");
         // updateButton.style.display = "block";
 
-        userName.focus();
-        console.dir(userName);
-        console.log(uniqID);
         // const email = event.target.value; const permissions = event.target.value;
         // @ts-ignore
         const {data} = await axios.put('/api/update-user', {uniqID, userName});
@@ -66,13 +64,6 @@ async function handleEditUser(uniqID : string) {
             throw new Error(error);
         
         renderData(users);
-
-        //create editable cell
-        console.log(`#email-${uniqID}`)
-        const emailCell:HTMLElement = document.querySelector(`#email-${uniqID}`);
-        console.dir(emailCell)
-        emailCell.setAttribute("contenteditable", "true");
-        emailCell.style.backgroundColor="yellow"
 
     } catch (error) {
         console.error(error);
@@ -96,6 +87,9 @@ function renderData(users : Array < user >) {
     });
     usersTable.innerHTML = html;
 }
-function querySelectorAll(arg0 : string) {
-    throw new Error("Function not implemented.");
-}
+
+// <select name="permissions" placeholder="permissions" required ">
+// <option id="value "value="Viewer ">Viewer</option>
+// <option value="Editor ">Editor</option>
+// <option value="Admin ">Admin</option>
+// </select>
