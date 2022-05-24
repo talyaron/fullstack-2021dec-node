@@ -3,7 +3,7 @@ interface user {
     email : string,
     uniqID : string,
     permissions : any
-}
+};
 
 async function handleAddUser(ev : any) {
     try {
@@ -12,13 +12,14 @@ async function handleAddUser(ev : any) {
         const elements = ev.target.elements;
         const userName = elements.userName.value;
         const email = elements.email.value;
-        const permissions = elements.permissions.value;
-        
-        console.dir(permissions.value);
-        
-        
+        const Permissions = elements.permissions.value;
+        console.log(elements); // en
 
-        if (!userName || !email || !permissions) 
+        // const Permissions: any = document.getElementById('Permissions'); const
+        // value:any = Permissions.options[Permissions.selectedIndex].value;
+        // console.log(value); // en
+
+        if (!userName || !email || !Permissions) 
             throw new Error("Details are required");
         
         // @ts-ignore
@@ -32,33 +33,28 @@ async function handleAddUser(ev : any) {
     } catch (error) {
         console.error(error);
     }
-}
+};
 
-
-async function handleEditUser(ev : any, uniqID : string) {
+async function handleEditUser(uniqID : string) {
     try {
-        ev.preventDefault();
-        
-        const userNameCell : HTMLElement = document.querySelector("#userName"); 
-        userNameCell.setAttribute("contenteditable", "true");
-        userNameCell.id = uniqID;
-        userNameCell.focus();
 
-        const emailCell : any = document.querySelector("#email");
-        emailCell.setAttribute("contenteditable", "true");
-        emailCell.id = uniqID;
-        
-        const permissionsCell : any = document.querySelector("#permissions");
-        permissionsCell.setAttribute("contenteditable", "true");
-        permissionsCell.id = uniqID;
-        
-        
+        const userName : any = document.querySelector("#userName");
+        userName.setAttribute("contenteditable", "true");
+        userName.id = uniqID;
+        userName.focus();
+
+        const email : any = document.querySelector("#email");
+        email.setAttribute("contenteditable", "true");
+        email.id = uniqID;
+
+        const Permissions : any = document.querySelector("#permissions");
+        Permissions.setAttribute("contenteditable", "true");
+        Permissions.id = uniqID;
 
         // const updateButton: any = document.querySelector("#updateButton");
-        // updateButton.style.display = "block";
+        // updateButton.style.display = "block"; const email = event.target.value; const
+        // Permissions = event.target.value; @ts-ignore
 
-        // const email = event.target.value; const permissions = event.target.value;
-        // @ts-ignore
         const {data} = await axios.put('/api/update-user', {uniqID, userName, email, permissions});
 
         const {users, error} = data;
@@ -73,25 +69,24 @@ async function handleEditUser(ev : any, uniqID : string) {
 }
 
 function renderData(users : Array < user >) {
-    const usersTable : HTMLTableElement = document.querySelector("#tableBody");
+    const usersTable = document.querySelector("#body");
 
-    let html = "";
+    let html : any = "";
     users.forEach((user) => {
-        html += `
-    <tr>
+        html += 
+    `<tr>
       <td id="userName">${user.userName}</td>
       <td id="email">${user.email}</td>
       <td id="uniqID">${user.uniqID}</td>
-      <td id="permissions">${user.permissions.value}</td>
-      <td onclick="handleDeleteUser('${user.uniqID}')">Delete</td>
-      <td onclick="handleEditUser(event, '${user.uniqID}')">Edit</td>
+      <td id="Permissions">${user.permissions}</td>
+      <td onclick="handleDeleteUser(${user.uniqID})">Delete</td>
+      <td onclick="handleEditUser(${user.uniqID})">Edit</td>
     </tr>`;
     });
+
     usersTable.innerHTML = html;
 }
 
-// <select name="permissions" placeholder="permissions" required ">
-// <option id="value "value="Viewer ">Viewer</option>
-// <option value="Editor ">Editor</option>
-// <option value="Admin ">Admin</option>
-// </select>
+// <select name="Permissions" placeholder="Permissions" required "> <option
+// id="value "value="Viewer ">Viewer</option> <option value="Editor
+// ">Editor</option> <option value="Admin ">Admin</option> </select>
