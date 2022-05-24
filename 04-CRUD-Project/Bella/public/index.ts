@@ -1,11 +1,11 @@
 interface user {
-    userName : string,
-    email : string,
-    uniqID : string,
-    permissions : string
-}
+    userName: string,
+        email: string,
+        uniqID: string,
+        permissions: any
+};
 
-async function handleAddUser(ev : any) {
+async function handleAddUser(ev: any) {
     try {
         ev.preventDefault();
 
@@ -14,81 +14,98 @@ async function handleAddUser(ev : any) {
         const email = elements.email.value;
         const permissions = elements.permissions.value;
 
-        if (!userName || !email || !permissions) 
+        if (!userName || !email || !permissions)
             throw new Error("Details are required");
-        
-        // @ts-ignore
-        const {data} = await axios.post('/api/add-user', {userName, email, permissions});
 
-        const {users, error} = data;
-        if (error) 
+        // @ts-ignore
+        const {
+            data
+        } = await axios.post('/api/add-user', {
+            userName,
+            email,
+            permissions
+        });
+
+        const {
+            users,
+            error
+        } = data;
+        if (error)
             throw new Error(error);
-        
         renderData(users);
 
     } catch (error) {
         console.error(error);
     }
-}
+};
 
-async function handleEditUser(uniqID : string) {
+async function handleEditUser(ev: any, uniqID: string) {
     try {
-        // const tableData:any = document.querySelectorAll('td')
-        // for (let i = 0; i < tableData.length; i++) {
-        //     tableData.setAttribute("contenteditable", "true");
-        // }
-        
-        const userName : any = document.querySelector("#userName");
-        userName.setAttribute("contenteditable", "true");
-        userName.id = "userName " + uniqID;
-        userName.innerHTML = event.target.value;
 
-        const email : any = document.querySelector("#email");
-        email.setAttribute("contenteditable", "true");
-        email.id = "email " + uniqID;
 
-        const permissions : any = document.querySelector("#permissions");
-        permissions.setAttribute("contenteditable", "true");
-        permissions.id = "permissions " + uniqID;
+        // ev.preventDefault();
+        // ev.target.setAttribute("contenteditable", "true");
 
-        // const updateButton: any = document.querySelector("#updateButton");
-        // updateButton.style.display = "block";
-
-        userName.focus();
-        console.dir(userName);
         console.log(uniqID);
-        // const email = event.target.value; const permissions = event.target.value;
-        // @ts-ignore
-        const {data} = await axios.put('/api/update-user', {uniqID, userName});
+        console.log(ev);
 
-        const {users, error} = data;
-        if (error) 
-            throw new Error(error);
+        // ev.preventDefault();
+        // ev.target.setAttribute("contenteditable", "true");
+
+        const tr: any = document.querySelectorAll("#tr");
+
+        tr.forEach(elem => {
+            console.log(elem)
+            console.log(elem.classList.contains(uniqID))
+            if (elem.classList.contains(uniqID)) {
+                // elem.setAttribute("contenteditable", "true")
+                console.log(elem.firstChild.nextSibling.setAttribute("contenteditable", "true"))
+            }
+        })
         
-        renderData(users);
+        // const cells :any = document.querySelectorAll(".cell");
+
+        // for (let i = 0; i < cells.length; i++){
+        //     cells.setAttribute("contenteditable", "true");
+        //     // userName.focus();
+        // }
+
+        // const email : HTMLTableCellElement = document.querySelector("#email");
+        // email.setAttribute("contenteditable", "true");
+
+
+        // const {data} = await axios.put('/api/update-user', {uniqID, userName, email, permissions});
+
+        // const {users, error} = data;
+        // if (error) 
+        //     throw new Error(error);
+
+        // renderData(users);
 
     } catch (error) {
         console.error(error);
     }
 }
 
-function renderData(users : Array < user >) {
-    const usersTable : HTMLTableElement = document.querySelector("#tableBody");
+function renderData(users: Array < user > ) {
+    const usersTable = document.querySelector("#body");
 
-    let html = "";
+    let html: any = "";
     users.forEach((user) => {
-        html += `
-    <tr>
-      <td id="userName">${user.userName}</td>
-      <td id="email">${user.email}</td>
-      <td id="uniqID">${user.uniqID}</td>
-      <td id="permissions">${user.permissions}</td>
-      <td onclick="handleDeleteUser('${user.uniqID}')">Delete</td>
-      <td onclick="handleEditUser('${user.uniqID}')">Edit</td>
+        html +=
+            `<tr id ='tr-${user.uniqID}'>
+      <td class="cell" id="userName">${user.userName}</td>
+      <td class="cell" id="email">${user.email}</td>
+      <td class="cell" id="uniqID">${user.uniqID}</td>
+      <td class="cell" id="permissions">${user.permissions}</td>
+      <td class="cell" id="deleteButton" onclick="handleDeleteUser('${user.uniqID}')">Delete</td>
+      <td class="cell" id="editButton" onclick="handleEditUser(event, '${user.uniqID}')">Edit</td>
     </tr>`;
     });
+
     usersTable.innerHTML = html;
 }
-function querySelectorAll(arg0 : string) {
-    throw new Error("Function not implemented.");
-}
+
+// <select name="permissions" placeholder="permissions" required "> <option
+// id="value "value="Viewer ">Viewer</option> <option value="Editor
+// ">Editor</option> <option value="Admin ">Admin</option> </select>

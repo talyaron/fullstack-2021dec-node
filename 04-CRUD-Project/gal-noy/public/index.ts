@@ -40,17 +40,27 @@ async function handleGetGame() {
 
 handleGetGame();
 
+async function hundleEditGame(event){
+  event.preventDefault()
+  const editScreen= {}
+  console.log(event)
+  for(let i of event.target){
+    console.log(i.type, i.name, i.value)
+    if(i.type != 'submit'){
+    if(i.type==='text'){
+      editScreen[i.name] = i.value
+    }
+    else if(i.type==='number'){
+      editScreen[i.name] = i.value
+    }
+  }
+}
+  console.log(editScreen)
+  //  @ts-ignore: cannot find module 'axios'
+  const {data} = await axios.post('/api/user1', {editScreen})
+  console.log(data)
+}
 
-// function renderLoader() {
-//   const loader: HTMLElement = document.querySelector('#loader')
-//   if (!loader.classList.contains('lds-dual-ring')) {
-//     loader.classList.add('lds-dual-ring');
-//     console.log('add')
-//   } else {
-//     loader.classList.remove('lds-dual-ring');
-//     console.log('remove')
-//   }
-// }
 
 
 function build_gameStatistic(play) {
