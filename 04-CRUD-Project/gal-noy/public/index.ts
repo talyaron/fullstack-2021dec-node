@@ -40,19 +40,6 @@ async function handleGetGame() {
 
 handleGetGame();
 
-
-// function renderLoader() {
-//   const loader: HTMLElement = document.querySelector('#loader')
-//   if (!loader.classList.contains('lds-dual-ring')) {
-//     loader.classList.add('lds-dual-ring');
-//     console.log('add')
-//   } else {
-//     loader.classList.remove('lds-dual-ring');
-//     console.log('remove')
-//   }
-// }
-
-
 function build_gameStatistic(play) {
   const GameStatsDiv: HTMLDivElement = document.querySelector('.gameStats');
   const top_nav: HTMLDivElement = document.querySelector('.top_nav');
