@@ -40,6 +40,29 @@ async function handleGetGame() {
 
 handleGetGame();
 
+async function hundleEditGame(event){
+  event.preventDefault()
+  const editScreen= {}
+  console.log(event)
+  for(let i of event.target){
+    console.log(i.type, i.name, i.value)
+    if(i.type != 'submit'){
+    if(i.type==='text'){
+      editScreen[i.name] = i.value
+    }
+    else if(i.type==='number'){
+      editScreen[i.name] = i.value
+    }
+  }
+}
+  console.log(editScreen)
+  //  @ts-ignore: cannot find module 'axios'
+  const {data} = await axios.post('/api/user1', {editScreen})
+  console.log(data)
+}
+
+
+
 function build_gameStatistic(play) {
   const GameStatsDiv: HTMLDivElement = document.querySelector('.gameStats');
   const top_nav: HTMLDivElement = document.querySelector('.top_nav');
