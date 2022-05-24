@@ -42,18 +42,27 @@ async function handleAddUser(ev: any) {
 async function handleEditUser(ev: any, uniqID: string) {
     try {
 
+
+        // ev.preventDefault();
+        // ev.target.setAttribute("contenteditable", "true");
+
         console.log(uniqID);
         console.log(ev);
 
         // ev.preventDefault();
         // ev.target.setAttribute("contenteditable", "true");
 
-        const email: any = document.querySelector("#email");
-        email.setAttribute("contenteditable", "true");
+        const tr: any = document.querySelectorAll("#tr");
 
-
-
-
+        tr.forEach(elem => {
+            console.log(elem)
+            console.log(elem.classList.contains(uniqID))
+            if (elem.classList.contains(uniqID)) {
+                // elem.setAttribute("contenteditable", "true")
+                console.log(elem.firstChild.nextSibling.setAttribute("contenteditable", "true"))
+            }
+        })
+        
         // const cells :any = document.querySelectorAll(".cell");
 
         // for (let i = 0; i < cells.length; i++){
@@ -84,7 +93,7 @@ function renderData(users: Array < user > ) {
     let html: any = "";
     users.forEach((user) => {
         html +=
-            `<tr>
+            `<tr id ='tr-${user.uniqID}'>
       <td class="cell" id="userName">${user.userName}</td>
       <td class="cell" id="email">${user.email}</td>
       <td class="cell" id="uniqID">${user.uniqID}</td>
