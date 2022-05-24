@@ -1,32 +1,36 @@
 interface user {
-    userName : string,
-    email : string,
-    uniqID : string,
-    permissions : any
+    userName: string,
+        email: string,
+        uniqID: string,
+        permissions: any
 };
 
-async function handleAddUser(ev : any) {
+async function handleAddUser(ev: any) {
     try {
         ev.preventDefault();
 
         const elements = ev.target.elements;
         const userName = elements.userName.value;
         const email = elements.email.value;
-        const Permissions = elements.permissions.value;
-        console.log(elements); // en
+        const permissions = elements.permissions.value;
 
-        // const Permissions: any = document.getElementById('Permissions'); const
-        // value:any = Permissions.options[Permissions.selectedIndex].value;
-        // console.log(value); // en
-
-        if (!userName || !email || !Permissions) 
+        if (!userName || !email || !permissions)
             throw new Error("Details are required");
-        
-        // @ts-ignore
-        const {data} = await axios.post('/api/add-user', {userName, email, permissions});
 
-        const {users, error} = data;
-        if (error) 
+        // @ts-ignore
+        const {
+            data
+        } = await axios.post('/api/add-user', {
+            userName,
+            email,
+            permissions
+        });
+
+        const {
+            users,
+            error
+        } = data;
+        if (error)
             throw new Error(error);
         renderData(users);
 
@@ -35,58 +39,64 @@ async function handleAddUser(ev : any) {
     }
 };
 
-async function handleEditUser(uniqID : string) {
+async function handleEditUser(ev: any, uniqID: string) {
     try {
 
-        const userName : any = document.querySelector("#userName");
-        userName.setAttribute("contenteditable", "true");
-        userName.id = uniqID;
-        userName.focus();
+        console.log(uniqID);
+        console.log(ev);
 
-        const email : any = document.querySelector("#email");
+        // ev.preventDefault();
+        // ev.target.setAttribute("contenteditable", "true");
+
+        const email: any = document.querySelector("#email");
         email.setAttribute("contenteditable", "true");
-        email.id = uniqID;
 
-        const Permissions : any = document.querySelector("#permissions");
-        Permissions.setAttribute("contenteditable", "true");
-        Permissions.id = uniqID;
 
-        // const updateButton: any = document.querySelector("#updateButton");
-        // updateButton.style.display = "block"; const email = event.target.value; const
-        // Permissions = event.target.value; @ts-ignore
 
-        const {data} = await axios.put('/api/update-user', {uniqID, userName, email, permissions});
 
-        const {users, error} = data;
-        if (error) 
-            throw new Error(error);
-        
-        renderData(users);
+        // const cells :any = document.querySelectorAll(".cell");
+
+        // for (let i = 0; i < cells.length; i++){
+        //     cells.setAttribute("contenteditable", "true");
+        //     // userName.focus();
+        // }
+
+        // const email : HTMLTableCellElement = document.querySelector("#email");
+        // email.setAttribute("contenteditable", "true");
+
+
+        // const {data} = await axios.put('/api/update-user', {uniqID, userName, email, permissions});
+
+        // const {users, error} = data;
+        // if (error) 
+        //     throw new Error(error);
+
+        // renderData(users);
 
     } catch (error) {
         console.error(error);
     }
 }
 
-function renderData(users : Array < user >) {
+function renderData(users: Array < user > ) {
     const usersTable = document.querySelector("#body");
 
-    let html : any = "";
+    let html: any = "";
     users.forEach((user) => {
-        html += 
-    `<tr>
-      <td id="userName">${user.userName}</td>
-      <td id="email">${user.email}</td>
-      <td id="uniqID">${user.uniqID}</td>
-      <td id="Permissions">${user.permissions}</td>
-      <td onclick="handleDeleteUser(${user.uniqID})">Delete</td>
-      <td onclick="handleEditUser(${user.uniqID})">Edit</td>
+        html +=
+            `<tr>
+      <td class="cell" id="userName">${user.userName}</td>
+      <td class="cell" id="email">${user.email}</td>
+      <td class="cell" id="uniqID">${user.uniqID}</td>
+      <td class="cell" id="permissions">${user.permissions}</td>
+      <td class="cell" id="deleteButton" onclick="handleDeleteUser('${user.uniqID}')">Delete</td>
+      <td class="cell" id="editButton" onclick="handleEditUser(event, '${user.uniqID}')">Edit</td>
     </tr>`;
     });
 
     usersTable.innerHTML = html;
 }
 
-// <select name="Permissions" placeholder="Permissions" required "> <option
+// <select name="permissions" placeholder="permissions" required "> <option
 // id="value "value="Viewer ">Viewer</option> <option value="Editor
 // ">Editor</option> <option value="Admin ">Admin</option> </select>
