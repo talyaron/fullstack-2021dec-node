@@ -44,8 +44,8 @@ function handleGetRecipe() {
     var root = document.querySelector("#root");
     root.innerHTML = html;
     root.style.position = "relative";
-    root.style.top = "200px";
-    root.style.left = "350px";
+    root.style.top = "10px";
+    root.style.left = "10px";
 }
 function GetRecipe(event) {
     return __awaiter(this, void 0, void 0, function () {
@@ -151,9 +151,9 @@ function renderFullRecipe(fullRecipe) {
     console.log("fullRecipe from server:" + fullRecipe);
     var forms = document.querySelector("#forms");
     var html = "";
-    html = "<div id=\"name\" color=\"red\">" + fullRecipe.name + "</div>";
+    html = "<p id=\"name\" color=\"red\" fontsize=\"20px\">" + fullRecipe.name + "</p>";
     html += "===================================";
-    html += "<div id=\"ing\" color=\"red\">Ingredients</div>";
+    html += "<p id=\"name\" color=\"red\" fontsize=\"20px\">Ingredients</p>";
     html += "===================================";
     html += "<br>";
     var ingNo = fullRecipe.ingredients.length;
@@ -162,7 +162,7 @@ function renderFullRecipe(fullRecipe) {
     }
     html += "===================================";
     html += "<br>";
-    html += "<div id=\"pre\" color=\"red\">Prepare Mode</div>";
+    html += "<p id=\"name\" color=\"red\" fontsize=\"20px\">Prepare Mode</p>";
     html += "===================================";
     html += "<br>";
     var preNo = fullRecipe.prepareMode.length;
@@ -172,7 +172,86 @@ function renderFullRecipe(fullRecipe) {
     forms.innerHTML = html;
     forms.style.position = "absolute";
     forms.style.top = "150px";
-    forms.style.left = "350px";
+    forms.style.left = "340px";
+    forms.style.border = "1px solid black";
+    forms.style.backgroundColor = "yellow";
+}
+function handleFixRecipe() {
+    console.log("handleFixRecipe");
+    var forms = document.querySelector("#forms");
+    if (forms)
+        forms.remove();
+    var html = "";
+    html = "\n    <div id=\"forms\">\n        <form onsubmit=\"CheckName(event); return false;\">\n            <input type=\"text\" name=\"recipeName\" placeholder=\"Recipe Name\"><br>\n            <input type=\"text\" name=\"adderName\" placeholder=\"Your Name\"><br>\n            <button type=\"submit\">Get Recipe</button>\n        </form>\n    </div>";
+    var root = document.querySelector("#root");
+    root.innerHTML = html;
+    root.style.position = "absolute";
+    root.style.top = "20px";
+    root.style.left = "20px";
+}
+function CheckName(event) {
+    return __awaiter(this, void 0, void 0, function () {
+        var adderName, recipeName, data, myRecipe, error, error_3;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    console.log("CheckName");
+                    console.dir(event.target);
+                    console.dir(event.target.elements);
+                    adderName = event.target.elements.adderName.value;
+                    console.log(adderName);
+                    recipeName = event.target.elements.recipeName.value;
+                    console.log(recipeName);
+                    console.log(adderName + ",  " + recipeName);
+                    _a.label = 1;
+                case 1:
+                    _a.trys.push([1, 3, , 4]);
+                    return [4 /*yield*/, axios.post('/api/check-recipe', { adderName: adderName, recipeName: recipeName })];
+                case 2:
+                    data = (_a.sent()).data;
+                    myRecipe = data.myRecipe, error = data.error;
+                    if (error)
+                        throw new Error(error);
+                    renderRecipeForUpdate(myRecipe);
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_3 = _a.sent();
+                    console.error(error_3);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
+}
+function renderRecipeForUpdate(myRecipe) {
+    console.log("renderRecipeForUnpdate");
+    console.log("fullRecipe from server:" + myRecipe['ingredients']);
+    console.log("fullRecipe from server:" + myRecipe['prepareMode']);
+    var forms = document.querySelector("#forms");
+    var html = "";
+    html = "<div id=\"name\" color=\"red\">" + myRecipe.name + "</div>";
+    html += "===================================";
+    html += "<div id=\"ing\" color=\"red\">Ingredients</div>";
+    html += "===================================";
+    html += "<br>";
+    var ingNo = myRecipe.ingredients.length;
+    for (var i = 0; i < ingNo; i++) {
+        html += "<textarea id=\"ing\" name=\"ing\">\n            $\"{" + myRecipe.ingredients[i] + "\"\n            </textarea>";
+    }
+    //html+=`<input type="textarea" name="ingredients" value="${myRecipe.ingredients[i]}"><br>`
+    html += "===================================";
+    html += "<br>";
+    html += "<div id=\"pre\" color=\"red\">Prepare Mode</div>";
+    html += "===================================";
+    html += "<br>";
+    var preNo = myRecipe.prepareMode.length;
+    for (var j = 0; j < preNo; j++) {
+        html += "<input type=\"textarea\" name=\"prepareMode\" value=\"" + myRecipe.prepareMode[j] + "\"><br>";
+    }
+    forms.innerHTML = html;
+    forms.style.position = "absolute";
+    forms.style.top = "150px";
+    forms.style.left = "340px";
     forms.style.border = "1px solid black";
     forms.style.backgroundColor = "yellow";
 }

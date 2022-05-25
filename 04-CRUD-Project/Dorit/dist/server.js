@@ -14,7 +14,7 @@ var recipes = [
         adderName: "Gadi Guy" }
 ];
 //route
-app.put("/api/get-cake", function (req, res) {
+app.put("/api/get-recipe", function (req, res) {
     try {
         var recipeName_1 = req.body.recipeName;
         if (!recipeName_1)
@@ -42,6 +42,31 @@ app.post('/api/add-recipe', function (req, res) {
         var myRecipe = { name: name, ingredients: ingredients, prepareMode: prepareMode, adderName: adderName };
         recipes.push(myRecipe);
         res.send({ myRecipe: myRecipe });
+    }
+    catch (error) {
+        res.send({ error: error.message });
+    }
+});
+app.post('/api/check-recipe', function (req, res) {
+    try {
+        var _a = req.body, adderName = _a.adderName, recipeName = _a.recipeName;
+        if (!adderName)
+            throw new Error("adderName is required");
+        if (!recipeName)
+            throw new Error("recipeName is required");
+        var myRecipe_1 = { recipeName: recipeName, adderName: adderName };
+        var recipeIndex = recipes.findIndex(function (recipe) { return recipe.name === myRecipe_1.recipeName; });
+        if (recipeIndex === -1)
+            throw new Error("recipeName not found");
+        var recipeAdderName = recipes[recipeIndex]['adderName'];
+        console.debug(recipeAdderName, recipes[recipeIndex]);
+        if (recipeAdderName !== myRecipe_1.adderName) {
+            throw new Error("This recipe was added by another user");
+        }
+        else {
+            myRecipe_1 = recipes[recipeIndex];
+            res.send({ myRecipe: myRecipe_1 });
+        }
     }
     catch (error) {
         res.send({ error: error.message });
