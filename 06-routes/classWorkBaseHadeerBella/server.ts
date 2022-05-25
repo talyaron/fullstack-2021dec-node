@@ -6,28 +6,46 @@ const port: number = 3000;
 app.use(express.static("public"));
 app.use(express.json());
 
-interface User{
-  username:string;
-  id:string;
+interface User {
+  username: string;
+  id: string;
 }
-const users:Array<User>=[
-  {username:'Moshe', id:'dgdsg'},
-  {username:'Miriam,', id:'dgdsdghghg'},
+const users: Array<User>= [
+  {
+    username: 'Moshe',
+    id: 'dgdsg32jg2jgj'
+  },
+  {
+    username: 'Miriam,',
+    id: 'dgdsdgjgvgjvhghg'
+  }
 ]
 
+console.log(users);
 
-app.get('/users/get-all-users',(req, res)=> {
-  try {
+import {someFunction} from './controlers/usersCont';
+console.log(someFunction(3));
 
 
-      res.send({ ok: true, users });
+
+app.get('/users/get-all-users', (req, res) => {
+  try {    
+    res.send({
+      ok: true,
+      users
+    });
   } catch (error) {
-      console.log(error.error);
-      res.send({ error: error.message });
+    console.log(error.error);
+    res.send({
+      error: error.message
+    });
   }
-})
-
-
-app.listen(port, () => {
-  return console.log(`Server is listening at http://localhost:${port}`);
 });
+
+
+     
+      
+
+        app.listen(port, () => {
+          return console.log(`Server is listening at http://localhost:${port}`);
+        });
