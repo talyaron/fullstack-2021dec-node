@@ -4,3 +4,5 @@ import {getAllUsers} from '../controlers/usersCont';
 
 
 router.get('/get_users',getAllUsers)
+
+export default router;

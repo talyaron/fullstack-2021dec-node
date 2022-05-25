@@ -1,7 +1,6 @@
 
 async function handleGetUsers(){
-  
-    const {data} = await axios.get('/users/get-all-users')
+    const {data} = await axios.get('/users/get_users')
     console.log(data)
     const {users} = data;
     console.log(users)
