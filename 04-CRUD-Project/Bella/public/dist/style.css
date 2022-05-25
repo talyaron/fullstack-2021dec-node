@@ -16,6 +16,10 @@ table {
   width: 100%;
 }
 
+th {
+  background-color: lightgray;
+}
+
 button {
   padding: 1em 2em;
   border: none;
@@ -33,6 +37,14 @@ button:hover {
 }
 
 input {
+  font-size: 1em;
+  padding: 1em 2em;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin: 0 0.5em 0 0;
+}
+
+select {
   font-size: 1em;
   padding: 1em 2em;
   border: 1px solid #ccc;

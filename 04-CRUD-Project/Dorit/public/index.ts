@@ -19,8 +19,8 @@ interface Recipe {
     let root:HTMLDivElement=document.querySelector("#root")  
     root.innerHTML=html
     root.style.position="relative" 
-    root.style.top="200px"
-    root.style.left="350px"
+    root.style.top="10px"
+    root.style.left="10px"
  }
 
  async function GetRecipe(event: any){
@@ -123,9 +123,9 @@ function renderFullRecipe(fullRecipe:Recipe){
     console.log(`fullRecipe from server:${fullRecipe}`)
     let forms:HTMLElement = document.querySelector("#forms");
     let html=""
-    html=`<div id="name" color="red">${fullRecipe.name}</div>`
+    html=`<p id="name" color="red" fontsize="20px">${fullRecipe.name}</p>`
     html+=`===================================`
-    html+=`<div id="ing" color="red">Ingredients</div>`
+    html+=`<p id="name" color="red" fontsize="20px">Ingredients</p>`
     html+=`===================================`
     html+=`<br>`
     const ingNo=fullRecipe.ingredients.length
@@ -134,7 +134,7 @@ function renderFullRecipe(fullRecipe:Recipe){
     }
     html+=`===================================`
     html+=`<br>`
-    html+=`<div id="pre" color="red">Prepare Mode</div>`
+    html+=`<p id="name" color="red" fontsize="20px">Prepare Mode</p>`
     html+=`===================================`
     html+=`<br>`
     const preNo=fullRecipe.prepareMode.length
@@ -144,7 +144,87 @@ function renderFullRecipe(fullRecipe:Recipe){
     forms.innerHTML=html
     forms.style.position="absolute"
     forms.style.top="150px"
-    forms.style.left="350px"
+    forms.style.left="340px"
     forms.style.border="1px solid black"
     forms.style.backgroundColor="yellow"
 }
+
+function handleFixRecipe(){
+    console.log("handleFixRecipe")
+    let forms:HTMLDivElement = document.querySelector("#forms")
+    if(forms) forms.remove()
+    let html=""
+    html=`
+    <div id="forms">
+        <form onsubmit="CheckName(event); return false;">
+            <input type="text" name="recipeName" placeholder="Recipe Name"><br>
+            <input type="text" name="adderName" placeholder="Your Name"><br>
+            <button type="submit">Get Recipe</button>
+        </form>
+    </div>` 
+    let root:HTMLDivElement=document.querySelector("#root")  
+    root.innerHTML=html
+    root.style.position="absolute" 
+    root.style.top="20px"
+    root.style.left="20px"
+}
+
+async function CheckName(event){
+     console.log("CheckName")
+     console.dir(event.target)
+ 
+    console.dir(event.target.elements)
+    const adderName:string=event.target.elements.adderName.value
+    console.log(adderName)
+    const recipeName:string=event.target.elements.recipeName.value
+    console.log(recipeName)
+    console.log(`${adderName},  ${recipeName}`)
+
+    try{ 
+        // @ts-ignore    
+        const { data } = await axios.post('/api/check-recipe',{adderName, recipeName});
+        const { myRecipe,error} = data;
+        if (error) throw new Error(error);
+        renderRecipeForUpdate(myRecipe)
+
+    } catch (error) {
+        console.error(error);
+    } 
+}
+
+
+function renderRecipeForUpdate(myRecipe:Recipe){
+        console.log("renderRecipeForUnpdate")
+        console.log(`fullRecipe from server:${myRecipe['ingredients']}`)
+        console.log(`fullRecipe from server:${myRecipe['prepareMode']}`)
+        let forms:HTMLElement = document.querySelector("#forms");
+        let html=""
+        html=`<div id="name" color="red">${myRecipe.name}</div>`
+        html+=`===================================`
+        html+=`<div id="ing" color="red">Ingredients</div>`
+        html+=`===================================`
+        html+=`<br>`
+        const ingNo=myRecipe.ingredients.length
+        for(let i:number=0;i<ingNo;i++){
+            html+=`<textarea id="ing" name="ing">
+            $"{${myRecipe.ingredients[i]}"
+            </textarea>`
+        }
+        //html+=`<input type="textarea" name="ingredients" value="${myRecipe.ingredients[i]}"><br>`
+        html+=`===================================`
+        html+=`<br>`
+        html+=`<div id="pre" color="red">Prepare Mode</div>`
+        html+=`===================================`
+        html+=`<br>`
+        const preNo=myRecipe.prepareMode.length
+        for(let j:number=0;j<preNo;j++){
+            html+=`<input type="textarea" name="prepareMode" value="${myRecipe.prepareMode[j]}"><br>`
+        }
+        forms.innerHTML=html
+        forms.style.position="absolute"
+        forms.style.top="150px"
+        forms.style.left="340px"
+        forms.style.border="1px solid black"
+        forms.style.backgroundColor="yellow"
+}   
+

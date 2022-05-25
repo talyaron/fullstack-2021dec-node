@@ -17,7 +17,7 @@ var gameStatistic1 = {
 };
 var gameStatistic2 = {
     goals: 0,
-    shots: 34,
+    shots: 2,
     shots_on_target: 0,
     possesion: 0,
     passes: 0,
@@ -52,6 +52,16 @@ app.get('/api/user1', function (req, res) {
     }
     catch (error) {
         res.send({ error: error.message });
+    }
+});
+app.post('/api/user1', function (req, res) {
+    try {
+        var edit = req.body;
+        console.log(edit);
+        res.send({ ok: true });
+    }
+    catch (error) {
+        console.error(error);
     }
 });
 app.listen(port, function () {
