@@ -26,7 +26,7 @@ const users:Array<User>=[
 //       res.send({ error: error.message });
 //   }
 // })
-import UserRoute from "./routes/usersRoute":
+import UserRoute from "./model/routes/usersRoute";
 app.use("/users",UserRoute)
 
 
