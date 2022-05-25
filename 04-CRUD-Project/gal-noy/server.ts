@@ -45,7 +45,7 @@ let gameStatistic1: GameStats = {
 }
 let gameStatistic2: GameStats = {
     goals: 0,
-    shots: 34,
+    shots: 2,
     shots_on_target: 0,
     possesion: 0,
     passes: 0,
@@ -68,6 +68,7 @@ let team2: Team = {
     id: '2356',
     stat: gameStatistic2,
 }
+
 let gamesPlay: Array<Game> = [
     {
         TeamA: team1,
@@ -87,6 +88,15 @@ app.get('/api/user1', (req, res) => {
     }
 });
 
+app.post('/api/user1', (req,res)=>{
+    try {
+        let edit= req.body
+        console.log(edit)
+        res.send({ok:true})
+    } catch (error) {
+        console.error(error)
+    }
+})
 
 app.listen(port, () => {
     console.log(`Server listening on port ${port}`)

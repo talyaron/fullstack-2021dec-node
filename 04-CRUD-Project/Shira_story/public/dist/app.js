@@ -36,62 +36,73 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 function handleGetStory(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var name, story, data, conStory, error;
+        var name, text, data, myStory, error, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    // ev.preventDefault();
+                    ev.preventDefault();
                     console.dir(ev);
-                    name = ev.target.elements.name.value;
-                    story = ev.target.elements.story.value;
-                    console.log(name);
-                    console.log(story);
-                    return [4 /*yield*/, axios.post('/api/onGo_story', { name: name, story: story })];
+                    _a.label = 1;
                 case 1:
+                    _a.trys.push([1, 3, , 4]);
+                    name = ev.target.elements.name.value;
+                    text = ev.target.elements.text.value;
+                    return [4 /*yield*/, axios.post("/api/story", { name: name, text: text })];
+                case 2:
                     data = (_a.sent()).data;
-                    console.dir(data);
-                    conStory = data.conStory, error = data.error;
+                    myStory = data.myStory, error = data.error;
                     if (error)
                         throw new Error(error);
-                    renderStory(conStory);
-                    return [2 /*return*/];
+                    // console.log(userName)
+                    renderStory(myStory);
+                    console.log(myStory);
+                    deleteFileds();
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_1 = _a.sent();
+                    console.error(error_1);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
             }
         });
     });
 }
-function getStory() {
+function getUserStory() {
     return __awaiter(this, void 0, void 0, function () {
-        var data, conStory, error, error_1;
+        var data, story, error, error_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, axios.get("/api/getStory")];
+                    return [4 /*yield*/, axios.get("/api/getNewStory")];
                 case 1:
                     data = (_a.sent()).data;
-                    conStory = data.conStory, error = data.error;
+                    story = data.story, error = data.error;
                     if (error)
                         throw new Error(error.message);
-                    if (conStory) {
-                        renderStory(conStory);
-                    }
+                    renderStory(story);
                     return [3 /*break*/, 3];
                 case 2:
-                    error_1 = _a.sent();
-                    console.error(error_1);
+                    error_2 = _a.sent();
+                    console.error(error_2);
                     return [3 /*break*/, 3];
                 case 3: return [2 /*return*/];
             }
         });
     });
 }
-getStory();
-function renderStory(addStory) {
-    var story = document.querySelector("#story");
+function renderStory(myStory) {
+    var story = document.getElementById("storyArea");
     var html = "";
-    console.log(addStory);
-    addStory.forEach(function (elm) {
-        html += "<span>" + elm.name + ":</span> " + elm.story + " <br> <br>";
+    // console.log(myStory)
+    myStory.forEach(function (elm) {
+        html += "<h3>" + elm.name + ":</h3> <span>" + elm.text + "</span> <br> <br>";
     });
     story.innerHTML = html;
+}
+function deleteFileds() {
+    var nameField = document.getElementById('nameField');
+    var storyField = document.getElementById('textStory');
+    nameField.innerHTML = '';
+    storyField.innerHTML = '';
 }
