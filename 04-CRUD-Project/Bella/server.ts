@@ -13,16 +13,17 @@ interface user {
     userName : string,
     email : string,
     uniqID : string,
-    permissions : string
+    permissions : any
 }
 
 app.get('/api/users', (req, res) => {
     res.send(users)
 })
 
+
 app.post('/api/add-user', (req, res) => {
     try {
-        const {userName, email, uniqID, permissions} = req.body;
+        const {userName, email, permissions} = req.body;
         if (!userName) 
             throw new Error("User name is required");
         if (!email) 
@@ -34,10 +35,11 @@ app.post('/api/add-user', (req, res) => {
             userName,
             email,
             uniqID: uid(),
-            permissions
+            permissions        
         };
 
         users.push(user);
+        console.log(users);
 
         res.send({users});
 

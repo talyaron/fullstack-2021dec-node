@@ -10,7 +10,7 @@ app.get('/api/users', function (req, res) {
 });
 app.post('/api/add-user', function (req, res) {
     try {
-        var _a = req.body, userName = _a.userName, email = _a.email, uniqID = _a.uniqID, permissions = _a.permissions;
+        var _a = req.body, userName = _a.userName, email = _a.email, permissions = _a.permissions;
         if (!userName)
             throw new Error("User name is required");
         if (!email)
@@ -24,6 +24,7 @@ app.post('/api/add-user', function (req, res) {
             permissions: permissions
         };
         users.push(user);
+        console.log(users);
         res.send({ users: users });
     }
     catch (error) {
