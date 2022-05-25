@@ -14,9 +14,10 @@ const users = [
 ];
 const usersRoutes_1 = __importDefault(require("./routes/usersRoutes"));
 app.use("/users", usersRoutes_1.default);
-usersRoutes_1.default.get('/users/get-all-users', (req, res) => {
+usersRoutes_1.default.get('/users/get-users', (req, res) => {
     try {
         res.send({ ok: true, users });
+        console.log(`somthing`);
     }
     catch (error) {
         console.log(error.error);

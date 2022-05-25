@@ -27,6 +27,11 @@ app.get('/users/get-all-users',(req, res)=> {
   }
 })
 
+import usersRoute from "./routes/usersRoute";
+app.use("/users", usersRoute);
+
+import { someFunction } from "./controlers/usersCont";
+
 
 app.listen(port, () => {
   return console.log(`Server is listening at http://localhost:${port}`);
