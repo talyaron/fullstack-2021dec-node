@@ -1,5 +1,4 @@
 import express from "express";
-import mongoose from "mongoose";
 const app = express();
 const port: number = 3000;
 
@@ -16,23 +15,24 @@ const users:Array<User>=[
 ]
 
 
-app.get('/users/get-all-users',(req, res)=> {
-  try {
-
-
-      res.send({ ok: true, users });
-  } catch (error) {
-      console.log(error.error);
-      res.send({ error: error.message });
-  }
-})
-
-import usersRoute from "./routes/usersRoute";
+import usersRoute from "./routes/userRoute";
 app.use("/users", usersRoute);
 
-import { someFunction } from "./controlers/usersCont";
+// import { someFunction } from "./controlers/usersCont";
 
 
 app.listen(port, () => {
   return console.log(`Server is listening at http://localhost:${port}`);
 });
+
+
+// app.get('/users/get-all-users',(req, res)=> {
+//   try {
+
+
+//       res.send({ ok: true, users });
+//   } catch (error) {
+//       console.log(error.error);
+//       res.send({ error: error.message });
+//   }
+// })

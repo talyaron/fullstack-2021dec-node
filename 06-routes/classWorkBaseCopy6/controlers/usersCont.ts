@@ -1,4 +1,3 @@
-//@ts-ignor
 import User from "../model/usersModel";
 
 export async function getAllUsers(req, res) {

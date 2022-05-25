@@ -1,6 +1,6 @@
 
 async function handleGetUsers(){
-  
+//   @ts-ignore
     const {data} = await axios.get('/users/get-all-users')
     console.log(data)
     const {users} = data;
