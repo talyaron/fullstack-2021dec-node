@@ -1,7 +1,9 @@
 import User from "../model/usersModel";
 
 
-export async function getAllUsers
+export async function getAllUsers(){
+  
+}
 
 
 

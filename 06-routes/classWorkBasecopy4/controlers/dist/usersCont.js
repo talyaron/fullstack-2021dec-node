@@ -1,3 +1,4 @@
+"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -34,31 +35,24 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-function handleGetUsers() {
+exports.__esModule = true;
+exports.getAllUsers = void 0;
+var users = [
+    { username: 'Moshe', id: 'dgdsg' },
+    { username: 'Miriam,', id: 'dgdsdghghg' },
+];
+function getAllUsers(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var data, users;
         return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0: return [4 /*yield*/, axios.get('/users/get-users')];
-                case 1:
-                    data = (_a.sent()).data;
-                    console.log(data);
-                    users = data.users;
-                    console.log(users);
-                    console.log("ts");
-                    if (users) {
-                        renderUsers(users);
-                    }
-                    return [2 /*return*/];
+            try {
+                res.send({ ok: true, users: users });
             }
+            catch (error) {
+                console.log(error.error);
+                res.send({ error: error.message });
+            }
+            return [2 /*return*/];
         });
     });
 }
-function renderUsers(users) {
-    var html = users.map(function (user) {
-        console.log(user);
-        return "<div>" + user.username + "</div>";
-    }).join('');
-    console.log(html);
-    document.getElementById('users').innerHTML = html;
-}
+exports.getAllUsers = getAllUsers;
