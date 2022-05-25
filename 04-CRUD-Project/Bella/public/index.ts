@@ -5,6 +5,40 @@ interface user {
         permissions: any
 };
 
+// async function handleLoadUsers(users: Array < user > ) {
+//     try {
+
+//         const userName = elements.userName.value;
+//         const email = elements.email.value;
+//         const uniqID = elements.uniqID.value;
+//         const permissions = elements.permissions.value;
+
+//         if (!userName || !email || !permissions)
+//             throw new Error("Details are required");
+
+//         // @ts-ignore
+//         const {
+//             data
+//         } = await axios.get('/api/users', {
+//             userName,
+//             email,
+//             uniqID,
+//             permissions
+//         });
+
+//         const {
+//             users,
+//             error
+//         } = data;
+//         if (error)
+//             throw new Error(error);
+//         renderData(users);
+
+//     } catch (error) {
+//         console.error(error);
+//     }
+// };
+
 async function handleAddUser(ev: any) {
     try {
         ev.preventDefault();
@@ -42,12 +76,6 @@ async function handleAddUser(ev: any) {
 async function handleEditUser(ev: any, uniqID: string) {
     try {
 
-
-        // ev.preventDefault();
-        // ev.target.setAttribute("contenteditable", "true");
-
-        // ev.preventDefault();
-        // ev.target.setAttribute("contenteditable", "true");
         const tr: any = document.querySelectorAll("tr");
         let td: any = document.querySelectorAll("td");
 
@@ -58,24 +86,13 @@ async function handleEditUser(ev: any, uniqID: string) {
             // }
         });
 
-        // const cells :any = document.querySelectorAll(".cell");
+        const {data} = await axios.put('/api/update-user', {uniqID, userName, email, permissions});
 
-        // for (let i = 0; i < cells.length; i++){
-        //     cells.setAttribute("contenteditable", "true");
-        //     // userName.focus();
-        // }
+        const {users, error} = data;
+        if (error) 
+            throw new Error(error);
 
-        // const email : HTMLTableCellElement = document.querySelector("#email");
-        // email.setAttribute("contenteditable", "true");
-
-
-        // const {data} = await axios.put('/api/update-user', {uniqID, userName, email, permissions});
-
-        // const {users, error} = data;
-        // if (error) 
-        //     throw new Error(error);
-
-        // renderData(users);
+        renderData(users);
 
     } catch (error) {
         console.error(error);
@@ -100,6 +117,11 @@ function renderData(users: Array < user > ) {
 
     usersTable.innerHTML = html;
 }
+
+function renderUsers(users: Array < user >){
+    const table = document.querySelector("#usersTable");
+}
+
 
 // <select name="permissions" placeholder="permissions" required "> <option
 // id="value "value="Viewer ">Viewer</option> <option value="Editor
