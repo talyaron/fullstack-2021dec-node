@@ -9,19 +9,27 @@ const port = 3000;
 app.use(express_1.default.static("public"));
 app.use(express_1.default.json());
 const users = [
-    { username: 'Moshe', id: 'dgdsg' },
-    { username: 'Miriam,', id: 'dgdsdghghg' },
+    {
+        username: 'Moshe',
+        id: 'dgdsg32jg2jgj'
+    },
+    {
+        username: 'Miriam,',
+        id: 'dgdsdghghg'
+    }
 ];
-const usersRoutes_1 = __importDefault(require("./routes/usersRoutes"));
-app.use("/users", usersRoutes_1.default);
-usersRoutes_1.default.get('/users/get-users', (req, res) => {
+app.get('/users/get-all-users', (req, res) => {
     try {
-        res.send({ ok: true, users });
-        console.log(`somthing`);
+        res.send({
+            ok: true,
+            users
+        });
     }
     catch (error) {
         console.log(error.error);
-        res.send({ error: error.message });
+        res.send({
+            error: error.message
+        });
     }
 });
 app.listen(port, () => {

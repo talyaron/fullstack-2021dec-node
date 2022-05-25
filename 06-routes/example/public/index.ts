@@ -1,14 +1,14 @@
 async function handleRegister(ev){
-    ev.preventDefault();
-    let {username, password} = ev.target.elements;
-    console.log(username, password)
-    username = username.value;
-    password = password.value;
+  ev.preventDefault();
+  let { username, password } = ev.target.elements;
+  console.log(username, password);
+  username = username.value;
+  password = password.value;
 
-    console.log(username, password)
-
-    const {data} = await axios.post('/users/add-user',{username, password})
-    console.log(data)
+  console.log(username, password);
+  //@ts-ignor
+  const { data } = await axios.post("/users/add-user", { username, password });
+  console.log(data);
 }
 
 async function handleUpdate(ev, userId){
