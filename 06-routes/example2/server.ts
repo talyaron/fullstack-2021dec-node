@@ -19,9 +19,9 @@ mongoose.connect(
 import usersRoute from "./routes/usersRoute";
 app.use("/users", usersRoute);
 
+import {someFunction} from './controlers/usersCont'
 
-
-
+console.log(someFunction(3))
 
 
 app.listen(port, () => {

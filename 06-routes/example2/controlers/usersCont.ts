@@ -55,3 +55,5 @@ export const updateUser = async (req, res) => {
       res.send({ error: error.message });
     }
   }
+
+  export const someFunction = (y)=>{return y*2};
