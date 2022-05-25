@@ -40,7 +40,7 @@ function handleGetStory(ev) {
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    ev.preventDefault();
+                    // ev.preventDefault();
                     console.dir(ev);
                     name = ev.target.elements.name.value;
                     story = ev.target.elements.story.value;

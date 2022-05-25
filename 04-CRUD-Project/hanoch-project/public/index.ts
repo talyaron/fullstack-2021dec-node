@@ -4,7 +4,7 @@ interface Story {
 }
 
 async function handleGetStory(ev) {
-    ev.preventDefault();
+    // ev.preventDefault();
     console.dir(ev)
     const name = ev.target.elements.name.value;
     const story = ev.target.elements.story.value;
