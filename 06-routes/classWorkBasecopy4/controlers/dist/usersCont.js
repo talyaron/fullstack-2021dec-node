@@ -36,28 +36,23 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.someFunction = exports.addUser = void 0;
-var usersModel_1 = require("../model/usersModel");
-exports.addUser = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, username, password, newUser, result, error_1;
-    return __generator(this, function (_b) {
-        switch (_b.label) {
-            case 0:
-                _b.trys.push([0, 2, , 3]);
-                _a = req.body, username = _a.username, password = _a.password;
-                newUser = new usersModel_1["default"]({ username: username, password: password });
-                return [4 /*yield*/, newUser.save()];
-            case 1:
-                result = _b.sent();
-                res.send({ result: result });
-                return [3 /*break*/, 3];
-            case 2:
-                error_1 = _b.sent();
-                console.error(error_1);
-                res.send({ error: error_1.message });
-                return [3 /*break*/, 3];
-            case 3: return [2 /*return*/];
-        }
+exports.getAllUsers = void 0;
+var users = [
+    { username: 'Moshe', id: 'dgdsg' },
+    { username: 'Miriam,', id: 'dgdsdghghg' },
+];
+function getAllUsers(req, res) {
+    return __awaiter(this, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            try {
+                res.send({ ok: true, users: users });
+            }
+            catch (error) {
+                console.log(error.error);
+                res.send({ error: error.message });
+            }
+            return [2 /*return*/];
+        });
     });
-}); };
-exports.someFunction = function (y) { return y * 2; };
+}
+exports.getAllUsers = getAllUsers;

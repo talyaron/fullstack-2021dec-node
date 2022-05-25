@@ -1,20 +1,19 @@
 import User from "../model/usersModel";
 
-
-export const addUser = async (req, res) => {
-  try {
-      let { username, password } = req.body;
-
-      const newUser = new User({ username, password });
-      const result = await newUser.save();
-
-      res.send({ result });
-  } catch (error) {
-      console.error(error);
-      res.send({ error: error.message });
-  }
+interface User{
+  username:string;
+  id:string;
 }
+const users:Array<User>=[
+  {username:'Moshe', id:'dgdsg'},
+  {username:'Miriam,', id:'dgdsdghghg'},
+]
 
-
-
-  export const someFunction = (y)=>{return y*2};
+export async function getAllUsers(req,res){
+    try {
+        res.send({ ok: true, users });
+    } catch (error) {
+        console.log(error.error);
+        res.send({ error: error.message });
+    }
+}

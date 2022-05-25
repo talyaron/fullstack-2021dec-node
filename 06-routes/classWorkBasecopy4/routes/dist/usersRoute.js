@@ -3,5 +3,5 @@ exports.__esModule = true;
 var express_1 = require("express");
 var router = express_1["default"].Router();
 var usersCont_1 = require("../controlers/usersCont");
-post("/add-user", usersCont_1.addUser);
+router.get("/get-all-users", usersCont_1.getAllUsers);
 exports["default"] = router;
