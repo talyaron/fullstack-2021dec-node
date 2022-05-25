@@ -101,33 +101,43 @@ function handleAddUser(ev) {
 ;
 function handleEditUser(ev, uniqID) {
     return __awaiter(this, void 0, void 0, function () {
-        var tr, td, data, users, error, error_2;
+        var tr, td, email, i;
         return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    _a.trys.push([0, 2, , 3]);
-                    tr = document.querySelectorAll("tr");
-                    td = document.querySelectorAll("td");
-                    td.forEach(function (ele) {
-                        ele.setAttribute("contenteditable", "true");
-                        // if (tr.id !== td.id) {
-                        //     ele.setAttribute("contenteditable", "false");
-                        // }
-                    });
-                    return [4 /*yield*/, axios.put('/api/update-user', { uniqID: uniqID, userName: userName, email: email, permissions: permissions })];
-                case 1:
-                    data = (_a.sent()).data;
-                    users = data.users, error = data.error;
-                    if (error)
-                        throw new Error(error);
-                    renderData(users);
-                    return [3 /*break*/, 3];
-                case 2:
-                    error_2 = _a.sent();
-                    console.error(error_2);
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
+            try {
+                tr = document.querySelectorAll("tr");
+                td = document.querySelectorAll("td");
+                email = document.querySelector(".email");
+                console.dir(tr);
+                for (i = 0; i < tr.length; i++) {
+                    if ([i] == tr.cells.email) {
+                        td.setAttribute("contenteditable", "true");
+                    }
+                }
+                // tr.forEach(ele => {
+                //     if (tr.classList.contains("email")) {
+                //         ele.setAttribute("contenteditable", "true");
+                //     }
+                // });
+                // const {
+                //     data
+                // } = await axios.put('/api/update-user', {
+                //     uniqID,
+                //     userName,
+                //     email,
+                //     permissions
+                // });
+                // const {
+                //     users,
+                //     error
+                // } = data;
+                // if (error)
+                //     throw new Error(error);
+                // renderData(users);
             }
+            catch (error) {
+                console.error(error);
+            }
+            return [2 /*return*/];
         });
     });
 }
