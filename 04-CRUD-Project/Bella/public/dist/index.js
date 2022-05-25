@@ -73,21 +73,16 @@ function handleAddUser(ev) {
 ;
 function handleEditUser(ev, uniqID) {
     return __awaiter(this, void 0, void 0, function () {
-        var tr;
+        var tr, td;
         return __generator(this, function (_a) {
             try {
-                // ev.preventDefault();
-                // ev.target.setAttribute("contenteditable", "true");
-                console.log(uniqID);
-                console.log(ev);
-                tr = document.querySelectorAll("#tr");
-                tr.forEach(function (elem) {
-                    console.log(elem);
-                    console.log(elem.classList.contains(uniqID));
-                    if (elem.classList.contains(uniqID)) {
-                        // elem.setAttribute("contenteditable", "true")
-                        console.log(elem.firstChild.nextSibling.setAttribute("contenteditable", "true"));
-                    }
+                tr = document.querySelectorAll("tr");
+                td = document.querySelectorAll("td");
+                td.forEach(function (ele) {
+                    ele.setAttribute("contenteditable", "true");
+                    // if (tr.id !== td.id) {
+                    //     ele.setAttribute("contenteditable", "false");
+                    // }
                 });
                 // const cells :any = document.querySelectorAll(".cell");
                 // for (let i = 0; i < cells.length; i++){
@@ -114,10 +109,10 @@ function renderData(users) {
     var html = "";
     users.forEach(function (user) {
         html +=
-            "<tr id ='tr-" + user.uniqID + "'>\n      <td class=\"cell\" id=\"userName\">" + user.userName + "</td>\n      <td class=\"cell\" id=\"email\">" + user.email + "</td>\n      <td class=\"cell\" id=\"uniqID\">" + user.uniqID + "</td>\n      <td class=\"cell\" id=\"permissions\">" + user.permissions + "</td>\n      <td class=\"cell\" id=\"deleteButton\" onclick=\"handleDeleteUser('" + user.uniqID + "')\">Delete</td>\n      <td class=\"cell\" id=\"editButton\" onclick=\"handleEditUser(event, '" + user.uniqID + "')\">Edit</td>\n    </tr>";
+            "<tr id ='tr-" + user.uniqID + "'>\n      <td class=\"cell\">" + user.userName + "</td>\n      <td class=\"email\">" + user.email + "</td>\n      <td class=\"cell\">" + user.uniqID + "</td>\n      <td class=\"cell\">" + user.permissions + "</td>\n      <td class=\"cell\"\" onclick=\"handleDeleteUser('" + user.uniqID + "')\">Delete</td>\n      <td class=\"cell\" id=\"editButton\" onclick=\"handleEditUser(event, '" + user.uniqID + "')\">Edit</td>\n    </tr>";
     });
     usersTable.innerHTML = html;
 }
 // <select name="permissions" placeholder="permissions" required "> <option
 // id="value "value="Viewer ">Viewer</option> <option value="Editor
-// ">Editor</option> <option value="Admin ">Admin</option> </select>
+// ">Editor</option> <option value="Admin ">Admin</option> </select>++

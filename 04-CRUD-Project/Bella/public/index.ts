@@ -46,23 +46,18 @@ async function handleEditUser(ev: any, uniqID: string) {
         // ev.preventDefault();
         // ev.target.setAttribute("contenteditable", "true");
 
-        console.log(uniqID);
-        console.log(ev);
-
         // ev.preventDefault();
         // ev.target.setAttribute("contenteditable", "true");
+        const tr: any = document.querySelectorAll("tr");
+        let td: any = document.querySelectorAll("td");
 
-        const tr: any = document.querySelectorAll("#tr");
+        td.forEach(ele => {
+            ele.setAttribute("contenteditable", "true");
+            // if (tr.id !== td.id) {
+            //     ele.setAttribute("contenteditable", "false");
+            // }
+        });
 
-        tr.forEach(elem => {
-            console.log(elem)
-            console.log(elem.classList.contains(uniqID))
-            if (elem.classList.contains(uniqID)) {
-                // elem.setAttribute("contenteditable", "true")
-                console.log(elem.firstChild.nextSibling.setAttribute("contenteditable", "true"))
-            }
-        })
-        
         // const cells :any = document.querySelectorAll(".cell");
 
         // for (let i = 0; i < cells.length; i++){
@@ -94,11 +89,11 @@ function renderData(users: Array < user > ) {
     users.forEach((user) => {
         html +=
             `<tr id ='tr-${user.uniqID}'>
-      <td class="cell" id="userName">${user.userName}</td>
-      <td class="cell" id="email">${user.email}</td>
-      <td class="cell" id="uniqID">${user.uniqID}</td>
-      <td class="cell" id="permissions">${user.permissions}</td>
-      <td class="cell" id="deleteButton" onclick="handleDeleteUser('${user.uniqID}')">Delete</td>
+      <td class="cell">${user.userName}</td>
+      <td class="email">${user.email}</td>
+      <td class="cell">${user.uniqID}</td>
+      <td class="cell">${user.permissions}</td>
+      <td class="cell"" onclick="handleDeleteUser('${user.uniqID}')">Delete</td>
       <td class="cell" id="editButton" onclick="handleEditUser(event, '${user.uniqID}')">Edit</td>
     </tr>`;
     });
@@ -108,4 +103,4 @@ function renderData(users: Array < user > ) {
 
 // <select name="permissions" placeholder="permissions" required "> <option
 // id="value "value="Viewer ">Viewer</option> <option value="Editor
-// ">Editor</option> <option value="Admin ">Admin</option> </select>
+// ">Editor</option> <option value="Admin ">Admin</option> </select>++
