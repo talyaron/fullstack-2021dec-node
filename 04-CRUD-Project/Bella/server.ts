@@ -59,7 +59,7 @@ app.post('/api/add-user', (req, res) => {
         };
 
         users.push(user);
-        console.log(users);
+        // console.log(users);
 
         res.send({
             users

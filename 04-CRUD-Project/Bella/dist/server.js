@@ -33,7 +33,7 @@ app.post('/api/add-user', function (req, res) {
             permissions: permissions
         };
         users.push(user);
-        console.log(users);
+        // console.log(users);
         res.send({
             users: users
         });
