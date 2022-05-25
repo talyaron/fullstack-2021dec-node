@@ -61,6 +61,37 @@ function handleGetGame() {
     });
 }
 handleGetGame();
+function hundleEditGame(event) {
+    return __awaiter(this, void 0, void 0, function () {
+        var editScreen, _i, _a, i, data;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
+                case 0:
+                    event.preventDefault();
+                    editScreen = {};
+                    console.log(event);
+                    for (_i = 0, _a = event.target; _i < _a.length; _i++) {
+                        i = _a[_i];
+                        console.log(i.type, i.name, i.value);
+                        if (i.type != 'submit') {
+                            if (i.type === 'text') {
+                                editScreen[i.name] = i.value;
+                            }
+                            else if (i.type === 'number') {
+                                editScreen[i.name] = i.value;
+                            }
+                        }
+                    }
+                    console.log(editScreen);
+                    return [4 /*yield*/, axios.post('/api/user1', { editScreen: editScreen })];
+                case 1:
+                    data = (_b.sent()).data;
+                    console.log(data);
+                    return [2 /*return*/];
+            }
+        });
+    });
+}
 function build_gameStatistic(play) {
     var GameStatsDiv = document.querySelector('.gameStats');
     var top_nav = document.querySelector('.top_nav');
