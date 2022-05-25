@@ -16,16 +16,18 @@ const users:Array<User>=[
 ]
 
 
-app.get('/users/get-all-users',(req, res)=> {
+import usersRoute from "./routes/usersRoutes";
+app.use("/users", usersRoute);
+
+usersRoute.get('/users/get-all-users',(req, res)=> {
   try {
-
-
       res.send({ ok: true, users });
   } catch (error) {
       console.log(error.error);
       res.send({ error: error.message });
   }
 })
+
 
 
 app.listen(port, () => {
