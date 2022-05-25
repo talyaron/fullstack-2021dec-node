@@ -34,6 +34,35 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+;
+// async function handleLoadUsers(users: Array < user > ) {
+//     try {
+//         const userName = elements.userName.value;
+//         const email = elements.email.value;
+//         const uniqID = elements.uniqID.value;
+//         const permissions = elements.permissions.value;
+//         if (!userName || !email || !permissions)
+//             throw new Error("Details are required");
+//         // @ts-ignore
+//         const {
+//             data
+//         } = await axios.get('/api/users', {
+//             userName,
+//             email,
+//             uniqID,
+//             permissions
+//         });
+//         const {
+//             users,
+//             error
+//         } = data;
+//         if (error)
+//             throw new Error(error);
+//         renderData(users);
+//     } catch (error) {
+//         console.error(error);
+//     }
+// };
 function handleAddUser(ev) {
     return __awaiter(this, void 0, void 0, function () {
         var elements, userName, email, permissions, data, users, error, error_1;
@@ -69,23 +98,51 @@ function handleAddUser(ev) {
         });
     });
 }
+;
+function handleEditUser(ev, uniqID) {
+    return __awaiter(this, void 0, void 0, function () {
+        var tr, td, data, users, error, error_2;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    tr = document.querySelectorAll("tr");
+                    td = document.querySelectorAll("td");
+                    td.forEach(function (ele) {
+                        ele.setAttribute("contenteditable", "true");
+                        // if (tr.id !== td.id) {
+                        //     ele.setAttribute("contenteditable", "false");
+                        // }
+                    });
+                    return [4 /*yield*/, axios.put('/api/update-user', { uniqID: uniqID, userName: userName, email: email, permissions: permissions })];
+                case 1:
+                    data = (_a.sent()).data;
+                    users = data.users, error = data.error;
+                    if (error)
+                        throw new Error(error);
+                    renderData(users);
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_2 = _a.sent();
+                    console.error(error_2);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
+}
 function renderData(users) {
-    var usersTable = document.querySelector("#tableBody");
+    var usersTable = document.querySelector("#body");
     var html = "";
     users.forEach(function (user) {
-        html += "\n    <tr>\n      <td>" + user.userName + "</td>\n      <td>" + user.email + "</td>\n      <td>" + user.uniqID + "</td>\n      <td>" + user.permissions + "</td>\n      <td onclick=\"handleDeleteUser('" + user.uniqID + "')\">Delete</td>\n      <td onclick=\"handleEditUser('" + user.uniqID + "')\">Edit</td>\n    </tr>";
+        html +=
+            "<tr id ='tr-" + user.uniqID + "'>\n      <td class=\"cell\">" + user.userName + "</td>\n      <td class=\"email\">" + user.email + "</td>\n      <td class=\"cell\">" + user.uniqID + "</td>\n      <td class=\"cell\">" + user.permissions + "</td>\n      <td class=\"cell\"\" onclick=\"handleDeleteUser('" + user.uniqID + "')\">Delete</td>\n      <td class=\"cell\" id=\"editButton\" onclick=\"handleEditUser(event, '" + user.uniqID + "')\">Edit</td>\n    </tr>";
     });
     usersTable.innerHTML = html;
 }
-// let html = "";
-// users.forEach((user) => {
-//   html += `
-//   <tr>
-//     <td>${user.userName}</td>
-//     <td>${user.email}</td>
-//     <td>${user.uniqID}</td>
-//     <td>${user.permissions}</td>
-//   </tr> 
-//   <button onclick="handleDeleteUser('${user.uniqID}')">DELETE</button>
-//   <input type="number" placeholder="Age" onClick="handleUpdateAge(event, '${user.uniqID}')"/>`;
-// });
+function renderUsers(users) {
+    var table = document.querySelector("#usersTable");
+}
+// <select name="permissions" placeholder="permissions" required "> <option
+// id="value "value="Viewer ">Viewer</option> <option value="Editor
+// ">Editor</option> <option value="Admin ">Admin</option> </select>++

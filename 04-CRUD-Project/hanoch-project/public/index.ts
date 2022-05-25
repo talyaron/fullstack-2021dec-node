@@ -4,7 +4,7 @@ interface Story {
 }
 
 async function handleGetStory(ev) {
-    ev.preventDefault();
+    // ev.preventDefault();
     console.dir(ev)
     const name = ev.target.elements.name.value;
     const story = ev.target.elements.story.value;
@@ -18,6 +18,25 @@ async function handleGetStory(ev) {
     if (error) throw new Error(error);
     renderStory(conStory)
 }
+
+async function getStory() {
+    try {
+        // @ts-ignore
+        const {data} = await axios.get("/api/getStory");
+
+        const {conStory, error} = data;
+        if(error) throw new Error(error.message)
+
+        if(conStory){
+            renderStory(conStory)
+        }
+
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+getStory()
 
 function renderStory(addStory: Array <Story>){
     const story = document.querySelector("#story")

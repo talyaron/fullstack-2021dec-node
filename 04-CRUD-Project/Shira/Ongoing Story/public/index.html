@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ongoing Story</title>
+    <link rel="stylesheet" href="./dist/style.css">
+</head>
+<body>
+    <div class="container">
+    <h1>OUR SHARED STORY</h1>
+    <p class="textTitle">Everyone adds another part to the story , and so we have a common story!!</p>
+    <label for="fname">My Name : </label>
+    <input type="text" id="fname" name="fname"><br><br>
+
+    <p><label for="userStory">My Story Is : </label></p>
+    <textarea id="userStory" name="userStory" rows="8" cols="40" width="fit-content"></textarea>
+    <br>
+    <input type="submit" class="publish" value="Publish My Story!" onclick="handleGetStory(event)">
+    </div>
+    <div class="userName"></div>
+    <div class="newStory"></div>
+    
+    <script src="./dist/app.js"></script>
+
+</body>
+</html>

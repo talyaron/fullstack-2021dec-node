@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.js"
+        integrity="sha512-rozBdNtS7jw9BlC76YF1FQGjz17qQ0J/Vu9ZCFIW374sEy4EZRbRcUZa2RU/MZ90X2mnLU56F75VfdToGV0RiA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="./dist/index.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <a href="./index.html">view stats</a>
+    <div class="gameEdit">
+        <form onsubmit="hundleEditGame(event)">
+            <div class="form">
+                <div class="team_form">
+                    <input type="text" name="team1_name" placeholder="TeamA Name" required>
+                    <input type="number" name="team1_goals" placeholder="TeamA goals" required>
+                    <input type="number" name="team1_shots" placeholder="TeamA shots" required>
+                    <input type="number" name="team1_shots_on_target" placeholder="TeamA shots on target" required>
+                    <input type="number" name="team1_possesion" placeholder="TeamA possesion" required>
+                    <input type="number" name="team1_passes" placeholder="TeamA passes" required>
+                    <input type="number" name="team1_fouls" placeholder="TeamA fouls" required>
+                    <input type="number" name="team1_yellow_cards" placeholder="TeamA yellow cards" required>
+                    <input type="number" name="team1_red_cards" placeholder="TeamA red cards" required>
+                    <input type="number" name="team1_offsides" placeholder="TeamA offsides" required>
+                    <input type="number" name="team1_corners" placeholder="TeamA corners" required>
+                </div>
+                <div class="team_form">
+                    <input type="text" name="team2_name" placeholder="TeamB Name" required>
+                    <input type="number" name="team2_goals" placeholder="TeamB goals" required>
+                    <input type="number" name="team2_shots" placeholder="TeamB shots" required>
+                    <input type="number" name="team2_shots_on_target" placeholder="TeamB shots on target" required>
+                    <input type="number" name="team2_possesion" placeholder="TeamB possesion" required>
+                    <input type="number" name="team2_passes" placeholder="TeamB passes" required>
+                    <input type="number" name="team2_fouls" placeholder="TeamB fouls" required>
+                    <input type="number" name="team2_yellow_cards" placeholder="TeamB yellow cards" required>
+                    <input type="number" name="team2_red_cards" placeholder="TeamB red cards" required>
+                    <input type="number" name="team2_offsides" placeholder="TeamB offsides" required>
+                    <input type="number" name="team2_corners" placeholder="TeamB corners" required>
+                
+                </div>
+            </div>
+            <button type="submit">Add Game Stats</button>
+        </form>
+    </div>
+
+    <script src="./dist/index.js"></script>
+</body>
+
+</html>

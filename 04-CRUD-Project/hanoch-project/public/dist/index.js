@@ -40,7 +40,7 @@ function handleGetStory(ev) {
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    ev.preventDefault();
+                    // ev.preventDefault();
                     console.dir(ev);
                     name = ev.target.elements.name.value;
                     story = ev.target.elements.story.value;
@@ -59,6 +59,33 @@ function handleGetStory(ev) {
         });
     });
 }
+function getStory() {
+    return __awaiter(this, void 0, void 0, function () {
+        var data, conStory, error, error_1;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    return [4 /*yield*/, axios.get("/api/getStory")];
+                case 1:
+                    data = (_a.sent()).data;
+                    conStory = data.conStory, error = data.error;
+                    if (error)
+                        throw new Error(error.message);
+                    if (conStory) {
+                        renderStory(conStory);
+                    }
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_1 = _a.sent();
+                    console.error(error_1);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
+}
+getStory();
 function renderStory(addStory) {
     var story = document.querySelector("#story");
     var html = "";
