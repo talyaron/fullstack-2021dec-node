@@ -19,7 +19,7 @@ const users:Array<User>=[
 import usersRoute from "./routes/usersRoutes";
 app.use("/users", usersRoute);
 
-usersRoute.get('/users/get-all-users',(req, res)=> {
+usersRoute.get('/users/get-users',(req, res)=> {
   try {
       res.send({ ok: true, users });
   } catch (error) {
