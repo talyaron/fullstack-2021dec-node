@@ -4,8 +4,8 @@ interface User{
   id:string;
 }
 const users:Array<User>=[
-  {username:'Moshe', id:'dgdsg'},
-  {username:'Miriam,', id:'dgdsdghghg'},
+  {username:'Moshe', id:uid()},
+  {username:'Miriam,', id:uid()},
 ]
 
 export async function getAllUsers(req, res) {
@@ -17,4 +17,12 @@ export async function getAllUsers(req, res) {
     console.log(error.error);
     res.send({ error: error.message });
 }
+}
+export function uid(){
+  let uid=''
+    uid=
+    Date.now().toString(32) +
+      Math.random().toString(16)
+      return uid
+  
 }
