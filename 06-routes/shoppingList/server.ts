@@ -11,23 +11,26 @@ export interface User{
 
 let users:Array<User>
 
-
-// app.get('/api/user', (req, res) => {
-//   try {
-//       console.log(users);
-//       res.send({ info: users});
-
-//   } catch (error) {
-//       res.send({ error: error.message })
-//   }
-// });
-
-import userRpute from "./routes/usersRoute"
+import userRoute from "./routes/usersRoute"
 app.user("/users", userRoute)
 
-import {someFunction} from './controlers/usersCont'
+// import {someFunction} from './controlers/usersCont'
 
 
 app.listen(port, () => {
   return console.log(`Server is listening at http://localhost:${port}`);
 });
+
+app.delete("/delete-user"), (req, res) => {
+  try {
+    const { userId } = req.body;
+    if (!userId) throw new Error("userId is required");
+
+    users = users.filter(user => user.id !== userId);
+    console.log(users)
+    res.send({ users });
+
+  } catch (error) {
+    res.send({ error: error.message });
+  }
+};

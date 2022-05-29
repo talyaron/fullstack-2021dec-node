@@ -27,18 +27,16 @@ export const addUser = async (req, res) => {
     }
 }
 
-export const deleteUser = async (req, res) => {
-    try {
-      const { userId } = req.body;
-      console.log(userId)
-      if (userId) {
-        const users = await User.deleteOne({_id:userId})
-        res.send({ ok: true, users });
-      } else {
-        throw new Error("userId or role is missing");
-      }
-    } catch (error) {
-      console.log(error.error);
-      res.send({ error: error.message });
-    }
+export const deleteUser =  (req, res) => {
+  try {
+    const { userId } = req.body;
+    if (!userId) throw new Error("userId is required");
+
+    users = users.filter(user => user.id !== userId);
+    console.log(users)
+    res.send({ users });
+
+  } catch (error) {
+    res.send({ error: error.message });
   }
+};
