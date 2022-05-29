@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
-const port = process.env.PORT || 4000;
+const port = process.env.PORT ||2000
+;
 
 app.use(express.json()); // to get body from client (body = data from client)
 app.use(express.static("public"));

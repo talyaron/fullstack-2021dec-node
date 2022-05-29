@@ -122,6 +122,7 @@ async function PostRecipe(event: any){
 function renderFullRecipe(fullRecipe:Recipe){
     console.log(`fullRecipe from server:${fullRecipe}`)
     let forms:HTMLElement = document.querySelector("#forms");
+    if(forms) forms.remove()
     let html=""
     html=`<p id="name" color="red" fontsize="20px">${fullRecipe.name}</p>`
     html+=`===================================`
@@ -141,12 +142,13 @@ function renderFullRecipe(fullRecipe:Recipe){
     for(let j:number=0;j<preNo;j++){
         html+=`<div class="prepares">${fullRecipe.prepareMode[j]}</div>`
     }
-    forms.innerHTML=html
-    forms.style.position="absolute"
-    forms.style.top="150px"
-    forms.style.left="340px"
-    forms.style.border="1px solid black"
-    forms.style.backgroundColor="yellow"
+    let root:HTMLDivElement=document.querySelector("#root")  
+    root.innerHTML=html
+    root.style.position="absolute"
+    root.style.top="150px"
+    root.style.left="340px"
+    root.style.border="1px solid black"
+    root.style.backgroundColor="yellow"
 }
 
 function handleFixRecipe(){
@@ -165,8 +167,8 @@ function handleFixRecipe(){
     let root:HTMLDivElement=document.querySelector("#root")  
     root.innerHTML=html
     root.style.position="absolute" 
-    root.style.top="20px"
-    root.style.left="20px"
+    root.style.top="60px"
+    root.style.left="380px"
 }
 
 async function CheckName(event){
@@ -195,32 +197,78 @@ async function CheckName(event){
 
 function renderRecipeForUpdate(myRecipe:Recipe){
         console.log("renderRecipeForUnpdate")
-        console.log(`fullRecipe from server:${myRecipe['ingredients']}`)
-        console.log(`fullRecipe from server:${myRecipe['prepareMode']}`)
         let forms:HTMLElement = document.querySelector("#forms");
+        if(forms) forms.remove()
+        let frm1=""
+        frm1+=`<form action="" onsubmit="saveIng(event)">`
+        const ingNo=myRecipe.ingredients.length
+        for(let i:number=0;i<ingNo;i++){
+             frm1+=`<input type="text" name="ing${i}" value="${myRecipe.ingredients[i]}" width="1500px"><br>`
+        }
+        frm1+=`<button type="submit">Save Ingredients</button>`
+        frm1+=`<br>`
+        console.log(`frm1 ${frm1}`)
+        let frm2=""
+        frm2+=`<form action="" onsubmit="savePre(event)">`
+        const preNo=myRecipe.ingredients.length
+        for(let j:number=0;j<preNo;j++){
+            frm2+=`<input type="text" name="pre${j}" value="${myRecipe.prepareMode[j]}"width="500px"><br>`
+        }
+        frm2+=`<button type="submit">Save Prepare Mode</button>` 
+        //console.log(`frm2 ${frm2}`)
+
         let html=""
         html=`<div id="name" color="red">${myRecipe.name}</div>`
         html+=`===================================`
         html+=`<div id="ing" color="red">Ingredients</div>`
         html+=`===================================`
         html+=`<br>`
-        const ingNo=myRecipe.ingredients.length
-        for(let i:number=0;i<ingNo;i++){
-        html+=`<input type="text" name="ingredients" value="${myRecipe.ingredients[i]}"><br>`
-        html+=`===================================`
-        html+=`<br>`
-        html+=`<div id="pre" color="red">Prepare Mode</div>`
-        html+=`===================================`
-        html+=`<br>`
-        const preNo=myRecipe.prepareMode.length
-        for(let j:number=0;j<preNo;j++){
-            html+=`<input type="textarea" name="prepareMode" value="${myRecipe.prepareMode[j]}"><br>`
-        }
-        forms.innerHTML=html
-        forms.style.position="absolute"
-        forms.style.top="150px"
-        forms.style.left="340px"
-        forms.style.border="1px solid black"
-        forms.style.backgroundColor="yellow"
-}   
+        let root1:HTMLDivElement=document.querySelector("#root1") 
+        root1.innerHTML=html
+        root1.style.position="absolute"
+        root1.style.top="120px"
+        root1.style.left="340px"
+        root1.style.border="1px solid black"
+        root1.style.backgroundColor="yellow"
+        let root2:HTMLDivElement=document.querySelector("#root2") 
+        root2.innerHTML=frm1
+        root2.style.position="absolute"
+        root2.style.top="190px"
+        root2.style.left="340px"
+        root2.style.border="1px solid black"
+        root2.style.backgroundColor="yellow"
+        let frm3:string=""
+        frm3+=`===================================`
+        frm3+=`<br>`
+        frm3+=`<div id="pre" color="red">Prepare Mode</div>`
+        frm3+=`===================================`
+        frm3+=`<br>`
+        let root3:HTMLDivElement=document.querySelector("#root3") 
+        root3.innerHTML=frm3
+        root3.style.position="absolute"
+        root3.style.top="300px"
+        root3.style.left="340px"
+        root3.style.border="1px solid black"
+        root3.style.backgroundColor="yellow"
+        let root4:HTMLDivElement=document.querySelector("#root4") 
+        root4.innerHTML+=frm2
+        root4.style.position="absolute"
+        root4.style.top="350px"
+        root4.style.left="340px"
+        root4.style.border="1px solid black"
+        root4.style.backgroundColor="yellow"
+       
+} 
+
+async function saveIng(event){
+    event.preventDefault()
+    console.log("saveIng")
+    console.dir(event.target.elements)
+}
+
+async function savePre(event){
+    event.preventDefault()
+    console.log("savePre")
+    console.dir(event.target.elements)
+}
 
