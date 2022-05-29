@@ -1,0 +1,20 @@
+.formObj {
+  background-color: #135b13;
+  width: 100%;
+  padding: 2% 0%;
+  text-align: center;
+}
+.formObj input[type=text] {
+  width: 75%;
+  border-top-left-radius: 2rem;
+  border-bottom-left-radius: 2rem;
+}
+.formObj input[type=button] {
+  width: 20%;
+  border-top-right-radius: 2rem;
+  border-bottom-right-radius: 2rem;
+}
+.formObj input {
+  padding: 1% 1.5%;
+  border: none;
+}

@@ -77,22 +77,38 @@ async function handleEditUser(ev: any, uniqID: string) {
     try {
 
         const tr: any = document.querySelectorAll("tr");
-        let td: any = document.querySelectorAll("td");
+        const td: any = document.querySelectorAll("td");
+        const email: any = document.querySelector(".email");
+        console.dir(tr);
 
-        td.forEach(ele => {
-            ele.setAttribute("contenteditable", "true");
-            // if (tr.id !== td.id) {
-            //     ele.setAttribute("contenteditable", "false");
-            // }
-        });
+        for (let i = 0; i < tr.length; i++) {
+            if ([i] == tr.cells.email) {
+                td.setAttribute("contenteditable", "true");
+            }
+        }
 
-        const {data} = await axios.put('/api/update-user', {uniqID, userName, email, permissions});
+        // tr.forEach(ele => {
+        //     if (tr.classList.contains("email")) {
+        //         ele.setAttribute("contenteditable", "true");
+        //     }
+        // });
+        // const {
+        //     data
+        // } = await axios.put('/api/update-user', {
+        //     uniqID,
+        //     userName,
+        //     email,
+        //     permissions
+        // });
 
-        const {users, error} = data;
-        if (error) 
-            throw new Error(error);
+        // const {
+        //     users,
+        //     error
+        // } = data;
+        // if (error)
+        //     throw new Error(error);
 
-        renderData(users);
+        // renderData(users);
 
     } catch (error) {
         console.error(error);
@@ -118,7 +134,7 @@ function renderData(users: Array < user > ) {
     usersTable.innerHTML = html;
 }
 
-function renderUsers(users: Array < user >){
+function renderUsers(users: Array < user > ) {
     const table = document.querySelector("#usersTable");
 }
 

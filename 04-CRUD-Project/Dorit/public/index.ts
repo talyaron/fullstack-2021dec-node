@@ -206,11 +206,7 @@ function renderRecipeForUpdate(myRecipe:Recipe){
         html+=`<br>`
         const ingNo=myRecipe.ingredients.length
         for(let i:number=0;i<ingNo;i++){
-            html+=`<textarea id="ing" name="ing">
-            $"{${myRecipe.ingredients[i]}"
-            </textarea>`
-        }
-        //html+=`<input type="textarea" name="ingredients" value="${myRecipe.ingredients[i]}"><br>`
+        html+=`<input type="text" name="ingredients" value="${myRecipe.ingredients[i]}"><br>`
         html+=`===================================`
         html+=`<br>`
         html+=`<div id="pre" color="red">Prepare Mode</div>`
