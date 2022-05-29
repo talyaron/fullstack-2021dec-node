@@ -1,29 +1,11 @@
-// async function handleGetAllUsers(){
-//     //   @ts-ignore
-//         const {data} = await axios.get('/users/getallusers')
-//         console.log(data)
-//         const {users} = data;
-//         console.log(users)
-//         if(users){
-//             renderUsers(users);
-//         }
-//     }
-
-// async function handleDelete( userId){
-// //   @ts-ignore
-//     const {data} = await axios.delete('/users/delete-user', {data:{userId}})
-//     console.log(data)
-   
-// }
-
-async function handleLoad(){
+async function handleGetUsers(){
 //   @ts-ignore
-    const {data} = await axios.get('/users/get-users')
+    const {data} = await axios.get('/api/users/get-users')
     console.log(data)
-    const {info} = data;
-    console.log(info)
-    if(info){
-        renderUsers(info);
+    const {users} = data;
+    console.log(users)
+    if(users){
+        renderUsers(users);
     }
 }
 
@@ -31,14 +13,15 @@ async function handleLoad(){
 //     // @ts-ignore
 //     const {data} = await axios.add('/users/add-user')
 //     console.log(data)
-//     const {info} = data;
-//     console.log(info)
-//     if(info){
-//         renderUsers(info);
+//     const {users} = data;
+//     console.log(users)
+//     if(users){
+//         renderUsers(users);
 //     }
 // }
 
-function renderUsers(users){
+
+function renderUsers(users:Array<any>){
     const html =  users.map(user=>{
         console.log(user)
         return `<div>${user.username} 
@@ -48,5 +31,8 @@ function renderUsers(users){
     }).join('');
     console.log(html)
 
-    document.getElementById('users').innerHTML = html;
+   const usersRoot=  document.getElementById('users')
+    if(usersRoot){
+        usersRoot.innerHTML = html;
+    }
 }

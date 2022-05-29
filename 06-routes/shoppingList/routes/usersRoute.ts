@@ -1,6 +1,12 @@
 import express from "express";
 const router = express.Router();
-import { User } from "../model/userModel";
+import {getUsers} from '../cont/usersCont'
+
+router.get('/api/get-users',getUsers)
+
+export default router;
+
+// import { User } from "../model/userModel";
 // {
 //   getUsers
 //   // addUser,
@@ -8,8 +14,8 @@ import { User } from "../model/userModel";
 // }
 // from "../controlers/usersCont";
 
-import {getUsers} from "../cont/usersCont"
-  router.get('/api/get-users',getUsers)
+// import {getUsers} from "../cont/usersCont"
+//   router.get('/api/get-users',getUsers)
 
-export default router;
+// export default router;
 

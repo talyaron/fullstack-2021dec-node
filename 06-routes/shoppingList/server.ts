@@ -4,15 +4,9 @@ const port: number = 3000;
 
 app.use(express.static("public"));
 app.use(express.json());
-export interface User{
-  name:string;
-  userId:string;
-}
 
-let user:Array<User>
-
-import userRoute from "./routes/usersRoute"
-app.get("/users", userRoute)
+import usersRoute from "./routes/usersRoute";
+app.use("/users", usersRoute)
 
 // import {someFunction} from './controlers/usersCont'
 
