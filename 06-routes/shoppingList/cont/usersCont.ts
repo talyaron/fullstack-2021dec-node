@@ -1,4 +1,9 @@
-import { User } from "../model/userModel";
+// import { User } from "../model/userModel";
+
+export interface User{
+    name:string;
+    userId:string;
+}
 
 const users: Array<User> = [
     {
