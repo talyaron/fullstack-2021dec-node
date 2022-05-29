@@ -1,6 +1,6 @@
 import User from "../model/userModel";
 
-export async function getAllUsers(req, res) {
+export const getAllUsers=(req, res)=> {
     try {
 
         const users = await User.find({})
@@ -10,6 +10,8 @@ export async function getAllUsers(req, res) {
         res.send({ error: error.message });
     }
 }
+
+
 
 export const addUser = async (req, res) => {
     try {

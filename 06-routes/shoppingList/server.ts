@@ -12,16 +12,20 @@ export interface User{
 let users:Array<User>
 
 
-app.get('/api/user', (req, res) => {
-  try {
-      console.log(users);
-      res.send({ info: users});
+// app.get('/api/user', (req, res) => {
+//   try {
+//       console.log(users);
+//       res.send({ info: users});
 
-  } catch (error) {
-      res.send({ error: error.message })
-  }
-});
+//   } catch (error) {
+//       res.send({ error: error.message })
+//   }
+// });
 
+import userRpute from "./routes/usersRoute"
+app.user("/users", userRoute)
+
+import {someFunction} from './controlers/usersCont'
 
 
 app.listen(port, () => {
