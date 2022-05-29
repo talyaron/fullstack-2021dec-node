@@ -1,6 +1,6 @@
-import { User } from "../model/userModel";
-
-const users: Array<User> = [
+"use strict";
+exports.__esModule = true;
+var users = [
     {
         name: 'avi',
         userId: 'abc'
@@ -10,4 +10,3 @@ const users: Array<User> = [
         userId: 'abcd'
     }
 ];
-
