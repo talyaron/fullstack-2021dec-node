@@ -1,9 +1,10 @@
-import User from "../model/userModel";
+import {User} from "../model/userModel";
 
-export const getAllUsers=(req, res)=> {
+let users:Array<User>=[{name:"avi",userId:"241"}]
+
+export const getUsers=(req, res)=> {
     try {
-
-        const users = await User.find({})
+      
         res.send({ ok: true, users });
     } catch (error) {
         console.log(error.error);
@@ -13,30 +14,31 @@ export const getAllUsers=(req, res)=> {
 
 
 
-export const addUser = async (req, res) => {
-    try {
-        let { username, password } = req.body;
 
-        const newUser = new User({ username, password });
-        const result = await newUser.save();
+// export const addUser = async (req, res) => {
+//     try {
+//         let { username, password } = req.body;
 
-        res.send({ result });
-    } catch (error) {
-        console.error(error);
-        res.send({ error: error.message });
-    }
-}
+//         const newUser = new User({ username, password });
+//         const result = await newUser.save();
 
-export const deleteUser =  (req, res) => {
-  try {
-    const { userId } = req.body;
-    if (!userId) throw new Error("userId is required");
+//         res.send({ result });
+//     } catch (error) {
+//         console.error(error);
+//         res.send({ error: error.message });
+//     }
+// }
 
-    users = users.filter(user => user.id !== userId);
-    console.log(users)
-    res.send({ users });
+// export const deleteUser =  (req, res) => {
+//   try {
+//     const { userId } = req.body;
+//     if (!userId) throw new Error("userId is required");
 
-  } catch (error) {
-    res.send({ error: error.message });
-  }
-};
+//      const usersDel = users.filter(user => user.id !== userId);
+//     console.log(usersDel)
+//     res.send({ usersDel });
+
+//   } catch (error) {
+//     res.send({ error: error.message });
+//   }
+// };

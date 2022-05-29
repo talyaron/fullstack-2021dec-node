@@ -2,13 +2,14 @@ import express from "express";
 const router = express.Router();
 import { User } from "../model/userModel";
 // {
-//   addUser,
-//   deleteUser,
-// } from "../controlers/usersCont";
+//   getUsers
+//   // addUser,
+//   // deleteUser,
+// }
+// from "../controlers/usersCont";
 
-import {getAllUsers,addUser,deleteUser}
-  .post("/add-user", addUser)
-  .delete("/delete-user", deleteUser)
-  .get('/api/user',getAllUsers)
+import {getUsers} from "../cont/usersCont"
+  router.get('/api/get-users',getUsers)
+
 export default router;
 

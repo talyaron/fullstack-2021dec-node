@@ -1,13 +1,20 @@
-// function handleLoad(){
+// async function handleGetAllUsers(){
+//     //   @ts-ignore
+//         const {data} = await axios.get('/users/getallusers')
+//         console.log(data)
+//         const {users} = data;
+//         console.log(users)
+//         if(users){
+//             renderUsers(users);
+//         }
+//     }
 
-// }
-
-async function handleDelete( userId){
-//   @ts-ignore
-    const {data} = await axios.delete('/users/delete-user', {data:{userId}})
-    console.log(data)
+// async function handleDelete( userId){
+// //   @ts-ignore
+//     const {data} = await axios.delete('/users/delete-user', {data:{userId}})
+//     console.log(data)
    
-}
+// }
 
 async function handleLoad(){
 //   @ts-ignore
@@ -20,16 +27,16 @@ async function handleLoad(){
     }
 }
 
-async function handleAddUser(){
-    // @ts-ignore
-    const {data} = await axios.add('/users/add-user')
-    console.log(data)
-    const {info} = data;
-    console.log(info)
-    if(info){
-        renderUsers(info);
-    }
-}
+// async function handleAddUser(){
+//     // @ts-ignore
+//     const {data} = await axios.add('/users/add-user')
+//     console.log(data)
+//     const {info} = data;
+//     console.log(info)
+//     if(info){
+//         renderUsers(info);
+//     }
+// }
 
 function renderUsers(users){
     const html =  users.map(user=>{
