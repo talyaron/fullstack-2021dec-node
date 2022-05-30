@@ -80,12 +80,6 @@ app.put('/api/update-user', (req, res) => {
             uniqID,
             permissions
         } = req.body;
-        if (!userName)
-            throw new Error("User name is required");
-        if (!email)
-            throw new Error("Email is required");
-        if (!permissions)
-            throw new Error("Permissions are required");
 
         const userIndex = users.findIndex(user => user.uniqID === uniqID);
         if (userIndex === -1)
