@@ -150,6 +150,8 @@ function PostRecipe(event) {
 function renderFullRecipe(fullRecipe) {
     console.log("fullRecipe from server:" + fullRecipe);
     var forms = document.querySelector("#forms");
+    if (forms)
+        forms.remove();
     var html = "";
     html = "<p id=\"name\" color=\"red\" fontsize=\"20px\">" + fullRecipe.name + "</p>";
     html += "===================================";
@@ -169,12 +171,13 @@ function renderFullRecipe(fullRecipe) {
     for (var j = 0; j < preNo; j++) {
         html += "<div class=\"prepares\">" + fullRecipe.prepareMode[j] + "</div>";
     }
-    forms.innerHTML = html;
-    forms.style.position = "absolute";
-    forms.style.top = "150px";
-    forms.style.left = "340px";
-    forms.style.border = "1px solid black";
-    forms.style.backgroundColor = "yellow";
+    var root = document.querySelector("#root");
+    root.innerHTML = html;
+    root.style.position = "absolute";
+    root.style.top = "150px";
+    root.style.left = "340px";
+    root.style.border = "1px solid black";
+    root.style.backgroundColor = "yellow";
 }
 function handleFixRecipe() {
     console.log("handleFixRecipe");
@@ -186,8 +189,8 @@ function handleFixRecipe() {
     var root = document.querySelector("#root");
     root.innerHTML = html;
     root.style.position = "absolute";
-    root.style.top = "20px";
-    root.style.left = "20px";
+    root.style.top = "60px";
+    root.style.left = "380px";
 }
 function CheckName(event) {
     return __awaiter(this, void 0, void 0, function () {
@@ -225,33 +228,84 @@ function CheckName(event) {
 }
 function renderRecipeForUpdate(myRecipe) {
     console.log("renderRecipeForUnpdate");
-    console.log("fullRecipe from server:" + myRecipe['ingredients']);
-    console.log("fullRecipe from server:" + myRecipe['prepareMode']);
     var forms = document.querySelector("#forms");
+    if (forms)
+        forms.remove();
+    var frm1 = "";
+    frm1 += "<form action=\"\" onsubmit=\"saveIng(event)\">";
+    var ingNo = myRecipe.ingredients.length;
+    for (var i = 0; i < ingNo; i++) {
+        frm1 += "<input type=\"text\" name=\"ing" + i + "\" value=\"" + myRecipe.ingredients[i] + "\" width=\"1500px\"><br>";
+    }
+    frm1 += "<button type=\"submit\">Save Ingredients</button>";
+    frm1 += "<br>";
+    console.log("frm1 " + frm1);
+    var frm2 = "";
+    frm2 += "<form action=\"\" onsubmit=\"savePre(event)\">";
+    var preNo = myRecipe.ingredients.length;
+    for (var j = 0; j < preNo; j++) {
+        frm2 += "<input type=\"text\" name=\"pre" + j + "\" value=\"" + myRecipe.prepareMode[j] + "\"width=\"500px\"><br>";
+    }
+    frm2 += "<button type=\"submit\">Save Prepare Mode</button>";
+    //console.log(`frm2 ${frm2}`)
     var html = "";
     html = "<div id=\"name\" color=\"red\">" + myRecipe.name + "</div>";
     html += "===================================";
     html += "<div id=\"ing\" color=\"red\">Ingredients</div>";
     html += "===================================";
     html += "<br>";
-    var ingNo = myRecipe.ingredients.length;
-    for (var i = 0; i < ingNo; i++) {
-        html += "<textarea id=\"ing\" name=\"ing\">\n            $\"{" + myRecipe.ingredients[i] + "\"\n            </textarea>";
-    }
-    //html+=`<input type="textarea" name="ingredients" value="${myRecipe.ingredients[i]}"><br>`
-    html += "===================================";
-    html += "<br>";
-    html += "<div id=\"pre\" color=\"red\">Prepare Mode</div>";
-    html += "===================================";
-    html += "<br>";
-    var preNo = myRecipe.prepareMode.length;
-    for (var j = 0; j < preNo; j++) {
-        html += "<input type=\"textarea\" name=\"prepareMode\" value=\"" + myRecipe.prepareMode[j] + "\"><br>";
-    }
-    forms.innerHTML = html;
-    forms.style.position = "absolute";
-    forms.style.top = "150px";
-    forms.style.left = "340px";
-    forms.style.border = "1px solid black";
-    forms.style.backgroundColor = "yellow";
+    var root1 = document.querySelector("#root1");
+    root1.innerHTML = html;
+    root1.style.position = "absolute";
+    root1.style.top = "120px";
+    root1.style.left = "340px";
+    root1.style.border = "1px solid black";
+    root1.style.backgroundColor = "yellow";
+    var root2 = document.querySelector("#root2");
+    root2.innerHTML = frm1;
+    root2.style.position = "absolute";
+    root2.style.top = "190px";
+    root2.style.left = "340px";
+    root2.style.border = "1px solid black";
+    root2.style.backgroundColor = "yellow";
+    var frm3 = "";
+    frm3 += "===================================";
+    frm3 += "<br>";
+    frm3 += "<div id=\"pre\" color=\"red\">Prepare Mode</div>";
+    frm3 += "===================================";
+    frm3 += "<br>";
+    var root3 = document.querySelector("#root3");
+    root3.innerHTML = frm3;
+    root3.style.position = "absolute";
+    root3.style.top = "300px";
+    root3.style.left = "340px";
+    root3.style.border = "1px solid black";
+    root3.style.backgroundColor = "yellow";
+    var root4 = document.querySelector("#root4");
+    root4.innerHTML += frm2;
+    root4.style.position = "absolute";
+    root4.style.top = "350px";
+    root4.style.left = "340px";
+    root4.style.border = "1px solid black";
+    root4.style.backgroundColor = "yellow";
+}
+function saveIng(event) {
+    return __awaiter(this, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            event.preventDefault();
+            console.log("saveIng");
+            console.dir(event.target.elements);
+            return [2 /*return*/];
+        });
+    });
+}
+function savePre(event) {
+    return __awaiter(this, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            event.preventDefault();
+            console.log("savePre");
+            console.dir(event.target.elements);
+            return [2 /*return*/];
+        });
+    });
 }
