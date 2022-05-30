@@ -1,38 +1,59 @@
-async function handleGetUsers(){
-//   @ts-ignore
-    const {data} = await axios.get('/api/users/get-users')
-    console.log(data)
-    const {users} = data;
-    console.log(users)
-    if(users){
-        renderUsers(users);
-    }
+console.log('loading');
+
+async function initUsers() {
+  try {
+    // @ts-ignore
+    const { data } = await axios.get("/users/user-get");
+    // const { users, error } = data;
+    // if (error) throw new Error(error);
+    console.log(data);
+    renderUser(data);
+  } catch (error) {
+    console.error(error);
+  }
 }
 
-// async function handleAddUser(){
-//     // @ts-ignore
-//     const {data} = await axios.add('/users/add-user')
-//     console.log(data)
-//     const {users} = data;
-//     console.log(users)
-//     if(users){
-//         renderUsers(users);
-//     }
-// }
+async function handleDeleteUser(userID: string) {
+  try {
+    // @ts-ignore
+    const { data } = await axios.post("/users/user-delete", { userID });
 
+    renderUser(data);
 
-function renderUsers(users:Array<any>){
-    const html =  users.map(user=>{
-        console.log(user)
-        return `<div>${user.username} 
-        <input type='text' placeholder='role' value="${user.role}" onblur='handleUpdate(event, "${user._id}")'/>
-        <button onclick='handleDelete("${user._id}")'>DELETE</button>
-        </div>`
-    }).join('');
-    console.log(html)
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
 
-   const usersRoot=  document.getElementById('users')
-    if(usersRoot){
-        usersRoot.innerHTML = html;
-    }
+async function handleAddUser(e) {
+  try {
+    e.preventDefault();
+    const name = e.target.elements.name.value;
+    // @ts-ignore
+    const { data } = await axios.post("/users/user-add", { name });
+    console.log(data);
+    renderUser(data);
+    e.target.reset();
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+function renderUser(users) {
+  try {
+    const root: HTMLElement = document.querySelector("#root");
+    let html = "";
+    users.forEach((user) => {
+      html += `
+          <div>
+           <p>${user.name}</p>
+           <button class="button" onclick='handleDeleteUser("${user.userId}")'>Delete</button>
+           </div>
+                  `;
+    });
+    root.innerHTML = html;
+  } catch (error) {
+    console.error(error);
+  }
 }

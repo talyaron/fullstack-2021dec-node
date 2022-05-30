@@ -1,45 +1,44 @@
-export interface User{
-  name:string;
-  userId:string;
+import uid from "../helpers";
+
+export interface User {
+  name: string;
+  userId: string;
 }
 
-const users:Array<User>=[{name:"avi",userId:"241"}]
+let users: Array<User> = [
+  { name: "Mario", userId: uid() },
+  { name: "Rayu", userId: uid() },
+];
 
-export const getUsers= (req, res)=> {
-    try {
-        res.send({ users });
-    } catch (error) {
-        res.status(500).send({error});
-    }
-}
+export const initUsers = (req, res) => {
+  try {
+    res.send(users);
+  } catch (error) {
+    res.send({ error: error.message });
+  }
+};
 
+export const handleDeleteUser = (req, res) => {
+  try {
+    const { userID } = req.body;
 
+    const index: number = users.findIndex((user) => user.userId === userID);
+    if (index === -1) throw new Error("user not found");
 
+    users = users.filter((user) => user.userId !== userID);
 
-// export const addUser = async (req, res) => {
-//     try {
-//         let { username, password } = req.body;
+    res.send(users);
+  } catch (error) {
+    res.send({ error: error.message });
+  }
+};
 
-//         const newUser = new User({ username, password });
-//         const result = await newUser.save();
+export const handleAddUser = (req, res) => {
+  const { name } = req.body;
+  // console.log(req.body);
+  if (!name) throw new Error("name is required");
 
-//         res.send({ result });
-//     } catch (error) {
-//         console.error(error);
-//         res.send({ error: error.message });
-//     }
-// }
-
-// export const deleteUser =  (req, res) => {
-//   try {
-//     const { userId } = req.body;
-//     if (!userId) throw new Error("userId is required");
-
-//      const usersDel = users.filter(user => user.id !== userId);
-//     console.log(usersDel)
-//     res.send({ usersDel });
-
-//   } catch (error) {
-//     res.send({ error: error.message });
-//   }
-// };
+  const user: User = { name, userId: uid() };
+  users.push(user);
+  res.send(users);
+};
