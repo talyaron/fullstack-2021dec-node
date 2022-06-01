@@ -92,6 +92,7 @@ function deleteItem(req, res) {
                 itemId_1 = req.body.itemId;
                 console.log(itemId_1);
                 exports.items = exports.items.filter(function (item) { return item.itemId !== itemId_1; });
+                console.log(exports.items);
                 res.send({ items: exports.items });
             }
             catch (error) {

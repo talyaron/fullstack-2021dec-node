@@ -53,6 +53,7 @@ export async function deleteItem(req, res) {
     const { itemId } = req.body;
     console.log(itemId);
     items = items.filter(item => item.itemId !== itemId);
+    console.log(items);
     res.send({items});
     
   } catch (error) {

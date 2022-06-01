@@ -31,7 +31,8 @@ async function getUserItems() {
     const { items, error} = data;
     const userItems = items.filter(item => item.userId === userId)
     console.log(userItems);
-    renderUserItems(userItems)
+    renderItems(userItems)
+    // renderUserItems(userItems)
     if(error) throw new Error('Items was not found!');
   } catch (error) {
     console.error(error)
@@ -64,12 +65,12 @@ async function handleDeleteItem(itemId: string) {
   }
 }
 
-export function renderItems(ArrayofItems) {
+export function renderItems(ArrayofItems: Array<Item>) {
   const wraper = document.querySelector(".wraper");
-  ArrayofItems.forEach((element) => {
+  ArrayofItems.forEach((item) => {
     const newItem = document.createElement("div");
     newItem.innerHTML = ` <div>
-         <H4>${element.name}</H4>
+         <h4 style="display: inline;">${item.name}</h4>
          <input type="checkbox">
          <button>edit</button>
          <button>delete</button>
@@ -81,13 +82,6 @@ export function renderItems(ArrayofItems) {
 function renderUserCart(user: User) {
   const userNameTitle = document.querySelector('#userCart');
   userNameTitle.innerHTML = `${user.name}'s Shopping Cart`;
-}
-
-function renderUserItems(items: Array<Item>) {
-  const userItemsList = document.querySelector('#userItemsList');
-  items.forEach(item => {
-    userItemsList.innerHTML += `<li>${item.name}<button onclick="handleDeleteItem('${item.itemId}')">Delete Item</button></li> `
-  })
 }
 
 function handleLoadUserInfo(){

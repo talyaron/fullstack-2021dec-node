@@ -65,7 +65,8 @@ function getUserItems() {
                     items = data.items, error = data.error;
                     userItems = items.filter(function (item) { return item.userId === userId_1; });
                     console.log(userItems);
-                    renderUserItems(userItems);
+                    renderItems(userItems);
+                    // renderUserItems(userItems)
                     if (error)
                         throw new Error('Items was not found!');
                     return [3 /*break*/, 3];
@@ -128,9 +129,9 @@ function handleDeleteItem(itemId) {
 }
 function renderItems(ArrayofItems) {
     var wraper = document.querySelector(".wraper");
-    ArrayofItems.forEach(function (element) {
+    ArrayofItems.forEach(function (item) {
         var newItem = document.createElement("div");
-        newItem.innerHTML = " <div>\n         <H4>" + element.name + "</H4>\n         <input type=\"checkbox\">\n         <button>edit</button>\n         <button>delete</button>\n     </div>";
+        newItem.innerHTML = " <div>\n         <h4 style=\"display: inline;\">" + item.name + "</h4>\n         <input type=\"checkbox\">\n         <button>edit</button>\n         <button>delete</button>\n     </div>";
         wraper.appendChild(newItem);
     });
 }
@@ -138,12 +139,6 @@ exports.renderItems = renderItems;
 function renderUserCart(user) {
     var userNameTitle = document.querySelector('#userCart');
     userNameTitle.innerHTML = user.name + "'s Shopping Cart";
-}
-function renderUserItems(items) {
-    var userItemsList = document.querySelector('#userItemsList');
-    items.forEach(function (item) {
-        userItemsList.innerHTML += "<li>" + item.name + "<button onclick=\"handleDeleteItem('" + item.itemId + "')\">Delete Item</button></li> ";
-    });
 }
 function handleLoadUserInfo() {
     getUser();
