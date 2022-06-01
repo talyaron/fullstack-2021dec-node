@@ -67,11 +67,13 @@ function HandleUpdateItem(req, res) {
 exports.HandleUpdateItem = HandleUpdateItem;
 function deleteItem(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var itemId;
+        var itemId_1;
         return __generator(this, function (_a) {
             try {
-                itemId = req.body.itemId;
-                console.log(itemId);
+                itemId_1 = req.body.itemId;
+                console.log(itemId_1);
+                items = items.filter(function (item) { return item.itemId !== itemId_1; });
+                res.send({ items: items });
             }
             catch (error) {
                 res.send({ error: error.message });

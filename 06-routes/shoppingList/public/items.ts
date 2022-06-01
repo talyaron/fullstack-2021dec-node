@@ -18,14 +18,13 @@ function handleGetUser() {
 
 async function handleDeleteItem(itemId: string){
     try {
-        console.log('Delete Button Clicked');
         console.log(itemId);
         //@ts-ignore
-        const { data } = await axios.delete("/items/item-delete", {data:{ userId }});
+        const { data } = await axios.delete("/items/delete-item", {data:{ itemId }});
         console.log(data);
-
+        
     } catch (error) {
-        console.error({error: error.message});
+        console.error(error);
     }
 }
 

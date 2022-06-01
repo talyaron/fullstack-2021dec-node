@@ -52,16 +52,15 @@ function handleDeleteItem(itemId) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    console.log('Delete Button Clicked');
                     console.log(itemId);
-                    return [4 /*yield*/, axios["delete"]("/items/item-delete", { data: { userId: userId } })];
+                    return [4 /*yield*/, axios["delete"]("/items/delete-item", { data: { itemId: itemId } })];
                 case 1:
                     data = (_a.sent()).data;
                     console.log(data);
                     return [3 /*break*/, 3];
                 case 2:
                     error_1 = _a.sent();
-                    console.error({ error: error_1.message });
+                    console.error(error_1);
                     return [3 /*break*/, 3];
                 case 3: return [2 /*return*/];
             }

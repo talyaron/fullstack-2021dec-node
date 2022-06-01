@@ -1,6 +1,6 @@
 import { Item } from "../model/itemModel";
 
-const items: Array<Item> = [
+let items: Array<Item> = [
   {
     name: "Milk",
     itemId: "123MI",
@@ -26,6 +26,9 @@ export async function deleteItem(req, res) {
   try {
     const { itemId } = req.body;
     console.log(itemId);
+    items = items.filter(item => item.itemId !== itemId);
+    res.send({items});
+    
   } catch (error) {
     res.send({error: error.message})
   }

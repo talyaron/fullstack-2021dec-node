@@ -7,11 +7,10 @@ app.use(express.json());
 import usersRoute from "./routes/usersRoute";
 app.use("/users", usersRoute);
 
-import updateItem from "./routes/itemsRoute"
-app.use("/items",updateItem);
+import itemsRoute from "./routes/itemsRoute"
+app.use("/items", itemsRoute);
 
-import deleteItem from "./routes/itemsRoute"
-app.use("/items", deleteItem);
+
 
 app.listen(port, () => {
   console.log(`Express is listening at ${port}`);
