@@ -23,17 +23,15 @@ function getUserId(): string | false {
 
 function getUserItems() {
   const userId = getUserId();
+  
   //axios
   //render
 }
 
 async function handleDeleteItem(itemId: string) {
   try {
-    
-    
-    const { data } = await axios.delete("/items/delete-item", {
-      data: { itemId },
-    });
+    //@ts-ignore
+    const { data } = await axios.delete("/items/delete-item", { data: { itemId },});
   } catch (error) {
     console.error(error);
   }

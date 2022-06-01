@@ -37,13 +37,24 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 exports.__esModule = true;
 exports.renderItems = void 0;
-;
-function handleGetUser() {
-    var queryString = window.location.search;
-    console.log(queryString);
-    var urlParams = new URLSearchParams(queryString);
-    var userId = urlParams.get('userId');
-    console.log(userId);
+function getUserId() {
+    try {
+        var queryString = window.location.search;
+        console.log(queryString);
+        var urlParams = new URLSearchParams(queryString);
+        var userId = urlParams.get("userId");
+        console.log(userId);
+        return userId;
+    }
+    catch (error) {
+        console.error(error);
+        return false;
+    }
+}
+function getUserItems() {
+    var userId = getUserId();
+    //axios
+    //render
 }
 function handleDeleteItem(itemId) {
     return __awaiter(this, void 0, void 0, function () {
@@ -52,11 +63,9 @@ function handleDeleteItem(itemId) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    console.log(itemId);
                     return [4 /*yield*/, axios["delete"]("/items/delete-item", { data: { itemId: itemId } })];
                 case 1:
                     data = (_a.sent()).data;
-                    console.log(data);
                     return [3 /*break*/, 3];
                 case 2:
                     error_1 = _a.sent();
@@ -70,7 +79,7 @@ function handleDeleteItem(itemId) {
 function renderItems(ArrayofItems) {
     var wraper = document.querySelector(".wraper");
     ArrayofItems.forEach(function (element) {
-        var newItem = document.createElement('div');
+        var newItem = document.createElement("div");
         newItem.innerHTML = " <div>\n         <H4>" + element.name + "</H4>\n         <input type=\"checkbox\">\n         <button>edit</button>\n         <button>delete</button>\n     </div>";
         wraper.appendChild(newItem);
     });
