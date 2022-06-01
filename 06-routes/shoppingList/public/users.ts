@@ -38,8 +38,8 @@ function handleUpdateUser(userId) {
 
 function renderUsers(usersArr) {
 	let html = '';
-	usersArr.forEach((element) => {
-		html += `<div class="users_class" id="${element.userId}"> name:${element.name} <button onclick="handleUpdateUser(${element.userId})">Update </button></div>`;
+	usersArr.forEach((user) => {
+		html += `<div class="users_class" id="${user.userId}"> name:${user.name} <button onclick="handleUpdateUser(${user.userId})">Update </button></div>`;
 	});
 	usersContainer.innerHTML = html;
 }
