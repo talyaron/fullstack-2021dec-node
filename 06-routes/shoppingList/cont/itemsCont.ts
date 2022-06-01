@@ -8,7 +8,26 @@ const items: Array<Item> = [
     userId: "abcd",
   },
   {
-    name: "Bread",
+    name: "tea",
+    itemId: "123MI",
+    bought: false,
+    userId: "abcd",
+  },
+  {
+    name: "bread",
+    itemId: "123MI",
+    bought: false,
+    userId: "abcd",
+  },
+  {
+    name: "flower",
+    itemId: "123MI",
+    bought: false,
+    userId: "abcd",
+  },
+
+  {
+    name: "Milk",
     itemId: "123BR",
     bought: false,
     userId: "abc",

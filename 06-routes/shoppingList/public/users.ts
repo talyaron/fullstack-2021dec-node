@@ -47,7 +47,7 @@ async function handleUpdateUser(userId) {
 function renderUsers(usersArr) {
 	let html = '';
 	usersArr.forEach((user) => {
-		html += `<div class="users_class" id="${user.userId}"> name:${user.name} 
+		html += `<div class="users_class" id="${user.userId}"><a href="items.html?userId=${user.userId}">name:${user.name}</a> 
         <button onclick="handleUpdateUser('${user.userId}')">Update </button>
         <button onclick="handleDeleteUser('${user.userId}')">DELETE </button>
         </div>`;

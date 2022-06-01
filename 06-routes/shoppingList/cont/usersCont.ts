@@ -6,8 +6,8 @@ export interface User {
 }
 
 let users: Array<User> = [
-  { name: "Mario", userId: uid() },
-  { name: "Rayu", userId: uid() },
+  { name: "Mario", userId: 'abc' },
+  { name: "Rayu", userId: 'abcd' },
 ];
 
 export const handleDeleteUser = (req, res) => {
