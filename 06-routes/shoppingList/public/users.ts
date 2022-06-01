@@ -17,7 +17,7 @@ async function handleGetUsers() {
 	// add axios to html!!!!
 	const {data} = await axios.get('/users/get-users')
 	const {users} = data;
-    if(!Array.isArray(data)) throw new Error("data should be an array ant it is not")
+    if(!Array.isArray(users)) throw new Error("users should be an array ant it is not")
 	renderUsers(users);
 }
 async function handleAddUser(e) {
