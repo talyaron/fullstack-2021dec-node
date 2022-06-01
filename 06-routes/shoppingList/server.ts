@@ -1,17 +1,14 @@
+
+
 import express from "express";
 const app = express();
-const port: number = 3000;
-
+const port = process.env.PORT || 3000;
 app.use(express.static("public"));
 app.use(express.json());
 
 import usersRoute from "./routes/usersRoute";
-app.use("/users", usersRoute)
-
-// import {someFunction} from './controlers/usersCont'
-
+app.use("/users", usersRoute);
 
 app.listen(port, () => {
-  return console.log(`Server is listening at http://localhost:${port}`);
+  console.log(`Express is listening at ${port}`);
 });
-

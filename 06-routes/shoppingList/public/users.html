@@ -1,17 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.js"
-    integrity="sha512-MNW6IbpNuZZ2VH9ngFhzh6cUt8L/0rSVa60F8L22K1H72ro4Ki3M/816eSDLnhICu7vwH/+/yb8oB3BtBLhMsA=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"
+        integrity="sha512-odNmoc1XJy5x1TMVMdC7EMs3IVdItLPlCeL5vSUPN2llYKMJ2eByTTAIiiuqLg+GdNr9hF6z81p27DArRFKT7A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <title>users</title>
 </head>
-<h1>shopping</h1>
-<body>
-    <button onclick="handleGetUsers()" class="GetAllUsers">Get All Users</button>
+
+<body onload="initUsers()">
+
+    <form onsubmit="handleAddUser(event)">
+        <input type="text" name="name" placeholder="Name" required>
+        <button type="submit">Add user</button>
+    </form>
+
+    <div id="root"></div>
     <script src="./dist/users.js"></script>
 </body>
+
 </html>

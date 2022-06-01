@@ -34,43 +34,90 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-function handleGetUsers() {
+console.log('loading');
+function initUsers() {
     return __awaiter(this, void 0, void 0, function () {
-        var data, users;
+        var data, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, axios.get('/api/users/get-users')];
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    return [4 /*yield*/, axios.get("/users/user-get")];
                 case 1:
                     data = (_a.sent()).data;
+                    // const { users, error } = data;
+                    // if (error) throw new Error(error);
                     console.log(data);
-                    users = data.users;
-                    console.log(users);
-                    if (users) {
-                        renderUsers(users);
-                    }
-                    return [2 /*return*/];
+                    renderUser(data);
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_1 = _a.sent();
+                    console.error(error_1);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
             }
         });
     });
 }
-// async function handleAddUser(){
-//     // @ts-ignore
-//     const {data} = await axios.add('/users/add-user')
-//     console.log(data)
-//     const {users} = data;
-//     console.log(users)
-//     if(users){
-//         renderUsers(users);
-//     }
-// }
-function renderUsers(users) {
-    var html = users.map(function (user) {
-        console.log(user);
-        return "<div>" + user.username + " \n        <input type='text' placeholder='role' value=\"" + user.role + "\" onblur='handleUpdate(event, \"" + user._id + "\")'/>\n        <button onclick='handleDelete(\"" + user._id + "\")'>DELETE</button>\n        </div>";
-    }).join('');
-    console.log(html);
-    var usersRoot = document.getElementById('users');
-    if (usersRoot) {
-        usersRoot.innerHTML = html;
+function handleDeleteUser(userId) {
+    return __awaiter(this, void 0, void 0, function () {
+        var data, error_2;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    return [4 /*yield*/, axios["delete"]("/users/user-delete", { data: { userId: userId } })];
+                case 1:
+                    data = (_a.sent()).data;
+                    if (!Array.isArray(data))
+                        throw new Error("data should be an array ant it is not");
+                    renderUser(data);
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_2 = _a.sent();
+                    console.error(error_2);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
+}
+function handleAddUser(e) {
+    return __awaiter(this, void 0, void 0, function () {
+        var name, data, error_3;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    e.preventDefault();
+                    name = e.target.elements.name.value;
+                    return [4 /*yield*/, axios.post("/users/user-add", { name: name })];
+                case 1:
+                    data = (_a.sent()).data;
+                    if (!Array.isArray(data))
+                        throw new Error("data should be an array ant it is not");
+                    renderUser(data);
+                    e.target.reset();
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_3 = _a.sent();
+                    console.error(error_3);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
+}
+function renderUser(users) {
+    try {
+        var root = document.querySelector("#root");
+        var html_1 = "";
+        users.forEach(function (user) {
+            html_1 += "\n          <div>\n           <p>" + user.name + "</p>\n           <button class=\"button\" onclick='handleDeleteUser(\"" + user.userId + "\")'>Delete</button>\n           </div>\n                  ";
+        });
+        root.innerHTML = html_1;
+    }
+    catch (error) {
+        console.error(error);
     }
 }

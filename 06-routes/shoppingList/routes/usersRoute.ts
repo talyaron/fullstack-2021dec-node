@@ -1,21 +1,12 @@
+
+
 import express from "express";
 const router = express.Router();
-import {getUsers} from '../cont/usersCont'
 
-router.get('/api/get-users',getUsers)
+import { initUsers, handleDeleteUser, handleAddUser } from "../cont/usersCont";
 
+router
+  .get("/user-get", initUsers)
+  .delete("/user-delete", handleDeleteUser)
+  .post("/user-add", handleAddUser)
 export default router;
-
-// import { User } from "../model/userModel";
-// {
-//   getUsers
-//   // addUser,
-//   // deleteUser,
-// }
-// from "../controlers/usersCont";
-
-// import {getUsers} from "../cont/usersCont"
-//   router.get('/api/get-users',getUsers)
-
-// export default router;
-
