@@ -1,6 +1,13 @@
-import { Item } from "../model/itemModel";
+// import { Item } from "../model/itemModel";
 
-let items: Array<Item> = [
+interface Item {
+  name: string,
+  itemId: string,
+  bought: boolean,
+  userId: string
+}
+
+export let items: Array<Item> = [
   {
     name: "Milk",
     itemId: "123MI",
@@ -27,7 +34,7 @@ let items: Array<Item> = [
   },
 
   {
-    name: "Milk",
+    name: "Sugar",
     itemId: "123BR",
     bought: false,
     userId: "abc",
@@ -50,6 +57,14 @@ export async function deleteItem(req, res) {
     
   } catch (error) {
     res.send({error: error.message})
+  }
+}
+
+export async function getItems(req, res) {
+  try {
+    res.send({items});
+  } catch (error) {
+    res.send({error: error.message});
   }
 }
 

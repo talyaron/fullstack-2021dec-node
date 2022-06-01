@@ -1,3 +1,5 @@
+import { User } from "../cont/usersCont";
+
 export interface Item {
   name: string;
   itemId: string;
@@ -21,17 +23,42 @@ function getUserId(): string | false {
   }
 }
 
-function getUserItems() {
-  const userId = getUserId();
-  
-  //axios
-  //render
+async function getUserItems() {
+  try {
+    const userId = getUserId();
+    //@ts-ignore
+    const { data } = await axios.get('/items/get-items');
+    const { items, error} = data;
+    const userItems = items.filter(item => item.userId === userId)
+    console.log(userItems);
+    renderUserItems(userItems)
+    if(error) throw new Error('Items was not found!');
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+async function getUser(){
+  try {
+    const userId = getUserId()
+    //@ts-ignore
+    const { data } = await axios.get('/users/get-users');
+    const { users, error} = data;
+    const findUser = users.find(user => user.userId === userId)
+    renderUserCart(findUser);
+    if(error) throw new Error('Could not get users');
+
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 async function handleDeleteItem(itemId: string) {
   try {
+    console.log('delete item clicked');
     //@ts-ignore
     const { data } = await axios.delete("/items/delete-item", { data: { itemId },});
+    console.log(data);
   } catch (error) {
     console.error(error);
   }
@@ -49,4 +76,21 @@ export function renderItems(ArrayofItems) {
      </div>`;
     wraper.appendChild(newItem);
   });
+}
+
+function renderUserCart(user: User) {
+  const userNameTitle = document.querySelector('#userCart');
+  userNameTitle.innerHTML = `${user.name}'s Shopping Cart`;
+}
+
+function renderUserItems(items: Array<Item>) {
+  const userItemsList = document.querySelector('#userItemsList');
+  items.forEach(item => {
+    userItemsList.innerHTML += `<li>${item.name}<button onclick="handleDeleteItem('${item.itemId}')">Delete Item</button></li> `
+  })
+}
+
+function handleLoadUserInfo(){
+  getUser();
+  getUserItems();
 }

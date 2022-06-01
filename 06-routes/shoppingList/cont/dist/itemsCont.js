@@ -1,4 +1,5 @@
 "use strict";
+// import { Item } from "../model/itemModel";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -36,8 +37,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.deleteItem = exports.HandleUpdateItem = void 0;
-var items = [
+exports.getItems = exports.deleteItem = exports.HandleUpdateItem = exports.items = void 0;
+exports.items = [
     {
         name: "Milk",
         itemId: "123MI",
@@ -45,7 +46,25 @@ var items = [
         userId: "abcd"
     },
     {
-        name: "Bread",
+        name: "tea",
+        itemId: "123MI",
+        bought: false,
+        userId: "abcd"
+    },
+    {
+        name: "bread",
+        itemId: "123MI",
+        bought: false,
+        userId: "abcd"
+    },
+    {
+        name: "flower",
+        itemId: "123MI",
+        bought: false,
+        userId: "abcd"
+    },
+    {
+        name: "Sugar",
         itemId: "123BR",
         bought: false,
         userId: "abc"
@@ -72,8 +91,8 @@ function deleteItem(req, res) {
             try {
                 itemId_1 = req.body.itemId;
                 console.log(itemId_1);
-                items = items.filter(function (item) { return item.itemId !== itemId_1; });
-                res.send({ items: items });
+                exports.items = exports.items.filter(function (item) { return item.itemId !== itemId_1; });
+                res.send({ items: exports.items });
             }
             catch (error) {
                 res.send({ error: error.message });
@@ -83,3 +102,17 @@ function deleteItem(req, res) {
     });
 }
 exports.deleteItem = deleteItem;
+function getItems(req, res) {
+    return __awaiter(this, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            try {
+                res.send({ items: exports.items });
+            }
+            catch (error) {
+                res.send({ error: error.message });
+            }
+            return [2 /*return*/];
+        });
+    });
+}
+exports.getItems = getItems;
