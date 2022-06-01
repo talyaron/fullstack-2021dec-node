@@ -20,13 +20,14 @@ export const initUsers = (req, res) => {
 
 export const handleDeleteUser = (req, res) => {
   try {
-    const { userID } = req.body;
+    const { userId } = req.body;
+	console.log('userId', userId)
 
-    const index: number = users.findIndex((user) => user.userId === userID);
+    const index: number = users.findIndex((user) => user.userId === userId);
     if (index === -1) throw new Error("user not found");
 
-    users = users.filter((user) => user.userId !== userID);
-
+    users = users.filter((user) => user.userId !== userId);
+console.log('users', users)
     res.send(users);
   } catch (error) {
     res.send({ error: error.message });

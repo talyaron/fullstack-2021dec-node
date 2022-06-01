@@ -59,18 +59,19 @@ function initUsers() {
         });
     });
 }
-function handleDeleteUser(userID) {
+function handleDeleteUser(userId) {
     return __awaiter(this, void 0, void 0, function () {
         var data, error_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, axios.post("/users/user-delete", { userID: userID })];
+                    return [4 /*yield*/, axios["delete"]("/users/user-delete", { data: { userId: userId } })];
                 case 1:
                     data = (_a.sent()).data;
+                    if (!Array.isArray(data))
+                        throw new Error("data should be an array ant it is not");
                     renderUser(data);
-                    console.log(data);
                     return [3 /*break*/, 3];
                 case 2:
                     error_2 = _a.sent();
@@ -93,7 +94,8 @@ function handleAddUser(e) {
                     return [4 /*yield*/, axios.post("/users/user-add", { name: name })];
                 case 1:
                     data = (_a.sent()).data;
-                    console.log(data);
+                    if (!Array.isArray(data))
+                        throw new Error("data should be an array ant it is not");
                     renderUser(data);
                     e.target.reset();
                     return [3 /*break*/, 3];

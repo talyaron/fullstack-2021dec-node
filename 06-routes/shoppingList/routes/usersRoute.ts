@@ -7,6 +7,6 @@ import { initUsers, handleDeleteUser, handleAddUser } from "../cont/usersCont";
 
 router
   .get("/user-get", initUsers)
-  .post("/user-delete", handleDeleteUser)
+  .delete("/user-delete", handleDeleteUser)
   .post("/user-add", handleAddUser)
 export default router;
