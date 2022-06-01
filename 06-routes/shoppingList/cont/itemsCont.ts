@@ -1,11 +1,4 @@
-// import { Item } from "../model/itemModel";
-
-export interface Item{
-    name:string;
-    itemId:string;
-    bought:boolean;
-    userId:string;
-};
+import { Item } from '../model/itemModel'
 
 const items:Array<Item> = [
     {
@@ -21,3 +14,11 @@ const items:Array<Item> = [
         userId: 'abc'
     }
 ];
+export async function HandleUpdateItem(req, res){
+try {
+    const {name} = req.body
+    console.log(name)
+} catch (error) {
+    
+}
+}

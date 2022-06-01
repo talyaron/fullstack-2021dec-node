@@ -6,8 +6,8 @@ app.use(express.static("public"));
 app.use(express.json());
 
 
-
-
+import updateItem from "./routes/itemsRoute"
+app.use("/items",updateItem)
 
 
 app.listen(port, () => {
