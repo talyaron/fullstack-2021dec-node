@@ -7,7 +7,7 @@ export interface Item {
   userId: string;
 }
 
-function getUserId(): string | false {
+export function getUserId(): string | false {
   try {
     const queryString = window.location.search;
     console.log(queryString);
@@ -23,16 +23,15 @@ function getUserId(): string | false {
   }
 }
 
-async function getUserItems() {
+export async function getUserItems() {
   try {
     const userId = getUserId();
     //@ts-ignore
     const { data } = await axios.get('/items/get-items');
     const { items, error} = data;
     const userItems = items.filter(item => item.userId === userId)
-    console.log(userItems);
     renderItems(userItems)
-    // renderUserItems(userItems)
+
     if(error) throw new Error('Items was not found!');
   } catch (error) {
     console.error(error)
@@ -46,6 +45,7 @@ async function getUser(){
     const { data } = await axios.get('/users/get-users');
     const { users, error} = data;
     const findUser = users.find(user => user.userId === userId)
+    console.log(findUser);
     renderUserCart(findUser);
     if(error) throw new Error('Could not get users');
 
@@ -54,12 +54,14 @@ async function getUser(){
   }
 }
 
-async function handleDeleteItem(itemId: string) {
+async function handleDeleteItem(itemId: string, userId:string) {
   try {
     console.log('delete item clicked');
     //@ts-ignore
-    const { data } = await axios.delete("/items/delete-item", { data: { itemId },});
+    const { data } = await axios.delete("/items/delete-item", { data: { itemId , userId}});
     console.log(data);
+    const {items, error} = data;
+    renderItems(items);
   } catch (error) {
     console.error(error);
   }
@@ -67,13 +69,14 @@ async function handleDeleteItem(itemId: string) {
 
 export function renderItems(ArrayofItems: Array<Item>) {
   const wraper = document.querySelector(".wraper");
+  wraper.innerHTML = '';
   ArrayofItems.forEach((item) => {
     const newItem = document.createElement("div");
     newItem.innerHTML = ` <div>
          <h4 style="display: inline;">${item.name}</h4>
          <input type="checkbox">
          <button>edit</button>
-         <button>delete</button>
+         <button onclick="handleDeleteItem('${item.itemId}', '${item.userId}')">delete</button>
      </div>`;
     wraper.appendChild(newItem);
   });

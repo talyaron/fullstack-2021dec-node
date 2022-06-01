@@ -47,25 +47,25 @@ exports.items = [
     },
     {
         name: "tea",
-        itemId: "123MI",
+        itemId: "123TE",
         bought: false,
         userId: "abcd"
     },
     {
         name: "bread",
-        itemId: "123MI",
+        itemId: "123BR",
         bought: false,
         userId: "abcd"
     },
     {
         name: "flower",
-        itemId: "123MI",
+        itemId: "123FR",
         bought: false,
         userId: "abcd"
     },
     {
         name: "Sugar",
-        itemId: "123BR",
+        itemId: "123SU",
         bought: false,
         userId: "abc"
     },
@@ -86,12 +86,12 @@ function HandleUpdateItem(req, res) {
 exports.HandleUpdateItem = HandleUpdateItem;
 function deleteItem(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var itemId_1;
-        return __generator(this, function (_a) {
+        var _a, itemId_1, userId_1;
+        return __generator(this, function (_b) {
             try {
-                itemId_1 = req.body.itemId;
+                _a = req.body, itemId_1 = _a.itemId, userId_1 = _a.userId;
                 console.log(itemId_1);
-                exports.items = exports.items.filter(function (item) { return item.itemId !== itemId_1; });
+                exports.items = exports.items.filter(function (item) { return item.itemId !== itemId_1 && userId_1 === item.userId; });
                 console.log(exports.items);
                 res.send({ items: exports.items });
             }

@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.renderItems = void 0;
+exports.renderItems = exports.getUserItems = exports.getUserId = void 0;
 function getUserId() {
     try {
         var queryString = window.location.search;
@@ -51,6 +51,7 @@ function getUserId() {
         return false;
     }
 }
+exports.getUserId = getUserId;
 function getUserItems() {
     return __awaiter(this, void 0, void 0, function () {
         var userId_1, data, items, error, userItems, error_1;
@@ -64,9 +65,7 @@ function getUserItems() {
                     data = (_a.sent()).data;
                     items = data.items, error = data.error;
                     userItems = items.filter(function (item) { return item.userId === userId_1; });
-                    console.log(userItems);
                     renderItems(userItems);
-                    // renderUserItems(userItems)
                     if (error)
                         throw new Error('Items was not found!');
                     return [3 /*break*/, 3];
@@ -79,6 +78,7 @@ function getUserItems() {
         });
     });
 }
+exports.getUserItems = getUserItems;
 function getUser() {
     return __awaiter(this, void 0, void 0, function () {
         var userId_2, data, users, error, findUser, error_2;
@@ -92,6 +92,7 @@ function getUser() {
                     data = (_a.sent()).data;
                     users = data.users, error = data.error;
                     findUser = users.find(function (user) { return user.userId === userId_2; });
+                    console.log(findUser);
                     renderUserCart(findUser);
                     if (error)
                         throw new Error('Could not get users');
@@ -105,18 +106,20 @@ function getUser() {
         });
     });
 }
-function handleDeleteItem(itemId) {
+function handleDeleteItem(itemId, userId) {
     return __awaiter(this, void 0, void 0, function () {
-        var data, error_3;
+        var data, items, error, error_3;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
                     console.log('delete item clicked');
-                    return [4 /*yield*/, axios["delete"]("/items/delete-item", { data: { itemId: itemId } })];
+                    return [4 /*yield*/, axios["delete"]("/items/delete-item", { data: { itemId: itemId, userId: userId } })];
                 case 1:
                     data = (_a.sent()).data;
                     console.log(data);
+                    items = data.items, error = data.error;
+                    renderItems(items);
                     return [3 /*break*/, 3];
                 case 2:
                     error_3 = _a.sent();
@@ -129,9 +132,10 @@ function handleDeleteItem(itemId) {
 }
 function renderItems(ArrayofItems) {
     var wraper = document.querySelector(".wraper");
+    wraper.innerHTML = '';
     ArrayofItems.forEach(function (item) {
         var newItem = document.createElement("div");
-        newItem.innerHTML = " <div>\n         <h4 style=\"display: inline;\">" + item.name + "</h4>\n         <input type=\"checkbox\">\n         <button>edit</button>\n         <button>delete</button>\n     </div>";
+        newItem.innerHTML = " <div>\n         <h4 style=\"display: inline;\">" + item.name + "</h4>\n         <input type=\"checkbox\">\n         <button>edit</button>\n         <button onclick=\"handleDeleteItem('" + item.itemId + "', '" + item.userId + "')\">delete</button>\n     </div>";
         wraper.appendChild(newItem);
     });
 }
