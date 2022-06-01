@@ -21,3 +21,13 @@ export async function HandleUpdateItem(req, res) {
     console.log(name);
   } catch (error) {}
 }
+
+export async function deleteItem(req, res) {
+  try {
+    const { itemId } = req.body;
+    console.log(itemId);
+  } catch (error) {
+    res.send({error: error.message})
+  }
+}
+

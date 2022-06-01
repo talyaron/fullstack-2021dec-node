@@ -16,6 +16,19 @@ function handleGetUser() {
     console.log(userId);
 }
 
+async function handleDeleteItem(itemId: string){
+    try {
+        console.log('Delete Button Clicked');
+        console.log(itemId);
+        //@ts-ignore
+        const { data } = await axios.delete("/items/item-delete", {data:{ userId }});
+        console.log(data);
+
+    } catch (error) {
+        console.error({error: error.message});
+    }
+}
+
 export function renderItems (ArrayofItems){
     const wraper= document.querySelector(".wraper")
      ArrayofItems.forEach(element => {
