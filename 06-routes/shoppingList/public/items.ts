@@ -16,6 +16,14 @@ function handleGetUser() {
     console.log(userId);
 }
 
+function getUserItems(){
+    try {
+        
+    } catch (error) {
+        
+    }
+}
+
 export function renderItems (ArrayofItems){
     const wraper= document.querySelector(".wraper")
      ArrayofItems.forEach(element => {
