@@ -11,4 +11,4 @@ router
   .patch("/reset-game", resetGame)
   .post("/next-turn", nextTurn)
 
-export default router;
+export {router};

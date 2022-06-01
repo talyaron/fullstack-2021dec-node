@@ -14,7 +14,7 @@ server.listen(3000, () => {
 app.use(express.json());
 app.use(express.static('public'));
 
-import router from "./routes/squareRoutes";
+import {router} from "./routes/squareRoutes";
 app.use("/squres", router)
 
 
