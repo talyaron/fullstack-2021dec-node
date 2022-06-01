@@ -27,6 +27,17 @@ function getUserItems() {
   //render
 }
 
+async function handleDeleteItem(itemId: string) {
+  try {
+    
+    
+    const { data } = await axios.delete("/items/delete-item", {
+      data: { itemId },
+    });
+  } catch (error) {
+    console.error(error);
+  }
+}
 
 export function renderItems(ArrayofItems) {
   const wraper = document.querySelector(".wraper");
