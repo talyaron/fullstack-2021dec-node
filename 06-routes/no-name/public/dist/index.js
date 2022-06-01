@@ -34,10 +34,9 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-console.log('loading');
 function initUsers() {
     return __awaiter(this, void 0, void 0, function () {
-        var data, error_1;
+        var data, users, error, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -45,8 +44,9 @@ function initUsers() {
                     return [4 /*yield*/, axios.get("/users/user-get")];
                 case 1:
                     data = (_a.sent()).data;
-                    // const { users, error } = data;
-                    // if (error) throw new Error(error);
+                    users = data.users, error = data.error;
+                    if (error)
+                        throw new Error(error);
                     console.log(data);
                     renderUser(data);
                     return [3 /*break*/, 3];
@@ -59,19 +59,18 @@ function initUsers() {
         });
     });
 }
-function handleDeleteUser(userId) {
+function handleDeleteUser(userID) {
     return __awaiter(this, void 0, void 0, function () {
         var data, error_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, axios["delete"]("/users/user-delete", { data: { userId: userId } })];
+                    return [4 /*yield*/, axios.post("/users/user-delete", { userID: userID })];
                 case 1:
                     data = (_a.sent()).data;
-                    if (!Array.isArray(data))
-                        throw new Error("data should be an array ant it is not");
                     renderUser(data);
+                    console.log(data);
                     return [3 /*break*/, 3];
                 case 2:
                     error_2 = _a.sent();
@@ -82,6 +81,7 @@ function handleDeleteUser(userId) {
         });
     });
 }
+;
 function handleAddUser(e) {
     return __awaiter(this, void 0, void 0, function () {
         var name, data, error_3;
@@ -94,8 +94,7 @@ function handleAddUser(e) {
                     return [4 /*yield*/, axios.post("/users/user-add", { name: name })];
                 case 1:
                     data = (_a.sent()).data;
-                    if (!Array.isArray(data))
-                        throw new Error("data should be an array ant it is not");
+                    console.log(data);
                     renderUser(data);
                     e.target.reset();
                     return [3 /*break*/, 3];

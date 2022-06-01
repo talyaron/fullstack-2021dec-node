@@ -1,11 +1,11 @@
-console.log('loading');
 
 async function initUsers() {
   try {
     // @ts-ignore
     const { data } = await axios.get("/users/user-get");
-    // const { users, error } = data;
-    // if (error) throw new Error(error);
+
+    const { users, error } = data;
+    if (error) throw new Error(error);
     console.log(data);
     renderUser(data);
   } catch (error) {
@@ -13,20 +13,20 @@ async function initUsers() {
   }
 }
 
-async function handleDeleteUser(userId: string) {
+
+async function handleDeleteUser(userID: string) {
   try {
-    
     // @ts-ignore
-    const { data } = await axios.delete("/users/user-delete", {data:{ userId }});
-  
-    if(!Array.isArray(data)) throw new Error("data should be an array ant it is not")
+    const { data } = await axios.post("/users/user-delete", { userID });
+
     renderUser(data);
 
-
+    console.log(data);
   } catch (error) {
     console.error(error);
   }
-}
+};
+
 
 async function handleAddUser(e) {
   try {
@@ -34,13 +34,14 @@ async function handleAddUser(e) {
     const name = e.target.elements.name.value;
     // @ts-ignore
     const { data } = await axios.post("/users/user-add", { name });
-    if(!Array.isArray(data)) throw new Error("data should be an array ant it is not")
+    console.log(data);
     renderUser(data);
     e.target.reset();
   } catch (error) {
     console.error(error);
   }
 }
+
 
 function renderUser(users) {
   try {

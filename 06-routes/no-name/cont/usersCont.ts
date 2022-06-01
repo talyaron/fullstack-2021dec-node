@@ -1,3 +1,4 @@
+
 import uid from "../helpers";
 
 export interface User {
@@ -20,26 +21,27 @@ export const initUsers = (req, res) => {
 
 export const handleDeleteUser = (req, res) => {
   try {
-    const { userId } = req.body;
-	console.log('userId', userId)
+    const { userID } = req.body;
 
-    const index: number = users.findIndex((user) => user.userId === userId);
+    const index: number = users.findIndex((user) => user.userId === userID);
     if (index === -1) throw new Error("user not found");
 
-    users = users.filter((user) => user.userId !== userId);
-console.log('users', users)
+    users = users.filter((user) => user.userId !== userID);
+
     res.send(users);
   } catch (error) {
     res.send({ error: error.message });
   }
 };
 
+
 export const handleAddUser = (req, res) => {
   const { name } = req.body;
-  // console.log(req.body);
+  console.log(req.body);
   if (!name) throw new Error("name is required");
 
   const user: User = { name, userId: uid() };
   users.push(user);
   res.send(users);
 };
+
