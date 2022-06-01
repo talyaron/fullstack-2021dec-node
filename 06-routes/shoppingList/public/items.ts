@@ -5,7 +5,7 @@ export interface Item {
   userId: string;
 }
 
-function getUserId():string| false {
+function getUserId(): string | false {
   try {
     const queryString = window.location.search;
     console.log(queryString);
@@ -17,52 +17,22 @@ function getUserId():string| false {
     return userId;
   } catch (error) {
     console.error(error);
-    return false
+    return false;
   }
 }
 
-}
-  } catch (error) {}
-    }
-        
-        throw new Error("No user Id");
-    } else {
-
-
-
-    if(userId){
-  try {
 function getUserItems() {
-    const userId = getUserId();
-        //axios
-        //render
+  const userId = getUserId();
+  //axios
+  //render
+}
+
+
 export function renderItems(ArrayofItems) {
   const wraper = document.querySelector(".wraper");
   ArrayofItems.forEach((element) => {
     const newItem = document.createElement("div");
     newItem.innerHTML = ` <div>
-async function handleDeleteItem(itemId: string){
-    }
-}
-        console.error(error);
-    } catch (error) {
-        
-        console.log(data);
-        const { data } = await axios.delete("/items/delete-item", {data:{ itemId }});
-        //@ts-ignore
-    try {
-        console.log(itemId);
-
-function handleGetUser() {
-    const userId = getUserId();
-    if(userId){
-}
-
-    }
-        //render
-
-        //axios
-
          <H4>${element.name}</H4>
          <input type="checkbox">
          <button>edit</button>
