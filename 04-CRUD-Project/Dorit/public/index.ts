@@ -186,6 +186,7 @@ async function CheckName(event){
         const { myRecipe,error} = data;
         if (error) throw new Error(error);
         renderRecipeForUpdate(myRecipe)
+       console.log(myRecipe)
 
     } catch (error) {
         console.error(error);
@@ -194,33 +195,52 @@ async function CheckName(event){
 
 
 function renderRecipeForUpdate(myRecipe:Recipe){
-        console.log("renderRecipeForUnpdate")
-        console.log(`fullRecipe from server:${myRecipe['ingredients']}`)
-        console.log(`fullRecipe from server:${myRecipe['prepareMode']}`)
-        let forms:HTMLElement = document.querySelector("#forms");
-        let html=""
-        html=`<div id="name" color="red">${myRecipe.name}</div>`
-        html+=`===================================`
-        html+=`<div id="ing" color="red">Ingredients</div>`
-        html+=`===================================`
-        html+=`<br>`
-        const ingNo=myRecipe.ingredients.length
-        for(let i:number=0;i<ingNo;i++){
-        html+=`<input type="text" name="ingredients" value="${myRecipe.ingredients[i]}"><br>`
-        html+=`===================================`
-        html+=`<br>`
-        html+=`<div id="pre" color="red">Prepare Mode</div>`
-        html+=`===================================`
-        html+=`<br>`
-        const preNo=myRecipe.prepareMode.length
-        for(let j:number=0;j<preNo;j++){
-            html+=`<input type="textarea" name="prepareMode" value="${myRecipe.prepareMode[j]}"><br>`
+    console.log("renderRecipeForUnpdate")
+    console.log(`fullRecipe from server:${myRecipe['ingredients']}`)
+    console.log(`fullRecipe from server:${myRecipe['prepareMode']}`)
+    let forms:HTMLElement = document.querySelector("#forms");
+    let root:HTMLElement = document.querySelector("#root");
+    if(forms) forms.remove()
+    let frm1:string=""
+    let frm2:string=""
+    const ingNo=myRecipe.ingredients.length
+    const preNo=myRecipe.prepareMode.length
+    frm1=`<form onsubmit="handleIng(event)">`  
+    for(let i:number=0;i<ingNo;i++){
+        frm1+=`<input type="text" name="ingredients" value="${myRecipe.ingredients[i]}"><br>`
         }
-        forms.innerHTML=html
-        forms.style.position="absolute"
-        forms.style.top="150px"
-        forms.style.left="340px"
-        forms.style.border="1px solid black"
-        forms.style.backgroundColor="yellow"
-}   
+    frm1+=`<button type="submit">update Ingredients</button>`    
+    frm1+=`</form>`   
+    for(let j:number=0;j<preNo;j++){
+        frm2+=`<input type="textarea" name="prepareMode" value="${myRecipe.prepareMode[j]}"><br>`
+    }
+      
+    
+    let html=""
+    html=`<div id="name" color="red">${myRecipe.name}</div>`
+    html+=`===================================`
+    html+=`<div id="ing" color="red">Ingredients</div>`
+    html+=`===================================`
+    html+=`<br>`
+    html+=frm1
+    let frm3:string=""
+    frm3+=`===================================`
+    frm3+=`<br>`
+    frm3+=`<div id="pre" color="red">Prepare Mode</div>`
+    frm3+=`===================================`
+    frm3+=`<br>`
+    html+=frm3
+      
+    root.innerHTML=html
+    root.style.position="absolute"
+    root.style.top="150px"
+    root.style.left="340px"
+    root.style.border="1px solid black"
+    root.style.backgroundColor="yellow"
+} 
+
+function handleIng(event){
+    event.preventDefault()
+    console.log("handleIng")
+}
 

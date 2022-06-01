@@ -213,6 +213,7 @@ function CheckName(event) {
                     if (error)
                         throw new Error(error);
                     renderRecipeForUpdate(myRecipe);
+                    console.log(myRecipe);
                     return [3 /*break*/, 4];
                 case 3:
                     error_3 = _a.sent();
@@ -228,30 +229,44 @@ function renderRecipeForUpdate(myRecipe) {
     console.log("fullRecipe from server:" + myRecipe['ingredients']);
     console.log("fullRecipe from server:" + myRecipe['prepareMode']);
     var forms = document.querySelector("#forms");
+    var root = document.querySelector("#root");
+    if (forms)
+        forms.remove();
+    var frm1 = "";
+    var frm2 = "";
+    var ingNo = myRecipe.ingredients.length;
+    var preNo = myRecipe.prepareMode.length;
+    frm1 = "<form onsubmit=\"handleIng(event)\">";
+    for (var i = 0; i < ingNo; i++) {
+        frm1 += "<input type=\"text\" name=\"ingredients\" value=\"" + myRecipe.ingredients[i] + "\"><br>";
+    }
+    frm1 += "<button type=\"submit\">update Ingredients</button>";
+    frm1 += "</form>";
+    for (var j = 0; j < preNo; j++) {
+        frm2 += "<input type=\"textarea\" name=\"prepareMode\" value=\"" + myRecipe.prepareMode[j] + "\"><br>";
+    }
     var html = "";
     html = "<div id=\"name\" color=\"red\">" + myRecipe.name + "</div>";
     html += "===================================";
     html += "<div id=\"ing\" color=\"red\">Ingredients</div>";
     html += "===================================";
     html += "<br>";
-    var ingNo = myRecipe.ingredients.length;
-    for (var i = 0; i < ingNo; i++) {
-        html += "<textarea id=\"ing\" name=\"ing\">\n            $\"{" + myRecipe.ingredients[i] + "\"\n            </textarea>";
-    }
-    //html+=`<input type="textarea" name="ingredients" value="${myRecipe.ingredients[i]}"><br>`
-    html += "===================================";
-    html += "<br>";
-    html += "<div id=\"pre\" color=\"red\">Prepare Mode</div>";
-    html += "===================================";
-    html += "<br>";
-    var preNo = myRecipe.prepareMode.length;
-    for (var j = 0; j < preNo; j++) {
-        html += "<input type=\"textarea\" name=\"prepareMode\" value=\"" + myRecipe.prepareMode[j] + "\"><br>";
-    }
-    forms.innerHTML = html;
-    forms.style.position = "absolute";
-    forms.style.top = "150px";
-    forms.style.left = "340px";
-    forms.style.border = "1px solid black";
-    forms.style.backgroundColor = "yellow";
+    html += frm1;
+    var frm3 = "";
+    frm3 += "===================================";
+    frm3 += "<br>";
+    frm3 += "<div id=\"pre\" color=\"red\">Prepare Mode</div>";
+    frm3 += "===================================";
+    frm3 += "<br>";
+    html += frm3;
+    root.innerHTML = html;
+    root.style.position = "absolute";
+    root.style.top = "150px";
+    root.style.left = "340px";
+    root.style.border = "1px solid black";
+    root.style.backgroundColor = "yellow";
+}
+function handleIng(event) {
+    event.preventDefault();
+    console.log("handleIng");
 }
