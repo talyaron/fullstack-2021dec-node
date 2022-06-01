@@ -12,29 +12,9 @@ let users: Array < user > = [];
 interface user {
     userName: string,
         email: string,
-        uniqID: string,
+        uniqID: string ,
         permissions: any
 }
-
-app.get('/api/users', (req, res) => {
-
-    const {
-        userName,
-        email,
-        uniqID,
-        permissions
-    } = req.body;
-    if (!userName)
-        throw new Error("User name is required");
-    if (!email)
-        throw new Error("Email is required");
-    if (!uniqID)
-        throw new Error("uniqID is required");
-    if (!permissions)
-        throw new Error("Permissions are required");
-
-    res.send(users)
-})
 
 
 app.post('/api/add-user', (req, res) => {
@@ -44,12 +24,6 @@ app.post('/api/add-user', (req, res) => {
             email,
             permissions
         } = req.body;
-        if (!userName)
-            throw new Error("User name is required");
-        if (!email)
-            throw new Error("Email is required");
-        if (!permissions)
-            throw new Error("Permissions are required");
 
         const user: user = {
             userName,
@@ -72,26 +46,14 @@ app.post('/api/add-user', (req, res) => {
     }
 })
 
-app.put('/api/update-user', (req, res) => {
+app.patch('/api/update-user', (req, res) => {
     try {
-        const {
-            userName,
-            email,
-            uniqID,
-            permissions
-        } = req.body;
-        if (!userName)
-            throw new Error("User name is required");
-        if (!email)
-            throw new Error("Email is required");
-        if (!permissions)
-            throw new Error("Permissions are required");
 
         const userIndex = users.findIndex(user => user.uniqID === uniqID);
         if (userIndex === -1)
             throw new Error("user not found");
 
-        users[userIndex].userName = userName;
+        users[userIndex].userName = user.userName;
         users[userIndex].email = email;
         users[userIndex].permissions = permissions;
 
@@ -105,6 +67,19 @@ app.put('/api/update-user', (req, res) => {
         });
     }
 });
+
+async function getAllUsers(req, res) {
+	try {
+		res.send({ users });
+	} catch (error) {
+        console.log('Users array not valid')
+    }
+}
+
+const updateUser = async (req, res) => {
+	try {
+	} catch (error) {}
+};
 
 // UUid function
 const uid = function () {
