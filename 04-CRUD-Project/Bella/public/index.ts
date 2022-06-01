@@ -78,37 +78,25 @@ async function handleEditUser(ev: any, uniqID: string) {
 
         const tr: any = document.querySelectorAll("tr");
         const td: any = document.querySelectorAll("td");
-        const email: any = document.querySelector(".email");
-        console.dir(tr);
 
-        for (let i = 0; i < tr.length; i++) {
-            if ([i] == tr.cells.email) {
+            if (td.classList.contains(".cell")) {
                 td.setAttribute("contenteditable", "true");
-            }
-        }
+            };
+        
+        const {
+            data
+        } = await axios.patch('/api/update-user', {
+            uniqID
+        });
 
-        // tr.forEach(ele => {
-        //     if (tr.classList.contains("email")) {
-        //         ele.setAttribute("contenteditable", "true");
-        //     }
-        // });
-        // const {
-        //     data
-        // } = await axios.put('/api/update-user', {
-        //     uniqID,
-        //     userName,
-        //     email,
-        //     permissions
-        // });
+        const {
+            users,
+            error
+        } = data;
+        if (error)
+            throw new Error(error);
 
-        // const {
-        //     users,
-        //     error
-        // } = data;
-        // if (error)
-        //     throw new Error(error);
-
-        // renderData(users);
+        renderData(users);
 
     } catch (error) {
         console.error(error);
@@ -123,11 +111,11 @@ function renderData(users: Array < user > ) {
         html +=
             `<tr id ='tr-${user.uniqID}'>
       <td class="cell">${user.userName}</td>
-      <td class="email">${user.email}</td>
-      <td class="cell">${user.uniqID}</td>
+      <td class="cell">${user.email}</td>
+      <td>${user.uniqID}</td>
       <td class="cell">${user.permissions}</td>
-      <td class="cell"" onclick="handleDeleteUser('${user.uniqID}')">Delete</td>
-      <td class="cell" id="editButton" onclick="handleEditUser(event, '${user.uniqID}')">Edit</td>
+      <td onclick="handleDeleteUser('${user.uniqID}')">Delete</td>
+      <td onclick="handleEditUser(event, '${user.uniqID}')">Edit</td>
     </tr>`;
     });
 

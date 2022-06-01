@@ -101,43 +101,33 @@ function handleAddUser(ev) {
 ;
 function handleEditUser(ev, uniqID) {
     return __awaiter(this, void 0, void 0, function () {
-        var tr, td, email, i;
+        var tr, td, data, users, error, error_2;
         return __generator(this, function (_a) {
-            try {
-                tr = document.querySelectorAll("tr");
-                td = document.querySelectorAll("td");
-                email = document.querySelector(".email");
-                console.dir(tr);
-                for (i = 0; i < tr.length; i++) {
-                    if ([i] == tr.cells.email) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    tr = document.querySelectorAll("tr");
+                    td = document.querySelectorAll("td");
+                    if (td.classList.contains(".cell")) {
                         td.setAttribute("contenteditable", "true");
                     }
-                }
-                // tr.forEach(ele => {
-                //     if (tr.classList.contains("email")) {
-                //         ele.setAttribute("contenteditable", "true");
-                //     }
-                // });
-                // const {
-                //     data
-                // } = await axios.put('/api/update-user', {
-                //     uniqID,
-                //     userName,
-                //     email,
-                //     permissions
-                // });
-                // const {
-                //     users,
-                //     error
-                // } = data;
-                // if (error)
-                //     throw new Error(error);
-                // renderData(users);
+                    ;
+                    return [4 /*yield*/, axios.patch('/api/update-user', {
+                            uniqID: uniqID
+                        })];
+                case 1:
+                    data = (_a.sent()).data;
+                    users = data.users, error = data.error;
+                    if (error)
+                        throw new Error(error);
+                    renderData(users);
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_2 = _a.sent();
+                    console.error(error_2);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
             }
-            catch (error) {
-                console.error(error);
-            }
-            return [2 /*return*/];
         });
     });
 }
@@ -146,7 +136,7 @@ function renderData(users) {
     var html = "";
     users.forEach(function (user) {
         html +=
-            "<tr id ='tr-" + user.uniqID + "'>\n      <td class=\"cell\">" + user.userName + "</td>\n      <td class=\"email\">" + user.email + "</td>\n      <td class=\"cell\">" + user.uniqID + "</td>\n      <td class=\"cell\">" + user.permissions + "</td>\n      <td class=\"cell\"\" onclick=\"handleDeleteUser('" + user.uniqID + "')\">Delete</td>\n      <td class=\"cell\" id=\"editButton\" onclick=\"handleEditUser(event, '" + user.uniqID + "')\">Edit</td>\n    </tr>";
+            "<tr id ='tr-" + user.uniqID + "'>\n      <td class=\"cell\">" + user.userName + "</td>\n      <td class=\"cell\">" + user.email + "</td>\n      <td>" + user.uniqID + "</td>\n      <td class=\"cell\">" + user.permissions + "</td>\n      <td onclick=\"handleDeleteUser('" + user.uniqID + "')\">Delete</td>\n      <td onclick=\"handleEditUser(event, '" + user.uniqID + "')\">Edit</td>\n    </tr>";
     });
     usersTable.innerHTML = html;
 }
