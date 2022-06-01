@@ -14,6 +14,7 @@ const items: Array<Item> = [
     userId: "abc",
   },
 ];
+
 export async function HandleUpdateItem(req, res) {
   try {
     const { name } = req.body;
