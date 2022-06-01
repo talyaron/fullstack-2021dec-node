@@ -23,8 +23,16 @@ function getUserId(): string | false {
 
 function getUserItems() {
   const userId = getUserId();
+  console.log(userId)
   //axios
   //render
+}
+function handleLoad(){
+    try {
+        getUserItems()
+    } catch (error) {
+    console.error(error);
+    }
 }
 
 async function handleDeleteItem(itemId: string) {
