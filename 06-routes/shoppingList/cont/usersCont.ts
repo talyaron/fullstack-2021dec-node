@@ -10,17 +10,16 @@ let users: Array<User> = [
   { name: "Rayu", userId: uid() },
 ];
 
-
 export const handleDeleteUser = (req, res) => {
   try {
     const { userId } = req.body;
-	console.log('userId', userId)
+    console.log("userId", userId);
 
     const index: number = users.findIndex((user) => user.userId === userId);
     if (index === -1) throw new Error("user not found");
 
     users = users.filter((user) => user.userId !== userId);
-console.log('users', users)
+    console.log("users", users);
     res.send(users);
   } catch (error) {
     res.send({ error: error.message });
@@ -38,13 +37,15 @@ export const handleAddUser = (req, res) => {
 };
 
 export async function getAllUsers(req, res) {
-	try {
-		res.send({ usersArr });
-	} catch (error) {
-        console.log('Users array not valid')
-    }
+  try {
+    res.send({ users });
+  } catch (error) {
+    console.log("Users array not valid");
+  }
 }
 export const updateUser = async (req, res) => {
-	try {
-	} catch (error) {}
+  try {
+    const { userId, newName } = req.body;
+    // TODO: finish function
+  } catch (error) {}
 };

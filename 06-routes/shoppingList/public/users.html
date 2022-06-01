@@ -12,7 +12,7 @@
     <title>users</title>
 </head>
 
-<body onload="initUsers()">
+<body onload="handleGetUsers()">
 
     <form onsubmit="handleAddUser(event)">
         <input type="text" name="name" placeholder="Name" required>
@@ -20,6 +20,7 @@
     </form>
 
     <div id="root"></div>
+
     <script src="./dist/users.js"></script>
 </body>
 
