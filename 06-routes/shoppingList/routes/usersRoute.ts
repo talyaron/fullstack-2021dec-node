@@ -1,12 +1,13 @@
-
-
 import express from "express";
 const router = express.Router();
+import {
+  getAllUsers,
+  updateUser,
+} from "../cont/usersCont";
 
-import { initUsers, handleDeleteUser, handleAddUser } from "../cont/usersCont";
-
+  .get("/get-users", getAllUsers)
+  .patch("/update-user", updateUser)
 router
-  .get("/user-get", initUsers)
+export default router;
   .delete("/user-delete", handleDeleteUser)
   .post("/user-add", handleAddUser)
-export default router;

@@ -10,13 +10,6 @@ let users: Array<User> = [
   { name: "Rayu", userId: uid() },
 ];
 
-export const initUsers = (req, res) => {
-  try {
-    res.send(users);
-  } catch (error) {
-    res.send({ error: error.message });
-  }
-};
 
 export const handleDeleteUser = (req, res) => {
   try {
@@ -42,4 +35,16 @@ export const handleAddUser = (req, res) => {
   const user: User = { name, userId: uid() };
   users.push(user);
   res.send(users);
+};
+
+export async function getAllUsers(req, res) {
+	try {
+		res.send({ usersArr });
+	} catch (error) {
+        console.log('Users array not valid')
+    }
+}
+export const updateUser = async (req, res) => {
+	try {
+	} catch (error) {}
 };
