@@ -36,17 +36,20 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 function handleDeleteUser(userId) {
     return __awaiter(this, void 0, void 0, function () {
-        var data, error_1;
+        var data, users, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
+                    console.log(userId);
                     return [4 /*yield*/, axios["delete"]("/users/user-delete", { data: { userId: userId } })];
                 case 1:
                     data = (_a.sent()).data;
-                    if (!Array.isArray(data))
-                        throw new Error("data should be an array ant it is not");
-                    renderUsers(data);
+                    console.log(data);
+                    users = data.users;
+                    if (!Array.isArray(users))
+                        throw new Error("users should be an array ant it is not");
+                    renderUsers(users);
                     return [3 /*break*/, 3];
                 case 2:
                     error_1 = _a.sent();
@@ -122,7 +125,7 @@ function handleUpdateUser(userId) {
 function renderUsers(usersArr) {
     var html = '';
     usersArr.forEach(function (user) {
-        html += "<div class=\"users_class\" id=\"" + user.userId + "\"> name:" + user.name + " \n        <button onclick=\"handleUpdateUser(" + user.userId + ")\">Update </button>\n        <button onclick=\"handleDeleteUser(" + user.userId + ")\">DELETE </button>\n        </div>";
+        html += "<div class=\"users_class\" id=\"" + user.userId + "\"> name:" + user.name + " \n        <button onclick=\"handleUpdateUser('" + user.userId + "')\">Update </button>\n        <button onclick=\"handleDeleteUser('" + user.userId + "')\">DELETE </button>\n        </div>";
     });
     var root = document.querySelector('#root');
     root.innerHTML = html;

@@ -20,7 +20,7 @@ export const handleDeleteUser = (req, res) => {
 
     users = users.filter((user) => user.userId !== userId);
     console.log("users", users);
-    res.send(users);
+    res.send({users});
   } catch (error) {
     res.send({ error: error.message });
   }

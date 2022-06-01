@@ -1,12 +1,13 @@
 
 async function handleDeleteUser(userId: string) {
   try {
-    
+    console.log(userId)
     // @ts-ignore
     const { data } = await axios.delete("/users/user-delete", {data:{ userId }});
-  
-    if(!Array.isArray(data)) throw new Error("data should be an array ant it is not")
-    renderUsers(data);
+    console.log(data)
+    const {users} = data;
+    if(!Array.isArray(users)) throw new Error("users should be an array ant it is not")
+    renderUsers(users);
 
 
   } catch (error) {
@@ -47,8 +48,8 @@ function renderUsers(usersArr) {
 	let html = '';
 	usersArr.forEach((user) => {
 		html += `<div class="users_class" id="${user.userId}"> name:${user.name} 
-        <button onclick="handleUpdateUser(${user.userId})">Update </button>
-        <button onclick="handleDeleteUser(${user.userId})">DELETE </button>
+        <button onclick="handleUpdateUser('${user.userId}')">Update </button>
+        <button onclick="handleDeleteUser('${user.userId}')">DELETE </button>
         </div>`;
 	});
     const root = document.querySelector('#root')
