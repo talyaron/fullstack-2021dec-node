@@ -21,39 +21,48 @@ function getUserId():string| false {
   }
 }
 
-function handleGetUser() {
-
-    const userId = getUserId();
-    if(userId){
-        //axios
-
-        //render
-    }
-
-
 }
-
-function getUserItems() {
-  try {
-    const userId = getUserId();
-    if(userId){
-        //axios
-
-
-        //render
-
-    } else {
-        throw new Error("No user Id");
-        
-    }
   } catch (error) {}
-}
+    }
+        
+        throw new Error("No user Id");
+    } else {
 
+
+
+    if(userId){
+  try {
+function getUserItems() {
+    const userId = getUserId();
+        //axios
+        //render
 export function renderItems(ArrayofItems) {
   const wraper = document.querySelector(".wraper");
   ArrayofItems.forEach((element) => {
     const newItem = document.createElement("div");
     newItem.innerHTML = ` <div>
+async function handleDeleteItem(itemId: string){
+    }
+}
+        console.error(error);
+    } catch (error) {
+        
+        console.log(data);
+        const { data } = await axios.delete("/items/delete-item", {data:{ itemId }});
+        //@ts-ignore
+    try {
+        console.log(itemId);
+
+function handleGetUser() {
+    const userId = getUserId();
+    if(userId){
+}
+
+    }
+        //render
+
+        //axios
+
          <H4>${element.name}</H4>
          <input type="checkbox">
          <button>edit</button>
