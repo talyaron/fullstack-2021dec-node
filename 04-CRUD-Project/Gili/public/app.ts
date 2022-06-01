@@ -18,7 +18,7 @@ drawCountersOnDOM();
 async function hundleClick(squreId: string) {
 	try {
 		// @ts-ignore
-		const { data } = await axios.post('/api/next-turn', { squreId });
+		const { data } = await axios.post('/squres/next-turn', { squreId });
 		const { squreArr, isXturn } = data;
 		renderSqure(squreArr);
 		const win = checkIfWin(squreArr);
@@ -35,7 +35,7 @@ async function hundleClick(squreId: string) {
 async function getTableStatus() {
 	try {
 		// @ts-ignore
-		const { data } = await axios.get('/api/table-status');
+		const { data } = await axios.get('/squres/table-status');
 		const { squreArr } = data;
 		renderSqure(squreArr);
 		const { error } = data;
@@ -48,7 +48,7 @@ async function getTableStatus() {
 async function handleResetGame() {
 	try {
 		// @ts-ignore
-		const { data } = await axios.get('/api/reset-game');
+		const { data } = await axios.get('/squres/reset-game');
 		const { squreArr } = data;
 		renderSqure(squreArr);
 		isGameWinO = false;

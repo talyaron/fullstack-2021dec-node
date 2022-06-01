@@ -52,7 +52,7 @@ function hundleClick(squreId) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, axios.post('/api/next-turn', { squreId: squreId })];
+                    return [4 /*yield*/, axios.post('/squres/next-turn', { squreId: squreId })];
                 case 1:
                     data = (_a.sent()).data;
                     squreArr = data.squreArr, isXturn = data.isXturn;
@@ -81,7 +81,7 @@ function getTableStatus() {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, axios.get('/api/table-status')];
+                    return [4 /*yield*/, axios.get('/squres/table-status')];
                 case 1:
                     data = (_a.sent()).data;
                     squreArr = data.squreArr;
@@ -106,7 +106,7 @@ function handleResetGame() {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, axios.get('/api/reset-game')];
+                    return [4 /*yield*/, axios.get('/squres/reset-game')];
                 case 1:
                     data = (_a.sent()).data;
                     squreArr = data.squreArr;
