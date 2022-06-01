@@ -12,13 +12,18 @@
 
 <body class="container--screen" onload=" handleGetUsers() ">
 
-    <form onsubmit="handleAddUser(event) ">
-        <input type="text " name="name " placeholder="Name " required>
-        <button type="submit ">Add user</button>
-    </form>
+    <div class="container--content">
+        <h3 class="title--h3">Users List</h3>
+        <a href="users.html" class="btn--start link">Start</a>
 
-    <div id="root "></div>
 
+        <form onsubmit="handleAddUser(event) ">
+            <input type="text " name="name " placeholder="Name " required>
+            <button type="submit ">Add user</button>
+        </form>
+
+        <div id="root "></div>
+    </div>
     <script src="./dist/users.js "></script>
 </body>
 
