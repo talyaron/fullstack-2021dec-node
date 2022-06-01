@@ -1,9 +1,8 @@
 "use strict";
-exports.__esModule = true;
-exports.resetGame = exports.nextTurnMove = exports.renderSymbol = exports.nextTurn = void 0;
-var isXturn = true;
-var hello = "hello world!";
-var squreArr = [
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.resetGame = exports.getTableStatus = exports.nextTurnMove = exports.renderSymbol = exports.nextTurn = void 0;
+let isXturn = true;
+const squreArr = [
     {
         id: 'sq0',
         isSqurefull: 0,
@@ -61,11 +60,11 @@ var squreArr = [
 ];
 function nextTurn(req, res) {
     try {
-        var squreId = req.body.squreId;
+        const { squreId } = req.body;
         if (!squreId)
             throw new Error('squreId is required');
         renderSymbol(squreId);
-        res.send({ squreArr: squreArr, isXturn: isXturn });
+        res.send({ squreArr, isXturn });
     }
     catch (error) {
         res.send({ error: error.message });
@@ -73,7 +72,7 @@ function nextTurn(req, res) {
 }
 exports.nextTurn = nextTurn;
 function renderSymbol(squreId) {
-    squreArr.forEach(function (squre) {
+    squreArr.forEach((squre) => {
         if (squre.id === squreId) {
             if (squre.isSqurefull === 0) {
                 if (isXturn) {
@@ -100,19 +99,23 @@ function nextTurnMove() {
     }
 }
 exports.nextTurnMove = nextTurnMove;
+function getTableStatus(req, res) {
+    res.send({ squreArr });
+}
+exports.getTableStatus = getTableStatus;
 function resetGame(req, res) {
-    console.log(squreArr);
     if (!isXturn) {
         isXturn = true;
     }
     ;
-    squreArr.forEach(function (squre) {
+    squreArr.forEach((squre) => {
         if (squre.isSqurefull) {
             squre.isSqurefull = 0;
             squre.isSqureX = 0;
             squre.isSqureO = 0;
         }
     });
-    res.send({ squreArr: squreArr, isXturn: isXturn });
+    res.send({ squreArr, isXturn });
 }
 exports.resetGame = resetGame;
+//# sourceMappingURL=squreCont.js.map

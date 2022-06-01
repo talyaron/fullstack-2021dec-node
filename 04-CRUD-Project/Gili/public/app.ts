@@ -2,8 +2,6 @@ const gameWrapper = document.querySelector('.game_wrapper') as HTMLDivElement;
 const xWin = document.getElementById('Xwin') as HTMLSpanElement;
 const oWin = document.getElementById('Owin') as HTMLSpanElement;
 
-const socket = io('http://localhost:3000');
-
 let isGameWinX = false;
 let isGameWinO = false;
 
@@ -32,23 +30,10 @@ async function hundleClick(squreId: string) {
 	}
 }
 
-async function getTableStatus() {
-	try {
-		// @ts-ignore
-		const { data } = await axios.get('/squres/table-status');
-		const { squreArr } = data;
-		renderSqure(squreArr);
-		const { error } = data;
-		if (error) throw new Error(error);
-	} catch (error) {
-		console.error(error);
-	}
-}
-
 async function handleResetGame() {
 	try {
 		// @ts-ignore
-		const { data } = await axios.get('/squres/reset-game');
+		const { data } = await axios.patch('/squres/reset-game');
 		const { squreArr } = data;
 		renderSqure(squreArr);
 		isGameWinO = false;
@@ -150,5 +135,3 @@ function drawCountersOnDOM() {
 	xWin.innerText = `${WinningXTimes}`;
 	oWin.innerText = `${WinningOTimes}`;
 }
-
-setInterval(getTableStatus, 1000);

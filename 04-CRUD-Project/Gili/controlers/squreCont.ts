@@ -1,5 +1,7 @@
 let isXturn = true;
 
+let hello = "hello world!"
+
 const squreArr = [
 	{
 		id: 'sq0',
@@ -95,11 +97,8 @@ export function nextTurnMove() {
 	}
 }
 
-export function getTableStatus(req, res) {
-    res.send({ squreArr });
-}
-
 export function resetGame(req, res) {
+	console.log(squreArr)
     if(!isXturn) {isXturn = true};
 	squreArr.forEach((squre) => {
 		if (squre.isSqurefull) {
@@ -108,5 +107,6 @@ export function resetGame(req, res) {
 			squre.isSqureO = 0;
 		}
 	});
+
 	res.send({ squreArr , isXturn});
 }
