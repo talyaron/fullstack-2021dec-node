@@ -10,16 +10,15 @@
     <title>users</title>
 </head>
 
-<body class="container--screen" onload=" handleGetUsers() ">
+<body class="screen" onload=" handleGetUsers() ">
 
-    <div class="container--content">
-        <h3 class="title--h3">Users List</h3>
-        <a href="users.html" class="btn--start link">Start</a>
+    <div class="screen__container-content">
+        <h3 class="screen__container-content__title-h3">Users List</h3>
 
 
-        <form onsubmit="handleAddUser(event) ">
-            <input type="text " name="name " placeholder="Name " required>
-            <button type="submit ">Add user</button>
+        <form class="screen__container-content__form" onsubmit="handleAddUser(event) ">
+            <input class="screen__container-content__form__input" type=" text " name="name " placeholder="Name " required>
+            <button class="screen__container-content__form__btn-form" type="submit ">Add user</button>
         </form>
 
         <div id="root "></div>
