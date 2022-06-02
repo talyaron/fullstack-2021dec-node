@@ -9,9 +9,32 @@
     <link rel="stylesheet" href="./dist/style.css">
 </head>
 
-<body onload="handleGetUser()">
-    <h1>Items</h1>
-    <script src="./dist/items.js"></script>
+<body class="screen" onload=" handleGetItems() ">
+
+    <div class="screen__container-internal">
+        <div class="screen__container-internal__top-bar">
+            <h2 class="screen__title-h2">Items List</h2>
+
+
+            <form class="screen__form" onsubmit="handleAddUser(event) ">
+                <input class="screen__form__input" type=" text " name="name " placeholder="Name " required>
+                <button class="screen__form__btn-form" type="submit ">Add item</button>
+            </form>
+        </div>
+
+        <div id="root" class="screen__container-internal__root">
+            <div class="screen__card-wrapper">
+                <h4 class="screen__title-h3">Go shopping with Marina Ziv</h4>
+                <div class="screen__card-wrapper__actions">
+                    <img class="screen__card-wrapper__actions__icon" src=" ./icons/pencil.svg " alt="edit ">
+                    <img class="screen__card-wrapper__actions__icon" src="./icons/trash.svg " alt="delete ">
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <script src="./dist/users.js "></script>
 </body>
+
 
 </html>

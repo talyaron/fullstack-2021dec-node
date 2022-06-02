@@ -21,17 +21,18 @@
 }
 .screen__title-h2 {
   font-size: 1.8rem;
-  color: #951616;
+  color: black;
   text-align: center;
   margin-right: 3rem;
   width: 10%;
 }
 .screen__title-h3 {
   font-size: 1.3rem;
-  color: #951616;
+  color: black;
   text-align: center;
   margin-right: 3rem;
-  width: 10%;
+  width: 40%;
+  text-align: left;
 }
 .screen__btn {
   border-radius: 5rem;
