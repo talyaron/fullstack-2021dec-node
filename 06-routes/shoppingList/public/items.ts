@@ -6,7 +6,8 @@ export interface Item{
 };
 
 
-function handleGetUser() {
+async function handleGetUser() {
+    
     const queryString = window.location.search;
     console.log(queryString);
 
