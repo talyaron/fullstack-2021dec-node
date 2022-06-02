@@ -125,7 +125,7 @@ function handleUpdateUser(userId) {
 function renderUsers(usersArr) {
     var html = '';
     usersArr.forEach(function (user) {
-        html += "<div class=\"users_class\" id=\"" + user.userId + "\"> name:" + user.name + " \n        <button onclick=\"handleUpdateUser('" + user.userId + "')\">Update </button>\n        <button onclick=\"handleDeleteUser('" + user.userId + "')\">DELETE </button>\n        </div>";
+        html += "<div class=\"users_class\" id=\"" + user.userId + "\"><a href=\"items.html?userId=" + user.userId + "\">name:" + user.name + "</a> \n        <button onclick=\"handleUpdateUser('" + user.userId + "')\">Update </button>\n        <button onclick=\"handleDeleteUser('" + user.userId + "')\">DELETE </button>\n        </div>";
     });
     var root = document.querySelector('#root');
     root.innerHTML = html;

@@ -1,2 +1,1 @@
-import {User} from '../model/userModel';
-import {Item} from '../model/itemModel'
+console.log('index.ts')

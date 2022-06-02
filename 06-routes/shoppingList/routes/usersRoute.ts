@@ -7,6 +7,7 @@ import {
   handleAddUser
 } from "../cont/usersCont";
 
+//
 router
   .get("/get-users", getAllUsers)
   .patch("/update-user", updateUser)
