@@ -12,16 +12,18 @@
 
 <body class="screen" onload=" handleGetUsers() ">
 
-    <div class="screen__container-content">
-        <h3 class="screen__container-content__title-h3">Users List</h3>
+    <div class="screen__container-internal">
+        <div class="screen__container-internal__top-bar">
+            <h3 class="screen__title-h3">Users List</h3>
 
 
-        <form class="screen__container-content__form" onsubmit="handleAddUser(event) ">
-            <input class="screen__container-content__form__input" type=" text " name="name " placeholder="Name " required>
-            <button class="screen__container-content__form__btn-form" type="submit ">Add user</button>
-        </form>
+            <form class="screen__form" onsubmit="handleAddUser(event) ">
+                <input class="screen__form__input" type=" text " name="name " placeholder="Name " required>
+                <button class="screen__form__btn-form" type="submit ">Add user</button>
+            </form>
+        </div>
 
-        <div id="root "></div>
+        <div id="root" class="screen__container-internal__root"></div>
     </div>
     <script src="./dist/users.js "></script>
 </body>
