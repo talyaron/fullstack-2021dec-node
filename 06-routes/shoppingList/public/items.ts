@@ -30,8 +30,20 @@ function getUserItems() {
 function handleLoad(){
     try {
         getUserItems()
+        // getUser()
     } catch (error) {
     console.error(error);
+    }
+}
+
+function getUser(){
+    try {
+        const userId = getUserId();
+        // get the user from Id
+
+        //render name of user to screen
+    } catch (error) {
+        
     }
 }
 
