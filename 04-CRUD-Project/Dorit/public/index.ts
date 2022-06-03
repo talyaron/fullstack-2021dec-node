@@ -120,9 +120,15 @@ async function PostRecipe(event: any){
 }
 
 function renderFullRecipe(fullRecipe:Recipe){
-    console.log(`fullRecipe from server:${fullRecipe}`)
+    console.log("renderFullRecipe")
+    //console.log(`fullRecipe from server:${fullRecipe}`)
     let forms:HTMLElement = document.querySelector("#forms");
     if(forms) forms.remove()
+    let root:HTMLDivElement=document.querySelector("#root")  
+    if(root) root.remove()
+    let body = document.querySelector("body")
+    let root = document.createElement("root")
+    body.append(root)
     let html=""
     html=`<p id="name" color="red" fontsize="20px">${fullRecipe.name}</p>`
     html+=`===================================`
@@ -142,7 +148,7 @@ function renderFullRecipe(fullRecipe:Recipe){
     for(let j:number=0;j<preNo;j++){
         html+=`<div class="prepares">${fullRecipe.prepareMode[j]}</div>`
     }
-    let root:HTMLDivElement=document.querySelector("#root")  
+
     root.innerHTML=html
     root.style.position="absolute"
     root.style.top="150px"
@@ -200,19 +206,19 @@ function renderRecipeForUpdate(myRecipe:Recipe){
         let forms:HTMLElement = document.querySelector("#forms");
         if(forms) forms.remove()
         let recipeName:string=myRecipe.name
+        console.log(`recipeName: ${recipeName}`)
         let frm1=""
-        frm1+=`<form action="" onsubmit="saveIng(event,recipeName)">`
+        frm1+=`<form action="" onsubmit="saveIng(event,'${recipeName}')">`
         const ingNo=myRecipe.ingredients.length
         for(let i:number=0;i<ingNo;i++){
              frm1+=`<input type="text" name="ing${i}" value="${myRecipe.ingredients[i]}" width="1500px"><br>`
         }
-        frm1+=`<button type="submit">Save Ingredients</button>`
-        frm1+=`<br>`
+        frm1+=`<button type="submit">Save Ingredients</button><br>`
         frm1+=`</form>`
         //console.log(`frm1 ${frm1}`)
 
         let frm2=""
-        frm2+=`<form action="" onsubmit="savePre(event,recipeName)">`
+        frm2+=`<form action="" onsubmit="savePre(event,'${recipeName}')">`
         const preNo=myRecipe.ingredients.length
         for(let j:number=0;j<preNo;j++){
             frm2+=`<input type="text" name="pre${j}" value="${myRecipe.prepareMode[j]}"width="500px"><br>`
@@ -267,28 +273,50 @@ async function saveIng(event,recipeName){
     event.preventDefault()
     console.log("saveIng")
     console.log(`recipeName ${recipeName}`)
-    // console.dir(event)
-    // let myIng:Array<string>=event.target.elements
-    // console.log(myIng[0])
-    // let button:string=myIng.pop()
-    // console.log(button)
-    // console.log(myIng.length)
-    // try{ 
-    //     // @ts-ignore    
-    //     const { data } = await axios.post('/api/update-ing',{recipeName,myIng});
-    //     const { myRecipe,error} = data;
-    //     if (error) throw new Error(error);
-    //     renderRecipeForUpdate(myRecipe)
+    console.dir(event)
+    let myIng=[]
+    let myElem=event.target.elements
+    for(let j:number=0;j<myElem.length-1;j++){
+        console.log(`ing${j}`)
+        myIng[j] = myElem[`ing${j}`].value;
+        console.log(myIng[j])
+    }
+    try{ 
+        // @ts-ignore    
+        const { data } = await axios.post('/api/update-ing',{recipeName,myIng});
+        const { myRecipe,error} = data;
+        if (error) throw new Error(error);
+        renderFullRecipe(myRecipe)
 
-    // } catch (error) {
-    //     console.error(error);
-    // } 
+    } catch (error) {
+        console.error(error);
+    } 
 
 }
 
 async function savePre(event,recipeName){
     event.preventDefault()
     console.log("savePre")
-    console.dir(event.target.elements)
-}
+        console.log(`recipeName ${recipeName}`)
+
+        let myPre=[]
+        let myElem=event.target.elements
+        for(let j:number=0;j<myElem.length-1;j++){
+            console.log(`pre${j}`)
+            myPre[j] = myElem[`pre${j}`].value;
+            console.log(myPre[j])
+        }
+        try{ 
+            // @ts-ignore    
+            const { data } = await axios.post('/api/update-pre',{recipeName,myPre});
+            const { myRecipe,error} = data;
+            if (error) throw new Error(error);
+            renderFullRecipe(myRecipe)
+    
+        } catch (error) {
+            console.error(error);
+        } 
+    
+    }
+
 
