@@ -58,7 +58,7 @@ export async function addItem(req, res){
 try {
 
   let newItem  = {
-    name: req,
+    name: req.body.value,
     itemId: uid(),
     bought: false,
     userId: "abc",
@@ -66,6 +66,7 @@ try {
 
 
   items.push(newItem);
+  console.log({items});
   res.send({items});
 } catch (error) {
   res.send({error: error.message})

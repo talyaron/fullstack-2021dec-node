@@ -113,11 +113,13 @@ function handleAddItem() {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    newItem = document.querySelector("#inputNewItem").innerHTML;
-                    return [4 /*yield*/, axios.post("/items/addItem", { newItem: newItem })];
+                    newItem = document.querySelector("#inputNewItem");
+                    console.log(newItem.value);
+                    return [4 /*yield*/, axios.post("/items/addItem", (newItem.value))];
                 case 1:
                     data = (_a.sent()).data;
-                    renderItems(data.body);
+                    console.log(data);
+                    renderItems(data);
                     if (!Array.isArray(data))
                         throw new Error("data should be an array ant it is not");
                     return [3 /*break*/, 3];

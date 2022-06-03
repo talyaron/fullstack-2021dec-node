@@ -74,10 +74,12 @@ export function renderItems(ArrayofItems) {
 
 async function handleAddItem(){
   try {
-    const newItem = document.querySelector("#inputNewItem").innerHTML;
+    const newItem:HTMLInputElement =  document.querySelector("#inputNewItem");
+    console.log(newItem.value);
     // @ts-ignore
-    const { data } = await axios.post("/items/addItem", {newItem});
-    renderItems(data.body);
+    const { data } = await axios.post("/items/addItem", (newItem.value));
+    console.log(data)
+    renderItems(data);
     if(!Array.isArray(data)) throw new Error("data should be an array ant it is not")
   } catch (error) {
     console.error(error);

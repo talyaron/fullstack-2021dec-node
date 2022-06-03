@@ -108,12 +108,13 @@ function addItem(req, res) {
         return __generator(this, function (_a) {
             try {
                 newItem = {
-                    name: req,
+                    name: req.body.value,
                     itemId: helpers_1["default"](),
                     bought: false,
                     userId: "abc"
                 };
                 items.push(newItem);
+                console.log({ items: items });
                 res.send({ items: items });
             }
             catch (error) {
