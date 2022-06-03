@@ -27,10 +27,9 @@ export async function getUserItems() {
   try {
     const userId = getUserId();
     //@ts-ignore
-    const { data } = await axios.get('/items/get-items');
+    const { data } = await axios.get(`/items/get-items?userId=${userId}`);
     const { items, error} = data;
-    const userItems = items.filter(item => item.userId === userId)
-    renderItems(userItems)
+    renderItems(items);
 
     if(error) throw new Error('Items was not found!');
   } catch (error) {
@@ -61,7 +60,7 @@ async function handleDeleteItem(itemId: string, userId:string) {
     const { data } = await axios.delete("/items/delete-item", { data: { itemId , userId}});
     console.log(data);
     const {items, error} = data;
-    renderItems(items);
+    renderItems(items.filter((item)=> item.userId === userId));
   } catch (error) {
     console.error(error);
   }

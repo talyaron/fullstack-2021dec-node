@@ -54,18 +54,17 @@ function getUserId() {
 exports.getUserId = getUserId;
 function getUserItems() {
     return __awaiter(this, void 0, void 0, function () {
-        var userId_1, data, items, error, userItems, error_1;
+        var userId, data, items, error, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    userId_1 = getUserId();
-                    return [4 /*yield*/, axios.get('/items/get-items')];
+                    userId = getUserId();
+                    return [4 /*yield*/, axios.get("/items/get-items?userId=" + userId)];
                 case 1:
                     data = (_a.sent()).data;
                     items = data.items, error = data.error;
-                    userItems = items.filter(function (item) { return item.userId === userId_1; });
-                    renderItems(userItems);
+                    renderItems(items);
                     if (error)
                         throw new Error('Items was not found!');
                     return [3 /*break*/, 3];
@@ -81,17 +80,17 @@ function getUserItems() {
 exports.getUserItems = getUserItems;
 function getUser() {
     return __awaiter(this, void 0, void 0, function () {
-        var userId_2, data, users, error, findUser, error_2;
+        var userId_1, data, users, error, findUser, error_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    userId_2 = getUserId();
+                    userId_1 = getUserId();
                     return [4 /*yield*/, axios.get('/users/get-users')];
                 case 1:
                     data = (_a.sent()).data;
                     users = data.users, error = data.error;
-                    findUser = users.find(function (user) { return user.userId === userId_2; });
+                    findUser = users.find(function (user) { return user.userId === userId_1; });
                     console.log(findUser);
                     renderUserCart(findUser);
                     if (error)
@@ -119,7 +118,7 @@ function handleDeleteItem(itemId, userId) {
                     data = (_a.sent()).data;
                     console.log(data);
                     items = data.items, error = data.error;
-                    renderItems(items);
+                    renderItems(items.filter(function (item) { return item.userId === userId; }));
                     return [3 /*break*/, 3];
                 case 2:
                     error_3 = _a.sent();

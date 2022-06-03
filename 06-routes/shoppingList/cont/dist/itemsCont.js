@@ -90,10 +90,13 @@ function deleteItem(req, res) {
         return __generator(this, function (_b) {
             try {
                 _a = req.body, itemId_1 = _a.itemId, userId_1 = _a.userId;
-                console.log(itemId_1);
-                exports.items = exports.items.filter(function (item) { return item.itemId !== itemId_1 && userId_1 === item.userId; });
-                console.log(exports.items);
-                res.send({ items: exports.items });
+                exports.items = exports.items.filter(function (item) {
+                    if (item.itemId === itemId_1 && userId_1 === item.userId) {
+                        return false;
+                    }
+                    return true;
+                });
+                res.send({ items: exports.items.filter(function (item) { return item.userId === userId_1; }) });
             }
             catch (error) {
                 res.send({ error: error.message });
@@ -105,9 +108,11 @@ function deleteItem(req, res) {
 exports.deleteItem = deleteItem;
 function getItems(req, res) {
     return __awaiter(this, void 0, void 0, function () {
+        var userId;
         return __generator(this, function (_a) {
+            userId = req.query.userId;
             try {
-                res.send({ items: exports.items });
+                res.send({ items: exports.items.filter(function (item) { return item.userId === userId; }) });
             }
             catch (error) {
                 res.send({ error: error.message });

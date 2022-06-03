@@ -52,10 +52,14 @@ export async function HandleUpdateItem(req, res) {
 export async function deleteItem(req, res) {
   try {
     const { itemId, userId } = req.body;
-    console.log(itemId);
-    items = items.filter(item => item.itemId !== itemId && userId === item.userId);
-    console.log(items);
-    res.send({ items });
+    items = items.filter(function (item) {
+      if (item.itemId === itemId && userId === item.userId) { 
+        return false;
+      }
+      return true;
+    });
+    res.send({ items: items.filter((item) => item.userId === userId) });
+
 
   } catch (error) {
     res.send({ error: error.message })
@@ -63,8 +67,9 @@ export async function deleteItem(req, res) {
 }
 
 export async function getItems(req, res) {
+  const userId = req.query.userId;
   try {
-    res.send({ items });
+    res.send({ items: items.filter((item) => item.userId === userId) });
   } catch (error) {
     res.send({ error: error.message });
   }
