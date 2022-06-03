@@ -86,6 +86,7 @@ function handleAddUser(e) {
                     _a.trys.push([0, 2, , 3]);
                     e.preventDefault();
                     name = e.target.elements.name.value;
+                    console.log(name);
                     return [4 /*yield*/, axios.post("/users/user-add", { name: name })];
                 case 1:
                     data = (_a.sent()).data;
@@ -122,10 +123,21 @@ function handleUpdateUser(userId) {
         });
     });
 }
+// function renderUsers(usersArr) {
+// 	let html = '';
+// 	usersArr.forEach((user) => {
+// 		html += `<div class="users_class" id="${user.userId}"> name:${user.name} 
+//         <button onclick="handleUpdateUser('${user.userId}')">Update </button>
+//         <button onclick="handleDeleteUser('${user.userId}')">DELETE </button>
+//         </div>`;
+// 	});
+//     const root = document.querySelector('#root')
+// 	root.innerHTML = html;
+// }
 function renderUsers(usersArr) {
     var html = '';
     usersArr.forEach(function (user) {
-        html += "<div class=\"users_class\" id=\"" + user.userId + "\"> name:" + user.name + " \n        <button onclick=\"handleUpdateUser('" + user.userId + "')\">Update </button>\n        <button onclick=\"handleDeleteUser('" + user.userId + "')\">DELETE </button>\n        </div>";
+        html += "<div class=\"screen__card-wrapper\" id=\"" + user.userId + "\">\n    <h4 class=\"screen__title-h4\">name:" + user.name + "</h4>\n    <div class=\"screen__card-wrapper__actions\">\n        <img onclick=\"handleUpdateUser('" + user.userId + "')\" class=\"screen__card-wrapper__actions__icon\" src=\" ./icons/pencil.svg \" alt=\"edit \">\n        <img onclick=\"handleDeleteUser('" + user.userId + "')\" class=\"screen__card-wrapper__actions__icon\" src=\"./icons/trash.svg \" alt=\"delete \">\n    </div>\n    </div>";
     });
     var root = document.querySelector('#root');
     root.innerHTML = html;

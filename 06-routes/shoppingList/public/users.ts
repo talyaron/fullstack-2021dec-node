@@ -25,6 +25,7 @@ async function handleAddUser(e) {
   try {
     e.preventDefault();
     const name = e.target.elements.name.value;
+    console.log(name);
     // @ts-ignore
     const { data } = await axios.post("/users/user-add", { name });
     renderUsers(data);
@@ -44,14 +45,31 @@ async function handleUpdateUser(userId) {
    
     renderUsers(users)
 }
+// function renderUsers(usersArr) {
+// 	let html = '';
+// 	usersArr.forEach((user) => {
+// 		html += `<div class="users_class" id="${user.userId}"> name:${user.name} 
+//         <button onclick="handleUpdateUser('${user.userId}')">Update </button>
+//         <button onclick="handleDeleteUser('${user.userId}')">DELETE </button>
+//         </div>`;
+// 	});
+//     const root = document.querySelector('#root')
+// 	root.innerHTML = html;
+// }
+
 function renderUsers(usersArr) {
 	let html = '';
 	usersArr.forEach((user) => {
-		html += `<div class="users_class" id="${user.userId}"> name:${user.name} 
-        <button onclick="handleUpdateUser('${user.userId}')">Update </button>
-        <button onclick="handleDeleteUser('${user.userId}')">DELETE </button>
-        </div>`;
+		html += `<div class="screen__card-wrapper" id="${user.userId}">
+    <h4 class="screen__title-h4">name:${user.name}</h4>
+    <div class="screen__card-wrapper__actions">
+        <img onclick="handleUpdateUser('${user.userId}')" class="screen__card-wrapper__actions__icon" src=" ./icons/pencil.svg " alt="edit ">
+        <img onclick="handleDeleteUser('${user.userId}')" class="screen__card-wrapper__actions__icon" src="./icons/trash.svg " alt="delete ">
+    </div>
+    </div>`;
 	});
     const root = document.querySelector('#root')
 	root.innerHTML = html;
 }
+
+

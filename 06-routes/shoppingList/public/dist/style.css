@@ -32,7 +32,7 @@
   font-size: 1.8rem;
   color: black;
   text-align: left;
-  width: 80%;
+  width: 78%;
 }
 .screen__title-h3 {
   font-size: 1.5rem;
@@ -44,7 +44,7 @@
   font-size: 1.3rem;
   color: black;
   text-align: left;
-  width: 100%;
+  width: 60rem;
   font-weight: normal;
 }
 .screen__btn {
@@ -107,7 +107,7 @@
   width: 80%;
   padding: 2rem;
   box-sizing: border-box;
-  margin: 1rem 0;
+  margin-bottom: 1rem;
   border-radius: 1rem;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
@@ -155,9 +155,6 @@
   height: 100%;
   display: flex;
   flex-direction: column;
-  background-color: white;
-  border-radius: 2rem;
-  box-shadow: rgba(50, 50, 93, 0.15) 0px 50px 100px -20px, rgba(0, 0, 0, 0.01) 0px 30px 60px -30px;
 }
 .screen__container-internal__top-bar {
   width: 100%;
@@ -183,7 +180,8 @@
   box-sizing: border-box;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
-.screen__container-internal__root {
+.screen__container-internal__root,
+.screen__container-internal #root {
   width: 100%;
   height: 100%;
   display: flex;

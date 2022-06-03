@@ -1,39 +1,4 @@
 "use strict";
-<<<<<<< HEAD
-exports.__esModule = true;
-exports.getUsers = void 0;
-var users = [{ name: "avi", userId: "241" }];
-exports.getUsers = function (req, res) {
-    try {
-        res.send({ users: users });
-    }
-    catch (error) {
-        res.status(500).send({ error: error });
-    }
-};
-// export const addUser = async (req, res) => {
-//     try {
-//         let { username, password } = req.body;
-//         const newUser = new User({ username, password });
-//         const result = await newUser.save();
-//         res.send({ result });
-//     } catch (error) {
-//         console.error(error);
-//         res.send({ error: error.message });
-//     }
-// }
-// export const deleteUser =  (req, res) => {
-//   try {
-//     const { userId } = req.body;
-//     if (!userId) throw new Error("userId is required");
-//      const usersDel = users.filter(user => user.id !== userId);
-//     console.log(usersDel)
-//     res.send({ usersDel });
-//   } catch (error) {
-//     res.send({ error: error.message });
-//   }
-// };
-=======
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -71,33 +36,44 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.updateUser = exports.getAllUsers = void 0;
-// const usersArr: Array<User> = [
-// 	{
-// 		name: 'Bella',
-// 		userId: '281294'
-// 	},
-// 	{
-// 		name: 'Gili',
-// 		userId: '310195'
-// 	},
-// 	{
-// 		name: 'Roy',
-// 		userId: '170797'
-// 	},
-// 	{
-// 		name: 'Meir',
-// 		userId: '261176'
-// 	}
-// ];
+exports.updateUser = exports.getAllUsers = exports.handleAddUser = exports.handleDeleteUser = void 0;
+var helpers_1 = require("../helpers");
+var users = [
+    { name: "Mario", userId: helpers_1["default"]() },
+    { name: "Rayu", userId: helpers_1["default"]() },
+];
+exports.handleDeleteUser = function (req, res) {
+    try {
+        var userId_1 = req.body.userId;
+        console.log("userId", userId_1);
+        var index = users.findIndex(function (user) { return user.userId === userId_1; });
+        if (index === -1)
+            throw new Error("user not found");
+        users = users.filter(function (user) { return user.userId !== userId_1; });
+        console.log("users", users);
+        res.send({ users: users });
+    }
+    catch (error) {
+        res.send({ error: error.message });
+    }
+};
+exports.handleAddUser = function (req, res) {
+    var name = req.body.name;
+    // console.log(req.body);
+    if (!name)
+        throw new Error("name is required");
+    var user = { name: name, userId: helpers_1["default"]() };
+    users.push(user);
+    res.send(users);
+};
 function getAllUsers(req, res) {
     return __awaiter(this, void 0, void 0, function () {
         return __generator(this, function (_a) {
             try {
-                res.send({ usersArr: usersArr });
+                res.send({ users: users });
             }
             catch (error) {
-                console.log('Users array not valid');
+                console.log("Users array not valid");
             }
             return [2 /*return*/];
         });
@@ -105,11 +81,13 @@ function getAllUsers(req, res) {
 }
 exports.getAllUsers = getAllUsers;
 exports.updateUser = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    return __generator(this, function (_a) {
+    var _a, userId, newName;
+    return __generator(this, function (_b) {
         try {
+            _a = req.body, userId = _a.userId, newName = _a.newName;
+            // TODO: finish function
         }
         catch (error) { }
         return [2 /*return*/];
     });
 }); };
->>>>>>> group1
