@@ -1,3 +1,4 @@
+import uid from "../helpers";
 import { Item } from "../model/itemModel";
 
 let items: Array<Item> = [
@@ -51,5 +52,23 @@ export async function deleteItem(req, res) {
   } catch (error) {
     res.send({error: error.message})
   }
+}
+
+export async function addItem(req, res){
+try {
+
+  let newItem  = {
+    name: req,
+    itemId: uid(),
+    bought: false,
+    userId: "abc",
+  }
+
+
+  items.push(newItem);
+  res.send({items});
+} catch (error) {
+  res.send({error: error.message})
+}
 }
 

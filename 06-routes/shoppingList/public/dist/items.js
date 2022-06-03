@@ -60,9 +60,19 @@ function getUserItems() {
 function handleLoad() {
     try {
         getUserItems();
+        // getUser()
     }
     catch (error) {
         console.error(error);
+    }
+}
+function getUser() {
+    try {
+        var userId = getUserId();
+        // get the user from Id
+        //render name of user to screen
+    }
+    catch (error) {
     }
 }
 function handleDeleteItem(itemId) {
@@ -96,3 +106,27 @@ function renderItems(ArrayofItems) {
     });
 }
 exports.renderItems = renderItems;
+function handleAddItem() {
+    return __awaiter(this, void 0, void 0, function () {
+        var newItem, data, error_2;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    newItem = document.querySelector("#inputNewItem").innerHTML;
+                    return [4 /*yield*/, axios.post("/items/addItem", { newItem: newItem })];
+                case 1:
+                    data = (_a.sent()).data;
+                    renderItems(data.body);
+                    if (!Array.isArray(data))
+                        throw new Error("data should be an array ant it is not");
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_2 = _a.sent();
+                    console.error(error_2);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
+}

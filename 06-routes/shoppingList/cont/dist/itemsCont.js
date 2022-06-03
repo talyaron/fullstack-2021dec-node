@@ -36,7 +36,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.deleteItem = exports.HandleUpdateItem = void 0;
+exports.addItem = exports.deleteItem = exports.HandleUpdateItem = void 0;
+var helpers_1 = require("../helpers");
 var items = [
     {
         name: "Milk",
@@ -45,7 +46,25 @@ var items = [
         userId: "abcd"
     },
     {
-        name: "Bread",
+        name: "tea",
+        itemId: "123MI",
+        bought: false,
+        userId: "abcd"
+    },
+    {
+        name: "bread",
+        itemId: "123MI",
+        bought: false,
+        userId: "abcd"
+    },
+    {
+        name: "flower",
+        itemId: "123MI",
+        bought: false,
+        userId: "abcd"
+    },
+    {
+        name: "Milk",
         itemId: "123BR",
         bought: false,
         userId: "abc"
@@ -83,3 +102,25 @@ function deleteItem(req, res) {
     });
 }
 exports.deleteItem = deleteItem;
+function addItem(req, res) {
+    return __awaiter(this, void 0, void 0, function () {
+        var newItem;
+        return __generator(this, function (_a) {
+            try {
+                newItem = {
+                    name: req,
+                    itemId: helpers_1["default"](),
+                    bought: false,
+                    userId: "abc"
+                };
+                items.push(newItem);
+                res.send({ items: items });
+            }
+            catch (error) {
+                res.send({ error: error.message });
+            }
+            return [2 /*return*/];
+        });
+    });
+}
+exports.addItem = addItem;

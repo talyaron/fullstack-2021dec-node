@@ -13,5 +13,5 @@ app.use("/users", usersRoute_1.default);
 const itemsRoute_1 = __importDefault(require("./routes/itemsRoute"));
 app.use("/items", itemsRoute_1.default);
 app.listen(port, () => {
-    console.log(`Express is listening at ${port}`);
+    console.log(`Express is listening at http://localhost:${port}`);
 });

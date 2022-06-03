@@ -49,8 +49,6 @@ function getUser(){
 
 async function handleDeleteItem(itemId: string) {
   try {
-    
-    
     const { data } = await axios.delete("/items/delete-item", {
       data: { itemId },
     });
@@ -72,3 +70,18 @@ export function renderItems(ArrayofItems) {
     wraper.appendChild(newItem);
   });
 }
+
+
+async function handleAddItem(){
+  try {
+    const newItem = document.querySelector("#inputNewItem").innerHTML;
+    // @ts-ignore
+    const { data } = await axios.post("/items/addItem", {newItem});
+    renderItems(data.body);
+    if(!Array.isArray(data)) throw new Error("data should be an array ant it is not")
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+
