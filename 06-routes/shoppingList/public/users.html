@@ -13,19 +13,17 @@
 <body class="screen" onload=" handleGetUsers() ">
 
     <div class="screen__container-internal">
+
         <div class="screen__container-internal__top-bar">
-            <h2 class="screen__title-h2">Users List</h2>
-
-
-            <form class="screen__form" onsubmit="handleAddUser(event) ">
-                <input class="screen__form__input" type=" text " name="name " placeholder="Name " required>
-                <button class="screen__form__btn-form" type="submit ">Add user</button>
-            </form>
+            <div class="screen__userAvatar "></div>
+            <h4 class="screen__title-h4 ">Your name</h4>
         </div>
 
         <div id="root" class="screen__container-internal__root">
+            <h2 class="screen__title-h2">All users List</h2>
+
             <div class="screen__card-wrapper">
-                <h4 class="screen__title-h4">Marina Ziv</h4>
+                <h4 class="screen__title-h4">${user}</h4>
                 <div class="screen__card-wrapper__actions">
                     <img class="screen__card-wrapper__actions__icon" src=" ./icons/pencil.svg " alt="edit ">
                     <img class="screen__card-wrapper__actions__icon" src="./icons/trash.svg " alt="delete ">
@@ -33,6 +31,15 @@
             </div>
 
         </div>
+
+        <div class="screen__container-internal__bottom-bar">
+
+            <form class="screen__form" onsubmit="handleAddUser(event) ">
+                <input class="screen__form__input" type=" text " name="name " placeholder="Name " required>
+                <button class="screen__form__btn-form" type="submit ">Add user</button>
+            </form>
+        </div>
+
     </div>
     <script src="./dist/users.js "></script>
 </body>
