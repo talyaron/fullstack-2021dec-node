@@ -240,6 +240,7 @@ function renderRecipeForUpdate(myRecipe) {
     }
     frm1 += "<button type=\"submit\">Save Ingredients</button>";
     frm1 += "<br>";
+    frm1 += "</form>";
     //console.log(`frm1 ${frm1}`)
     var frm2 = "";
     frm2 += "<form action=\"\" onsubmit=\"savePre(event,recipeName)\">";
@@ -247,7 +248,7 @@ function renderRecipeForUpdate(myRecipe) {
     for (var j = 0; j < preNo; j++) {
         frm2 += "<input type=\"text\" name=\"pre" + j + "\" value=\"" + myRecipe.prepareMode[j] + "\"width=\"500px\"><br>";
     }
-    frm2 += "<button type=\"submit\">Save Prepare Mode</button>";
+    frm2 += "<button type=\"submit\">Save Prepare Mode</button></form>";
     //console.log(`frm2 ${frm2}`)
     var html = "";
     html = "<div id=\"name\" color=\"red\">" + myRecipe.name + "</div>";
@@ -295,6 +296,7 @@ function saveIng(event, recipeName) {
         return __generator(this, function (_a) {
             event.preventDefault();
             console.log("saveIng");
+            console.log("recipeName " + recipeName);
             return [2 /*return*/];
         });
     });

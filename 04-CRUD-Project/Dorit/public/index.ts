@@ -208,6 +208,7 @@ function renderRecipeForUpdate(myRecipe:Recipe){
         }
         frm1+=`<button type="submit">Save Ingredients</button>`
         frm1+=`<br>`
+        frm1+=`</form>`
         //console.log(`frm1 ${frm1}`)
 
         let frm2=""
@@ -216,7 +217,7 @@ function renderRecipeForUpdate(myRecipe:Recipe){
         for(let j:number=0;j<preNo;j++){
             frm2+=`<input type="text" name="pre${j}" value="${myRecipe.prepareMode[j]}"width="500px"><br>`
         }
-        frm2+=`<button type="submit">Save Prepare Mode</button>` 
+        frm2+=`<button type="submit">Save Prepare Mode</button></form>` 
         //console.log(`frm2 ${frm2}`)
        
         let html=""
@@ -265,6 +266,7 @@ function renderRecipeForUpdate(myRecipe:Recipe){
 async function saveIng(event,recipeName){
     event.preventDefault()
     console.log("saveIng")
+    console.log(`recipeName ${recipeName}`)
     // console.dir(event)
     // let myIng:Array<string>=event.target.elements
     // console.log(myIng[0])
