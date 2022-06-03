@@ -231,17 +231,18 @@ function renderRecipeForUpdate(myRecipe) {
     var forms = document.querySelector("#forms");
     if (forms)
         forms.remove();
+    var recipeName = myRecipe.name;
     var frm1 = "";
-    frm1 += "<form action=\"\" onsubmit=\"saveIng(event)\">";
+    frm1 += "<form action=\"\" onsubmit=\"saveIng(event,recipeName)\">";
     var ingNo = myRecipe.ingredients.length;
     for (var i = 0; i < ingNo; i++) {
         frm1 += "<input type=\"text\" name=\"ing" + i + "\" value=\"" + myRecipe.ingredients[i] + "\" width=\"1500px\"><br>";
     }
     frm1 += "<button type=\"submit\">Save Ingredients</button>";
     frm1 += "<br>";
-    console.log("frm1 " + frm1);
+    //console.log(`frm1 ${frm1}`)
     var frm2 = "";
-    frm2 += "<form action=\"\" onsubmit=\"savePre(event)\">";
+    frm2 += "<form action=\"\" onsubmit=\"savePre(event,recipeName)\">";
     var preNo = myRecipe.ingredients.length;
     for (var j = 0; j < preNo; j++) {
         frm2 += "<input type=\"text\" name=\"pre" + j + "\" value=\"" + myRecipe.prepareMode[j] + "\"width=\"500px\"><br>";
@@ -289,17 +290,16 @@ function renderRecipeForUpdate(myRecipe) {
     root4.style.border = "1px solid black";
     root4.style.backgroundColor = "yellow";
 }
-function saveIng(event) {
+function saveIng(event, recipeName) {
     return __awaiter(this, void 0, void 0, function () {
         return __generator(this, function (_a) {
             event.preventDefault();
             console.log("saveIng");
-            console.dir(event.target.elements);
             return [2 /*return*/];
         });
     });
 }
-function savePre(event) {
+function savePre(event, recipeName) {
     return __awaiter(this, void 0, void 0, function () {
         return __generator(this, function (_a) {
             event.preventDefault();

@@ -199,24 +199,26 @@ function renderRecipeForUpdate(myRecipe:Recipe){
         console.log("renderRecipeForUnpdate")
         let forms:HTMLElement = document.querySelector("#forms");
         if(forms) forms.remove()
+        let recipeName:string=myRecipe.name
         let frm1=""
-        frm1+=`<form action="" onsubmit="saveIng(event)">`
+        frm1+=`<form action="" onsubmit="saveIng(event,recipeName)">`
         const ingNo=myRecipe.ingredients.length
         for(let i:number=0;i<ingNo;i++){
              frm1+=`<input type="text" name="ing${i}" value="${myRecipe.ingredients[i]}" width="1500px"><br>`
         }
         frm1+=`<button type="submit">Save Ingredients</button>`
         frm1+=`<br>`
-        console.log(`frm1 ${frm1}`)
+        //console.log(`frm1 ${frm1}`)
+
         let frm2=""
-        frm2+=`<form action="" onsubmit="savePre(event)">`
+        frm2+=`<form action="" onsubmit="savePre(event,recipeName)">`
         const preNo=myRecipe.ingredients.length
         for(let j:number=0;j<preNo;j++){
             frm2+=`<input type="text" name="pre${j}" value="${myRecipe.prepareMode[j]}"width="500px"><br>`
         }
         frm2+=`<button type="submit">Save Prepare Mode</button>` 
         //console.log(`frm2 ${frm2}`)
-
+       
         let html=""
         html=`<div id="name" color="red">${myRecipe.name}</div>`
         html+=`===================================`
@@ -260,13 +262,29 @@ function renderRecipeForUpdate(myRecipe:Recipe){
        
 } 
 
-async function saveIng(event){
+async function saveIng(event,recipeName){
     event.preventDefault()
     console.log("saveIng")
-    console.dir(event.target.elements)
+    // console.dir(event)
+    // let myIng:Array<string>=event.target.elements
+    // console.log(myIng[0])
+    // let button:string=myIng.pop()
+    // console.log(button)
+    // console.log(myIng.length)
+    // try{ 
+    //     // @ts-ignore    
+    //     const { data } = await axios.post('/api/update-ing',{recipeName,myIng});
+    //     const { myRecipe,error} = data;
+    //     if (error) throw new Error(error);
+    //     renderRecipeForUpdate(myRecipe)
+
+    // } catch (error) {
+    //     console.error(error);
+    // } 
+
 }
 
-async function savePre(event){
+async function savePre(event,recipeName){
     event.preventDefault()
     console.log("savePre")
     console.dir(event.target.elements)

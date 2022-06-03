@@ -59,7 +59,7 @@ app.post('/api/check-recipe', function (req, res) {
         if (recipeIndex === -1)
             throw new Error("recipeName not found");
         var recipeAdderName = recipes[recipeIndex]['adderName'];
-        console.debug(recipeAdderName, recipes[recipeIndex]);
+        //console.debug(recipeAdderName,recipes[recipeIndex]);
         if (recipeAdderName !== myRecipe_1.adderName) {
             throw new Error("This recipe was added by another user");
         }
@@ -67,6 +67,30 @@ app.post('/api/check-recipe', function (req, res) {
             myRecipe_1 = recipes[recipeIndex];
             res.send({ myRecipe: myRecipe_1 });
         }
+    }
+    catch (error) {
+        res.send({ error: error.message });
+    }
+});
+app.post('/api/update-ing', function (req, res) {
+    try {
+        var _a = req.body, recipeName = _a.recipeName, myIng = _a.myIng;
+        if (!recipeName)
+            throw new Error("name is required");
+        if (!myIng)
+            throw new Error("ingredients are required");
+        var myInp_1 = { recipeName: recipeName, myIng: myIng };
+        var recipeIndex = recipes.findIndex(function (recipe) { return recipe.name === myInp_1.recipeName; });
+        if (recipeIndex === -1)
+            throw new Error("recipeName not found");
+        var len = myInp_1.myIng.length;
+        for (var i = 0; i < len; i++) {
+            recipes[recipeIndex]["ingredients]"[i] = myInp_1.myIng[i]];
+        }
+        ;
+        console.debug(recipes[recipeIndex]["ingredients]"[0]]);
+        var myRecipe = recipes[recipeIndex];
+        res.send({ myRecipe: myRecipe });
     }
     catch (error) {
         res.send({ error: error.message });
