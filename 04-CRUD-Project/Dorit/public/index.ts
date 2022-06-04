@@ -48,9 +48,14 @@ interface Recipe {
     console.log("handleAddRecipe")
     let forms:HTMLDivElement = document.querySelector("#forms")
     if(forms) forms.remove()
+    let root:HTMLDivElement=document.querySelector("#root")  
+    if(root) root.remove()
+    let body = document.querySelector("body")
+    root = document.createElement("root")
+    body.append(root)
     let html=""
     html=`
-    <div id="forms">
+    <div id="root">
         <form onsubmit="PostRecipe(event)">
             <input type="text" name="name" placeholder="Recipe Name"><br>`
     html+=`        
@@ -72,8 +77,8 @@ interface Recipe {
             <button type="submit">Post Recipe</button>        
             </form>
     </div>` 
-    let root:HTMLDivElement=document.querySelector("#root")  
-    root.innerHTML=html
+    //let root:HTMLDivElement=document.querySelector("#root")  
+    body.innerHTML+=html
     root.style.position="relative" 
     root.style.top="10px"
     root.style.left="10px"
@@ -148,7 +153,7 @@ function renderFullRecipe(fullRecipe:Recipe){
     for(let j:number=0;j<preNo;j++){
         html+=`<div class="prepares">${fullRecipe.prepareMode[j]}</div>`
     }
-
+    html+=`<button id="back"><a href="index.html">Back to beginning</a></button>`
     root.innerHTML=html
     root.style.position="absolute"
     root.style.top="150px"
@@ -161,6 +166,9 @@ function handleFixRecipe(){
     console.log("handleFixRecipe")
     let forms:HTMLDivElement = document.querySelector("#forms")
     if(forms) forms.remove()
+    let body = document.querySelector("body")
+    let root:HTMLElement = document.createElement("root")
+    body.append(root)
     let html=""
     html=`
     <div id="forms">
@@ -170,7 +178,7 @@ function handleFixRecipe(){
             <button type="submit">Get Recipe</button>
         </form>
     </div>` 
-    let root:HTMLDivElement=document.querySelector("#root")  
+    
     root.innerHTML=html
     root.style.position="absolute" 
     root.style.top="60px"
@@ -205,6 +213,7 @@ function renderRecipeForUpdate(myRecipe:Recipe){
         console.log("renderRecipeForUnpdate")
         let forms:HTMLElement = document.querySelector("#forms");
         if(forms) forms.remove()
+        let root:HTMLDivElement=document.querySelector("#root")  
         let recipeName:string=myRecipe.name
         console.log(`recipeName: ${recipeName}`)
         let frm1=""
@@ -235,8 +244,8 @@ function renderRecipeForUpdate(myRecipe:Recipe){
         let root1:HTMLDivElement=document.querySelector("#root1") 
         root1.innerHTML=html
         root1.style.position="absolute"
-        root1.style.top="120px"
-        root1.style.left="340px"
+        root1.style.top="160px"
+        root1.style.left="680px"
         root1.style.border="1px solid black"
         root1.style.backgroundColor="yellow"
         let root2:HTMLDivElement=document.querySelector("#root2") 
@@ -255,8 +264,8 @@ function renderRecipeForUpdate(myRecipe:Recipe){
         let root3:HTMLDivElement=document.querySelector("#root3") 
         root3.innerHTML=frm3
         root3.style.position="absolute"
-        root3.style.top="300px"
-        root3.style.left="340px"
+        root3.style.top="350px"
+        root3.style.left="680px"
         root3.style.border="1px solid black"
         root3.style.backgroundColor="yellow"
         let root4:HTMLDivElement=document.querySelector("#root4") 

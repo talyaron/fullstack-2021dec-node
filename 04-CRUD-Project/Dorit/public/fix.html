@@ -8,28 +8,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.js"
         integrity="sha512-rozBdNtS7jw9BlC76YF1FQGjz17qQ0J/Vu9ZCFIW374sEy4EZRbRcUZa2RU/MZ90X2mnLU56F75VfdToGV0RiA=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <link rel="stylesheet" href="./dist/style.css">
+    <link rel="stylesheet" href="./dist/fix.css">
 </head>
-<body>
-    <div id="root">
-        <div id="forms"></div>
-    </div>
+<body onload="handleFixRecipe()">
+    <div id="root"></div>
     <div id="root1"></div>
     <div id="root2"></div>
     <div id="root3"></div>
-    <div id="root4"></div>   
-   
-    <div id="handleDoAction">
-        <button id="getRecipe">
-            <a href="get.html">Get a Recipe</a>
-        </button>
-        <button id="addRecipe">
-            <a href="add.html">Add a Recipe</a>
-        </button>
-        <button id ="fixRecipe">
-            <a href="fix.html">Fix a Recipe</a>
-        </button>
-    </div>
+    <div id="root4"></div>
     <script src="./dist/index.js"></script>
 </body>
 </html>

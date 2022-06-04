@@ -84,13 +84,19 @@ function handleAddRepipe() {
     var forms = document.querySelector("#forms");
     if (forms)
         forms.remove();
+    var root = document.querySelector("#root");
+    if (root)
+        root.remove();
+    var body = document.querySelector("body");
+    root = document.createElement("root");
+    body.append(root);
     var html = "";
-    html = "\n    <div id=\"forms\">\n        <form onsubmit=\"PostRecipe(event)\">\n            <input type=\"text\" name=\"name\" placeholder=\"Recipe Name\"><br>";
+    html = "\n    <div id=\"root\">\n        <form onsubmit=\"PostRecipe(event)\">\n            <input type=\"text\" name=\"name\" placeholder=\"Recipe Name\"><br>";
     html += "        \n            <input type=\"text\" name=\"array1[]\" placeholder=\"Ingredients\"/><br>\n            <input type=\"text\" name=\"array1[]\" placeholder=\"Ingredients\"/><br>\n            <input type=\"text\" name=\"array1[]\" placeholder=\"Ingredients\"/><br>\n            <input type=\"text\" name=\"array1[]\" placeholder=\"Ingredients\"/><br>\n            <input type=\"text\" name=\"array1[]\" placeholder=\"Ingredients\"/><br>\n            <input type=\"text\" name=\"array1[]\" placeholder=\"Ingredients\"/><br>";
     html += "\n            <input type=\"text\" name=\"array2[]\" placeholder=\"Prepare Mode\"/><br>\n            <input type=\"text\" name=\"array2[]\" placeholder=\"Prepare Mode\"/><br>\n            <input type=\"text\" name=\"array2[]\" placeholder=\"Prepare Mode\"/><br>\n            <input type=\"text\" name=\"array2[]\" placeholder=\"Prepare Mode\"/><br>\n            <input type=\"text\" name=\"array2[]\" placeholder=\"Prepare Mode\"/><br>\n            <input type=\"text\" name=\"array2[]\" placeholder=\"Prepare Mode\"/><br>";
     html += "\n            <input type=\"text\" name=\"adderName\" placeholder=\"name of adder\"/>\n            <button type=\"submit\">Post Recipe</button>        \n            </form>\n    </div>";
-    var root = document.querySelector("#root");
-    root.innerHTML = html;
+    //let root:HTMLDivElement=document.querySelector("#root")  
+    body.innerHTML += html;
     root.style.position = "relative";
     root.style.top = "10px";
     root.style.left = "10px";
@@ -178,6 +184,7 @@ function renderFullRecipe(fullRecipe) {
     for (var j = 0; j < preNo; j++) {
         html += "<div class=\"prepares\">" + fullRecipe.prepareMode[j] + "</div>";
     }
+    html += "<button id=\"back\"><a href=\"index.html\">Back to beginning</a></button>";
     root.innerHTML = html;
     root.style.position = "absolute";
     root.style.top = "150px";
@@ -190,9 +197,11 @@ function handleFixRecipe() {
     var forms = document.querySelector("#forms");
     if (forms)
         forms.remove();
+    var body = document.querySelector("body");
+    var root = document.createElement("root");
+    body.append(root);
     var html = "";
     html = "\n    <div id=\"forms\">\n        <form onsubmit=\"CheckName(event); return false;\">\n            <input type=\"text\" name=\"recipeName\" placeholder=\"Recipe Name\"><br>\n            <input type=\"text\" name=\"adderName\" placeholder=\"Your Name\"><br>\n            <button type=\"submit\">Get Recipe</button>\n        </form>\n    </div>";
-    var root = document.querySelector("#root");
     root.innerHTML = html;
     root.style.position = "absolute";
     root.style.top = "60px";
@@ -237,6 +246,7 @@ function renderRecipeForUpdate(myRecipe) {
     var forms = document.querySelector("#forms");
     if (forms)
         forms.remove();
+    var root = document.querySelector("#root");
     var recipeName = myRecipe.name;
     console.log("recipeName: " + recipeName);
     var frm1 = "";
@@ -265,8 +275,8 @@ function renderRecipeForUpdate(myRecipe) {
     var root1 = document.querySelector("#root1");
     root1.innerHTML = html;
     root1.style.position = "absolute";
-    root1.style.top = "120px";
-    root1.style.left = "340px";
+    root1.style.top = "160px";
+    root1.style.left = "680px";
     root1.style.border = "1px solid black";
     root1.style.backgroundColor = "yellow";
     var root2 = document.querySelector("#root2");
@@ -285,8 +295,8 @@ function renderRecipeForUpdate(myRecipe) {
     var root3 = document.querySelector("#root3");
     root3.innerHTML = frm3;
     root3.style.position = "absolute";
-    root3.style.top = "300px";
-    root3.style.left = "340px";
+    root3.style.top = "350px";
+    root3.style.left = "680px";
     root3.style.border = "1px solid black";
     root3.style.backgroundColor = "yellow";
     var root4 = document.querySelector("#root4");
