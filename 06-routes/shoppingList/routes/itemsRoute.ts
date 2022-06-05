@@ -1,8 +1,11 @@
 import express from "express";
 const router = express.Router();
-import { HandleUpdateItem } from "../cont/itemsCont";
+import { HandleUpdateItem, getAllItems, filterItems } from "../cont/itemsCont";
 
-router.patch("/updateItem", HandleUpdateItem);
+router
+.patch("/updateItem", HandleUpdateItem)
+.get("/getAllItems", getAllItems)
+.post("/searchItems", filterItems)
 
 
 export default router;
