@@ -40,7 +40,14 @@ async function handleSearchItems(event) {
     try {
     event.preventDefault();
     const searchedItem = event.target.search.value;
-    const { data } = await axios.post('/items/searchItems', { searchedItem })
+    const { data } = await axios.post('/items/searchItems', { searchedItem });
+    const result = data;
+    const resultContainer = document.querySelector('.resultcontainer');
+    let html = `<h2>${result.length} results found:</h2>`;
+    result.forEach(item => {
+        html += `<p>Item: ${item.name}</p>`
+    });
+    resultContainer.innerHTML = html;
     } catch (error) {
         console.error(error);
       }

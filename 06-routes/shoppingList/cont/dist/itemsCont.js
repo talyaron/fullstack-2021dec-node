@@ -45,6 +45,12 @@ var items = [
         userId: 'abcd'
     },
     {
+        name: 'Milky',
+        itemId: '1234MI',
+        bought: false,
+        userId: 'abcd'
+    },
+    {
         name: 'Bread',
         itemId: '123BR',
         bought: false,
@@ -72,10 +78,17 @@ exports.getAllItems = getAllItems;
 function filterItems(req, res) {
     var user = "abcd"; // to be determined by params
     var searchedItem = req.body.searchedItem;
-    var filtereditems = items.filter(function (item) {
-        return item.userId === user && item.name === searchedItem;
+    var filteredUseritems = items.filter(function (item) {
+        return item.userId === user;
     });
-    console.log(filtereditems);
+    var filtereditems = [];
+    var itemToLookFor = new RegExp(searchedItem, "i");
+    console.log(itemToLookFor);
+    filteredUseritems.forEach(function (item) {
+        if (item.name.match(itemToLookFor)) {
+            filtereditems.push(item);
+        }
+    });
     res.send(filtereditems);
 }
 exports.filterItems = filterItems;

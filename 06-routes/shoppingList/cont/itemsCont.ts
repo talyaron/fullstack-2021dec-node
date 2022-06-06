@@ -8,6 +8,12 @@ const items: Array<Item> = [
 		userId: 'abcd'
 	},
 	{
+		name: 'Milky',
+		itemId: '1234MI',
+		bought: false,
+		userId: 'abcd'
+	},
+	{
 		name: 'Bread',
 		itemId: '123BR',
 		bought: false,
@@ -29,10 +35,17 @@ export function getAllItems(req, res) {
 export function filterItems(req, res) {
   const user = "abcd"; // to be determined by params
 	const { searchedItem } = req.body;
-  const filtereditems = items.filter(function (item) {
-    return item.userId === user && item.name === searchedItem;
+  const filteredUseritems = items.filter(function (item) {
+    return item.userId === user;
   });
-  console.log(filtereditems)
+  const filtereditems = [];
+  const itemToLookFor = new RegExp(searchedItem, "i");
+  console.log(itemToLookFor)
+  filteredUseritems.forEach(item => {
+	  if(item.name.match(itemToLookFor)) {
+		filtereditems.push(item)
+	  }
+  });
   
   res.send(filtereditems)
 }
