@@ -27,14 +27,12 @@ export function getAllItems(req, res) {
 }
 
 export function filterItems(req, res) {
+  const user = "abcd"; // to be determined by params
 	const { searchedItem } = req.body;
-  console.log(searchedItem)
-  const filtereditems = [];
-	items.forEach((item) => {
-    console.log(item.name)
-		if (item.name === `${searchedItem}`) {
-      filtereditems.push(item)
-		}
-	});
+  const filtereditems = items.filter(function (item) {
+    return item.userId === user && item.name === searchedItem;
+  });
+  console.log(filtereditems)
+  
   res.send(filtereditems)
 }

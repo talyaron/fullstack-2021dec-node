@@ -70,15 +70,12 @@ function getAllItems(req, res) {
 }
 exports.getAllItems = getAllItems;
 function filterItems(req, res) {
+    var user = "abcd"; // to be determined by params
     var searchedItem = req.body.searchedItem;
-    console.log(searchedItem);
-    var filtereditems = [];
-    items.forEach(function (item) {
-        console.log(item.name);
-        if (item.name === "" + searchedItem) {
-            filtereditems.push(item);
-        }
+    var filtereditems = items.filter(function (item) {
+        return item.userId === user && item.name === searchedItem;
     });
+    console.log(filtereditems);
     res.send(filtereditems);
 }
 exports.filterItems = filterItems;
