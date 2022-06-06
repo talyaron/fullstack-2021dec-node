@@ -1,4 +1,5 @@
 import { User } from "../cont/usersCont";
+import { items } from "../cont/itemsCont";
 
 export interface Item {
   name: string;
@@ -81,6 +82,10 @@ export function renderItems(ArrayofItems: Array<Item>) {
   });
 }
 
+function handleRenderItems(){
+  renderItems(items)
+}
+
 function renderUserCart(user: User) {
   const userNameTitle = document.querySelector('#userCart');
   userNameTitle.innerHTML = `${user.name}'s Shopping Cart`;
@@ -90,3 +95,40 @@ function handleLoadUserInfo(){
   getUser();
   getUserItems();
 }
+
+
+async function handleAddItem(){
+  try {
+    const newItem:HTMLInputElement =  document.querySelector("#inputNewItem");
+    const newItemValue = newItem.value;
+    console.log(newItemValue);
+    // @ts-ignore
+    const { data } = await axios.post("/items/addItem", {newItemValue});
+    console.log(data)
+    renderItems(data);
+    if(!Array.isArray(data)) throw new Error("data should be an array ant it is not")
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+
+// export function handleAddItem() {
+//   //@ts-ignore
+//   // const { data } = await axios.get("/items/add-items");
+//   // const { items, error } = data;
+//   let newItem = document.getElementById("newItemInput") as HTMLInputElement;
+//   // console.log(items)
+//   let newItemValue = newItem.value;
+//   console.log(newItem.value);
+//   const newItemWrapper = document.querySelector(".newItemWrapper");
+//   // newItemWrapper.innerHTML = "";
+//   // ArrayofNewItems.forEach((newItems) => {
+//   const newAddedItem:any = document.createElement("div");
+//   newAddedItem.innerHTML += `<div>
+//          <h4 style="display: inline;">${newItemValue}</h4>
+//          <input type="checkbox">
+//          <button>edit</button>
+//    </div>`;
+//   newItemWrapper.appendChild(newAddedItem);
+//  }

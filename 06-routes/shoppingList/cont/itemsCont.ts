@@ -1,5 +1,5 @@
 // import { Item } from "../model/itemModel";
-
+import uid from "../helpers";
 
 interface Item {
   name: string,
@@ -75,3 +75,22 @@ export async function getItems(req, res) {
   }
 }
 
+
+export async function addItem(req, res){
+  try {
+    const newItemValue = req.body.newItemValue;
+    let newItem  = {
+      name: newItemValue,
+      itemId: uid(),
+      bought: false,
+      userId: "abc",
+    }
+  
+  
+    items.push(newItem);
+    console.log({items});
+    res.send({items});
+  } catch (error) {
+    res.send({error: error.message})
+  }
+  }
