@@ -80,6 +80,10 @@ export function renderItems(ArrayofItems: Array<Item>) {
      </div>`;
     wraper.appendChild(newItem);
   });
+
+  // wraper.innerHTML += `<button onclick="handleAddItem()">handleAddItem---${items[0].userId}-----------</button>`;
+
+
 }
 
 function handleRenderItems(){
@@ -103,9 +107,9 @@ async function handleAddItem(){
     const newItemValue = newItem.value;
     console.log(newItemValue);
     // @ts-ignore
-    const { data } = await axios.post("/items/addItem", {newItemValue});
+    const { data } = await axios.post("/items/addItem",  { data: { newItemValue , getUserId()}});
     console.log(data)
-    renderItems(data);
+    renderItems(data.items);
     if(!Array.isArray(data)) throw new Error("data should be an array ant it is not")
   } catch (error) {
     console.error(error);

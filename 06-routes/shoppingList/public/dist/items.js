@@ -138,6 +138,7 @@ function renderItems(ArrayofItems) {
         newItem.innerHTML = " <div>\n         <h4 style=\"display: inline;\">" + item.name + "</h4>\n         <input type=\"checkbox\">\n         <button>edit</button>\n         <button onclick=\"handleDeleteItem('" + item.itemId + "', '" + item.userId + "')\">delete</button>\n     </div>";
         wraper.appendChild(newItem);
     });
+    // wraper.innerHTML += `<button onclick="handleAddItem()">handleAddItem---${items[0].userId}-----------</button>`;
 }
 exports.renderItems = renderItems;
 function handleRenderItems() {
@@ -161,11 +162,11 @@ function handleAddItem() {
                     newItem = document.querySelector("#inputNewItem");
                     newItemValue = newItem.value;
                     console.log(newItemValue);
-                    return [4 /*yield*/, axios.post("/items/addItem", { newItemValue: newItemValue })];
+                    return [4 /*yield*/, axios.post("/items/addItem", { data: { newItemValue: newItemValue } })];
                 case 1:
                     data = (_a.sent()).data;
                     console.log(data);
-                    renderItems(data);
+                    renderItems(data.items);
                     if (!Array.isArray(data))
                         throw new Error("data should be an array ant it is not");
                     return [3 /*break*/, 3];

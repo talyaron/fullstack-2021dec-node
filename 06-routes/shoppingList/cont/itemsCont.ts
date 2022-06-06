@@ -78,7 +78,10 @@ export async function getItems(req, res) {
 
 export async function addItem(req, res){
   try {
-    const newItemValue = req.body.newItemValue;
+    const newItemValue = req.body.data.newItemValue;
+    const userId = req.body.data.userId;
+    console.log(userId);
+
     let newItem  = {
       name: newItemValue,
       itemId: uid(),
@@ -86,9 +89,9 @@ export async function addItem(req, res){
       userId: "abc",
     }
   
-  
     items.push(newItem);
     console.log({items});
+    // res.send({ items: items.filter((item) => item.userId === userId) })
     res.send({items});
   } catch (error) {
     res.send({error: error.message})
