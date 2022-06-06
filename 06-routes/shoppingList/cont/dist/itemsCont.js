@@ -78,17 +78,27 @@ exports.getAllItems = getAllItems;
 function filterItems(req, res) {
     var user = "abcd"; // to be determined by params
     var searchedItem = req.body.searchedItem;
+    var filterBy = req.body.filterBy;
     var filteredUseritems = items.filter(function (item) {
         return item.userId === user;
     });
     var filtereditems = [];
     var itemToLookFor = new RegExp(searchedItem, "i");
     console.log(itemToLookFor);
-    filteredUseritems.forEach(function (item) {
-        if (item.name.match(itemToLookFor)) {
-            filtereditems.push(item);
-        }
-    });
+    if (filterBy === "name") {
+        filteredUseritems.forEach(function (item) {
+            if (item.name.match(itemToLookFor)) {
+                filtereditems.push(item);
+            }
+        });
+    }
+    else if (filterBy === "itemId") {
+        filteredUseritems.forEach(function (item) {
+            if (item.itemId.match(itemToLookFor)) {
+                filtereditems.push(item);
+            }
+        });
+    }
     res.send(filtereditems);
 }
 exports.filterItems = filterItems;

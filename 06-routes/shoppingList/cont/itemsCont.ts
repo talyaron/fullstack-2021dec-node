@@ -35,17 +35,27 @@ export function getAllItems(req, res) {
 export function filterItems(req, res) {
   const user = "abcd"; // to be determined by params
 	const { searchedItem } = req.body;
+	const { filterBy } = req.body
   const filteredUseritems = items.filter(function (item) {
     return item.userId === user;
   });
   const filtereditems = [];
   const itemToLookFor = new RegExp(searchedItem, "i");
   console.log(itemToLookFor)
+  
+  if(filterBy === "name") {
   filteredUseritems.forEach(item => {
 	  if(item.name.match(itemToLookFor)) {
 		filtereditems.push(item)
 	  }
   });
+} else if (filterBy === "itemId") {
+	filteredUseritems.forEach(item => {
+		if(item.itemId.match(itemToLookFor)) {
+		  filtereditems.push(item)
+		}
+	});
+}
   
   res.send(filtereditems)
 }

@@ -58,19 +58,20 @@ exports.renderItems = renderItems;
 var form = document.querySelector('#searchForm');
 function handleSearchItems(event) {
     return __awaiter(this, void 0, void 0, function () {
-        var searchedItem, data, result, resultContainer, html_1, error_1;
+        var searchedItem, filterBy, data, result, resultContainer, html_1, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
                     event.preventDefault();
                     searchedItem = event.target.search.value;
-                    return [4 /*yield*/, axios.post('/items/searchItems', { searchedItem: searchedItem })];
+                    filterBy = event.target.filteroption.value;
+                    return [4 /*yield*/, axios.post('/items/searchItems', { searchedItem: searchedItem, filterBy: filterBy })];
                 case 1:
                     data = (_a.sent()).data;
                     result = data;
                     resultContainer = document.querySelector('.resultcontainer');
-                    html_1 = "<h2>" + result.length + " results found:</h2>";
+                    html_1 = "<h2>" + result.length + " results found</h2>";
                     result.forEach(function (item) {
                         html_1 += "<p>Item: " + item.name + "</p>";
                     });

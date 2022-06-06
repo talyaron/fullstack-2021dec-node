@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,18 +9,36 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"
         integrity="sha512-odNmoc1XJy5x1TMVMdC7EMs3IVdItLPlCeL5vSUPN2llYKMJ2eByTTAIiiuqLg+GdNr9hF6z81p27DArRFKT7A=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
+    <link rel="stylesheet" href="dist/styleitems.css">
 </head>
+
 <body onload="handleGetItems()">
     <h1>Items</h1>
     <div class="wraper"></div>
 
     <form onsubmit="handleSearchItems(event)" id="searchForm">
-        <input placeholder="Enter item name here:" type="text" name="search" id="searchInput">
-        <button type="submit">Search</button>
+        <div class="formcontainer">
+            <label for="filtervia">Filter by:</label>
+            <select id="filtervia" name="filteroption">
+                <option value="name">Item name</option>
+                <option value="itemId">Item ID</option>
+            </select>
+
+            <div class="flexbox">
+                <div class="search">
+                    <div>
+                        <input name="search" type="text" placeholder="Search . . ." required id="searchInput">
+                        <button id="searchBtn" type="submit">Search</button>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </form>
     <div class="resultcontainer">
     </div>
     <script src="./dist/items.js"></script>
 </body>
+
 </html>
