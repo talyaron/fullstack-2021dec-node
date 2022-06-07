@@ -119,23 +119,3 @@ async function handleAddItem(){
   }
 }
 
-
-// export function handleAddItem() {
-//   //@ts-ignore
-//   // const { data } = await axios.get("/items/add-items");
-//   // const { items, error } = data;
-//   let newItem = document.getElementById("newItemInput") as HTMLInputElement;
-//   // console.log(items)
-//   let newItemValue = newItem.value;
-//   console.log(newItem.value);
-//   const newItemWrapper = document.querySelector(".newItemWrapper");
-//   // newItemWrapper.innerHTML = "";
-//   // ArrayofNewItems.forEach((newItems) => {
-//   const newAddedItem:any = document.createElement("div");
-//   newAddedItem.innerHTML += `<div>
-//          <h4 style="display: inline;">${newItemValue}</h4>
-//          <input type="checkbox">
-//          <button>edit</button>
-//    </div>`;
-//   newItemWrapper.appendChild(newAddedItem);
-//  }
