@@ -1,4 +1,5 @@
 
+import axios from "axios"
 
 async function getRandomSpaceGif() {
     try {
@@ -8,7 +9,8 @@ async function getRandomSpaceGif() {
       
       const { data } = await axios.get("/api/SpaceGif");
       console.log(data)
-      const { gifUrl, error } = data;
+      const { gifUrl, error } = data.gifUrl;
+      console.log(gifUrl);
     console.log("get GIF After fetch (2.5)");
       
       if (error) throw new Error(error);
@@ -23,7 +25,7 @@ async function getRandomSpaceGif() {
 
 
 function placeSpaceGifOnDiv(spaceGif) {
-    const spaceGifDiv: HTMLElement = document.querySelector("#RandomSpaceGif");
+    const spaceGifDiv: HTMLElement = document.querySelector("#spaceGif");
     spaceGifDiv.innerHTML = `<img src="${spaceGif}" alt="" srcset=""/>`;
     
   }

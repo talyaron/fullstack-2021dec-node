@@ -1,0 +1,14 @@
+body {
+  background-color: #ccf7e1;
+  position: relative;
+}
+body #handleDoAction {
+  position: absolute;
+  top: 30px;
+  left: 350px;
+}
+body form {
+  position: absolute;
+  top: 50px;
+  left: 350px;
+}

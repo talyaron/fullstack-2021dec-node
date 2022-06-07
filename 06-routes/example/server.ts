@@ -16,7 +16,7 @@ mongoose.connect(
 });
 
 
-import usersRoute from "./routes/usersRoute";
+import usersRoute,{x} from "./routes/usersRoute";
 app.use("/users", usersRoute);
 
 import {someFunction} from './controlers/usersCont'

@@ -1,9 +1,10 @@
-const express = require('express')
-const app = express()
-const port = process.env.PORT || 4000;
+const express = require("express");
+const app = express();
+const port = process.env.PORT || 3000;
 
+app.use(express.static("public"));
 app.use(express.json());
-app.use(express.static('public'))
+
 
 //all users array
 let users: Array < user > = [];
@@ -80,12 +81,6 @@ app.put('/api/update-user', (req, res) => {
             uniqID,
             permissions
         } = req.body;
-        if (!userName)
-            throw new Error("User name is required");
-        if (!email)
-            throw new Error("Email is required");
-        if (!permissions)
-            throw new Error("Permissions are required");
 
         const userIndex = users.findIndex(user => user.uniqID === uniqID);
         if (userIndex === -1)
@@ -117,5 +112,5 @@ const uid = function () {
 }
 
 app.listen(port, () => {
-    console.log(`Server listening on port ${port}`)
-});
+    return console.log(`Server is listening at http://localhost:${port}`);
+  });

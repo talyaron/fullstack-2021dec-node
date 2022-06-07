@@ -1,8 +1,8 @@
-var express = require('express');
+var express = require("express");
 var app = express();
-var port = process.env.PORT || 4000;
+var port = process.env.PORT || 3000;
+app.use(express.static("public"));
 app.use(express.json());
-app.use(express.static('public'));
 //all users array
 var users = [];
 app.get('/api/users', function (req, res) {
@@ -47,12 +47,6 @@ app.post('/api/add-user', function (req, res) {
 app.put('/api/update-user', function (req, res) {
     try {
         var _a = req.body, userName = _a.userName, email = _a.email, uniqID_1 = _a.uniqID, permissions = _a.permissions;
-        if (!userName)
-            throw new Error("User name is required");
-        if (!email)
-            throw new Error("Email is required");
-        if (!permissions)
-            throw new Error("Permissions are required");
         var userIndex = users.findIndex(function (user) { return user.uniqID === uniqID_1; });
         if (userIndex === -1)
             throw new Error("user not found");
@@ -79,5 +73,5 @@ var uid = function () {
         .substr(2);
 };
 app.listen(port, function () {
-    console.log("Server listening on port " + port);
+    return console.log("Server is listening at http://localhost:" + port);
 });

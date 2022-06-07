@@ -18,7 +18,7 @@
         <p id="steamName"></p>
         <p id="gameScore"></p>
         
-        <form class='fTeamStats' onsubmit='fteamstat(event)'>
+        <form class='fTeamStats' onsubmit='fTeamStat(event)'>
             <label for='fTeamShots'>fTeamShots</label>
             <input type='text' name='fTeamShots' placeholder='fTeamShots' required>
             <label for='fTeamshotsontarget'>fTeamshotsontarget</label>
@@ -34,7 +34,7 @@
             <button type='submit' class='saveBtn'>Save fTeamStats</button>    
         </form>
 
-        <form class='sTeamStats' onsubmit='steamstat(event)'>
+        <form class='sTeamStats' onsubmit='sTeamStat(event)'>
             <label for='sTeamShots'>sTeamShots</label>
             <input type='text' name='sTeamShots' placeholder='sTeamShots' required>
             <label for='sTeamshotsontarget'>sTeamshotsontarget</label>
@@ -49,6 +49,8 @@
             <input type='text' name='sTeamcorners' placeholder='sTeamcorners' required>
             <button type='submit' class='saveBtn'>Save sTeamStats</button>    
         </form>
+
+        
     <script src="dist/app.js"></script>
 </body>
 </html>

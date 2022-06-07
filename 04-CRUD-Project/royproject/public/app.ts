@@ -1,14 +1,12 @@
 
-
 function handleEditing(){
   chooseTeam()
   
 }
 
-
 function chooseTeam(){
     const fTeam= document.querySelector('#fTeamSelect')
-    fTeam.innerHTML=`<select  onchange="selectedfOption(event)"  name="team" id="team">
+    fTeam.innerHTML=`<select  onblur="selectedfOption(event)"  name="team" id="team">
     <option value=""></option>
     <option value="MTA">MTA</option>
     <option value="MHA">MHA</option>
@@ -19,7 +17,7 @@ function chooseTeam(){
   </select>`
 
   const sTeam= document.querySelector('#sTeamSelect')
-  sTeam.innerHTML=`<select onchange="selectedsOption(event)" name="team" id="team">
+  sTeam.innerHTML=`<select onblur="selectedsOption(event)" name="team" id="team">
   <option value=""></option>
   <option value="MTA">MTA</option>
   <option value="MHA">MHA</option>
@@ -31,189 +29,58 @@ function chooseTeam(){
 }
 
 function selectedfOption(event){
-  event.preventDefault()
-  let selectedOption= event.target.value
-  handleGetfteam(selectedOption)
+  try {
+    event.preventDefault()
+    let selectedOption= event.target.value
+    fgetAllTeams(selectedOption)
+  } catch (error) { 
+  }
 }
 
-
-function handleGetfteam(selectedOption) {  
-if(selectedOption==='MTA'){
+function fgetAllTeams(selectedOption){
   try {
-    axios.get('/api/MTA')
-      .then(({ data }) => {
-       const { team, error } = data;
-      renderDetailsf(team)
-        if (error) throw new Error(error);
-       ;
-      })
-      .catch((err) => console.error(err));
-  } catch (error) {
-    console.error(error);
+    // @ts-ignore
+    axios.get("/api/get-teams").then(({data}) => {
+    const { teams, error } = data;
+    console.log(teams)
+    const seletedindex= teams.findIndex(team=>team.teamName===selectedOption)
+    console.log(seletedindex)
+     let selectedTeam=teams[seletedindex]
+     console.dir(selectedTeam)
+     renderDetailsf(selectedTeam)
+    if (error) throw new Error(error);
+    })
   }
-}
-if(selectedOption==='MHA'){
-  try {
-    axios.get('/api/MHA')
-      .then(({ data }) => {
-        const { team, error } = data;
-       renderDetailsf(team)
-        if (error) throw new Error(error);
-       ;
-      })
-      .catch((err) => console.error(err));
-  } catch (error) {
-    console.error(error);
+   catch (err: any) {
+    console.error(err);
   }
-}
-if(selectedOption==='HBS'){
-  try {
-    axios.get('/api/HBS')
-      .then(({ data }) => {
-       const { team, error } = data;
-       renderDetailsf(team)
-        if (error) throw new Error(error);
-       ;
-      })
-      .catch((err) => console.error(err));
-  } catch (error) {
-    console.error(error);
-  }
-}
-if(selectedOption==='MNT'){
-  try {
-    axios.get('/api/MNT')
-      .then(({ data }) => {
-        const { team, error } = data;
-       renderDetailsf(team)
-        if (error) throw new Error(error);
-       ;
-      })
-      .catch((err) => console.error(err));
-  } catch (error) {
-    console.error(error);
-  }
-}
-if(selectedOption==='HTA'){
-  try {
-    axios.get('/api/HTA')
-      .then(({ data }) => {
-       const { team, error } = data;
-       renderDetailsf(team)
-        if (error) throw new Error(error);
-       ;
-      })
-      .catch((err) => console.error(err));
-  } catch (error) {
-    console.error(error);
-  }
-}
-if(selectedOption==='BNS'){
-  try {
-    axios.get('/api/BNS')
-      .then(({ data }) => {
-        const { team, error } = data;
-       renderDetailsf(team)
-        if (error) throw new Error(error);
-      })
-      .catch((err) => console.error(err));
-  } catch (error) {
-    console.error(error);
-  }
-}
 }
 
 function selectedsOption(event){
   let selectedOption= event.target.value
-  handleGetsteam(selectedOption)
+  event.preventDefault()
+  sgetAllTeams(selectedOption)
 }
 
-
-function handleGetsteam(selectedOption) {  
-  if(selectedOption==='MTA'){
-    try {
-      axios.get('/api/MTA')
-        .then(({ data }) => {
-         const { team, error } = data;
-        renderDetailss(team)
-          if (error) throw new Error(error);
-         ;
-        })
-        .catch((err) => console.error(err));
-    } catch (error) {
-      console.error(error);
-    }
-  }
-  if(selectedOption==='MHA'){
-    try {
-      axios.get('/api/MHA')
-        .then(({ data }) => {
-          const { team, error } = data;
-         renderDetailss(team)
-          if (error) throw new Error(error);
-         ;
-        })
-        .catch((err) => console.error(err));
-    } catch (error) {
-      console.error(error);
-    }
-  }
-  if(selectedOption==='HBS'){
-    try {
-      axios.get('/api/HBS')
-        .then(({ data }) => {
-         const { team, error } = data;
-         renderDetailss(team)
-          if (error) throw new Error(error);
-         ;
-        })
-        .catch((err) => console.error(err));
-    } catch (error) {
-      console.error(error);
-    }
-  }
-  if(selectedOption==='MNT'){
-    try {
-      axios.get('/api/MNT')
-        .then(({ data }) => {
-          const { team, error } = data;
-         renderDetailss(team)
-          if (error) throw new Error(error);
-         ;
-        })
-        .catch((err) => console.error(err));
-    } catch (error) {
-      console.error(error);
-    }
-  }
-  if(selectedOption==='HTA'){
-    try {
-      axios.get('/api/HTA')
-        .then(({ data }) => {
-         const { team, error } = data;
-         renderDetailss(team)
-          if (error) throw new Error(error);
-         ;
-        })
-        .catch((err) => console.error(err));
-    } catch (error) {
-      console.error(error);
-    }
-  }
-  if(selectedOption==='BNS'){
-    try {
-      axios.get('/api/BNS')
-        .then(({ data }) => {
-          const { team, error } = data;
-         renderDetailss(team)
-          if (error) throw new Error(error);
-        })
-        .catch((err) => console.error(err));
-    } catch (error) {
-      console.error(error);
-    }
-  }
-  }
+function sgetAllTeams(selectedOption){
+  try {
+    // @ts-ignore
+    axios.get("/api/get-teams").then(({data}) => {
+    const { teams, error } = data;
+    console.log(teams)
+    const seletedindex= teams.findIndex(team=>team.teamName===selectedOption)
+    console.log(seletedindex)
+     let selectedTeam=teams[seletedindex]
+     console.dir(selectedTeam)
+     renderDetailss(selectedTeam)
+     renderSTeam(selectedTeam)
+    if (error) throw new Error(error);
+    })
+  } 
+   catch (err: any) {
+    console.error(err);
+  }  
+}
 
 function renderDetailsf(teams:team) {
   const name:HTMLParagraphElement = document.querySelector("#fteamName")
@@ -229,44 +96,93 @@ function renderDetailss(teams:team) {
   image.src = `${teams.teamimg}`;
 }
 
-function fteamstat(event){
-  event.preventDefault()
-  const elements = event.target.elements;
-  const result = {
-    fTeamShots: elements.fTeamShots.value,
-    fTeamshotsontarget: elements.fTeamshotsontarget.value,
-    fTeamPossesion: elements.fTeamPossesion.value,
-    fTeamYellowCards: elements.fTeamYellowCards.value,
-    fTeamredCards: elements.fTeamredCards.value,
-    fTeamcorners: elements.fTeamcorners.value,
-  };
-  for (let i = 0; i < elements.length; i++) {
-    if (elements[i].name && elements[i].value) {
-     result[elements[i].name] = elements[i].value;
-    }
+function getFStat() {
+  try {
+    // @ts-ignore
+    axios.get("/api/get-stat").then(({data}) => {
+
+    const { fstat, error } = data;
+    if (error) throw new Error(error);
+
+    console.dir(fstat)
+  })
+}
+     catch (err: any) {
+    console.error(err);
   }
- 
-  console.log(result)
-  return result
 }
 
-
-function steamstat(event){
+function fTeamStat(event){
   event.preventDefault()
-  const elements = event.target.elements;
-  const result = {
-   sTeamShots: elements.sTeamShots.value,
-   sTeamshotsontarget: elements.sTeamshotsontarget.value,
-   sTeamPossesion: elements.sTeamPossesion.value,
-   sTeamYellowCards: elements.sTeamYellowCards.value,
-   sTeamredCards: elements.sTeamredCards.value,
-   sTeamcorners: elements.sTeamcorners.value,
-  };
-  for (let i = 0; i < elements.length; i++) {
-    if (elements[i].name && elements[i].value) {
-     result[elements[i].name] = elements[i].value;
-    }
+const elements = event.target.elements;
+let fTeamShots= elements.fTeamShots.value;
+let fTeamshotsontarget= elements.fTeamshotsontarget.value;
+let fTeamPossesion= elements.fTeamPossesion.value;
+let fTeamYellowCards= elements.fTeamYellowCards.value;
+let fTeamredCards= elements.fTeamredCards.value;
+let fTeamcorners= elements.fTeamcorners.value;
+getFStat()
+  // @ts-ignore
+axios.post('/api/add-fresult', { fTeamShots, fTeamshotsontarget, fTeamPossesion, fTeamYellowCards, fTeamredCards, fTeamcorners }).then(({data}) => {
+const { fResult, error } = data;
+console.dir(fResult)
+//clientLoad(fResult)
+if (error) throw new Error(error);
+})
+}
+function getsStat() {
+  try {
+    // @ts-ignore
+    axios.get("/api/get-sstat").then(({data}) => {
+    const { sstat, error } = data;
+    if (error) throw new Error(error);
+  })
+}
+     catch (err: any) {
+    console.error(err);
   }
-  console.log(result)
-  return result
+}
+
+function sTeamStat(event){
+  event.preventDefault()
+const elements = event.target.elements;
+let sTeamShots= elements.sTeamShots.value;
+let sTeamshotsontarget= elements.sTeamshotsontarget.value;
+let sTeamPossesion= elements.sTeamPossesion.value;
+let sTeamYellowCards= elements.sTeamYellowCards.value;
+let sTeamredCards= elements.sTeamredCards.value;
+let sTeamcorners= elements.sTeamcorners.value;
+getsStat()
+  // @ts-ignore
+axios.post('/api/add-sresult', { sTeamShots, sTeamshotsontarget, sTeamPossesion, sTeamYellowCards, sTeamredCards, sTeamcorners }).then(({data}) => {
+const { sstat, error } = data;
+clientLoad( sstat)
+if (error) throw new Error(error);
+})
+}
+
+function clientLoad( sstat){
+    let result= sstat[0]
+    const sTeamStat: HTMLDivElement = document.querySelectorAll('.fTeamClientstats')
+    console.log(sTeamStat)
+     sTeamStat.innerText = `<div id=sTeamShots>${result.sTeamShots}</div>
+     <div id=sTeamshotsontarget>${result.sTeamshotsontarget}</div>
+     <div id=sTeamPossesion>${result.sTeamPossesion}</div>
+     <div id=sTeamYellowCards>${result.sTeamYellowCards}</div>
+     <div id=sTeamredCardshots>${result.sTeamredCards}</div>
+     <div id=sTeamcorners>${result.sTeamcorners}</div>`
+     renderclient(sTeamStat.innerText)
+}
+function renderclient(stat){
+  const sTeamStat: HTMLDivElement = document.querySelectorAll('.fTeamClientstats')
+  sTeamStat.innerText= stat
+ 
+}
+
+function renderSTeam(teams){
+  const name:HTMLParagraphElement = document.querySelectorAll("#fteamName")
+  name.innerText=`${teams.teamName}`
+  console.log(name)
+  const image: HTMLImageElement = document.querySelectorAll("#fTeam");
+  image.src = `${teams.teamimg}`;
 }
