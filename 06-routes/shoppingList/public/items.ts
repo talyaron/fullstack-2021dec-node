@@ -53,18 +53,7 @@ async function getUser(){
   }
 }
 
-async function handleDeleteItem(itemId: string, userId:string) {
-  try {
-    console.log('delete item clicked');
-    //@ts-ignore
-    const { data } = await axios.delete("/items/delete-item", { data: { itemId , userId}});
-    console.log(data);
-    const {items, error} = data;
-    renderItems(items.filter((item)=> item.userId === userId));
-  } catch (error) {
-    console.error(error);
-  }
-}
+
 
 export function renderItems(ArrayofItems: Array<Item>) {
   const wraper = document.querySelector(".wraper");
@@ -79,6 +68,19 @@ export function renderItems(ArrayofItems: Array<Item>) {
      </div>`;
     wraper.appendChild(newItem);
   });
+}
+
+async function handleDeleteItem(itemId: string, userId:string) {
+  try {
+    console.log('delete item clicked');
+    //@ts-ignore
+    const { data } = await axios.delete("/items/delete-item", { data: { itemId , userId}});
+    console.log(data);
+    const {items, error} = data;
+    renderItems(items.filter((item)=> item.userId === userId));
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 function renderUserCart(user: User) {

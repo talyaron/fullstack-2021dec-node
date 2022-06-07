@@ -105,6 +105,16 @@ function getUser() {
         });
     });
 }
+function renderItems(ArrayofItems) {
+    var wraper = document.querySelector(".wraper");
+    wraper.innerHTML = '';
+    ArrayofItems.forEach(function (item) {
+        var newItem = document.createElement("div");
+        newItem.innerHTML = " <div>\n         <h4 style=\"display: inline;\">" + item.name + "</h4>\n         <input type=\"checkbox\">\n         <button>edit</button>\n         <button onclick=\"handleDeleteItem('" + item.itemId + "', '" + item.userId + "')\">delete</button>\n     </div>";
+        wraper.appendChild(newItem);
+    });
+}
+exports.renderItems = renderItems;
 function handleDeleteItem(itemId, userId) {
     return __awaiter(this, void 0, void 0, function () {
         var data, items, error, error_3;
@@ -129,16 +139,6 @@ function handleDeleteItem(itemId, userId) {
         });
     });
 }
-function renderItems(ArrayofItems) {
-    var wraper = document.querySelector(".wraper");
-    wraper.innerHTML = '';
-    ArrayofItems.forEach(function (item) {
-        var newItem = document.createElement("div");
-        newItem.innerHTML = " <div>\n         <h4 style=\"display: inline;\">" + item.name + "</h4>\n         <input type=\"checkbox\">\n         <button>edit</button>\n         <button onclick=\"handleDeleteItem('" + item.itemId + "', '" + item.userId + "')\">delete</button>\n     </div>";
-        wraper.appendChild(newItem);
-    });
-}
-exports.renderItems = renderItems;
 function renderUserCart(user) {
     var userNameTitle = document.querySelector('#userCart');
     userNameTitle.innerHTML = user.name + "'s Shopping Cart";
