@@ -1,4 +1,5 @@
 import { User } from "../cont/usersCont";
+import { items } from "../cont/itemsCont";
 
 export interface Item {
   name: string;
@@ -68,6 +69,14 @@ export function renderItems(ArrayofItems: Array<Item>) {
      </div>`;
     wraper.appendChild(newItem);
   });
+
+  // wraper.innerHTML += `<button onclick="handleAddItem()">handleAddItem---${items[0].userId}-----------</button>`;
+
+
+}
+
+function handleRenderItems(){
+  renderItems(items)
 }
 
 async function handleDeleteItem(itemId: string, userId:string) {
@@ -92,3 +101,23 @@ function handleLoadUserInfo(){
   getUser();
   getUserItems();
 }
+
+
+async function handleAddItem(){
+  try {
+    const newItem:HTMLInputElement =  document.querySelector("#inputNewItem");
+    const newItemValue = newItem.value;
+    console.log(newItemValue);
+
+    const userId = getUserId();
+   
+    // @ts-ignore
+    const { data } = await axios.post("/items/addItem",  { newItemValue ,userId });
+    console.log(data)
+    renderItems(data.items);
+    if(!Array.isArray(data.items)) throw new Error("data should be an array ant it is not")
+  } catch (error) {
+    console.error(error);
+  }
+}
+

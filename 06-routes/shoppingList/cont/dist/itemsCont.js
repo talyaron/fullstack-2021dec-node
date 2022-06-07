@@ -1,5 +1,4 @@
 "use strict";
-// import { Item } from "../model/itemModel";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -37,7 +36,9 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.getItems = exports.deleteItem = exports.HandleUpdateItem = exports.items = void 0;
+exports.addItem = exports.getItems = exports.deleteItem = exports.HandleUpdateItem = exports.items = void 0;
+// import { Item } from "../model/itemModel";
+var helpers_1 = require("../helpers");
 exports.items = [
     {
         name: "Milk",
@@ -122,3 +123,27 @@ function getItems(req, res) {
     });
 }
 exports.getItems = getItems;
+function addItem(req, res) {
+    return __awaiter(this, void 0, void 0, function () {
+        var newItemValue, userId_2, newItem;
+        return __generator(this, function (_a) {
+            try {
+                newItemValue = req.body.newItemValue;
+                userId_2 = req.body.userId;
+                newItem = {
+                    name: newItemValue,
+                    itemId: helpers_1["default"](),
+                    bought: false,
+                    userId: "abc"
+                };
+                exports.items.push(newItem);
+                res.send({ items: exports.items.filter(function (item) { return item.userId === userId_2; }) });
+            }
+            catch (error) {
+                res.send({ error: error.message });
+            }
+            return [2 /*return*/];
+        });
+    });
+}
+exports.addItem = addItem;

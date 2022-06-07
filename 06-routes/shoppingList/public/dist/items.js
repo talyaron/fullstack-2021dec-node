@@ -37,6 +37,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 exports.__esModule = true;
 exports.renderItems = exports.getUserItems = exports.getUserId = void 0;
+var itemsCont_1 = require("../cont/itemsCont");
 function getUserId() {
     try {
         var queryString = window.location.search;
@@ -54,7 +55,7 @@ function getUserId() {
 exports.getUserId = getUserId;
 function getUserItems() {
     return __awaiter(this, void 0, void 0, function () {
-        var userId, data, items, error, error_1;
+        var userId, data, items_1, error, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -63,8 +64,8 @@ function getUserItems() {
                     return [4 /*yield*/, axios.get("/items/get-items?userId=" + userId)];
                 case 1:
                     data = (_a.sent()).data;
-                    items = data.items, error = data.error;
-                    renderItems(items);
+                    items_1 = data.items, error = data.error;
+                    renderItems(items_1);
                     if (error)
                         throw new Error('Items was not found!');
                     return [3 /*break*/, 3];
@@ -117,7 +118,7 @@ function renderItems(ArrayofItems) {
 exports.renderItems = renderItems;
 function handleDeleteItem(itemId, userId) {
     return __awaiter(this, void 0, void 0, function () {
-        var data, items, error, error_3;
+        var data, items_2, error, error_3;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -127,8 +128,8 @@ function handleDeleteItem(itemId, userId) {
                 case 1:
                     data = (_a.sent()).data;
                     console.log(data);
-                    items = data.items, error = data.error;
-                    renderItems(items.filter(function (item) { return item.userId === userId; }));
+                    items_2 = data.items, error = data.error;
+                    renderItems(items_2.filter(function (item) { return item.userId === userId; }));
                     return [3 /*break*/, 3];
                 case 2:
                     error_3 = _a.sent();
@@ -139,6 +140,23 @@ function handleDeleteItem(itemId, userId) {
         });
     });
 }
+<<<<<<< HEAD
+=======
+function renderItems(ArrayofItems) {
+    var wraper = document.querySelector(".wraper");
+    wraper.innerHTML = '';
+    ArrayofItems.forEach(function (item) {
+        var newItem = document.createElement("div");
+        newItem.innerHTML = " <div>\n         <h4 style=\"display: inline;\">" + item.name + "</h4>\n         <input type=\"checkbox\">\n         <button>edit</button>\n         <button onclick=\"handleDeleteItem('" + item.itemId + "', '" + item.userId + "')\">delete</button>\n     </div>";
+        wraper.appendChild(newItem);
+    });
+    // wraper.innerHTML += `<button onclick="handleAddItem()">handleAddItem---${items[0].userId}-----------</button>`;
+}
+exports.renderItems = renderItems;
+function handleRenderItems() {
+    renderItems(itemsCont_1.items);
+}
+>>>>>>> 292dd937accebc7299235af7ce182681fc4484d1
 function renderUserCart(user) {
     var userNameTitle = document.querySelector('#userCart');
     userNameTitle.innerHTML = user.name + "'s Shopping Cart";
@@ -146,4 +164,32 @@ function renderUserCart(user) {
 function handleLoadUserInfo() {
     getUser();
     getUserItems();
+}
+function handleAddItem() {
+    return __awaiter(this, void 0, void 0, function () {
+        var newItem, newItemValue, userId, data, error_4;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    newItem = document.querySelector("#inputNewItem");
+                    newItemValue = newItem.value;
+                    console.log(newItemValue);
+                    userId = getUserId();
+                    return [4 /*yield*/, axios.post("/items/addItem", { newItemValue: newItemValue, userId: userId })];
+                case 1:
+                    data = (_a.sent()).data;
+                    console.log(data);
+                    renderItems(data.items);
+                    if (!Array.isArray(data.items))
+                        throw new Error("data should be an array ant it is not");
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_4 = _a.sent();
+                    console.error(error_4);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
 }
