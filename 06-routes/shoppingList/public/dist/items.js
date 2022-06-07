@@ -154,7 +154,7 @@ function handleLoadUserInfo() {
 }
 function handleAddItem() {
     return __awaiter(this, void 0, void 0, function () {
-        var newItem, newItemValue, data, error_4;
+        var newItem, newItemValue, userId, data, error_4;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -162,12 +162,13 @@ function handleAddItem() {
                     newItem = document.querySelector("#inputNewItem");
                     newItemValue = newItem.value;
                     console.log(newItemValue);
-                    return [4 /*yield*/, axios.post("/items/addItem", { data: { newItemValue: newItemValue } })];
+                    userId = getUserId();
+                    return [4 /*yield*/, axios.post("/items/addItem", { newItemValue: newItemValue, userId: userId })];
                 case 1:
                     data = (_a.sent()).data;
                     console.log(data);
                     renderItems(data.items);
-                    if (!Array.isArray(data))
+                    if (!Array.isArray(data.items))
                         throw new Error("data should be an array ant it is not");
                     return [3 /*break*/, 3];
                 case 2:

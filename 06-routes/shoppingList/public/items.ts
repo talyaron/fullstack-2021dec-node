@@ -106,11 +106,14 @@ async function handleAddItem(){
     const newItem:HTMLInputElement =  document.querySelector("#inputNewItem");
     const newItemValue = newItem.value;
     console.log(newItemValue);
+
+    const userId = getUserId();
+   
     // @ts-ignore
-    const { data } = await axios.post("/items/addItem",  { data: { newItemValue , getUserId()}});
+    const { data } = await axios.post("/items/addItem",  { newItemValue ,userId });
     console.log(data)
     renderItems(data.items);
-    if(!Array.isArray(data)) throw new Error("data should be an array ant it is not")
+    if(!Array.isArray(data.items)) throw new Error("data should be an array ant it is not")
   } catch (error) {
     console.error(error);
   }

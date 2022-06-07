@@ -125,12 +125,11 @@ function getItems(req, res) {
 exports.getItems = getItems;
 function addItem(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var newItemValue, userId, newItem;
+        var newItemValue, userId_2, newItem;
         return __generator(this, function (_a) {
             try {
-                newItemValue = req.body.data.newItemValue;
-                userId = req.body.data.userId;
-                console.log(userId);
+                newItemValue = req.body.newItemValue;
+                userId_2 = req.body.userId;
                 newItem = {
                     name: newItemValue,
                     itemId: helpers_1["default"](),
@@ -138,9 +137,7 @@ function addItem(req, res) {
                     userId: "abc"
                 };
                 exports.items.push(newItem);
-                console.log({ items: exports.items });
-                // res.send({ items: items.filter((item) => item.userId === userId) })
-                res.send({ items: exports.items });
+                res.send({ items: exports.items.filter(function (item) { return item.userId === userId_2; }) });
             }
             catch (error) {
                 res.send({ error: error.message });
