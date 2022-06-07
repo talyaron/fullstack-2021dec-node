@@ -134,7 +134,7 @@ function addItem(req, res) {
                     name: newItemValue,
                     itemId: helpers_1["default"](),
                     bought: false,
-                    userId: "abc"
+                    userId: userId_2
                 };
                 exports.items.push(newItem);
                 res.send({ items: exports.items.filter(function (item) { return item.userId === userId_2; }) });

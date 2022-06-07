@@ -84,7 +84,7 @@ export async function addItem(req, res){
       name: newItemValue,
       itemId: uid(),
       bought: false,
-      userId: "abc",
+      userId: userId,
     }
     items.push(newItem);
     res.send({ items: items.filter((item) => item.userId === userId) });
