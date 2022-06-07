@@ -1,0 +1,11 @@
+button {
+  background-color: #0033ff;
+  border-radius: 15px;
+  border: none;
+  width: 90px;
+  height: 30px;
+  font-family: sans-serif;
+  font-size: large;
+  font-weight: bold;
+  color: beige;
+}
