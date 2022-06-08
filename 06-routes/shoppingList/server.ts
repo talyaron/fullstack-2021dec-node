@@ -8,9 +8,10 @@ import usersRoute from "./routes/usersRoute";
 app.use("/users", usersRoute);
 
 import itemsRoute from "./routes/itemsRoute"
-app.use("/items",itemsRoute)
+app.use("/items", itemsRoute);
+
 
 
 app.listen(port, () => {
-  console.log(`Express is listening at ${port}`);
+  console.log(`Express is listening at http://localhost:${port}`);
 });

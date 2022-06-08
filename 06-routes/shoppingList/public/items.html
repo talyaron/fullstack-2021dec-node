@@ -8,9 +8,7 @@
     <title>items list</title>
     <link rel="stylesheet" href="./dist/style.css">
     <title>Document</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"
-        integrity="sha512-odNmoc1XJy5x1TMVMdC7EMs3IVdItLPlCeL5vSUPN2llYKMJ2eByTTAIiiuqLg+GdNr9hF6z81p27DArRFKT7A=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.0.0-alpha.1/axios.js" integrity="sha512-uplugzeh2/XrRr7RgSloGLHjFV0b4FqUtbT5t9Sa/XcilDr1M3+88u/c+mw6+HepH7M2C5EVmahySsyilVHI/A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 
 <body class="screen" onload=" handleGetItems() ">
@@ -66,6 +64,17 @@
     </form>
     <div class="resultcontainer">
     </div>
+<body onload="handleLoadUserInfo()">
+    <h1 id="userCart">Items</h1>
+    <ul id="userItemsList">
+    </ul>
+    <div class="wraper">
+
+    </div>
+    <input id="inputNewItem" type="text">
+    <button onclick="handleAddItem()">handleAddItem</button>
+    <button onclick="handleRenderItems()">Show items</button>
+    <script src="./dist/items.js"></script>
 </body>
 
 

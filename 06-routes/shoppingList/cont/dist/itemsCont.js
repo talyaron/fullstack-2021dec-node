@@ -36,15 +36,23 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
+<<<<<<< HEAD
 exports.filterItems = exports.getAllItems = exports.HandleUpdateItem = void 0;
 var items = [
+=======
+exports.addItem = exports.getItems = exports.deleteItem = exports.HandleUpdateItem = exports.items = void 0;
+// import { Item } from "../model/itemModel";
+var helpers_1 = require("../helpers");
+exports.items = [
+>>>>>>> group4-juda
     {
-        name: 'Milk',
-        itemId: '123MI',
+        name: "Milk",
+        itemId: "123MI",
         bought: false,
-        userId: 'abcd'
+        userId: "abcd"
     },
     {
+<<<<<<< HEAD
         name: 'Milky',
         itemId: '1234MI',
         bought: false,
@@ -53,9 +61,31 @@ var items = [
     {
         name: 'Bread',
         itemId: '123BR',
+=======
+        name: "tea",
+        itemId: "123TE",
+>>>>>>> group4-juda
         bought: false,
-        userId: 'abc'
-    }
+        userId: "abcd"
+    },
+    {
+        name: "bread",
+        itemId: "123BR",
+        bought: false,
+        userId: "abcd"
+    },
+    {
+        name: "flower",
+        itemId: "123FR",
+        bought: false,
+        userId: "abcd"
+    },
+    {
+        name: "Sugar",
+        itemId: "123SU",
+        bought: false,
+        userId: "abc"
+    },
 ];
 function HandleUpdateItem(req, res) {
     return __awaiter(this, void 0, void 0, function () {
@@ -71,6 +101,7 @@ function HandleUpdateItem(req, res) {
     });
 }
 exports.HandleUpdateItem = HandleUpdateItem;
+<<<<<<< HEAD
 function getAllItems(req, res) {
     res.send({ items: items });
 }
@@ -102,3 +133,67 @@ function filterItems(req, res) {
     res.send(filtereditems);
 }
 exports.filterItems = filterItems;
+=======
+function deleteItem(req, res) {
+    return __awaiter(this, void 0, void 0, function () {
+        var _a, itemId_1, userId_1;
+        return __generator(this, function (_b) {
+            try {
+                _a = req.body, itemId_1 = _a.itemId, userId_1 = _a.userId;
+                exports.items = exports.items.filter(function (item) {
+                    if (item.itemId === itemId_1 && userId_1 === item.userId) {
+                        return false;
+                    }
+                    return true;
+                });
+                res.send({ items: exports.items.filter(function (item) { return item.userId === userId_1; }) });
+            }
+            catch (error) {
+                res.send({ error: error.message });
+            }
+            return [2 /*return*/];
+        });
+    });
+}
+exports.deleteItem = deleteItem;
+function getItems(req, res) {
+    return __awaiter(this, void 0, void 0, function () {
+        var userId;
+        return __generator(this, function (_a) {
+            userId = req.query.userId;
+            try {
+                res.send({ items: exports.items.filter(function (item) { return item.userId === userId; }) });
+            }
+            catch (error) {
+                res.send({ error: error.message });
+            }
+            return [2 /*return*/];
+        });
+    });
+}
+exports.getItems = getItems;
+function addItem(req, res) {
+    return __awaiter(this, void 0, void 0, function () {
+        var newItemValue, userId_2, newItem;
+        return __generator(this, function (_a) {
+            try {
+                newItemValue = req.body.newItemValue;
+                userId_2 = req.body.userId;
+                newItem = {
+                    name: newItemValue,
+                    itemId: helpers_1["default"](),
+                    bought: false,
+                    userId: userId_2
+                };
+                exports.items.push(newItem);
+                res.send({ items: exports.items.filter(function (item) { return item.userId === userId_2; }) });
+            }
+            catch (error) {
+                res.send({ error: error.message });
+            }
+            return [2 /*return*/];
+        });
+    });
+}
+exports.addItem = addItem;
+>>>>>>> group4-juda

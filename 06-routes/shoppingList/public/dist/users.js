@@ -137,7 +137,11 @@ function handleUpdateUser(userId) {
 function renderUsers(usersArr) {
     var html = '';
     usersArr.forEach(function (user) {
+<<<<<<< HEAD
         html += "<div class=\"screen__card-wrapper\" id=\"" + user.userId + "\">\n    <h4 class=\"screen__title-h4\">name:" + user.name + "</h4>\n    <div class=\"screen__card-wrapper__actions\">\n        <img onclick=\"handleUpdateUser('" + user.userId + "')\" class=\"screen__card-wrapper__actions__icon\" src=\" ./icons/pencil.svg \" alt=\"edit \">\n        <img onclick=\"handleDeleteUser('" + user.userId + "')\" class=\"screen__card-wrapper__actions__icon\" src=\"./icons/trash.svg \" alt=\"delete \">\n    </div>\n    </div>";
+=======
+        html += "<div class=\"users_class\" id=\"" + user.userId + "\"><a href=\"items.html?userId=" + user.userId + "\">name:" + user.name + "</a> \n        <button onclick=\"handleUpdateUser('" + user.userId + "')\">Update </button>\n        <button onclick=\"handleDeleteUser('" + user.userId + "')\">DELETE </button>\n        </div>";
+>>>>>>> group4-juda
     });
     var root = document.querySelector('#root');
     root.innerHTML = html;
