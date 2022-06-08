@@ -114,8 +114,12 @@ function renderItems(ArrayofItems) {
         newItem.innerHTML = " <div>\n         <h4 style=\"display: inline;\">" + item.name + "</h4>\n         <input type=\"checkbox\">\n         <button>edit</button>\n         <button onclick=\"handleDeleteItem('" + item.itemId + "', '" + item.userId + "')\">delete</button>\n     </div>";
         wraper.appendChild(newItem);
     });
+    // wraper.innerHTML += `<button onclick="handleAddItem()">handleAddItem---${items[0].userId}-----------</button>`;
 }
 exports.renderItems = renderItems;
+function handleRenderItems() {
+    renderItems(itemsCont_1.items);
+}
 function handleDeleteItem(itemId, userId) {
     return __awaiter(this, void 0, void 0, function () {
         var data, items_2, error, error_3;
@@ -140,23 +144,6 @@ function handleDeleteItem(itemId, userId) {
         });
     });
 }
-<<<<<<< HEAD
-=======
-function renderItems(ArrayofItems) {
-    var wraper = document.querySelector(".wraper");
-    wraper.innerHTML = '';
-    ArrayofItems.forEach(function (item) {
-        var newItem = document.createElement("div");
-        newItem.innerHTML = " <div>\n         <h4 style=\"display: inline;\">" + item.name + "</h4>\n         <input type=\"checkbox\">\n         <button>edit</button>\n         <button onclick=\"handleDeleteItem('" + item.itemId + "', '" + item.userId + "')\">delete</button>\n     </div>";
-        wraper.appendChild(newItem);
-    });
-    // wraper.innerHTML += `<button onclick="handleAddItem()">handleAddItem---${items[0].userId}-----------</button>`;
-}
-exports.renderItems = renderItems;
-function handleRenderItems() {
-    renderItems(itemsCont_1.items);
-}
->>>>>>> 292dd937accebc7299235af7ce182681fc4484d1
 function renderUserCart(user) {
     var userNameTitle = document.querySelector('#userCart');
     userNameTitle.innerHTML = user.name + "'s Shopping Cart";
