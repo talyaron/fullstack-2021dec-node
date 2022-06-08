@@ -21,6 +21,24 @@
             <h4 class="screen__title-h4 ">${user}'s name</h4>
         </div>
 
+        <form onsubmit="handleSearchItems(event)" id="searchForm" class=" screen__container-internal__top-bar ">
+            <div class="formcontainer ">
+                <label for="filtervia ">Filter by:</label>
+                <select id="filtervia " name="filteroption " class="screen__form__input">
+                    <option value="name ">Item name</option>
+                    <option value="itemId ">Item ID</option>
+                </select>
+
+                <div class="screen__search ">
+                    <input class="screen__form__input" name="search " type="text " placeholder="Search . . . " required id="searchInput ">
+                    <button class="screen__form__btn-form " id="searchBtn " type="submit ">Search</button>
+                </div>
+
+            </div>
+        </form>
+        <div class="resultcontainer ">
+        </div>
+
         <div id="root " class="screen__container-internal__root ">
             <h2 class="screen__title-h2 ">${user}'s task List</h2>
 
@@ -41,24 +59,8 @@
         </div>
 
     </div>
-    <script src="./dist/users.js "></script>
-    <form onsubmit="handleSearchItems(event)" id="searchForm">
-        <div class="formcontainer">
-            <label for="filtervia">Filter by:</label>
-            <select id="filtervia" name="filteroption">
-                <option value="name">Item name</option>
-                <option value="itemId">Item ID</option>
-            </select>
 
-            <div class="flexbox">
-                <div class="search">
-                    <div>
-                        <button id="searchBtn" type="submit">Search</button>
-                        <input name="search" type="text" placeholder="Search . . ." required id="searchInput">
 
-            </div>
-                </div>
-                    </div>
 
         </div>
     </form>
