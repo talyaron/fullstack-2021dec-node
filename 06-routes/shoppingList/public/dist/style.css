@@ -76,6 +76,14 @@
   align-items: center;
   padding: 0 1rem;
 }
+.screen__form__column {
+  display: flex;
+  flex-direction: column;
+}
+.screen__form__column__search {
+  display: flex;
+  flex-direction: row-reverse;
+}
 .screen__form__input {
   border-radius: 1rem;
   border: 1px solid #e0e0e0;
