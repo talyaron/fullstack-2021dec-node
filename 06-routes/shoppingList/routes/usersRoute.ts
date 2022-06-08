@@ -4,7 +4,8 @@ import {
   getAllUsers,
   updateUser,
   handleDeleteUser,
-  handleAddUser
+  handleAddUser,
+  getUser
 } from "../cont/usersCont";
 
 //
@@ -13,5 +14,6 @@ router
   .patch("/update-user", updateUser)
   .delete("/user-delete", handleDeleteUser)
   .post("/user-add", handleAddUser)
+  .post('/get-user', getUser)
 
 export default router;

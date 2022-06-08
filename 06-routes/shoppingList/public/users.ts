@@ -63,7 +63,7 @@ function renderUsers(usersArr) {
 	let html = '';
 	usersArr.forEach((user) => {
 		html += `<div class="screen__card-wrapper" id="${user.userId}">
-    <a href='items.html?${user.userId}'>
+    <a href='items.html?userId=${user.userId}'>
     <h4 class="screen__title-h4">${user.name}</h4>
     </a>
     <div class="screen__card-wrapper__actions">

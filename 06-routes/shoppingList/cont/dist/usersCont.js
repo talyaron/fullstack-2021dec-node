@@ -36,11 +36,11 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.updateUser = exports.getAllUsers = exports.handleAddUser = exports.handleDeleteUser = void 0;
+exports.getUser = exports.updateUser = exports.getAllUsers = exports.handleAddUser = exports.handleDeleteUser = void 0;
 var helpers_1 = require("../helpers");
 var users = [
-    { name: "Mario", userId: helpers_1["default"]() },
-    { name: "Rayu", userId: helpers_1["default"]() },
+    { name: "Mario", userId: "abc" },
+    { name: "Rayu", userId: "abcd" },
 ];
 exports.handleDeleteUser = function (req, res) {
     try {
@@ -58,13 +58,19 @@ exports.handleDeleteUser = function (req, res) {
     }
 };
 exports.handleAddUser = function (req, res) {
-    var name = req.body.name;
-    // console.log(req.body);
-    if (!name)
-        throw new Error("name is required");
-    var user = { name: name, userId: helpers_1["default"]() };
-    users.push(user);
-    res.send(users);
+    try {
+        var name = req.body.name;
+        // console.log(req.body);
+        if (!name)
+            throw new Error("name is required");
+        var user = { name: name, userId: helpers_1["default"]() };
+        users.push(user);
+        res.send(users);
+    }
+    catch (error) {
+        console.error(error);
+        res.send({ error: error.message });
+    }
 };
 function getAllUsers(req, res) {
     return __awaiter(this, void 0, void 0, function () {
@@ -74,6 +80,7 @@ function getAllUsers(req, res) {
             }
             catch (error) {
                 console.log("Users array not valid");
+                res.send({ error: error.message });
             }
             return [2 /*return*/];
         });
@@ -87,7 +94,27 @@ exports.updateUser = function (req, res) { return __awaiter(void 0, void 0, void
             _a = req.body, userId = _a.userId, newName = _a.newName;
             // TODO: finish function
         }
-        catch (error) { }
+        catch (error) {
+            console.error(error);
+            res.send({ error: error.message });
+        }
         return [2 /*return*/];
     });
 }); };
+function getUser(req, res) {
+    try {
+        var userId_2 = req.body.userId;
+        if (!userId_2)
+            throw new Error("userId is missing");
+        var user = users.find(function (user) { return user.userId === userId_2; });
+        console.log(user);
+        if (!user)
+            throw new Error("couldnt find user");
+        res.send({ user: user });
+    }
+    catch (error) {
+        console.error(error);
+        res.send({ error: error.message });
+    }
+}
+exports.getUser = getUser;
