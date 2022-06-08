@@ -7,6 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>items list</title>
     <link rel="stylesheet" href="./dist/style.css">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"
+        integrity="sha512-odNmoc1XJy5x1TMVMdC7EMs3IVdItLPlCeL5vSUPN2llYKMJ2eByTTAIiiuqLg+GdNr9hF6z81p27DArRFKT7A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 
 <body class="screen" onload=" handleGetItems() ">
@@ -40,6 +44,28 @@
 
     </div>
     <script src="./dist/users.js "></script>
+    <form onsubmit="handleSearchItems(event)" id="searchForm">
+        <div class="formcontainer">
+            <label for="filtervia">Filter by:</label>
+            <select id="filtervia" name="filteroption">
+                <option value="name">Item name</option>
+                <option value="itemId">Item ID</option>
+            </select>
+
+            <div class="flexbox">
+                <div class="search">
+                    <div>
+                        <button id="searchBtn" type="submit">Search</button>
+                        <input name="search" type="text" placeholder="Search . . ." required id="searchInput">
+
+            </div>
+                </div>
+                    </div>
+
+        </div>
+    </form>
+    <div class="resultcontainer">
+    </div>
 </body>
 
 
