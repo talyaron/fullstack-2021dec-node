@@ -13,7 +13,7 @@ export function getUserId(): string | false {
     const queryString = window.location.search;
     console.log(queryString);
 
-//     const urlParams = new URLSearchParams(queryString);
+    const urlParams = new URLSearchParams(queryString);
 
     const userId = urlParams.get("userId");
     console.log(userId);
@@ -132,6 +132,8 @@ async function handleSearchItems(event) {
     event.preventDefault();
     const searchedItem = event.target.search.value;
     const filterBy = event.target.filteroption.value
+  //@ts-ignore
+
     const { data } = await axios.post('/items/searchItems', { searchedItem , filterBy});
     const result = data;
     const resultContainer = document.querySelector('.resultcontainer');
@@ -146,6 +148,8 @@ async function handleSearchItems(event) {
 }
 
 async function handleGetItems() {
+  //@ts-ignore
+
     const { data } = await axios.get('/items/getAllItems');
     const items = data;
 }

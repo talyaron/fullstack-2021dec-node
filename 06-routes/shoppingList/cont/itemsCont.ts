@@ -2,13 +2,6 @@
 import uid from "../helpers";
 import { Item } from '../model/itemModel';
 
-interface Item {
-  name: string,
-    itemId: string,
-      bought: boolean,
-        userId: string
-}
-
 export let items: Array<Item> = [
   {
     name: "Milk",

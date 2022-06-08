@@ -36,15 +36,10 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-<<<<<<< HEAD
-exports.filterItems = exports.getAllItems = exports.HandleUpdateItem = void 0;
-var items = [
-=======
-exports.addItem = exports.getItems = exports.deleteItem = exports.HandleUpdateItem = exports.items = void 0;
+exports.filterItems = exports.addItem = exports.getItems = exports.deleteItem = exports.HandleUpdateItem = exports.items = void 0;
 // import { Item } from "../model/itemModel";
 var helpers_1 = require("../helpers");
 exports.items = [
->>>>>>> group4-juda
     {
         name: "Milk",
         itemId: "123MI",
@@ -52,19 +47,8 @@ exports.items = [
         userId: "abcd"
     },
     {
-<<<<<<< HEAD
-        name: 'Milky',
-        itemId: '1234MI',
-        bought: false,
-        userId: 'abcd'
-    },
-    {
-        name: 'Bread',
-        itemId: '123BR',
-=======
         name: "tea",
         itemId: "123TE",
->>>>>>> group4-juda
         bought: false,
         userId: "abcd"
     },
@@ -101,39 +85,6 @@ function HandleUpdateItem(req, res) {
     });
 }
 exports.HandleUpdateItem = HandleUpdateItem;
-<<<<<<< HEAD
-function getAllItems(req, res) {
-    res.send({ items: items });
-}
-exports.getAllItems = getAllItems;
-function filterItems(req, res) {
-    var user = "abcd"; // to be determined by params
-    var searchedItem = req.body.searchedItem;
-    var filterBy = req.body.filterBy;
-    var filteredUseritems = items.filter(function (item) {
-        return item.userId === user;
-    });
-    var filtereditems = [];
-    var itemToLookFor = new RegExp(searchedItem, "i");
-    console.log(itemToLookFor);
-    if (filterBy === "name") {
-        filteredUseritems.forEach(function (item) {
-            if (item.name.match(itemToLookFor)) {
-                filtereditems.push(item);
-            }
-        });
-    }
-    else if (filterBy === "itemId") {
-        filteredUseritems.forEach(function (item) {
-            if (item.itemId.match(itemToLookFor)) {
-                filtereditems.push(item);
-            }
-        });
-    }
-    res.send(filtereditems);
-}
-exports.filterItems = filterItems;
-=======
 function deleteItem(req, res) {
     return __awaiter(this, void 0, void 0, function () {
         var _a, itemId_1, userId_1;
@@ -196,4 +147,30 @@ function addItem(req, res) {
     });
 }
 exports.addItem = addItem;
->>>>>>> group4-juda
+function filterItems(req, res) {
+    var user = "abcd"; // to be determined by params
+    var searchedItem = req.body.searchedItem;
+    var filterBy = req.body.filterBy;
+    var filteredUseritems = exports.items.filter(function (item) {
+        return item.userId === user;
+    });
+    var filtereditems = [];
+    var itemToLookFor = new RegExp(searchedItem, "i");
+    console.log(itemToLookFor);
+    if (filterBy === "name") {
+        filteredUseritems.forEach(function (item) {
+            if (item.name.match(itemToLookFor)) {
+                filtereditems.push(item);
+            }
+        });
+    }
+    else if (filterBy === "itemId") {
+        filteredUseritems.forEach(function (item) {
+            if (item.itemId.match(itemToLookFor)) {
+                filtereditems.push(item);
+            }
+        });
+    }
+    res.send(filtereditems);
+}
+exports.filterItems = filterItems;

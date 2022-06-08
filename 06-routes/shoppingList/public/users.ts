@@ -16,6 +16,7 @@ async function handleDeleteUser(userId: string) {
 }
 async function handleGetUsers() {
 	// add axios to html!!!!
+  //@ts-ignore
 	const {data} = await axios.get('/users/get-users')
 	const {users} = data;
     if(!Array.isArray(users)) throw new Error("users should be an array ant it is not")
@@ -37,6 +38,7 @@ async function handleAddUser(e) {
 }
 async function handleUpdateUser(userId) {
     const newName = prompt('Enter new user name');
+  //@ts-ignore
     
     const {data} = await axios.patch('/users/update-user', {userId, newName})
 	const {users} = data;

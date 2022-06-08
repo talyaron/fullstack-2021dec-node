@@ -36,31 +36,6 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-<<<<<<< HEAD
-exports.renderItems = void 0;
-;
-// function handleGetUser() {
-//     const queryString = window.location.search;
-//     console.log(queryString);
-//     const urlParams = new URLSearchParams(queryString);
-//     const userId = urlParams.get('userId');
-//     console.log(userId);
-// }
-function renderItems(ArrayofItems) {
-    var wraper = document.querySelector(".wraper");
-    ArrayofItems.forEach(function (element) {
-        var newItem = document.createElement('div');
-        newItem.innerHTML = " <div>\n         <H4>" + element.name + "</H4>\n         <input type=\"checkbox\">\n         <button>edit</button>\n         <button>delete</button>\n     </div>";
-        wraper.appendChild(newItem);
-    });
-}
-exports.renderItems = renderItems;
-/////// Search items
-var form = document.querySelector('#searchForm');
-function handleSearchItems(event) {
-    return __awaiter(this, void 0, void 0, function () {
-        var searchedItem, filterBy, data, result, resultContainer, html_1, error_1;
-=======
 exports.renderItems = exports.getUserItems = exports.getUserId = void 0;
 var itemsCont_1 = require("../cont/itemsCont");
 function getUserId() {
@@ -148,30 +123,10 @@ function handleRenderItems() {
 function handleDeleteItem(itemId, userId) {
     return __awaiter(this, void 0, void 0, function () {
         var data, items_2, error, error_3;
->>>>>>> group4-juda
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-<<<<<<< HEAD
-                    event.preventDefault();
-                    searchedItem = event.target.search.value;
-                    filterBy = event.target.filteroption.value;
-                    return [4 /*yield*/, axios.post('/items/searchItems', { searchedItem: searchedItem, filterBy: filterBy })];
-                case 1:
-                    data = (_a.sent()).data;
-                    result = data;
-                    resultContainer = document.querySelector('.resultcontainer');
-                    html_1 = "<h2>" + result.length + " results found</h2>";
-                    result.forEach(function (item) {
-                        html_1 += "<p>Item: " + item.name + "</p>";
-                    });
-                    resultContainer.innerHTML = html_1;
-                    return [3 /*break*/, 3];
-                case 2:
-                    error_1 = _a.sent();
-                    console.error(error_1);
-=======
                     console.log('delete item clicked');
                     return [4 /*yield*/, axios["delete"]("/items/delete-item", { data: { itemId: itemId, userId: userId } })];
                 case 1:
@@ -183,25 +138,12 @@ function handleDeleteItem(itemId, userId) {
                 case 2:
                     error_3 = _a.sent();
                     console.error(error_3);
->>>>>>> group4-juda
                     return [3 /*break*/, 3];
                 case 3: return [2 /*return*/];
             }
         });
     });
 }
-<<<<<<< HEAD
-function handleGetItems() {
-    return __awaiter(this, void 0, void 0, function () {
-        var data, items;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0: return [4 /*yield*/, axios.get('/items/getAllItems')];
-                case 1:
-                    data = (_a.sent()).data;
-                    items = data;
-                    return [2 /*return*/];
-=======
 function renderUserCart(user) {
     var userNameTitle = document.querySelector('#userCart');
     userNameTitle.innerHTML = user.name + "'s Shopping Cart";
@@ -234,7 +176,52 @@ function handleAddItem() {
                     console.error(error_4);
                     return [3 /*break*/, 3];
                 case 3: return [2 /*return*/];
->>>>>>> group4-juda
+            }
+        });
+    });
+}
+/////// Search items
+var form = document.querySelector('#searchForm');
+function handleSearchItems(event) {
+    return __awaiter(this, void 0, void 0, function () {
+        var searchedItem, filterBy, data, result, resultContainer, html_1, error_5;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    event.preventDefault();
+                    searchedItem = event.target.search.value;
+                    filterBy = event.target.filteroption.value;
+                    return [4 /*yield*/, axios.post('/items/searchItems', { searchedItem: searchedItem, filterBy: filterBy })];
+                case 1:
+                    data = (_a.sent()).data;
+                    result = data;
+                    resultContainer = document.querySelector('.resultcontainer');
+                    html_1 = "<h2>" + result.length + " results found</h2>";
+                    result.forEach(function (item) {
+                        html_1 += "<p>Item: " + item.name + "</p>";
+                    });
+                    resultContainer.innerHTML = html_1;
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_5 = _a.sent();
+                    console.error(error_5);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
+}
+function handleGetItems() {
+    return __awaiter(this, void 0, void 0, function () {
+        var data, items;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, axios.get('/items/getAllItems')];
+                case 1:
+                    data = (_a.sent()).data;
+                    items = data;
+                    return [2 /*return*/];
             }
         });
     });
