@@ -44,7 +44,6 @@
   font-size: 1.3rem;
   color: black;
   text-align: left;
-  width: 60rem;
   font-weight: normal;
 }
 .screen__btn {
@@ -53,7 +52,7 @@
   border: none;
   background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   font-size: 1.1rem;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 .screen__link {
   text-decoration: none;
@@ -98,7 +97,7 @@
   border: none;
   background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   font-size: 1rem;
-  color: #FFFFFF;
+  color: #ffffff;
   width: 30%;
 }
 .screen__card-wrapper {

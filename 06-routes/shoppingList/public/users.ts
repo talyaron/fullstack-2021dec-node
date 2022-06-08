@@ -63,7 +63,9 @@ function renderUsers(usersArr) {
 	let html = '';
 	usersArr.forEach((user) => {
 		html += `<div class="screen__card-wrapper" id="${user.userId}">
-    <h4 class="screen__title-h4">name:${user.name}</h4>
+    <a href='items.html?${user.userId}'>
+    <h4 class="screen__title-h4">${user.name}</h4>
+    </a>
     <div class="screen__card-wrapper__actions">
         <img onclick="handleUpdateUser('${user.userId}')" class="screen__card-wrapper__actions__icon" src=" ./icons/pencil.svg " alt="edit ">
         <img onclick="handleDeleteUser('${user.userId}')" class="screen__card-wrapper__actions__icon" src="./icons/trash.svg " alt="delete ">
