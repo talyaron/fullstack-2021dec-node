@@ -87,12 +87,12 @@ export async function addItem(req, res){
   }
   }
 export function filterItems(req, res) {
-  const user = "abcd"; // to be determined by params
-	const { searchedItem } = req.body;
+ 
+	const { searchedItem, userId } = req.body;
+  console.log('userId',userId)
 	const { filterBy } = req.body
-  const filteredUseritems = items.filter(function (item) {
-    return item.userId === user;
-  });
+  const filteredUseritems = items.filter((item)=> item.userId === userId
+  );
   const filtereditems = [];
   const itemToLookFor = new RegExp(searchedItem, "i");
   console.log(itemToLookFor)
@@ -103,6 +103,8 @@ export function filterItems(req, res) {
 		filtereditems.push(item)
 	  }
   });
+
+  console.log('filtereditems',filtereditems)
 } else if (filterBy === "itemId") {
 	filteredUseritems.forEach(item => {
 		if(item.itemId.match(itemToLookFor)) {

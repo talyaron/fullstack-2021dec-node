@@ -130,21 +130,21 @@ const form = document.querySelector("#searchForm");
 async function handleSearchItems(event) {
   try {
     event.preventDefault();
+    const userId = getUserId();
     const searchedItem = event.target.search.value;
     const filterBy = event.target.filteroption.value;
+    
     //@ts-ignore
 
     const { data } = await axios.post("/items/searchItems", {
       searchedItem,
       filterBy,
+      userId
     });
     const result = data;
-    const resultContainer = document.querySelector(".resultcontainer");
-    let html = `<h2>${result.length} results found</h2>`;
-    result.forEach((item) => {
-      html += `<p>Item: ${item.name}</p>`;
-    });
-    resultContainer.innerHTML = html;
+    console.log('test')
+    console.log(result)
+    renderItems(result)
   } catch (error) {
     console.error(error);
   }

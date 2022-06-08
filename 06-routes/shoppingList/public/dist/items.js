@@ -181,27 +181,26 @@ function handleAddItem() {
 var form = document.querySelector("#searchForm");
 function handleSearchItems(event) {
     return __awaiter(this, void 0, void 0, function () {
-        var searchedItem, filterBy, data, result, resultContainer, html_1, error_5;
+        var userId, searchedItem, filterBy, data, result, error_5;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
                     event.preventDefault();
+                    userId = getUserId();
                     searchedItem = event.target.search.value;
                     filterBy = event.target.filteroption.value;
                     return [4 /*yield*/, axios.post("/items/searchItems", {
                             searchedItem: searchedItem,
-                            filterBy: filterBy
+                            filterBy: filterBy,
+                            userId: userId
                         })];
                 case 1:
                     data = (_a.sent()).data;
                     result = data;
-                    resultContainer = document.querySelector(".resultcontainer");
-                    html_1 = "<h2>" + result.length + " results found</h2>";
-                    result.forEach(function (item) {
-                        html_1 += "<p>Item: " + item.name + "</p>";
-                    });
-                    resultContainer.innerHTML = html_1;
+                    console.log('test');
+                    console.log(result);
+                    renderItems(result);
                     return [3 /*break*/, 3];
                 case 2:
                     error_5 = _a.sent();

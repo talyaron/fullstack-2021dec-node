@@ -148,12 +148,10 @@ function addItem(req, res) {
 }
 exports.addItem = addItem;
 function filterItems(req, res) {
-    var user = "abcd"; // to be determined by params
-    var searchedItem = req.body.searchedItem;
+    var _a = req.body, searchedItem = _a.searchedItem, userId = _a.userId;
+    console.log('userId', userId);
     var filterBy = req.body.filterBy;
-    var filteredUseritems = exports.items.filter(function (item) {
-        return item.userId === user;
-    });
+    var filteredUseritems = exports.items.filter(function (item) { return item.userId === userId; });
     var filtereditems = [];
     var itemToLookFor = new RegExp(searchedItem, "i");
     console.log(itemToLookFor);
@@ -163,6 +161,7 @@ function filterItems(req, res) {
                 filtereditems.push(item);
             }
         });
+        console.log('filtereditems', filtereditems);
     }
     else if (filterBy === "itemId") {
         filteredUseritems.forEach(function (item) {
