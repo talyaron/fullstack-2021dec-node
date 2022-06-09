@@ -79,15 +79,16 @@ function handleGetUsers() {
 }
 function handleAddUser(e) {
     return __awaiter(this, void 0, void 0, function () {
-        var name, data, error_2;
+        var username, data, error_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
                     e.preventDefault();
-                    name = e.target.elements.name.value;
-                    console.log(name);
-                    return [4 /*yield*/, axios.post("/users/user-add", { name: name })];
+                    username = e.target.adduser.value;
+                    console.log(e);
+                    console.log(username);
+                    return [4 /*yield*/, axios.post("/users/user-add", { username: username })];
                 case 1:
                     data = (_a.sent()).data;
                     renderUsers(data);

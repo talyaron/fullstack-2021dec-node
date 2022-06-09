@@ -25,10 +25,11 @@ async function handleGetUsers() {
 async function handleAddUser(e) {
   try {
     e.preventDefault();
-    const name = e.target.elements.name.value;
-    console.log(name);
+    const username = e.target.adduser.value;
+    console.log(e);
+    console.log(username);
     // @ts-ignore
-    const { data } = await axios.post("/users/user-add", { name });
+    const { data } = await axios.post("/users/user-add", { username });
     renderUsers(data);
     if(!Array.isArray(data)) throw new Error("data should be an array ant it is not")
     e.target.reset();
