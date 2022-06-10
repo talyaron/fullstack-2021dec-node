@@ -93,14 +93,12 @@ async function handleDeleteItem(event) {
 	try {
     const userId = getUserId();
     const itemId = event.target.id;
-		console.log(`delete item clicked`);
 		//@ts-ignore
 		 const { data } = await axios.delete('/items/delete-item', {
 		 	data: { itemId, userId }
 		 });
 
      const {items} = data;
-     console.log(items)
      renderItems(items)
 		// const { items, error } = data;
 		// renderItems(items.filter((item) => item.userId === userId));
@@ -124,9 +122,7 @@ async function handleAddItem(event) {
       itemToAdd,
 			 userId
 		 });
-     console.log(data)
      const { items } = data;
-     console.log(items)
 		renderItems(items);
 		// if (!Array.isArray(data.items)) throw new Error('data should be an array ant it is not');
 	} catch (error) {
@@ -152,7 +148,6 @@ async function handleSearchItems(event) {
 			userId
 		});
 		const filtereditems  = data;
-    console.log(filtereditems)
 		renderItems(filtereditems);
 	} catch (error) {
 		console.error(error);

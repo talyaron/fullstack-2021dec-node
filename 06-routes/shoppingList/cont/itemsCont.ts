@@ -89,19 +89,15 @@ export function filterItems(req, res) {
  
 	const { searchedItem, userId } = req.body;
 	const { filterBy } = req.body
-  console.log(filterBy)
   const filteredUseritems = items.filter((item)=> item.userId === userId
   );
   const filtereditems = [];
   const itemToLookFor = new RegExp(searchedItem, "i");
-    
+
   if(filterBy === "name") {
-    console.log("name!!")
   filteredUseritems.forEach(item => {
-    console.log(item)
 	  if(itemToLookFor.test(item.name)) {
 		filtereditems.push(item)
-    console.log(`push was successfull`)
 	  }
   });
   console.log('filtereditems',filtereditems)
@@ -112,7 +108,6 @@ export function filterItems(req, res) {
 		}
 	});
 }
-  console.log(filtereditems)
   res.send(filtereditems)
 }
   

@@ -150,17 +150,13 @@ exports.addItem = addItem;
 function filterItems(req, res) {
     var _a = req.body, searchedItem = _a.searchedItem, userId = _a.userId;
     var filterBy = req.body.filterBy;
-    console.log(filterBy);
     var filteredUseritems = exports.items.filter(function (item) { return item.userId === userId; });
     var filtereditems = [];
     var itemToLookFor = new RegExp(searchedItem, "i");
     if (filterBy === "name") {
-        console.log("name!!");
         filteredUseritems.forEach(function (item) {
-            console.log(item);
             if (itemToLookFor.test(item.name)) {
                 filtereditems.push(item);
-                console.log("push was successfull");
             }
         });
         console.log('filtereditems', filtereditems);
@@ -172,7 +168,6 @@ function filterItems(req, res) {
             }
         });
     }
-    console.log(filtereditems);
     res.send(filtereditems);
 }
 exports.filterItems = filterItems;

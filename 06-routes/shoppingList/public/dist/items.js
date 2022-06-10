@@ -121,14 +121,12 @@ function handleDeleteItem(event) {
                     _a.trys.push([0, 2, , 3]);
                     userId = getUserId();
                     itemId = event.target.id;
-                    console.log("delete item clicked");
                     return [4 /*yield*/, axios["delete"]('/items/delete-item', {
                             data: { itemId: itemId, userId: userId }
                         })];
                 case 1:
                     data = (_a.sent()).data;
                     items = data.items;
-                    console.log(items);
                     renderItems(items);
                     return [3 /*break*/, 3];
                 case 2:
@@ -160,9 +158,7 @@ function handleAddItem(event) {
                         })];
                 case 1:
                     data = (_a.sent()).data;
-                    console.log(data);
                     items = data.items;
-                    console.log(items);
                     renderItems(items);
                     return [3 /*break*/, 3];
                 case 2:
@@ -195,7 +191,6 @@ function handleSearchItems(event) {
                 case 1:
                     data = (_a.sent()).data;
                     filtereditems = data;
-                    console.log(filtereditems);
                     renderItems(filtereditems);
                     return [3 /*break*/, 3];
                 case 2:
