@@ -103,7 +103,7 @@ function renderItems(items) {
     var html = '';
     items.forEach(function (item) {
         var newItem = document.createElement('div');
-        html += "<div class=\"screen__card-wrapper \">\n    <h4 class=\"screen__title-h4 \">" + item.name + "</h4>\n    <div class=\"screen__card-wrapper__actions \">\n        <img class=\"screen__card-wrapper__actions__icon\" src=\"./icons/trash.svg \" alt=\"delete\" onclick=\"handleDeleteItem()\">\n        <label class=\"checkbox\">\n    <input type=\"checkbox\" />\n    <svg viewBox=\"0 0 21 18\">\n        <symbol id=\"tick-path\" viewBox=\"0 0 21 18\" xmlns=\"http://www.w3.org/2000/svg\">\n            <path d=\"M5.22003 7.26C5.72003 7.76 7.57 9.7 8.67 11.45C12.2 6.05 15.65 3.5 19.19 1.69\" fill=\"none\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\" />\n        </symbol>\n        <defs>\n            <mask id=\"tick\">\n                <use class=\"tick mask\" href=\"#tick-path\" />\n            </mask>\n        </defs>\n        <use class=\"tick\" href=\"#tick-path\" stroke=\"currentColor\" />\n        <path fill=\"white\" mask=\"url(#tick)\" d=\"M18 9C18 10.4464 17.9036 11.8929 17.7589 13.1464C17.5179 15.6054 15.6054 17.5179 13.1625 17.7589C11.8929 17.9036 10.4464 18 9 18C7.55357 18 6.10714 17.9036 4.85357 17.7589C2.39464 17.5179 0.498214 15.6054 0.241071 13.1464C0.0964286 11.8929 0 10.4464 0 9C0 7.55357 0.0964286 6.10714 0.241071 4.8375C0.498214 2.39464 2.39464 0.482143 4.85357 0.241071C6.10714 0.0964286 7.55357 0 9 0C10.4464 0 11.8929 0.0964286 13.1625 0.241071C15.6054 0.482143 17.5179 2.39464 17.7589 4.8375C17.9036 6.10714 18 7.55357 18 9Z\" />\n    </svg>\n    <svg class=\"lines\" viewBox=\"0 0 11 11\">\n        <path d=\"M5.88086 5.89441L9.53504 4.26746\" />\n        <path d=\"M5.5274 8.78838L9.45391 9.55161\" />\n        <path d=\"M3.49371 4.22065L5.55387 0.79198\" />\n    </svg>\n</label>\n        </div>\n</div>";
+        html += "<div class=\"screen__card-wrapper \">\n    <h4 class=\"screen__title-h4 \">" + item.name + "</h4>\n    <div class=\"screen__card-wrapper__actions \">\n        <img id=\"" + item.itemId + "\" class=\"screen__card-wrapper__actions__icon\" src=\"./icons/trash.svg \" alt=\"delete\" onclick=\"handleDeleteItem(event)\">\n        <label class=\"checkbox\">\n    <input type=\"checkbox\" />\n    <svg viewBox=\"0 0 21 18\">\n        <symbol id=\"tick-path\" viewBox=\"0 0 21 18\" xmlns=\"http://www.w3.org/2000/svg\">\n            <path d=\"M5.22003 7.26C5.72003 7.76 7.57 9.7 8.67 11.45C12.2 6.05 15.65 3.5 19.19 1.69\" fill=\"none\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\" />\n        </symbol>\n        <defs>\n            <mask id=\"tick\">\n                <use class=\"tick mask\" href=\"#tick-path\" />\n            </mask>\n        </defs>\n        <use class=\"tick\" href=\"#tick-path\" stroke=\"currentColor\" />\n        <path fill=\"white\" mask=\"url(#tick)\" d=\"M18 9C18 10.4464 17.9036 11.8929 17.7589 13.1464C17.5179 15.6054 15.6054 17.5179 13.1625 17.7589C11.8929 17.9036 10.4464 18 9 18C7.55357 18 6.10714 17.9036 4.85357 17.7589C2.39464 17.5179 0.498214 15.6054 0.241071 13.1464C0.0964286 11.8929 0 10.4464 0 9C0 7.55357 0.0964286 6.10714 0.241071 4.8375C0.498214 2.39464 2.39464 0.482143 4.85357 0.241071C6.10714 0.0964286 7.55357 0 9 0C10.4464 0 11.8929 0.0964286 13.1625 0.241071C15.6054 0.482143 17.5179 2.39464 17.7589 4.8375C17.9036 6.10714 18 7.55357 18 9Z\" />\n    </svg>\n    <svg class=\"lines\" viewBox=\"0 0 11 11\">\n        <path d=\"M5.88086 5.89441L9.53504 4.26746\" />\n        <path d=\"M5.5274 8.78838L9.45391 9.55161\" />\n        <path d=\"M3.49371 4.22065L5.55387 0.79198\" />\n    </svg>\n</label>\n        </div>\n</div>";
     });
     rootList.innerHTML = html;
     // wraper.innerHTML += `<button onclick="handleAddItem()">handleAddItem---${items[0].userId}-----------</button>`;
@@ -112,19 +112,33 @@ function handleRenderItems() {
     renderItems(items);
 }
 // itemId: string, userId: string
-function handleDeleteItem() {
-    try {
-        console.log("delete item clicked");
-        //@ts-ignore
-        // const { data } = await axios.delete('/items/delete-item', {
-        // 	data: { itemId, userId }
-        // });
-        // const { items, error } = data;
-        // renderItems(items.filter((item) => item.userId === userId));
-    }
-    catch (error) {
-        console.error(error);
-    }
+function handleDeleteItem(event) {
+    return __awaiter(this, void 0, void 0, function () {
+        var userId, itemId, data, items, error_3;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    userId = getUserId();
+                    itemId = event.target.id;
+                    console.log("delete item clicked");
+                    return [4 /*yield*/, axios["delete"]('/items/delete-item', {
+                            data: { itemId: itemId, userId: userId }
+                        })];
+                case 1:
+                    data = (_a.sent()).data;
+                    items = data.items;
+                    console.log(items);
+                    renderItems(items);
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_3 = _a.sent();
+                    console.error(error_3);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
 }
 function renderUser(user) {
     var userNameTitle = document.querySelector('#userTitle');
@@ -132,7 +146,7 @@ function renderUser(user) {
 }
 function handleAddItem(event) {
     return __awaiter(this, void 0, void 0, function () {
-        var itemToAdd, userId, data, items, error_3;
+        var itemToAdd, userId, data, items, error_4;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -152,8 +166,8 @@ function handleAddItem(event) {
                     renderItems(items);
                     return [3 /*break*/, 3];
                 case 2:
-                    error_3 = _a.sent();
-                    console.error(error_3);
+                    error_4 = _a.sent();
+                    console.error(error_4);
                     return [3 /*break*/, 3];
                 case 3: return [2 /*return*/];
             }
@@ -164,7 +178,7 @@ function handleAddItem(event) {
 var form = document.querySelector('#searchForm');
 function handleSearchItems(event) {
     return __awaiter(this, void 0, void 0, function () {
-        var userId, searchedItem, filterBy, data, result, error_4;
+        var userId, searchedItem, filterBy, data, result, error_5;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -186,8 +200,8 @@ function handleSearchItems(event) {
                     renderItems(result);
                     return [3 /*break*/, 3];
                 case 2:
-                    error_4 = _a.sent();
-                    console.error(error_4);
+                    error_5 = _a.sent();
+                    console.error(error_5);
                     return [3 /*break*/, 3];
                 case 3: return [2 /*return*/];
             }

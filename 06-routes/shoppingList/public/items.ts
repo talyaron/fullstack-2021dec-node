@@ -55,7 +55,7 @@ function renderItems(items: Array<Item>) {
 		html += `<div class="screen__card-wrapper ">
     <h4 class="screen__title-h4 ">${item.name}</h4>
     <div class="screen__card-wrapper__actions ">
-        <img class="screen__card-wrapper__actions__icon" src="./icons/trash.svg " alt="delete" onclick="handleDeleteItem()">
+        <img id="${item.itemId}" class="screen__card-wrapper__actions__icon" src="./icons/trash.svg " alt="delete" onclick="handleDeleteItem(event)">
         <label class="checkbox">
     <input type="checkbox" />
     <svg viewBox="0 0 21 18">
@@ -89,13 +89,19 @@ function handleRenderItems() {
 }
 
 // itemId: string, userId: string
-function handleDeleteItem() {
+async function handleDeleteItem(event) {
 	try {
+    const userId = getUserId();
+    const itemId = event.target.id;
 		console.log(`delete item clicked`);
 		//@ts-ignore
-		// const { data } = await axios.delete('/items/delete-item', {
-		// 	data: { itemId, userId }
-		// });
+		 const { data } = await axios.delete('/items/delete-item', {
+		 	data: { itemId, userId }
+		 });
+
+     const {items} = data;
+     console.log(items)
+     renderItems(items)
 		// const { items, error } = data;
 		// renderItems(items.filter((item) => item.userId === userId));
 	} catch (error) {

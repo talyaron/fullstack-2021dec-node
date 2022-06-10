@@ -54,7 +54,6 @@ export async function deleteItem(req, res) {
     });
     res.send({ items: items.filter((item) => item.userId === userId) });
 
-
   } catch (error) {
     res.send({ error: error.message })
   }
