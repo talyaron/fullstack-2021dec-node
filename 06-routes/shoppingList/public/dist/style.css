@@ -54,6 +54,9 @@
   font-size: 1.1rem;
   color: #ffffff;
 }
+.screen__btn:hover {
+  cursor: pointer;
+}
 .screen__link {
   text-decoration: none;
 }
@@ -99,6 +102,9 @@
   color: #ffffff;
   width: 30%;
 }
+.screen__form__btn-form:hover {
+  cursor: pointer;
+}
 .screen__card-wrapper {
   display: flex;
   flex-direction: row;
@@ -131,6 +137,9 @@
   border-radius: 1rem;
   fill: red;
 }
+.screen__card-wrapper__actions__icon:hover {
+  cursor: pointer;
+}
 .screen__card-wrapper__actions__btn-card {
   border-radius: 1rem;
   padding: 1.2rem 2rem;
@@ -139,6 +148,9 @@
   color: #764ba2;
   margin-right: 2rem;
   background-color: #f1eef5;
+}
+.screen__card-wrapper__actions__btn-card:hover {
+  cursor: pointer;
 }
 .screen__container-wrapper {
   display: flex;
@@ -199,4 +211,9 @@
   padding: 1rem;
   box-sizing: border-box;
   overflow-y: auto;
+}
+
+#rootList {
+  display: flex;
+  flex-direction: column;
 }

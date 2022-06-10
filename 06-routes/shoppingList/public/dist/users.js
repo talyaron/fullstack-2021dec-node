@@ -42,13 +42,13 @@ function handleDeleteUser(userId) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
                     console.log(userId);
-                    return [4 /*yield*/, axios["delete"]("/users/user-delete", { data: { userId: userId } })];
+                    return [4 /*yield*/, axios["delete"]('/users/user-delete', { data: { userId: userId } })];
                 case 1:
                     data = (_a.sent()).data;
                     console.log(data);
                     users = data.users;
                     if (!Array.isArray(users))
-                        throw new Error("users should be an array ant it is not");
+                        throw new Error('users should be an array ant it is not');
                     renderUsers(users);
                     return [3 /*break*/, 3];
                 case 2:
@@ -70,7 +70,7 @@ function handleGetUsers() {
                     data = (_a.sent()).data;
                     users = data.users;
                     if (!Array.isArray(users))
-                        throw new Error("users should be an array ant it is not");
+                        throw new Error('users should be an array ant it is not');
                     renderUsers(users);
                     return [2 /*return*/];
             }
@@ -88,12 +88,12 @@ function handleAddUser(e) {
                     username = e.target.adduser.value;
                     console.log(e);
                     console.log(username);
-                    return [4 /*yield*/, axios.post("/users/user-add", { username: username })];
+                    return [4 /*yield*/, axios.post('/users/user-add', { username: username })];
                 case 1:
                     data = (_a.sent()).data;
                     renderUsers(data);
                     if (!Array.isArray(data))
-                        throw new Error("data should be an array ant it is not");
+                        throw new Error('data should be an array ant it is not');
                     e.target.reset();
                     return [3 /*break*/, 3];
                 case 2:
@@ -115,9 +115,9 @@ function handleUpdateUser(userId) {
                     return [4 /*yield*/, axios.patch('/users/update-user', { userId: userId, newName: newName })];
                 case 1:
                     data = (_a.sent()).data;
-                    users = data.users;
+                    users = data;
                     if (!Array.isArray(users))
-                        throw new Error("users should be an array ant it is not");
+                        throw new Error('users should be an array ant it is not');
                     renderUsers(users);
                     return [2 /*return*/];
             }
@@ -127,7 +127,7 @@ function handleUpdateUser(userId) {
 // function renderUsers(usersArr) {
 // 	let html = '';
 // 	usersArr.forEach((user) => {
-// 		html += `<div class="users_class" id="${user.userId}"> name:${user.name} 
+// 		html += `<div class="users_class" id="${user.userId}"> name:${user.name}
 //         <button onclick="handleUpdateUser('${user.userId}')">Update </button>
 //         <button onclick="handleDeleteUser('${user.userId}')">DELETE </button>
 //         </div>`;
