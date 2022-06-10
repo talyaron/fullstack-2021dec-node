@@ -125,13 +125,13 @@ function getItems(req, res) {
 exports.getItems = getItems;
 function addItem(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var newItemValue, userId_2, newItem;
+        var itemToAdd, userId_2, newItem;
         return __generator(this, function (_a) {
             try {
-                newItemValue = req.body.newItemValue;
+                itemToAdd = req.body.itemToAdd;
                 userId_2 = req.body.userId;
                 newItem = {
-                    name: newItemValue,
+                    name: itemToAdd,
                     itemId: helpers_1["default"](),
                     bought: false,
                     userId: userId_2

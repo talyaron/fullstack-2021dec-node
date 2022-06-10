@@ -108,22 +108,21 @@ function renderUser(user: User) {
 	userNameTitle.innerHTML = `${user.name}'s grocery list:`;
 }
 
-async function handleAddItem() {
+async function handleAddItem(event) {
 	try {
-		const newItem: HTMLInputElement = document.querySelector('#inputNewItem');
-		const newItemValue = newItem.value;
-		console.log(newItemValue);
-
+    event.preventDefault();
+    const itemToAdd = event.target.addItem.value;
 		const userId = getUserId();
-
-		// @ts-ignore
+		//@ts-ignore
 		const { data } = await axios.post('/items/addItem', {
-			newItemValue,
-			userId
-		});
-		console.log(data);
-		renderItems(data.items);
-		if (!Array.isArray(data.items)) throw new Error('data should be an array ant it is not');
+      itemToAdd,
+			 userId
+		 });
+     console.log(data)
+     const { items } = data;
+     console.log(items)
+		renderItems(items);
+		// if (!Array.isArray(data.items)) throw new Error('data should be an array ant it is not');
 	} catch (error) {
 		console.error(error);
 	}

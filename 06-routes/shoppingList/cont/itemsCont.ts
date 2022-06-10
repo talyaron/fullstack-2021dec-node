@@ -72,10 +72,10 @@ export async function getItems(req, res) {
 
 export async function addItem(req, res){
   try {
-    const {newItemValue} = req.body;
+    const {itemToAdd} = req.body;
     const {userId} = req.body;
     let newItem  = {
-      name: newItemValue,
+      name: itemToAdd,
       itemId: uid(),
       bought: false,
       userId: userId,

@@ -130,27 +130,26 @@ function renderUser(user) {
     var userNameTitle = document.querySelector('#userTitle');
     userNameTitle.innerHTML = user.name + "'s grocery list:";
 }
-function handleAddItem() {
+function handleAddItem(event) {
     return __awaiter(this, void 0, void 0, function () {
-        var newItem, newItemValue, userId, data, error_3;
+        var itemToAdd, userId, data, items, error_3;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    newItem = document.querySelector('#inputNewItem');
-                    newItemValue = newItem.value;
-                    console.log(newItemValue);
+                    event.preventDefault();
+                    itemToAdd = event.target.addItem.value;
                     userId = getUserId();
                     return [4 /*yield*/, axios.post('/items/addItem', {
-                            newItemValue: newItemValue,
+                            itemToAdd: itemToAdd,
                             userId: userId
                         })];
                 case 1:
                     data = (_a.sent()).data;
                     console.log(data);
-                    renderItems(data.items);
-                    if (!Array.isArray(data.items))
-                        throw new Error('data should be an array ant it is not');
+                    items = data.items;
+                    console.log(items);
+                    renderItems(items);
                     return [3 /*break*/, 3];
                 case 2:
                     error_3 = _a.sent();
