@@ -178,7 +178,7 @@ function handleAddItem(event) {
 var form = document.querySelector('#searchForm');
 function handleSearchItems(event) {
     return __awaiter(this, void 0, void 0, function () {
-        var userId, searchedItem, filterBy, data, result, error_5;
+        var userId, searchedItem, filterBy, data, filtereditems, error_5;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -194,10 +194,9 @@ function handleSearchItems(event) {
                         })];
                 case 1:
                     data = (_a.sent()).data;
-                    result = data;
-                    console.log('test');
-                    console.log(result);
-                    renderItems(result);
+                    filtereditems = data;
+                    console.log(filtereditems);
+                    renderItems(filtereditems);
                     return [3 /*break*/, 3];
                 case 2:
                     error_5 = _a.sent();

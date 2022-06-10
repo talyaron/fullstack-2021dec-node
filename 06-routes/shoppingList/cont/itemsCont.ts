@@ -88,29 +88,31 @@ export async function addItem(req, res){
 export function filterItems(req, res) {
  
 	const { searchedItem, userId } = req.body;
-  console.log('userId',userId)
 	const { filterBy } = req.body
+  console.log(filterBy)
   const filteredUseritems = items.filter((item)=> item.userId === userId
   );
   const filtereditems = [];
   const itemToLookFor = new RegExp(searchedItem, "i");
-  console.log(itemToLookFor)
-  
+    
   if(filterBy === "name") {
+    console.log("name!!")
   filteredUseritems.forEach(item => {
-	  if(item.name.match(itemToLookFor)) {
+    console.log(item)
+	  if(itemToLookFor.test(item.name)) {
 		filtereditems.push(item)
+    console.log(`push was successfull`)
 	  }
   });
-
   console.log('filtereditems',filtereditems)
 } else if (filterBy === "itemId") {
 	filteredUseritems.forEach(item => {
-		if(item.itemId.match(itemToLookFor)) {
+		if(itemToLookFor.test(item.itemId)) {
 		  filtereditems.push(item)
 		}
 	});
 }
+  console.log(filtereditems)
   res.send(filtereditems)
 }
   

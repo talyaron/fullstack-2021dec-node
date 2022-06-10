@@ -149,27 +149,30 @@ function addItem(req, res) {
 exports.addItem = addItem;
 function filterItems(req, res) {
     var _a = req.body, searchedItem = _a.searchedItem, userId = _a.userId;
-    console.log('userId', userId);
     var filterBy = req.body.filterBy;
+    console.log(filterBy);
     var filteredUseritems = exports.items.filter(function (item) { return item.userId === userId; });
     var filtereditems = [];
     var itemToLookFor = new RegExp(searchedItem, "i");
-    console.log(itemToLookFor);
     if (filterBy === "name") {
+        console.log("name!!");
         filteredUseritems.forEach(function (item) {
-            if (item.name.match(itemToLookFor)) {
+            console.log(item);
+            if (itemToLookFor.test(item.name)) {
                 filtereditems.push(item);
+                console.log("push was successfull");
             }
         });
         console.log('filtereditems', filtereditems);
     }
     else if (filterBy === "itemId") {
         filteredUseritems.forEach(function (item) {
-            if (item.itemId.match(itemToLookFor)) {
+            if (itemToLookFor.test(item.itemId)) {
                 filtereditems.push(item);
             }
         });
     }
+    console.log(filtereditems);
     res.send(filtereditems);
 }
 exports.filterItems = filterItems;

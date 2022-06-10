@@ -146,16 +146,14 @@ async function handleSearchItems(event) {
 		const filterBy = event.target.filteroption.value;
 
 		//@ts-ignore
-
 		const { data } = await axios.post('/items/searchItems', {
 			searchedItem,
 			filterBy,
 			userId
 		});
-		const result = data;
-		console.log('test');
-		console.log(result);
-		renderItems(result);
+		const filtereditems  = data;
+    console.log(filtereditems)
+		renderItems(filtereditems);
 	} catch (error) {
 		console.error(error);
 	}
