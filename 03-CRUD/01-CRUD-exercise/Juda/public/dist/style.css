@@ -1,0 +1,8 @@
+body {
+  display: flex;
+  flex-direction: column;
+  background-color: aquamarine;
+}
+body img {
+  width: 200px;
+}
