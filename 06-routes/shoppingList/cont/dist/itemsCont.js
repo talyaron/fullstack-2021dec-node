@@ -125,13 +125,13 @@ function getItems(req, res) {
 exports.getItems = getItems;
 function addItem(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var newItemValue, userId_2, newItem;
+        var itemToAdd, userId_2, newItem;
         return __generator(this, function (_a) {
             try {
-                newItemValue = req.body.newItemValue;
+                itemToAdd = req.body.itemToAdd;
                 userId_2 = req.body.userId;
                 newItem = {
-                    name: newItemValue,
+                    name: itemToAdd,
                     itemId: helpers_1["default"](),
                     bought: false,
                     userId: userId_2
@@ -149,15 +149,13 @@ function addItem(req, res) {
 exports.addItem = addItem;
 function filterItems(req, res) {
     var _a = req.body, searchedItem = _a.searchedItem, userId = _a.userId;
-    console.log('userId', userId);
     var filterBy = req.body.filterBy;
     var filteredUseritems = exports.items.filter(function (item) { return item.userId === userId; });
     var filtereditems = [];
     var itemToLookFor = new RegExp(searchedItem, "i");
-    console.log(itemToLookFor);
     if (filterBy === "name") {
         filteredUseritems.forEach(function (item) {
-            if (item.name.match(itemToLookFor)) {
+            if (itemToLookFor.test(item.name)) {
                 filtereditems.push(item);
             }
         });
@@ -165,7 +163,7 @@ function filterItems(req, res) {
     }
     else if (filterBy === "itemId") {
         filteredUseritems.forEach(function (item) {
-            if (item.itemId.match(itemToLookFor)) {
+            if (itemToLookFor.test(item.itemId)) {
                 filtereditems.push(item);
             }
         });

@@ -54,7 +54,6 @@ export async function deleteItem(req, res) {
     });
     res.send({ items: items.filter((item) => item.userId === userId) });
 
-
   } catch (error) {
     res.send({ error: error.message })
   }
@@ -72,10 +71,10 @@ export async function getItems(req, res) {
 
 export async function addItem(req, res){
   try {
-    const {newItemValue} = req.body;
+    const {itemToAdd} = req.body;
     const {userId} = req.body;
     let newItem  = {
-      name: newItemValue,
+      name: itemToAdd,
       itemId: uid(),
       bought: false,
       userId: userId,
@@ -89,25 +88,22 @@ export async function addItem(req, res){
 export function filterItems(req, res) {
  
 	const { searchedItem, userId } = req.body;
-  console.log('userId',userId)
 	const { filterBy } = req.body
   const filteredUseritems = items.filter((item)=> item.userId === userId
   );
   const filtereditems = [];
   const itemToLookFor = new RegExp(searchedItem, "i");
-  console.log(itemToLookFor)
-  
+
   if(filterBy === "name") {
   filteredUseritems.forEach(item => {
-	  if(item.name.match(itemToLookFor)) {
+	  if(itemToLookFor.test(item.name)) {
 		filtereditems.push(item)
 	  }
   });
-
   console.log('filtereditems',filtereditems)
 } else if (filterBy === "itemId") {
 	filteredUseritems.forEach(item => {
-		if(item.itemId.match(itemToLookFor)) {
+		if(itemToLookFor.test(item.itemId)) {
 		  filtereditems.push(item)
 		}
 	});

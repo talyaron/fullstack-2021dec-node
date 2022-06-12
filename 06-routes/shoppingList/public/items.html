@@ -34,7 +34,7 @@
                     <div class="screen__container-by">
                     <label for="filtervia">Filter by:</label>
                     <select id="filtervia " name="filteroption" class="screen__form__input">
-                        <option value="name ">Item name</option>
+                        <option value="name">Item name</option>
                         <option value="itemId ">Item ID</option>
                     </select>
                 </div>
@@ -53,22 +53,20 @@
 
         <div class="screen__container-internal__bottom-bar ">
             <form class="screen__form " onsubmit="handleAddItem(event) ">
-                <input class="screen__form__input " type=" text " name="name " placeholder="Write a new task to ${user}"
+                <input class="screen__form__input " type=" text " name="addItem" placeholder="Write a new item"
                     required>
-                <button class="screen__form__btn-form " type="submit ">Add Task</button>
+                <button class="screen__form__btn-form" type="submit">Add Item</button>
             </form>
+            <button onclick="getUserItems()" class="screen__form__btn-form" type="submit">Show all items</button>
         </div>
-
     </div>
-
-
 
     </div>
     </form>
     <div class="resultcontainer">
     </div>
 
-    <body onload="handleLoadUserInfo()">
+    <!-- <body onload="handleLoadUserInfo()">
         <h1 id="userCart">Items</h1>
         <ul id="userItemsList">
         </ul>
@@ -77,7 +75,7 @@
         </div>
         <input id="inputNewItem" type="text">
         <button onclick="handleAddItem()">handleAddItem</button>
-        <button onclick="handleRenderItems()">Show items</button>
+        <button onclick="handleRenderItems()">Show items</button> -->
         <script src="./dist/items.js"></script>
     </body>
 

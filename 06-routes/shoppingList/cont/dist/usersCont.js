@@ -38,19 +38,15 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 exports.__esModule = true;
 exports.getUser = exports.updateUser = exports.getAllUsers = exports.handleAddUser = exports.handleDeleteUser = void 0;
 var helpers_1 = require("../helpers");
-var users = [
-    { name: "Mario", userId: "abc" },
-    { name: "Rayu", userId: "abcd" },
-];
+var users = [{ name: 'Mario', userId: 'abc' }, { name: 'Rayu', userId: 'abcd' }];
 exports.handleDeleteUser = function (req, res) {
     try {
         var userId_1 = req.body.userId;
-        console.log("userId", userId_1);
         var index = users.findIndex(function (user) { return user.userId === userId_1; });
         if (index === -1)
-            throw new Error("user not found");
+            throw new Error('user not found');
         users = users.filter(function (user) { return user.userId !== userId_1; });
-        console.log("users", users);
+        console.log('users', users);
         res.send({ users: users });
     }
     catch (error) {
@@ -59,11 +55,11 @@ exports.handleDeleteUser = function (req, res) {
 };
 exports.handleAddUser = function (req, res) {
     try {
-        var name = req.body.name;
+        var username = req.body.username;
         // console.log(req.body);
-        if (!name)
-            throw new Error("name is required");
-        var user = { name: name, userId: helpers_1["default"]() };
+        if (!username)
+            throw new Error('name is required');
+        var user = { name: "" + username, userId: helpers_1["default"]() };
         users.push(user);
         res.send(users);
     }
@@ -79,7 +75,7 @@ function getAllUsers(req, res) {
                 res.send({ users: users });
             }
             catch (error) {
-                console.log("Users array not valid");
+                console.log('Users array not valid');
                 res.send({ error: error.message });
             }
             return [2 /*return*/];
@@ -88,11 +84,19 @@ function getAllUsers(req, res) {
 }
 exports.getAllUsers = getAllUsers;
 exports.updateUser = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, userId, newName;
+    var _a, userId_2, newName_1;
     return __generator(this, function (_b) {
         try {
-            _a = req.body, userId = _a.userId, newName = _a.newName;
-            // TODO: finish function
+            _a = req.body, userId_2 = _a.userId, newName_1 = _a.newName;
+            if (!newName_1)
+                throw new Error('name is required');
+            users.forEach(function (user) {
+                console.log(typeof user.userId);
+                if (user.userId === String(userId_2)) {
+                    user.name = newName_1;
+                }
+            });
+            res.send(users);
         }
         catch (error) {
             console.error(error);
@@ -103,13 +107,12 @@ exports.updateUser = function (req, res) { return __awaiter(void 0, void 0, void
 }); };
 function getUser(req, res) {
     try {
-        var userId_2 = req.body.userId;
-        if (!userId_2)
-            throw new Error("userId is missing");
-        var user = users.find(function (user) { return user.userId === userId_2; });
-        console.log(user);
+        var userId_3 = req.body.userId;
+        if (!userId_3)
+            throw new Error('userId is missing');
+        var user = users.find(function (user) { return user.userId === userId_3; });
         if (!user)
-            throw new Error("couldnt find user");
+            throw new Error('couldnt find user');
         res.send({ user: user });
     }
     catch (error) {
