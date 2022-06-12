@@ -21,27 +21,6 @@ app.get("/api/get-teams", function (req, res) {
         res.send({ error: error.message });
     }
 });
-app.post('/api/add-fselected', function (req, res) {
-    try {
-        var selectedOption_1 = req.body.selectedOption;
-        var fselected_1 = { selectedOption: selectedOption_1 };
-        teams.push(fselected_1);
-        res.send({ fselected: fselected_1 });
-        app.get("/api/get-teams", function (req, res) {
-            try {
-                var selectedfOption = teams.findIndex(function (team) { return team.userId === fselected_1.userId; });
-                teams.filter(userId !== selectedOption_1.);
-                res.send({ selectedfOption: selectedfOption });
-            }
-            catch (error) {
-                res.send({ error: error.message });
-            }
-        });
-    }
-    catch (error) {
-        res.send({ error: error.message });
-    }
-});
 var fstat = [];
 app.get("/api/get-stat", function (req, res) {
     try {

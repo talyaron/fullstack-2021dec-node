@@ -29,26 +29,6 @@ app.get("/api/get-teams", (req, res) => {
           res.send({ error: error.message });
         }
       });
-      app.post('/api/add-fselected', (req, res) => {
-        try {
-          const { selectedOption  } = req.body;
-          const fselected:team= { selectedOption  }
-          teams.push(fselected)
-          res.send({ fselected });
-         app.get("/api/get-teams", (req, res) => {
-                try {
-                 const selectedfOption =teams.findIndex(team=>team.userId===fselected.userId)
-                 teams.filter(userId!==selectedOption.)
-                  res.send({ selectedfOption });
-                } catch (error) {
-                  res.send({ error: error.message });
-                }
-              });
-        } catch (error) {
-          res.send({ error: error.message });
-        }
-      })
-
       
 
 interface fstats{
