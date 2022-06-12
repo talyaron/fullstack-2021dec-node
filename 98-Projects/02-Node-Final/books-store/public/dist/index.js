@@ -44,11 +44,13 @@ function handleUpBook(ev) {
                     _a.label = 1;
                 case 1:
                     _a.trys.push([1, 3, , 4]);
-                    image = ev.target.element.bookImg.value;
-                    name = ev.target.element.namOfBook.value;
-                    description = ev.target.element.description.value;
-                    price = ev.target.element.price.value;
-                    return [4 /*yield*/, axios.post('/booksStore', image, name, description, price)];
+                    console.log(ev.target.elements);
+                    image = ev.target.elements.bookImg.value;
+                    name = ev.target.elements.name.value;
+                    description = ev.target.elements.description.value;
+                    price = ev.target.elements.price.value;
+                    console.log(image, name, description, price);
+                    return [4 /*yield*/, axios.post("/booksStore", image, name, description, price)];
                 case 2:
                     data = (_a.sent()).data;
                     console.log(data);
