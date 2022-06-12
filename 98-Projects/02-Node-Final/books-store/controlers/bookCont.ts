@@ -23,6 +23,7 @@ export async function postBook(req, res) {
     const bookDetails = { image, name, description, price,  serialNo:uid() };
     addBook.push(bookDetails);
     res.send({ addBook });
+    console.log(addBook)
   } catch (error) {
     res.send({ error });
   }

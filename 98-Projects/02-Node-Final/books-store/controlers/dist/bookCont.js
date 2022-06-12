@@ -57,6 +57,7 @@ function postBook(req, res) {
                     bookDetails = { image: image, name: name, description: description, price: price, serialNo: uid() };
                     addBook.push(bookDetails);
                     res.send({ addBook: addBook });
+                    console.log(addBook);
                     return [3 /*break*/, 3];
                 case 2:
                     error_1 = _b.sent();

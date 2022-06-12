@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 function handleUpBook(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var image, name, description, price, data, error_1;
+        var image, name, description, price, data, addBook, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -46,14 +46,15 @@ function handleUpBook(ev) {
                     _a.trys.push([1, 3, , 4]);
                     console.log(ev.target.elements);
                     image = ev.target.elements.bookImg.value;
-                    name = ev.target.elements.name.value;
-                    description = ev.target.elements.description.value;
-                    price = ev.target.elements.price.value;
-                    console.log(image, name, description, price);
-                    return [4 /*yield*/, axios.post("/booksStore", image, name, description, price)];
+                    name = ev.target.elements.Bname.value;
+                    description = ev.target.elements.Bdescription.value;
+                    price = ev.target.elements.Bprice.value;
+                    return [4 /*yield*/, axios.post("/booksStore", { image: image, name: name, description: description, price: price })];
                 case 2:
                     data = (_a.sent()).data;
                     console.log(data);
+                    addBook = data.addBook;
+                    console.log(addBook);
                     return [3 /*break*/, 4];
                 case 3:
                     error_1 = _a.sent();

@@ -1,6 +1,6 @@
 body {
   text-align: center;
-  background-image: url("../images/books.jpg");
+  background-color: #5e0a26;
 }
 body #upBook {
   text-align: center;
@@ -9,4 +9,8 @@ body #upBook {
 body #upBook #labDes {
   position: relative;
   bottom: 25px;
+}
+body #books {
+  border: 1px solid;
+  border-radius: 25%;
 }

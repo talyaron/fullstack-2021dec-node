@@ -1,21 +1,26 @@
+interface Book{
+  image: String,
+  name: string,
+  description: string,
+  price: number,
+  serialNo: string
+}
+
+
 async function handleUpBook(ev) {
   ev.preventDefault();
   try {
     console.log(ev.target.elements);
     const image = ev.target.elements.bookImg.value;
-    const name = ev.target.elements.name.value;
-    const description = ev.target.elements.description.value;
-    const price = ev.target.elements.price.value;
-    console.log(image, name, description, price);
+    const name = ev.target.elements.Bname.value;
+    const description = ev.target.elements.Bdescription.value;
+    const price = ev.target.elements.Bprice.value;
+   
     //@ts-ignore
-    const { data } = await axios.post(
-      "/booksStore",
-      image,
-      name,
-      description,
-      price
-    );
+    const { data } = await axios.post("/booksStore",{image,name,description,price});
     console.log(data);
+    const {addBook} = data;
+    console.log(addBook)
   } catch (error) {
     console.log(error);
   }
