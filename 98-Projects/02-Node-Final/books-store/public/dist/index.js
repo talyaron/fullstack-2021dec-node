@@ -34,23 +34,30 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var html = "";
 function handleUpBook(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var image, name, description, price, data;
+        var image, name, description, price, data, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     ev.preventDefault();
+                    _a.label = 1;
+                case 1:
+                    _a.trys.push([1, 3, , 4]);
                     image = ev.target.element.bookImg.value;
                     name = ev.target.element.namOfBook.value;
                     description = ev.target.element.description.value;
                     price = ev.target.element.price.value;
                     return [4 /*yield*/, axios.post('/booksStore', image, name, description, price)];
-                case 1:
+                case 2:
                     data = (_a.sent()).data;
                     console.log(data);
-                    return [2 /*return*/];
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_1 = _a.sent();
+                    console.log(error_1);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
             }
         });
     });
@@ -61,7 +68,7 @@ function postBook(book) {
         return __generator(this, function (_a) {
             books = document.querySelector("#books");
             html = "";
-            html = "<img src=\"" + book.bookImage + "\" id=\"bookImg\"> <br>\n   <h3>" + book.name + "</h3> <br>\n   <p>" + book.description + "</p> <br>\n   <h1>" + book.price + "</h1> <br>";
+            html = "<img src=\"" + book.bookImage + "\" id=\"bookImg\"> <br>\n   <h3>" + book.name + "</h3> <br> <br>\n   <p>" + book.description + "</p> <br> <br>\n   <h1>" + book.price + "</h1> <br> <br> <br>";
             books.innerHTML = html;
             return [2 /*return*/];
         });
