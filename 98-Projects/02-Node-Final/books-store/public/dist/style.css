@@ -1,0 +1,16 @@
+body {
+  text-align: center;
+  background-color: #5e0a26;
+}
+body #upBook {
+  text-align: center;
+  align-items: center;
+}
+body #upBook #labDes {
+  position: relative;
+  bottom: 25px;
+}
+body #books {
+  border: 1px solid;
+  border-radius: 25%;
+}

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"
+        integrity="sha512-odNmoc1XJy5x1TMVMdC7EMs3IVdItLPlCeL5vSUPN2llYKMJ2eByTTAIiiuqLg+GdNr9hF6z81p27DArRFKT7A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="./dist/style.css">
+    <title>users</title>
+</head>
+
+<body class="screen" onload=" handleGetUsers() ">
+    <!-- 
+    <form onsubmit="handleAddUser(event)">
+        <input type="text" name="name" placeholder="Name" required>
+        <button type="submit">Add user</button>
+    </form> -->
+   
+    <div class="screen__container-internal">
+        <div class="screen__title-h1">רשימת משתמשים</div>
+        <div id="root"></div>
+    </div>
+   
+
+        <!-- <div class="screen__container-internal__top-bar">
+            <div class="screen__userAvatar "></div>
+            <h4 class="screen__title-h4 ">Your name</h4>
+        </div> -->
+
+        <!-- <div class="screen__container-internal__root">
+            <h2 class="screen__title-h2">All users List</h2>
+            <div id="root">
+                <div class="screen__card-wrapper">
+                    <h4 class="screen__title-h4">${user}</h4>
+                    <div class="screen__card-wrapper__actions">
+                        <img class="screen__card-wrapper__actions__icon" src=" ./icons/pencil.svg " alt="edit ">
+                        <img class="screen__card-wrapper__actions__icon" src="./icons/trash.svg " alt="delete ">
+                    </div>
+                </div>
+            </div>
+
+        </div> -->
+
+        <div class="screen__container-internal__bottom-bar">
+
+            <form class="screen__form" onsubmit="handleAddUser(event) ">
+                <input class="screen__form__input" type="text" name="adduser" placeholder="Name" required>
+                <button class="screen__form__btn-form" type="submit">Add user</button>
+            </form>
+        </div>
+
+    </div>
+    <script src="./dist/users.js "></script>
+</body>
+
+</html>
