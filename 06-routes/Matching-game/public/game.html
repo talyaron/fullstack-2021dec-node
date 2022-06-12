@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"
+        integrity="sha512-odNmoc1XJy5x1TMVMdC7EMs3IVdItLPlCeL5vSUPN2llYKMJ2eByTTAIiiuqLg+GdNr9hF6z81p27DArRFKT7A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="./dist/style.css">
+    <!--!!!!!!!!!  HTML will load JS file at the same time as the index.html  -->
+    <script src="./dist/index.js" async></script>
+    <title>game</title>
+</head>
+
+<body>
+    <p class="title-game">Matching g<span><img class="smilyImg-game" src="../img/smily.png"></span><span
+            style="display: none;">a</span> me</p>
+
+    <button class="newGameBtm" onclick="handleStartGame()">New game</button>
+
+    <div class="statistics">
+        <p class="statistics__title" id="game-title">Game Statistics:</p>
+        <!-- <div class="statistics__info-player">
+            <p>Player: <span style="color: rgb(163, 38, 24); font-weight: bold;"></span></p>
+        </div> -->
+        <div class="statistics__info-time">
+            Time: <span id="time-remaining" style="color: rgb(163, 38, 24); font-weight: bold;">100</span>
+        </div>
+        <div class="statistics__info-flips">
+            Flips: <span id="flips" style="color: rgb(163, 38, 24); font-weight: bold;">0</span>
+        </div>
+    </div>
+
+
+    <div class="container" id="root"></div>
+
+    <div class="winning-message " id="winningMessage"></div>
+
+    <audio id="creepy" src="audio/creepy.mp3"></audio>
+    <audio id="flip" src="audio/flip.wav"></audio>
+    <audio id="gameOver" src="audio/gameOver.mp3"></audio>
+    <audio id="match" src="audio/match.wav"></audio>
+    <audio id="victory" src="audio/victory.mp3"></audio>
+
+    <script type="text/javascript" async>
+        window.onload = function () {
+            newLoadGame();
+        };
+    </script>
+</body>
+
+</html>
