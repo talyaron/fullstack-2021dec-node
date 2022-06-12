@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"
+        integrity="sha512-odNmoc1XJy5x1TMVMdC7EMs3IVdItLPlCeL5vSUPN2llYKMJ2eByTTAIiiuqLg+GdNr9hF6z81p27DArRFKT7A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="./dist/style.css">
+    <title>entry</title>
+</head>
+
+<body>
+    <p class="title-players">Matching g<span><img class="smilyImg-players" src="../img/smily.png"></span><span
+            style="display: none;">a</span> me</p>
+
+    <img src="../img/gif.gif" class="gif">
+
+    <!-- <div class="animation">
+            <img src="../img/ani2.jpg" class="ani2">
+            <img src="../img/ani6.jpg" class="ani6">
+            <img src="../img/king.jpg" class="king">
+            <img src="../img/dama.jpg" class="dama">
+            <img src="../img/dama2.jpg" class="dama2">
+            <img src="../img/valet.jpg" class="valet">
+            <img src="../img/valet2.jpg" class="valet2">
+        </div> -->
+
+    <form class="name" onsubmit="handleRegister(event)">
+        <input type="text" name="name" id="name" placeholder="your name" required>
+        <input type="submit" value="Let`s go">
+    </form>
+
+</body>
+<script src="./dist/index.js"></script>
+
+</html>
