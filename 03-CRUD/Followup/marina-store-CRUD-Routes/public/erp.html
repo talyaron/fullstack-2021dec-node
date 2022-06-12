@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>erp</title>
+    <link rel="stylesheet" href="dist/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="dist/index.js" defer></script>
+    <link rel="stylesheet" href="./style/dist/style.css">
+</head>
+
+<body onload="initErp()">
+    <P class="title">ERP</P>
+    <div class="navbar">
+        <ul>
+            <li><a href="store.html">Store</a></li>
+        </ul>
+    </div>
+    <form onsubmit="handleAddAlbum(event)">
+        <input type="text" name="name" placeholder="Name" required>
+        <input type="text" name="title" placeholder="Title" required>
+        <select name="type" id="type">
+            <option value="Choose type" value disabled selected>Choose type</option>
+            <option value="classic">Classic</option>
+            <option value="coolJazz">Cool jazz</option>
+            <option value="bebop">Bebop</option>
+            <option value="ethnic">Ethnic</option>
+        </select>
+        <input type="number" name="year" placeholder="Year" required>
+        <input type="number" name="raiting" placeholder="Rating" required>
+        <input type="url" name="url" placeholder="url" required>
+        <button type="submit">Add album</button>
+    </form>
+    <div id="root"></div>
+    <button class="button" id="scrollToTopBtn" style="margin: 5em;">Back to top</button>
+    <script src="./dist/index.js"></script>
+</body>
+
+</html>

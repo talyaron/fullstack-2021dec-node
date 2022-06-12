@@ -48,9 +48,14 @@ interface Recipe {
     console.log("handleAddRecipe")
     let forms:HTMLDivElement = document.querySelector("#forms")
     if(forms) forms.remove()
+    let root:HTMLDivElement=document.querySelector("#root")  
+    if(root) root.remove()
+    let body = document.querySelector("body")
+    root = document.createElement("root")
+    body.append(root)
     let html=""
     html=`
-    <div id="forms">
+    <div id="root">
         <form onsubmit="PostRecipe(event)">
             <input type="text" name="name" placeholder="Recipe Name"><br>`
     html+=`        
@@ -72,8 +77,8 @@ interface Recipe {
             <button type="submit">Post Recipe</button>        
             </form>
     </div>` 
-    let root:HTMLDivElement=document.querySelector("#root")  
-    root.innerHTML=html
+    //let root:HTMLDivElement=document.querySelector("#root")  
+    body.innerHTML+=html
     root.style.position="relative" 
     root.style.top="10px"
     root.style.left="10px"
@@ -120,9 +125,15 @@ async function PostRecipe(event: any){
 }
 
 function renderFullRecipe(fullRecipe:Recipe){
-    console.log(`fullRecipe from server:${fullRecipe}`)
+    console.log("renderFullRecipe")
+    //console.log(`fullRecipe from server:${fullRecipe}`)
     let forms:HTMLElement = document.querySelector("#forms");
     if(forms) forms.remove()
+    let root:HTMLDivElement=document.querySelector("#root")  
+    if(root) root.remove()
+    let body = document.querySelector("body")
+    let root = document.createElement("root")
+    body.append(root)
     let html=""
     html=`<p id="name" color="red" fontsize="20px">${fullRecipe.name}</p>`
     html+=`===================================`
@@ -142,7 +153,7 @@ function renderFullRecipe(fullRecipe:Recipe){
     for(let j:number=0;j<preNo;j++){
         html+=`<div class="prepares">${fullRecipe.prepareMode[j]}</div>`
     }
-    let root:HTMLDivElement=document.querySelector("#root")  
+    html+=`<button id="back"><a href="index.html">Back to beginning</a></button>`
     root.innerHTML=html
     root.style.position="absolute"
     root.style.top="150px"
@@ -155,6 +166,9 @@ function handleFixRecipe(){
     console.log("handleFixRecipe")
     let forms:HTMLDivElement = document.querySelector("#forms")
     if(forms) forms.remove()
+    let body = document.querySelector("body")
+    let root:HTMLElement = document.createElement("root")
+    body.append(root)
     let html=""
     html=`
     <div id="forms">
@@ -164,7 +178,7 @@ function handleFixRecipe(){
             <button type="submit">Get Recipe</button>
         </form>
     </div>` 
-    let root:HTMLDivElement=document.querySelector("#root")  
+    
     root.innerHTML=html
     root.style.position="absolute" 
     root.style.top="60px"
@@ -199,24 +213,28 @@ function renderRecipeForUpdate(myRecipe:Recipe){
         console.log("renderRecipeForUnpdate")
         let forms:HTMLElement = document.querySelector("#forms");
         if(forms) forms.remove()
+        let root:HTMLDivElement=document.querySelector("#root")  
+        let recipeName:string=myRecipe.name
+        console.log(`recipeName: ${recipeName}`)
         let frm1=""
-        frm1+=`<form action="" onsubmit="saveIng(event)">`
+        frm1+=`<form action="" onsubmit="saveIng(event,'${recipeName}')">`
         const ingNo=myRecipe.ingredients.length
         for(let i:number=0;i<ingNo;i++){
              frm1+=`<input type="text" name="ing${i}" value="${myRecipe.ingredients[i]}" width="1500px"><br>`
         }
-        frm1+=`<button type="submit">Save Ingredients</button>`
-        frm1+=`<br>`
-        console.log(`frm1 ${frm1}`)
+        frm1+=`<button type="submit">Save Ingredients</button><br>`
+        frm1+=`</form>`
+        //console.log(`frm1 ${frm1}`)
+
         let frm2=""
-        frm2+=`<form action="" onsubmit="savePre(event)">`
+        frm2+=`<form action="" onsubmit="savePre(event,'${recipeName}')">`
         const preNo=myRecipe.ingredients.length
         for(let j:number=0;j<preNo;j++){
             frm2+=`<input type="text" name="pre${j}" value="${myRecipe.prepareMode[j]}"width="500px"><br>`
         }
-        frm2+=`<button type="submit">Save Prepare Mode</button>` 
+        frm2+=`<button type="submit">Save Prepare Mode</button></form>` 
         //console.log(`frm2 ${frm2}`)
-
+       
         let html=""
         html=`<div id="name" color="red">${myRecipe.name}</div>`
         html+=`===================================`
@@ -226,8 +244,8 @@ function renderRecipeForUpdate(myRecipe:Recipe){
         let root1:HTMLDivElement=document.querySelector("#root1") 
         root1.innerHTML=html
         root1.style.position="absolute"
-        root1.style.top="120px"
-        root1.style.left="340px"
+        root1.style.top="160px"
+        root1.style.left="680px"
         root1.style.border="1px solid black"
         root1.style.backgroundColor="yellow"
         let root2:HTMLDivElement=document.querySelector("#root2") 
@@ -246,8 +264,8 @@ function renderRecipeForUpdate(myRecipe:Recipe){
         let root3:HTMLDivElement=document.querySelector("#root3") 
         root3.innerHTML=frm3
         root3.style.position="absolute"
-        root3.style.top="300px"
-        root3.style.left="340px"
+        root3.style.top="350px"
+        root3.style.left="680px"
         root3.style.border="1px solid black"
         root3.style.backgroundColor="yellow"
         let root4:HTMLDivElement=document.querySelector("#root4") 
@@ -260,15 +278,54 @@ function renderRecipeForUpdate(myRecipe:Recipe){
        
 } 
 
-async function saveIng(event){
+async function saveIng(event,recipeName){
     event.preventDefault()
     console.log("saveIng")
-    console.dir(event.target.elements)
+    console.log(`recipeName ${recipeName}`)
+    console.dir(event)
+    let myIng=[]
+    let myElem=event.target.elements
+    for(let j:number=0;j<myElem.length-1;j++){
+        console.log(`ing${j}`)
+        myIng[j] = myElem[`ing${j}`].value;
+        console.log(myIng[j])
+    }
+    try{ 
+        // @ts-ignore    
+        const { data } = await axios.post('/api/update-ing',{recipeName,myIng});
+        const { myRecipe,error} = data;
+        if (error) throw new Error(error);
+        renderFullRecipe(myRecipe)
+
+    } catch (error) {
+        console.error(error);
+    } 
+
 }
 
-async function savePre(event){
+async function savePre(event,recipeName){
     event.preventDefault()
     console.log("savePre")
-    console.dir(event.target.elements)
-}
+        console.log(`recipeName ${recipeName}`)
+
+        let myPre=[]
+        let myElem=event.target.elements
+        for(let j:number=0;j<myElem.length-1;j++){
+            console.log(`pre${j}`)
+            myPre[j] = myElem[`pre${j}`].value;
+            console.log(myPre[j])
+        }
+        try{ 
+            // @ts-ignore    
+            const { data } = await axios.post('/api/update-pre',{recipeName,myPre});
+            const { myRecipe,error} = data;
+            if (error) throw new Error(error);
+            renderFullRecipe(myRecipe)
+    
+        } catch (error) {
+            console.error(error);
+        } 
+    
+    }
+
 

@@ -37,7 +37,6 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 var gameWrapper = document.querySelector('.game_wrapper');
 var xWin = document.getElementById('Xwin');
 var oWin = document.getElementById('Owin');
-var socket = io('http://localhost:3000');
 var isGameWinX = false;
 var isGameWinO = false;
 var WinningXTimes = 0;
@@ -52,7 +51,7 @@ function hundleClick(squreId) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, axios.post('/api/next-turn', { squreId: squreId })];
+                    return [4 /*yield*/, axios.post('/squres/next-turn', { squreId: squreId })];
                 case 1:
                     data = (_a.sent()).data;
                     squreArr = data.squreArr, isXturn = data.isXturn;
@@ -74,39 +73,14 @@ function hundleClick(squreId) {
         });
     });
 }
-function getTableStatus() {
+function handleResetGame() {
     return __awaiter(this, void 0, void 0, function () {
         var data, squreArr, error, error_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, axios.get('/api/table-status')];
-                case 1:
-                    data = (_a.sent()).data;
-                    squreArr = data.squreArr;
-                    renderSqure(squreArr);
-                    error = data.error;
-                    if (error)
-                        throw new Error(error);
-                    return [3 /*break*/, 3];
-                case 2:
-                    error_2 = _a.sent();
-                    console.error(error_2);
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
-            }
-        });
-    });
-}
-function handleResetGame() {
-    return __awaiter(this, void 0, void 0, function () {
-        var data, squreArr, error, error_3;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    _a.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, axios.get('/api/reset-game')];
+                    return [4 /*yield*/, axios.patch('/squres/reset-game')];
                 case 1:
                     data = (_a.sent()).data;
                     squreArr = data.squreArr;
@@ -120,8 +94,8 @@ function handleResetGame() {
                         throw new Error(error);
                     return [3 /*break*/, 3];
                 case 2:
-                    error_3 = _a.sent();
-                    console.error(error_3);
+                    error_2 = _a.sent();
+                    console.error(error_2);
                     return [3 /*break*/, 3];
                 case 3: return [2 /*return*/];
             }
@@ -224,4 +198,3 @@ function drawCountersOnDOM() {
     xWin.innerText = "" + WinningXTimes;
     oWin.innerText = "" + WinningOTimes;
 }
-setInterval(getTableStatus, 1000);

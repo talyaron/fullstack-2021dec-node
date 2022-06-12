@@ -84,13 +84,19 @@ function handleAddRepipe() {
     var forms = document.querySelector("#forms");
     if (forms)
         forms.remove();
+    var root = document.querySelector("#root");
+    if (root)
+        root.remove();
+    var body = document.querySelector("body");
+    root = document.createElement("root");
+    body.append(root);
     var html = "";
-    html = "\n    <div id=\"forms\">\n        <form onsubmit=\"PostRecipe(event)\">\n            <input type=\"text\" name=\"name\" placeholder=\"Recipe Name\"><br>";
+    html = "\n    <div id=\"root\">\n        <form onsubmit=\"PostRecipe(event)\">\n            <input type=\"text\" name=\"name\" placeholder=\"Recipe Name\"><br>";
     html += "        \n            <input type=\"text\" name=\"array1[]\" placeholder=\"Ingredients\"/><br>\n            <input type=\"text\" name=\"array1[]\" placeholder=\"Ingredients\"/><br>\n            <input type=\"text\" name=\"array1[]\" placeholder=\"Ingredients\"/><br>\n            <input type=\"text\" name=\"array1[]\" placeholder=\"Ingredients\"/><br>\n            <input type=\"text\" name=\"array1[]\" placeholder=\"Ingredients\"/><br>\n            <input type=\"text\" name=\"array1[]\" placeholder=\"Ingredients\"/><br>";
     html += "\n            <input type=\"text\" name=\"array2[]\" placeholder=\"Prepare Mode\"/><br>\n            <input type=\"text\" name=\"array2[]\" placeholder=\"Prepare Mode\"/><br>\n            <input type=\"text\" name=\"array2[]\" placeholder=\"Prepare Mode\"/><br>\n            <input type=\"text\" name=\"array2[]\" placeholder=\"Prepare Mode\"/><br>\n            <input type=\"text\" name=\"array2[]\" placeholder=\"Prepare Mode\"/><br>\n            <input type=\"text\" name=\"array2[]\" placeholder=\"Prepare Mode\"/><br>";
     html += "\n            <input type=\"text\" name=\"adderName\" placeholder=\"name of adder\"/>\n            <button type=\"submit\">Post Recipe</button>        \n            </form>\n    </div>";
-    var root = document.querySelector("#root");
-    root.innerHTML = html;
+    //let root:HTMLDivElement=document.querySelector("#root")  
+    body.innerHTML += html;
     root.style.position = "relative";
     root.style.top = "10px";
     root.style.left = "10px";
@@ -148,10 +154,17 @@ function PostRecipe(event) {
     });
 }
 function renderFullRecipe(fullRecipe) {
-    console.log("fullRecipe from server:" + fullRecipe);
+    console.log("renderFullRecipe");
+    //console.log(`fullRecipe from server:${fullRecipe}`)
     var forms = document.querySelector("#forms");
     if (forms)
         forms.remove();
+    var root = document.querySelector("#root");
+    if (root)
+        root.remove();
+    var body = document.querySelector("body");
+    var root = document.createElement("root");
+    body.append(root);
     var html = "";
     html = "<p id=\"name\" color=\"red\" fontsize=\"20px\">" + fullRecipe.name + "</p>";
     html += "===================================";
@@ -171,7 +184,7 @@ function renderFullRecipe(fullRecipe) {
     for (var j = 0; j < preNo; j++) {
         html += "<div class=\"prepares\">" + fullRecipe.prepareMode[j] + "</div>";
     }
-    var root = document.querySelector("#root");
+    html += "<button id=\"back\"><a href=\"index.html\">Back to beginning</a></button>";
     root.innerHTML = html;
     root.style.position = "absolute";
     root.style.top = "150px";
@@ -184,9 +197,11 @@ function handleFixRecipe() {
     var forms = document.querySelector("#forms");
     if (forms)
         forms.remove();
+    var body = document.querySelector("body");
+    var root = document.createElement("root");
+    body.append(root);
     var html = "";
     html = "\n    <div id=\"forms\">\n        <form onsubmit=\"CheckName(event); return false;\">\n            <input type=\"text\" name=\"recipeName\" placeholder=\"Recipe Name\"><br>\n            <input type=\"text\" name=\"adderName\" placeholder=\"Your Name\"><br>\n            <button type=\"submit\">Get Recipe</button>\n        </form>\n    </div>";
-    var root = document.querySelector("#root");
     root.innerHTML = html;
     root.style.position = "absolute";
     root.style.top = "60px";
@@ -231,22 +246,25 @@ function renderRecipeForUpdate(myRecipe) {
     var forms = document.querySelector("#forms");
     if (forms)
         forms.remove();
+    var root = document.querySelector("#root");
+    var recipeName = myRecipe.name;
+    console.log("recipeName: " + recipeName);
     var frm1 = "";
-    frm1 += "<form action=\"\" onsubmit=\"saveIng(event)\">";
+    frm1 += "<form action=\"\" onsubmit=\"saveIng(event,'" + recipeName + "')\">";
     var ingNo = myRecipe.ingredients.length;
     for (var i = 0; i < ingNo; i++) {
         frm1 += "<input type=\"text\" name=\"ing" + i + "\" value=\"" + myRecipe.ingredients[i] + "\" width=\"1500px\"><br>";
     }
-    frm1 += "<button type=\"submit\">Save Ingredients</button>";
-    frm1 += "<br>";
-    console.log("frm1 " + frm1);
+    frm1 += "<button type=\"submit\">Save Ingredients</button><br>";
+    frm1 += "</form>";
+    //console.log(`frm1 ${frm1}`)
     var frm2 = "";
-    frm2 += "<form action=\"\" onsubmit=\"savePre(event)\">";
+    frm2 += "<form action=\"\" onsubmit=\"savePre(event,'" + recipeName + "')\">";
     var preNo = myRecipe.ingredients.length;
     for (var j = 0; j < preNo; j++) {
         frm2 += "<input type=\"text\" name=\"pre" + j + "\" value=\"" + myRecipe.prepareMode[j] + "\"width=\"500px\"><br>";
     }
-    frm2 += "<button type=\"submit\">Save Prepare Mode</button>";
+    frm2 += "<button type=\"submit\">Save Prepare Mode</button></form>";
     //console.log(`frm2 ${frm2}`)
     var html = "";
     html = "<div id=\"name\" color=\"red\">" + myRecipe.name + "</div>";
@@ -257,8 +275,8 @@ function renderRecipeForUpdate(myRecipe) {
     var root1 = document.querySelector("#root1");
     root1.innerHTML = html;
     root1.style.position = "absolute";
-    root1.style.top = "120px";
-    root1.style.left = "340px";
+    root1.style.top = "160px";
+    root1.style.left = "680px";
     root1.style.border = "1px solid black";
     root1.style.backgroundColor = "yellow";
     var root2 = document.querySelector("#root2");
@@ -277,8 +295,8 @@ function renderRecipeForUpdate(myRecipe) {
     var root3 = document.querySelector("#root3");
     root3.innerHTML = frm3;
     root3.style.position = "absolute";
-    root3.style.top = "300px";
-    root3.style.left = "340px";
+    root3.style.top = "350px";
+    root3.style.left = "680px";
     root3.style.border = "1px solid black";
     root3.style.backgroundColor = "yellow";
     var root4 = document.querySelector("#root4");
@@ -289,23 +307,76 @@ function renderRecipeForUpdate(myRecipe) {
     root4.style.border = "1px solid black";
     root4.style.backgroundColor = "yellow";
 }
-function saveIng(event) {
+function saveIng(event, recipeName) {
     return __awaiter(this, void 0, void 0, function () {
+        var myIng, myElem, j, data, myRecipe, error, error_4;
         return __generator(this, function (_a) {
-            event.preventDefault();
-            console.log("saveIng");
-            console.dir(event.target.elements);
-            return [2 /*return*/];
+            switch (_a.label) {
+                case 0:
+                    event.preventDefault();
+                    console.log("saveIng");
+                    console.log("recipeName " + recipeName);
+                    console.dir(event);
+                    myIng = [];
+                    myElem = event.target.elements;
+                    for (j = 0; j < myElem.length - 1; j++) {
+                        console.log("ing" + j);
+                        myIng[j] = myElem["ing" + j].value;
+                        console.log(myIng[j]);
+                    }
+                    _a.label = 1;
+                case 1:
+                    _a.trys.push([1, 3, , 4]);
+                    return [4 /*yield*/, axios.post('/api/update-ing', { recipeName: recipeName, myIng: myIng })];
+                case 2:
+                    data = (_a.sent()).data;
+                    myRecipe = data.myRecipe, error = data.error;
+                    if (error)
+                        throw new Error(error);
+                    renderFullRecipe(myRecipe);
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_4 = _a.sent();
+                    console.error(error_4);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
         });
     });
 }
-function savePre(event) {
+function savePre(event, recipeName) {
     return __awaiter(this, void 0, void 0, function () {
+        var myPre, myElem, j, data, myRecipe, error, error_5;
         return __generator(this, function (_a) {
-            event.preventDefault();
-            console.log("savePre");
-            console.dir(event.target.elements);
-            return [2 /*return*/];
+            switch (_a.label) {
+                case 0:
+                    event.preventDefault();
+                    console.log("savePre");
+                    console.log("recipeName " + recipeName);
+                    myPre = [];
+                    myElem = event.target.elements;
+                    for (j = 0; j < myElem.length - 1; j++) {
+                        console.log("pre" + j);
+                        myPre[j] = myElem["pre" + j].value;
+                        console.log(myPre[j]);
+                    }
+                    _a.label = 1;
+                case 1:
+                    _a.trys.push([1, 3, , 4]);
+                    return [4 /*yield*/, axios.post('/api/update-pre', { recipeName: recipeName, myPre: myPre })];
+                case 2:
+                    data = (_a.sent()).data;
+                    myRecipe = data.myRecipe, error = data.error;
+                    if (error)
+                        throw new Error(error);
+                    renderFullRecipe(myRecipe);
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_5 = _a.sent();
+                    console.error(error_5);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
         });
     });
 }

@@ -1,3 +1,4 @@
+"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -34,20 +35,23 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+exports.__esModule = true;
+var axios_1 = require("axios");
 function getRandomSpaceGif() {
     return __awaiter(this, void 0, void 0, function () {
-        var data, gifUrl, error, error_1;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
+        var data, _a, gifUrl, error, error_1;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
                 case 0:
-                    _a.trys.push([0, 2, , 3]);
+                    _b.trys.push([0, 2, , 3]);
                     console.log("getRandomSpaceGif");
                     console.log("get Gif After fetch (2)");
-                    return [4 /*yield*/, axios.get("/api/SpaceGif")];
+                    return [4 /*yield*/, axios_1["default"].get("/api/SpaceGif")];
                 case 1:
-                    data = (_a.sent()).data;
+                    data = (_b.sent()).data;
                     console.log(data);
-                    gifUrl = data.gifUrl, error = data.error;
+                    _a = data.gifUrl, gifUrl = _a.gifUrl, error = _a.error;
+                    console.log(gifUrl);
                     console.log("get GIF After fetch (2.5)");
                     if (error)
                         throw new Error(error);
@@ -55,7 +59,7 @@ function getRandomSpaceGif() {
                     console.log("get GIF After the end of fetch (3)");
                     return [3 /*break*/, 3];
                 case 2:
-                    error_1 = _a.sent();
+                    error_1 = _b.sent();
                     console.error(error_1);
                     return [3 /*break*/, 3];
                 case 3: return [2 /*return*/];
@@ -64,6 +68,6 @@ function getRandomSpaceGif() {
     });
 }
 function placeSpaceGifOnDiv(spaceGif) {
-    var spaceGifDiv = document.querySelector("#RandomSpaceGif");
+    var spaceGifDiv = document.querySelector("#spaceGif");
     spaceGifDiv.innerHTML = "<img src=\"" + spaceGif + "\" alt=\"\" srcset=\"\"/>";
 }
