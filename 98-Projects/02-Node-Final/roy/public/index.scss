@@ -1,0 +1,23 @@
+#root{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    .MTA {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        width: 250px;
+        color: blue;
+        font-weight: bold;
+        background-color: yellow;
+        border: 20px;
+        border-color: black;
+        border-radius: 10px;
+        .teamIcon{
+            width: 35px;
+            height: 35px;
+        }
+
+    }
+}
