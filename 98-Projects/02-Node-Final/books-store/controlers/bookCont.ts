@@ -37,6 +37,10 @@ export function getBook(req, res){
   }
 }
 
+export function updateDetailsBook(req, res){
+  
+}
+
 function uid(){
   const id = "id" + Math.random().toString(16).slice(2)
   return id

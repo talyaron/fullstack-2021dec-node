@@ -10,7 +10,26 @@ body #upBook #labDes {
   position: relative;
   bottom: 25px;
 }
-body #books {
+body #books #wrapper {
+  position: relative;
   border: 1px solid;
-  border-radius: 25%;
+  border-radius: 25px;
+  height: 150px;
+  width: 120px;
+}
+body #books #wrapper .buttonUp {
+  font-size: 3px;
+}
+body #books #wrapper .details {
+  font-size: 8px;
+}
+body #books #wrapper #bookImg {
+  height: 50px;
+  width: 30px;
+}
+body #books #wrapper #bookImg .buttonDel {
+  font-size: 5px;
+}
+body #books #wrapper #bookImg .buttonUp {
+  font-size: 3px;
 }
