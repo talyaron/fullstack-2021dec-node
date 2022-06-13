@@ -7,8 +7,8 @@ app.use(express.json());
  import indexRoute from "./routes/indexRoutes"
  app.use("/index", indexRoute);
 
-//import MTARoutes from "./routes/MTARoute";
-// app.use("/MTA", MTARoute);
+import MTARoutes from "./routes/MTARoutes";
+app.use("/MTA", MTARoutes);
 
 // import HTARoute from "./routes/HTARoute"
 // app.use("/HTA", HTARoute);
