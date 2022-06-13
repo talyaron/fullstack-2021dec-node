@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.getBook = exports.postBook = void 0;
+exports.updateDetailsBook = exports.getBook = exports.postBook = void 0;
 var addBook = [];
 function postBook(req, res) {
     return __awaiter(this, void 0, void 0, function () {
@@ -79,6 +79,9 @@ function getBook(req, res) {
     }
 }
 exports.getBook = getBook;
+function updateDetailsBook(req, res) {
+}
+exports.updateDetailsBook = updateDetailsBook;
 function uid() {
     var id = "id" + Math.random().toString(16).slice(2);
     return id;

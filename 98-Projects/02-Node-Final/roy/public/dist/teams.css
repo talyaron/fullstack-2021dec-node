@@ -1,0 +1,32 @@
+#topNav {
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: row;
+  width: 110vw;
+  margin-left: -20px;
+  margin-top: -10px;
+}
+#topNav #MTA {
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  margin-left: -70px;
+  margin-right: 50px;
+}
+#topNav #MTA h1 {
+  color: blue;
+}
+#topNav #MTA button {
+  margin-top: 15px;
+  height: 50px;
+  width: 300px;
+  background-color: blue;
+  color: yellow;
+}
+#topNav #MTA h1 {
+  margin-right: 20px;
+}
+#topNav #MTA .teamIcon {
+  height: 70px;
+  width: 70px;
+}

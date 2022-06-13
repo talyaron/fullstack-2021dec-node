@@ -34,29 +34,48 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-function handleGetTeams() {
+function getTeamId() {
+    try {
+        var queryString = window.location.search;
+        var urlParams = new URLSearchParams(queryString);
+        var teamId = urlParams.get('Id');
+        return teamId;
+    }
+    catch (error) {
+        console.error(error);
+        return false;
+    }
+}
+function handleDeleteTeam() {
     return __awaiter(this, void 0, void 0, function () {
-        var data, teams;
+        var teamId, data, teams, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, axios.get('/index/get-teams')];
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    teamId = getTeamId();
+                    return [4 /*yield*/, axios["delete"]('/MTA/Team-delete', {
+                            data: { teamId: teamId }
+                        })];
                 case 1:
                     data = (_a.sent()).data;
                     teams = data.teams;
-                    if (!Array.isArray(teams))
-                        throw new Error('teams should be an array ant it is not');
-                    renderTeams(teams);
-                    return [2 /*return*/];
+                    renderTopNav(teams);
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_1 = _a.sent();
+                    console.error(error_1);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
             }
         });
     });
 }
-function renderTeams(teamsArr) {
-    var html = '';
-    teamsArr.forEach(function (team) {
-        html += "<a href='" + team.name + ".html?Id=" + team.teamId + "'>\n        <div class=\"" + team.name + "\" id=\"" + team.teamId + "\">\n        <h4>" + team.name + "</h4>\n        <img src=\"" + team.symbol + "\" class=\"teamIcon\">\n        </div>\n        </a>";
-        // html.style.backgroundColor= `${team.backgroundColor}`
-    });
-    var root = document.querySelector('#root');
-    root.innerHTML = html;
+function renderTopNav(teams) {
+    var team = teams[0];
+    var html = "";
+    html += "<div id=\"" + team.name + "\">\n<img src=\"" + team.symbol + "\" class=\"teamIcon\">\n<a href='https://www.maccabi-tlv.co.il/' class=\"url\"><button>" + team.name + " official website</button></a>\n<h1>Sportil</h1>\n</div>";
+    var topNav = document.querySelector('#topNav');
+    topNav.innerHTML = html;
+    topNav.style.backgroundColor = "" + team.backgroundColor;
 }

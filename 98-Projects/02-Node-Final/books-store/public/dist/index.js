@@ -46,15 +46,16 @@ function handleUpBook(ev) {
                     _a.trys.push([1, 3, , 4]);
                     console.log(ev.target.elements);
                     image = ev.target.elements.bookImg.value;
-                    name = ev.target.elements.Bname.value;
-                    description = ev.target.elements.Bdescription.value;
-                    price = ev.target.elements.Bprice.value;
+                    name = ev.target.elements.name.value;
+                    description = ev.target.elements.description.value;
+                    price = ev.target.elements.price.value;
                     return [4 /*yield*/, axios.post("/booksStore", { image: image, name: name, description: description, price: price })];
                 case 2:
                     data = (_a.sent()).data;
                     console.log(data);
                     addBook = data.addBook;
                     console.log(addBook);
+                    postBook(addBook);
                     return [3 /*break*/, 4];
                 case 3:
                     error_1 = _a.sent();
@@ -71,8 +72,47 @@ function postBook(book) {
         return __generator(this, function (_a) {
             books = document.querySelector("#books");
             html = "";
-            html = "<img src=\"" + book.bookImage + "\" id=\"bookImg\"> <br>\n   <h3>" + book.name + "</h3> <br> <br>\n   <p>" + book.description + "</p> <br> <br>\n   <h1>" + book.price + "</h1> <br> <br> <br>";
+            book.forEach(function (bookDetails) {
+                html += "<div id=\"wrapper\"> <img src=\"" + bookDetails.image + "\"  id=\"bookImg\">  \n    <p class=\"details\">" + bookDetails.name + " </p> \n    \n    <p class=\"details\">" + bookDetails.description + " </p>  \n   <p class=\"details\">" + bookDetails.price + "  </p>   \n   <button onclick=\"handleUpdateDetails\" class=\"buttonUp\">update</button>\n   <button onclick=\"handleDeleteBook(event)\" class=\"details\" class=\"buttonUp\">delete</button>\n   </div> <br> <br>";
+            });
             books.innerHTML = html;
+            return [2 /*return*/];
+        });
+    });
+}
+function getBook() {
+    return __awaiter(this, void 0, void 0, function () {
+        var data, addBook, error, error_2;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    return [4 /*yield*/, axios.get("/booksStore")];
+                case 1:
+                    data = (_a.sent()).data;
+                    console.log(data);
+                    addBook = data.addBook, error = data.error;
+                    if (error)
+                        throw new Error(error.message);
+                    if (addBook) {
+                        postBook(addBook);
+                    }
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_2 = _a.sent();
+                    console.log(error_2);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
+}
+getBook();
+function handleUpdateDetails() {
+    return __awaiter(this, void 0, void 0, function () {
+        var bookUpdate;
+        return __generator(this, function (_a) {
+            bookUpdate = document.querySelector("#update");
             return [2 /*return*/];
         });
     });

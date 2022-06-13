@@ -54,6 +54,9 @@ async function handleUpdateUser(userId) {
 // }
 
 function renderUsers(usersArr) {
+	try {
+		
+	
 	let html = '';
 	usersArr.forEach((user) => {
 		html += `<div class="screen__card-wrapper" id="${user.userId}">
@@ -68,4 +71,7 @@ function renderUsers(usersArr) {
 	});
 	const root = document.querySelector('#root');
 	root.innerHTML = html;
+} catch (error) {
+		console.error(error)
+}
 }
