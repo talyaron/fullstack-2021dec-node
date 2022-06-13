@@ -1,1 +1,1 @@
-alert("#connect");
+alert("#conect");
