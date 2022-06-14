@@ -73,7 +73,7 @@ function postBook(book) {
             books = document.querySelector("#books");
             html = "";
             book.forEach(function (bookDetails) {
-                html += "<div id=\"wrapper\"> <img src=\"" + bookDetails.image + "\"  id=\"bookImg\">  \n    <p class=\"details\">" + bookDetails.name + " </p> \n    \n    <p class=\"details\">" + bookDetails.description + " </p>  \n   <p class=\"details\">" + bookDetails.price + "  </p>   \n   <button onclick=\"handleUpdateDetails\" class=\"buttonUp\">update</button>\n   <button onclick=\"handleDeleteBook(event)\" class=\"details\" class=\"buttonUp\">delete</button>\n   </div> <br> <br>";
+                html += "<div id=\"wrapper\"> <img src=\"" + bookDetails.image + "\"  id=\"bookImg\">  \n    <p class=\"details\">" + bookDetails.name + " </p> \n    \n    <p class=\"details\">" + bookDetails.description + " </p>  <button onclick=\"handleUpdateDetails(" + bookDetails.description + ", " + bookDetails.serialNo + ")\" class=\"buttonUp\">update</button>\n   <p class=\"details\">" + bookDetails.price + "  </p>   \n   \n   <button onclick=\"handleDeleteBook(event)\" class=\"details\" class=\"buttonUp\">delete</button>\n   </div> <br> <br>";
             });
             books.innerHTML = html;
             return [2 /*return*/];

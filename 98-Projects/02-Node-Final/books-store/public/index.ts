@@ -35,9 +35,9 @@ async function postBook(book: Array <Book>) {
     html += `<div id="wrapper"> <img src="${bookDetails.image}"  id="bookImg">  
     <p class="details">${bookDetails.name} </p> 
     
-    <p class="details">${bookDetails.description} </p>  
+    <p class="details">${bookDetails.description} </p>  <button onclick="handleUpdateDetails(${bookDetails.description}, ${bookDetails.serialNo})" class="buttonUp">update</button>
    <p class="details">${bookDetails.price}  </p>   
-   <button onclick="handleUpdateDetails" class="buttonUp">update</button>
+   
    <button onclick="handleDeleteBook(event)" class="details" class="buttonUp">delete</button>
    </div> <br> <br>`
   });
