@@ -12,7 +12,29 @@ body{
     
 }
 #books{
+    #wrapper{
+    position: relative;
     border: 1px solid;
-    border-radius: 25%;
+    border-radius: 25px;
+    height: 150px;
+    width: 120px;
+    .buttonUp{
+        font-size: 3px;
+    }
+    .details{
+        font-size: 8px;
+       
+    }
+    #bookImg{
+        height: 50px;
+        width: 30px;
+        .buttonDel{
+            font-size: 5px;
+        }
+        .buttonUp{
+            font-size: 3px;
+        }
+    }
+}
 }
 }
