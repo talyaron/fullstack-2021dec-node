@@ -9,11 +9,18 @@
     <title>TaskBar/MainPage</title>
 </head>
 <body>
-    <main onload="handleLoadUsers">
-        <h1></h1>
-
+    <main onload="handleLoadUsers()">
+        <h1>Login To Task Bar</h1>
+        <form onsubmit="handleAddUser(event)">
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <input type="text" name="uniqID" style="display: none;">
+            <button type="submit">Add User</button>
+        </form>
     </main>
     </div>
     <script src="./dist/index.js"></script>
+    <div id="usersTasks"></div>
 </body>
+<footer id="footer"></footer>
 </html>

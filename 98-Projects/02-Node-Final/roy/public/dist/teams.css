@@ -1,9 +1,15 @@
+body {
+  background: url(https://www.sport5.co.il/Sip_Storage/FILES/1/size475x318/752471.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 #topNav {
   display: flex;
   justify-content: space-evenly;
   flex-direction: row;
-  width: 110vw;
-  margin-left: -20px;
+  width: 101vw;
+  margin-right: -7px;
   margin-top: -10px;
 }
 #topNav #MTA {
@@ -11,7 +17,7 @@
   justify-content: space-between;
   width: 90%;
   margin-left: -70px;
-  margin-right: 50px;
+  margin-right: 10px;
 }
 #topNav #MTA h1 {
   color: blue;
@@ -23,10 +29,168 @@
   background-color: blue;
   color: yellow;
 }
-#topNav #MTA h1 {
-  margin-right: 20px;
-}
 #topNav #MTA .teamIcon {
   height: 70px;
   width: 70px;
+}
+#topNav #HTA {
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  margin-left: -70px;
+  margin-right: 10px;
+}
+#topNav #HTA h1 {
+  color: white;
+}
+#topNav #HTA button {
+  margin-top: 15px;
+  height: 50px;
+  width: 300px;
+  background-color: white;
+  color: red;
+}
+#topNav #HTA .teamIcon {
+  height: 70px;
+  width: 70px;
+}
+
+.header {
+  color: #f4f4f0;
+  text-decoration: underline;
+  width: 200px;
+  font-size: 40px;
+  margin: 30px;
+}
+
+.transfer {
+  width: 300px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 30px;
+}
+.transfer .box2 {
+  cursor: pointer;
+  width: 400px;
+}
+.transfer .box2:hover {
+  opacity: 0.7;
+}
+.transfer .box2 .photo {
+  width: 400px;
+}
+.transfer p {
+  font-size: 20px;
+  margin-top: -5px;
+  font-weight: bold;
+  color: #fdfbf8;
+}
+.transfer h4 {
+  font-size: 15px;
+  margin-top: -10px;
+  font-weight: normal;
+  color: rgba(251, 252, 250, 0.904);
+}
+.transfer .box1 {
+  width: 3px;
+  height: 13px;
+  background-color: #f3f022;
+  display: flex;
+  margin-top: -10px;
+  margin-left: 0px;
+}
+.transfer h3 {
+  margin-top: -12px;
+  display: flex;
+  font-weight: normal;
+  font-size: 10px;
+  color: #080808;
+}
+
+#scoreBar {
+  position: absolute;
+  top: 600px;
+  right: 42vw;
+  width: 20vw;
+  height: 100px;
+  background-color: blue;
+}
+#scoreBar .score {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  color: #fefcfc;
+  font-size: 30px;
+  border: 3px, black;
+  background-color: blue;
+}
+#scoreBar .score .fTeam {
+  width: 48%;
+  height: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  font-size: 30px;
+}
+#scoreBar .score .fTeam .fSymbol {
+  height: 50px;
+  width: 50px;
+}
+#scoreBar .score .sTeam {
+  width: 48%;
+  height: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  font-size: 30px;
+}
+#scoreBar .score .sTeam .sSymbol {
+  height: 50px;
+  width: 50px;
+}
+
+.article {
+  width: 300px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 30px;
+}
+.article .box2 {
+  cursor: pointer;
+  width: 400px;
+}
+.article .box2:hover {
+  opacity: 0.7;
+}
+.article .box2 .photo {
+  width: 400px;
+  height: 250px;
+}
+.article p {
+  font-size: 20px;
+  margin-top: -5px;
+  font-weight: bold;
+  color: #fdfbf8;
+}
+.article h4 {
+  font-size: 15px;
+  margin-top: -10px;
+  font-weight: normal;
+  color: rgba(251, 252, 250, 0.904);
+}
+.article .box1 {
+  width: 3px;
+  height: 13px;
+  background-color: #f3f022;
+  display: flex;
+  margin-top: -10px;
+  margin-left: 0px;
+}
+.article h3 {
+  margin-top: -12px;
+  display: flex;
+  font-weight: normal;
+  font-size: 10px;
+  color: #080808;
 }

@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.updateDetailsBook = exports.getBook = exports.postBook = void 0;
+exports.updatePrice = exports.updateDescription = exports.getBook = exports.postBook = void 0;
 var addBook = [];
 function postBook(req, res) {
     return __awaiter(this, void 0, void 0, function () {
@@ -79,9 +79,38 @@ function getBook(req, res) {
     }
 }
 exports.getBook = getBook;
-function updateDetailsBook(req, res) {
+function updateDescription(req, res) {
+    try {
+        var _a = req.body, description = _a.description, serialNo_1 = _a.serialNo;
+        if (!description)
+            throw new Error('description is require');
+        if (!serialNo_1)
+            throw new Error('serialNo is require');
+        var filter = addBook.findIndex(function (book) { return book.serialNo = serialNo_1; });
+        addBook[filter].description = description;
+        res.send({ addBook: addBook });
+    }
+    catch (error) {
+        res.send({ error: error.message });
+    }
 }
-exports.updateDetailsBook = updateDetailsBook;
+exports.updateDescription = updateDescription;
+function updatePrice(req, res) {
+    try {
+        var _a = req.body, price = _a.price, serialNo_2 = _a.serialNo;
+        if (!price)
+            throw new Error('price is require');
+        if (!serialNo_2)
+            throw new Error('serialNo is require');
+        var filter = addBook.findIndex(function (book) { return book.serialNo = serialNo_2; });
+        addBook[filter].price = price;
+        res.send({ addBook: addBook });
+    }
+    catch (error) {
+        res.send({ error: error.message });
+    }
+}
+exports.updatePrice = updatePrice;
 function uid() {
     var id = "id" + Math.random().toString(16).slice(2);
     return id;
