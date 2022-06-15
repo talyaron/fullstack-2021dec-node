@@ -1,3 +1,4 @@
+"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -34,50 +35,37 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-;
-function handleAddUser(ev) {
+exports.__esModule = true;
+exports.getRecipe = void 0;
+var recipes = [
+    { name: "HoneyCake",
+        ingredients: ["honey 30 gr", "sugar 0.5 glass", "flower 2 glasses", "eggs 3"],
+        prepareMode: ["put into a bowel all the ingredients", "stir until very smooth", "put on the oven on 175 degrees", "bake for 45 minutes"],
+        adderName: "Dorit Guy" },
+    { name: "vanillaCake",
+        ingredients: ["vanilla 30 gr", "sugar 0.5 glass", "flower 2 glasses", "eggs 3"],
+        prepareMode: ["put into a bowel all the ingredients", "stir until very smooth", "put on the oven on 175 degrees", "bake for 45 minutes"],
+        adderName: "Gadi Guy" }
+];
+exports["default"] = recipes;
+function getRecipe(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var elements, userName, email, password, data, users, error, error_1;
+        var recipeName_1, recipeIndex;
         return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    _a.trys.push([0, 2, , 3]);
-                    ev.preventDefault();
-                    elements = ev.target.elements;
-                    userName = elements.userName.value;
-                    email = elements.email.value;
-                    password = elements.permissions.value;
-                    if (!userName || !email || !password)
-                        throw new Error("Details are required");
-                    return [4 /*yield*/, axios.post('/api/add-user', {
-                            userName: userName,
-                            email: email,
-                            password: password
-                        })];
-                case 1:
-                    data = (_a.sent()).data;
-                    users = data.users, error = data.error;
-                    if (error)
-                        throw new Error(error);
-                    renderUsers(users);
-                    return [3 /*break*/, 3];
-                case 2:
-                    error_1 = _a.sent();
-                    console.error(error_1);
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
+            try {
+                recipeName_1 = req.body.recipeName;
+                if (!recipeName_1)
+                    throw new Error("recipeName is required");
+                recipeIndex = recipes.findIndex(function (recipe) { return recipe.name === recipeName_1; });
+                if (recipeIndex === -1)
+                    throw new Error("recipeName not found");
+                res.send({ recipe: recipes[recipeIndex] });
             }
+            catch (error) {
+                res.send({ error: error.message });
+            }
+            return [2 /*return*/];
         });
     });
 }
-;
-function renderUsers(users) {
-    var renderUsers = document.querySelector("#usersTasks");
-}
-function handleLoad() {
-    try {
-    }
-    catch (error) {
-        console.error(error);
-    }
-}
+exports.getRecipe = getRecipe;
