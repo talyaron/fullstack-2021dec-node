@@ -73,7 +73,11 @@ function postBook(book) {
             books = document.querySelector("#books");
             html = "";
             book.forEach(function (bookDetails) {
-                html += "<div id=\"wrapper\"> <img src=\"" + bookDetails.image + "\"  id=\"bookImg\">  \n    <p class=\"details\">" + bookDetails.name + " </p> \n    \n    <p class=\"details\">" + bookDetails.description + " </p>  <button onclick=\"handleUpdateDetails(" + bookDetails.description + ", " + bookDetails.serialNo + ")\" class=\"buttonUp\">update</button>\n   <p class=\"details\">" + bookDetails.price + "  </p>   \n   \n   <button onclick=\"handleDeleteBook(event)\" class=\"details\" class=\"buttonUp\">delete</button>\n   </div> <br> <br>";
+<<<<<<< Updated upstream
+                html += "<div id=\"wrapper\"> <img src=\"" + bookDetails.image + "\"  id=\"bookImg\">  \n    <p class=\"details\">" + bookDetails.name + " </p> \n    \n    <p class=\"details\">" + bookDetails.description + " </p>  <button onclick=\"handleUpdateDesc( " + bookDetails.serialNo + ")\" class=\"buttonUp\">update</button>\n   <p class=\"details\">" + bookDetails.price + "  </p> <button onclick=\"handleUpdatePrice(" + bookDetails.price + ", " + bookDetails.serialNo + ")\" class=\"buttonUp\">update</button>  \n   \n   <button onclick=\"handleDeleteBook(event)\" class=\"details\" class=\"buttonUp\">delete</button>\n   </div> <br> <br>";
+=======
+                html += "<div id=\"wrapper\"> <img src=\"" + bookDetails.image + "\"  id=\"bookImg\">  \n    <p class=\"details\">" + bookDetails.name + " </p> \n    \n    <p class=\"details\">" + bookDetails.description + " </p>  <button onclick=\"handleUpdateDetails(" + bookDetails.description + ", " + bookDetails.serialNo + ")\" class=\"buttonUp\">update</button>\n    <p class=\"details\">" + bookDetails.price + "  </p> <button onclick=\"handleUpdateDetails(" + bookDetails.price + ", " + bookDetails.serialNo + ")\" class=\"buttonUp\">update</button>  \n   \n   <button onclick=\"handleDeleteBook(event)\" class=\"details\" class=\"buttonUp\">delete</button>\n   </div> <br> <br>";
+>>>>>>> Stashed changes
             });
             books.innerHTML = html;
             return [2 /*return*/];
@@ -108,12 +112,26 @@ function getBook() {
     });
 }
 getBook();
-function handleUpdateDetails() {
+function handleUpdateDesc(serialNo) {
     return __awaiter(this, void 0, void 0, function () {
-        var bookUpdate;
+        var updateDesc, data, addBook, error_3;
         return __generator(this, function (_a) {
-            bookUpdate = document.querySelector("#update");
-            return [2 /*return*/];
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    updateDesc = prompt("pleas enter description!");
+                    return [4 /*yield*/, axios.put('/updateBook', { updateDesc: updateDesc, serialNo: serialNo })];
+                case 1:
+                    data = (_a.sent()).data;
+                    addBook = data.addBook;
+                    postBook(addBook);
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_3 = _a.sent();
+                    console.log(error_3);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
         });
     });
 }
