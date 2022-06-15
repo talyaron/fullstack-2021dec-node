@@ -60,13 +60,19 @@ function handleDeleteTeam() {
                 case 1:
                     data = (_a.sent()).data;
                     teams = data.teams;
+                    console.log(teamId);
+                    console.log(teams);
                     renderTopNav(teams);
                     return [3 /*break*/, 3];
                 case 2:
                     error_1 = _a.sent();
                     console.error(error_1);
                     return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
+                case 3:
+                    handleGetTransfers();
+                    getScore();
+                    getAllArticales();
+                    return [2 /*return*/];
             }
         });
     });
@@ -78,4 +84,87 @@ function renderTopNav(teams) {
     var topNav = document.querySelector('#topNav');
     topNav.innerHTML = html;
     topNav.style.backgroundColor = "" + team.backgroundColor;
+}
+function handleGetTransfers() {
+    return __awaiter(this, void 0, void 0, function () {
+        var data, transfers;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, axios.get('/MTA/get-transfers')];
+                case 1:
+                    data = (_a.sent()).data;
+                    transfers = data.transfers;
+                    console.log(transfers);
+                    if (!Array.isArray(transfers))
+                        throw new Error('transfers should be an array ant it is not');
+                    renderTransfer(transfers);
+                    return [2 /*return*/];
+            }
+        });
+    });
+}
+function renderTransfer(transfers) {
+    console.log(transfers);
+    var html = "";
+    transfers.forEach(function (transfer) {
+        html +=
+            "<div class=\"transfer\">\n    <div class=\"box2\">\n\t<a href=\"" + transfer.url + "\">\n    <img src=\"" + transfer.photo + "\" class=\"photo\">\n\t</a>\n    <p>" + transfer.headline + "</p>\n    <h4>" + transfer.text + "</h4>   \n    </div>";
+    });
+    var transferBar = document.querySelector('#transferBar');
+    transferBar.innerHTML = html;
+}
+function getScore() {
+    return __awaiter(this, void 0, void 0, function () {
+        var data, score;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, axios.get('/MTA/get-score')];
+                case 1:
+                    data = (_a.sent()).data;
+                    score = data.score;
+                    console.log(score);
+                    if (!Array.isArray(score))
+                        throw new Error('score should be an array ant it is not');
+                    renderscore(score);
+                    return [2 /*return*/];
+            }
+        });
+    });
+}
+function renderscore(scores) {
+    var score = scores[0];
+    console.log(score);
+    var html = "";
+    html +=
+        "<div class=\"score\">\n\t<div class=\"fTeam\">\n\t<img src=\"" + score.fTeamSymbol + "\" class=\"fSymbol\">\n\t<p>" + score.fTeamScore + "</p>\n\t</div>\n\t<p>-</p>\n\t<div class=\"sTeam\">\n\t<p>" + score.sTeamScore + "</p>\n\t<img src=\"" + score.sTeamSymbol + "\" class=\"sSymbol\">\n\t</div>\n\t</div>";
+    var bar = document.querySelector('#scoreBar');
+    bar.innerHTML = html;
+}
+function getAllArticales() {
+    return __awaiter(this, void 0, void 0, function () {
+        var data, articles;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, axios.get('/MTA/get-articles')];
+                case 1:
+                    data = (_a.sent()).data;
+                    articles = data.articles;
+                    console.log(articles);
+                    if (!Array.isArray(articles))
+                        throw new Error('articles should be an array ant it is not');
+                    renderarticle(articles);
+                    return [2 /*return*/];
+            }
+        });
+    });
+}
+function renderarticle(articles) {
+    console.log(articles);
+    var html = "";
+    articles.forEach(function (article) {
+        html +=
+            "<div class=\"article\">\n    <div class=\"box2\">\n\t<a href=\"" + article.url + "\">\n    <img src=\"" + article.photo + "\" class=\"photo\">\n\t</a>\n    <p>" + article.headline + "</p>\n    <h4>" + article.text + "</h4>   \n    </div>";
+    });
+    var articleBar = document.querySelector('#articleBar');
+    articleBar.innerHTML = html;
 }

@@ -14,17 +14,20 @@ function handleGetUser1(){
     }
 }
 
-function handleGetUser2(){
+async function handleGetUser2(){
     
     try {
-        
-        axios.get('/api/user2').then(({data})=>{
-            console.log(data);
-            const {user, error} = data;
-            if (error) throw new Error(error)
-            console.log(user)
-            renderUser(user)
-        })
+        console.log("get user (1)");
+        console.log("get user After fetch (2)");
+        const {data} = await axios.get("/api/user2");
+        console.log(data);
+        console.log("get user After fetch (2.5)");
+        const {user, error} = data;
+            
+        if (error) throw new Error(error);
+            
+        renderUser(user);
+        console.log("get user After the end of fetch (3)")
     } catch (error) {
         console.error(error);
     }
