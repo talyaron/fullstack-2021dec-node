@@ -73,7 +73,11 @@ function postBook(book) {
             books = document.querySelector("#books");
             html = "";
             book.forEach(function (bookDetails) {
+<<<<<<< Updated upstream
                 html += "<div id=\"wrapper\"> <img src=\"" + bookDetails.image + "\"  id=\"bookImg\">  \n    <p class=\"details\">" + bookDetails.name + " </p> \n    \n    <p class=\"details\">" + bookDetails.description + " </p>  <button onclick=\"handleUpdateDesc( " + bookDetails.serialNo + ")\" class=\"buttonUp\">update</button>\n   <p class=\"details\">" + bookDetails.price + "  </p> <button onclick=\"handleUpdatePrice(" + bookDetails.price + ", " + bookDetails.serialNo + ")\" class=\"buttonUp\">update</button>  \n   \n   <button onclick=\"handleDeleteBook(event)\" class=\"details\" class=\"buttonUp\">delete</button>\n   </div> <br> <br>";
+=======
+                html += "<div id=\"wrapper\"> <img src=\"" + bookDetails.image + "\"  id=\"bookImg\">  \n    <p class=\"details\">" + bookDetails.name + " </p> \n    \n    <p class=\"details\">" + bookDetails.description + " </p>  <button onclick=\"handleUpdateDetails(" + bookDetails.description + ", " + bookDetails.serialNo + ")\" class=\"buttonUp\">update</button>\n    <p class=\"details\">" + bookDetails.price + "  </p> <button onclick=\"handleUpdateDetails(" + bookDetails.price + ", " + bookDetails.serialNo + ")\" class=\"buttonUp\">update</button>  \n   \n   <button onclick=\"handleDeleteBook(event)\" class=\"details\" class=\"buttonUp\">delete</button>\n   </div> <br> <br>";
+>>>>>>> Stashed changes
             });
             books.innerHTML = html;
             return [2 /*return*/];

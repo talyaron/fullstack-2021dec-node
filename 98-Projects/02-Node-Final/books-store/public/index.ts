@@ -35,8 +35,13 @@ async function postBook(book: Array <Book>) {
     html += `<div id="wrapper"> <img src="${bookDetails.image}"  id="bookImg">  
     <p class="details">${bookDetails.name} </p> 
     
+<<<<<<< Updated upstream
     <p class="details">${bookDetails.description} </p>  <button onclick="handleUpdateDesc( ${bookDetails.serialNo})" class="buttonUp">update</button>
    <p class="details">${bookDetails.price}  </p> <button onclick="handleUpdatePrice(${bookDetails.price}, ${bookDetails.serialNo})" class="buttonUp">update</button>  
+=======
+    <p class="details">${bookDetails.description} </p>  <button onclick="handleUpdateDetails(${bookDetails.description}, ${bookDetails.serialNo})" class="buttonUp">update</button>
+    <p class="details">${bookDetails.price}  </p> <button onclick="handleUpdateDetails(${bookDetails.price}, ${bookDetails.serialNo})" class="buttonUp">update</button>  
+>>>>>>> Stashed changes
    
    <button onclick="handleDeleteBook(event)" class="details" class="buttonUp">delete</button>
    </div> <br> <br>`
