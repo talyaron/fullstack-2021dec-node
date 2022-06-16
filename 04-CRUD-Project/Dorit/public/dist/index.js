@@ -60,7 +60,7 @@ function getRecipe(event) {
                 case 1:
                     _a.trys.push([1, 3, , 4]);
                     console.log("" + recipeName);
-                    return [4 /*yield*/, axios.get('/api/get-recipe/getRecipe')];
+                    return [4 /*yield*/, axios.get('/api/get-recipe/getRoutRecipe')];
                 case 2:
                     data = (_a.sent()).data;
                     console.log({ data: data });
