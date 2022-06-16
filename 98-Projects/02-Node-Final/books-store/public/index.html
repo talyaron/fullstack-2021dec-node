@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./dist/style.css">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <h1>manager page</h1>
+    <form action="" id="upBook" onsubmit="handleUpBook(event)">
+        <label for="bookImg">enter image url</label>
+        <input type="text" name="bookImg" class="input"> <br> <br>
+        <label for="name">name</label>
+        <input type="text" name="name" class="input"> <br> <br>
+        <label for="description" id="labDes">description</label> 
+        <textarea name="description" id="" cols="20" rows="3" class="input"></textarea><br> <br>
+        <label for="price">enter price</label>
+        <input type="number" name="price" class="input"> <br> <br>
+        <input type="submit" style="cursor: pointer;">
+    </form>
+
+    <div id="update">
+        
+    </div>
+    
+    <div id="books">
+        
+       
+
+    </div>
+
+    <script src="./dist/index.js"></script>
+</body>
+</html>

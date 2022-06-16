@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>items list</title>
+    <link rel="stylesheet" href="./dist/style.css">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.0.0-alpha.1/axios.js"
+        integrity="sha512-uplugzeh2/XrRr7RgSloGLHjFV0b4FqUtbT5t9Sa/XcilDr1M3+88u/c+mw6+HepH7M2C5EVmahySsyilVHI/A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+
+<body class="screen" onload="handleLoad()">
+
+    <div class="screen__container-internal">
+
+        <div class="screen__container-internal__top-bar">
+            <a href='users.html'>
+                <img class=" screen__card-wrapper__actions__icon " src="./icons/angle-left.svg " alt="back"></a>
+            <div class="screen__userAvatar "></div>
+            <h4 class="screen__title-h4 " id="userTitle">${user}'s name</h4>
+        </div>
+
+        <div class="resultcontainer ">
+        </div>
+
+        <div id="root " class="screen__container-internal__root ">
+
+            <form onsubmit="handleSearchItems(event)" id="searchForm" class=" screen__container-internal__top-bar">
+                <div class="screen__container-wrapper">
+                    <div class="screen__container-by">
+                    <label for="filtervia">Filter by:</label>
+                    <select id="filtervia " name="filteroption" class="screen__form__input">
+                        <option value="name">Item name</option>
+                        <option value="itemId ">Item ID</option>
+                    </select>
+                </div>
+                    <div class="screen__search ">
+                        <input class="screen__form__input" name="search" type="text " placeholder="Search . . . "
+                            required id="searchInput ">
+                        <button class="screen__form__btn-form " id="searchBtn " type="submit ">Search</button>
+                    </div>
+
+                </div>
+            </form>
+
+
+            <div id="rootList"></div>
+        </div>
+
+        <div class="screen__container-internal__bottom-bar ">
+            <form class="screen__form " onsubmit="handleAddItem(event) ">
+                <input class="screen__form__input " type=" text " name="addItem" placeholder="Write a new item"
+                    required>
+                <button class="screen__form__btn-form" type="submit">Add Item</button>
+            </form>
+            <button onclick="getUserItems()" class="screen__form__btn-form" type="submit">Show all items</button>
+        </div>
+    </div>
+
+    </div>
+    </form>
+    <div class="resultcontainer">
+    </div>
+
+    <!-- <body onload="handleLoadUserInfo()">
+        <h1 id="userCart">Items</h1>
+        <ul id="userItemsList">
+        </ul>
+        <div class="wraper">
+
+        </div>
+        <input id="inputNewItem" type="text">
+        <button onclick="handleAddItem()">handleAddItem</button>
+        <button onclick="handleRenderItems()">Show items</button> -->
+        <script src="./dist/items.js"></script>
+    </body>
+
+
+</html>
