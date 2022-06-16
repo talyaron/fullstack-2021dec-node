@@ -34,7 +34,7 @@ interface Recipe {
          console.log(`${recipeName}`)
          // @ts-ignore
          //const { data } = await axios.put('/api/get-recipe', { recipeName });
-         const { data } = await axios.get('/api/get-recipe/getRecipe')
+         const { data } = await axios.get('/api/get-recipe/getRoutRecipe')
          console.log({data})
          const { recipe, error } = data;
          console.log(recipe);

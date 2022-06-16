@@ -5,6 +5,6 @@ import {
 } from "../Controller/recipeCont";
 
 router
-  .get("getRecipe", getRecipe)
+  .get("getRoutRecipe", getRecipe)
 export default router;
 

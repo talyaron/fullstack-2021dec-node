@@ -2,13 +2,13 @@
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-const rout_1 = __importDefault(require("./Routes/rout"));
-const express_1 = __importDefault(require("express"));
-const app = express_1.default();
-const port = process.env.PORT || 2003;
-app.use(express_1.default.json()); // to get body from client (body = data from client)
-app.use(express_1.default.static("public"));
+exports.__esModule = true;
+var express_1 = __importDefault(require("express"));
+var app = express_1["default"]();
+var port = process.env.PORT || 2003;
+var rout_1 = __importDefault(require("./Routes/rout"));
+app.use(express_1["default"].json()); // to get body from client (body = data from client)
+app.use(express_1["default"].static("public"));
 //  let recipes: Array<Recipe> = [
 //     { name: "HoneyCake", 
 //     ingredients:["honey 30 gr","sugar 0.5 glass","flower 2 glasses","eggs 3"],
@@ -20,9 +20,9 @@ app.use(express_1.default.static("public"));
 //       adderName:"Gadi Guy"}
 //   ]; 
 //route
-app.use("/api/get-recipe", rout_1.default);
-app.listen(port, () => {
-    return console.log(`Server is listening at http://localhost:${port}`);
+app.use("/api/get-recipe", rout_1["default"]);
+app.listen(port, function () {
+    return console.log("Server is listening at http://localhost:" + port);
 });
 // app.put("/api/get-recipe", (req, res) => {
 //     try {
