@@ -48,7 +48,7 @@ function handleUpBook(ev) {
                     image = ev.target.elements.bookImg.value;
                     name = ev.target.elements.name.value;
                     description = ev.target.elements.description.value;
-                    price = ev.target.elements.price.value;
+                    price = ev.target.elements.price.valueAsNumber;
                     return [4 /*yield*/, axios.post("/booksStore", { image: image, name: name, description: description, price: price })];
                 case 2:
                     data = (_a.sent()).data;
@@ -73,11 +73,7 @@ function postBook(book) {
             books = document.querySelector("#books");
             html = "";
             book.forEach(function (bookDetails) {
-<<<<<<< Updated upstream
-                html += "<div id=\"wrapper\"> <img src=\"" + bookDetails.image + "\"  id=\"bookImg\">  \n    <p class=\"details\">" + bookDetails.name + " </p> \n    \n    <p class=\"details\">" + bookDetails.description + " </p>  <button onclick=\"handleUpdateDesc( " + bookDetails.serialNo + ")\" class=\"buttonUp\">update</button>\n   <p class=\"details\">" + bookDetails.price + "  </p> <button onclick=\"handleUpdatePrice(" + bookDetails.price + ", " + bookDetails.serialNo + ")\" class=\"buttonUp\">update</button>  \n   \n   <button onclick=\"handleDeleteBook(event)\" class=\"details\" class=\"buttonUp\">delete</button>\n   </div> <br> <br>";
-=======
-                html += "<div id=\"wrapper\"> <img src=\"" + bookDetails.image + "\"  id=\"bookImg\">  \n    <p class=\"details\">" + bookDetails.name + " </p> \n    \n    <p class=\"details\">" + bookDetails.description + " </p>  <button onclick=\"handleUpdateDetails(" + bookDetails.description + ", " + bookDetails.serialNo + ")\" class=\"buttonUp\">update</button>\n    <p class=\"details\">" + bookDetails.price + "  </p> <button onclick=\"handleUpdateDetails(" + bookDetails.price + ", " + bookDetails.serialNo + ")\" class=\"buttonUp\">update</button>  \n   \n   <button onclick=\"handleDeleteBook(event)\" class=\"details\" class=\"buttonUp\">delete</button>\n   </div> <br> <br>";
->>>>>>> Stashed changes
+                html += "<div id=\"wrapper\"> <img src=\"" + bookDetails.image + "\"  id=\"bookImg\">  \n    <p class=\"details\">" + bookDetails.name + " </p> \n    \n    <p class=\"details\">" + bookDetails.description + " </p>  <button onclick=\"handleUpdateDesc( '" + bookDetails.serialNo + "')\" class=\"buttonUp\">update</button>\n   <p class=\"details\">" + bookDetails.price + "  </p> <button onclick=\"handleUpdatePrice( '" + bookDetails.serialNo + "')\" class=\"buttonUp\">update</button>  <br>\n   \n   <button onclick=\"handleDeleteBook(event)\" class=\"details\" class=\"buttonUp\">delete</button>\n   </div> <br> <br>";
             });
             books.innerHTML = html;
             return [2 /*return*/];
@@ -114,13 +110,13 @@ function getBook() {
 getBook();
 function handleUpdateDesc(serialNo) {
     return __awaiter(this, void 0, void 0, function () {
-        var updateDesc, data, addBook, error_3;
+        var description, data, addBook, error_3;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    updateDesc = prompt("pleas enter description!");
-                    return [4 /*yield*/, axios.put('/updateBook', { updateDesc: updateDesc, serialNo: serialNo })];
+                    description = prompt("pleas enter description!");
+                    return [4 /*yield*/, axios.put('/updateBook', { serialNo: serialNo, description: description })];
                 case 1:
                     data = (_a.sent()).data;
                     addBook = data.addBook;
@@ -129,6 +125,30 @@ function handleUpdateDesc(serialNo) {
                 case 2:
                     error_3 = _a.sent();
                     console.log(error_3);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
+}
+function handleUpdatePrice(serialNo) {
+    return __awaiter(this, void 0, void 0, function () {
+        var p, price, data, addBook, error_4;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    p = prompt("pleas enter price!");
+                    price = parseInt(p);
+                    return [4 /*yield*/, axios.put('/updateBook', { serialNo: serialNo, price: price })];
+                case 1:
+                    data = (_a.sent()).data;
+                    addBook = data.addBook;
+                    postBook(addBook);
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_4 = _a.sent();
+                    console.log(error_4);
                     return [3 /*break*/, 3];
                 case 3: return [2 /*return*/];
             }
