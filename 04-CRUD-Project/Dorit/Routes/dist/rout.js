@@ -4,5 +4,9 @@ var express_1 = require("express");
 var router = express_1["default"].Router();
 var recipeCont_1 = require("../Controller/recipeCont");
 router
-    .get("getRoutRecipe", recipeCont_1.getRecipe);
+    .put("/getRoutRecipe", recipeCont_1.getRecipe)
+    .post("/postRoutRecipe", recipeCont_1.addRecipe)
+    .post("/postRoutAdderName", recipeCont_1.checkRecipe)
+    .post("/postRoutIng", recipeCont_1.updateIng)
+    .post("/postRoutPre", recipeCont_1.updatePre);
 exports["default"] = router;
