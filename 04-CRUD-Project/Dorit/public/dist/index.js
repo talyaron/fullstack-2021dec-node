@@ -80,6 +80,7 @@ function getRecipe(event) {
 }
 function handleAddRecipe() {
     console.log("handleAddRecipe");
+    var form = document.querySelector('form');
     var forms = document.querySelector("#forms");
     if (forms)
         forms.remove();
@@ -90,49 +91,98 @@ function handleAddRecipe() {
     root = document.createElement("root");
     body.append(root);
     var html = "";
-    html = "\n    <div id=\"root\">\n        <form onsubmit=\"PostRecipe(event)\">\n            <input type=\"text\" name=\"name\" placeholder=\"Recipe Name\"><br>";
-    html += "        \n            <input type=\"text\" name=\"array1[]\" placeholder=\"Ingredients\"/><br>\n            <input type=\"text\" name=\"array1[]\" placeholder=\"Ingredients\"/><br>\n            <input type=\"text\" name=\"array1[]\" placeholder=\"Ingredients\"/><br>\n            <input type=\"text\" name=\"array1[]\" placeholder=\"Ingredients\"/><br>\n            <input type=\"text\" name=\"array1[]\" placeholder=\"Ingredients\"/><br>\n            <input type=\"text\" name=\"array1[]\" placeholder=\"Ingredients\"/><br>";
-    html += "\n            <input type=\"text\" name=\"array2[]\" placeholder=\"Prepare Mode\"/><br>\n            <input type=\"text\" name=\"array2[]\" placeholder=\"Prepare Mode\"/><br>\n            <input type=\"text\" name=\"array2[]\" placeholder=\"Prepare Mode\"/><br>\n            <input type=\"text\" name=\"array2[]\" placeholder=\"Prepare Mode\"/><br>\n            <input type=\"text\" name=\"array2[]\" placeholder=\"Prepare Mode\"/><br>\n            <input type=\"text\" name=\"array2[]\" placeholder=\"Prepare Mode\"/><br>";
-    html += "\n            <input type=\"text\" name=\"adderName\" placeholder=\"name of adder\"/>\n            <button type=\"submit\">Post Recipe</button>        \n            </form>\n    </div>";
-    //let root:HTMLDivElement=document.querySelector("#root")  
+    html = "\n    <h1>Create new Recipe in Form</h1>\n    <form onsubmit=\"PostRecipe(event)\">\n        <input type=\"text\" name=\"name\" placeholder=\"Recipe Name\">\n        <div class=\"linesIng\">\n            <input type=\"text\" name=\"array1[]\" placeholder=\"Ingredients\"><br>\n        </div>\n        <div class=\"linesPre\">    \n            <input type=\"text\" name=\"array2[]\" placeholder=\"Prepare Mode\"/><br>\n        </div>    \n        <input type=\"text\" name=\"adderName\" placeholder=\"name of adder\"/>\n        \n        <button type=\"submit\">Post Recipe</button>\n    </form>";
+    var root = document.querySelector("#root");
     body.innerHTML += html;
     root.style.position = "relative";
     root.style.top = "10px";
     root.style.left = "10px";
 }
+form.addEventListener('keyup', function (e) {
+    var divIng = document.querySelector('.linesIng');
+    var inputEl = document.createElement('input');
+    inputEl.setAttribute("type", "text");
+    inputEl.setAttribute("name", "array1[]");
+    inputEl.setAttribute("placeholder", "Igredients");
+    if (e.key === "Control") {
+        divIng.append(inputEl);
+        inputEl.focus();
+    }
+    var divPre = document.querySelector('.linespre');
+    var inputEl = document.createElement('input');
+    inputEl.setAttribute("type", "text");
+    inputEl.setAttribute("name", "array1[]");
+    inputEl.setAttribute("placeholder", "PrepareMode");
+    if (e.key === "Alt") {
+        divPre.append(inputEl);
+        inputEl.focus();
+    }
+});
+// html=`
+// <div id="root">
+// <form onsubmit="PostRecipe(event)">
+// let html=""
+//         <input type="text" name="name" placeholder="Recipe Name"><br>`
+// html+=`        
+//         <input type="text" name="array1[]" placeholder="Ingredients"/><br>
+//         <input type="text" name="array1[]" placeholder="Ingredients"/><br>
+//         <input type="text" name="array1[]" placeholder="Ingredients"/><br>
+//         <input type="text" name="array1[]" placeholder="Ingredients"/><br>
+//         <input type="text" name="array1[]" placeholder="Ingredients"/><br>
+//         <input type="text" name="array1[]" placeholder="Ingredients"/><br>`
+// html+=`
+//         <input type="text" name="array2[]" placeholder="Prepare Mode"/><br>
+//         <input type="text" name="array2[]" placeholder="Prepare Mode"/><br>
+//         <input type="text" name="array2[]" placeholder="Prepare Mode"/><br>
+//         <input type="text" name="array2[]" placeholder="Prepare Mode"/><br>
+//         <input type="text" name="array2[]" placeholder="Prepare Mode"/><br>
+//         <input type="text" name="array2[]" placeholder="Prepare Mode"/><br>`
+// html+=`
+//         <input type="text" name="adderName" placeholder="name of adder"/>
+//         <button type="submit">Post Recipe</button>        
+//         </form>
+// </div>` 
+// //let root:HTMLDivElement=document.querySelector("#root")  
+// body.innerHTML+=html
+// root.style.position="relative" 
+// root.style.top="10px"
+// root.style.left="10px"
 function PostRecipe(event) {
     return __awaiter(this, void 0, void 0, function () {
-        var name, ingredients, i, prepareMode, i, adderName, data, myRecipe, error, error_2;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
+        var name, adderName, ingredients, prepareMode, _i, _a, field, data, myRecipe, error, error_2;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
                 case 0:
                     console.log("PostRecipe in client");
                     console.dir(event);
                     event.preventDefault();
                     name = event.target.elements.name.value;
                     console.log(name);
-                    console.dir(event.target.elements[0].value);
-                    ingredients = [];
-                    for (i = 1; i < 7; i++) {
-                        if (event.target.elements[i].value !== "") {
-                            ingredients.push(event.target.elements[i].value);
-                        }
-                    }
-                    console.log(ingredients);
-                    prepareMode = [];
-                    for (i = 7; i < 13; i++) {
-                        if (event.target.elements[i].value !== "") {
-                            prepareMode.push(event.target.elements[i].value);
-                        }
-                    }
-                    console.log(prepareMode);
                     adderName = event.target.elements.adderName.value;
-                    _a.label = 1;
+                    console.log(adderName);
+                    ingredients = [];
+                    prepareMode = [];
+                    for (_i = 0, _a = event.target; _i < _a.length; _i++) {
+                        field = _a[_i];
+                        if (field.type !== "submit") {
+                            if (field.name.includes("Array1[]")) {
+                                if (field.value.length > 0) {
+                                    ingredients.push(field.value);
+                                }
+                            }
+                            else if (field.name.includes("Array2[]")) {
+                                if (field.value.length > 0) {
+                                    prepareMode.push(field.value);
+                                }
+                            }
+                        }
+                    }
+                    _b.label = 1;
                 case 1:
-                    _a.trys.push([1, 3, , 4]);
+                    _b.trys.push([1, 3, , 4]);
                     return [4 /*yield*/, axios.post('/api/add-recipe/postRoutRecipe', { name: name, ingredients: ingredients, prepareMode: prepareMode, adderName: adderName })];
                 case 2:
-                    data = (_a.sent()).data;
+                    data = (_b.sent()).data;
                     console.log({ data: data });
                     myRecipe = data.myRecipe, error = data.error;
                     //const myRecipe:Recipe={name,ingredients,prepareMode,adderName}
@@ -142,7 +192,7 @@ function PostRecipe(event) {
                     renderFullRecipe(myRecipe);
                     return [3 /*break*/, 4];
                 case 3:
-                    error_2 = _a.sent();
+                    error_2 = _b.sent();
                     console.error(error_2);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];

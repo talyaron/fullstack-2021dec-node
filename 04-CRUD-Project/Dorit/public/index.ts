@@ -46,6 +46,8 @@ interface Recipe {
 
  function handleAddRecipe(){
     console.log("handleAddRecipe")
+    const form = document.querySelector('form')
+
     let forms:HTMLDivElement = document.querySelector("#forms")
     if(forms) forms.remove()
     let root:HTMLDivElement=document.querySelector("#root")  
@@ -55,34 +57,79 @@ interface Recipe {
     body.append(root)
     let html=""
     html=`
-    <div id="root">
-        <form onsubmit="PostRecipe(event)">
-            <input type="text" name="name" placeholder="Recipe Name"><br>`
-    html+=`        
-            <input type="text" name="array1[]" placeholder="Ingredients"/><br>
-            <input type="text" name="array1[]" placeholder="Ingredients"/><br>
-            <input type="text" name="array1[]" placeholder="Ingredients"/><br>
-            <input type="text" name="array1[]" placeholder="Ingredients"/><br>
-            <input type="text" name="array1[]" placeholder="Ingredients"/><br>
-            <input type="text" name="array1[]" placeholder="Ingredients"/><br>`
-    html+=`
+    <h1>Create new Recipe in Form</h1>
+    <form onsubmit="PostRecipe(event)">
+        <input type="text" name="name" placeholder="Recipe Name">
+        <div class="linesIng">
+            <input type="text" name="array1[]" placeholder="Ingredients"><br>
+        </div>
+        <div class="linesPre">    
             <input type="text" name="array2[]" placeholder="Prepare Mode"/><br>
-            <input type="text" name="array2[]" placeholder="Prepare Mode"/><br>
-            <input type="text" name="array2[]" placeholder="Prepare Mode"/><br>
-            <input type="text" name="array2[]" placeholder="Prepare Mode"/><br>
-            <input type="text" name="array2[]" placeholder="Prepare Mode"/><br>
-            <input type="text" name="array2[]" placeholder="Prepare Mode"/><br>`
-    html+=`
-            <input type="text" name="adderName" placeholder="name of adder"/>
-            <button type="submit">Post Recipe</button>        
-            </form>
-    </div>` 
-    //let root:HTMLDivElement=document.querySelector("#root")  
+        </div>    
+        <input type="text" name="adderName" placeholder="name of adder"/>
+        
+        <button type="submit">Post Recipe</button>
+    </form>`
+    let root:HTMLDivElement=document.querySelector("#root")   
     body.innerHTML+=html
     root.style.position="relative" 
     root.style.top="10px"
-    root.style.left="10px"
-}
+    root.style.left="10px"  
+ }   
+    form.addEventListener('keyup', (e) => {
+        const divIng = document.querySelector('.linesIng')
+    
+        const inputEl = document.createElement('input')
+        inputEl.setAttribute("type", "text")
+        inputEl.setAttribute("name", "array1[]")
+        inputEl.setAttribute("placeholder", "Igredients")
+    
+        if (e.key === "Control") {
+            divIng.append(inputEl)
+            inputEl.focus()
+        }
+        const divPre = document.querySelector('.linespre')
+        const inputEl = document.createElement('input')
+        inputEl.setAttribute("type", "text")
+        inputEl.setAttribute("name", "array1[]")
+        inputEl.setAttribute("placeholder", "PrepareMode")
+        if (e.key === "Alt") {
+            divPre.append(inputEl)
+            inputEl.focus()
+        }
+    })
+
+
+    // html=`
+    // <div id="root">
+    // <form onsubmit="PostRecipe(event)">
+    // let html=""
+    //         <input type="text" name="name" placeholder="Recipe Name"><br>`
+    // html+=`        
+    //         <input type="text" name="array1[]" placeholder="Ingredients"/><br>
+    //         <input type="text" name="array1[]" placeholder="Ingredients"/><br>
+    //         <input type="text" name="array1[]" placeholder="Ingredients"/><br>
+    //         <input type="text" name="array1[]" placeholder="Ingredients"/><br>
+    //         <input type="text" name="array1[]" placeholder="Ingredients"/><br>
+    //         <input type="text" name="array1[]" placeholder="Ingredients"/><br>`
+    // html+=`
+    //         <input type="text" name="array2[]" placeholder="Prepare Mode"/><br>
+    //         <input type="text" name="array2[]" placeholder="Prepare Mode"/><br>
+    //         <input type="text" name="array2[]" placeholder="Prepare Mode"/><br>
+    //         <input type="text" name="array2[]" placeholder="Prepare Mode"/><br>
+    //         <input type="text" name="array2[]" placeholder="Prepare Mode"/><br>
+    //         <input type="text" name="array2[]" placeholder="Prepare Mode"/><br>`
+    // html+=`
+    //         <input type="text" name="adderName" placeholder="name of adder"/>
+    //         <button type="submit">Post Recipe</button>        
+    //         </form>
+    // </div>` 
+    // //let root:HTMLDivElement=document.querySelector("#root")  
+    // body.innerHTML+=html
+    // root.style.position="relative" 
+    // root.style.top="10px"
+    // root.style.left="10px"
+
 
 async function PostRecipe(event: any){
     console.log("PostRecipe in client")
@@ -90,24 +137,43 @@ async function PostRecipe(event: any){
     event.preventDefault();
     const name:string = event.target.elements.name.value
     console.log(name)
-    console.dir(event.target.elements[0].value)
-    let ingredients:Array<string>=[]
-    for(let i:number=1;i<7;i++){
-        if(event.target.elements[i].value!==""){
-        ingredients.push(event.target.elements[i].value)
+    const adderName:string = event.target.elements.adderName.value
+    console.log(adderName)
+    //=============================================
+    // console.dir(event.target.elements[0].value)
+    // let ingredients:Array<string>=[]
+    // for(let i:number=1;i<7;i++){
+    //     if(event.target.elements[i].value!==""){
+    //     ingredients.push(event.target.elements[i].value)
+    //     }
+    // }
+    // console.log(ingredients)
+    // let prepareMode:Array<string>=[]
+    // for(let i:number=7;i<13;i++){
+    //     if(event.target.elements[i].value!==""){
+    //     prepareMode.push(event.target.elements[i].value)
+    //     }
+    // }
+    // console.log(prepareMode)
+    //=======================================
+
+    //const obj = {}
+    let ingredients = []
+    let prepareMode = []
+    for (let field of event.target) {
+        if (field.type !== "submit") {
+            if (field.name.includes("Array1[]")) {
+                if (field.value.length > 0) {
+                    ingredients.push(field.value)
+                }
+            } else if (field.name.includes("Array2[]")){    
+                if (field.value.length > 0) {
+                    prepareMode.push(field.value)
+                }
+            }    
         }
     }
-    console.log(ingredients)
-    let prepareMode:Array<string>=[]
-    for(let i:number=7;i<13;i++){
-        if(event.target.elements[i].value!==""){
-        prepareMode.push(event.target.elements[i].value)
-        }
-    }
-    console.log(prepareMode)
-    //const ingredients:string = event.target.elements.array1.values
-    const adderName:string=event.target.elements.adderName.value
-    
+
     try {
         //console.log(`${myRecipe}`)
         // @ts-ignore
