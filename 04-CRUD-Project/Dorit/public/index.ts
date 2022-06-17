@@ -1,3 +1,4 @@
+
 interface Recipe {
     name: string;
     ingredients: Array<string>;
@@ -11,10 +12,10 @@ interface Recipe {
     let html=""
     html=`
     <div id="forms">
-    <form onsubmit="GetRecipe(event)">
-    <input type="text" name="recipeName" placeholder="Recipe Name">
-    <button type="submit">Get Recipe</button>
-    </form>
+        <form onsubmit="getRecipe(event)">
+         <input type="text" name="recipeName" placeholder="Recipe Name">
+         <button type="submit">Get Recipe</button>
+        </form>
     </div>` 
     let root:HTMLDivElement=document.querySelector("#root")  
     root.innerHTML=html
@@ -23,7 +24,7 @@ interface Recipe {
     root.style.left="10px"
  }
 
- async function GetRecipe(event: any){
+ async function getRecipe(event: any){
      console.log("getRecipe")
     event.preventDefault();
     //console.dir(event)
@@ -32,7 +33,8 @@ interface Recipe {
      try {
          console.log(`${recipeName}`)
          // @ts-ignore
-         const { data } = await axios.put('/api/get-recipe', { recipeName });
+         //const { data } = await axios.put('/api/get-recipe', { recipeName });
+         const { data } = await axios.get('/api/get-recipe/getRoutRecipe')
          console.log({data})
          const { recipe, error } = data;
          console.log(recipe);

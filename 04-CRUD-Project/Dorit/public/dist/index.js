@@ -40,14 +40,14 @@ function handleGetRecipe() {
     if (forms)
         forms.remove();
     var html = "";
-    html = "\n    <div id=\"forms\">\n    <form onsubmit=\"GetRecipe(event)\">\n    <input type=\"text\" name=\"recipeName\" placeholder=\"Recipe Name\">\n    <button type=\"submit\">Get Recipe</button>\n    </form>\n    </div>";
+    html = "\n    <div id=\"forms\">\n        <form onsubmit=\"getRecipe(event)\">\n         <input type=\"text\" name=\"recipeName\" placeholder=\"Recipe Name\">\n         <button type=\"submit\">Get Recipe</button>\n        </form>\n    </div>";
     var root = document.querySelector("#root");
     root.innerHTML = html;
     root.style.position = "relative";
     root.style.top = "10px";
     root.style.left = "10px";
 }
-function GetRecipe(event) {
+function getRecipe(event) {
     return __awaiter(this, void 0, void 0, function () {
         var recipeName, data, recipe, error, error_1;
         return __generator(this, function (_a) {
@@ -60,7 +60,7 @@ function GetRecipe(event) {
                 case 1:
                     _a.trys.push([1, 3, , 4]);
                     console.log("" + recipeName);
-                    return [4 /*yield*/, axios.put('/api/get-recipe', { recipeName: recipeName })];
+                    return [4 /*yield*/, axios.get('/api/get-recipe/getRoutRecipe')];
                 case 2:
                     data = (_a.sent()).data;
                     console.log({ data: data });

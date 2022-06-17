@@ -1,10 +1,12 @@
 import express from 'express';
 const router = express.Router();
 
-import { postBook, getBook, updateDetailsBook } from '../controlers/bookCont';
+import { postBook, getBook, updateDescription, updatePrice } from '../controlers/bookCont';
 
 
 router.post('/booksStore', postBook)
         .get('/booksStore', getBook)
-        .put('/updateBook', updateDetailsBook);
+        .put('/updateBook', updateDescription)
+        .put('/updateBook', updatePrice)
+        .delete('/deleteBook');
 export default router;

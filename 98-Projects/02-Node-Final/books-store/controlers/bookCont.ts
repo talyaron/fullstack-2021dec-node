@@ -37,10 +37,41 @@ export function getBook(req, res){
   }
 }
 
-export function updateDetailsBook(req, res){
+export function updateDescription(req, res){
+  try {
   
+    const { serialNo, description} = req.body;
+    if (!description) throw new Error('description is require');
+    if (!serialNo) throw new Error ('serialNo is require')
+    const filter = addBook.findIndex(book => book.serialNo = serialNo )
+    addBook[filter].description = description;
+    res.send({addBook})
+    
+
+} catch (error) {
+  res.send({ error: error.message });
+}
 }
 
+export function updatePrice(req, res){
+  try {
+  
+    const {price, serialNo} = req.body;
+    if (!price) throw new Error('price is require');
+    if (!serialNo) throw new Error ('serialNo is require')
+    const indexBook = addBook.findIndex(book => book.serialNo = serialNo )
+    addBook[indexBook].price = price;
+    res.send({addBook})
+    
+
+} catch (error) {
+  res.send({ error: error.message });
+}
+
+async function deleteBook(req, res){
+
+}
+}
 function uid(){
   const id = "id" + Math.random().toString(16).slice(2)
   return id

@@ -5,5 +5,6 @@ var router = express_1["default"].Router();
 var bookCont_1 = require("../controlers/bookCont");
 router.post('/booksStore', bookCont_1.postBook)
     .get('/booksStore', bookCont_1.getBook)
-    .put('/updateBook', bookCont_1.updateDetailsBook);
+    .put('/updateBook', bookCont_1.updateDescription)
+    .put('/updateBook', bookCont_1.updatePrice)["delete"]('/deleteBook');
 exports["default"] = router;
