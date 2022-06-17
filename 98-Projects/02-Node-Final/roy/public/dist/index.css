@@ -58,3 +58,7 @@ body #root .HTA .teamIcon {
   width: 55px;
   height: 55px;
 }
+body p {
+  color: white;
+  font-weight: bold;
+}

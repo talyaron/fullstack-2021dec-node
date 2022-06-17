@@ -1,9 +1,3 @@
-body {
-  background: url(https://www.sport5.co.il/Sip_Storage/FILES/1/size475x318/752471.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
 #topNav {
   display: flex;
   justify-content: space-evenly;
@@ -32,16 +26,6 @@ body {
 #topNav #MTA .teamIcon {
   height: 70px;
   width: 70px;
-}
-
-.headerabc {
-  color: yellow;
-  text-shadow: 3px 1px navy;
-  text-decoration: underline;
-  width: 250px;
-  font-size: 40px;
-  margin: 30px;
-  font-weight: bold;
 }
 
 .transferabc {
@@ -152,12 +136,6 @@ body {
   text-shadow: 2px 2px navy;
 }
 
-.HTABody {
-  background: url(https://photo.one.co.il/Image/GG/2,1/1551166.webp?width=640);
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
 #topNav {
   display: flex;
   justify-content: space-evenly;
@@ -188,8 +166,8 @@ body {
   width: 70px;
 }
 
-.headerabcd {
-  color: #fc0505;
+.header {
+  color: #090909;
   text-shadow: 2px 1px white;
   text-decoration: underline;
   width: 250px;

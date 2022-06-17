@@ -10,8 +10,8 @@ app.use(express.json());
 import MTARoutes from "./routes/MTARoutes";
 app.use("/MTA", MTARoutes);
 
-// import HTARoute from "./routes/HTARoute"
-// app.use("/HTA", HTARoute);
+ import HTARoute from "./routes/HTARoutes"
+ app.use("/HTA", HTARoute);
 
 
 

@@ -21,7 +21,7 @@ async function handleDeleteTeam() {
 	try {
     const teamId = getTeamId();
 		//@ts-ignore
-		 const { data } = await axios.delete('/MTA/Team-delete', {
+		 const { data } = await axios.delete('/HTA/Team-delete', {
 		 	data: { teamId }
 		 });
      const {teams} = data;
@@ -40,7 +40,7 @@ let team= teams[0]
 let html="";
 html+=`<div id="${team.name}">
 <img src="${team.symbol}" class="teamIcon">
-<a href='https://www.maccabi-tlv.co.il/' class="url"><button>${team.name} official website</button></a>
+<a href='https://www.htafc.co.il/' class="url"><button>${team.name} official website</button></a>
 <h1>Sportil</h1>
 </div>`
 const topNav= document.querySelector('#topNav')
@@ -50,7 +50,7 @@ topNav.style.backgroundColor=`${team.backgroundColor}`
 
 async function handleGetTransfers() {
 	//@ts-ignore
-	const { data } = await axios.get('/MTA/get-transfers');
+	const { data } = await axios.get('/HTA/get-transfers');
 	const { transfers } = data;
 	console.log(transfers)
 	if (!Array.isArray(transfers)) throw new Error('transfers should be an array ant it is not');
@@ -78,7 +78,7 @@ console.log(transfers)
 
 async function getScore() {
 	//@ts-ignore
-	const { data } = await axios.get('/MTA/get-score');
+	const { data } = await axios.get('/HTA/get-score');
 	const { score } = data;
 	console.log(score)
 	if (!Array.isArray(score)) throw new Error('score should be an array ant it is not');
@@ -107,7 +107,7 @@ function renderscore(scores){
 
 async function getAllArticales() {
 	//@ts-ignore
-	const { data } = await axios.get('/MTA/get-articles');
+	const { data } = await axios.get('/HTA/get-articles');
 	const { articles } = data;
 	console.log(articles)
 	if (!Array.isArray(articles)) throw new Error('articles should be an array ant it is not');

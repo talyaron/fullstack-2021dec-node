@@ -7,5 +7,6 @@ import { postBook, getBook, updateDescription, updatePrice } from '../controlers
 router.post('/booksStore', postBook)
         .get('/booksStore', getBook)
         .put('/updateBook', updateDescription)
-        .put('/updateBook', updatePrice);
+        .put('/updateBook', updatePrice)
+        .delete('/deleteBook');
 export default router;

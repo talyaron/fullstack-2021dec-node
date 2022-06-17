@@ -81,7 +81,7 @@ function getBook(req, res) {
 exports.getBook = getBook;
 function updateDescription(req, res) {
     try {
-        var _a = req.body, description = _a.description, serialNo_1 = _a.serialNo;
+        var _a = req.body, serialNo_1 = _a.serialNo, description = _a.description;
         if (!description)
             throw new Error('description is require');
         if (!serialNo_1)
@@ -102,12 +102,19 @@ function updatePrice(req, res) {
             throw new Error('price is require');
         if (!serialNo_2)
             throw new Error('serialNo is require');
-        var filter = addBook.findIndex(function (book) { return book.serialNo = serialNo_2; });
-        addBook[filter].price = price;
+        var indexBook = addBook.findIndex(function (book) { return book.serialNo = serialNo_2; });
+        addBook[indexBook].price = price;
         res.send({ addBook: addBook });
     }
     catch (error) {
         res.send({ error: error.message });
+    }
+    function deleteBook(req, res) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/];
+            });
+        });
     }
 }
 exports.updatePrice = updatePrice;
