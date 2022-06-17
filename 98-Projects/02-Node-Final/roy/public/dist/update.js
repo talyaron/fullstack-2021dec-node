@@ -109,10 +109,21 @@ function renderTransfer(transfers) {
     var html = "";
     transfers.forEach(function (transfer) {
         html +=
-            "<div class=\"transfer" + teamId + "\">\n    <div class=\"box2\">\n\t<a href=\"" + transfer.url + "\">\n    <img src=\"" + transfer.photo + "\" class=\"photo\">\n\t</a>\n    <p>" + transfer.headline + "</p>\n    <h4>" + transfer.text + "</h4>   \n    </div>";
+            "<div class=\"transfer" + teamId + "\">\n    <div class=\"box2\">\n\t<a href=\"" + transfer.url + "\">\n    <img src=\"" + transfer.photo + "\" class=\"photo\">\n\t</a>\n    <p>" + transfer.headline + "</p>\n    <h4>" + transfer.text + "</h4>  \n    <button onclick=\"editTransfer()\">\u05E2\u05E8\u05D5\u05DA</button> \n    </div>";
     });
     var transferBar = document.querySelector('#transferBar');
     transferBar.innerHTML = html;
+}
+function editTransfer() {
+    console.log("hey");
+    var html = "";
+    html += " <form onsubmit='updateTransfer(event)'>\n    <label for='headline'></label>\n    <input type='text' name='headline' placeholder='headline' required>\n    <label for='headline'>\u05D4\u05DB\u05E0\u05E1 \u05DB\u05D5\u05EA\u05E8\u05EA</label>\n    <input type='text' name='photo' class='photo' placeholder='photo' required>\n    <label for='photo'>\u05D4\u05DB\u05E0\u05E1 \u05E7\u05D9\u05E9\u05D5\u05E8 \u05DC\u05EA\u05DE\u05D5\u05E0\u05D4</label>\n    <input type='text' name='url' placeholder='url' required>\n    <label for='url'>\u05D4\u05DB\u05E0\u05E1 \u05E7\u05D9\u05E9\u05D5\u05E8 \u05DC\u05DB\u05EA\u05D1\u05D4</label>\n    <input type='text' name='text' placeholder='text' required>\n    <label for='text'>\u05D4\u05DB\u05E0\u05E1 \u05DB\u05D5\u05EA\u05E8\u05EA \u05DE\u05E9\u05E0\u05D4</label>\n    <button type='submit' class='saveBtn'>\u05E2\u05D3\u05DB\u05DF</button>    \n</form>";
+    var editTransfer = document.querySelector('.box2');
+    editTransfer.innerHTML = html;
+}
+function updateTransfer(event) {
+    event.preventDefault();
+    console.dir(event + "hey");
 }
 function getScore() {
     return __awaiter(this, void 0, void 0, function () {

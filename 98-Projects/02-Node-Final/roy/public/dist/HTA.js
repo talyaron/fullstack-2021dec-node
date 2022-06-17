@@ -54,7 +54,7 @@ function handleDeleteTeam() {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
                     teamId = getTeamId();
-                    return [4 /*yield*/, axios["delete"]('/MTA/Team-delete', {
+                    return [4 /*yield*/, axios["delete"]('/HTA/Team-delete', {
                             data: { teamId: teamId }
                         })];
                 case 1:
@@ -80,7 +80,7 @@ function renderTopNav(teams) {
     console.log(teams);
     var team = teams[0];
     var html = "";
-    html += "<div id=\"" + team.name + "\">\n<img src=\"" + team.symbol + "\" class=\"teamIcon\">\n<a href='https://www.maccabi-tlv.co.il/' class=\"url\"><button>" + team.name + " official website</button></a>\n<h1>Sportil</h1>\n</div>";
+    html += "<div id=\"" + team.name + "\">\n<img src=\"" + team.symbol + "\" class=\"teamIcon\">\n<a href='https://www.htafc.co.il/' class=\"url\"><button>" + team.name + " official website</button></a>\n<h1>Sportil</h1>\n</div>";
     var topNav = document.querySelector('#topNav');
     topNav.innerHTML = html;
     topNav.style.backgroundColor = "" + team.backgroundColor;
@@ -90,7 +90,7 @@ function handleGetTransfers() {
         var data, transfers;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, axios.get('/MTA/get-transfers')];
+                case 0: return [4 /*yield*/, axios.get('/HTA/get-transfers')];
                 case 1:
                     data = (_a.sent()).data;
                     transfers = data.transfers;
@@ -119,7 +119,7 @@ function getScore() {
         var data, score;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, axios.get('/MTA/get-score')];
+                case 0: return [4 /*yield*/, axios.get('/HTA/get-score')];
                 case 1:
                     data = (_a.sent()).data;
                     score = data.score;
@@ -147,7 +147,7 @@ function getAllArticales() {
         var data, articles;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, axios.get('/MTA/get-articles')];
+                case 0: return [4 /*yield*/, axios.get('/HTA/get-articles')];
                 case 1:
                     data = (_a.sent()).data;
                     articles = data.articles;

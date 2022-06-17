@@ -69,11 +69,35 @@ console.log(transfers)
     <img src="${transfer.photo}" class="photo">
 	</a>
     <p>${transfer.headline}</p>
-    <h4>${transfer.text}</h4>   
+    <h4>${transfer.text}</h4>  
+    <button onclick="editTransfer()">ערוך</button> 
     </div>`
     })
 	let transferBar= document.querySelector('#transferBar')
 	transferBar.innerHTML=html
+}
+
+function editTransfer(){
+    console.log("hey")
+    let html=""
+    html+=` <form onsubmit='updateTransfer(event)'>
+    <label for='headline'></label>
+    <input type='text' name='headline' placeholder='headline' required>
+    <label for='headline'>הכנס כותרת</label>
+    <input type='text' name='photo' class='photo' placeholder='photo' required>
+    <label for='photo'>הכנס קישור לתמונה</label>
+    <input type='text' name='url' placeholder='url' required>
+    <label for='url'>הכנס קישור לכתבה</label>
+    <input type='text' name='text' placeholder='text' required>
+    <label for='text'>הכנס כותרת משנה</label>
+    <button type='submit' class='saveBtn'>עדכן</button>    
+</form>`
+let editTransfer= document.querySelector('.box2')
+editTransfer.innerHTML= html
+}
+function updateTransfer(event){
+    event.preventDefault()
+    console.dir(event + "hey")
 }
 
 async function getScore() {
