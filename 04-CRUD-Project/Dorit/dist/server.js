@@ -21,35 +21,13 @@ app.use(express_1["default"].static("public"));
 //   ]; 
 //route
 app.use("/api/get-recipe", rout_1["default"]);
+app.use('/api/add-recipe', rout_1["default"]);
+app.use('/api/check-recipe', rout_1["default"]);
+app.use('/api/update-ing', rout_1["default"]);
+app.use('/api/update-pre', rout_1["default"]);
 app.listen(port, function () {
     return console.log("Server is listening at http://localhost:" + port);
 });
-// app.put("/api/get-recipe", (req, res) => {
-//     try {
-//         const {recipeName} = req.body
-//         if (!recipeName) throw new Error("recipeName is required");
-//         const recipeIndex = recipes.findIndex(recipe => recipe.name === recipeName);
-//         if (recipeIndex===-1) throw new Error("recipeName not found")
-//         res.send({ recipe: recipes[recipeIndex] });
-//       }
-//      catch (error) {
-//       res.send({ error: error.message });
-//     }
-// })
-// app.post('/api/add-recipe', (req, res) => {
-//   try {
-//     const {name,ingredients,prepareMode,adderName } = req.body;
-//     if(!name) throw new Error("name is required");
-//     if(!ingredients) throw new Error("ingredients are required");
-//     if(!prepareMode) throw new Error("prepareMode is required")
-//     if(!adderName) throw new Error("adderName is required")
-//     const myRecipe:Recipe = {name, ingredients, prepareMode, adderName};
-//     recipes.push(myRecipe);
-//     res.send({myRecipe});
-//   } catch (error) {
-//     res.send({ error: error.message });
-//   }
-// })
 // app.post('/api/check-recipe', (req, res) => {
 //   try {
 //     const {adderName, recipeName } = req.body;
