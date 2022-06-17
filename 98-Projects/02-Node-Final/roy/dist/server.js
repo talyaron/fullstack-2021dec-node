@@ -12,8 +12,8 @@ const indexRoutes_1 = __importDefault(require("./routes/indexRoutes"));
 app.use("/index", indexRoutes_1.default);
 const MTARoutes_1 = __importDefault(require("./routes/MTARoutes"));
 app.use("/MTA", MTARoutes_1.default);
-// import HTARoute from "./routes/HTARoute"
-// app.use("/HTA", HTARoute);
+const HTARoutes_1 = __importDefault(require("./routes/HTARoutes"));
+app.use("/HTA", HTARoutes_1.default);
 app.listen(port, () => {
     console.log(`Express is listening at http://localhost:${port}`);
 });

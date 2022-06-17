@@ -123,7 +123,7 @@
     gap: 30px;
    //margin-left: 160px;
 
-    .box2{
+    .box3{
         margin-right: 50px;
         &:hover {
             opacity: 0.7;
@@ -292,18 +292,18 @@
     gap: 30px;
    //margin-left: 160px;
 
-    .box2{
-        margin-right: 100px;
-        &:hover {
-            opacity: 0.7;
-        }
-        cursor: pointer;
-        width: 350px;
-        .photo{
-            width: 350px;
-            height: 250px;
-            }
+   .box3{
+    margin-right: 50px;
+    &:hover {
+        opacity: 0.7;
     }
+    cursor: pointer;
+    width: 400px;
+    .photo{
+    width: 400px;
+    height: 250px;
+    }
+}
     p{
         font-size: 20px;
         margin-top: -5px;

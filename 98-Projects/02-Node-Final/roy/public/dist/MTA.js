@@ -80,7 +80,7 @@ function renderTopNav(teams) {
     console.log(teams);
     var team = teams[0];
     var html = "";
-    html += "<div id=\"" + team.name + "\">\n<img src=\"" + team.symbol + "\" class=\"teamIcon\">\n<a href='https://www.maccabi-tlv.co.il/' class=\"url\"><button>" + team.name + " official website</button></a>\n<h1>Sportil</h1>\n</div>";
+    html += "<div id=\"" + team.name + "\">\n<img src=\"" + team.symbol + "\" class=\"teamIcon\">\n<a href='https://www.maccabi-tlv.co.il/' class=\"url\"><button>" + team.name + " official website</button></a>\n<a href='index.html'>\n<h1>Sportil</h1>\n</a>\n</div>";
     var topNav = document.querySelector('#topNav');
     topNav.innerHTML = html;
     topNav.style.backgroundColor = "" + team.backgroundColor;

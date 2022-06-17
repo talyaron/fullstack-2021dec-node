@@ -35,7 +35,7 @@ async function update(event){
         </a>`
     }
     if(choosenTeam===`HTA`){ 
-        html +=`<a href='update.html?Id=abcd'>
+        html +=`<a href='updateHTA.html?Id=abcd'>
         <button type="submit">המשך</button>
         </a>`
     }

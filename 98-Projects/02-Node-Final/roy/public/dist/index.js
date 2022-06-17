@@ -74,7 +74,7 @@ function update(event) {
                         html += "<a href='update.html?Id=abc'>\n        <button type=\"submit\">\u05D4\u05DE\u05E9\u05DA</button>\n        </a>";
                     }
                     if (choosenTeam === "HTA") {
-                        html += "<a href='update.html?Id=abcd'>\n        <button type=\"submit\">\u05D4\u05DE\u05E9\u05DA</button>\n        </a>";
+                        html += "<a href='updateHTA.html?Id=abcd'>\n        <button type=\"submit\">\u05D4\u05DE\u05E9\u05DA</button>\n        </a>";
                     }
                     wrapper = document.querySelector('#wrapper');
                     wrapper.innerHTML = html;
