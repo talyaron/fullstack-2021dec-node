@@ -2,13 +2,13 @@
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-const rout_1 = __importDefault(require("./Routes/rout"));
-const express_1 = __importDefault(require("express"));
-const app = express_1.default();
-const port = process.env.PORT || 2003;
-app.use(express_1.default.json()); // to get body from client (body = data from client)
-app.use(express_1.default.static("public"));
+exports.__esModule = true;
+var express_1 = __importDefault(require("express"));
+var app = express_1["default"]();
+var port = process.env.PORT || 2003;
+var rout_1 = __importDefault(require("./Routes/rout"));
+app.use(express_1["default"].json()); // to get body from client (body = data from client)
+app.use(express_1["default"].static("public"));
 //  let recipes: Array<Recipe> = [
 //     { name: "HoneyCake", 
 //     ingredients:["honey 30 gr","sugar 0.5 glass","flower 2 glasses","eggs 3"],
@@ -20,36 +20,14 @@ app.use(express_1.default.static("public"));
 //       adderName:"Gadi Guy"}
 //   ]; 
 //route
-app.use("/api/get-recipe", rout_1.default);
-app.listen(port, () => {
-    return console.log(`Server is listening at http://localhost:${port}`);
+app.use("/api/get-recipe", rout_1["default"]);
+app.use('/api/add-recipe', rout_1["default"]);
+app.use('/api/check-recipe', rout_1["default"]);
+app.use('/api/update-ing', rout_1["default"]);
+app.use('/api/update-pre', rout_1["default"]);
+app.listen(port, function () {
+    return console.log("Server is listening at http://localhost:" + port);
 });
-// app.put("/api/get-recipe", (req, res) => {
-//     try {
-//         const {recipeName} = req.body
-//         if (!recipeName) throw new Error("recipeName is required");
-//         const recipeIndex = recipes.findIndex(recipe => recipe.name === recipeName);
-//         if (recipeIndex===-1) throw new Error("recipeName not found")
-//         res.send({ recipe: recipes[recipeIndex] });
-//       }
-//      catch (error) {
-//       res.send({ error: error.message });
-//     }
-// })
-// app.post('/api/add-recipe', (req, res) => {
-//   try {
-//     const {name,ingredients,prepareMode,adderName } = req.body;
-//     if(!name) throw new Error("name is required");
-//     if(!ingredients) throw new Error("ingredients are required");
-//     if(!prepareMode) throw new Error("prepareMode is required")
-//     if(!adderName) throw new Error("adderName is required")
-//     const myRecipe:Recipe = {name, ingredients, prepareMode, adderName};
-//     recipes.push(myRecipe);
-//     res.send({myRecipe});
-//   } catch (error) {
-//     res.send({ error: error.message });
-//   }
-// })
 // app.post('/api/check-recipe', (req, res) => {
 //   try {
 //     const {adderName, recipeName } = req.body;

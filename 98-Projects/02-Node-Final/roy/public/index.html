@@ -10,14 +10,20 @@
     integrity="sha512-uplugzeh2/XrRr7RgSloGLHjFV0b4FqUtbT5t9Sa/XcilDr1M3+88u/c+mw6+HepH7M2C5EVmahySsyilVHI/A=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
-<body onload="handleGetTeams()">
-    <h1>Sportil</h1>
-    <h2>Select your favorite team</h2>
-
-    
+<body onload="handleGetTeams()" dir="rtl">
+    <h1 dir="ltr">Sportil</h1>
+    <h2>בחר את הקבוצה האהובה עליך</h2>  
     <div id="root">
     </div>
-    
+    <div id="wrapper">
+    <form onchange="update(event)">
+        <input type='text' name='chooseTeam'>
+        <label for='chooseTeam'></label>
+        <p>הכנס את שם הקבוצה שתרצה לערוך</p>
+       
+        
+    </div>
+</form>
     
 </body>
 <script src="dist/index.js"></script>

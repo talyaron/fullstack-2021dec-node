@@ -31,22 +31,20 @@ interface Recipe {
     //console.dir(event.target.elements.cakeName.value)
     const recipeName:string = event.target.elements.recipeName.value
      try {
-         console.log(`${recipeName}`)
+         console.log(`recipeName from getRecipe client:${recipeName}`)
          // @ts-ignore
          //const { data } = await axios.put('/api/get-recipe', { recipeName });
-         const { data } = await axios.get('/api/get-recipe/getRecipe')
-         console.log({data})
+         const { data } = await axios.put('/api/get-recipe/getRoutRecipe',{recipeName})
          const { recipe, error } = data;
-         console.log(recipe);
+         console.log(`recipe from client recieved from server: ${recipe}`);
          if (error) throw new Error(error);
          renderFullRecipe(recipe);
-
      } catch (error) {
          console.error(error);
      } 
 }
 
- function handleAddRepipe(){
+ function handleAddRecipe(){
     console.log("handleAddRecipe")
     let forms:HTMLDivElement = document.querySelector("#forms")
     if(forms) forms.remove()
@@ -87,7 +85,7 @@ interface Recipe {
 }
 
 async function PostRecipe(event: any){
-    console.log("PostRecipe")
+    console.log("PostRecipe in client")
     console.dir(event)
     event.preventDefault();
     const name:string = event.target.elements.name.value
@@ -109,15 +107,16 @@ async function PostRecipe(event: any){
     console.log(prepareMode)
     //const ingredients:string = event.target.elements.array1.values
     const adderName:string=event.target.elements.adderName.value
-    const myRecipe:Recipe={name,ingredients,prepareMode,adderName}
+    
     try {
-        console.log(`${myRecipe}`)
+        //console.log(`${myRecipe}`)
         // @ts-ignore
-        const { data } = await axios.post('/api/add-recipe', {name,ingredients,prepareMode,adderName });
+        const { data } = await axios.post('/api/add-recipe/postRoutRecipe', {name,ingredients,prepareMode,adderName });
         console.log({data})
-        const { myRecipe,error} = data;
         //const myRecipe:Recipe={name,ingredients,prepareMode,adderName}
-        console.log(myRecipe);
+        const{ myRecipe,error} = data;
+        //const myRecipe:Recipe={name,ingredients,prepareMode,adderName}
+        console.log(`myRecipe recieved from server:${myRecipe}`);
         if (error) throw new Error(error);
         renderFullRecipe(myRecipe);
 
@@ -187,7 +186,7 @@ function handleFixRecipe(){
     root.style.left="380px"
 }
 
-async function CheckName(event){
+async function CheckName(event:any){
      console.log("CheckName")
      console.dir(event.target)
  
@@ -200,7 +199,7 @@ async function CheckName(event){
 
     try{ 
         // @ts-ignore    
-        const { data } = await axios.post('/api/check-recipe',{adderName, recipeName});
+        const { data } = await axios.post('/api/check-recipe/postRoutAdderName',{adderName, recipeName});
         const { myRecipe,error} = data;
         if (error) throw new Error(error);
         renderRecipeForUpdate(myRecipe)
@@ -294,7 +293,7 @@ async function saveIng(event,recipeName){
     }
     try{ 
         // @ts-ignore    
-        const { data } = await axios.post('/api/update-ing',{recipeName,myIng});
+        const { data } = await axios.post('/api/update-ing/postRoutIng',{recipeName,myIng});
         const { myRecipe,error} = data;
         if (error) throw new Error(error);
         renderFullRecipe(myRecipe)
@@ -319,7 +318,7 @@ async function savePre(event,recipeName){
         }
         try{ 
             // @ts-ignore    
-            const { data } = await axios.post('/api/update-pre',{recipeName,myPre});
+            const { data } = await axios.post('/api/update-pre/postRoutPre',{recipeName,myPre});
             const { myRecipe,error} = data;
             if (error) throw new Error(error);
             renderFullRecipe(myRecipe)

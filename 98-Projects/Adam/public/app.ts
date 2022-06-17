@@ -13,7 +13,7 @@ window.addEventListener("load", async () => {
 
     // render items
     const itemsToRender = dbItems.data.map(item => {
-        return `<button class="item new-item" id="${item.id}"><img src="${item.image}" alt=""></button>`
+        return `<button class="item new-item" id="${item.id} ${item.price}"><img src="${item.image}" alt=""></button>`
     })
     const newItemContainer = document.getElementById('new-items-container');
     if(newItemContainer) {

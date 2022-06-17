@@ -59,13 +59,12 @@ function getRecipe(event) {
                     _a.label = 1;
                 case 1:
                     _a.trys.push([1, 3, , 4]);
-                    console.log("" + recipeName);
-                    return [4 /*yield*/, axios.get('/api/get-recipe/getRecipe')];
+                    console.log("recipeName from getRecipe client:" + recipeName);
+                    return [4 /*yield*/, axios.put('/api/get-recipe/getRoutRecipe', { recipeName: recipeName })];
                 case 2:
                     data = (_a.sent()).data;
-                    console.log({ data: data });
                     recipe = data.recipe, error = data.error;
-                    console.log(recipe);
+                    console.log("recipe from client recieved from server: " + recipe);
                     if (error)
                         throw new Error(error);
                     renderFullRecipe(recipe);
@@ -79,7 +78,7 @@ function getRecipe(event) {
         });
     });
 }
-function handleAddRepipe() {
+function handleAddRecipe() {
     console.log("handleAddRecipe");
     var forms = document.querySelector("#forms");
     if (forms)
@@ -103,11 +102,11 @@ function handleAddRepipe() {
 }
 function PostRecipe(event) {
     return __awaiter(this, void 0, void 0, function () {
-        var name, ingredients, i, prepareMode, i, adderName, myRecipe, data, myRecipe_1, error, error_2;
+        var name, ingredients, i, prepareMode, i, adderName, data, myRecipe, error, error_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    console.log("PostRecipe");
+                    console.log("PostRecipe in client");
                     console.dir(event);
                     event.preventDefault();
                     name = event.target.elements.name.value;
@@ -128,21 +127,19 @@ function PostRecipe(event) {
                     }
                     console.log(prepareMode);
                     adderName = event.target.elements.adderName.value;
-                    myRecipe = { name: name, ingredients: ingredients, prepareMode: prepareMode, adderName: adderName };
                     _a.label = 1;
                 case 1:
                     _a.trys.push([1, 3, , 4]);
-                    console.log("" + myRecipe_1);
-                    return [4 /*yield*/, axios.post('/api/add-recipe', { name: name, ingredients: ingredients, prepareMode: prepareMode, adderName: adderName })];
+                    return [4 /*yield*/, axios.post('/api/add-recipe/postRoutRecipe', { name: name, ingredients: ingredients, prepareMode: prepareMode, adderName: adderName })];
                 case 2:
                     data = (_a.sent()).data;
                     console.log({ data: data });
-                    myRecipe_1 = data.myRecipe, error = data.error;
+                    myRecipe = data.myRecipe, error = data.error;
                     //const myRecipe:Recipe={name,ingredients,prepareMode,adderName}
-                    console.log(myRecipe_1);
+                    console.log("myRecipe recieved from server:" + myRecipe);
                     if (error)
                         throw new Error(error);
-                    renderFullRecipe(myRecipe_1);
+                    renderFullRecipe(myRecipe);
                     return [3 /*break*/, 4];
                 case 3:
                     error_2 = _a.sent();
@@ -224,7 +221,7 @@ function CheckName(event) {
                     _a.label = 1;
                 case 1:
                     _a.trys.push([1, 3, , 4]);
-                    return [4 /*yield*/, axios.post('/api/check-recipe', { adderName: adderName, recipeName: recipeName })];
+                    return [4 /*yield*/, axios.post('/api/check-recipe/postRoutAdderName', { adderName: adderName, recipeName: recipeName })];
                 case 2:
                     data = (_a.sent()).data;
                     myRecipe = data.myRecipe, error = data.error;
@@ -327,7 +324,7 @@ function saveIng(event, recipeName) {
                     _a.label = 1;
                 case 1:
                     _a.trys.push([1, 3, , 4]);
-                    return [4 /*yield*/, axios.post('/api/update-ing', { recipeName: recipeName, myIng: myIng })];
+                    return [4 /*yield*/, axios.post('/api/update-ing/postRoutIng', { recipeName: recipeName, myIng: myIng })];
                 case 2:
                     data = (_a.sent()).data;
                     myRecipe = data.myRecipe, error = data.error;
@@ -363,7 +360,7 @@ function savePre(event, recipeName) {
                     _a.label = 1;
                 case 1:
                     _a.trys.push([1, 3, , 4]);
-                    return [4 /*yield*/, axios.post('/api/update-pre', { recipeName: recipeName, myPre: myPre })];
+                    return [4 /*yield*/, axios.post('/api/update-pre/postRoutPre', { recipeName: recipeName, myPre: myPre })];
                 case 2:
                     data = (_a.sent()).data;
                     myRecipe = data.myRecipe, error = data.error;

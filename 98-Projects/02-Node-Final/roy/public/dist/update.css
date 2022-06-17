@@ -1,0 +1,294 @@
+#topNav {
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: row;
+  width: 101vw;
+  margin-right: -7px;
+  margin-top: -10px;
+}
+#topNav #MTA {
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  margin-left: -70px;
+  margin-right: -60px;
+}
+#topNav #MTA h1 {
+  color: blue;
+}
+#topNav #MTA button {
+  margin-top: 15px;
+  height: 50px;
+  width: 300px;
+  background-color: blue;
+  color: yellow;
+}
+#topNav #MTA .teamIcon {
+  height: 70px;
+  width: 70px;
+}
+
+.transferabc {
+  width: 300px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 30px;
+}
+.transferabc .box2 {
+  margin-right: 50px;
+  cursor: pointer;
+  width: 400px;
+}
+.transferabc .box2:hover {
+  opacity: 0.7;
+}
+.transferabc .box2 .photo {
+  width: 400px;
+}
+.transferabc p {
+  font-size: 20px;
+  margin-top: -5px;
+  font-weight: bold;
+  color: yellow;
+  text-shadow: 2px 2px navy;
+}
+.transferabc h4 {
+  font-size: 15px;
+  margin-top: -10px;
+  font-weight: normal;
+  color: yellow;
+  text-shadow: 2px 2px navy;
+}
+
+#scoreBar {
+  position: absolute;
+  top: 600px;
+  right: 42vw;
+  width: 20vw;
+  height: 100px;
+  background-color: blue;
+}
+#scoreBar .scoreabc {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  color: yellow;
+  font-size: 30px;
+  border: 3px, black;
+  background-color: blue;
+}
+#scoreBar .scoreabc .fTeam {
+  width: 48%;
+  height: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  font-size: 30px;
+}
+#scoreBar .scoreabc .fTeam .fSymbol {
+  height: 50px;
+  width: 50px;
+}
+#scoreBar .scoreabc .sTeam {
+  width: 48%;
+  height: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  font-size: 30px;
+}
+#scoreBar .scoreabc .sTeam .sSymbol {
+  height: 50px;
+  width: 50px;
+}
+
+.articleabc {
+  width: 300px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 30px;
+}
+.articleabc .box3 {
+  margin-right: 50px;
+  cursor: pointer;
+  width: 400px;
+}
+.articleabc .box3:hover {
+  opacity: 0.7;
+}
+.articleabc .box3 .photo {
+  width: 400px;
+  height: 250px;
+}
+.articleabc p {
+  font-size: 20px;
+  margin-top: -5px;
+  font-weight: bold;
+  color: yellow;
+  text-shadow: 2px 2px navy;
+}
+.articleabc h4 {
+  font-size: 15px;
+  margin-top: -10px;
+  font-weight: normal;
+  color: yellow;
+  text-shadow: 2px 2px navy;
+}
+
+#topNav {
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: row;
+  width: 101vw;
+  margin-right: -7px;
+  margin-top: -10px;
+}
+#topNav #HTA {
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  margin-left: -70px;
+  margin-right: -60px;
+}
+#topNav #HTA h1 {
+  color: white;
+}
+#topNav #HTA button {
+  margin-top: 15px;
+  height: 50px;
+  width: 300px;
+  background-color: white;
+  color: red;
+}
+#topNav #HTA .teamIcon {
+  height: 70px;
+  width: 70px;
+}
+
+.header {
+  color: #090909;
+  text-shadow: 2px 1px white;
+  text-decoration: underline;
+  width: 250px;
+  font-size: 40px;
+  font-weight: bold;
+  margin: 30px;
+}
+
+.transferabcd {
+  width: 300px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 30px;
+}
+.transferabcd .box2 {
+  margin-right: 100px;
+  cursor: pointer;
+  width: 350px;
+}
+.transferabcd .box2:hover {
+  opacity: 0.7;
+}
+.transferabcd .box2 .photo {
+  width: 350px;
+  height: 250px;
+}
+.transferabcd p {
+  font-size: 20px;
+  margin-top: -5px;
+  font-weight: bold;
+  color: #f7fbfc;
+  text-shadow: 2px 2px #fd0404;
+}
+.transferabcd h4 {
+  font-size: 15px;
+  margin-top: -10px;
+  font-weight: normal;
+  color: #feffff;
+  text-shadow: 2px 2px #f90202;
+}
+
+#scoreBar {
+  position: absolute;
+  top: 600px;
+  right: 42vw;
+  width: 20vw;
+  height: 100px;
+  background-color: blue;
+}
+#scoreBar .scoreabcd {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  color: yellow;
+  font-size: 30px;
+  border: 3px, black;
+  background-color: blue;
+}
+#scoreBar .scoreabcd .fTeam {
+  width: 48%;
+  height: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  font-size: 30px;
+}
+#scoreBar .scoreabcd .fTeam .fSymbol {
+  height: 50px;
+  width: 50px;
+}
+#scoreBar .scoreabcd .sTeam {
+  width: 48%;
+  height: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  font-size: 30px;
+}
+#scoreBar .scoreabcd .sTeam .sSymbol {
+  height: 50px;
+  width: 50px;
+}
+
+.articleabcd {
+  width: 300px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 30px;
+}
+.articleabcd .box3 {
+  margin-right: 50px;
+  cursor: pointer;
+  width: 400px;
+}
+.articleabcd .box3:hover {
+  opacity: 0.7;
+}
+.articleabcd .box3 .photo {
+  width: 400px;
+  height: 250px;
+}
+.articleabcd p {
+  font-size: 20px;
+  margin-top: -5px;
+  font-weight: bold;
+  color: #fdfbf8;
+  text-shadow: 2px 2px #f90202;
+}
+.articleabcd h4 {
+  font-size: 15px;
+  margin-top: -10px;
+  font-weight: normal;
+  color: rgba(251, 252, 250, 0.904);
+  text-shadow: 2px 2px #f90202;
+}
+.articleabcd .box1 {
+  width: 3px;
+  height: 13px;
+  background-color: #f3f022;
+  display: flex;
+  margin-top: -10px;
+  margin-left: 0px;
+}
