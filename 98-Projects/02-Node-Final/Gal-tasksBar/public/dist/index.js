@@ -1,3 +1,4 @@
+"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -34,6 +35,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+exports.__esModule = true;
 ;
 function handleAddUser(ev) {
     return __awaiter(this, void 0, void 0, function () {
@@ -76,8 +78,122 @@ function renderUsers(users) {
 }
 function handleLoad() {
     try {
+        getUserByCookie();
     }
     catch (error) {
         console.error(error);
     }
 }
+function handleRegister(ev) {
+    return __awaiter(this, void 0, void 0, function () {
+        var _a, username, password, data;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
+                case 0:
+                    ev.preventDefault();
+                    _a = ev.target.elements, username = _a.username, password = _a.password;
+                    username = username.value;
+                    password = password.value;
+                    return [4 /*yield*/, axios.post("/users/add-user", { username: username, password: password })];
+                case 1:
+                    data = (_b.sent()).data;
+                    console.log(data);
+                    return [2 /*return*/];
+            }
+        });
+    });
+}
+function handleLogin(ev) {
+    return __awaiter(this, void 0, void 0, function () {
+        var _a, username, password, data, user, usernameDB, root, error_2;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
+                case 0:
+                    _b.trys.push([0, 2, , 3]);
+                    ev.preventDefault();
+                    _a = ev.target.elements, username = _a.username, password = _a.password;
+                    username = username.value;
+                    password = password.value;
+                    return [4 /*yield*/, axios.post("/users/login", { username: username, password: password })];
+                case 1:
+                    data = (_b.sent()).data;
+                    console.log(data);
+                    user = data.user;
+                    if (!user) {
+                        throw new Error('User not found');
+                    }
+                    usernameDB = user.username;
+                    root = document.getElementById('root');
+                    if (root) {
+                        root.innerHTML = "<h1>Welcome " + usernameDB + "</h1>";
+                    }
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_2 = _b.sent();
+                    console.error(error_2);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
+}
+function getUserByCookie() {
+    return __awaiter(this, void 0, void 0, function () {
+        var data, user, usernameDB, root, error_3;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    return [4 /*yield*/, axios.get("/users/get-user")];
+                case 1:
+                    data = (_a.sent()).data;
+                    console.log(data);
+                    user = data.user;
+                    if (!user) {
+                        throw new Error('User not found');
+                    }
+                    usernameDB = user.username;
+                    root = document.getElementById('root');
+                    if (root) {
+                        root.innerHTML = "<h1>Welcome " + usernameDB + "</h1>";
+                    }
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_3 = _a.sent();
+                    console.error(error_3);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
+}
+function handleGetUsers() {
+    return __awaiter(this, void 0, void 0, function () {
+        var data, users;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, axios.get('/users/get-users')];
+                case 1:
+                    data = (_a.sent()).data;
+                    console.log(data);
+                    users = data.users;
+                    console.log(users);
+                    if (users) {
+                        renderUsers(users);
+                    }
+                    return [2 /*return*/];
+            }
+        });
+    });
+}
+// async function handleSearchItems(event) {
+// 	try {
+// 		event.preventDefault();
+// 		//@ts-ignore
+// 		const { data } = await axios.post('/items/searchItems', {
+// 		});
+// 		const filtereditems  = data;
+// 	} catch (error) {
+// 		console.error(error);
+// 	}
+// }

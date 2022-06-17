@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.getUser = exports.updateUser = exports.getAllUsers = exports.handleAddUser = exports.handleDeleteUser = void 0;
+exports.getUser = exports.updateUser = exports.getAllUsers = exports.getUserByCookie = exports.handleAddUser = exports.handleDeleteUser = void 0;
 var helpers_1 = require("../helpers");
 ;
 var users = [
@@ -76,6 +76,32 @@ exports.handleAddUser = function (req, res) {
         };
         users.push(user);
         res.send(users);
+    }
+    catch (error) {
+        console.error(error);
+        res.send({ error: error.message });
+    }
+};
+// export const login =async (req:any, res:any) => {
+//     try {
+//         let {username, password} = req.body;
+//         const user = await user.findOne({username, password});
+//         if (user){
+//             res.cookie('user',user._.id);
+//             res.send({ok:true,user})
+//         }else{
+//             throw new Error("user not found");
+//         }
+//     } catch (error) {
+//         console.error(error);
+// 		res.send({ error: error.message });
+//     }
+// }
+exports.getUserByCookie = function (req, res) {
+    try {
+        var user = req.cookies.user;
+        console.log(user);
+        res.send({ ok: true, user: user });
     }
     catch (error) {
         console.error(error);
