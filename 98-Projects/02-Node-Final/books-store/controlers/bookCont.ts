@@ -56,7 +56,7 @@ export function updateDescription(req, res){
 export function updatePrice(req, res){
   try {
   
-    const {price, serialNo} = req.body;
+    const {serialNo, price} = req.body;
     if (!price) throw new Error('price is require');
     if (!serialNo) throw new Error ('serialNo is require')
     const indexBook = addBook.findIndex(book => book.serialNo = serialNo )
@@ -67,11 +67,43 @@ export function updatePrice(req, res){
 } catch (error) {
   res.send({ error: error.message });
 }
+}
 
-async function deleteBook(req, res){
+export function deleteBook(req, res){
+  try {
+    const {serialNo} = req.body;
+     addBook = addBook.filter(book => book.serialNo !== serialNo )
+    res.send({addBook})
+} catch (error) {
+  res.send({ error: error.message });
+}
 
 }
-}
+
+
+// // export function clientGet(req, res){
+//   try {
+    
+
+
+    
+//   } catch (error) {
+//     res.send({Error: error.message})
+//   }
+
+// }
+
+
+
+
+
+
+
+
+
+
+
+
 function uid(){
   const id = "id" + Math.random().toString(16).slice(2)
   return id

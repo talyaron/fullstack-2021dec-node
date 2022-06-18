@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.updatePrice = exports.updateDescription = exports.getBook = exports.postBook = void 0;
+exports.deleteBook = exports.updatePrice = exports.updateDescription = exports.getBook = exports.postBook = void 0;
 var addBook = [];
 function postBook(req, res) {
     return __awaiter(this, void 0, void 0, function () {
@@ -97,7 +97,7 @@ function updateDescription(req, res) {
 exports.updateDescription = updateDescription;
 function updatePrice(req, res) {
     try {
-        var _a = req.body, price = _a.price, serialNo_2 = _a.serialNo;
+        var _a = req.body, serialNo_2 = _a.serialNo, price = _a.price;
         if (!price)
             throw new Error('price is require');
         if (!serialNo_2)
@@ -109,15 +109,25 @@ function updatePrice(req, res) {
     catch (error) {
         res.send({ error: error.message });
     }
-    function deleteBook(req, res) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                return [2 /*return*/];
-            });
-        });
-    }
 }
 exports.updatePrice = updatePrice;
+function deleteBook(req, res) {
+    try {
+        var serialNo_3 = req.body.serialNo;
+        addBook = addBook.filter(function (book) { return book.serialNo !== serialNo_3; });
+        res.send({ addBook: addBook });
+    }
+    catch (error) {
+        res.send({ error: error.message });
+    }
+}
+exports.deleteBook = deleteBook;
+// // export function clientGet(req, res){
+//   try {
+//   } catch (error) {
+//     res.send({Error: error.message})
+//   }
+// }
 function uid() {
     var id = "id" + Math.random().toString(16).slice(2);
     return id;
