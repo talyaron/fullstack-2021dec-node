@@ -1,3 +1,4 @@
+import { maxHeaderSize } from "http";
 
 interface Recipe {
     name: string;
@@ -31,93 +32,145 @@ interface Recipe {
     //console.dir(event.target.elements.cakeName.value)
     const recipeName:string = event.target.elements.recipeName.value
      try {
-         console.log(`${recipeName}`)
+         console.log(`recipeName from getRecipe client:${recipeName}`)
          // @ts-ignore
          //const { data } = await axios.put('/api/get-recipe', { recipeName });
-         const { data } = await axios.get('/api/get-recipe/getRoutRecipe')
-         console.log({data})
+         const { data } = await axios.put('/api/get-recipe/getRoutRecipe',{recipeName})
          const { recipe, error } = data;
-         console.log(recipe);
+         console.log(`recipe from client recieved from server: ${recipe}`);
          if (error) throw new Error(error);
          renderFullRecipe(recipe);
-
      } catch (error) {
          console.error(error);
      } 
 }
 
- function handleAddRepipe(){
+ function handleAddRecipe(){
     console.log("handleAddRecipe")
-    let forms:HTMLDivElement = document.querySelector("#forms")
-    if(forms) forms.remove()
-    let root:HTMLDivElement=document.querySelector("#root")  
-    if(root) root.remove()
+    const form = document.querySelector('form')
     let body = document.querySelector("body")
-    root = document.createElement("root")
-    body.append(root)
-    let html=""
-    html=`
-    <div id="root">
-        <form onsubmit="PostRecipe(event)">
-            <input type="text" name="name" placeholder="Recipe Name"><br>`
-    html+=`        
-            <input type="text" name="array1[]" placeholder="Ingredients"/><br>
-            <input type="text" name="array1[]" placeholder="Ingredients"/><br>
-            <input type="text" name="array1[]" placeholder="Ingredients"/><br>
-            <input type="text" name="array1[]" placeholder="Ingredients"/><br>
-            <input type="text" name="array1[]" placeholder="Ingredients"/><br>
-            <input type="text" name="array1[]" placeholder="Ingredients"/><br>`
-    html+=`
-            <input type="text" name="array2[]" placeholder="Prepare Mode"/><br>
-            <input type="text" name="array2[]" placeholder="Prepare Mode"/><br>
-            <input type="text" name="array2[]" placeholder="Prepare Mode"/><br>
-            <input type="text" name="array2[]" placeholder="Prepare Mode"/><br>
-            <input type="text" name="array2[]" placeholder="Prepare Mode"/><br>
-            <input type="text" name="array2[]" placeholder="Prepare Mode"/><br>`
-    html+=`
-            <input type="text" name="adderName" placeholder="name of adder"/>
-            <button type="submit">Post Recipe</button>        
-            </form>
-    </div>` 
-    //let root:HTMLDivElement=document.querySelector("#root")  
-    body.innerHTML+=html
+    let root:HTMLDivElement=document.querySelector("#root")   
     root.style.position="relative" 
     root.style.top="10px"
-    root.style.left="10px"
-}
+    root.style.left="10px" 
+
+
+    form.addEventListener('keyup', (e:any) => {
+        const divIng = document.querySelector('.linesIng')
+    
+        const inputEl = document.createElement('input')
+        inputEl.setAttribute("type", "text")
+        inputEl.setAttribute("name", "Array1")
+        inputEl.setAttribute("placeholder", "Igredients")
+    
+        if (e.key === "Control") {
+            console.log("divIng")
+            divIng.append(inputEl)
+            inputEl.focus()
+        }
+        const divPre = document.querySelector('.linesPre')
+
+        const inputPl = document.createElement('input')
+        inputPl.setAttribute("type", "text")
+        inputPl.setAttribute("name", "Array2")
+        inputPl.setAttribute("placeholder", "PrepareMode")
+              
+        if (e.key === "Alt") {
+            console.log("divPre")
+            divPre.append(inputPl)
+            inputPl.focus()
+        }
+    }) 
+ }
+
+    // html=`
+    // <div id="root">
+    // <form onsubmit="PostRecipe(event)">
+    // let html=""
+    //         <input type="text" name="name" placeholder="Recipe Name"><br>`
+    // html+=`        
+    //         <input type="text" name="array1[]" placeholder="Ingredients"/><br>
+    //         <input type="text" name="array1[]" placeholder="Ingredients"/><br>
+    //         <input type="text" name="array1[]" placeholder="Ingredients"/><br>
+    //         <input type="text" name="array1[]" placeholder="Ingredients"/><br>
+    //         <input type="text" name="array1[]" placeholder="Ingredients"/><br>
+    //         <input type="text" name="array1[]" placeholder="Ingredients"/><br>`
+    // html+=`
+    //         <input type="text" name="array2[]" placeholder="Prepare Mode"/><br>
+    //         <input type="text" name="array2[]" placeholder="Prepare Mode"/><br>
+    //         <input type="text" name="array2[]" placeholder="Prepare Mode"/><br>
+    //         <input type="text" name="array2[]" placeholder="Prepare Mode"/><br>
+    //         <input type="text" name="array2[]" placeholder="Prepare Mode"/><br>
+    //         <input type="text" name="array2[]" placeholder="Prepare Mode"/><br>`
+    // html+=`
+    //         <input type="text" name="adderName" placeholder="name of adder"/>
+    //         <button type="submit">Post Recipe</button>        
+    //         </form>
+    // </div>` 
+    // //let root:HTMLDivElement=document.querySelector("#root")  
+    // body.innerHTML+=html
+    // root.style.position="relative" 
+    // root.style.top="10px"
+    // root.style.left="10px"
+
 
 async function PostRecipe(event: any){
-    console.log("PostRecipe")
+    console.log("PostRecipe in client")
     console.dir(event)
     event.preventDefault();
     const name:string = event.target.elements.name.value
     console.log(name)
-    console.dir(event.target.elements[0].value)
-    let ingredients:Array<string>=[]
-    for(let i:number=1;i<7;i++){
-        if(event.target.elements[i].value!==""){
-        ingredients.push(event.target.elements[i].value)
-        }
+    const adderName:string = event.target.elements.adderName.value
+    console.log(adderName)
+    //=============================================
+    // console.dir(event.target.elements[0].value)
+    // let ingredients:Array<string>=[]
+    // for(let i:number=1;i<7;i++){
+    //     if(event.target.elements[i].value!==""){
+    //     ingredients.push(event.target.elements[i].value)
+    //     }
+    // }
+    // console.log(ingredients)
+    // let prepareMode:Array<string>=[]
+    // for(let i:number=7;i<13;i++){
+    //     if(event.target.elements[i].value!==""){
+    //     prepareMode.push(event.target.elements[i].value)
+    //     }
+    // }
+    // console.log(prepareMode)
+    //=======================================
+
+    //const obj = {}
+    let ingredients:Array<string> = []
+    let prepareMode:Array<string> = []
+    for (let field of event.target.elements) {
+        console.log(field.name)
+       
+            if (field.name==="Array1") {
+                console.log(field.value)
+                if (field.value.length > 0) {
+                    ingredients.push(field.value)
+                }
+            } else if (field.name==="Array2"){
+                console.log(field.value)    
+                if (field.value.length > 0) {
+                    prepareMode.push(field.value)
+                }
+            }    
+
     }
-    console.log(ingredients)
-    let prepareMode:Array<string>=[]
-    for(let i:number=7;i<13;i++){
-        if(event.target.elements[i].value!==""){
-        prepareMode.push(event.target.elements[i].value)
-        }
-    }
-    console.log(prepareMode)
-    //const ingredients:string = event.target.elements.array1.values
-    const adderName:string=event.target.elements.adderName.value
-    const myRecipe:Recipe={name,ingredients,prepareMode,adderName}
+    console.log(`ingredients: ${ingredients[0]}`)
+    console.log(`prepareMode: ${prepareMode[0]}`)
+
     try {
-        console.log(`${myRecipe}`)
+        //console.log(`${myRecipe}`)
         // @ts-ignore
-        const { data } = await axios.post('/api/add-recipe', {name,ingredients,prepareMode,adderName });
+        const { data } = await axios.post('/api/add-recipe/postRoutRecipe', {name,ingredients,prepareMode,adderName });
         console.log({data})
-        const { myRecipe,error} = data;
         //const myRecipe:Recipe={name,ingredients,prepareMode,adderName}
-        console.log(myRecipe);
+        const{ myRecipe,error} = data;
+        //const myRecipe:Recipe={name,ingredients,prepareMode,adderName}
+        console.log(`myRecipe recieved from server:${myRecipe}`);
         if (error) throw new Error(error);
         renderFullRecipe(myRecipe);
 
@@ -187,7 +240,7 @@ function handleFixRecipe(){
     root.style.left="380px"
 }
 
-async function CheckName(event){
+async function CheckName(event:any){
      console.log("CheckName")
      console.dir(event.target)
  
@@ -200,7 +253,7 @@ async function CheckName(event){
 
     try{ 
         // @ts-ignore    
-        const { data } = await axios.post('/api/check-recipe',{adderName, recipeName});
+        const { data } = await axios.post('/api/check-recipe/postRoutAdderName',{adderName, recipeName});
         const { myRecipe,error} = data;
         if (error) throw new Error(error);
         renderRecipeForUpdate(myRecipe)
@@ -294,7 +347,7 @@ async function saveIng(event,recipeName){
     }
     try{ 
         // @ts-ignore    
-        const { data } = await axios.post('/api/update-ing',{recipeName,myIng});
+        const { data } = await axios.post('/api/update-ing/postRoutIng',{recipeName,myIng});
         const { myRecipe,error} = data;
         if (error) throw new Error(error);
         renderFullRecipe(myRecipe)
@@ -319,7 +372,7 @@ async function savePre(event,recipeName){
         }
         try{ 
             // @ts-ignore    
-            const { data } = await axios.post('/api/update-pre',{recipeName,myPre});
+            const { data } = await axios.post('/api/update-pre/postRoutPre',{recipeName,myPre});
             const { myRecipe,error} = data;
             if (error) throw new Error(error);
             renderFullRecipe(myRecipe)

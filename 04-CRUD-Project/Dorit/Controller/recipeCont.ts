@@ -17,6 +17,7 @@ let recipes: Array<Recipe> = [
 ];
 
 export async function getRecipe(req:any, res:any) {
+            console.debug("getRecipe from controller")
             try {
                 const {recipeName} = req.body
                 if (!recipeName) throw new Error("recipeName is required");
@@ -28,4 +29,90 @@ export async function getRecipe(req:any, res:any) {
               res.send({ error: error.message });
             }
         }
+
+export async function addRecipe(req:any, res:any){
+    try {
+    const {name,ingredients,prepareMode,adderName } = req.body;
+    if(!name) throw new Error("name is required");
+    if(!ingredients) throw new Error("ingredients are required");
+    if(!prepareMode) throw new Error("prepareMode is required")
+    if(!adderName) throw new Error("adderName is required")
+
+    const myRecipe:Recipe = {name, ingredients, prepareMode, adderName};
+
+    recipes.push(myRecipe);
+
+    res.send({myRecipe});
+
+  } catch (error:any) {
+    res.send({ error: error.message });
+  }
+}
+
+export async function checkRecipe(req:any, res:any){
+  try {
+        const {adderName, recipeName } = req.body;
+        if(!adderName) throw new Error("adderName is required");
+        if(!recipeName) throw new Error("recipeName is required");
+        let myRecipe:any = {recipeName, adderName};
+        const recipeIndex = recipes.findIndex(recipe => recipe.name === myRecipe.recipeName);
+        if (recipeIndex===-1) throw new Error("recipeName not found")
+        const recipeAdderName = recipes[recipeIndex]['adderName'];
+        //console.debug(recipeAdderName,recipes[recipeIndex]);
+        if (recipeAdderName!==myRecipe.adderName){
+          throw new Error("This recipe was added by another user")
+        }else{
+          myRecipe=recipes[recipeIndex]
+          res.send({myRecipe})
+        }
+    
+      } catch (error:any) {
+        res.send({ error: error.message });
+      }
+    }
+
+export async function updateIng(req:any, res:any){
+  try {
+        const {recipeName, myIng } = req.body;
+          if(!recipeName) throw new Error("name is required");
+          if(!myIng) throw new Error("ingredients are required");
+          console.debug(myIng[0])
+          let myInp:any={recipeName,myIng}
+          const recipeIndex = recipes.findIndex(recipe => recipe.name === myInp.recipeName);
+          if (recipeIndex===-1) throw new Error("recipeName not found")
+          console.debug(`recipeIndex: ${recipeIndex}`)
+          const len:number = myInp.myIng.length
+          for(let i:number=0;i<len;i++){
+             recipes[recipeIndex]["ingredients"][i]=myInp.myIng[i]
+          };
+          console.debug( recipes[recipeIndex])
+          let myRecipe:Recipe=recipes[recipeIndex]
+          res.send({myRecipe});
+        } catch (error:any) {
+          res.send({ error: error.message });
+        }
+}  
+
+export async function updatePre(req:any, res:any){
+      try {
+      const {recipeName, myPre } = req.body;
+        if(!recipeName) throw new Error("name is required");
+        if(!myPre) throw new Error("ingredients are required");
+        console.debug(myPre[0])
+        let myInp:any={recipeName,myPre}
+        const recipeIndex = recipes.findIndex(recipe => recipe.name === myInp.recipeName);
+        if (recipeIndex===-1) throw new Error("recipeName not found")
+        console.debug(`recipeIndex: ${recipeIndex}`)
+        const len:number = myInp.myPre.length
+        for(let i:number=0;i<len;i++){
+           recipes[recipeIndex]["prepareMode"][i]=myInp.myPre[i]
+        };
+        console.debug(recipes[recipeIndex]["prepareMode"][0])
+        let myRecipe:Recipe=recipes[recipeIndex]
+        res.send({myRecipe});
+      } catch (error:any) {
+        res.send({ error: error.message });
+      }
+}
+    
 export default recipes

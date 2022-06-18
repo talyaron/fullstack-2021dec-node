@@ -9,14 +9,24 @@
     <title>TaskBar/MainPage</title>
 </head>
 <body>
-    <main onload="handleLoadUsers()">
+    <main onload="handleLoad()">
         <h1>Login To Task Bar</h1>
-        <form onsubmit="handleAddUser(event)">
+        <form onsubmit="handleRegister(event)">
             <input type="email" name="email" placeholder="Email" required>
             <input type="password" name="password" placeholder="Password" required>
             <input type="text" name="uniqID" style="display: none;">
             <button type="submit">Add User</button>
         </form>
+        <br>
+        <form onsubmit="handleLogin(event)">
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <button type="submit">Add User</button>
+        </form>
+        <br>
+        <a href="./main.html">user page<a>
+        <br>
+        <button onclick="handleGetUsers()">GET USERS</button>
     </main>
     </div>
     <script src="./dist/index.js"></script>

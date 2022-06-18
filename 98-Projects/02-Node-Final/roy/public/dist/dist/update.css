@@ -1,0 +1,147 @@
+#topNav {
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: row;
+  width: 101vw;
+  margin-right: -7px;
+  margin-top: -10px;
+}
+#topNav #MTA {
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  margin-left: -70px;
+  margin-right: -60px;
+}
+#topNav #MTA h1 {
+  color: blue;
+}
+#topNav #MTA button {
+  margin-top: 15px;
+  height: 50px;
+  width: 300px;
+  background-color: blue;
+  color: yellow;
+}
+#topNav #MTA .teamIcon {
+  height: 70px;
+  width: 70px;
+}
+
+.header {
+  color: yellow;
+  text-shadow: 3px 1px navy;
+  text-decoration: underline;
+  width: 250px;
+  font-size: 40px;
+  margin: 30px;
+  font-weight: bold;
+}
+
+.transfer {
+  width: 300px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 30px;
+}
+.transfer .box2 {
+  margin-right: 50px;
+  cursor: pointer;
+  width: 400px;
+}
+.transfer .box2:hover {
+  opacity: 0.7;
+}
+.transfer .box2 .photo {
+  width: 400px;
+}
+.transfer p {
+  font-size: 20px;
+  margin-top: -5px;
+  font-weight: bold;
+  color: yellow;
+  text-shadow: 2px 2px navy;
+}
+.transfer h4 {
+  font-size: 15px;
+  margin-top: -10px;
+  font-weight: normal;
+  color: yellow;
+  text-shadow: 2px 2px navy;
+}
+
+#scoreBar {
+  position: absolute;
+  top: 600px;
+  right: 42vw;
+  width: 20vw;
+  height: 100px;
+  background-color: blue;
+}
+#scoreBar .score {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  color: yellow;
+  font-size: 30px;
+  border: 3px, black;
+  background-color: blue;
+}
+#scoreBar .score .fTeam {
+  width: 48%;
+  height: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  font-size: 30px;
+}
+#scoreBar .score .fTeam .fSymbol {
+  height: 50px;
+  width: 50px;
+}
+#scoreBar .score .sTeam {
+  width: 48%;
+  height: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  font-size: 30px;
+}
+#scoreBar .score .sTeam .sSymbol {
+  height: 50px;
+  width: 50px;
+}
+
+.article {
+  width: 300px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 30px;
+}
+.article .box2 {
+  margin-right: 50px;
+  cursor: pointer;
+  width: 400px;
+}
+.article .box2:hover {
+  opacity: 0.7;
+}
+.article .box2 .photo {
+  width: 400px;
+  height: 250px;
+}
+.article p {
+  font-size: 20px;
+  margin-top: -5px;
+  font-weight: bold;
+  color: yellow;
+  text-shadow: 2px 2px navy;
+}
+.article h4 {
+  font-size: 15px;
+  margin-top: -10px;
+  font-weight: normal;
+  color: yellow;
+  text-shadow: 2px 2px navy;
+}

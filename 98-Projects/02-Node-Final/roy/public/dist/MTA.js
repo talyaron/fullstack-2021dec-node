@@ -60,7 +60,6 @@ function handleDeleteTeam() {
                 case 1:
                     data = (_a.sent()).data;
                     teams = data.teams;
-                    console.log(teamId);
                     console.log(teams);
                     renderTopNav(teams);
                     return [3 /*break*/, 3];
@@ -78,9 +77,10 @@ function handleDeleteTeam() {
     });
 }
 function renderTopNav(teams) {
+    console.log(teams);
     var team = teams[0];
     var html = "";
-    html += "<div id=\"" + team.name + "\">\n<img src=\"" + team.symbol + "\" class=\"teamIcon\">\n<a href='https://www.maccabi-tlv.co.il/' class=\"url\"><button>" + team.name + " official website</button></a>\n<h1>Sportil</h1>\n</div>";
+    html += "<div id=\"" + team.name + "\">\n<img src=\"" + team.symbol + "\" class=\"teamIcon\">\n<a href='https://www.maccabi-tlv.co.il/' class=\"url\"><button>" + team.name + " official website</button></a>\n<a href='index.html'>\n<h1>Sportil</h1>\n</a>\n</div>";
     var topNav = document.querySelector('#topNav');
     topNav.innerHTML = html;
     topNav.style.backgroundColor = "" + team.backgroundColor;
@@ -104,11 +104,12 @@ function handleGetTransfers() {
     });
 }
 function renderTransfer(transfers) {
+    var teamId = getTeamId();
     console.log(transfers);
     var html = "";
     transfers.forEach(function (transfer) {
         html +=
-            "<div class=\"transfer\">\n    <div class=\"box2\">\n\t<a href=\"" + transfer.url + "\">\n    <img src=\"" + transfer.photo + "\" class=\"photo\">\n\t</a>\n    <p>" + transfer.headline + "</p>\n    <h4>" + transfer.text + "</h4>   \n    </div>";
+            "<div class=\"transfer" + teamId + "\">\n    <div class=\"box2\">\n\t<a href=\"" + transfer.url + "\">\n    <img src=\"" + transfer.photo + "\" class=\"photo\">\n\t</a>\n    <p>" + transfer.headline + "</p>\n    <h4>" + transfer.text + "</h4>   \n    </div>";
     });
     var transferBar = document.querySelector('#transferBar');
     transferBar.innerHTML = html;
@@ -132,11 +133,12 @@ function getScore() {
     });
 }
 function renderscore(scores) {
+    var teamId = getTeamId();
     var score = scores[0];
     console.log(score);
     var html = "";
     html +=
-        "<div class=\"score\">\n\t<div class=\"fTeam\">\n\t<img src=\"" + score.fTeamSymbol + "\" class=\"fSymbol\">\n\t<p>" + score.fTeamScore + "</p>\n\t</div>\n\t<p>-</p>\n\t<div class=\"sTeam\">\n\t<p>" + score.sTeamScore + "</p>\n\t<img src=\"" + score.sTeamSymbol + "\" class=\"sSymbol\">\n\t</div>\n\t</div>";
+        "<div class=\"score" + teamId + "\">\n\t<div class=\"fTeam\">\n\t<img src=\"" + score.fTeamSymbol + "\" class=\"fSymbol\">\n\t<p>" + score.fTeamScore + "</p>\n\t</div>\n\t<p>-</p>\n\t<div class=\"sTeam\">\n\t<p>" + score.sTeamScore + "</p>\n\t<img src=\"" + score.sTeamSymbol + "\" class=\"sSymbol\">\n\t</div>\n\t</div>";
     var bar = document.querySelector('#scoreBar');
     bar.innerHTML = html;
 }
@@ -159,11 +161,11 @@ function getAllArticales() {
     });
 }
 function renderarticle(articles) {
-    console.log(articles);
+    var teamId = getTeamId();
     var html = "";
     articles.forEach(function (article) {
         html +=
-            "<div class=\"article\">\n    <div class=\"box2\">\n\t<a href=\"" + article.url + "\">\n    <img src=\"" + article.photo + "\" class=\"photo\">\n\t</a>\n    <p>" + article.headline + "</p>\n    <h4>" + article.text + "</h4>   \n    </div>";
+            "<div class=\"article" + teamId + "\">\n    <div class=\"box2\">\n\t<a href=\"" + article.url + "\">\n    <img src=\"" + article.photo + "\" class=\"photo\">\n\t</a>\n    <p>" + article.headline + "</p>\n    <h4>" + article.text + "</h4>   \n    </div>";
     });
     var articleBar = document.querySelector('#articleBar');
     articleBar.innerHTML = html;

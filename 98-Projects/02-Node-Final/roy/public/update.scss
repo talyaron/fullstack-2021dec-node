@@ -1,0 +1,331 @@
+#topNav{
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+    width: 101vw;
+    margin-right: -7px;
+    margin-top: -10px;
+    #MTA{
+        display: flex;
+        justify-content: space-between;
+        width: 90%;
+        margin-left: -70px;
+        margin-right: -60px;
+        h1{
+            color: blue;
+        }
+        button{
+            margin-top: 15px;
+            height: 50px;
+            width: 300px;
+            background-color: blue;
+            color: yellow;
+        }
+    
+        .teamIcon{
+            height: 70px;
+            width: 70px;
+
+        }
+    }
+
+    
+}
+
+
+.transferabc{
+    width: 300px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 30px;
+   //margin-left: 160px;
+
+    .box2{
+        margin-right: 50px;
+        &:hover {
+            opacity: 0.7;
+        }
+        cursor: pointer;
+        width: 400px;
+        .photo{
+        width: 400px;
+        }
+    }
+    p{
+        font-size: 20px;
+        margin-top: -5px;
+        font-weight: bold;
+        color: yellow;
+        text-shadow:2px 2px navy ;
+
+    }
+    h4{
+        font-size: 15px;
+        margin-top: -10px;
+        font-weight: normal;
+        color: yellow;
+        text-shadow:2px 2px navy ;
+    }
+    
+   }
+
+#scoreBar{
+    position: absolute;
+    top: 600px;
+    right: 42vw;
+    width: 20vw;
+    height: 100px;
+    background-color: blue;
+    
+    
+    .scoreabc{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+        color:yellow;
+        font-size: 30px;
+        border:3px, black;
+        background-color: blue;
+        
+        
+        .fTeam{
+            width: 48%;
+            height: 100%;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            font-size: 30px;
+            .fSymbol{
+                height: 50px;
+                width: 50px;
+            }
+        }
+        .sTeam{
+            width: 48%;
+            height: 100%;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            font-size: 30px;
+            .sSymbol{
+                height: 50px;
+                width: 50px;
+            }
+        }
+    }
+}
+
+.articleabc{
+    width: 300px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 30px;
+   //margin-left: 160px;
+
+    .box3{
+        margin-right: 50px;
+        &:hover {
+            opacity: 0.7;
+        }
+        cursor: pointer;
+        width: 400px;
+        .photo{
+        width: 400px;
+        height: 250px;
+        }
+    }
+    p{
+        font-size: 20px;
+        margin-top: -5px;
+        font-weight: bold;
+        color: yellow;
+        text-shadow:2px 2px navy ;
+
+    }
+    h4{
+        font-size: 15px;
+        margin-top: -10px;
+        font-weight: normal;
+        color: yellow;
+        text-shadow:2px 2px navy ;
+    }
+   
+   }
+                 /////HTA///////
+           
+                 
+     #topNav{
+             display: flex;
+             justify-content: space-evenly; 
+             flex-direction: row;
+             width: 101vw;
+             margin-right: -7px;
+             margin-top: -10px;
+                 #HTA{
+                    display: flex;
+                    justify-content: space-between;
+                    width: 90%;
+                    margin-left: -70px;
+                    margin-right: -60px;
+                    h1{
+                        color: white;
+                    }
+                    button{
+                        margin-top: 15px;
+                        height: 50px;
+                        width: 300px;
+                        background-color: white;
+                        color: red;
+                    }
+                    
+              
+            
+                    .teamIcon{
+                        height: 70px;
+                        width: 70px;
+            
+                    }
+                }
+            }
+   
+   
+
+   .header{
+    //background-color: navy;
+    color: #090909;
+    text-shadow:2px 1px white ;
+    text-decoration: underline;
+    width: 250px;
+    font-size: 40px;
+    font-weight: bold;
+    margin: 30px;
+}
+
+.transferabcd{
+    width: 300px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 30px;
+   //margin-left: 160px;
+
+    .box2{
+        margin-right: 100px;
+        &:hover {
+            opacity: 0.7;
+        }
+        cursor: pointer;
+        width: 350px;
+        .photo{
+            width: 350px;
+            height: 250px;
+            }
+    }
+    p{
+        font-size: 20px;
+        margin-top: -5px;
+        font-weight: bold;
+        color: #f7fbfc;
+        text-shadow:2px 2px rgb(253, 4, 4) ;
+
+    }
+    h4{
+        font-size: 15px;
+        margin-top: -10px;
+        font-weight: normal;
+        color:  #feffff;
+        text-shadow:2px 2px rgb(249, 2, 2) ;
+    }
+   }
+
+#scoreBar{
+    position: absolute;
+    top: 600px;
+    right: 42vw;
+    width: 20vw;
+    height: 100px;
+    background-color: blue;
+    
+    
+    .scoreabcd{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+        color:yellow;
+        font-size: 30px;
+        border:3px, black;
+        background-color: blue;
+        
+        
+        .fTeam{
+            width: 48%;
+            height: 100%;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            font-size: 30px;
+            .fSymbol{
+                height: 50px;
+                width: 50px;
+            }
+        }
+        .sTeam{
+            width: 48%;
+            height: 100%;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            font-size: 30px;
+            .sSymbol{
+                height: 50px;
+                width: 50px;
+            }
+        }
+    }
+}
+
+.articleabcd{
+    width: 300px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 30px;
+   //margin-left: 160px;
+
+   .box3{
+    margin-right: 50px;
+    &:hover {
+        opacity: 0.7;
+    }
+    cursor: pointer;
+    width: 400px;
+    .photo{
+    width: 400px;
+    height: 250px;
+    }
+}
+    p{
+        font-size: 20px;
+        margin-top: -5px;
+        font-weight: bold;
+        color: rgb(253, 251, 248);
+        text-shadow:2px 2px rgb(249, 2, 2) ;
+
+    }
+    h4{
+        font-size: 15px;
+        margin-top: -10px;
+        font-weight: normal;
+        color: rgba(251, 252, 250, 0.904);
+        text-shadow:2px 2px rgb(249, 2, 2) ;
+    }
+    .box1{
+       width: 3px;
+       height: 13px;
+       background-color: rgb(243, 240, 34);
+       display: flex;
+       margin-top: -10px;
+       margin-left: 0px;
+       }
+      
+   }

@@ -25,7 +25,6 @@ async function handleDeleteTeam() {
 		 	data: { teamId }
 		 });
      const {teams} = data;
-	 console.log(teamId)
 	 console.log(teams)
 	 renderTopNav(teams)
 	} catch (error) {
@@ -36,12 +35,15 @@ async function handleDeleteTeam() {
 	getAllArticales()
 }
 function renderTopNav(teams:team){
+	console.log(teams)
 let team= teams[0]
 let html="";
 html+=`<div id="${team.name}">
 <img src="${team.symbol}" class="teamIcon">
 <a href='https://www.maccabi-tlv.co.il/' class="url"><button>${team.name} official website</button></a>
+<a href='index.html'>
 <h1>Sportil</h1>
+</a>
 </div>`
 const topNav= document.querySelector('#topNav')
 topNav.innerHTML=html
@@ -58,11 +60,12 @@ async function handleGetTransfers() {
 }
 
 function renderTransfer(transfers){
+	const teamId = getTeamId();
 console.log(transfers)
 	let html=""
 	transfers.forEach((transfer) =>{
 	html+=
-	`<div class="transfer">
+	`<div class="transfer${teamId}">
     <div class="box2">
 	<a href="${transfer.url}">
     <img src="${transfer.photo}" class="photo">
@@ -84,11 +87,12 @@ async function getScore() {
 	renderscore(score);
 }
 function renderscore(scores){
+	const teamId = getTeamId();
 	let score= scores[0]
 	console.log(score)
 	let html=""
 	html+=
-	`<div class="score">
+	`<div class="score${teamId}">
 	<div class="fTeam">
 	<img src="${score.fTeamSymbol}" class="fSymbol">
 	<p>${score.fTeamScore}</p>
@@ -113,11 +117,11 @@ async function getAllArticales() {
 }
 
 function renderarticle(articles){
-console.log(articles)
+	const teamId = getTeamId();
 	let html=""
 	articles.forEach((article) =>{
 	html+=
-	`<div class="article">
+	`<div class="article${teamId}">
     <div class="box2">
 	<a href="${article.url}">
     <img src="${article.photo}" class="photo">

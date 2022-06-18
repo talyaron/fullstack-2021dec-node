@@ -11,8 +11,21 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link rel="stylesheet" href="./dist/add.css">
 </head>
-<body onload="handleAddRepipe()">
-    <div id="root"></div>
+<body onload="handleAddRecipe()">
+    <div id="root">
+            <h1>Create new Recipe</h1>
+            <form onsubmit="PostRecipe(event)">
+                <input type="text" name="name" placeholder="Recipe Name">
+                <div class="linesIng">
+                    <input type="text" name="Array1" placeholder="Ingredients"></input><br>
+                </div>
+                <div class="linesPre">    
+                    <input type="text" name="Array2" placeholder="Prepare Mode"/><br>
+                </div>    
+                <input type="text" name="adderName" placeholder="name of adder"/>
+                <button type="submit">Post Recipe</button>
+            </form>
+    </div>
     <script src="./dist/index.js"></script>   
 </body>
 </html>

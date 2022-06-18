@@ -1,3 +1,4 @@
+"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -34,6 +35,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+exports.__esModule = true;
 function handleGetRecipe() {
     console.log("handleGetRecipe");
     var forms = document.querySelector("#forms");
@@ -59,13 +61,12 @@ function getRecipe(event) {
                     _a.label = 1;
                 case 1:
                     _a.trys.push([1, 3, , 4]);
-                    console.log("" + recipeName);
-                    return [4 /*yield*/, axios.get('/api/get-recipe/getRoutRecipe')];
+                    console.log("recipeName from getRecipe client:" + recipeName);
+                    return [4 /*yield*/, axios.put('/api/get-recipe/getRoutRecipe', { recipeName: recipeName })];
                 case 2:
                     data = (_a.sent()).data;
-                    console.log({ data: data });
                     recipe = data.recipe, error = data.error;
-                    console.log(recipe);
+                    console.log("recipe from client recieved from server: " + recipe);
                     if (error)
                         throw new Error(error);
                     renderFullRecipe(recipe);
@@ -79,73 +80,115 @@ function getRecipe(event) {
         });
     });
 }
-function handleAddRepipe() {
+function handleAddRecipe() {
     console.log("handleAddRecipe");
-    var forms = document.querySelector("#forms");
-    if (forms)
-        forms.remove();
-    var root = document.querySelector("#root");
-    if (root)
-        root.remove();
+    var form = document.querySelector('form');
     var body = document.querySelector("body");
-    root = document.createElement("root");
-    body.append(root);
-    var html = "";
-    html = "\n    <div id=\"root\">\n        <form onsubmit=\"PostRecipe(event)\">\n            <input type=\"text\" name=\"name\" placeholder=\"Recipe Name\"><br>";
-    html += "        \n            <input type=\"text\" name=\"array1[]\" placeholder=\"Ingredients\"/><br>\n            <input type=\"text\" name=\"array1[]\" placeholder=\"Ingredients\"/><br>\n            <input type=\"text\" name=\"array1[]\" placeholder=\"Ingredients\"/><br>\n            <input type=\"text\" name=\"array1[]\" placeholder=\"Ingredients\"/><br>\n            <input type=\"text\" name=\"array1[]\" placeholder=\"Ingredients\"/><br>\n            <input type=\"text\" name=\"array1[]\" placeholder=\"Ingredients\"/><br>";
-    html += "\n            <input type=\"text\" name=\"array2[]\" placeholder=\"Prepare Mode\"/><br>\n            <input type=\"text\" name=\"array2[]\" placeholder=\"Prepare Mode\"/><br>\n            <input type=\"text\" name=\"array2[]\" placeholder=\"Prepare Mode\"/><br>\n            <input type=\"text\" name=\"array2[]\" placeholder=\"Prepare Mode\"/><br>\n            <input type=\"text\" name=\"array2[]\" placeholder=\"Prepare Mode\"/><br>\n            <input type=\"text\" name=\"array2[]\" placeholder=\"Prepare Mode\"/><br>";
-    html += "\n            <input type=\"text\" name=\"adderName\" placeholder=\"name of adder\"/>\n            <button type=\"submit\">Post Recipe</button>        \n            </form>\n    </div>";
-    //let root:HTMLDivElement=document.querySelector("#root")  
-    body.innerHTML += html;
+    var root = document.querySelector("#root");
     root.style.position = "relative";
     root.style.top = "10px";
     root.style.left = "10px";
+    form.addEventListener('keyup', function (e) {
+        var divIng = document.querySelector('.linesIng');
+        var inputEl = document.createElement('input');
+        inputEl.setAttribute("type", "text");
+        inputEl.setAttribute("name", "Array1");
+        inputEl.setAttribute("placeholder", "Igredients");
+        if (e.key === "Control") {
+            console.log("divIng");
+            divIng.append(inputEl);
+            inputEl.focus();
+        }
+        var divPre = document.querySelector('.linesPre');
+        var inputPl = document.createElement('input');
+        inputPl.setAttribute("type", "text");
+        inputPl.setAttribute("name", "Array2");
+        inputPl.setAttribute("placeholder", "PrepareMode");
+        if (e.key === "Alt") {
+            console.log("divPre");
+            divPre.append(inputPl);
+            inputPl.focus();
+        }
+    });
 }
+// html=`
+// <div id="root">
+// <form onsubmit="PostRecipe(event)">
+// let html=""
+//         <input type="text" name="name" placeholder="Recipe Name"><br>`
+// html+=`        
+//         <input type="text" name="array1[]" placeholder="Ingredients"/><br>
+//         <input type="text" name="array1[]" placeholder="Ingredients"/><br>
+//         <input type="text" name="array1[]" placeholder="Ingredients"/><br>
+//         <input type="text" name="array1[]" placeholder="Ingredients"/><br>
+//         <input type="text" name="array1[]" placeholder="Ingredients"/><br>
+//         <input type="text" name="array1[]" placeholder="Ingredients"/><br>`
+// html+=`
+//         <input type="text" name="array2[]" placeholder="Prepare Mode"/><br>
+//         <input type="text" name="array2[]" placeholder="Prepare Mode"/><br>
+//         <input type="text" name="array2[]" placeholder="Prepare Mode"/><br>
+//         <input type="text" name="array2[]" placeholder="Prepare Mode"/><br>
+//         <input type="text" name="array2[]" placeholder="Prepare Mode"/><br>
+//         <input type="text" name="array2[]" placeholder="Prepare Mode"/><br>`
+// html+=`
+//         <input type="text" name="adderName" placeholder="name of adder"/>
+//         <button type="submit">Post Recipe</button>        
+//         </form>
+// </div>` 
+// //let root:HTMLDivElement=document.querySelector("#root")  
+// body.innerHTML+=html
+// root.style.position="relative" 
+// root.style.top="10px"
+// root.style.left="10px"
 function PostRecipe(event) {
     return __awaiter(this, void 0, void 0, function () {
-        var name, ingredients, i, prepareMode, i, adderName, myRecipe, data, myRecipe_1, error, error_2;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
+        var name, adderName, ingredients, prepareMode, _i, _a, field, data, myRecipe, error, error_2;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
                 case 0:
-                    console.log("PostRecipe");
+                    console.log("PostRecipe in client");
                     console.dir(event);
                     event.preventDefault();
                     name = event.target.elements.name.value;
                     console.log(name);
-                    console.dir(event.target.elements[0].value);
-                    ingredients = [];
-                    for (i = 1; i < 7; i++) {
-                        if (event.target.elements[i].value !== "") {
-                            ingredients.push(event.target.elements[i].value);
-                        }
-                    }
-                    console.log(ingredients);
-                    prepareMode = [];
-                    for (i = 7; i < 13; i++) {
-                        if (event.target.elements[i].value !== "") {
-                            prepareMode.push(event.target.elements[i].value);
-                        }
-                    }
-                    console.log(prepareMode);
                     adderName = event.target.elements.adderName.value;
-                    myRecipe = { name: name, ingredients: ingredients, prepareMode: prepareMode, adderName: adderName };
-                    _a.label = 1;
+                    console.log(adderName);
+                    ingredients = [];
+                    prepareMode = [];
+                    for (_i = 0, _a = event.target.elements; _i < _a.length; _i++) {
+                        field = _a[_i];
+                        console.log(field.name);
+                        if (field.name === "Array1") {
+                            console.log(field.value);
+                            if (field.value.length > 0) {
+                                ingredients.push(field.value);
+                            }
+                        }
+                        else if (field.name === "Array2") {
+                            console.log(field.value);
+                            if (field.value.length > 0) {
+                                prepareMode.push(field.value);
+                            }
+                        }
+                    }
+                    console.log("ingredients: " + ingredients[0]);
+                    console.log("prepareMode: " + prepareMode[0]);
+                    _b.label = 1;
                 case 1:
-                    _a.trys.push([1, 3, , 4]);
-                    console.log("" + myRecipe_1);
-                    return [4 /*yield*/, axios.post('/api/add-recipe', { name: name, ingredients: ingredients, prepareMode: prepareMode, adderName: adderName })];
+                    _b.trys.push([1, 3, , 4]);
+                    return [4 /*yield*/, axios.post('/api/add-recipe/postRoutRecipe', { name: name, ingredients: ingredients, prepareMode: prepareMode, adderName: adderName })];
                 case 2:
-                    data = (_a.sent()).data;
+                    data = (_b.sent()).data;
                     console.log({ data: data });
-                    myRecipe_1 = data.myRecipe, error = data.error;
+                    myRecipe = data.myRecipe, error = data.error;
                     //const myRecipe:Recipe={name,ingredients,prepareMode,adderName}
-                    console.log(myRecipe_1);
+                    console.log("myRecipe recieved from server:" + myRecipe);
                     if (error)
                         throw new Error(error);
-                    renderFullRecipe(myRecipe_1);
+                    renderFullRecipe(myRecipe);
                     return [3 /*break*/, 4];
                 case 3:
-                    error_2 = _a.sent();
+                    error_2 = _b.sent();
                     console.error(error_2);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
@@ -224,7 +267,7 @@ function CheckName(event) {
                     _a.label = 1;
                 case 1:
                     _a.trys.push([1, 3, , 4]);
-                    return [4 /*yield*/, axios.post('/api/check-recipe', { adderName: adderName, recipeName: recipeName })];
+                    return [4 /*yield*/, axios.post('/api/check-recipe/postRoutAdderName', { adderName: adderName, recipeName: recipeName })];
                 case 2:
                     data = (_a.sent()).data;
                     myRecipe = data.myRecipe, error = data.error;
@@ -327,7 +370,7 @@ function saveIng(event, recipeName) {
                     _a.label = 1;
                 case 1:
                     _a.trys.push([1, 3, , 4]);
-                    return [4 /*yield*/, axios.post('/api/update-ing', { recipeName: recipeName, myIng: myIng })];
+                    return [4 /*yield*/, axios.post('/api/update-ing/postRoutIng', { recipeName: recipeName, myIng: myIng })];
                 case 2:
                     data = (_a.sent()).data;
                     myRecipe = data.myRecipe, error = data.error;
@@ -363,7 +406,7 @@ function savePre(event, recipeName) {
                     _a.label = 1;
                 case 1:
                     _a.trys.push([1, 3, , 4]);
-                    return [4 /*yield*/, axios.post('/api/update-pre', { recipeName: recipeName, myPre: myPre })];
+                    return [4 /*yield*/, axios.post('/api/update-pre/postRoutPre', { recipeName: recipeName, myPre: myPre })];
                 case 2:
                     data = (_a.sent()).data;
                     myRecipe = data.myRecipe, error = data.error;
