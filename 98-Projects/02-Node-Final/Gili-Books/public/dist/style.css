@@ -1,0 +1,246 @@
+body {
+  width: 100vw;
+  overflow: hidden;
+  background-color: white;
+  font-family: "Raleway", sans-serif;
+}
+
+.main_Wrapper {
+  width: 50vw;
+  height: 50vh;
+  margin: auto;
+  margin-top: 100px;
+  text-align: center;
+}
+
+.main_btn_link:any-link {
+  color: white;
+  text-decoration: none;
+}
+
+.main_button {
+  margin: auto;
+  margin-top: 40px;
+  width: 150px;
+  height: 80px;
+  border-radius: 40px;
+  background-color: #937f64;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.main_button:hover {
+  opacity: 70%;
+  cursor: pointer;
+}
+
+.bookListsWrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.nav {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100vw;
+  height: 100px;
+  background-color: #937f64;
+  font-size: 3rem;
+  display: flex;
+  align-items: center;
+}
+.nav .fa-chevron-left {
+  margin-left: 10px;
+  color: white;
+}
+.nav:any-link {
+  color: white;
+  text-decoration: none;
+}
+.nav:any-link:hover {
+  cursor: pointer;
+}
+.nav__header {
+  margin-left: 30px;
+  color: white;
+  width: 340px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+}
+
+.rootSpace {
+  position: relative;
+  margin: auto;
+  top: 100px;
+  width: 800px;
+  height: 80vh;
+  overflow: auto;
+  margin: auto;
+}
+
+.user_card {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 750px;
+  height: 150px;
+  border: 1px solid gray;
+  border-radius: 20px;
+  margin: 10px;
+  font-size: 2rem;
+  background-color: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(5px);
+}
+.user_card a:any-link {
+  text-decoration: none;
+  color: #937f64;
+  display: flex;
+  align-items: center;
+}
+.user_card a:any-link .fa-book {
+  margin-right: 20px;
+}
+.user_card .user_btn {
+  border: none;
+  padding: 20px;
+  color: #937f64;
+  font-size: 2rem;
+  background-color: white;
+}
+.user_card .user_btn:hover {
+  cursor: pointer;
+}
+
+.img_back {
+  z-index: -1;
+  width: 600px;
+  position: relative;
+  bottom: 150px;
+}
+
+.add_user_footer {
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  width: 100vw;
+  height: 100px;
+  background-color: #937f64;
+  font-size: 3rem;
+}
+
+.bookListsWrapper {
+  position: relative;
+  margin: auto;
+  width: 1300px;
+  top: 100px;
+  height: 80vh;
+  overflow: auto;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(3, 400px);
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+}
+.bookListsWrapper img {
+  width: 200px;
+}
+
+.add_book_footer {
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  width: 100vw;
+  height: 100px;
+  background-color: #937f64;
+  font-size: 3rem;
+}
+
+.Book_card {
+  height: 500px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-around;
+  border: 1px solid gray;
+  border-radius: 20px;
+  margin: 10px;
+  font-size: 1.5rem;
+  background-color: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(5px);
+}
+.Book_card .btn_bookList {
+  display: flex;
+  min-width: 200px;
+  justify-content: space-between;
+}
+.Book_card .btn_bookList .pink {
+  color: #ff1249;
+}
+.Book_card .btn_bookList button {
+  background-color: white;
+  border: none;
+}
+.Book_card .btn_bookList button:hover {
+  cursor: pointer;
+}
+.Book_card .onlyMark {
+  justify-content: center;
+}
+.Book_card a:any-link {
+  text-decoration: none;
+  color: #937f64;
+  display: flex;
+  align-items: center;
+}
+
+.book_wrapper {
+  position: relative;
+  top: 100px;
+  width: 80vw;
+  margin: auto;
+  text-align: center;
+}
+.book_wrapper img {
+  width: 500px;
+}
+.book_wrapper .Book_Name {
+  height: 25%;
+  margin: auto;
+  font-size: 5rem;
+}
+
+#book_nav {
+  margin: auto;
+  text-align: center;
+  align-items: center;
+}
+
+#book_name_header {
+  width: 80vw;
+  margin: auto;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bolder;
+}
+
+.go_back {
+  color: white;
+  text-decoration: none;
+  border: none;
+  background-color: rgba(255, 255, 255, 0);
+  width: 80px;
+  height: 50px;
+  font-size: 3rem;
+}
+.go_back:hover {
+  cursor: pointer;
+}
+.go_back .fa-chevron-left {
+  color: white;
+}
