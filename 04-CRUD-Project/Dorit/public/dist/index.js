@@ -1,3 +1,4 @@
+"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -34,6 +35,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+exports.__esModule = true;
 function handleGetRecipe() {
     console.log("handleGetRecipe");
     var forms = document.querySelector("#forms");
@@ -81,43 +83,34 @@ function getRecipe(event) {
 function handleAddRecipe() {
     console.log("handleAddRecipe");
     var form = document.querySelector('form');
-    var forms = document.querySelector("#forms");
-    if (forms)
-        forms.remove();
-    var root = document.querySelector("#root");
-    if (root)
-        root.remove();
     var body = document.querySelector("body");
-    root = document.createElement("root");
-    body.append(root);
-    var html = "";
-    html = "\n    <h1>Create new Recipe in Form</h1>\n    <form onsubmit=\"PostRecipe(event)\">\n        <input type=\"text\" name=\"name\" placeholder=\"Recipe Name\">\n        <div class=\"linesIng\">\n            <input type=\"text\" name=\"array1[]\" placeholder=\"Ingredients\"><br>\n        </div>\n        <div class=\"linesPre\">    \n            <input type=\"text\" name=\"array2[]\" placeholder=\"Prepare Mode\"/><br>\n        </div>    \n        <input type=\"text\" name=\"adderName\" placeholder=\"name of adder\"/>\n        \n        <button type=\"submit\">Post Recipe</button>\n    </form>";
     var root = document.querySelector("#root");
-    body.innerHTML += html;
     root.style.position = "relative";
     root.style.top = "10px";
     root.style.left = "10px";
+    form.addEventListener('keyup', function (e) {
+        var divIng = document.querySelector('.linesIng');
+        var inputEl = document.createElement('input');
+        inputEl.setAttribute("type", "text");
+        inputEl.setAttribute("name", "Array1");
+        inputEl.setAttribute("placeholder", "Igredients");
+        if (e.key === "Control") {
+            console.log("divIng");
+            divIng.append(inputEl);
+            inputEl.focus();
+        }
+        var divPre = document.querySelector('.linesPre');
+        var inputPl = document.createElement('input');
+        inputPl.setAttribute("type", "text");
+        inputPl.setAttribute("name", "Array2");
+        inputPl.setAttribute("placeholder", "PrepareMode");
+        if (e.key === "Alt") {
+            console.log("divPre");
+            divPre.append(inputPl);
+            inputPl.focus();
+        }
+    });
 }
-form.addEventListener('keyup', function (e) {
-    var divIng = document.querySelector('.linesIng');
-    var inputEl = document.createElement('input');
-    inputEl.setAttribute("type", "text");
-    inputEl.setAttribute("name", "array1[]");
-    inputEl.setAttribute("placeholder", "Igredients");
-    if (e.key === "Control") {
-        divIng.append(inputEl);
-        inputEl.focus();
-    }
-    var divPre = document.querySelector('.linespre');
-    var inputEl = document.createElement('input');
-    inputEl.setAttribute("type", "text");
-    inputEl.setAttribute("name", "array1[]");
-    inputEl.setAttribute("placeholder", "PrepareMode");
-    if (e.key === "Alt") {
-        divPre.append(inputEl);
-        inputEl.focus();
-    }
-});
 // html=`
 // <div id="root">
 // <form onsubmit="PostRecipe(event)">
@@ -162,21 +155,24 @@ function PostRecipe(event) {
                     console.log(adderName);
                     ingredients = [];
                     prepareMode = [];
-                    for (_i = 0, _a = event.target; _i < _a.length; _i++) {
+                    for (_i = 0, _a = event.target.elements; _i < _a.length; _i++) {
                         field = _a[_i];
-                        if (field.type !== "submit") {
-                            if (field.name.includes("Array1[]")) {
-                                if (field.value.length > 0) {
-                                    ingredients.push(field.value);
-                                }
+                        console.log(field.name);
+                        if (field.name === "Array1") {
+                            console.log(field.value);
+                            if (field.value.length > 0) {
+                                ingredients.push(field.value);
                             }
-                            else if (field.name.includes("Array2[]")) {
-                                if (field.value.length > 0) {
-                                    prepareMode.push(field.value);
-                                }
+                        }
+                        else if (field.name === "Array2") {
+                            console.log(field.value);
+                            if (field.value.length > 0) {
+                                prepareMode.push(field.value);
                             }
                         }
                     }
+                    console.log("ingredients: " + ingredients[0]);
+                    console.log("prepareMode: " + prepareMode[0]);
                     _b.label = 1;
                 case 1:
                     _b.trys.push([1, 3, , 4]);

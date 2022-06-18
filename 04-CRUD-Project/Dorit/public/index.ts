@@ -1,3 +1,4 @@
+import { maxHeaderSize } from "http";
 
 interface Recipe {
     name: string;
@@ -47,58 +48,40 @@ interface Recipe {
  function handleAddRecipe(){
     console.log("handleAddRecipe")
     const form = document.querySelector('form')
-
-    let forms:HTMLDivElement = document.querySelector("#forms")
-    if(forms) forms.remove()
-    let root:HTMLDivElement=document.querySelector("#root")  
-    if(root) root.remove()
     let body = document.querySelector("body")
-    root = document.createElement("root")
-    body.append(root)
-    let html=""
-    html=`
-    <h1>Create new Recipe in Form</h1>
-    <form onsubmit="PostRecipe(event)">
-        <input type="text" name="name" placeholder="Recipe Name">
-        <div class="linesIng">
-            <input type="text" name="array1[]" placeholder="Ingredients"><br>
-        </div>
-        <div class="linesPre">    
-            <input type="text" name="array2[]" placeholder="Prepare Mode"/><br>
-        </div>    
-        <input type="text" name="adderName" placeholder="name of adder"/>
-        
-        <button type="submit">Post Recipe</button>
-    </form>`
     let root:HTMLDivElement=document.querySelector("#root")   
-    body.innerHTML+=html
     root.style.position="relative" 
     root.style.top="10px"
-    root.style.left="10px"  
- }   
-    form.addEventListener('keyup', (e) => {
+    root.style.left="10px" 
+
+
+    form.addEventListener('keyup', (e:any) => {
         const divIng = document.querySelector('.linesIng')
     
         const inputEl = document.createElement('input')
         inputEl.setAttribute("type", "text")
-        inputEl.setAttribute("name", "array1[]")
+        inputEl.setAttribute("name", "Array1")
         inputEl.setAttribute("placeholder", "Igredients")
     
         if (e.key === "Control") {
+            console.log("divIng")
             divIng.append(inputEl)
             inputEl.focus()
         }
-        const divPre = document.querySelector('.linespre')
-        const inputEl = document.createElement('input')
-        inputEl.setAttribute("type", "text")
-        inputEl.setAttribute("name", "array1[]")
-        inputEl.setAttribute("placeholder", "PrepareMode")
-        if (e.key === "Alt") {
-            divPre.append(inputEl)
-            inputEl.focus()
-        }
-    })
+        const divPre = document.querySelector('.linesPre')
 
+        const inputPl = document.createElement('input')
+        inputPl.setAttribute("type", "text")
+        inputPl.setAttribute("name", "Array2")
+        inputPl.setAttribute("placeholder", "PrepareMode")
+              
+        if (e.key === "Alt") {
+            console.log("divPre")
+            divPre.append(inputPl)
+            inputPl.focus()
+        }
+    }) 
+ }
 
     // html=`
     // <div id="root">
@@ -158,21 +141,26 @@ async function PostRecipe(event: any){
     //=======================================
 
     //const obj = {}
-    let ingredients = []
-    let prepareMode = []
-    for (let field of event.target) {
-        if (field.type !== "submit") {
-            if (field.name.includes("Array1[]")) {
+    let ingredients:Array<string> = []
+    let prepareMode:Array<string> = []
+    for (let field of event.target.elements) {
+        console.log(field.name)
+       
+            if (field.name==="Array1") {
+                console.log(field.value)
                 if (field.value.length > 0) {
                     ingredients.push(field.value)
                 }
-            } else if (field.name.includes("Array2[]")){    
+            } else if (field.name==="Array2"){
+                console.log(field.value)    
                 if (field.value.length > 0) {
                     prepareMode.push(field.value)
                 }
             }    
-        }
+
     }
+    console.log(`ingredients: ${ingredients[0]}`)
+    console.log(`prepareMode: ${prepareMode[0]}`)
 
     try {
         //console.log(`${myRecipe}`)

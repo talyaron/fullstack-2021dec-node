@@ -2,7 +2,7 @@ body {
   background-color: #ccf7e1;
   position: relative;
 }
-body #handleDoAction {
+body #root {
   position: absolute;
   top: 30px;
   left: 350px;
