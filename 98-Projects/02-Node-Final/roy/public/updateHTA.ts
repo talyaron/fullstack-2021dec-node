@@ -28,11 +28,11 @@ async function handleDeleteTeam() {
 	try {
     const teamId = getTeamId();
 		//@ts-ignore
-		 const { data } = await axios.delete('/MTA/Team-delete', {
+		 const { data } = await axios.delete('/HTA/Team-delete', {
 		 	data: { teamId }
 		 });
      const {teams} = data;
-	 
+	 console.log(teams)
 	 renderTopNav(teams)
 	} catch (error) {
 		console.error(error);
@@ -48,7 +48,7 @@ let team= teams[0]
 let html="";
 html+=`<div id="${team.name}">
 <img src="${team.symbol}" class="teamIcon">
-<a href='https://www.maccabi-tlv.co.il/' class="url"><button>${team.name} official website</button></a>
+<a href='https://www.htafc.co.il/' class="url"><button>${team.name} official website</button></a>
 <a href='index.html'>
 <h1>Sportil</h1>
 </a>
@@ -60,7 +60,7 @@ topNav.style.backgroundColor=`${team.backgroundColor}`
 
 async function handleGetTransfers() {
 	//@ts-ignore
-	const { data } = await axios.get('/MTA/get-transfers');
+	const { data } = await axios.get('/HTA/get-transfers');
 	const { transfers } = data;
 	
 	if (!Array.isArray(transfers)) throw new Error('transfers should be an array ant it is not');
@@ -117,7 +117,7 @@ editTransfer.innerHTML= html
 	 Id: elements.id.value
 	}
 	//@ts-ignore
-	const { data } = await axios.patch("/MTA/update-Transfers", { results });
+	const { data } = await axios.patch("/HTA/update-Transfers", { results });
 	const transfers = data;
 	if (!Array.isArray(transfers)) throw new Error('transfers should be an array ant it is not');
 	console.log(transfers)
@@ -151,7 +151,7 @@ interface score{
 
 async function getScore() {
 	//@ts-ignore
-	const { data } = await axios.get('/MTA/get-score');
+	const { data } = await axios.get('/HTA/get-score');
 	const { score } = data;
 	if (!Array.isArray(score)) throw new Error('score should be an array ant it is not');
 	renderscore(score);
@@ -207,7 +207,7 @@ console.dir(event)
 	sTeamSymbol: elements.sTeamSymbol.value,
 	}
 	//@ts-ignore
-	const { data } = await axios.patch("/MTA/update-Score", { results });
+	const { data } = await axios.patch("/HTA/update-Score", { results });
 	const Score = data;
 	console.log(Score)
 	reRenderScore(Score)
@@ -243,7 +243,7 @@ interface article{
 }
 async function getAllArticales() {
 	//@ts-ignore
-	const { data } = await axios.get('/MTA/get-articles');
+	const { data } = await axios.get('/HTA/get-articles');
 	const { articles } = data;
 
 	if (!Array.isArray(articles)) throw new Error('articles should be an array ant it is not');
@@ -299,7 +299,7 @@ editArticle.innerHTML= html
 	 Id: elements.id.value
 	}
 	//@ts-ignore
-	const { data } = await axios.patch("/MTA/update-Articles", { results });
+	const { data } = await axios.patch("/HTA/update-Articles", { results });
 	const articles = data;
 	if (!Array.isArray(articles)) throw new Error('articles should be an array ant it is not');
 	console.log(articles)
@@ -326,7 +326,7 @@ function reRenderArticles(articles){
 function GoToPage(){
 	const teamId = getTeamId();
 	let html=""
-	html+=`<a href=MTA.html?Id=${teamId}>
+	html+=`<a href=HTA.html?Id=${teamId}>
 	<button> עבור לדף המעודכן</button>
 	</a>`
 	let continuebotton= document.querySelector('.continueBotton')

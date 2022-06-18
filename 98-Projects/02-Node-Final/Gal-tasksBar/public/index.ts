@@ -1,3 +1,5 @@
+import { getUser } from "../cont/usersCont";
+
 interface user{
     userName: string,
     email: string,
@@ -52,10 +54,97 @@ function renderUsers(users: Array < user > ) {
 }
 
 
+
 function handleLoad() {
-	try {
-		
-	} catch (error) {
-		console.error(error);
-	}
+  try {
+        getUserByCookie();
+  } catch (error) {
+    console.error(error);
+  }
 }
+
+async function handleRegister(ev) {
+    ev.preventDefault();
+    let { username, password } = ev.target.elements;
+
+    username = username.value;
+    password = password.value;
+
+  
+    
+    //@ts-ignore
+    const { data } = await axios.post("/users/add-user", { username, password });
+    console.log(data);
+}
+
+async function handleLogin(ev) {
+    try{
+    ev.preventDefault();
+    let { username, password } = ev.target.elements;
+    username = username.value;
+    password = password.value;
+    
+    //@ts-ignore
+    const { data } = await axios.post("/users/login", { username, password });
+    console.log(data);
+    const {user} = data;
+    if(!user){
+        throw new Error('User not found');
+    }
+
+    const usernameDB = user.username;
+    const root = document.getElementById('root');
+    if(root){
+        root.innerHTML = `<h1>Welcome ${usernameDB}</h1>`
+    }
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+async function getUserByCookie() {
+    try{
+    //@ts-ignore
+    const { data } = await axios.get("/users/get-user");
+    console.log(data);
+    const {user} = data;
+    if(!user){
+        throw new Error('User not found');
+    }
+
+    const usernameDB = user.username;
+    const root = document.getElementById('root');
+    if(root){
+        root.innerHTML = `<h1>Welcome ${usernameDB}</h1>`
+    }
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+async function handleGetUsers() {
+    //@ts-ignore
+   const { data } = await axios.get('/users/get-users')
+   console.log(data)
+
+   const { users } = data;
+   console.log(users)
+   if (users) {
+       renderUsers(users);
+   }
+}
+
+
+// async function handleSearchItems(event) {
+// 	try {
+// 		event.preventDefault();
+
+// 		//@ts-ignore
+// 		const { data } = await axios.post('/items/searchItems', {
+		
+// 		});
+// 		const filtereditems  = data;
+// 	} catch (error) {
+// 		console.error(error);
+// 	}
+// }

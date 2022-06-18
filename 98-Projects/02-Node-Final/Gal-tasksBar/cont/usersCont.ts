@@ -53,6 +53,33 @@ export const handleAddUser = (req, res) => {
 	}
 };
 
+// export const login =async (req:any, res:any) => {
+//     try {
+//         let {username, password} = req.body;
+//         const user = await user.findOne({username, password});
+//         if (user){
+//             res.cookie('user',user._.id);
+//             res.send({ok:true,user})
+//         }else{
+//             throw new Error("user not found");
+//         }
+//     } catch (error) {
+//         console.error(error);
+// 		res.send({ error: error.message });
+//     }
+// }
+
+export const getUserByCookie = (req,res)=>{
+    try {
+        const {user} = req.cookies;
+        console.log(user);
+        res.send({ok:true,user})
+    } catch (error) {
+        console.error(error);
+        res.send({ error: error.message });
+    }
+}
+
 export async function getAllUsers(req, res) {
 	try {
 		res.send({ users });

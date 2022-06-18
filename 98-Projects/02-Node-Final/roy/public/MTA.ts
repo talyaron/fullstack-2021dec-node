@@ -41,7 +41,9 @@ let html="";
 html+=`<div id="${team.name}">
 <img src="${team.symbol}" class="teamIcon">
 <a href='https://www.maccabi-tlv.co.il/' class="url"><button>${team.name} official website</button></a>
+<a href='index.html'>
 <h1>Sportil</h1>
+</a>
 </div>`
 const topNav= document.querySelector('#topNav')
 topNav.innerHTML=html

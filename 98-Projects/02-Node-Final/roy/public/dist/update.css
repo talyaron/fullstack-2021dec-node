@@ -109,15 +109,15 @@
   grid-template-columns: 1fr 1fr 1fr;
   gap: 30px;
 }
-.articleabc .box2 {
+.articleabc .box3 {
   margin-right: 50px;
   cursor: pointer;
   width: 400px;
 }
-.articleabc .box2:hover {
+.articleabc .box3:hover {
   opacity: 0.7;
 }
-.articleabc .box2 .photo {
+.articleabc .box3 .photo {
   width: 400px;
   height: 250px;
 }
@@ -258,16 +258,16 @@
   grid-template-columns: 1fr 1fr 1fr;
   gap: 30px;
 }
-.articleabcd .box2 {
-  margin-right: 100px;
+.articleabcd .box3 {
+  margin-right: 50px;
   cursor: pointer;
-  width: 350px;
+  width: 400px;
 }
-.articleabcd .box2:hover {
+.articleabcd .box3:hover {
   opacity: 0.7;
 }
-.articleabcd .box2 .photo {
-  width: 350px;
+.articleabcd .box3 .photo {
+  width: 400px;
   height: 250px;
 }
 .articleabcd p {

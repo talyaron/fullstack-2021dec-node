@@ -51,6 +51,27 @@ export async function getAllTransfers(req, res) {
 		res.send({ error: error.message });
 	}
 }
+export const updateTransfer = async (req, res) => {
+	try {
+		const { results } = req.body;
+		if (!results) throw new Error('results is required');
+		transfers.forEach((transfer) => {
+			console.log(typeof transfer.Id);
+			if (transfer.Id === String(results.Id)) {
+				transfer.headline= results.headline;
+               transfer.Id=results.Id;
+             	transfer.photo=results.photo;
+                transfer.url=results.url;
+                transfer.text=results.text;
+				console.log(transfers)
+			}
+		});
+		res.send(transfers);
+	} catch (error) {
+		console.error(error);
+		res.send({ error: error.message });
+	}
+};
 export interface score{
     fTeamSymbol:string,
 	sTeamSymbol:string,
@@ -71,6 +92,17 @@ export async function getScore(req, res) {
 	}
 }
 
+export const updateScore = async (req, res) => {
+	try {
+		const { results } = req.body;
+		if (!results) throw new Error('results is required');
+				score[0]=results	
+		res.send(score);
+	} catch (error) {
+		console.error(error);
+		res.send({ error: error.message });
+	}
+};
 export interface article{
     headline:string,
     Id:string,
@@ -92,3 +124,24 @@ export async function getAllArticales(req, res) {
 		res.send({ error: error.message });
 	}
 }
+
+export const updateArticle = async (req, res) => {
+	try {
+		const { results } = req.body;
+		if (!results) throw new Error('results is required');
+		articles.forEach((article) => {
+			console.log(typeof article.Id);
+			if (article.Id === String(results.Id)) {
+				article.headline= results.headline;
+               article.Id=results.Id;
+             	article.photo=results.photo;
+                article.url=results.url;
+                article.text=results.text;
+			}
+		});
+		res.send(articles);
+	} catch (error) {
+		console.error(error);
+		res.send({ error: error.message });
+	}
+};

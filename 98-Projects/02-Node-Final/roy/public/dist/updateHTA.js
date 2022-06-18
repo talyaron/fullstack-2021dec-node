@@ -54,12 +54,13 @@ function handleDeleteTeam() {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
                     teamId = getTeamId();
-                    return [4 /*yield*/, axios["delete"]('/MTA/Team-delete', {
+                    return [4 /*yield*/, axios["delete"]('/HTA/Team-delete', {
                             data: { teamId: teamId }
                         })];
                 case 1:
                     data = (_a.sent()).data;
                     teams = data.teams;
+                    console.log(teams);
                     renderTopNav(teams);
                     return [3 /*break*/, 3];
                 case 2:
@@ -79,7 +80,7 @@ function handleDeleteTeam() {
 function renderTopNav(teams) {
     var team = teams[0];
     var html = "";
-    html += "<div id=\"" + team.name + "\">\n<img src=\"" + team.symbol + "\" class=\"teamIcon\">\n<a href='https://www.maccabi-tlv.co.il/' class=\"url\"><button>" + team.name + " official website</button></a>\n<a href='index.html'>\n<h1>Sportil</h1>\n</a>\n</div>";
+    html += "<div id=\"" + team.name + "\">\n<img src=\"" + team.symbol + "\" class=\"teamIcon\">\n<a href='https://www.htafc.co.il/' class=\"url\"><button>" + team.name + " official website</button></a>\n<a href='index.html'>\n<h1>Sportil</h1>\n</a>\n</div>";
     var topNav = document.querySelector('#topNav');
     topNav.innerHTML = html;
     topNav.style.backgroundColor = "" + team.backgroundColor;
@@ -89,7 +90,7 @@ function handleGetTransfers() {
         var data, transfers;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, axios.get('/MTA/get-transfers')];
+                case 0: return [4 /*yield*/, axios.get('/HTA/get-transfers')];
                 case 1:
                     data = (_a.sent()).data;
                     transfers = data.transfers;
@@ -132,7 +133,7 @@ function updateTransfer(event) {
                         text: elements.text.value,
                         Id: elements.id.value
                     };
-                    return [4 /*yield*/, axios.patch("/MTA/update-Transfers", { results: results })];
+                    return [4 /*yield*/, axios.patch("/HTA/update-Transfers", { results: results })];
                 case 1:
                     data = (_a.sent()).data;
                     transfers = data;
@@ -160,7 +161,7 @@ function getScore() {
         var data, score;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, axios.get('/MTA/get-score')];
+                case 0: return [4 /*yield*/, axios.get('/HTA/get-score')];
                 case 1:
                     data = (_a.sent()).data;
                     score = data.score;
@@ -205,7 +206,7 @@ function updateScore(event) {
                         sTeamScore: elements.sTeamScore.value,
                         sTeamSymbol: elements.sTeamSymbol.value
                     };
-                    return [4 /*yield*/, axios.patch("/MTA/update-Score", { results: results })];
+                    return [4 /*yield*/, axios.patch("/HTA/update-Score", { results: results })];
                 case 1:
                     data = (_a.sent()).data;
                     Score = data;
@@ -231,7 +232,7 @@ function getAllArticales() {
         var data, articles;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, axios.get('/MTA/get-articles')];
+                case 0: return [4 /*yield*/, axios.get('/HTA/get-articles')];
                 case 1:
                     data = (_a.sent()).data;
                     articles = data.articles;
@@ -274,7 +275,7 @@ function updateArticle(event) {
                         text: elements.text.value,
                         Id: elements.id.value
                     };
-                    return [4 /*yield*/, axios.patch("/MTA/update-Articles", { results: results })];
+                    return [4 /*yield*/, axios.patch("/HTA/update-Articles", { results: results })];
                 case 1:
                     data = (_a.sent()).data;
                     articles = data;
@@ -300,7 +301,7 @@ function reRenderArticles(articles) {
 function GoToPage() {
     var teamId = getTeamId();
     var html = "";
-    html += "<a href=MTA.html?Id=" + teamId + ">\n\t<button> \u05E2\u05D1\u05D5\u05E8 \u05DC\u05D3\u05E3 \u05D4\u05DE\u05E2\u05D5\u05D3\u05DB\u05DF</button>\n\t</a>";
+    html += "<a href=HTA.html?Id=" + teamId + ">\n\t<button> \u05E2\u05D1\u05D5\u05E8 \u05DC\u05D3\u05E3 \u05D4\u05DE\u05E2\u05D5\u05D3\u05DB\u05DF</button>\n\t</a>";
     var continuebotton = document.querySelector('.continueBotton');
     continuebotton.innerHTML = html;
 }

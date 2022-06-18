@@ -60,7 +60,6 @@ function handleDeleteTeam() {
                 case 1:
                     data = (_a.sent()).data;
                     teams = data.teams;
-                    console.log(teams);
                     renderTopNav(teams);
                     return [3 /*break*/, 3];
                 case 2:
@@ -77,10 +76,9 @@ function handleDeleteTeam() {
     });
 }
 function renderTopNav(teams) {
-    console.log(teams);
     var team = teams[0];
     var html = "";
-    html += "<div id=\"" + team.name + "\">\n<img src=\"" + team.symbol + "\" class=\"teamIcon\">\n<a href='https://www.htafc.co.il/' class=\"url\"><button>" + team.name + " official website</button></a>\n<h1>Sportil</h1>\n</div>";
+    html += "<div id=\"" + team.name + "\">\n<img src=\"" + team.symbol + "\" class=\"teamIcon\">\n<a href='https://www.htafc.co.il/' class=\"url\"><button>" + team.name + " official website</button></a>\n<a href='index.html'>\n<h1>Sportil</h1>\n</a>\n</div>";
     var topNav = document.querySelector('#topNav');
     topNav.innerHTML = html;
     topNav.style.backgroundColor = "" + team.backgroundColor;
@@ -94,7 +92,6 @@ function handleGetTransfers() {
                 case 1:
                     data = (_a.sent()).data;
                     transfers = data.transfers;
-                    console.log(transfers);
                     if (!Array.isArray(transfers))
                         throw new Error('transfers should be an array ant it is not');
                     renderTransfer(transfers);
@@ -105,7 +102,6 @@ function handleGetTransfers() {
 }
 function renderTransfer(transfers) {
     var teamId = getTeamId();
-    console.log(transfers);
     var html = "";
     transfers.forEach(function (transfer) {
         html +=
@@ -123,7 +119,6 @@ function getScore() {
                 case 1:
                     data = (_a.sent()).data;
                     score = data.score;
-                    console.log(score);
                     if (!Array.isArray(score))
                         throw new Error('score should be an array ant it is not');
                     renderscore(score);
@@ -135,7 +130,6 @@ function getScore() {
 function renderscore(scores) {
     var teamId = getTeamId();
     var score = scores[0];
-    console.log(score);
     var html = "";
     html +=
         "<div class=\"score" + teamId + "\">\n\t<div class=\"fTeam\">\n\t<img src=\"" + score.fTeamSymbol + "\" class=\"fSymbol\">\n\t<p>" + score.fTeamScore + "</p>\n\t</div>\n\t<p>-</p>\n\t<div class=\"sTeam\">\n\t<p>" + score.sTeamScore + "</p>\n\t<img src=\"" + score.sTeamSymbol + "\" class=\"sSymbol\">\n\t</div>\n\t</div>";
@@ -151,7 +145,6 @@ function getAllArticales() {
                 case 1:
                     data = (_a.sent()).data;
                     articles = data.articles;
-                    console.log(articles);
                     if (!Array.isArray(articles))
                         throw new Error('articles should be an array ant it is not');
                     renderarticle(articles);

@@ -5,7 +5,10 @@ import {
   handleDeleteTeam,
   getAllTransfers,
   getScore,
-  getAllArticales
+  getAllArticales,
+  updateTransfer,
+  updateScore,
+  updateArticle
 } from "../cont/HTAConts";
 
 //
@@ -14,6 +17,8 @@ router
   .delete("/Team-delete", handleDeleteTeam)
   .get("/get-transfers", getAllTransfers)
   .get("/get-score", getScore)
-  .get("/get-articles", getAllArticales)
-
+  .get("/get-Articles", getAllArticales)
+  .patch("/update-Transfers", updateTransfer)
+  .patch("/update-Score", updateScore)
+  .patch("/update-Articles", updateArticle)
 export default router;

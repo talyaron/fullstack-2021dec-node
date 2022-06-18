@@ -25,7 +25,6 @@ async function handleDeleteTeam() {
 		 	data: { teamId }
 		 });
      const {teams} = data;
-	 console.log(teams)
 	 renderTopNav(teams)
 	} catch (error) {
 		console.error(error);
@@ -35,13 +34,14 @@ async function handleDeleteTeam() {
 	getAllArticales()
 }
 function renderTopNav(teams:team){
-	console.log(teams)
 let team= teams[0]
 let html="";
 html+=`<div id="${team.name}">
 <img src="${team.symbol}" class="teamIcon">
 <a href='https://www.htafc.co.il/' class="url"><button>${team.name} official website</button></a>
+<a href='index.html'>
 <h1>Sportil</h1>
+</a>
 </div>`
 const topNav= document.querySelector('#topNav')
 topNav.innerHTML=html
@@ -52,14 +52,13 @@ async function handleGetTransfers() {
 	//@ts-ignore
 	const { data } = await axios.get('/HTA/get-transfers');
 	const { transfers } = data;
-	console.log(transfers)
+
 	if (!Array.isArray(transfers)) throw new Error('transfers should be an array ant it is not');
 	renderTransfer(transfers);
 }
 
 function renderTransfer(transfers){
 	const teamId = getTeamId();
-console.log(transfers)
 	let html=""
 	transfers.forEach((transfer) =>{
 	html+=
@@ -80,14 +79,12 @@ async function getScore() {
 	//@ts-ignore
 	const { data } = await axios.get('/HTA/get-score');
 	const { score } = data;
-	console.log(score)
 	if (!Array.isArray(score)) throw new Error('score should be an array ant it is not');
 	renderscore(score);
 }
 function renderscore(scores){
 	const teamId = getTeamId();
 	let score= scores[0]
-	console.log(score)
 	let html=""
 	html+=
 	`<div class="score${teamId}">
@@ -109,7 +106,6 @@ async function getAllArticales() {
 	//@ts-ignore
 	const { data } = await axios.get('/HTA/get-articles');
 	const { articles } = data;
-	console.log(articles)
 	if (!Array.isArray(articles)) throw new Error('articles should be an array ant it is not');
 	renderarticle(articles);
 }

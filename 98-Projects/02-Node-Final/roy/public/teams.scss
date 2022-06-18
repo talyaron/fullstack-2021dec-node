@@ -150,6 +150,18 @@ body{
         height: 250px;
         }
     }
+    .box3{
+        margin-right: 50px;
+        &:hover {
+            opacity: 0.7;
+        }
+        cursor: pointer;
+        width: 400px;
+        .photo{
+        width: 400px;
+        height: 250px;
+        }
+    }
     p{
         font-size: 20px;
         margin-top: -5px;
@@ -315,6 +327,26 @@ body{
    //margin-left: 160px;
 
     .box2{
+        margin-right: 100px;
+        &:hover {
+            opacity: 0.7;
+        }
+        cursor: pointer;
+        width: 350px;
+        .photo{
+            width: 350px;
+            height: 250px;
+            }
+    }
+    p{
+        font-size: 20px;
+        margin-top: -5px;
+        font-weight: bold;
+        color: rgb(253, 251, 248);
+        text-shadow:2px 2px rgb(249, 2, 2) ;
+
+    }
+    .box3{
         margin-right: 100px;
         &:hover {
             opacity: 0.7;
