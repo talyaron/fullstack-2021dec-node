@@ -36,6 +36,48 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
+function handleGetAllRecipes() {
+    return __awaiter(this, void 0, void 0, function () {
+        var recipeList, name, data, recipeList_1, error, error_1;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    console.log("handleGetAllRecipes");
+                    recipeList = [];
+                    _a.label = 1;
+                case 1:
+                    _a.trys.push([1, 3, , 4]);
+                    name = "Dorit";
+                    return [4 /*yield*/, axios.get('/api/get-all-recipes/getRoutRecipes', { name: name })];
+                case 2:
+                    data = (_a.sent()).data;
+                    recipeList_1 = data.recipeList, error = data.error;
+                    console.log("recipes from client recieved from server: " + recipeList_1);
+                    if (error)
+                        throw new Error(error);
+                    renderAllRecipes(recipeList_1);
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_1 = _a.sent();
+                    console.error(error_1);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
+}
+function renderAllRecipes(recipeList) {
+    console.log("renderAllRecipes");
+    var root = document.querySelector("#root");
+    var html = "";
+    recipeList.forEach(function (element) {
+        html += "<p recipe name:\"" + element.name + "\" ,adder name:\"" + element.adderName + "\"></p>";
+    });
+    root.innerHTML += html;
+    root.style.position = "relative";
+    root.style.top = "1px";
+    root.style.left = "1px";
+}
 function handleGetRecipe() {
     console.log("handleGetRecipe");
     var forms = document.querySelector("#forms");
@@ -51,7 +93,7 @@ function handleGetRecipe() {
 }
 function getRecipe(event) {
     return __awaiter(this, void 0, void 0, function () {
-        var recipeName, data, recipe, error, error_1;
+        var recipeName, data, recipe, error, error_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -72,8 +114,8 @@ function getRecipe(event) {
                     renderFullRecipe(recipe);
                     return [3 /*break*/, 4];
                 case 3:
-                    error_1 = _a.sent();
-                    console.error(error_1);
+                    error_2 = _a.sent();
+                    console.error(error_2);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
@@ -142,7 +184,7 @@ function handleAddRecipe() {
 // root.style.left="10px"
 function PostRecipe(event) {
     return __awaiter(this, void 0, void 0, function () {
-        var name, adderName, ingredients, prepareMode, _i, _a, field, data, myRecipe, error, error_2;
+        var name, adderName, ingredients, prepareMode, _i, _a, field, data, myRecipe, error, error_3;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
@@ -188,8 +230,8 @@ function PostRecipe(event) {
                     renderFullRecipe(myRecipe);
                     return [3 /*break*/, 4];
                 case 3:
-                    error_2 = _b.sent();
-                    console.error(error_2);
+                    error_3 = _b.sent();
+                    console.error(error_3);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
@@ -252,7 +294,7 @@ function handleFixRecipe() {
 }
 function CheckName(event) {
     return __awaiter(this, void 0, void 0, function () {
-        var adderName, recipeName, data, myRecipe, error, error_3;
+        var adderName, recipeName, data, myRecipe, error, error_4;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -276,8 +318,8 @@ function CheckName(event) {
                     renderRecipeForUpdate(myRecipe);
                     return [3 /*break*/, 4];
                 case 3:
-                    error_3 = _a.sent();
-                    console.error(error_3);
+                    error_4 = _a.sent();
+                    console.error(error_4);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
@@ -352,7 +394,7 @@ function renderRecipeForUpdate(myRecipe) {
 }
 function saveIng(event, recipeName) {
     return __awaiter(this, void 0, void 0, function () {
-        var myIng, myElem, j, data, myRecipe, error, error_4;
+        var myIng, myElem, j, data, myRecipe, error, error_5;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -379,8 +421,8 @@ function saveIng(event, recipeName) {
                     renderFullRecipe(myRecipe);
                     return [3 /*break*/, 4];
                 case 3:
-                    error_4 = _a.sent();
-                    console.error(error_4);
+                    error_5 = _a.sent();
+                    console.error(error_5);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
@@ -389,7 +431,7 @@ function saveIng(event, recipeName) {
 }
 function savePre(event, recipeName) {
     return __awaiter(this, void 0, void 0, function () {
-        var myPre, myElem, j, data, myRecipe, error, error_5;
+        var myPre, myElem, j, data, myRecipe, error, error_6;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -415,8 +457,8 @@ function savePre(event, recipeName) {
                     renderFullRecipe(myRecipe);
                     return [3 /*break*/, 4];
                 case 3:
-                    error_5 = _a.sent();
-                    console.error(error_5);
+                    error_6 = _a.sent();
+                    console.error(error_6);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
