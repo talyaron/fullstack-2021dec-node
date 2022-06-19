@@ -5,7 +5,8 @@ import {
   getRecipe,
   checkRecipe,
   updateIng,
-  updatePre
+  updatePre,
+  getAllRecipes
 } from "../Controller/recipeCont";
 
 router
@@ -14,6 +15,8 @@ router
   .post("/postRoutAdderName",checkRecipe)
   .post("/postRoutIng",updateIng)
   .post("/postRoutPre",updatePre)
+  .get("/getRoutRecipes",getAllRecipes)
+
 export default router;
 
 

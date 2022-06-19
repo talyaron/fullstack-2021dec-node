@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.updatePre = exports.updateIng = exports.checkRecipe = exports.addRecipe = exports.getRecipe = void 0;
+exports.getAllRecipes = exports.updatePre = exports.updateIng = exports.checkRecipe = exports.addRecipe = exports.getRecipe = void 0;
 var recipes = [
     { name: "HoneyCake",
         ingredients: ["honey 30 gr", "sugar 0.5 glass", "flower 2 glasses", "eggs 3"],
@@ -193,4 +193,28 @@ function updatePre(req, res) {
     });
 }
 exports.updatePre = updatePre;
+function getAllRecipes(req, res) {
+    return __awaiter(this, void 0, void 0, function () {
+        var recipeList, i, name;
+        return __generator(this, function (_a) {
+            console.debug("getallrecipes from controller");
+            recipeList = [];
+            for (i = 0; i < recipes.length; i++) {
+                recipeList[i].name = recipes[i].name;
+                recipeList[i].adderName = recipes[i].adderName;
+            }
+            try {
+                name = req.body.name;
+                if (!name)
+                    throw new Error("no name");
+                res.send({ recipeList: recipeList });
+            }
+            catch (error) {
+                res.send({ error: error.message });
+            }
+            return [2 /*return*/];
+        });
+    });
+}
+exports.getAllRecipes = getAllRecipes;
 exports["default"] = recipes;

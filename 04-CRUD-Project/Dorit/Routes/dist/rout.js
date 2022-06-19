@@ -8,5 +8,6 @@ router
     .post("/postRoutRecipe", recipeCont_1.addRecipe)
     .post("/postRoutAdderName", recipeCont_1.checkRecipe)
     .post("/postRoutIng", recipeCont_1.updateIng)
-    .post("/postRoutPre", recipeCont_1.updatePre);
+    .post("/postRoutPre", recipeCont_1.updatePre)
+    .get("/getRoutRecipes", recipeCont_1.getAllRecipes);
 exports["default"] = router;

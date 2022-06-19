@@ -36,6 +36,9 @@ app.use('/api/update-ing',rout)
 
 app.use('/api/update-pre',rout)
 
+app.use('/api/get-all-recipes',rout)
+
+
 app.listen(port, () => {
   return console.log(`Server is listening at http://localhost:${port}`);
 });

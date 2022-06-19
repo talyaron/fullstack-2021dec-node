@@ -25,6 +25,7 @@ app.use('/api/add-recipe', rout_1["default"]);
 app.use('/api/check-recipe', rout_1["default"]);
 app.use('/api/update-ing', rout_1["default"]);
 app.use('/api/update-pre', rout_1["default"]);
+app.use('/api/get-all-recipes', rout_1["default"]);
 app.listen(port, function () {
     return console.log("Server is listening at http://localhost:" + port);
 });
