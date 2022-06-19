@@ -1,1 +1,7 @@
-alert("#connect")
+function handleNewProduct() {
+    try {
+        
+    } catch (error) {
+        
+    }
+}
