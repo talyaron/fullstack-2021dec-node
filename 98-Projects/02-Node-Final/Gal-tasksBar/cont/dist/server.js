@@ -10,7 +10,7 @@ const express_1 = __importDefault(require("express"));
 const app = express_1.default();
 // @ts-ignore
 const port = process.env.PORT || 3000;
-// require('dotenv').config()
+require('dotenv').config();
 app.use(express_1.default.static("public"));
 app.use(express_1.default.json());
 // const mongodb_uri = process.env.MONGODB_URI;

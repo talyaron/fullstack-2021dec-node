@@ -5,9 +5,10 @@ import express from 'express';
 const app = express();
 // @ts-ignore
 const port = process.env.PORT || 3000;
-require('dotenv').config()
+// require('dotenv').config()
 app.use(express.static("public"));
 app.use(express.json());
+
 
 // const mongodb_uri = process.env.MONGODB_URI;
 

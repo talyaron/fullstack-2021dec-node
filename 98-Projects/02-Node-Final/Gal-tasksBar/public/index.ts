@@ -1,4 +1,3 @@
-import { getUser } from "../cont/usersCont";
 
 interface user{
     userName: string,
