@@ -37,7 +37,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 exports.__esModule = true;
 exports.getUser = exports.updateUser = exports.getAllUsers = exports.getUserByCookie = exports.handleAddUser = exports.handleDeleteUser = void 0;
-var helpers_1 = require("../helpers");
+var helpers_1 = require("../controllers/helpers");
 ;
 var users = [
     { username: 'Mario', uid: 'abc', email: "galgross24@gmail.com", password: "Aa12345" },

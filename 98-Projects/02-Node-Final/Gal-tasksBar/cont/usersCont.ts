@@ -1,4 +1,4 @@
-import uid from '../helpers';
+import uid from '../controllers/helpers';
 
 export interface user{
     username: string,

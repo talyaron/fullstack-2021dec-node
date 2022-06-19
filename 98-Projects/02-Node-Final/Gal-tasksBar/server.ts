@@ -9,7 +9,7 @@ require('dotenv').config()
 app.use(express.static("public"));
 app.use(express.json());
 
-import uid, {users} from './helpers';
+import uid, {users} from './controllers/helpers';
 
 // const mongodb_uri = process.env.MONGODB_URI;
 
