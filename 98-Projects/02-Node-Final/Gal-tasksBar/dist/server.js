@@ -13,7 +13,6 @@ const port = process.env.PORT || 3000;
 require('dotenv').config();
 app.use(express_1.default.static("public"));
 app.use(express_1.default.json());
-// import uid, {users} from './controllers/helpers';
 // const mongodb_uri = process.env.MONGODB_URI;
 // mongoose.connect(mongodb_uri).then(res =>{
 //     console.log("connected to DB");
