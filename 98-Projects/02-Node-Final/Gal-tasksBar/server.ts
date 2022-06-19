@@ -9,6 +9,8 @@ require('dotenv').config()
 app.use(express.static("public"));
 app.use(express.json());
 
+import uid, {users} from './helpers';
+
 // const mongodb_uri = process.env.MONGODB_URI;
 
 // mongoose.connect(mongodb_uri).then(res =>{
