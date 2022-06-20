@@ -1,8 +1,14 @@
 html {
     background-color: #ffffff9d;
+   height: 100%;
+    width: 100%;
     margin: 0%;
-    padding: 0%;
-    width: 100vw;
+    overflow: hidden;
+   bottom: 100px;
+    position: relative;
+    
+    
+    
 
 }
 
@@ -70,14 +76,11 @@ html {
     }
    
 }
-#cart{
-    img{
+.cart-img{
     position: relative;
-    width: 30px;
-    top: 10px;
+    display: flex;
+    height: 40px;
+    margin: 10px;
+    top: 35px;
    
-  
-    
-   
-    }
 }
