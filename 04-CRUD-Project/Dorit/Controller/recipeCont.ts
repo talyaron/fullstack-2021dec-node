@@ -4,6 +4,10 @@ interface Recipe {
   prepareMode: Array<string>;
   adderName: string
 }
+interface recipePart{
+  name: string;
+  adderName: string
+}
 
 let recipes: Array<Recipe> = [
   { name: "HoneyCake", 
@@ -114,5 +118,23 @@ export async function updatePre(req:any, res:any){
         res.send({ error: error.message });
       }
 }
+
+export async function getAllRecipes(req:any, res:any){
+  console.debug("getallrecipes from controller")
+  let recipeList:Array<recipePart> = []
+  for(let i:number=0;i<recipes.length;i++){
+    recipeList[i].name=recipes[i].name
+    recipeList[i].adderName=recipes[i].adderName
+  }
+  try {
+     const {name} = req.body;
+      if(!name) throw new Error("no name")
+      res.send({recipeList});
+    }
+   catch (error:any) {
+    res.send({ error: error.message });
+  }
+}
+
     
 export default recipes
