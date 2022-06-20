@@ -1,8 +1,14 @@
 html {
     background-color: #ffffff9d;
+   height: 100%;
+    width: 100%;
     margin: 0%;
-    padding: 0%;
-    width: 100vw;
+    overflow: hidden;
+   bottom: 100px;
+    position: relative;
+    
+    
+    
 
 }
 
@@ -10,7 +16,7 @@ html {
     text-align: center;
     border: 2px solid rgb(109, 106, 106);
     border-radius: 20px;
-    box-shadow: 2px  2px  ;
+    box-shadow: 2px  2px black  ;
 
     h1 {
         font-family: 'Roboto Mono', monospace;
@@ -70,12 +76,11 @@ html {
     }
    
 }
-#cart{
-    img{
+.cart-img{
     position: relative;
-    width: 30px;
-    top: 10px;
-    
+    display: flex;
+    height: 40px;
+    margin: 10px;
+    top: 35px;
    
-    }
 }

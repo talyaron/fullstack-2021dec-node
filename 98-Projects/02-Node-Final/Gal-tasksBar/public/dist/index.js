@@ -37,36 +37,37 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 ;
 function handleAddUser(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var elements, userName, email, password, data, users, error, error_1;
+        var elements, userName, email, password;
         return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    _a.trys.push([0, 2, , 3]);
-                    ev.preventDefault();
-                    elements = ev.target.elements;
-                    userName = elements.userName.value;
-                    email = elements.email.value;
-                    password = elements.permissions.value;
-                    if (!userName || !email || !password)
-                        throw new Error("Details are required");
-                    return [4 /*yield*/, axios.post('/api/add-user', {
-                            userName: userName,
-                            email: email,
-                            password: password
-                        })];
-                case 1:
-                    data = (_a.sent()).data;
-                    users = data.users, error = data.error;
-                    if (error)
-                        throw new Error(error);
-                    renderUsers(users);
-                    return [3 /*break*/, 3];
-                case 2:
-                    error_1 = _a.sent();
-                    console.error(error_1);
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
+            try {
+                ev.preventDefault();
+                elements = ev.target.elements;
+                userName = elements.userName.value;
+                email = elements.email.value;
+                password = elements.permissions.value;
+                console.log(userName, email, password);
+                if (!userName || !email || !password)
+                    throw new Error("Details are required");
+                // const {
+                //     data
+                //      // @ts-ignore
+                // } = await axios.post('/api/add-user', {
+                //     userName,
+                //     email,
+                //     password
+                // });
+                // const {
+                //     users,
+                //     error
+                // } = data;
+                // if (error)
+                //     throw new Error(error);
+                // renderUsers(users);
             }
+            catch (error) {
+                console.error(error);
+            }
+            return [2 /*return*/];
         });
     });
 }
@@ -84,15 +85,16 @@ function handleLoad() {
 }
 function handleRegister(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var _a, username, password, data;
+        var _a, email, password, data;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
                     ev.preventDefault();
-                    _a = ev.target.elements, username = _a.username, password = _a.password;
-                    username = username.value;
+                    _a = ev.target.elements, email = _a.email, password = _a.password;
+                    email = email.value;
                     password = password.value;
-                    return [4 /*yield*/, axios.post("/users/add-user", { username: username, password: password })];
+                    console.log(email, password);
+                    return [4 /*yield*/, axios.post("/users/add-user", { email: email, password: password })];
                 case 1:
                     data = (_b.sent()).data;
                     console.log(data);
@@ -103,7 +105,7 @@ function handleRegister(ev) {
 }
 function handleLogin(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var _a, username, password, data, user, usernameDB, root, error_2;
+        var _a, username, password, data, user, usernameDB, root, error_1;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
@@ -127,8 +129,8 @@ function handleLogin(ev) {
                     }
                     return [3 /*break*/, 3];
                 case 2:
-                    error_2 = _b.sent();
-                    console.error(error_2);
+                    error_1 = _b.sent();
+                    console.error(error_1);
                     return [3 /*break*/, 3];
                 case 3: return [2 /*return*/];
             }
@@ -137,7 +139,7 @@ function handleLogin(ev) {
 }
 function getUserByCookie() {
     return __awaiter(this, void 0, void 0, function () {
-        var data, user, usernameDB, root, error_3;
+        var data, user, usernameDB, root, error_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -157,8 +159,8 @@ function getUserByCookie() {
                     }
                     return [3 /*break*/, 3];
                 case 2:
-                    error_3 = _a.sent();
-                    console.error(error_3);
+                    error_2 = _a.sent();
+                    console.error(error_2);
                     return [3 /*break*/, 3];
                 case 3: return [2 /*return*/];
             }

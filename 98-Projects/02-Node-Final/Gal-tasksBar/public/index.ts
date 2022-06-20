@@ -21,26 +21,26 @@ async function handleAddUser(ev: any) {
         const userName = elements.userName.value;
         const email = elements.email.value;
         const password = elements.permissions.value;
-
+console.log(userName, email, password)
         if (!userName || !email || !password)
             throw new Error("Details are required");
 
-        const {
-            data
-             // @ts-ignore
-        } = await axios.post('/api/add-user', {
-            userName,
-            email,
-            password
-        });
+        // const {
+        //     data
+        //      // @ts-ignore
+        // } = await axios.post('/api/add-user', {
+        //     userName,
+        //     email,
+        //     password
+        // });
 
-        const {
-            users,
-            error
-        } = data;
-        if (error)
-            throw new Error(error);
-        renderUsers(users);
+        // const {
+        //     users,
+        //     error
+        // } = data;
+        // if (error)
+        //     throw new Error(error);
+        // renderUsers(users);
 
     } catch (error) {
         console.error(error);
@@ -64,15 +64,17 @@ function handleLoad() {
 
 async function handleRegister(ev) {
     ev.preventDefault();
-    let { username, password } = ev.target.elements;
+    let { email, password } = ev.target.elements;
 
-    username = username.value;
+    email = email.value;
     password = password.value;
+
+    console.log(email, password)
 
   
     
     //@ts-ignore
-    const { data } = await axios.post("/users/add-user", { username, password });
+    const { data } = await axios.post("/users/add-user", { email, password });
     console.log(data);
 }
 
