@@ -5,9 +5,10 @@ var router = express_1["default"].Router();
 var usersCont_1 = require("../cont/usersCont");
 //
 router
-    .get("/get-users", usersCont_1.getAllUsers)
-    .patch("/update-user", usersCont_1.updateUser)["delete"]("/user-delete", usersCont_1.handleDeleteUser)
-    .post("/user-add", usersCont_1.handleAddUser);
+    .get("/get-users", usersCont_1.getUsers)
+    // .patch("/update-user",updateUser )
+    // .delete("/user-delete", handleDeleteUser )
+    .post("/add-user", usersCont_1.handleAddUser);
 //   .post('/get-user',getUser)
 //   .post('/login', login)
 // .get('get-user',getUserByCookie)
