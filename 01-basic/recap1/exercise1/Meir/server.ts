@@ -2,13 +2,13 @@ const express = require( "express" );
 const app = express();
 const port = 3000; // default port to listen
 
-app.use(express.json());
-import uid,{randomNumber, x} from './control/helpers'
+
+import uid,{randomNumber} from './control/helpers'
 
 // define a route handler for the default home page
 app.use(express.static('public'))
 
-console.log(uid(), randomNumber(200), x)
+console.log(uid(), randNumber(200));
 
 // start the Express server
 app.listen( port, () => {

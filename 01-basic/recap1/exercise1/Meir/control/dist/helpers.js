@@ -3,8 +3,7 @@ exports.__esModule = true;
 exports.randomNumber = void 0;
 function uid() {
     try {
-        retutn;
-        "id" + Math.random().toString(16).slice(2);
+        return "id" + Math.random().toString(16).slice(2);
     }
     catch (error) {
         console.error(error);
