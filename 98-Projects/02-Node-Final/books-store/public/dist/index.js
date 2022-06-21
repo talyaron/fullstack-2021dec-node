@@ -44,7 +44,7 @@ function handleUpBook(ev) {
                     _a.label = 1;
                 case 1:
                     _a.trys.push([1, 3, , 4]);
-                    console.log(ev.target.elements);
+                    console.log('handleUpBook', ev.target.elements);
                     image = ev.target.elements.bookImg.value;
                     name = ev.target.elements.name.value;
                     description = ev.target.elements.description.value;
@@ -52,28 +52,27 @@ function handleUpBook(ev) {
                     return [4 /*yield*/, axios.post("/booksStore", { image: image, name: name, description: description, price: price })];
                 case 2:
                     data = (_a.sent()).data;
-                    console.log(data);
+                    console.log('booksStore', data);
                     addBook = data.addBook;
-                    console.log(addBook);
-                    postBook(addBook);
+                    // console.log(addBook)
+                    renderBook(addBook);
                     return [3 /*break*/, 4];
                 case 3:
                     error_1 = _a.sent();
-                    console.log(error_1);
+                    console.log('error', error_1);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
         });
     });
 }
-function postBook(book) {
-    var books = document.querySelector("#books");
+function renderBook(books) {
+    var htmlBooksHolder = document.querySelector("#books");
     var html = "";
-    console.log(book);
-    book.forEach(function (bookDetails) {
-        html += "<div id=\"wrapper\"> <img src=\"" + bookDetails.image + "\"  id=\"bookImg\">  \n    <p class=\"details\">" + bookDetails.name + " </p> \n    \n    <p class=\"details\">" + bookDetails.description + " </p>  <button onclick=\"handleUpdateDesc( '" + bookDetails.serialNo + "')\" class=\"buttonUp\">update</button>\n   <p class=\"details\">" + bookDetails.price + "  </p> <button onclick=\"handleUpdatePrice( '" + bookDetails.serialNo + "')\" class=\"buttonUp\">update</button>  <br>\n   \n   <button onclick=\"handleDeleteBook('" + bookDetails.serialNo + "')\" class=\"details\" class=\"buttonUp\">delete</button>\n   </div> <br> <br>";
+    books.forEach(function (book) {
+        html += "<div id=\"wrapper\"> <img src=\"" + book.image + "\"  id=\"bookImg\">  \n    <p class=\"details\">" + book.name + " </p> \n    \n    <p class=\"details\">" + book.description + " </p>  <button onclick=\"handleUpdateDesc( '" + book.serialNo + "')\" class=\"buttonUp\">update</button>\n   <p class=\"details\">" + book.price + "  </p> <button onclick=\"handleUpdatePrice( '" + book.serialNo + "')\" class=\"buttonUp\">update</button>  <br>\n   \n   <button onclick=\"handleDeleteBook('" + book.serialNo + "')\" class=\"details\" class=\"buttonUp\">delete</button>\n   </div> <br> <br>";
     });
-    books.innerHTML = html;
+    htmlBooksHolder.innerHTML = html;
 }
 function getBook() {
     return __awaiter(this, void 0, void 0, function () {
@@ -90,7 +89,7 @@ function getBook() {
                     if (error)
                         throw new Error(error.message);
                     if (addBook) {
-                        postBook(addBook);
+                        renderBook(addBook);
                     }
                     return [3 /*break*/, 3];
                 case 2:
@@ -102,7 +101,7 @@ function getBook() {
         });
     });
 }
-getBook();
+// getBook();
 function handleUpdateDesc(serialNo) {
     return __awaiter(this, void 0, void 0, function () {
         var description, data, addBook, error_3;
@@ -115,7 +114,7 @@ function handleUpdateDesc(serialNo) {
                 case 1:
                     data = (_a.sent()).data;
                     addBook = data.addBook;
-                    postBook(addBook);
+                    renderBook(addBook);
                     return [3 /*break*/, 3];
                 case 2:
                     error_3 = _a.sent();
@@ -142,7 +141,7 @@ function handleUpdatePrice(serialNo) {
                     console.log(data);
                     addBook = data.addBook;
                     console.log(addBook);
-                    postBook(addBook);
+                    renderBook(addBook);
                     return [3 /*break*/, 3];
                 case 2:
                     error_4 = _a.sent();
@@ -167,7 +166,7 @@ function handleDeleteBook(serialNo) {
                     if (error)
                         throw new Error(error);
                     console.log(addBook);
-                    postBook(addBook);
+                    renderBook(addBook);
                     return [3 /*break*/, 3];
                 case 2:
                     error_5 = _a.sent();
@@ -184,10 +183,10 @@ function renderClientBook(books) {
         var client, html1_1;
         return __generator(this, function (_a) {
             try {
-                client = document.querySelector('#wrapperClient');
+                client = document.querySelector('#clientBody');
                 html1_1 = "";
                 books.forEach(function (book) {
-                    html1_1 += "<img src=\"" + book.image + "\" alt=\"\">\n      <h1>" + book.name + "</h1>\n      <p>description:" + book.description + "</p>\n      <h1>price: {book.price} $</h1>\n      <button onclick('handleCart(" + book.serialNo + ")')>add to cart</button>";
+                    html1_1 += "<div id=\"wrapperClient\" >\n         <img src=\"" + book.image + "\" alt=\"\">\n      <h1>" + book.name + "</h1>\n      <p>description:" + book.description + "</p>\n      <h1>price: " + book.price + " $</h1>\n      <button onclick('handleCart(" + book.serialNo + ")')>add to cart</button>\n      </div>";
                 });
                 client.innerHTML = html1_1;
             }
@@ -200,25 +199,72 @@ function renderClientBook(books) {
 }
 function getClientList(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var data, addBook, error_6;
+        var addBook, error_6;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    debugger;
+                    _a.label = 1;
+                case 1:
+                    _a.trys.push([1, 3, , 4]);
+                    ev.preventDefault();
+                    return [4 /*yield*/, axios.get('/clientGet')];
+                case 2:
+                    addBook = (_a.sent()).data.addBook;
+                    renderClientBook(addBook);
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_6 = _a.sent();
+                    console.log(error_6, 'an error occurred');
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
+}
+function renderCart(clientCart) {
+    try {
+        var cartBody = document.querySelector('#cartBody');
+        var html_1 = "";
+        clientCart.forEach(function (book) {
+            html_1 += "<div id=\"clientCart\">\n      <img src=\"" + book.image + "\" alt=\"\">\n      <h1>" + book.name + "</h1>\n      <p>description; " + book.description + "</p>\n      <h1>price; " + book.price + "</h1>\n      <button onclick=\"deleteFromCart('" + book.serialNo + "')\">delete from cart</button>\n\n  </div>";
+        });
+    }
+    catch (error) {
+        console.log(error);
+    }
+}
+function handleCart(serialNo) {
+    return __awaiter(this, void 0, void 0, function () {
+        var data, clientCart, error_7;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    ev.preventDefault();
-                    return [4 /*yield*/, axios.get('/clientGet')];
+                    return [4 /*yield*/, axios.post('/clientCart', { serialNo: serialNo })];
                 case 1:
                     data = (_a.sent()).data;
-                    addBook = data.addBook;
-                    console.log(addBook);
-                    renderClientBook(addBook);
+                    clientCart = data.clientCart;
+                    renderCart(clientCart);
                     return [3 /*break*/, 3];
                 case 2:
-                    error_6 = _a.sent();
-                    console.log(error_6);
+                    error_7 = _a.sent();
+                    console.log(error_7);
                     return [3 /*break*/, 3];
                 case 3: return [2 /*return*/];
             }
+        });
+    });
+}
+function cartGet() {
+    return __awaiter(this, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            try {
+            }
+            catch (error) {
+                console.log(e);
+            }
+            return [2 /*return*/];
         });
     });
 }
