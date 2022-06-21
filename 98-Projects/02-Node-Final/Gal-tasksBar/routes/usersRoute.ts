@@ -4,9 +4,11 @@ import {
     handleAddUser,
     // getUser,
     // updateUser,
-    // getAllUsers,
-    // handleDeleteUser
-    getUsers
+    getUserByCookie,
+    // handleDeleteUser,
+    getUsers,
+    login,
+    // handleSearchItems
 } from "../cont/usersCont";
 
 //
@@ -16,8 +18,8 @@ router
   // .delete("/user-delete", handleDeleteUser )
   .post("/add-user", handleAddUser)
 //   .post('/get-user',getUser)
-  //   .post('/login', login)
-  // .get('get-user',getUserByCookie)
-  
+    .post('/login', login)
+  .get('get-user',getUserByCookie)
+  // .get('get-user', handleSearchItems)
 
 export default router;

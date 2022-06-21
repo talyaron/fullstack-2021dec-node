@@ -8,8 +8,9 @@ router
     .get("/get-users", usersCont_1.getUsers)
     // .patch("/update-user",updateUser )
     // .delete("/user-delete", handleDeleteUser )
-    .post("/add-user", usersCont_1.handleAddUser);
-//   .post('/get-user',getUser)
-//   .post('/login', login)
-// .get('get-user',getUserByCookie)
+    .post("/add-user", usersCont_1.handleAddUser)
+    //   .post('/get-user',getUser)
+    .post('/login', usersCont_1.login)
+    .get('get-user', usersCont_1.getUserByCookie);
+// .get('get-user', handleSearchItems)
 exports["default"] = router;

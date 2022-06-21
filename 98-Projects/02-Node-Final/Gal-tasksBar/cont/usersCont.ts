@@ -5,14 +5,12 @@ export const getUsers= async (req,res)=>{
     const users= await User.find({})
     console.log(users)
 }
+
 export interface User{
     username: string,
     email: string,
-    // uid: string,
     password: string
 };
-
-
 
 export const handleAddUser = async (req, res) => {
 	try {
@@ -49,7 +47,7 @@ export const login =async (req:any, res:any) => {
         }
      if(user.password === password){
 
-                    res.cookie('user',user._.id);
+                    // res.cookie('user',user._.id);
                     res.send({ok:true,user})
         }else{
             throw new Error("password not match to user")
@@ -71,29 +69,27 @@ export const getUserByCookie = (req,res)=>{
     }
 }
 
-// export async function getAllUsers(req, res) {
-// 	try {
-// 		res.send({ users });
-// 	} catch (error) {
-// 		console.log('Users array not valid');
-// 		res.send({ error: error.message });
-// 	}
+// export const searchUsers = async (req,res)=>{
+//     try {
+        
+//     }  catch (error) {
+//         res.send({
+//             error: error.message
+//         });
 // }
 
 // export const updateUser = async (req, res) => {
 //     try {
 //         const {
-//             username,
 //             email,
-//             uid,
 //             password
 //         } = req.body;
 
-//         const userIndex = users.findIndex(user => user.uid === uid);
+//         const userIndex = users.findIndex(user => user.email === email);
 //         if (userIndex === -1)
 //             throw new Error("user not found");
 
-//         users[userIndex].username = username;
+//         // users[userIndex].userName = username;
 //         users[userIndex].email = email;
 //         users[userIndex].password = password;
 
@@ -101,30 +97,13 @@ export const getUserByCookie = (req,res)=>{
 //             users
 //         });
 
-//     } catch (error) {
-//         res.send({
-//             error: error.message
-//         });
+    // } catch (error) {
+    //     res.send({
+    //         error: error.message
+    //     });
 //     }
 // };
 
-// export function getUser(req, res) {
-// 	try {
-// 		const { uid } = req.body;
-// 		if (!uid) throw new Error('uid is missing');
-// 		const user = users.find((user) => user.uid === uid);
-// 		if (!user) throw new Error('couldnt find user');
-// 		res.send({ user });
-// 	} catch (error) {
-// 		console.error(error);
-// 		res.send({ error: error.message });
-// 	}
-// }
-
-// let users: Array<user> = [ 
-//     { username: 'Mario', uid: 'abc', email: "galgross24@gmail.com",password: "Aa12345" }, 
-//     { username: 'Rayu', uid: 'abcd',email: "galgross23@gmail.com",password: "Bb12345" }, 
-// ];
 
 // export const handleDeleteUser = (req, res) => {
 // 	try {
@@ -138,3 +117,17 @@ export const getUserByCookie = (req,res)=>{
 // 		res.send({ error: error.message });
 // 	}
 // };
+
+//getUser func without DB: 
+// export function getUser(req, res) {
+// 	try {
+// 		const { uid } = req.body;
+// 		if (!uid) throw new Error('uid is missing');
+// 		const user = users.find((user) => user.uid === uid);
+// 		if (!user) throw new Error('couldnt find user');
+// 		res.send({ user });
+// 	} catch (error) {
+// 		console.error(error);
+// 		res.send({ error: error.message });
+// 	}
+// }

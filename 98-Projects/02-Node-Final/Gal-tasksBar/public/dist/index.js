@@ -186,14 +186,25 @@ function handleGetUsers() {
         });
     });
 }
-// async function handleSearchItems(event) {
-// 	try {
-// 		event.preventDefault();
-// 		//@ts-ignore
-// 		const { data } = await axios.post('/items/searchItems', {
-// 		});
-// 		const filtereditems  = data;
-// 	} catch (error) {
-// 		console.error(error);
-// 	}
-// }
+function handleSearchItems(event) {
+    return __awaiter(this, void 0, void 0, function () {
+        var data, filtereditems, error_3;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    event.preventDefault();
+                    return [4 /*yield*/, axios.post('/items/searchItems', {})];
+                case 1:
+                    data = (_a.sent()).data;
+                    filtereditems = data;
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_3 = _a.sent();
+                    console.error(error_3);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
+}

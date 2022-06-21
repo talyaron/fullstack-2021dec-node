@@ -70,9 +70,6 @@ async function handleRegister(ev) {
     password = password.value;
 
     console.log(email, password)
-
-  
-    
     //@ts-ignore
     const { data } = await axios.post("/users/add-user", { email, password });
     console.log(data);
@@ -136,16 +133,16 @@ async function handleGetUsers() {
 }
 
 
-// async function handleSearchItems(event) {
-// 	try {
-// 		event.preventDefault();
+async function handleSearchItems(event) {
+	try {
+		event.preventDefault();
 
-// 		//@ts-ignore
-// 		const { data } = await axios.post('/items/searchItems', {
+		//@ts-ignore
+		const { data } = await axios.post('/items/searchItems', {
 		
-// 		});
-// 		const filtereditems  = data;
-// 	} catch (error) {
-// 		console.error(error);
-// 	}
-// }
+		});
+		const filtereditems  = data;
+	} catch (error) {
+		console.error(error);
+	}
+}

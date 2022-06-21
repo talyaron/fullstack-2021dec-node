@@ -69,3 +69,12 @@ h2 {
   text-align: left;
   color: blue;
 }
+
+.nav {
+  width: 100%;
+  box-shadow: 2px 2px 30px rgba(0, 0, 0, 0.05);
+  z-index: 100;
+  position: sticky;
+  top: 0;
+  background-color: #ffffff;
+}
