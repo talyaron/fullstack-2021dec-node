@@ -12,6 +12,8 @@ export interface User{
     password: string
 };
 
+
+
 export const handleAddUser = async (req, res) => {
 	try {
 		const { 
@@ -37,21 +39,22 @@ export const handleAddUser = async (req, res) => {
 	}
 };
 
-export const login =async (req:any, res:any) => {
+export const handleLogin =async (req:any, res:any) => {
     try {
         let {email, password} = req.body;
         const user = await User.findOne({email});
         if (user){
+            if(user.password === password){
+
+                res.cookie('user',user._id);
+                res.send({ok:true,user})
+    }else{
+        throw new Error("password not match to user")
+    }
         }else{
             throw new Error("user not found");
         }
-     if(user.password === password){
 
-                    // res.cookie('user',user._.id);
-                    res.send({ok:true,user})
-        }else{
-            throw new Error("password not match to user")
-        }
     } catch (error) {
         console.error(error);
 		res.send({ error: error.message });
@@ -105,18 +108,18 @@ export const getUserByCookie = (req,res)=>{
 // };
 
 
-// export const handleDeleteUser = (req, res) => {
-// 	try {
-// 		const { uid } = req.body;
-// 		const index: number = users.findIndex((user) => user.uid === uid);
-// 		if (index === -1) throw new Error('user not found');
-// 		users = users.filter((user) => user.uid !== uid);
-// 		console.log('users', users);
-// 		res.send({ users });
-// 	} catch (error) {
-// 		res.send({ error: error.message });
-// 	}
-// };
+export const handleDelete = async (req, res) => {
+	try {
+        const {id}= req.body;
+        if(id){
+            await User.findByIdAndDelete(id) 
+            res.send({ok:true});
+        }
+		// res.send({ users });
+	} catch (error) {
+		res.send({ error: error.message });
+	}
+};
 
 //getUser func without DB: 
 // export function getUser(req, res) {

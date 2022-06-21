@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.getUserByCookie = exports.login = exports.handleAddUser = exports.getUsers = void 0;
+exports.handleDelete = exports.getUserByCookie = exports.handleLogin = exports.handleAddUser = exports.getUsers = void 0;
 // import uid from './helpers';
 var models_1 = require("../models/models");
 exports.getUsers = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
@@ -81,7 +81,7 @@ exports.handleAddUser = function (req, res) { return __awaiter(void 0, void 0, v
         }
     });
 }); };
-exports.login = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+exports.handleLogin = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var _a, email, password, user, error_2;
     return __generator(this, function (_b) {
         switch (_b.label) {
@@ -92,16 +92,16 @@ exports.login = function (req, res) { return __awaiter(void 0, void 0, void 0, f
             case 1:
                 user = _b.sent();
                 if (user) {
+                    if (user.password === password) {
+                        res.cookie('user', user._id);
+                        res.send({ ok: true, user: user });
+                    }
+                    else {
+                        throw new Error("password not match to user");
+                    }
                 }
                 else {
                     throw new Error("user not found");
-                }
-                if (user.password === password) {
-                    // res.cookie('user',user._.id);
-                    res.send({ ok: true, user: user });
-                }
-                else {
-                    throw new Error("password not match to user");
                 }
                 return [3 /*break*/, 3];
             case 2:
@@ -152,18 +152,28 @@ exports.getUserByCookie = function (req, res) {
 //     });
 //     }
 // };
-// export const handleDeleteUser = (req, res) => {
-// 	try {
-// 		const { uid } = req.body;
-// 		const index: number = users.findIndex((user) => user.uid === uid);
-// 		if (index === -1) throw new Error('user not found');
-// 		users = users.filter((user) => user.uid !== uid);
-// 		console.log('users', users);
-// 		res.send({ users });
-// 	} catch (error) {
-// 		res.send({ error: error.message });
-// 	}
-// };
+exports.handleDelete = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var id, error_3;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                _a.trys.push([0, 3, , 4]);
+                id = req.body.id;
+                if (!id) return [3 /*break*/, 2];
+                return [4 /*yield*/, models_1["default"].findByIdAndDelete(id)];
+            case 1:
+                _a.sent();
+                res.send({ ok: true });
+                _a.label = 2;
+            case 2: return [3 /*break*/, 4];
+            case 3:
+                error_3 = _a.sent();
+                res.send({ error: error_3.message });
+                return [3 /*break*/, 4];
+            case 4: return [2 /*return*/];
+        }
+    });
+}); };
 //getUser func without DB: 
 // export function getUser(req, res) {
 // 	try {

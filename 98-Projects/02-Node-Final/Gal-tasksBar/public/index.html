@@ -11,7 +11,7 @@
 <body>
     <main onload="handleLoad()">
         <h1>Login To Task Bar</h1>
-        <form onsubmit="handleRegister(event)">
+        <form onsubmit="handleLogin(event)">
             <input type="email" name="email" placeholder="Email" required>
             <input type="password" name="password" placeholder="Password" required>
             <!-- <input type="text" name="uniqID" style="display: none;"> -->
@@ -20,15 +20,16 @@
         <button onclick="handleGetUsers()">GET USERS</button>
         <br>
         <br>
-     <h2>already have User?</h2>
+     <!-- <h2>already have User?</h2>
      <div class="switchPage">
-     <h2>click here:</h2>
+     <h2>click here:</h2> -->
      <button><a id="main-a" href="./main.html">user page<a></button>
      </div>
     </main>
     </div>
     <script src="./dist/index.js"></script>
     <div id="usersTasks"></div>
+    <div id="root"></div>
 </body>
 <footer id="footer"></footer>
 </html>

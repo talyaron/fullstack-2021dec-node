@@ -1,3 +1,4 @@
+"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -34,6 +35,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+exports.__esModule = true;
 ;
 function handleAddUser(ev) {
     return __awaiter(this, void 0, void 0, function () {
@@ -83,29 +85,43 @@ function handleLoad() {
         console.error(error);
     }
 }
-function handleRegister(ev) {
+function handleDelete(event) {
     return __awaiter(this, void 0, void 0, function () {
-        var _a, email, password, data;
-        return __generator(this, function (_b) {
-            switch (_b.label) {
+        var userId, data, users, error, error_1;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
                 case 0:
-                    ev.preventDefault();
-                    _a = ev.target.elements, email = _a.email, password = _a.password;
-                    email = email.value;
-                    password = password.value;
-                    console.log(email, password);
-                    return [4 /*yield*/, axios.post("/users/add-user", { email: email, password: password })];
+                    _a.trys.push([0, 2, , 3]);
+                    console.log("delete button pressed");
+                    userId = event.target.id;
+                    return [4 /*yield*/, axios["delete"]("/users/add-user", { data: { userId: userId, userId: userId } })];
                 case 1:
-                    data = (_b.sent()).data;
-                    console.log(data);
-                    return [2 /*return*/];
+                    data = (_a.sent()).data;
+                    users = data.users, error = data.error;
+                    renderUsers(users);
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_1 = _a.sent();
+                    console.error(error_1);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
             }
         });
     });
 }
+// async function handleRegister(ev) {
+//     ev.preventDefault();
+//     let { email, password } = ev.target.elements;
+//     email = email.value;
+//     password = password.value;
+//     console.log(email, password)
+//     //@ts-ignore
+//     const { data } = await axios.post("/users/add-user", { email, password });
+//     console.log(data);
+// }
 function handleLogin(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var _a, username, password, data, user, usernameDB, root, error_1;
+        var _a, username, password, data, user, usernameDB, root, error_2;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
@@ -114,11 +130,12 @@ function handleLogin(ev) {
                     _a = ev.target.elements, username = _a.username, password = _a.password;
                     username = username.value;
                     password = password.value;
-                    return [4 /*yield*/, axios.post("/users/login", { username: username, password: password })];
+                    return [4 /*yield*/, axios.post("/users/handleLogin", { username: username, password: password })];
                 case 1:
                     data = (_b.sent()).data;
                     console.log(data);
                     user = data.user;
+                    window.location.href = './main.html';
                     if (!user) {
                         throw new Error('User not found');
                     }
@@ -129,8 +146,8 @@ function handleLogin(ev) {
                     }
                     return [3 /*break*/, 3];
                 case 2:
-                    error_1 = _b.sent();
-                    console.error(error_1);
+                    error_2 = _b.sent();
+                    console.error(error_2);
                     return [3 /*break*/, 3];
                 case 3: return [2 /*return*/];
             }
@@ -139,7 +156,7 @@ function handleLogin(ev) {
 }
 function getUserByCookie() {
     return __awaiter(this, void 0, void 0, function () {
-        var data, user, usernameDB, root, error_2;
+        var data, user, usernameDB, root, error_3;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -159,8 +176,8 @@ function getUserByCookie() {
                     }
                     return [3 /*break*/, 3];
                 case 2:
-                    error_2 = _a.sent();
-                    console.error(error_2);
+                    error_3 = _a.sent();
+                    console.error(error_3);
                     return [3 /*break*/, 3];
                 case 3: return [2 /*return*/];
             }
@@ -188,7 +205,7 @@ function handleGetUsers() {
 }
 function handleSearchItems(event) {
     return __awaiter(this, void 0, void 0, function () {
-        var data, filtereditems, error_3;
+        var data, filtereditems, error_4;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -200,11 +217,20 @@ function handleSearchItems(event) {
                     filtereditems = data;
                     return [3 /*break*/, 3];
                 case 2:
-                    error_3 = _a.sent();
-                    console.error(error_3);
+                    error_4 = _a.sent();
+                    console.error(error_4);
                     return [3 /*break*/, 3];
                 case 3: return [2 /*return*/];
             }
         });
     });
 }
+// function userPage(){
+//     const usersTasks:HTMLElement= document.querySelector("#usersTasks");
+//     let html= "";
+//     html+=`
+//     <div></div>
+//     `; 
+//     usersTasks.innerHTML=html;
+//     console.log(userPage);
+// }

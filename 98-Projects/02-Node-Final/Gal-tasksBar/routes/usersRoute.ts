@@ -5,9 +5,9 @@ import {
     // getUser,
     // updateUser,
     getUserByCookie,
-    // handleDeleteUser,
+    handleDelete,
     getUsers,
-    login,
+    handleLogin,
     // handleSearchItems
 } from "../cont/usersCont";
 
@@ -15,10 +15,10 @@ import {
 router
   .get("/get-users", getUsers)
   // .patch("/update-user",updateUser )
-  // .delete("/user-delete", handleDeleteUser )
+  .delete("/user-delete", handleDelete)
   .post("/add-user", handleAddUser)
 //   .post('/get-user',getUser)
-    .post('/login', login)
+    .post('/login', handleLogin)
   .get('get-user',getUserByCookie)
   // .get('get-user', handleSearchItems)
 
