@@ -1,4 +1,5 @@
-import { getUser } from "../cont/usersCont";
+import { getUsers } from "../cont/usersCont";
+import User from "../models/models";
 
 interface user{
     userName: string,
@@ -22,31 +23,32 @@ async function handleAddUser(ev: any) {
         const userName = elements.userName.value;
         const email = elements.email.value;
         const password = elements.permissions.value;
-
+        console.log(userName, email, password)
         if (!userName || !email || !password)
             throw new Error("Details are required");
 
-        const {
-            data
-             // @ts-ignore
-        } = await axios.post('/api/add-user', {
-            userName,
-            email,
-            password
-        });
+        // const {
+        //     data
+        //      // @ts-ignore
+        // } = await axios.post('/api/add-user', {
+        //     userName,
+        //     email,
+        //     password
+        // });
 
-        const {
-            users,
-            error
-        } = data;
-        if (error)
-            throw new Error(error);
-        renderUsers(users);
+        // const {
+        //     users,
+        //     error
+        // } = data;
+        // if (error)
+        //     throw new Error(error);
+        // renderUsers(users);
 
     } catch (error) {
         console.error(error);
     }
 };
+
 
 
 function renderUsers(users: Array < user > ) {
@@ -63,19 +65,32 @@ function handleLoad() {
   }
 }
 
-async function handleRegister(ev) {
-    ev.preventDefault();
-    let { username, password } = ev.target.elements;
-
-    username = username.value;
-    password = password.value;
-
-  
-    
-    //@ts-ignore
-    const { data } = await axios.post("/users/add-user", { username, password });
-    console.log(data);
+async function handleDelete(event) {
+	try {
+		console.log(`delete button pressed`);
+		const userId = event.target.id;
+        // @ts-ignore
+		const { data } = await axios.delete("/users/add-user", { data: { userId, userId } });
+		const { users, error } = data;
+		renderUsers(users)
+	} catch (error) {
+		console.error(error);
+	}
 }
+
+
+// async function handleRegister(ev) {
+//     ev.preventDefault();
+//     let { email, password } = ev.target.elements;
+
+//     email = email.value;
+//     password = password.value;
+
+//     console.log(email, password)
+//     //@ts-ignore
+//     const { data } = await axios.post("/users/add-user", { email, password });
+//     console.log(data);
+// }
 
 async function handleLogin(ev) {
     try{
@@ -85,9 +100,10 @@ async function handleLogin(ev) {
     password = password.value;
     
     //@ts-ignore
-    const { data } = await axios.post("/users/login", { username, password });
+    const { data } = await axios.post("/users/handleLogin", { username, password });
     console.log(data);
     const {user} = data;
+    window.location.href = './main.html';
     if(!user){
         throw new Error('User not found');
     }
@@ -135,16 +151,32 @@ async function handleGetUsers() {
 }
 
 
-// async function handleSearchItems(event) {
-// 	try {
-// 		event.preventDefault();
+async function handleSearchItems(event) {
+	try {
+		event.preventDefault();
 
-// 		//@ts-ignore
-// 		const { data } = await axios.post('/items/searchItems', {
+		//@ts-ignore
+		const { data } = await axios.post('/items/searchItems', {
 		
-// 		});
-// 		const filtereditems  = data;
-// 	} catch (error) {
-// 		console.error(error);
-// 	}
+		});
+		const filtereditems  = data;
+	} catch (error) {
+		console.error(error);
+	}
+}
+
+
+// function userPage(){
+//     const usersTasks:HTMLElement= document.querySelector("#usersTasks");
+//     let html= "";
+   
+//     html+=`
+//     <div></div>
+//     `; 
+       
+//     usersTasks.innerHTML=html;
+//     console.log(userPage);
 // }
+
+
+

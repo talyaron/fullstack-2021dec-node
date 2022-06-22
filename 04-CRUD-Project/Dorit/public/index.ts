@@ -6,7 +6,43 @@ interface Recipe {
     prepareMode: Array<string>;
     adderName: string
   }
- function handleGetRecipe(){
+interface recipePart{
+    name:string;
+    adderName:string
+}  
+async function handleGetAllRecipes(){
+    console.log("handleGetAllRecipes")
+   
+    let recipeList:Array<recipePart>=[]
+    try {
+        let name:string="Dorit"
+        // @ts-ignore
+        const { data } = await axios.get('/api/get-all-recipes/getRoutRecipes',{name})
+        const { recipeList, error } = data;
+        console.log(`recipes from client recieved from server: ${recipeList}`);
+        if (error) throw new Error(error);
+        renderAllRecipes(recipeList);
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+function renderAllRecipes(recipeList:Array<recipePart>){
+    console.log("renderAllRecipes")
+    let root:HTMLDivElement=document.querySelector("#root")  
+    
+    let html:string=""
+    recipeList.forEach(element => {
+       html+=`<p recipe name:"${element.name}" ,adder name:"${element.adderName}"></p>` 
+    });
+    root.innerHTML+=html
+    root.style.position="relative" 
+    root.style.top="1px"
+    root.style.left="1px"
+
+}
+
+function handleGetRecipe(){
      console.log("handleGetRecipe")
     let forms:HTMLDivElement = document.querySelector("#forms")
     if(forms) forms.remove()
@@ -23,6 +59,7 @@ interface Recipe {
     root.style.position="relative" 
     root.style.top="10px"
     root.style.left="10px"
+   
  }
 
  async function getRecipe(event: any){

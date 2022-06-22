@@ -1,16 +1,19 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
 const express = require("express");
 const app = express();
 const port = 3000; // default port to listen
+const helpers_1 = __importDefault(require("./control/helpers"));
 // define a route handler for the default home page
 app.use(express.static('public'));
-app.get("/", (req, res) => {
-    res.send(`Hello world! ${x}`);
-});
+console.log(helpers_1.default(), randNumber(200));
 // start the Express server
 app.listen(port, () => {
     console.log(`server started at http://localhost:${port}`);
 });
-function multi(a, b) {
-    return a * b;
+function randNumber(maxNumber) {
+    return Math.floor(Math.random() * maxNumber);
 }
-const x = multi(56, 45);
