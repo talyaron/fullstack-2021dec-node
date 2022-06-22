@@ -15,12 +15,13 @@ async function handleGetAllRecipes(){
    
     let recipeList:Array<recipePart>=[]
     try {
-        let name:string="Dorit"
         // @ts-ignore
-        const { data } = await axios.get('/api/get-all-recipes/getRoutRecipes',{name})
+        const { data } = await axios.get('/api/get-all-recipes/getRoutRecipes')
         const { recipeList, error } = data;
         console.log(`recipes from client recieved from server: ${recipeList}`);
         if (error) throw new Error(error);
+        console.log(recipeList[0])
+        console.log(recipeList[1])
         renderAllRecipes(recipeList);
     } catch (error) {
         console.error(error);
@@ -29,16 +30,19 @@ async function handleGetAllRecipes(){
 
 function renderAllRecipes(recipeList:Array<recipePart>){
     console.log("renderAllRecipes")
-    let root:HTMLDivElement=document.querySelector("#root")  
-    
+    console.log(recipeList[0])
+    console.log(recipeList[1])
+    let root:HTMLDivElement=document.querySelector("#root")
+    if (!root) console.log("root does not exist")  
     let html:string=""
     recipeList.forEach(element => {
-       html+=`<p recipe name:"${element.name}" ,adder name:"${element.adderName}"></p>` 
+       html+=`<div class="recipeList"> recipe name:"${element.name}" ,adder name:"${element.adderName}"</div>` 
     });
+    console.log(html)
     root.innerHTML+=html
     root.style.position="relative" 
-    root.style.top="1px"
-    root.style.left="1px"
+    root.style.top="100px"
+    root.style.left="100px"
 
 }
 
@@ -119,6 +123,34 @@ function handleGetRecipe(){
         }
     }) 
  }
+
+ function handleAddLineIng() {
+    const divIng = document.querySelector('.linesIng')
+
+    const inputEl = document.createElement('input')
+    inputEl.setAttribute("type", "text")
+    inputEl.setAttribute("name", "Array1")
+    inputEl.setAttribute("placeholder", "Igredients")
+
+        divIng.append(inputEl)
+        inputEl.focus()
+ }
+
+ function handleAddLinePre(){
+
+    const divPre = document.querySelector('.linesPre')
+
+
+    const inputPl = document.createElement('input')
+    inputPl.setAttribute("type", "text")
+    inputPl.setAttribute("name", "Array2")
+    inputPl.setAttribute("placeholder", "PrepareMode")
+          
+   
+        divPre.append(inputPl)
+        inputPl.focus()
+    }
+
 
     // html=`
     // <div id="root">
