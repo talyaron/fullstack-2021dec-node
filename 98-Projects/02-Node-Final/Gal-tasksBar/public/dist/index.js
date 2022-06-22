@@ -109,16 +109,26 @@ function handleDelete(event) {
         });
     });
 }
-// async function handleRegister(ev) {
-//     ev.preventDefault();
-//     let { email, password } = ev.target.elements;
-//     email = email.value;
-//     password = password.value;
-//     console.log(email, password)
-//     //@ts-ignore
-//     const { data } = await axios.post("/users/add-user", { email, password });
-//     console.log(data);
-// }
+function handleRegister(ev) {
+    return __awaiter(this, void 0, void 0, function () {
+        var _a, email, password, data;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
+                case 0:
+                    ev.preventDefault();
+                    _a = ev.target.elements, email = _a.email, password = _a.password;
+                    email = email.value;
+                    password = password.value;
+                    console.log(email, password);
+                    return [4 /*yield*/, axios.post("/users/add-user", { email: email, password: password })];
+                case 1:
+                    data = (_b.sent()).data;
+                    console.log(data);
+                    return [2 /*return*/];
+            }
+        });
+    });
+}
 function handleLogin(ev) {
     return __awaiter(this, void 0, void 0, function () {
         var _a, username, password, data, user, usernameDB, root, error_2;

@@ -79,18 +79,18 @@ async function handleDelete(event) {
 }
 
 
-// async function handleRegister(ev) {
-//     ev.preventDefault();
-//     let { email, password } = ev.target.elements;
+async function handleRegister(ev) {
+    ev.preventDefault();
+    let { email, password } = ev.target.elements;
 
-//     email = email.value;
-//     password = password.value;
+    email = email.value;
+    password = password.value;
 
-//     console.log(email, password)
-//     //@ts-ignore
-//     const { data } = await axios.post("/users/add-user", { email, password });
-//     console.log(data);
-// }
+    console.log(email, password)
+    //@ts-ignore
+    const { data } = await axios.post("/users/add-user", { email, password });
+    console.log(data);
+}
 
 async function handleLogin(ev) {
     try{
