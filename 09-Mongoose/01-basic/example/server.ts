@@ -31,7 +31,11 @@ const CatModel = mongoose.model("cats", CatSchema);
 
 const mitzi = new CatModel({name:'mitzi', age:4});
 //
-mitzi.save().then(()=>{console.log('doc saved')}).catch(err=>console.log(err.message));
+// mitzi.save().then(()=>{console.log('doc saved')}).catch(err=>console.log(err.message));
+
+//search
+
+CatModel.find({age:{$gt:2}}).then(docs=>console.log(docs)).catch(err=>console.log(err.message));
 
 
 
