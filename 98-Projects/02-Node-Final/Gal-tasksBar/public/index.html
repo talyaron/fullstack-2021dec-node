@@ -10,21 +10,19 @@
 </head>
 <body>
     <main onload="handleLoad()">
-        <h1>Login To Task Bar</h1>
+        <h1>Personal Task Bar</h1>
         <form onsubmit="handleRegister(event)">
             <input type="email" name="email" placeholder="Email" required>
             <input type="password" name="password" placeholder="Password" required>
-            <!-- <input type="text" name="uniqID" style="display: none;"> -->
-            <button type="submit">Register</button>
+            <button id="main-a" type="submit">Register</button>
         </form>
-        <button onclick="handleGetUsers()">Login</button>
-        <br>
-        <br>
-     <!-- <h2>already have User?</h2>
-     <div class="switchPage">
-     <h2>click here:</h2> -->
-     <!-- <button onclick="handleLogin(event)">Login</button> -->
-     <button><a id="main-a" href="./main.html">Login<a></button>
+         <h2>already have User?</h2>
+         <h2>Login here:</h2>
+        <form onsubmit="handleLogin(event)">
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <button><a id="main-a" href="./main.html">Login<a></button>
+        </form>
      </div>
     </main>
     </div>

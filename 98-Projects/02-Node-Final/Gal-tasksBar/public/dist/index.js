@@ -94,7 +94,7 @@ function handleDelete(event) {
                     _a.trys.push([0, 2, , 3]);
                     console.log("delete button pressed");
                     userId = event.target.id;
-                    return [4 /*yield*/, axios["delete"]("/users/add-user", { data: { userId: userId, userId: userId } })];
+                    return [4 /*yield*/, axios["delete"]("/users/delelte-user", { data: { userId: userId, userId: userId } })];
                 case 1:
                     data = (_a.sent()).data;
                     users = data.users, error = data.error;
@@ -131,25 +131,25 @@ function handleRegister(ev) {
 }
 function handleLogin(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var _a, username, password, data, user, usernameDB, root, error_2;
+        var _a, email, password, data, user, usernameDB, root, error_2;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
                     _b.trys.push([0, 2, , 3]);
                     ev.preventDefault();
-                    _a = ev.target.elements, username = _a.username, password = _a.password;
-                    username = username.value;
+                    _a = ev.target.elements, email = _a.email, password = _a.password;
+                    email = email.value;
                     password = password.value;
                     return [4 /*yield*/, axios.post("/users/handleLogin", { username: username, password: password })];
                 case 1:
                     data = (_b.sent()).data;
                     console.log(data);
                     user = data.user;
-                    window.location.href = './main.html';
+                    window.location.href = "./main.html";
                     if (!user) {
                         throw new Error('User not found');
                     }
-                    usernameDB = user.username;
+                    usernameDB = user.email;
                     root = document.getElementById('root');
                     if (root) {
                         root.innerHTML = "<h1>Welcome " + usernameDB + "</h1>";
