@@ -15,6 +15,9 @@ app.listen( port, () => {
     console.log( `server started at http://localhost:${ port }` );
 } );
 
+import productsRouter from './routes/poductsRoute';
+app.use('/products',productsRouter);
+
 function randNumber(maxNumber:number):number{
     return Math.floor(Math.random()*maxNumber)
 }
