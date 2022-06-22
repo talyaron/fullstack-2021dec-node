@@ -175,9 +175,11 @@ async function getClientList(ev) {
 
  function renderCart(clientCart:Array <cart>){
   try {
+    console.log(clientCart)
     const cartBody = document.querySelector('#cartBody')
     let html = "";
     clientCart.forEach(book =>{
+      console.log(book)
       html += `<div id="clientCart">
       <img src="${book.image}" alt="">
       <h1>${book.name}</h1>
@@ -187,8 +189,15 @@ async function getClientList(ev) {
 
   </div>`
     })
+    cartBody.innerHTML = html;
 
-   
+    const totalPrice = document.querySelector('#totalToPay');
+    let total:number = 0;
+    for(let i = 0; i < clientCart.length; i++){
+      total = clientCart[i].price + clientCart[i].price
+    }
+
+   totalPrice.innerHTML = `<h1>total to pay ${total} nis</h1>`
 
 
   } catch (error) {
@@ -200,7 +209,10 @@ async function getClientList(ev) {
   try {
     //@ts-ignore
       const {data} = await axios.post('/clientCart', {serialNo})
+      console.log(data)
       const {clientCart} = data;
+
+      console.log(clientCart)
 
       renderCart(clientCart)
 
@@ -211,9 +223,13 @@ async function getClientList(ev) {
 
  async function cartGet(){
   try {
-    
+    //@ts-ignore
+    const {data} = await axios.get('/clientCart')
+    const {clientCart} = data;
+    renderCart(clientCart);
+
   } catch (error) {
-    console.log(e)
+    console.log(error)
     
   }
  }

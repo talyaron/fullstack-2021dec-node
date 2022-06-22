@@ -224,11 +224,20 @@ function getClientList(ev) {
 }
 function renderCart(clientCart) {
     try {
+        console.log(clientCart);
         var cartBody = document.querySelector('#cartBody');
         var html_1 = "";
         clientCart.forEach(function (book) {
+            console.log(book);
             html_1 += "<div id=\"clientCart\">\n      <img src=\"" + book.image + "\" alt=\"\">\n      <h1>" + book.name + "</h1>\n      <p>description; " + book.description + "</p>\n      <h1>price; " + book.price + "</h1>\n      <button onclick=\"deleteFromCart('" + book.serialNo + "')\">delete from cart</button>\n\n  </div>";
         });
+        cartBody.innerHTML = html_1;
+        var totalPrice = document.querySelector('#totalToPay');
+        var total = 0;
+        for (var i = 0; i < clientCart.length; i++) {
+            total = clientCart[i].price + clientCart[i].price;
+        }
+        totalPrice.innerHTML = "<h1>total to pay " + total + " nis</h1>";
     }
     catch (error) {
         console.log(error);
@@ -244,7 +253,9 @@ function handleCart(serialNo) {
                     return [4 /*yield*/, axios.post('/clientCart', { serialNo: serialNo })];
                 case 1:
                     data = (_a.sent()).data;
+                    console.log(data);
                     clientCart = data.clientCart;
+                    console.log(clientCart);
                     renderCart(clientCart);
                     return [3 /*break*/, 3];
                 case 2:
@@ -258,13 +269,23 @@ function handleCart(serialNo) {
 }
 function cartGet() {
     return __awaiter(this, void 0, void 0, function () {
+        var data, clientCart, error_8;
         return __generator(this, function (_a) {
-            try {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    return [4 /*yield*/, axios.get('/clientCart')];
+                case 1:
+                    data = (_a.sent()).data;
+                    clientCart = data.clientCart;
+                    renderCart(clientCart);
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_8 = _a.sent();
+                    console.log(error_8);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
             }
-            catch (error) {
-                console.log(e);
-            }
-            return [2 /*return*/];
         });
     });
 }

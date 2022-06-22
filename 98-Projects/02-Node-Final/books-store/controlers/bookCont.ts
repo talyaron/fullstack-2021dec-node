@@ -10,15 +10,9 @@ interface Book{
 
 let addBook:Array <Book> = [];
 
-interface cart{
-  image: String,
-  name: string,
-  description: string,
-  price: number,
-  serialNo: string
-}
 
-let clientCart:Array <cart> = [];
+
+let clientCart:Array <Book> = [];
 
 
 
@@ -114,8 +108,10 @@ export function deleteBook(req, res){
 export function clientCartPost(req, res){
   try {
     const {serialNo} = req.body;
-
-     clientCart = addBook.filter(book =>{book.serialNo === serialNo})
+    const cartFilter:Array <Book> = addBook.find(book => book.serialNo === serialNo)
+    if(cartFilter){
+     clientCart.push(cartFilter)}
+     
     res.send({clientCart})
   } catch (error) {
     res.send({Error: error.message})
