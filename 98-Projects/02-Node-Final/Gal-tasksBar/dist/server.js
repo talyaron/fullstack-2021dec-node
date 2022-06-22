@@ -5,14 +5,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const mongoose_1 = __importDefault(require("mongoose"));
-// var cookieParser = require('cookie-parser')
-// app.use(cookie.parser())
+var cookieParser = require('cookie-parser');
 const app = express_1.default();
 // @ts-ignore
 const port = process.env.PORT || 3000;
 require('dotenv').config();
 app.use(express_1.default.static("public"));
 app.use(express_1.default.json());
+app.use(cookieParser());
 const mongodb_uri = process.env.MONGODB_URI;
 mongoose_1.default.connect(mongodb_uri).then(res => {
     console.log("connected to DB");
