@@ -12,6 +12,10 @@ let addBook:Array <Book> = [];
 
 
 
+let clientCart:Array <Book> = [];
+
+
+
 export async function postBook(req, res) {
   try {
     const { image, name, description, price } = await req.body;
@@ -81,17 +85,57 @@ export function deleteBook(req, res){
 }
 
 
-// // export function clientGet(req, res){
-//   try {
+
+
+ export function clientGet(req, res){
+  try {
     
 
-
+    res.send({addBook})
     
-//   } catch (error) {
-//     res.send({Error: error.message})
-//   }
+  } catch (error) {
+    res.send({Error: error.message})
+  }
+ 
 
-// }
+
+  
+}
+ 
+
+
+
+export function clientCartPost(req, res){
+  try {
+    const {serialNo} = req.body;
+    const cartFilter:Array <Book> = addBook.find(book => book.serialNo === serialNo)
+    if(cartFilter){
+     clientCart.push(cartFilter)}
+     
+    res.send({clientCart})
+  } catch (error) {
+    res.send({Error: error.message})
+  }
+}
+
+export function cartGet(req, res){
+  res.send({clientCart})
+}
+
+export function deleteBookCart(req, res){
+  try {
+    const {serialNo} = req.body;
+    clientCart = clientCart.filter(book => book.serialNo !== serialNo )
+    res.send({clientCart})
+} catch (error) {
+  res.send({ error: error.message });
+}
+
+}
+
+
+
+
 
 
 

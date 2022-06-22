@@ -6,11 +6,20 @@ interface Book{
   serialNo: string
 }
 
+interface cart{
+  image: String,
+  name: string,
+  description: string,
+  price: number,
+  serialNo: string
+}
+
+
 
 async function handleUpBook(ev) {
   ev.preventDefault();
   try {
-    console.log(ev.target.elements);
+    console.log('handleUpBook', ev.target.elements);
     const image = ev.target.elements.bookImg.value;
     const name = ev.target.elements.name.value;
     const description = ev.target.elements.description.value;
@@ -18,34 +27,33 @@ async function handleUpBook(ev) {
    
     //@ts-ignore
     const { data } = await axios.post("/booksStore",{image,name,description,price});
-    console.log(data);
+    console.log('booksStore', data);
     const {addBook} = data;
-    console.log(addBook)
-      postBook(addBook)
+    // console.log(addBook)
+      renderBook(addBook)
       
   } catch (error) {
-    console.log(error);
+    console.log('error', error);
   }
 }
 
- function postBook(book: Array <Book>) {
+ function renderBook(books: Array <Book>) {
 
 
-  const books =  document.querySelector("#books");
+  const htmlBooksHolder =  document.querySelector("#books");
   let html = "";
-  console.log(book)
-  book.forEach(bookDetails => {
-    html += `<div id="wrapper"> <img src="${bookDetails.image}"  id="bookImg">  
-    <p class="details">${bookDetails.name} </p> 
+  books.forEach(book => {
+    html += `<div id="wrapper"> <img src="${book.image}"  id="bookImg">  
+    <p class="details">${book.name} </p> 
     
-    <p class="details">${bookDetails.description} </p>  <button onclick="handleUpdateDesc( '${bookDetails.serialNo}')" class="buttonUp">update</button>
-   <p class="details">${bookDetails.price}  </p> <button onclick="handleUpdatePrice( '${bookDetails.serialNo}')" class="buttonUp">update</button>  <br>
+    <p class="details">${book.description} </p>  <button onclick="handleUpdateDesc( '${book.serialNo}')" class="buttonUp">update</button>
+   <p class="details">${book.price}  </p> <button onclick="handleUpdatePrice( '${book.serialNo}')" class="buttonUp">update</button>  <br>
    
-   <button onclick="handleDeleteBook('${bookDetails.serialNo}')" class="details" class="buttonUp">delete</button>
+   <button onclick="handleDeleteBook('${book.serialNo}')" class="details" class="buttonUp">delete</button>
    </div> <br> <br>`
   });
   
-  books.innerHTML = html;
+  htmlBooksHolder.innerHTML = html;
 }
 
 async function getBook(){
@@ -59,13 +67,13 @@ async function getBook(){
     const {addBook, error} = data;
     if(error) throw new Error(error.message)
     if (addBook){
-      postBook(addBook)
+      renderBook(addBook)
     }
   } catch (error) {
      console.log(error)
   }
 }
-getBook();
+// getBook();
 
 async function handleUpdateDesc( serialNo){
   try {
@@ -73,7 +81,7 @@ async function handleUpdateDesc( serialNo){
    
     const {data} = await axios.put('/updateDesc', { serialNo, description})
     const {addBook} = data;
-    postBook(addBook)
+    renderBook(addBook)
   
   
 
@@ -93,7 +101,7 @@ async function handleUpdatePrice(serialNo){
     console.log(data)
     const {addBook} = data;
     console.log(addBook)
-    postBook(addBook)
+    renderBook(addBook)
   
   
 
@@ -109,7 +117,7 @@ async function handleDeleteBook(serialNo){
     const {addBook, error} = data
     if (error) throw new Error(error);
     console.log(addBook)
-    postBook(addBook)
+    renderBook(addBook)
  
 
   } catch (error) {
@@ -124,16 +132,18 @@ async function handleDeleteBook(serialNo){
 
 async function renderClientBook(books:Array <Book>){
   try {
-    const client = document.querySelector('#wrapperClient') ;
+    const client = document.querySelector('#clientBody') ;
     //@ts-ignore
    
     let html1 = "";
     books.forEach(book => {
-      html1 += `<img src="${book.image}" alt="">
+      html1 += `<div id="wrapperClient" >
+         <img src="${book.image}" alt="">
       <h1>${book.name}</h1>
       <p>description:${book.description}</p>
-      <h1>price: {book.price} $</h1>
-      <button onclick('handleCart(${book.serialNo})')>add to cart</button>`
+      <h1>price: ${book.price} $</h1>
+      <button onclick('handleCart(${book.serialNo})')>add to cart</button>
+      </div>`
 
       
     })
@@ -147,20 +157,80 @@ async function renderClientBook(books:Array <Book>){
 }
 
 async function getClientList(ev) {
+  debugger;
   try {
     ev.preventDefault();
 
-    const {data} = await axios.get('/clientGet');
-    let {addBook} = data;
-
-    console.log(addBook)
+    const {data: { addBook } }  = await axios.get('/clientGet');
     renderClientBook(addBook)
   
  
 
 } catch (error) {
-    console.log(error)
+    console.log(error, 'an error occurred');
 }
   
 }
+
+
+ function renderCart(clientCart:Array <cart>){
+  try {
+    console.log(clientCart)
+    const cartBody = document.querySelector('#cartBody')
+    let html = "";
+    clientCart.forEach(book =>{
+      console.log(book)
+      html += `<div id="clientCart">
+      <img src="${book.image}" alt="">
+      <h1>${book.name}</h1>
+      <p>description; ${book.description}</p>
+      <h1>price; ${book.price}</h1>
+      <button onclick="deleteFromCart('${book.serialNo}')">delete from cart</button>
+
+  </div>`
+    })
+    cartBody.innerHTML = html;
+
+    const totalPrice = document.querySelector('#totalToPay');
+    let total:number = 0;
+    for(let i = 0; i < clientCart.length; i++){
+      total = clientCart[i].price + clientCart[i].price
+    }
+
+   totalPrice.innerHTML = `<h1>total to pay ${total} nis</h1>`
+
+
+  } catch (error) {
+    console.log(error)
+  }
+ }
+
+ async function handleCart(serialNo){
+  try {
+    //@ts-ignore
+      const {data} = await axios.post('/clientCart', {serialNo})
+      console.log(data)
+      const {clientCart} = data;
+
+      console.log(clientCart)
+
+      renderCart(clientCart)
+
+  } catch (error) {
+    console.log(error)
+  }
+ }
+
+ async function cartGet(){
+  try {
+    //@ts-ignore
+    const {data} = await axios.get('/clientCart')
+    const {clientCart} = data;
+    renderCart(clientCart);
+
+  } catch (error) {
+    console.log(error)
+    
+  }
+ }
 

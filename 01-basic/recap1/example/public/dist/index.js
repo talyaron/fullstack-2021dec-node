@@ -36,19 +36,17 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 function handleGetProducts() {
     return __awaiter(this, void 0, void 0, function () {
-        var data, products, error, error_1;
+        var products, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, axios.get("/products/get-products")];
+                    return [4 /*yield*/, getProducts()];
                 case 1:
-                    data = (_a.sent()).data;
-                    console.log(data);
-                    products = data.products, error = data.error;
-                    if (error)
-                        throw new Error(error);
-                    renderProducts(products);
+                    products = _a.sent();
+                    if (products) {
+                        renderProducts(products);
+                    }
                     return [3 /*break*/, 3];
                 case 2:
                     error_1 = _a.sent();
@@ -59,9 +57,31 @@ function handleGetProducts() {
         });
     });
 }
+function getProducts() {
+    return __awaiter(this, void 0, Promise, function () {
+        var data, products, error, error_2;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    return [4 /*yield*/, axios.get("/products/get-products")];
+                case 1:
+                    data = (_a.sent()).data;
+                    console.log(data);
+                    products = data.products, error = data.error;
+                    return [2 /*return*/, products];
+                case 2:
+                    error_2 = _a.sent();
+                    console.error(error_2);
+                    return [2 /*return*/, false];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
+}
 function handleAddProduct(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var name, data, products, error, error_2;
+        var name, data, products, error, error_3;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -81,8 +101,8 @@ function handleAddProduct(ev) {
                     renderProducts(products);
                     return [3 /*break*/, 3];
                 case 2:
-                    error_2 = _a.sent();
-                    console.error(error_2);
+                    error_3 = _a.sent();
+                    console.error(error_3);
                     return [3 /*break*/, 3];
                 case 3: return [2 /*return*/];
             }
@@ -91,7 +111,7 @@ function handleAddProduct(ev) {
 }
 function handleDelete(productId) {
     return __awaiter(this, void 0, void 0, function () {
-        var data, products, error, error_3;
+        var data, products, error, error_4;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -109,8 +129,8 @@ function handleDelete(productId) {
                     renderProducts(products);
                     return [3 /*break*/, 3];
                 case 2:
-                    error_3 = _a.sent();
-                    console.error(error_3);
+                    error_4 = _a.sent();
+                    console.error(error_4);
                     return [3 /*break*/, 3];
                 case 3: return [2 /*return*/];
             }
@@ -119,7 +139,7 @@ function handleDelete(productId) {
 }
 function handleUpdateProduct(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var newName, id, data, products, error, error_4;
+        var newName, id, data, products, error, error_5;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -130,7 +150,10 @@ function handleUpdateProduct(ev) {
                     id = ev.target.id;
                     if (!id)
                         throw new Error("Id is missing");
-                    return [4 /*yield*/, axios.patch("/products/update-product", { id: id, newName: newName })];
+                    return [4 /*yield*/, axios.patch("/products/update-product", {
+                            id: id,
+                            newName: newName
+                        })];
                 case 1:
                     data = (_a.sent()).data;
                     products = data.products, error = data.error;
@@ -139,8 +162,8 @@ function handleUpdateProduct(ev) {
                     renderProducts(products);
                     return [3 /*break*/, 3];
                 case 2:
-                    error_4 = _a.sent();
-                    console.error(error_4);
+                    error_5 = _a.sent();
+                    console.error(error_5);
                     return [3 /*break*/, 3];
                 case 3: return [2 /*return*/];
             }

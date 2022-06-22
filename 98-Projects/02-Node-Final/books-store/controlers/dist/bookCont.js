@@ -36,8 +36,9 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.deleteBook = exports.updatePrice = exports.updateDescription = exports.getBook = exports.postBook = void 0;
+exports.deleteBookCart = exports.cartGet = exports.clientCartPost = exports.clientGet = exports.deleteBook = exports.updatePrice = exports.updateDescription = exports.getBook = exports.postBook = void 0;
 var addBook = [];
+var clientCart = [];
 function postBook(req, res) {
     return __awaiter(this, void 0, void 0, function () {
         var _a, image, name, description, price, bookDetails, error_1;
@@ -122,12 +123,44 @@ function deleteBook(req, res) {
     }
 }
 exports.deleteBook = deleteBook;
-// // export function clientGet(req, res){
-//   try {
-//   } catch (error) {
-//     res.send({Error: error.message})
-//   }
-// }
+function clientGet(req, res) {
+    try {
+        res.send({ addBook: addBook });
+    }
+    catch (error) {
+        res.send({ Error: error.message });
+    }
+}
+exports.clientGet = clientGet;
+function clientCartPost(req, res) {
+    try {
+        var serialNo_4 = req.body.serialNo;
+        var cartFilter = addBook.find(function (book) { return book.serialNo === serialNo_4; });
+        if (cartFilter) {
+            clientCart.push(cartFilter);
+        }
+        res.send({ clientCart: clientCart });
+    }
+    catch (error) {
+        res.send({ Error: error.message });
+    }
+}
+exports.clientCartPost = clientCartPost;
+function cartGet(req, res) {
+    res.send({ clientCart: clientCart });
+}
+exports.cartGet = cartGet;
+function deleteBookCart(req, res) {
+    try {
+        var serialNo_5 = req.body.serialNo;
+        clientCart = clientCart.filter(function (book) { return book.serialNo !== serialNo_5; });
+        res.send({ clientCart: clientCart });
+    }
+    catch (error) {
+        res.send({ error: error.message });
+    }
+}
+exports.deleteBookCart = deleteBookCart;
 function uid() {
     var id = "id" + Math.random().toString(16).slice(2);
     return id;

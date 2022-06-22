@@ -1,13 +1,30 @@
-async function handleGetProducts() {
+interface Product {
+  id: string;
+  name: string;
+}
+
+async function handleGetProducts(){
+  try {
+    const products = await getProducts();
+    if (products) {
+      renderProducts(products);
+    }
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+async function getProducts(): Promise<Array<Product> | false> {
   try {
     //@ts-ignore
     const { data } = await axios.get("/products/get-products");
     console.log(data);
     const { products, error } = data;
-    if (error) throw new Error(error);
-    renderProducts(products);
+
+    return products;
   } catch (error) {
     console.error(error);
+    return false;
   }
 }
 
@@ -51,13 +68,15 @@ async function handleUpdateProduct(ev: any) {
     const id = ev.target.id;
     if (!id) throw new Error("Id is missing");
 
-     //@ts-ignore
-    const { data } = await axios.patch("/products/update-product", {id, newName});
-    
+    //@ts-ignore
+    const { data } = await axios.patch("/products/update-product", {
+      id,
+      newName,
+    });
+
     const { products, error } = data;
     if (error) throw new Error(error);
     renderProducts(products);
-
   } catch (error) {
     console.error(error);
   }

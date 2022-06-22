@@ -36,67 +36,83 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.getUser = exports.updateUser = exports.getAllUsers = exports.getUserByCookie = exports.handleAddUser = exports.handleDeleteUser = void 0;
-var helpers_1 = require("./helpers");
+exports.handleDelete = exports.getUserByCookie = exports.handleLogin = exports.handleAddUser = exports.getUsers = void 0;
+// import uid from './helpers';
+var models_1 = require("../models/models");
+exports.getUsers = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var users;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, models_1["default"].find({})];
+            case 1:
+                users = _a.sent();
+                console.log(users);
+                return [2 /*return*/];
+        }
+    });
+}); };
 ;
-var users = [
-    { username: 'Mario', uid: 'abc', email: "galgross24@gmail.com", password: "Aa12345" },
-    { username: 'Rayu', uid: 'abcd', email: "galgross23@gmail.com", password: "Bb12345" },
-];
-exports.handleDeleteUser = function (req, res) {
-    try {
-        var uid_1 = req.body.uid;
-        var index = users.findIndex(function (user) { return user.uid === uid_1; });
-        if (index === -1)
-            throw new Error('user not found');
-        users = users.filter(function (user) { return user.uid !== uid_1; });
-        console.log('users', users);
-        res.send({ users: users });
-    }
-    catch (error) {
-        res.send({ error: error.message });
-    }
-};
-exports.handleAddUser = function (req, res) {
-    try {
-        var _a = req.body, username = _a.username, email = _a.email, password = _a.password;
-        if (!username)
-            throw new Error("User name is required");
-        if (!email)
-            throw new Error("Email is required");
-        if (!email)
-            throw new Error("uniqID is required");
-        if (!password)
-            throw new Error("Permissions are required");
-        var user = {
-            username: username,
-            email: email,
-            uid: helpers_1["default"](),
-            password: password
-        };
-        users.push(user);
-        res.send(users);
-    }
-    catch (error) {
-        console.error(error);
-        res.send({ error: error.message });
-    }
-};
-// export const login =async (req:any, res:any) => {
-//     try {
-//         let {username, password} = req.body;
-//         const user = await user.findOne({username, password});
-//         if (user){
-//             res.cookie('user',user._.id);
-//             res.send({ok:true,user})
-//         }else{
-//             throw new Error("user not found");
-//         }
-//     } catch (error) {
-//         console.error(error);
-// 		res.send({ error: error.message });
-//     }
-// }
+exports.handleAddUser = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var _a, email, password, user, error_1;
+    return __generator(this, function (_b) {
+        switch (_b.label) {
+            case 0:
+                _b.trys.push([0, 2, , 3]);
+                _a = req.body, email = _a.email, password = _a.password;
+                if (!email)
+                    throw new Error("Email is required");
+                if (!password)
+                    throw new Error("Permissions are required");
+                user = new models_1["default"]({
+                    email: email,
+                    password: password
+                });
+                return [4 /*yield*/, user.save()];
+            case 1:
+                _b.sent();
+                res.send({ ok: true, user: user });
+                return [3 /*break*/, 3];
+            case 2:
+                error_1 = _b.sent();
+                console.error(error_1);
+                res.send({ error: error_1.message });
+                return [3 /*break*/, 3];
+            case 3: return [2 /*return*/];
+        }
+    });
+}); };
+exports.handleLogin = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var _a, email, password, user, error_2;
+    return __generator(this, function (_b) {
+        switch (_b.label) {
+            case 0:
+                _b.trys.push([0, 2, , 3]);
+                _a = req.body, email = _a.email, password = _a.password;
+                return [4 /*yield*/, models_1["default"].findOne({ email: email })];
+            case 1:
+                user = _b.sent();
+                if (user) {
+                    if (user.password === password) {
+                        res.cookie('user', user._id);
+                        res.send({ ok: true, user: user });
+                    }
+                    else {
+                        throw new Error("password not match to user");
+                    }
+                }
+                else {
+                    throw new Error("user not found");
+                }
+                return [3 /*break*/, 3];
+            case 2:
+                error_2 = _b.sent();
+                console.error(error_2);
+                res.send({ error: error_2.message });
+                return [3 /*break*/, 3];
+            case 3: return [2 /*return*/];
+        }
+    });
+}); };
 exports.getUserByCookie = function (req, res) {
     try {
         var user = req.cookies.user;
@@ -108,57 +124,66 @@ exports.getUserByCookie = function (req, res) {
         res.send({ error: error.message });
     }
 };
-function getAllUsers(req, res) {
-    return __awaiter(this, void 0, void 0, function () {
-        return __generator(this, function (_a) {
-            try {
-                res.send({ users: users });
-            }
-            catch (error) {
-                console.log('Users array not valid');
-                res.send({ error: error.message });
-            }
-            return [2 /*return*/];
-        });
-    });
-}
-exports.getAllUsers = getAllUsers;
-exports.updateUser = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, username, email, uid_2, password, userIndex;
-    return __generator(this, function (_b) {
-        try {
-            _a = req.body, username = _a.username, email = _a.email, uid_2 = _a.uid, password = _a.password;
-            userIndex = users.findIndex(function (user) { return user.uid === uid_2; });
-            if (userIndex === -1)
-                throw new Error("user not found");
-            users[userIndex].username = username;
-            users[userIndex].email = email;
-            users[userIndex].password = password;
-            res.send({
-                users: users
-            });
+// export const searchUsers = async (req,res)=>{
+//     try {
+//     }  catch (error) {
+//         res.send({
+//             error: error.message
+//         });
+// }
+// export const updateUser = async (req, res) => {
+//     try {
+//         const {
+//             email,
+//             password
+//         } = req.body;
+//         const userIndex = users.findIndex(user => user.email === email);
+//         if (userIndex === -1)
+//             throw new Error("user not found");
+//         // users[userIndex].userName = username;
+//         users[userIndex].email = email;
+//         users[userIndex].password = password;
+//         res.send({
+//             users
+//         });
+// } catch (error) {
+//     res.send({
+//         error: error.message
+//     });
+//     }
+// };
+exports.handleDelete = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var id, error_3;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                _a.trys.push([0, 3, , 4]);
+                id = req.body.id;
+                if (!id) return [3 /*break*/, 2];
+                return [4 /*yield*/, models_1["default"].findByIdAndDelete(id)];
+            case 1:
+                _a.sent();
+                res.send({ ok: true });
+                _a.label = 2;
+            case 2: return [3 /*break*/, 4];
+            case 3:
+                error_3 = _a.sent();
+                res.send({ error: error_3.message });
+                return [3 /*break*/, 4];
+            case 4: return [2 /*return*/];
         }
-        catch (error) {
-            res.send({
-                error: error.message
-            });
-        }
-        return [2 /*return*/];
     });
 }); };
-function getUser(req, res) {
-    try {
-        var uid_3 = req.body.uid;
-        if (!uid_3)
-            throw new Error('uid is missing');
-        var user = users.find(function (user) { return user.uid === uid_3; });
-        if (!user)
-            throw new Error('couldnt find user');
-        res.send({ user: user });
-    }
-    catch (error) {
-        console.error(error);
-        res.send({ error: error.message });
-    }
-}
-exports.getUser = getUser;
+//getUser func without DB: 
+// export function getUser(req, res) {
+// 	try {
+// 		const { uid } = req.body;
+// 		if (!uid) throw new Error('uid is missing');
+// 		const user = users.find((user) => user.uid === uid);
+// 		if (!user) throw new Error('couldnt find user');
+// 		res.send({ user });
+// 	} catch (error) {
+// 		console.error(error);
+// 		res.send({ error: error.message });
+// 	}
+// }

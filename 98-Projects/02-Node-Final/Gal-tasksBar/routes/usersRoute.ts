@@ -2,21 +2,24 @@ import express from "express";
 const router = express.Router();
 import {
     handleAddUser,
-    getUser,
-    updateUser,
-    getAllUsers,
-    handleDeleteUser
+    // getUser,
+    // updateUser,
+    getUserByCookie,
+    handleDelete,
+    getUsers,
+    handleLogin,
+    // handleSearchItems
 } from "../cont/usersCont";
 
 //
 router
-  .get("/get-users", getAllUsers)
-  .patch("/update-user",updateUser )
-  .delete("/user-delete", handleDeleteUser )
-  .post("/user-add", handleAddUser)
+  .get("/get-users", getUsers)
+  // .patch("/update-user",updateUser )
+  .delete("/user-delete", handleDelete)
+  .post("/add-user", handleAddUser)
 //   .post('/get-user',getUser)
-  //   .post('/login', login)
-  // .get('get-user',getUserByCookie)
-  
+    .post('/login', handleLogin)
+  .get('get-user',getUserByCookie)
+  // .get('get-user', handleSearchItems)
 
 export default router;
