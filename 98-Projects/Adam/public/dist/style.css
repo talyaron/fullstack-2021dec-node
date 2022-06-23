@@ -8,27 +8,15 @@ html {
   position: relative;
 }
 
-.main-title {
-  text-align: center;
-  border: 2px solid #6d6a6a;
-  border-radius: 20px;
-  box-shadow: 2px 2px black;
-}
-.main-title h1 {
-  font-family: "Roboto Mono", monospace;
-  color: #211430;
-  font-weight: bold;
-}
-
-.new-items {
+.items {
   text-align: center;
   border: 2px solid #dad7d7;
   border-radius: 10px;
-  box-shadow: 5px black;
+  box-shadow: 5px 5px black;
   position: relative;
   top: 10px;
 }
-.new-items h2 {
+.items h2 {
   font-family: "Roboto Mono", monospace;
   color: #481f1f;
 }

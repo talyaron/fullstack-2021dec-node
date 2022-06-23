@@ -12,24 +12,25 @@ html {
 
 }
 
-.main-title {
-    text-align: center;
-    border: 2px solid rgb(109, 106, 106);
-    border-radius: 20px;
-    box-shadow: 2px  2px black  ;
+// .main-title {
+//     text-align: center;
+//     border: 2px solid rgb(109, 106, 106);
+//     border-radius: 20px;
+//     box-shadow: 2px  2px black  ;
 
-    h1 {
-        font-family: 'Roboto Mono', monospace;
-        color: rgb(33, 20, 48);
-        font-weight: bold;
-    }
-}
 
-.new-items {
+//     h1 {
+//         font-family: 'Roboto Mono', monospace;
+//         color: rgb(33, 20, 48);
+//         font-weight: bold;
+//     }
+// }
+
+.items {
     text-align: center;
     border: 2px solid rgb(218, 215, 215);
     border-radius: 10px;
-    box-shadow: 5px  rgb(0, 0, 0);
+    box-shadow: 5px 5px  rgb(0, 0, 0);
     position: relative;
     top: 10px;
 
