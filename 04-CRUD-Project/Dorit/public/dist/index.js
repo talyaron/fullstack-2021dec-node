@@ -38,7 +38,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 exports.__esModule = true;
 function handleGetAllRecipes() {
     return __awaiter(this, void 0, void 0, function () {
-        var recipeList, name, data, recipeList_1, error, error_1;
+        var recipeList, data, recipeList_1, error, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -47,14 +47,15 @@ function handleGetAllRecipes() {
                     _a.label = 1;
                 case 1:
                     _a.trys.push([1, 3, , 4]);
-                    name = "Dorit";
-                    return [4 /*yield*/, axios.get('/api/get-all-recipes/getRoutRecipes', { name: name })];
+                    return [4 /*yield*/, axios.get('/api/get-all-recipes/getRoutRecipes')];
                 case 2:
                     data = (_a.sent()).data;
                     recipeList_1 = data.recipeList, error = data.error;
                     console.log("recipes from client recieved from server: " + recipeList_1);
                     if (error)
                         throw new Error(error);
+                    console.log(recipeList_1[0]);
+                    console.log(recipeList_1[1]);
                     renderAllRecipes(recipeList_1);
                     return [3 /*break*/, 4];
                 case 3:
@@ -68,15 +69,20 @@ function handleGetAllRecipes() {
 }
 function renderAllRecipes(recipeList) {
     console.log("renderAllRecipes");
+    console.log(recipeList[0]);
+    console.log(recipeList[1]);
     var root = document.querySelector("#root");
+    if (!root)
+        console.log("root does not exist");
     var html = "";
     recipeList.forEach(function (element) {
-        html += "<p recipe name:\"" + element.name + "\" ,adder name:\"" + element.adderName + "\"></p>";
+        html += "<div class=\"recipeList\"> recipe name:\"" + element.name + "\" ,adder name:\"" + element.adderName + "\"</div>";
     });
+    console.log(html);
     root.innerHTML += html;
     root.style.position = "relative";
-    root.style.top = "1px";
-    root.style.left = "1px";
+    root.style.top = "100px";
+    root.style.left = "100px";
 }
 function handleGetRecipe() {
     console.log("handleGetRecipe");
@@ -152,6 +158,24 @@ function handleAddRecipe() {
             inputPl.focus();
         }
     });
+}
+function handleAddLineIng() {
+    var divIng = document.querySelector('.linesIng');
+    var inputEl = document.createElement('input');
+    inputEl.setAttribute("type", "text");
+    inputEl.setAttribute("name", "Array1");
+    inputEl.setAttribute("placeholder", "Igredients");
+    divIng.append(inputEl);
+    inputEl.focus();
+}
+function handleAddLinePre() {
+    var divPre = document.querySelector('.linesPre');
+    var inputPl = document.createElement('input');
+    inputPl.setAttribute("type", "text");
+    inputPl.setAttribute("name", "Array2");
+    inputPl.setAttribute("placeholder", "PrepareMode");
+    divPre.append(inputPl);
+    inputPl.focus();
 }
 // html=`
 // <div id="root">

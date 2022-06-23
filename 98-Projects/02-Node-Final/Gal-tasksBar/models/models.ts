@@ -23,3 +23,5 @@ const UserSchema = new Schema({
 const User= model("user", UserSchema)
 
 export default User
+
+User.find({userName:"galgross24@gmail.com"}).then(docs=>console.log(docs)).catch(err=>console.log(err.message));

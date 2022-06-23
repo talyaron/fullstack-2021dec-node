@@ -123,12 +123,12 @@ export async function getAllRecipes(req:any, res:any){
   console.debug("getallrecipes from controller")
   let recipeList:Array<recipePart> = []
   for(let i:number=0;i<recipes.length;i++){
-    recipeList[i].name=recipes[i].name
-    recipeList[i].adderName=recipes[i].adderName
+    let name:string=recipes[i].name
+    let adderName:string=recipes[i].adderName
+    let RecipeL:recipePart={name,adderName}
+    recipeList.push(RecipeL)
   }
   try {
-     const {name} = req.body;
-      if(!name) throw new Error("no name")
       res.send({recipeList});
     }
    catch (error:any) {

@@ -70,7 +70,7 @@ async function handleDelete(event) {
 		console.log(`delete button pressed`);
 		const userId = event.target.id;
         // @ts-ignore
-		const { data } = await axios.delete("/users/add-user", { data: { userId, userId } });
+		const { data } = await axios.delete("/users/delelte-user", { data: { userId, userId } });
 		const { users, error } = data;
 		renderUsers(users)
 	} catch (error) {
@@ -95,20 +95,20 @@ async function handleRegister(ev) {
 async function handleLogin(ev) {
     try{
     ev.preventDefault();
-    let { username, password } = ev.target.elements;
-    username = username.value;
+    let { email, password } = ev.target.elements;
+    email = email.value;
     password = password.value;
     
     //@ts-ignore
     const { data } = await axios.post("/users/handleLogin", { username, password });
     console.log(data);
     const {user} = data;
-    window.location.href = './main.html';
+    window.location.href = "./main.html";
     if(!user){
         throw new Error('User not found');
     }
 
-    const usernameDB = user.username;
+    const usernameDB = user.email;
     const root = document.getElementById('root');
     if(root){
         root.innerHTML = `<h1>Welcome ${usernameDB}</h1>`

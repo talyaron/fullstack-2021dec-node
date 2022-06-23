@@ -195,18 +195,17 @@ function updatePre(req, res) {
 exports.updatePre = updatePre;
 function getAllRecipes(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var recipeList, i, name;
+        var recipeList, i, name, adderName, RecipeL;
         return __generator(this, function (_a) {
             console.debug("getallrecipes from controller");
             recipeList = [];
             for (i = 0; i < recipes.length; i++) {
-                recipeList[i].name = recipes[i].name;
-                recipeList[i].adderName = recipes[i].adderName;
+                name = recipes[i].name;
+                adderName = recipes[i].adderName;
+                RecipeL = { name: name, adderName: adderName };
+                recipeList.push(RecipeL);
             }
             try {
-                name = req.body.name;
-                if (!name)
-                    throw new Error("no name");
                 res.send({ recipeList: recipeList });
             }
             catch (error) {

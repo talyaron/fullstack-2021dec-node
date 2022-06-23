@@ -14,6 +14,8 @@ console.log(helpers_1.default(), randNumber(200));
 app.listen(port, () => {
     console.log(`server started at http://localhost:${port}`);
 });
+const poductsRoute_1 = __importDefault(require("./routes/poductsRoute"));
+app.use('/products', poductsRoute_1.default);
 function randNumber(maxNumber) {
     return Math.floor(Math.random() * maxNumber);
 }

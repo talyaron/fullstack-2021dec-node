@@ -9,3 +9,4 @@ var UserSchema = new mongoose_1.Schema({
 });
 var User = mongoose_1.model("user", UserSchema);
 exports["default"] = User;
+User.find({ userName: "galgross24@gmail.com" }).then(function (docs) { return console.log(docs); })["catch"](function (err) { return console.log(err.message); });
