@@ -109,7 +109,14 @@ export function clientGet(req, res) {
 
 export function clientCartPost(req, res) {
   try {
+<<<<<<< Updated upstream
     const { serialNo } = req.body;
+=======
+    const {serialNo} = req.body;
+    console.log(serialNo);
+    addBook.forEach(a => console.log(a.serialNo)
+    )
+>>>>>>> Stashed changes
     const cartFilter = addBook.find(book => book.serialNo === serialNo)
     if (cartFilter) {
       clientCart.push(cartFilter)

@@ -47,8 +47,8 @@ function renderBook(books: Array<Book>) {
     html += `<div id="wrapper"> <img src="${book.image}"  id="bookImg">  
     <p class="details">${book.name} </p> 
     
-    <p class="details">${book.description} </p>  <button onclick="handleUpdateDesc( '${book.serialNo}')" class="buttonUp">update</button>
-   <p class="details">${book.price}  </p> <button onclick="handleUpdatePrice( '${book.serialNo}')" class="buttonUp">update</button>  <br>
+    <p class="details, des" >description: ${book.description} </p>  <button class="des" onclick="handleUpdateDesc( '${book.serialNo}')" class="buttonUp">update</button> <br>
+   <p class="details, price" >price: ${book.price} nis </p> <button class="price" onclick="handleUpdatePrice( '${book.serialNo}')" class="buttonUp">update</button>  <br>
    
    <button onclick="handleDeleteBook('${book.serialNo}')" class="details" class="buttonUp">delete</button>
    </div> <br> <br>`

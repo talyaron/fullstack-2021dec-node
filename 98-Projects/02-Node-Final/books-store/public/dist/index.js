@@ -71,7 +71,7 @@ function renderBook(books) {
     var htmlBooksHolder = document.querySelector("#books");
     var html = "";
     books.forEach(function (book) {
-        html += "<div id=\"wrapper\"> <img src=\"" + book.image + "\"  id=\"bookImg\">  \n    <p class=\"details\">" + book.name + " </p> \n    \n    <p class=\"details\">" + book.description + " </p>  <button onclick=\"handleUpdateDesc( '" + book.serialNo + "')\" class=\"buttonUp\">update</button>\n   <p class=\"details\">" + book.price + "  </p> <button onclick=\"handleUpdatePrice( '" + book.serialNo + "')\" class=\"buttonUp\">update</button>  <br>\n   \n   <button onclick=\"handleDeleteBook('" + book.serialNo + "')\" class=\"details\" class=\"buttonUp\">delete</button>\n   </div> <br> <br>";
+        html += "<div id=\"wrapper\"> <img src=\"" + book.image + "\"  id=\"bookImg\">  \n    <p class=\"details\">" + book.name + " </p> \n    \n    <p class=\"details, des\" >description: " + book.description + " </p>  <button class=\"des\" onclick=\"handleUpdateDesc( '" + book.serialNo + "')\" class=\"buttonUp\">update</button> <br>\n   <p class=\"details, price\" >price: " + book.price + " nis </p> <button class=\"price\" onclick=\"handleUpdatePrice( '" + book.serialNo + "')\" class=\"buttonUp\">update</button>  <br>\n   \n   <button onclick=\"handleDeleteBook('" + book.serialNo + "')\" class=\"details\" class=\"buttonUp\">delete</button>\n   </div> <br> <br>";
     });
     htmlBooksHolder.innerHTML = html;
 }

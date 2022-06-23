@@ -10,12 +10,28 @@ body #upBook #labDes {
   position: relative;
   bottom: 25px;
 }
+body #books {
+  display: grid;
+  grid-template-columns: repeat(3, 150px);
+  justify-content: space-between;
+}
 body #books #wrapper {
   position: relative;
   border: 1px solid;
+  padding: 5px;
   border-radius: 25px;
   height: 150px;
   width: 120px;
+  white-space: nowrap;
+}
+body #books #wrapper .des {
+  display: inline-block;
+  position: inherit;
+  font-size: 8px;
+}
+body #books #wrapper .price {
+  display: inline-block;
+  font-size: 8px;
 }
 body #books #wrapper .buttonUp {
   font-size: 3px;

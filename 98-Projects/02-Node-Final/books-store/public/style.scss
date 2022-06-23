@@ -12,12 +12,31 @@ body{
     
 }
 #books{
+    display: grid;
+    grid-template-columns: repeat(3, 150px);
+    justify-content: space-between;
+    // column-gap: 5px;
+    // row-gap: 10px;
     #wrapper{
     position: relative;
     border: 1px solid;
+    padding: 5px;
     border-radius: 25px;
     height: 150px;
     width: 120px;
+    white-space: nowrap;
+   
+   
+    .des{
+        display: inline-block;
+        position: inherit;
+        font-size: 8px;
+
+    }
+    .price{
+        display: inline-block;
+        font-size: 8px;
+    }
     .buttonUp{
         font-size: 3px;
     }

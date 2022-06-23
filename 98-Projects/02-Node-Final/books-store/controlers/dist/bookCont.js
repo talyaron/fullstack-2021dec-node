@@ -135,6 +135,8 @@ exports.clientGet = clientGet;
 function clientCartPost(req, res) {
     try {
         var serialNo_4 = req.body.serialNo;
+        console.log(serialNo_4);
+        addBook.forEach(function (a) { return console.log(a.serialNo); });
         var cartFilter = addBook.find(function (book) { return book.serialNo === serialNo_4; });
         if (cartFilter) {
             clientCart.push(cartFilter);
