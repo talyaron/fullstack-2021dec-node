@@ -49,16 +49,16 @@ function postBook(req, res) {
                     return [4 /*yield*/, req.body];
                 case 1:
                     _a = _b.sent(), image = _a.image, name = _a.name, description = _a.description, price = _a.price;
+                    bookDetails = { image: image, name: name, description: description, price: price, serialNo: uid() };
+                    addBook.push(bookDetails);
+                    res.send({ addBook: addBook });
+                    console.log(addBook);
                     if (!image)
                         throw new Error("image is required");
                     if (!name)
                         throw new Error("name is required");
                     if (!price)
                         throw new Error("price is required");
-                    bookDetails = { image: image, name: name, description: description, price: price, serialNo: uid() };
-                    addBook.push(bookDetails);
-                    res.send({ addBook: addBook });
-                    console.log(addBook);
                     return [3 /*break*/, 3];
                 case 2:
                     error_1 = _b.sent();

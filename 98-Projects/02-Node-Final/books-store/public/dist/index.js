@@ -56,6 +56,7 @@ function handleUpBook(ev) {
                     addBook = data.addBook;
                     // console.log(addBook)
                     renderBook(addBook);
+                    ev.target.reset();
                     return [3 /*break*/, 4];
                 case 3:
                     error_1 = _a.sent();
