@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const mongoose_1 = __importDefault(require("mongoose"));
+const model_1 = __importDefault(require("./model/model"));
 const app = express_1.default();
 const port = 4000;
 app.use(express_1.default.static('public'));
@@ -15,7 +16,8 @@ mongoose_1.default
     console.log("connect to DB");
 })
     .catch((err) => console.error(err));
-// const july= new Cat ({name:"july", age:10})
+const cats = [{ name: "july", age: 10 }, { name: "bell", Age: 12 }];
+model_1.default.create(cats).then(() => console.log('DATA saved')).catch(err => console.log(err.message));
 const route_1 = __importDefault(require("./routes/route"));
 app.use('/cats', route_1.default);
 app.listen(port, () => {
