@@ -52,13 +52,6 @@ function postBook(req, res) {
                     bookDetails = { image: image, name: name, description: description, price: price, serialNo: uid() };
                     addBook.push(bookDetails);
                     res.send({ addBook: addBook });
-                    console.log(addBook);
-                    if (!image)
-                        throw new Error("image is required");
-                    if (!name)
-                        throw new Error("name is required");
-                    if (!price)
-                        throw new Error("price is required");
                     return [3 /*break*/, 3];
                 case 2:
                     error_1 = _b.sent();
@@ -83,13 +76,13 @@ exports.getBook = getBook;
 function updateDescription(req, res) {
     try {
         var _a = req.body, serialNo_1 = _a.serialNo, description = _a.description;
+        var filter = addBook.findIndex(function (book) { return book.serialNo = serialNo_1; });
+        addBook[filter].description = description;
+        res.send({ addBook: addBook });
         if (!description)
             throw new Error('description is require');
         if (!serialNo_1)
             throw new Error('serialNo is require');
-        var filter = addBook.findIndex(function (book) { return book.serialNo = serialNo_1; });
-        addBook[filter].description = description;
-        res.send({ addBook: addBook });
     }
     catch (error) {
         res.send({ error: error.message });
@@ -99,13 +92,13 @@ exports.updateDescription = updateDescription;
 function updatePrice(req, res) {
     try {
         var _a = req.body, serialNo_2 = _a.serialNo, price = _a.price;
+        var indexBook = addBook.findIndex(function (book) { return book.serialNo = serialNo_2; });
+        addBook[indexBook].price = price;
+        res.send({ addBook: addBook });
         if (!price)
             throw new Error('price is require');
         if (!serialNo_2)
             throw new Error('serialNo is require');
-        var indexBook = addBook.findIndex(function (book) { return book.serialNo = serialNo_2; });
-        addBook[indexBook].price = price;
-        res.send({ addBook: addBook });
     }
     catch (error) {
         res.send({ error: error.message });
@@ -136,7 +129,6 @@ function clientCartPost(req, res) {
     try {
         var serialNo_4 = req.body.serialNo;
         console.log(serialNo_4);
-        addBook.forEach(function (a) { return console.log(a.serialNo); });
         var cartFilter = addBook.find(function (book) { return book.serialNo === serialNo_4; });
         if (cartFilter) {
             clientCart.push(cartFilter);

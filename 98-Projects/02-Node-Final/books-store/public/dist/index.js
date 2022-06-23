@@ -269,15 +269,20 @@ function handleCart(serialNo) {
 }
 function cartGet() {
     return __awaiter(this, void 0, void 0, function () {
-        var data, clientCart, error_8;
+        var clientCart, error_8;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, axios.get('/clientCart')];
+                    return [4 /*yield*/, axios.get('/clientCart')
+                        // console.log(data);
+                        // const { clientCart } = data;
+                    ];
                 case 1:
-                    data = (_a.sent()).data;
-                    clientCart = data.clientCart;
+                    clientCart = (_a.sent()).data;
+                    // console.log(data);
+                    // const { clientCart } = data;
+                    console.log(clientCart);
                     renderCart(clientCart);
                     return [3 /*break*/, 3];
                 case 2:

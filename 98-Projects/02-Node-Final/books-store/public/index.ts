@@ -226,8 +226,12 @@ async function handleCart(serialNo) {
 async function cartGet() {
   try {
     //@ts-ignore
-    const { data } = await axios.get('/clientCart')
-    const { clientCart } = data;
+    const { data:clientCart } = await axios.get('/clientCart')
+    // console.log(data);
+    // const { clientCart } = data;
+    console.log(clientCart);
+    
+    
     renderCart(clientCart);
 
   } catch (error) {

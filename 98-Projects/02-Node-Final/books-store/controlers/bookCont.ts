@@ -21,15 +21,17 @@ export async function postBook(req, res) {
     const { image, name, description, price } = await req.body;
 
     const bookDetails = { image, name, description, price, serialNo: uid() };
+    
+   
 
     addBook.push(bookDetails);
 
     res.send({ addBook });
-    console.log(addBook)
-
-    if (!image) throw new Error("image is required");
-    if (!name) throw new Error("name is required");
-    if (!price) throw new Error("price is required");
+    // console.log(addBook)
+    // if (!image) throw new Error("image is required");
+    // if (!name) throw new Error("name is required");
+    // if (!price) throw new Error("price is required");
+   
   } catch (error) {
     res.send({ error });
   }
@@ -47,12 +49,12 @@ export function updateDescription(req, res) {
   try {
 
     const { serialNo, description } = req.body;
-    if (!description) throw new Error('description is require');
-    if (!serialNo) throw new Error('serialNo is require')
+    
     const filter = addBook.findIndex(book => book.serialNo = serialNo)
     addBook[filter].description = description;
     res.send({ addBook })
-
+    if (!description) throw new Error('description is require');
+    if (!serialNo) throw new Error('serialNo is require')
 
   } catch (error) {
     res.send({ error: error.message });
@@ -63,12 +65,12 @@ export function updatePrice(req, res) {
   try {
 
     const { serialNo, price } = req.body;
-    if (!price) throw new Error('price is require');
-    if (!serialNo) throw new Error('serialNo is require')
+   
     const indexBook = addBook.findIndex(book => book.serialNo = serialNo)
     addBook[indexBook].price = price;
     res.send({ addBook })
-
+    if (!price) throw new Error('price is require');
+    if (!serialNo) throw new Error('serialNo is require')
 
   } catch (error) {
     res.send({ error: error.message });
@@ -109,14 +111,10 @@ export function clientGet(req, res) {
 
 export function clientCartPost(req, res) {
   try {
-<<<<<<< Updated upstream
     const { serialNo } = req.body;
-=======
-    const {serialNo} = req.body;
     console.log(serialNo);
-    addBook.forEach(a => console.log(a.serialNo)
-    )
->>>>>>> Stashed changes
+
+    
     const cartFilter = addBook.find(book => book.serialNo === serialNo)
     if (cartFilter) {
       clientCart.push(cartFilter)
