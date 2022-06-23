@@ -7,7 +7,6 @@ const express_1 = __importDefault(require("express"));
 const mongoose_1 = __importDefault(require("mongoose"));
 var cookieParser = require('cookie-parser');
 const app = express_1.default();
-// @ts-ignore
 const port = process.env.PORT || 3000;
 require('dotenv').config();
 app.use(express_1.default.static("public"));

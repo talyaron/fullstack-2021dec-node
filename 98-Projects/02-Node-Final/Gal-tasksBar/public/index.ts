@@ -8,12 +8,11 @@ interface user{
     password: number
 };
 
-interface tasks{
-    title: string,
-    uid: string,
-    description: string,
-    date: Date,
-}
+// interface tasks{
+//     title: string,
+//     description: string,
+//     date: Date,
+// }
 
 async function handleAddUser(ev: any) {
     try {
@@ -60,9 +59,37 @@ function renderUsers(users: Array < user > ) {
 function handleLoad() {
   try {
         getUserByCookie();
+        handleLogin();
+        // handleRegister();
   } catch (error) {
     console.error(error);
   }
+}
+
+async function handleLogin(ev){
+    try{
+    ev.preventDefault();
+    let { email, password } = ev.target.elements;
+    email = email.value;
+    password = password.value;
+    
+    //@ts-ignore
+    const { data } = await axios.post("/users/handleLogin", { username, password });
+    console.log(data);
+    const {user} = data;
+    window.location.href = "./main.html";
+    if(!user){
+        throw new Error('User not found');
+    }
+
+    const usernameDB = user.email;
+    const root = document.getElementById('#root');
+    if(root){
+        root.innerHTML = `<h1>Welcome ${usernameDB}</h1>`
+    }
+    } catch (error) {
+        console.error(error)
+    }
 }
 
 async function handleDelete(event) {
@@ -92,30 +119,18 @@ async function handleRegister(ev) {
     console.log(data);
 }
 
-async function handleLogin(ev) {
-    try{
-    ev.preventDefault();
-    let { email, password } = ev.target.elements;
-    email = email.value;
-    password = password.value;
-    
-    //@ts-ignore
-    const { data } = await axios.post("/users/handleLogin", { username, password });
-    console.log(data);
-    const {user} = data;
-    window.location.href = "./main.html";
-    if(!user){
-        throw new Error('User not found');
-    }
 
-    const usernameDB = user.email;
-    const root = document.getElementById('root');
-    if(root){
-        root.innerHTML = `<h1>Welcome ${usernameDB}</h1>`
-    }
-    } catch (error) {
-        console.error(error)
-    }
+
+function userPage(){
+    const usersTasks:HTMLElement= document.querySelector("#usersTasks");
+    let html= "";
+   
+    html+=`
+    <div></div>
+    `; 
+       
+    usersTasks.innerHTML=html;
+    console.log(userPage);
 }
 
 async function getUserByCookie() {
@@ -166,32 +181,21 @@ async function handleSearchItems(event) {
 }
 
 
-// function userPage(){
-//     const usersTasks:HTMLElement= document.querySelector("#usersTasks");
-//     let html= "";
-   
-//     html+=`
-//     <div></div>
-//     `; 
-       
-//     usersTasks.innerHTML=html;
-//     console.log(userPage);
-// }
 
 
 
-export function getUserId(): string | false {
-    try {
-      const queryString = window.location.search;
-      console.log(queryString);
+// export function getUserId(): string | false {
+//     try {
+//       const queryString = window.location.search;
+//       console.log(queryString);
   
-      const urlParams = new URLSearchParams(queryString);
+//       const urlParams = new URLSearchParams(queryString);
   
-      const userId = urlParams.get("userId");
-      console.log(userId);
-      return userId;
-    } catch (error) {
-      console.error(error);
-      return false;
-    }
-  }
+//       const userId = urlParams.get("userId");
+//       console.log(userId);
+//       return userId;
+//     } catch (error) {
+//       console.error(error);
+//       return false;
+//     }
+//   }

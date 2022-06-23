@@ -1,3 +1,4 @@
+
 export interface user{
     userName: string,
     email: string,
@@ -7,7 +8,6 @@ export interface user{
 
 export interface tasks{
     title: string,
-    // uid: string,
     description: string,
     date: Date,
 }

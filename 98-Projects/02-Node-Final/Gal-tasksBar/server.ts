@@ -3,7 +3,6 @@ import mongoose from  'mongoose';
 
 var cookieParser = require('cookie-parser')
 const app = express();
-// @ts-ignore
 const port = process.env.PORT || 3000;
 require('dotenv').config()
 app.use(express.static("public"));
@@ -18,6 +17,8 @@ mongoose.connect(mongodb_uri).then(res =>{
     console.log('at mongoose.connect:')
     console.error(err.message)
 })
+
+
 
 import usersRoute from "./routes/usersRoute";
 app.use("/users", usersRoute);

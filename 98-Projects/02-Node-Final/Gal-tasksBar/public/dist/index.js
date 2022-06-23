@@ -37,6 +37,11 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 exports.__esModule = true;
 ;
+// interface tasks{
+//     title: string,
+//     description: string,
+//     date: Date,
+// }
 function handleAddUser(ev) {
     return __awaiter(this, void 0, void 0, function () {
         var elements, userName, email, password;
@@ -80,14 +85,51 @@ function renderUsers(users) {
 function handleLoad() {
     try {
         getUserByCookie();
+        handleLogin();
+        // handleRegister();
     }
     catch (error) {
         console.error(error);
     }
 }
+function handleLogin(ev) {
+    return __awaiter(this, void 0, void 0, function () {
+        var _a, email, password, data, user, usernameDB, root, error_1;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
+                case 0:
+                    _b.trys.push([0, 2, , 3]);
+                    ev.preventDefault();
+                    _a = ev.target.elements, email = _a.email, password = _a.password;
+                    email = email.value;
+                    password = password.value;
+                    return [4 /*yield*/, axios.post("/users/handleLogin", { username: username, password: password })];
+                case 1:
+                    data = (_b.sent()).data;
+                    console.log(data);
+                    user = data.user;
+                    window.location.href = "./main.html";
+                    if (!user) {
+                        throw new Error('User not found');
+                    }
+                    usernameDB = user.email;
+                    root = document.getElementById('#root');
+                    if (root) {
+                        root.innerHTML = "<h1>Welcome " + usernameDB + "</h1>";
+                    }
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_1 = _b.sent();
+                    console.error(error_1);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
+}
 function handleDelete(event) {
     return __awaiter(this, void 0, void 0, function () {
-        var userId, data, users, error, error_1;
+        var userId, data, users, error, error_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -101,8 +143,8 @@ function handleDelete(event) {
                     renderUsers(users);
                     return [3 /*break*/, 3];
                 case 2:
-                    error_1 = _a.sent();
-                    console.error(error_1);
+                    error_2 = _a.sent();
+                    console.error(error_2);
                     return [3 /*break*/, 3];
                 case 3: return [2 /*return*/];
             }
@@ -129,40 +171,12 @@ function handleRegister(ev) {
         });
     });
 }
-function handleLogin(ev) {
-    return __awaiter(this, void 0, void 0, function () {
-        var _a, email, password, data, user, usernameDB, root, error_2;
-        return __generator(this, function (_b) {
-            switch (_b.label) {
-                case 0:
-                    _b.trys.push([0, 2, , 3]);
-                    ev.preventDefault();
-                    _a = ev.target.elements, email = _a.email, password = _a.password;
-                    email = email.value;
-                    password = password.value;
-                    return [4 /*yield*/, axios.post("/users/handleLogin", { username: username, password: password })];
-                case 1:
-                    data = (_b.sent()).data;
-                    console.log(data);
-                    user = data.user;
-                    window.location.href = "./main.html";
-                    if (!user) {
-                        throw new Error('User not found');
-                    }
-                    usernameDB = user.email;
-                    root = document.getElementById('root');
-                    if (root) {
-                        root.innerHTML = "<h1>Welcome " + usernameDB + "</h1>";
-                    }
-                    return [3 /*break*/, 3];
-                case 2:
-                    error_2 = _b.sent();
-                    console.error(error_2);
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
-            }
-        });
-    });
+function userPage() {
+    var usersTasks = document.querySelector("#usersTasks");
+    var html = "";
+    html += "\n    <div></div>\n    ";
+    usersTasks.innerHTML = html;
+    console.log(userPage);
 }
 function getUserByCookie() {
     return __awaiter(this, void 0, void 0, function () {
@@ -235,12 +249,16 @@ function handleSearchItems(event) {
         });
     });
 }
-// function userPage(){
-//     const usersTasks:HTMLElement= document.querySelector("#usersTasks");
-//     let html= "";
-//     html+=`
-//     <div></div>
-//     `; 
-//     usersTasks.innerHTML=html;
-//     console.log(userPage);
-// }
+// export function getUserId(): string | false {
+//     try {
+//       const queryString = window.location.search;
+//       console.log(queryString);
+//       const urlParams = new URLSearchParams(queryString);
+//       const userId = urlParams.get("userId");
+//       console.log(userId);
+//       return userId;
+//     } catch (error) {
+//       console.error(error);
+//       return false;
+//     }
+//   }
