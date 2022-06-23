@@ -157,7 +157,6 @@ async function renderClientBook(books:Array <Book>){
 }
 
 async function getClientList(ev) {
-  debugger;
   try {
     ev.preventDefault();
 
@@ -173,7 +172,7 @@ async function getClientList(ev) {
 }
 
 
- function renderCart(clientCart:Array <cart>){
+ function renderCart(clientCart:Array <Book>){
   try {
     console.log(clientCart)
     const cartBody = document.querySelector('#cartBody')
@@ -194,7 +193,9 @@ async function getClientList(ev) {
     const totalPrice = document.querySelector('#totalToPay');
     let total:number = 0;
     for(let i = 0; i < clientCart.length; i++){
+      if( clientCart && clientCart[i] !== clientCart[i]){
       total = clientCart[i].price + clientCart[i].price
+    }
     }
 
    totalPrice.innerHTML = `<h1>total to pay ${total} nis</h1>`

@@ -139,6 +139,7 @@ function clientCartPost(req, res) {
         if (cartFilter) {
             clientCart.push(cartFilter);
         }
+        console.log(clientCart);
         res.send({ clientCart: clientCart });
     }
     catch (error) {

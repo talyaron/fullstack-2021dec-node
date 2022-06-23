@@ -108,10 +108,10 @@ export function deleteBook(req, res){
 export function clientCartPost(req, res){
   try {
     const {serialNo} = req.body;
-    const cartFilter:Array <Book> = addBook.find(book => book.serialNo === serialNo)
+    const cartFilter = addBook.find(book => book.serialNo === serialNo)
     if(cartFilter){
      clientCart.push(cartFilter)}
-     
+     console.log(clientCart)
     res.send({clientCart})
   } catch (error) {
     res.send({Error: error.message})

@@ -203,21 +203,18 @@ function getClientList(ev) {
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    debugger;
-                    _a.label = 1;
-                case 1:
-                    _a.trys.push([1, 3, , 4]);
+                    _a.trys.push([0, 2, , 3]);
                     ev.preventDefault();
                     return [4 /*yield*/, axios.get('/clientGet')];
-                case 2:
+                case 1:
                     addBook = (_a.sent()).data.addBook;
                     renderClientBook(addBook);
-                    return [3 /*break*/, 4];
-                case 3:
+                    return [3 /*break*/, 3];
+                case 2:
                     error_6 = _a.sent();
                     console.log(error_6, 'an error occurred');
-                    return [3 /*break*/, 4];
-                case 4: return [2 /*return*/];
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
             }
         });
     });
@@ -235,7 +232,9 @@ function renderCart(clientCart) {
         var totalPrice = document.querySelector('#totalToPay');
         var total = 0;
         for (var i = 0; i < clientCart.length; i++) {
-            total = clientCart[i].price + clientCart[i].price;
+            if (clientCart && clientCart[i] !== clientCart[i]) {
+                total = clientCart[i].price + clientCart[i].price;
+            }
         }
         totalPrice.innerHTML = "<h1>total to pay " + total + " nis</h1>";
     }
