@@ -21,17 +21,15 @@ export async function postBook(req, res) {
     const { image, name, description, price } = await req.body;
 
     const bookDetails = { image, name, description, price, serialNo: uid() };
-    
-   
 
     addBook.push(bookDetails);
 
-    res.send({ addBook });
+    await res.send({ addBook });
     // console.log(addBook)
     // if (!image) throw new Error("image is required");
     // if (!name) throw new Error("name is required");
     // if (!price) throw new Error("price is required");
-   
+
   } catch (error) {
     res.send({ error });
   }
@@ -49,7 +47,7 @@ export function updateDescription(req, res) {
   try {
 
     const { serialNo, description } = req.body;
-    
+
     const filter = addBook.findIndex(book => book.serialNo = serialNo)
     addBook[filter].description = description;
     res.send({ addBook })
@@ -65,7 +63,7 @@ export function updatePrice(req, res) {
   try {
 
     const { serialNo, price } = req.body;
-   
+
     const indexBook = addBook.findIndex(book => book.serialNo = serialNo)
     addBook[indexBook].price = price;
     res.send({ addBook })
@@ -111,16 +109,24 @@ export function clientGet(req, res) {
 
 export function clientCartPost(req, res) {
   try {
+    // console.log(req.body)
     const { serialNo } = req.body;
-    console.log(serialNo);
+    // console.log(serialNo);
 
-    
+
     const cartFilter = addBook.find(book => book.serialNo === serialNo)
+
+    console.log(cartFilter)
+
     if (cartFilter) {
       clientCart.push(cartFilter)
+      res.send({ ok: true, clientCart })
+    } else {
+      res.send({ ok: false, message: "No book find" })
     }
-    console.log(clientCart)
-    res.send({ clientCart })
+
+
+    // console.log(clientCart)
   } catch (error) {
     res.send({ Error: error.message })
   }

@@ -143,11 +143,13 @@ async function renderClientBook(books: Array<Book>) {
       <h1>${book.name}</h1>
       <p>description:${book.description}</p>
       <h1>price: ${book.price} $</h1>
-      <button onclick('handleCart(${book.serialNo})')>add to cart</button>
+      <button onclick="handleCart('${book.serialNo}')">add to cart</button>
       </div>`
 
 
     })
+
+    // <button onclick('handleCart(${book.serialNo})')>add to cart</button>
 
     client.innerHTML = html1;
 
@@ -208,15 +210,22 @@ function renderCart(clientCart: Array<Book>) {
 }
 
 async function handleCart(serialNo) {
+  console.log(serialNo)
+
   try {
     //@ts-ignore
     const { data } = await axios.post('/clientCart', { serialNo })
     console.log(data)
-    const { clientCart } = data;
+    const { ok, clientCart, message } = data;
 
     console.log(clientCart)
 
-    renderCart(clientCart)
+    // renderCart(clientCart)
+    if (ok === true) {
+      alert('The Item is in the cart')
+    } else {
+      alert(message)
+    }
 
   } catch (error) {
     console.log(error)
@@ -226,12 +235,12 @@ async function handleCart(serialNo) {
 async function cartGet() {
   try {
     //@ts-ignore
-    const { data:clientCart } = await axios.get('/clientCart')
-    // console.log(data);
-    // const { clientCart } = data;
+    const { data } = await axios.get('/clientCart')
+    console.log(data);
+    const { clientCart } = data;
     console.log(clientCart);
-    
-    
+
+
     renderCart(clientCart);
 
   } catch (error) {

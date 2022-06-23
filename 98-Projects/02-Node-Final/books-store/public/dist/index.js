@@ -187,8 +187,9 @@ function renderClientBook(books) {
                 client = document.querySelector('#clientBody');
                 html1_1 = "";
                 books.forEach(function (book) {
-                    html1_1 += "<div id=\"wrapperClient\" >\n         <img src=\"" + book.image + "\" alt=\"\">\n      <h1>" + book.name + "</h1>\n      <p>description:" + book.description + "</p>\n      <h1>price: " + book.price + " $</h1>\n      <button onclick('handleCart(" + book.serialNo + ")')>add to cart</button>\n      </div>";
+                    html1_1 += "<div id=\"wrapperClient\" >\n         <img src=\"" + book.image + "\" alt=\"\">\n      <h1>" + book.name + "</h1>\n      <p>description:" + book.description + "</p>\n      <h1>price: " + book.price + " $</h1>\n      <button onclick=\"handleCart('" + book.serialNo + "')\">add to cart</button>\n      </div>";
                 });
+                // <button onclick('handleCart(${book.serialNo})')>add to cart</button>
                 client.innerHTML = html1_1;
             }
             catch (error) {
@@ -245,43 +246,49 @@ function renderCart(clientCart) {
 }
 function handleCart(serialNo) {
     return __awaiter(this, void 0, void 0, function () {
-        var data, clientCart, error_7;
+        var data, ok, clientCart, message, error_7;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    _a.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, axios.post('/clientCart', { serialNo: serialNo })];
+                    console.log(serialNo);
+                    _a.label = 1;
                 case 1:
+                    _a.trys.push([1, 3, , 4]);
+                    return [4 /*yield*/, axios.post('/clientCart', { serialNo: serialNo })];
+                case 2:
                     data = (_a.sent()).data;
                     console.log(data);
-                    clientCart = data.clientCart;
+                    ok = data.ok, clientCart = data.clientCart, message = data.message;
                     console.log(clientCart);
-                    renderCart(clientCart);
-                    return [3 /*break*/, 3];
-                case 2:
+                    // renderCart(clientCart)
+                    if (ok === true) {
+                        alert('The Item is in the cart');
+                    }
+                    else {
+                        alert(message);
+                    }
+                    return [3 /*break*/, 4];
+                case 3:
                     error_7 = _a.sent();
                     console.log(error_7);
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
             }
         });
     });
 }
 function cartGet() {
     return __awaiter(this, void 0, void 0, function () {
-        var clientCart, error_8;
+        var data, clientCart, error_8;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, axios.get('/clientCart')
-                        // console.log(data);
-                        // const { clientCart } = data;
-                    ];
+                    return [4 /*yield*/, axios.get('/clientCart')];
                 case 1:
-                    clientCart = (_a.sent()).data;
-                    // console.log(data);
-                    // const { clientCart } = data;
+                    data = (_a.sent()).data;
+                    console.log(data);
+                    clientCart = data.clientCart;
                     console.log(clientCart);
                     renderCart(clientCart);
                     return [3 /*break*/, 3];

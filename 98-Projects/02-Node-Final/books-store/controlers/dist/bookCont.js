@@ -45,19 +45,21 @@ function postBook(req, res) {
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
-                    _b.trys.push([0, 2, , 3]);
+                    _b.trys.push([0, 3, , 4]);
                     return [4 /*yield*/, req.body];
                 case 1:
                     _a = _b.sent(), image = _a.image, name = _a.name, description = _a.description, price = _a.price;
                     bookDetails = { image: image, name: name, description: description, price: price, serialNo: uid() };
                     addBook.push(bookDetails);
-                    res.send({ addBook: addBook });
-                    return [3 /*break*/, 3];
+                    return [4 /*yield*/, res.send({ addBook: addBook })];
                 case 2:
+                    _b.sent();
+                    return [3 /*break*/, 4];
+                case 3:
                     error_1 = _b.sent();
                     res.send({ error: error_1 });
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
             }
         });
     });
@@ -127,14 +129,19 @@ function clientGet(req, res) {
 exports.clientGet = clientGet;
 function clientCartPost(req, res) {
     try {
+        // console.log(req.body)
         var serialNo_4 = req.body.serialNo;
-        console.log(serialNo_4);
+        // console.log(serialNo);
         var cartFilter = addBook.find(function (book) { return book.serialNo === serialNo_4; });
+        console.log(cartFilter);
         if (cartFilter) {
             clientCart.push(cartFilter);
+            res.send({ ok: true, clientCart: clientCart });
         }
-        console.log(clientCart);
-        res.send({ clientCart: clientCart });
+        else {
+            res.send({ ok: false, message: "No book find" });
+        }
+        // console.log(clientCart)
     }
     catch (error) {
         res.send({ Error: error.message });
