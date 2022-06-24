@@ -2,17 +2,10 @@ interface Book {
   image: String,
   name: string,
   description: string,
-  price: number,
+  price: number|string|null,
   serialNo: string
 }
 
-interface cart {
-  image: String,
-  name: string,
-  description: string,
-  price: number,
-  serialNo: string
-}
 
 
 
@@ -45,12 +38,12 @@ function renderBook(books: Array<Book>) {
   let html = "";
   books.forEach(book => {
     html += `<div id="wrapper"> <img src="${book.image}"  id="bookImg">  
-    <p class="details">${book.name} </p> 
+    <p>${book.name} </p> 
     
-    <p class="details, des" >description: ${book.description} </p>  <button class="des" onclick="handleUpdateDesc( '${book.serialNo}')" class="buttonUp">update</button> <br>
-   <p class="details, price" >price: ${book.price} nis </p> <button class="price" onclick="handleUpdatePrice( '${book.serialNo}')" class="buttonUp">update</button>  <br>
+    <p class="des" >description: ${book.description} </p>  <button class="des" onclick="handleUpdateDesc( '${book.serialNo}')" class="buttonUp">update</button> <br>
+   <p class="price" >price: ${book.price} nis </p> <button class="price" onclick="handleUpdatePrice( '${book.serialNo}')" class="buttonUp">update</button>  <br>
    
-   <button onclick="handleDeleteBook('${book.serialNo}')" class="details" class="buttonUp">delete</button>
+   <button onclick="handleDeleteBook('${book.serialNo}')"  class="buttonUp">delete</button>
    </div> <br> <br>`
   });
 
@@ -185,8 +178,8 @@ function renderCart(clientCart: Array<Book>) {
       html += `<div id="clientCart">
       <img src="${book.image}" alt="">
       <h1>${book.name}</h1>
-      <p>description; ${book.description}</p>
-      <h1>price; ${book.price}</h1>
+      <p>description: ${book.description}</p>
+      <h1>price: ${book.price}</h1>
       <button onclick="deleteFromCart('${book.serialNo}')">delete from cart</button>
 
   </div>`
@@ -194,13 +187,9 @@ function renderCart(clientCart: Array<Book>) {
     cartBody.innerHTML = html;
 
     const totalPrice = document.querySelector('#totalToPay');
-    let total: number = 0;
-    for (let i = 0; i < clientCart.length; i++) {
-      if (clientCart && clientCart[i] !== clientCart[i]) {
-        total = clientCart[i].price + clientCart[i].price
-      }
-    }
+    const total = clientCart.reduce((acc, item) => !isNaN(item.price) ? acc + parseFloat(item.price) : acc, 0);
 
+    console.log(total);
     totalPrice.innerHTML = `<h1>total to pay ${total} nis</h1>`
 
 
@@ -246,6 +235,22 @@ async function cartGet() {
   } catch (error) {
     console.log(error)
 
+  }
+}
+
+async function deleteFromCart(serialNo){
+
+  try {
+    const {data} = await axios.delete('/deleteCart', { data:{serialNo}})
+    const {clientCart , error} = data;
+    if (error) throw new Error(error);
+    renderCart(clientCart)
+
+
+  } catch (error) {
+    console.log(error);
+    
+    
   }
 }
 

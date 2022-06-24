@@ -3,8 +3,11 @@ body {
   background-color: #5e0a26;
 }
 body #upBook {
+  margin: auto;
   text-align: center;
   align-items: center;
+  font-size: 1rem;
+  box-sizing: border-box;
 }
 body #upBook #labDes {
   position: relative;
@@ -13,35 +16,35 @@ body #upBook #labDes {
 body #books {
   display: grid;
   grid-template-columns: repeat(3, 150px);
-  justify-content: space-between;
+  justify-content: space-around;
 }
 body #books #wrapper {
   position: relative;
   border: 1px solid;
   padding: 5px;
   border-radius: 25px;
-  height: 150px;
-  width: 120px;
+  height: 0.3rem;
+  width: 0.2rem;
   white-space: nowrap;
 }
 body #books #wrapper .des {
   display: inline-block;
   position: inherit;
-  font-size: 8px;
+  font-size: 0.5rem;
 }
 body #books #wrapper .price {
   display: inline-block;
-  font-size: 8px;
+  font-size: 0.7rem;
 }
 body #books #wrapper .buttonUp {
-  font-size: 3px;
+  font-size: 0.6rem;
 }
 body #books #wrapper .details {
   font-size: 8px;
 }
 body #books #wrapper #bookImg {
-  height: 50px;
-  width: 30px;
+  height: 0.4px;
+  width: 0.4px;
 }
 body #books #wrapper #bookImg .buttonDel {
   font-size: 5px;

@@ -3,8 +3,11 @@ body {
     background-color: rgb(94, 10, 38);
 
     #upBook {
+        margin: auto;
         text-align: center;
         align-items: center;
+        font-size: 1rem;
+        box-sizing: border-box;
 
         #labDes {
             position: relative;
@@ -17,7 +20,7 @@ body {
     #books {
         display: grid;
         grid-template-columns: repeat(3, 150px);
-        justify-content: space-between;
+        justify-content: space-around;
 
         // column-gap: 5px;
         // row-gap: 10px;
@@ -26,25 +29,25 @@ body {
             border: 1px solid;
             padding: 5px;
             border-radius: 25px;
-            height: 150px;
-            width: 120px;
+            height: 0.3rem;
+            width: 0.2rem;
             white-space: nowrap;
 
 
             .des {
                 display: inline-block;
                 position: inherit;
-                font-size: 8px;
+                font-size: 0.5rem;
 
             }
 
             .price {
                 display: inline-block;
-                font-size: 8px;
+                font-size: 0.7rem;
             }
 
             .buttonUp {
-                font-size: 3px;
+                font-size: 0.6rem;
             }
 
             .details {
@@ -53,8 +56,8 @@ body {
             }
 
             #bookImg {
-                height: 50px;
-                width: 30px;
+                height: 0.4px;
+                width: 0.4px;
 
                 .buttonDel {
                     font-size: 5px;
