@@ -42,6 +42,16 @@ exports.__esModule = true;
 //     description: string,
 //     date: Date,
 // }
+function handleLoad() {
+    try {
+        getUserByCookie();
+        // handleLogin();
+        // handleRegister();
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
 function handleAddUser(ev) {
     return __awaiter(this, void 0, void 0, function () {
         var elements, userName, email, password;
@@ -81,16 +91,6 @@ function handleAddUser(ev) {
 ;
 function renderUsers(users) {
     var renderUsers = document.querySelector("#usersTasks");
-}
-function handleLoad() {
-    try {
-        getUserByCookie();
-        handleLogin();
-        // handleRegister();
-    }
-    catch (error) {
-        console.error(error);
-    }
 }
 function handleLogin(ev) {
     return __awaiter(this, void 0, void 0, function () {

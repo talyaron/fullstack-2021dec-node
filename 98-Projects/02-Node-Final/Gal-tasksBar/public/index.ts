@@ -14,6 +14,16 @@ interface user{
 //     date: Date,
 // }
 
+function handleLoad() {
+    try {
+          getUserByCookie();
+          // handleLogin();
+          // handleRegister();
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  
 async function handleAddUser(ev: any) {
     try {
         ev.preventDefault();
@@ -54,17 +64,6 @@ function renderUsers(users: Array < user > ) {
     const renderUsers = document.querySelector("#usersTasks");
 }
 
-
-
-function handleLoad() {
-  try {
-        getUserByCookie();
-        handleLogin();
-        // handleRegister();
-  } catch (error) {
-    console.error(error);
-  }
-}
 
 async function handleLogin(ev){
     try{

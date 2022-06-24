@@ -21,8 +21,6 @@ mongoose_1.default.connect(mongodb_uri).then(res => {
 });
 const usersRoute_1 = __importDefault(require("./routes/usersRoute"));
 app.use("/users", usersRoute_1.default);
-// import itemsRoute from "./routes/itemsRoute"
-// app.use("/items", itemsRoute);
 app.listen(port, () => {
     console.log(`Express is listening at http://localhost:${port}`);
 });
