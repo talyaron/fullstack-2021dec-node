@@ -19,18 +19,23 @@ body {
 
     #books {
         display: grid;
-        grid-template-columns: repeat(3, 150px);
-        justify-content: space-around;
+        grid-template-columns: auto, auto, auto;
+        margin: auto;
+        text-align: center;
+        width: 100%;
+        height: fit-content;
+        // justify-content: space-around;
 
         // column-gap: 5px;
-        // row-gap: 10px;
+        row-gap: 10px;
         #wrapper {
             position: relative;
-            border: 1px solid;
-            padding: 5px;
-            border-radius: 25px;
             height: 0.3rem;
             width: 0.2rem;
+            border: 1px solid blue;
+            padding: 5px;
+            // border-radius: 25px;
+            
             white-space: nowrap;
 
 
@@ -50,23 +55,11 @@ body {
                 font-size: 0.6rem;
             }
 
-            .details {
-                font-size: 8px;
-
-            }
-
             #bookImg {
-                height: 0.4px;
-                width: 0.4px;
+                height: 4rem;
+                width: 4rem;
 
-                .buttonDel {
-                    font-size: 5px;
-                }
-
-                .buttonUp {
-                    font-size: 3px;
-                }
-            }
+             
         }
     }
 }

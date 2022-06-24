@@ -15,16 +15,13 @@ body #upBook #labDes {
 }
 body #books {
   display: grid;
-  grid-template-columns: repeat(3, 150px);
-  justify-content: space-around;
+  grid-template-columns: repeat(3, 1fr);
 }
 body #books #wrapper {
   position: relative;
-  border: 1px solid;
-  padding: 5px;
-  border-radius: 25px;
   height: 0.3rem;
   width: 0.2rem;
+  padding: 5px;
   white-space: nowrap;
 }
 body #books #wrapper .des {
@@ -39,12 +36,9 @@ body #books #wrapper .price {
 body #books #wrapper .buttonUp {
   font-size: 0.6rem;
 }
-body #books #wrapper .details {
-  font-size: 8px;
-}
 body #books #wrapper #bookImg {
-  height: 0.4px;
-  width: 0.4px;
+  height: 0.4rem;
+  width: 0.4rem;
 }
 body #books #wrapper #bookImg .buttonDel {
   font-size: 5px;
