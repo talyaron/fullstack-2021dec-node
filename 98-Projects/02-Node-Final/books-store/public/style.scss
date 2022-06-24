@@ -1,40 +1,72 @@
-body{
+body {
     text-align: center;
     background-color: rgb(94, 10, 38);
-#upBook{
-    text-align: center;
-    align-items: center;
-    #labDes{
-        position: relative;
-        bottom: 25px;
-        
-    }
-    
-}
-#books{
-    #wrapper{
-    position: relative;
-    border: 1px solid;
-    border-radius: 25px;
-    height: 150px;
-    width: 120px;
-    .buttonUp{
-        font-size: 3px;
-    }
-    .details{
-        font-size: 8px;
-       
-    }
-    #bookImg{
-        height: 50px;
-        width: 30px;
-        .buttonDel{
-            font-size: 5px;
+
+    #upBook {
+        margin: auto;
+        text-align: center;
+        align-items: center;
+        font-size: 1rem;
+        box-sizing: border-box;
+
+        #labDes {
+            position: relative;
+            bottom: 25px;
+
         }
-        .buttonUp{
-            font-size: 3px;
+
+    }
+
+    #books {
+        display: grid;
+        grid-template-columns: repeat(3, 150px);
+        justify-content: space-around;
+
+        // column-gap: 5px;
+        // row-gap: 10px;
+        #wrapper {
+            position: relative;
+            border: 1px solid;
+            padding: 5px;
+            border-radius: 25px;
+            height: 0.3rem;
+            width: 0.2rem;
+            white-space: nowrap;
+
+
+            .des {
+                display: inline-block;
+                position: inherit;
+                font-size: 0.5rem;
+
+            }
+
+            .price {
+                display: inline-block;
+                font-size: 0.7rem;
+            }
+
+            .buttonUp {
+                font-size: 0.6rem;
+            }
+
+            .details {
+                font-size: 8px;
+
+            }
+
+            #bookImg {
+                height: 0.4px;
+                width: 0.4px;
+
+                .buttonDel {
+                    font-size: 5px;
+                }
+
+                .buttonUp {
+                    font-size: 3px;
+                }
+            }
         }
     }
-}
-}
 }

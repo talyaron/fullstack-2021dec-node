@@ -1,7 +1,8 @@
 "use strict";
 exports.__esModule = true;
-exports.getProduct = void 0;
-function getProduct(req, renderProducts) {
+exports.getProducts = void 0;
+var products = [{ id: 'ettreyer', name: 'test' }];
+function getProducts(req, res) {
     try {
         res.send({ products: products });
     }
@@ -10,4 +11,4 @@ function getProduct(req, renderProducts) {
         res.send({ error: error.message });
     }
 }
-exports.getProduct = getProduct;
+exports.getProducts = getProducts;

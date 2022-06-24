@@ -1,3 +1,4 @@
+
 export interface user{
     userName: string,
     email: string,
@@ -7,7 +8,6 @@ export interface user{
 
 export interface tasks{
     title: string,
-    // uid: string,
     description: string,
     date: Date,
 }
@@ -23,3 +23,5 @@ const UserSchema = new Schema({
 const User= model("user", UserSchema)
 
 export default User
+
+User.find({userName:"galgross24@gmail.com"}).then(docs=>console.log(docs)).catch(err=>console.log(err.message));
