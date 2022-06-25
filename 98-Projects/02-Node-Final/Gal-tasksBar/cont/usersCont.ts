@@ -14,7 +14,7 @@ export interface User{
 
 
 
-export const handleAddUser = async (req, res) => {
+export const handleRegister = async (req, res) => {
 	try {
 		const { 
                 email,
@@ -30,7 +30,6 @@ export const handleAddUser = async (req, res) => {
             email,
             password
         });
-
         await user.save()
         res.send({ok: true, user})
 	} catch (error) {
@@ -83,27 +82,27 @@ export const getUserByCookie = (req,res)=>{
 
 // export const updateUser = async (req, res) => {
 //     try {
-//         const {
+//         const User{
 //             email,
 //             password
 //         } = req.body;
 
-//         const userIndex = users.findIndex(user => user.email === email);
+//         const userIndex = User.findIndex(User.email === email);
 //         if (userIndex === -1)
 //             throw new Error("user not found");
 
 //         // users[userIndex].userName = username;
-//         users[userIndex].email = email;
-//         users[userIndex].password = password;
+//         User[userIndex].email = email;
+//         User[userIndex].password = password;
 
 //         res.send({
-//             users
+//             User
 //         });
 
-    // } catch (error) {
-    //     res.send({
-    //         error: error.message
-    //     });
+//     } catch (error) {
+//         res.send({
+//             error: error.message
+//         });
 //     }
 // };
 

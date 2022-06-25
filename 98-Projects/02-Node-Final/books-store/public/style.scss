@@ -1,40 +1,69 @@
-body{
+body {
     text-align: center;
     background-color: rgb(94, 10, 38);
-#upBook{
-    text-align: center;
-    align-items: center;
-    #labDes{
+
+    #uploadBook {
+        margin: auto;
+        text-align: center;
+        align-items: center;
+        font-size: 1rem;
+        box-sizing: border-box;
+
+        #labelDescription {
+            position: relative;
+            bottom: 25px;
+
+        }
+
+    }
+
+    #books {
+        display: grid;
+        grid-template-columns: auto auto auto;
+        margin: auto;
+        text-align: center;
+        width: 100%;
+        height: fit-content;
+        // justify-content: space-around;
         position: relative;
-        bottom: 25px;
+        top: 2rem;
+        column-gap: 5px;
+        row-gap: 10rem;
+        #wrapper {
         
-    }
-    
-}
-#books{
-    #wrapper{
-    position: relative;
-    border: 1px solid;
-    border-radius: 25px;
-    height: 150px;
-    width: 120px;
-    .buttonUp{
-        font-size: 3px;
-    }
-    .details{
-        font-size: 8px;
-       
-    }
-    #bookImg{
-        height: 50px;
-        width: 30px;
-        .buttonDel{
-            font-size: 5px;
+            position: relative;
+            height: 0.3rem;
+            width: 0.2rem;
+            border: 1px solid blue;
+            padding: 5px;
+            // border-radius: 25px;
+            
+            white-space: nowrap;
+
+            #bookImg {
+                height: 4rem;
+                width: 4rem;
+
+             
         }
-        .buttonUp{
-            font-size: 3px;
-        }
+
+
+            .des {
+                display: inline-block;
+                position: inherit;
+                font-size: 0.5rem;
+
+            }
+
+            .price {
+                display: inline-block;
+                font-size: 0.7rem;
+            }
+
+            .buttonUp {
+                font-size: 0.6rem;
+            }
+
+            
     }
-}
-}
-}
+} }

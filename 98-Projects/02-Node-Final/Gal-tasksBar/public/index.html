@@ -9,7 +9,7 @@
     <title>TaskBar/MainPage</title>
 </head>
 <body>
-    <main onload="handleLoad()">
+    <main onload="handleLoad(event)">
         <h1>Personal Task Bar</h1>
         <form onsubmit="handleRegister(event)">
             <input type="email" name="email" placeholder="Email" required>
@@ -21,14 +21,15 @@
         <form onsubmit="handleLogin(event)">
             <input type="email" name="email" placeholder="Email" required>
             <input type="password" name="password" placeholder="Password" required>
-            <button><a id="main-a" href="./main.html">Login<a></button>
+            <button><a id="main-a" type="submit" href="./main.html">Login<a></button>
         </form>
-     </div>
     </main>
-    </div>
+   
     <script src="./dist/index.js"></script>
     <div id="usersTasks"></div>
     <div id="root"></div>
 </body>
-<footer id="footer"></footer>
+<div class="footer">
+    <p>@corporation Gal Gross</p>
+  </div>
 </html>

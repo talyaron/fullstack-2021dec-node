@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.handleDelete = exports.getUserByCookie = exports.handleLogin = exports.handleAddUser = exports.getUsers = void 0;
+exports.handleDelete = exports.getUserByCookie = exports.handleLogin = exports.handleRegister = exports.getUsers = void 0;
 // import uid from './helpers';
 var models_1 = require("../models/models");
 exports.getUsers = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
@@ -52,7 +52,7 @@ exports.getUsers = function (req, res) { return __awaiter(void 0, void 0, void 0
     });
 }); };
 ;
-exports.handleAddUser = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+exports.handleRegister = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var _a, email, password, user, error_1;
     return __generator(this, function (_b) {
         switch (_b.label) {
@@ -133,23 +133,23 @@ exports.getUserByCookie = function (req, res) {
 // }
 // export const updateUser = async (req, res) => {
 //     try {
-//         const {
+//         const User{
 //             email,
 //             password
 //         } = req.body;
-//         const userIndex = users.findIndex(user => user.email === email);
+//         const userIndex = User.findIndex(User.email === email);
 //         if (userIndex === -1)
 //             throw new Error("user not found");
 //         // users[userIndex].userName = username;
-//         users[userIndex].email = email;
-//         users[userIndex].password = password;
+//         User[userIndex].email = email;
+//         User[userIndex].password = password;
 //         res.send({
-//             users
+//             User
 //         });
-// } catch (error) {
-//     res.send({
-//         error: error.message
-//     });
+//     } catch (error) {
+//         res.send({
+//             error: error.message
+//         });
 //     }
 // };
 exports.handleDelete = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
