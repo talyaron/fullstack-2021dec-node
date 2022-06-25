@@ -19,6 +19,7 @@
   "homepage": "https://github.com/talyaron/fullstack-2021dec-node#readme",
   "dependencies": {
     "express": "^4.18.1",
+    "mongoose": "^6.4.0",
     "socket.io": "^4.5.1"
   },
   "devDependencies": {
