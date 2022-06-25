@@ -42,12 +42,12 @@ exports.__esModule = true;
 //     description: string,
 //     date: Date,
 // }
-function handleLoad() {
+function handleLoad(event) {
     try {
         handleGetUsers();
         getUserByCookie();
-        // handleLogin();
-        //   handleRegister();
+        handleLogin(event);
+        handleRegister(event);
     }
     catch (error) {
         console.error(error);
@@ -179,7 +179,7 @@ function handleRegister(event) {
 function userPage() {
     var usersTasks = document.querySelector("#usersTasks");
     var html = "";
-    html += "\n    <div></div>\n    ";
+    html += "\n    <div>\n        <h1>hello</h1>\n    </div>\n    ";
     usersTasks.innerHTML = html;
     console.log(userPage);
 }

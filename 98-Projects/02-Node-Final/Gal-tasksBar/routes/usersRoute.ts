@@ -4,7 +4,8 @@ const mainTs = require ('../models/models')
 const passport = require ('passport');
 
 import {
-    handleAddUser,
+    handleRegister,
+    // handleAddUser,
     // getUser,
     // updateUser,
     getUserByCookie,
@@ -19,10 +20,10 @@ router
     .get("/get-users", getUsers)
   // .patch("/update-user",updateUser )
     .delete("/user-delete", handleDelete)
-    .post("/add-user", handleAddUser)
+    .post("/add-user", handleRegister)
 //   .post('/get-user',getUser)
     .post('/login', handleLogin)
-    .get('/login', passport.Authenticate('local'))
+    // .get('/login', passport.Authenticate('local'))
     .get('get-user',getUserByCookie)
   // .get('get-user', handleSearchItems)
 

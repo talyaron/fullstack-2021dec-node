@@ -14,12 +14,12 @@ interface user{
 //     date: Date,
 // }
 
-function handleLoad() {
+function handleLoad(event) {
     try {
         handleGetUsers();
         getUserByCookie();
-        // handleLogin();
-        //   handleRegister();
+        handleLogin(event);
+        handleRegister(event);
     } catch (error) {
       console.error(error);
     }
@@ -130,7 +130,9 @@ function userPage(){
     let html= "";
    
     html+=`
-    <div></div>
+    <div>
+        <h1>hello</h1>
+    </div>
     `; 
        
     usersTasks.innerHTML=html;

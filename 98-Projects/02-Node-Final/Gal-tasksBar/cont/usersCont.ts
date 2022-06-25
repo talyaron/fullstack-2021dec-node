@@ -14,7 +14,7 @@ export interface User{
 
 
 
-export const handleAddUser = async (req, res) => {
+export const handleRegister = async (req, res) => {
 	try {
 		const { 
                 email,
@@ -30,7 +30,6 @@ export const handleAddUser = async (req, res) => {
             email,
             password
         });
-
         await user.save()
         res.send({ok: true, user})
 	} catch (error) {
