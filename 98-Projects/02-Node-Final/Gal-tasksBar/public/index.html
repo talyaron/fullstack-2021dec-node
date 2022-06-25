@@ -11,24 +11,25 @@
 <body>
     <main onload="handleLoad()">
         <h1>Personal Task Bar</h1>
-        <form onsubmit="handleRegister(ev)">
+        <form onsubmit="handleRegister(event)">
             <input type="email" name="email" placeholder="Email" required>
             <input type="password" name="password" placeholder="Password" required>
             <button id="main-a" type="submit">Register</button>
         </form>
          <h2>already have User?</h2>
          <h2>Login here:</h2>
-        <form onsubmit="handleLogin(ev)">
+        <form onsubmit="handleLogin(event)">
             <input type="email" name="email" placeholder="Email" required>
             <input type="password" name="password" placeholder="Password" required>
-            <button><a id="main-a" href="./main.html">Login<a></button>
+            <button><a id="main-a" type="submit" href="./main.html">Login<a></button>
         </form>
-     </div>
     </main>
-    </div>
+   
     <script src="./dist/index.js"></script>
     <div id="usersTasks"></div>
     <div id="root"></div>
 </body>
-<footer id="footer"></footer>
+<div class="footer">
+    <p>@corporation Gal Gross</p>
+  </div>
 </html>

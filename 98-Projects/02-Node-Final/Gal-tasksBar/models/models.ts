@@ -25,3 +25,13 @@ const User= model("user", UserSchema)
 export default User
 
 User.find({userName:"galgross24@gmail.com"}).then(docs=>console.log(docs)).catch(err=>console.log(err.message));
+
+const crypto = require ('crypto');
+
+const hashPassword = (plainText)=>{
+    return crypto.createHmac('gal1', 'key')
+        .update(plainText)
+        .digest ('hex');
+}
+
+export hashPassword

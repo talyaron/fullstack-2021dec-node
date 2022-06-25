@@ -16,9 +16,10 @@ interface user{
 
 function handleLoad() {
     try {
-          getUserByCookie();
-          // handleLogin();
-          // handleRegister();
+        handleGetUsers();
+        getUserByCookie();
+        // handleLogin();
+        //   handleRegister();
     } catch (error) {
       console.error(error);
     }
@@ -36,22 +37,22 @@ async function handleAddUser(ev: any) {
         if (!userName || !email || !password)
             throw new Error("Details are required");
 
-        // const {
-        //     data
-        //      // @ts-ignore
-        // } = await axios.post('/api/add-user', {
-        //     userName,
-        //     email,
-        //     password
-        // });
+        const {
+            data
+             // @ts-ignore
+        } = await axios.post('/api/add-user', {
+            userName,
+            email,
+            password
+        });
 
-        // const {
-        //     users,
-        //     error
-        // } = data;
-        // if (error)
-        //     throw new Error(error);
-        // renderUsers(users);
+        const {
+            user,
+            error
+        } = data;
+        if (error)
+            throw new Error(error);
+        renderUsers(user);
 
     } catch (error) {
         console.error(error);
@@ -64,11 +65,15 @@ function renderUsers(users: Array < user > ) {
     const renderUsers = document.querySelector("#usersTasks");
 }
 
+// const getUserInRoom = (room)=>{
+//     room= room.trim().toLowerCase()
+//     return getUsers.filter((User))=>User.room === room)
+// }
 
-async function handleLogin(ev){
+async function handleLogin(event: any): Promise<void>{
     try{
-    ev.preventDefault();
-    let { email, password } = ev.target.elements;
+    event.preventDefault();
+    let { email, password } = event.target.elements;
     email = email.value;
     password = password.value;
     
@@ -76,7 +81,7 @@ async function handleLogin(ev){
     const { data } = await axios.post("/users/handleLogin", { username, password });
     console.log(data);
     const {user} = data;
-    window.location.href = "./main.html";
+    window.location.href = "../public/main.html";
     if(!user){
         throw new Error('User not found');
     }
@@ -105,9 +110,9 @@ async function handleDelete(event) {
 }
 
 
-async function handleRegister(ev) {
-    ev.preventDefault();
-    let { email, password } = ev.target.elements;
+async function handleRegister(event: any): Promise<void>{
+    event.preventDefault();
+    let { email, password } = event.target.elements;
 
     email = email.value;
     password = password.value;
