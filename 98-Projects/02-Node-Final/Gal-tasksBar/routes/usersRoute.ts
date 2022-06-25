@@ -7,14 +7,13 @@ import {
     updateUser,
     getUserByCookie,
     handleDelete,
-    getUsers,
     handleLogin,
     // handleSearchItems
+    // handleGetUsers
 } from "../cont/usersCont";
 
 //
 router
-    .get("/get-users", getUsers)
   .patch("/update-user",updateUser )
     .delete("/user-delete", handleDelete)
     .post("/add-user", handleAddUser)
@@ -22,5 +21,6 @@ router
     .post('/login', handleLogin)
     .get('get-user',getUserByCookie)
   // .get('users-search', handleSearchItems)
+  // .get("/get-users", handleGetUsers)
 
 export default router;

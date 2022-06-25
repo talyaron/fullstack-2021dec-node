@@ -44,7 +44,6 @@ exports.__esModule = true;
 // }
 function handleLoad(event) {
     try {
-        handleGetUsers();
         getUserByCookie();
         handleLogin(event);
         handleRegister(event);
@@ -208,25 +207,6 @@ function getUserByCookie() {
         });
     });
 }
-function handleGetUsers() {
-    return __awaiter(this, void 0, void 0, function () {
-        var data, users;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0: return [4 /*yield*/, axios.get('/users/get-users')];
-                case 1:
-                    data = (_a.sent()).data;
-                    console.log(data);
-                    users = data.users;
-                    console.log(users);
-                    if (users) {
-                        renderUsers(users);
-                    }
-                    return [2 /*return*/];
-            }
-        });
-    });
-}
 function handleUpdateUser(userId) {
     return __awaiter(this, void 0, void 0, function () {
         var newName, data, users;
@@ -259,3 +239,13 @@ function handleUpdateUser(userId) {
 //       return false;
 //     }
 //   }
+// async function handleGetUsers() {
+//     //@ts-ignore
+//    const { data } = await axios.get('/users/get-users')
+//    console.log(data)
+//    const { users } = data;
+//    console.log(users)
+//    if (users) {
+//        renderUsers(users);
+//    }
+// }

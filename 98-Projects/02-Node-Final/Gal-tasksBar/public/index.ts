@@ -15,7 +15,6 @@ interface user{
 
 function handleLoad(event) {
     try {
-        handleGetUsers();
         getUserByCookie();
         handleLogin(event);
         handleRegister(event);
@@ -58,9 +57,6 @@ async function handleAddUser(ev: any) {
         console.error(error);
     }
 };
-
-
-
 
 
 function renderUsers(users) {
@@ -106,7 +102,6 @@ async function handleLogin(event: any): Promise<void>{
 }
 
 
-
 async function handleDelete(event) {
 	try {
 		console.log(`delete button pressed`);
@@ -120,7 +115,6 @@ async function handleDelete(event) {
 	}
 }
 
-
 async function handleRegister(event: any): Promise<void>{
     event.preventDefault();
     let { email, password } = event.target.elements;
@@ -133,9 +127,6 @@ async function handleRegister(event: any): Promise<void>{
     const { data } = await axios.post("/users/register", { email, password });
     console.log(data);
 }
-
-
-
 
 async function getUserByCookie() {
     try{
@@ -157,17 +148,6 @@ async function getUserByCookie() {
     }
 }
 
-async function handleGetUsers() {
-    //@ts-ignore
-   const { data } = await axios.get('/users/get-users')
-   console.log(data)
-
-   const { users } = data;
-   console.log(users)
-   if (users) {
-       renderUsers(users);
-   }
-}
 
 async function handleUpdateUser(userId) {
     const newName = prompt('Enter new user name');
@@ -195,3 +175,15 @@ async function handleUpdateUser(userId) {
 //       return false;
 //     }
 //   }
+
+// async function handleGetUsers() {
+//     //@ts-ignore
+//    const { data } = await axios.get('/users/get-users')
+//    console.log(data)
+
+//    const { users } = data;
+//    console.log(users)
+//    if (users) {
+//        renderUsers(users);
+//    }
+// }
