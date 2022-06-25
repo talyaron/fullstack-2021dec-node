@@ -12,7 +12,7 @@ export interface User{
     password: string
 };
 
-
+export let users: Array<User> = [];
 
 export const handleRegister = async (req, res) => {
 	try {
@@ -71,40 +71,19 @@ export const getUserByCookie = (req,res)=>{
     }
 }
 
-// export const searchUsers = async (req,res)=>{
-//     try {
-        
-//     }  catch (error) {
-//         res.send({
-//             error: error.message
-//         });
-// }
 
-// export const updateUser = async (req, res) => {
-//     try {
-//         const User{
-//             email,
-//             password
-//         } = req.body;
-
-//         const userIndex = User.findIndex(User.email === email);
-//         if (userIndex === -1)
-//             throw new Error("user not found");
-
-//         // users[userIndex].userName = username;
-//         User[userIndex].email = email;
-//         User[userIndex].password = password;
-
-//         res.send({
-//             User
-//         });
-
-//     } catch (error) {
-//         res.send({
-//             error: error.message
-//         });
-//     }
-// };
+export const updateUser = async (req, res) => {
+    try {
+      const { email, newName } = req.body;
+      const index = users.findIndex(object => {return object.email === String(email)})
+      users[index].email = newName
+      
+      res.send({ users });
+  
+    } catch (error) {
+      res.send({ error: error.message });
+    }
+  };
 
 
 export const handleDelete = async (req, res) => {
@@ -120,7 +99,29 @@ export const handleDelete = async (req, res) => {
 	}
 };
 
-//getUser func without DB: 
+
+export const handleAddUser = (req, res) => {
+    const { email,password } = req.body;
+    if (!email || !password) throw new Error("email is required");
+  
+    const user: User = {
+        email, password,
+        username: ""
+    };
+    users.push(user);
+    res.send(users);
+  };
+
+  // export const searchUsers = async (req,res)=>{
+//     try {
+        
+//     }  catch (error) {
+//         res.send({
+//             error: error.message
+//         });
+
+
+// getUser func without DB:
 // export function getUser(req, res) {
 // 	try {
 // 		const { uid } = req.body;

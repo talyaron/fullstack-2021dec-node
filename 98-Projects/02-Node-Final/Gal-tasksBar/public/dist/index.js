@@ -48,6 +48,7 @@ function handleLoad(event) {
         getUserByCookie();
         handleLogin(event);
         handleRegister(event);
+        handleAddUser(event);
     }
     catch (error) {
         console.error(error);
@@ -91,12 +92,13 @@ function handleAddUser(ev) {
 }
 ;
 function renderUsers(users) {
-    var renderUsers = document.querySelector("#usersTasks");
+    var html = '';
+    users.forEach(function (user) {
+        html += "<div class=\"screen__card-wrapper\" id=\"" + user.email + "\">\n    <h3 class=\"screen__title-h3__white\">" + user.userName + "</h3>\n    <div class=\"screen__card-wrapper__actions\">\n        <img onclick=\"handleUpdateUser('" + user.email + "')\" class=\"screen__card-wrapper__actions__icon\" src=\" ./icons/pencil.svg\" alt=\"edit\">\n        <img onclick=\"handleDeleteUser('" + user.email + "')\" class=\"screen__card-wrapper__actions__icon\" src=\"./icons/trash.svg\" alt=\"delete\">\n    </div>\n    </div>";
+    });
+    var root = document.querySelector('#usersTasks');
+    root.innerHTML = html;
 }
-// const getUserInRoom = (room)=>{
-//     room= room.trim().toLowerCase()
-//     return getUsers.filter((User))=>User.room === room)
-// }
 function handleLogin(event) {
     return __awaiter(this, void 0, Promise, function () {
         var _a, email, password, data, user, usernameDB, root, error_2;
@@ -167,7 +169,7 @@ function handleRegister(event) {
                     email = email.value;
                     password = password.value;
                     console.log(email, password);
-                    return [4 /*yield*/, axios.post("/users/add-user", { email: email, password: password })];
+                    return [4 /*yield*/, axios.post("/users/register", { email: email, password: password })];
                 case 1:
                     data = (_b.sent()).data;
                     console.log(data);
@@ -175,13 +177,6 @@ function handleRegister(event) {
             }
         });
     });
-}
-function userPage() {
-    var usersTasks = document.querySelector("#usersTasks");
-    var html = "";
-    html += "\n    <div>\n        <h1>hello</h1>\n    </div>\n    ";
-    usersTasks.innerHTML = html;
-    console.log(userPage);
 }
 function getUserByCookie() {
     return __awaiter(this, void 0, void 0, function () {
@@ -232,24 +227,21 @@ function handleGetUsers() {
         });
     });
 }
-function handleSearchItems(event) {
+function handleUpdateUser(userId) {
     return __awaiter(this, void 0, void 0, function () {
-        var data, filtereditems, error_5;
+        var newName, data, users;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    _a.trys.push([0, 2, , 3]);
-                    event.preventDefault();
-                    return [4 /*yield*/, axios.post('/items/searchItems', {})];
+                    newName = prompt('Enter new user name');
+                    return [4 /*yield*/, axios.patch('/users/update-user', { email: email, newName: newName })];
                 case 1:
                     data = (_a.sent()).data;
-                    filtereditems = data;
-                    return [3 /*break*/, 3];
-                case 2:
-                    error_5 = _a.sent();
-                    console.error(error_5);
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
+                    users = data.users;
+                    if (!Array.isArray(users))
+                        throw new Error("users should be an array");
+                    renderUsers(users);
+                    return [2 /*return*/];
             }
         });
     });

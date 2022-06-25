@@ -4,7 +4,6 @@ import User from "../models/models";
 interface user{
     userName: string,
     email: string,
-    uid: string,
     password: number
 };
 
@@ -20,6 +19,7 @@ function handleLoad(event) {
         getUserByCookie();
         handleLogin(event);
         handleRegister(event);
+        handleAddUser(event);
     } catch (error) {
       console.error(error);
     }
@@ -61,14 +61,23 @@ async function handleAddUser(ev: any) {
 
 
 
-function renderUsers(users: Array < user > ) {
-    const renderUsers = document.querySelector("#usersTasks");
+
+
+function renderUsers(users) {
+	let html = '';
+	users.forEach((user: { password: any; userName: any; email: any; }) => {
+		html += `<div class="screen__card-wrapper" id="${user.email}">
+    <h3 class="screen__title-h3__white">${user.userName}</h3>
+    <div class="screen__card-wrapper__actions">
+        <img onclick="handleUpdateUser('${user.email}')" class="screen__card-wrapper__actions__icon" src=" ./icons/pencil.svg" alt="edit">
+        <img onclick="handleDeleteUser('${user.email}')" class="screen__card-wrapper__actions__icon" src="./icons/trash.svg" alt="delete">
+    </div>
+    </div>`;
+	});
+    const root = document.querySelector('#usersTasks')
+	root.innerHTML = html;
 }
 
-// const getUserInRoom = (room)=>{
-//     room= room.trim().toLowerCase()
-//     return getUsers.filter((User))=>User.room === room)
-// }
 
 async function handleLogin(event: any): Promise<void>{
     try{
@@ -96,6 +105,8 @@ async function handleLogin(event: any): Promise<void>{
     }
 }
 
+
+
 async function handleDelete(event) {
 	try {
 		console.log(`delete button pressed`);
@@ -119,25 +130,12 @@ async function handleRegister(event: any): Promise<void>{
 
     console.log(email, password)
     //@ts-ignore
-    const { data } = await axios.post("/users/add-user", { email, password });
+    const { data } = await axios.post("/users/register", { email, password });
     console.log(data);
 }
 
 
 
-function userPage(){
-    const usersTasks:HTMLElement= document.querySelector("#usersTasks");
-    let html= "";
-   
-    html+=`
-    <div>
-        <h1>hello</h1>
-    </div>
-    `; 
-       
-    usersTasks.innerHTML=html;
-    console.log(userPage);
-}
 
 async function getUserByCookie() {
     try{
@@ -171,23 +169,15 @@ async function handleGetUsers() {
    }
 }
 
+async function handleUpdateUser(userId) {
+    const newName = prompt('Enter new user name');
+      // @ts-ignore
+    const {data} = await axios.patch('/users/update-user', {email, newName})
+	  const {users} = data;
+    if(!Array.isArray(users)) throw new Error("users should be an array")
 
-async function handleSearchItems(event) {
-	try {
-		event.preventDefault();
-
-		//@ts-ignore
-		const { data } = await axios.post('/items/searchItems', {
-		
-		});
-		const filtereditems  = data;
-	} catch (error) {
-		console.error(error);
-	}
+    renderUsers(users)
 }
-
-
-
 
 
 // export function getUserId(): string | false {

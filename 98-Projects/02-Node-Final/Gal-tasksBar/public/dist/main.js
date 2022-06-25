@@ -100,3 +100,10 @@ function handleGetUsers() {
 function renderUsers(users) {
     var renderUsers = document.querySelector("#usersTasks");
 }
+function userPage() {
+    var usersTasks = document.querySelector("#usersTasks");
+    var html = "";
+    html += "\n    <div>\n        <h1>hello</h1>\n    </div>\n    ";
+    usersTasks.innerHTML = html;
+    console.log(userPage);
+}

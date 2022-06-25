@@ -1,13 +1,10 @@
 import express from "express";
 const router = express.Router();
-const mainTs = require ('../models/models')
-const passport = require ('passport');
 
 import {
     handleRegister,
-    // handleAddUser,
-    // getUser,
-    // updateUser,
+    handleAddUser,
+    updateUser,
     getUserByCookie,
     handleDelete,
     getUsers,
@@ -18,13 +15,12 @@ import {
 //
 router
     .get("/get-users", getUsers)
-  // .patch("/update-user",updateUser )
+  .patch("/update-user",updateUser )
     .delete("/user-delete", handleDelete)
-    .post("/add-user", handleRegister)
-//   .post('/get-user',getUser)
+    .post("/add-user", handleAddUser)
+    .post("/register", handleRegister)
     .post('/login', handleLogin)
-    // .get('/login', passport.Authenticate('local'))
     .get('get-user',getUserByCookie)
-  // .get('get-user', handleSearchItems)
+  // .get('users-search', handleSearchItems)
 
 export default router;
