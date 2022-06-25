@@ -51,7 +51,7 @@ $(window).on("hashchange", function () {
       console.log(name, email, password);
       
           // @ts-ignore
-          const { data } = await axios.post("/users/sign-up", { name, email, password });
+          const { data } = await axios.post("/users/sign-up", ({ name: name, email:email, password:password }));
     
           if(!Array.isArray(data)) throw new Error("data should be an array and it is not")
           throwError(data)

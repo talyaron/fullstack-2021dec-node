@@ -90,7 +90,7 @@ function validateSignupForm(ev) {
         var password = elements.password.value;
         console.log(name, email, password);
         // @ts-ignore
-        var data = (yield axios.post("/users/sign-up", { name: name, email: email, password: password })).data;
+        var data = (yield axios.post("/users/sign-up", ({ name: name, email: email, password: password }))).data;
         if (!Array.isArray(data))
             throw new Error("data should be an array and it is not");
         throwError(data);
