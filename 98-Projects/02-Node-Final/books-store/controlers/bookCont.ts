@@ -25,7 +25,7 @@ export async function postBook(req, res) {
     addBook.push(bookDetails);
 
     await res.send({ addBook });
-    // console.log(addBook)
+    
     // if (!image) throw new Error("image is required");
     // if (!name) throw new Error("name is required");
     // if (!price) throw new Error("price is required");

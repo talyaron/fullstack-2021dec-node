@@ -2,27 +2,40 @@ body {
   text-align: center;
   background-color: #5e0a26;
 }
-body #upBook {
+body #uploadBook {
   margin: auto;
   text-align: center;
   align-items: center;
   font-size: 1rem;
   box-sizing: border-box;
 }
-body #upBook #labDes {
+body #uploadBook #labelDescription {
   position: relative;
   bottom: 25px;
 }
 body #books {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: auto auto auto;
+  margin: auto;
+  text-align: center;
+  width: 100%;
+  height: fit-content;
+  position: relative;
+  top: 2rem;
+  column-gap: 5px;
+  row-gap: 10rem;
 }
 body #books #wrapper {
   position: relative;
   height: 0.3rem;
   width: 0.2rem;
+  border: 1px solid blue;
   padding: 5px;
   white-space: nowrap;
+}
+body #books #wrapper #bookImg {
+  height: 4rem;
+  width: 4rem;
 }
 body #books #wrapper .des {
   display: inline-block;
@@ -35,14 +48,4 @@ body #books #wrapper .price {
 }
 body #books #wrapper .buttonUp {
   font-size: 0.6rem;
-}
-body #books #wrapper #bookImg {
-  height: 0.4rem;
-  width: 0.4rem;
-}
-body #books #wrapper #bookImg .buttonDel {
-  font-size: 5px;
-}
-body #books #wrapper #bookImg .buttonUp {
-  font-size: 3px;
 }
