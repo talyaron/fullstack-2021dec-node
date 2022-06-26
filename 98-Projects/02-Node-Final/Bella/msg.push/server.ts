@@ -1,5 +1,4 @@
 import express from 'express';
-import jquery from "jquery";
 
 const app = express();
 const port = process.env.PORT || 4000;
