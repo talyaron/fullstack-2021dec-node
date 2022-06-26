@@ -28,3 +28,17 @@ export async function addCat(req, res) {
     res.send({ error: error.message });
   }
 }
+
+export async function filterCatsByAge(req:any, res:any) {
+  try {
+    const {age} = req.query
+    if(!age) throw new Error('Age is missing');
+
+    const cats = await CatModel.find({age});
+
+
+    res.send({cats})
+  } catch (error) {
+    res.send({ error: error.message });
+  }
+}
