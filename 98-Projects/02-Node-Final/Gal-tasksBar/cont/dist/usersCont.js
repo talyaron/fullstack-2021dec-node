@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.handleDelete = exports.getUserByCookie = exports.handleLogin = exports.handleRegister = exports.getUsers = void 0;
+exports.handleAddUser = exports.handleDelete = exports.updateUser = exports.getUserByCookie = exports.handleLogin = exports.handleRegister = exports.users = exports.getUsers = void 0;
 // import uid from './helpers';
 var models_1 = require("../models/models");
 exports.getUsers = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
@@ -52,6 +52,7 @@ exports.getUsers = function (req, res) { return __awaiter(void 0, void 0, void 0
     });
 }); };
 ;
+exports.users = [];
 exports.handleRegister = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var _a, email, password, user, error_1;
     return __generator(this, function (_b) {
@@ -124,34 +125,21 @@ exports.getUserByCookie = function (req, res) {
         res.send({ error: error.message });
     }
 };
-// export const searchUsers = async (req,res)=>{
-//     try {
-//     }  catch (error) {
-//         res.send({
-//             error: error.message
-//         });
-// }
-// export const updateUser = async (req, res) => {
-//     try {
-//         const User{
-//             email,
-//             password
-//         } = req.body;
-//         const userIndex = User.findIndex(User.email === email);
-//         if (userIndex === -1)
-//             throw new Error("user not found");
-//         // users[userIndex].userName = username;
-//         User[userIndex].email = email;
-//         User[userIndex].password = password;
-//         res.send({
-//             User
-//         });
-//     } catch (error) {
-//         res.send({
-//             error: error.message
-//         });
-//     }
-// };
+exports.updateUser = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var _a, email_1, newName, index;
+    return __generator(this, function (_b) {
+        try {
+            _a = req.body, email_1 = _a.email, newName = _a.newName;
+            index = exports.users.findIndex(function (object) { return object.email === String(email_1); });
+            exports.users[index].email = newName;
+            res.send({ users: exports.users });
+        }
+        catch (error) {
+            res.send({ error: error.message });
+        }
+        return [2 /*return*/];
+    });
+}); };
 exports.handleDelete = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var id, error_3;
     return __generator(this, function (_a) {
@@ -174,7 +162,24 @@ exports.handleDelete = function (req, res) { return __awaiter(void 0, void 0, vo
         }
     });
 }); };
-//getUser func without DB: 
+exports.handleAddUser = function (req, res) {
+    var _a = req.body, email = _a.email, password = _a.password;
+    if (!email || !password)
+        throw new Error("email is required");
+    var user = {
+        email: email, password: password,
+        username: ""
+    };
+    exports.users.push(user);
+    res.send(exports.users);
+};
+// export const searchUsers = async (req,res)=>{
+//     try {
+//     }  catch (error) {
+//         res.send({
+//             error: error.message
+//         });
+// getUser func without DB:
 // export function getUser(req, res) {
 // 	try {
 // 		const { uid } = req.body;

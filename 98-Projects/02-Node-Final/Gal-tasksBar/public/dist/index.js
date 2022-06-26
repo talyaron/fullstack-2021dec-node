@@ -1,4 +1,3 @@
-"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -35,50 +34,42 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-exports.__esModule = true;
-;
-// interface tasks{
-//     title: string,
-//     description: string,
-//     date: Date,
-// }
-function handleLoad(event) {
-    try {
-        handleGetUsers();
-        getUserByCookie();
-        handleLogin(event);
-        handleRegister(event);
+$(window).on("hashchange", function () {
+    if (location.hash.slice(1) == "signup") {
+        $(".page").addClass("extend");
+        $("#login").removeClass("active");
+        $("#signup").addClass("active");
     }
-    catch (error) {
-        console.error(error);
+    else {
+        $(".page").removeClass("extend");
+        $("#login").addClass("active");
+        $("#signup").removeClass("active");
     }
-}
-function handleAddUser(ev) {
+});
+$(window).trigger("hashchange");
+function validateLoginForm(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var elements, userName, email, password, data, user, error, error_1;
+        var elements, name, password, data, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
                     ev.preventDefault();
                     elements = ev.target.elements;
-                    userName = elements.userName.value;
-                    email = elements.email.value;
-                    password = elements.permissions.value;
-                    console.log(userName, email, password);
-                    if (!userName || !email || !password)
-                        throw new Error("Details are required");
-                    return [4 /*yield*/, axios.post('/api/add-user', {
-                            userName: userName,
-                            email: email,
+                    name = elements.userName.value;
+                    password = elements.password.value;
+                    console.log(name, password);
+                    return [4 /*yield*/, axios.get("/users/login", {
+                            name: name,
                             password: password
                         })];
                 case 1:
                     data = (_a.sent()).data;
-                    user = data.user, error = data.error;
-                    if (error)
-                        throw new Error(error);
-                    renderUsers(user);
+                    console.log(data);
+                    if (!Array.isArray(data))
+                        throw new Error("data should be an array and it is not");
+                    throwError(data);
+                    ev.target.reset();
                     return [3 /*break*/, 3];
                 case 2:
                     error_1 = _a.sent();
@@ -90,180 +81,38 @@ function handleAddUser(ev) {
     });
 }
 ;
-function renderUsers(users) {
-    var renderUsers = document.querySelector("#usersTasks");
+function validateSignupForm(ev) {
+    try {
+        ev.preventDefault();
+        var elements = ev.target.elements;
+        var email = elements.email.value;
+        var name = elements.userName.value;
+        var password = elements.password.value;
+        console.log(name, email, password);
+        // @ts-ignore
+        var data = (yield axios.post("/users/sign-up", ({ name: name, email: email, password: password }))).data;
+        if (!Array.isArray(data))
+            throw new Error("data should be an array and it is not");
+        throwError(data);
+        ev.target.reset();
+    }
+    catch (error) {
+        console.error(error);
+    }
 }
-// const getUserInRoom = (room)=>{
-//     room= room.trim().toLowerCase()
-//     return getUsers.filter((User))=>User.room === room)
-// }
-function handleLogin(event) {
-    return __awaiter(this, void 0, Promise, function () {
-        var _a, email, password, data, user, usernameDB, root, error_2;
-        return __generator(this, function (_b) {
-            switch (_b.label) {
-                case 0:
-                    _b.trys.push([0, 2, , 3]);
-                    event.preventDefault();
-                    _a = event.target.elements, email = _a.email, password = _a.password;
-                    email = email.value;
-                    password = password.value;
-                    return [4 /*yield*/, axios.post("/users/handleLogin", { username: username, password: password })];
-                case 1:
-                    data = (_b.sent()).data;
-                    console.log(data);
-                    user = data.user;
-                    window.location.href = "../public/main.html";
-                    if (!user) {
-                        throw new Error('User not found');
-                    }
-                    usernameDB = user.email;
-                    root = document.getElementById('#root');
-                    if (root) {
-                        root.innerHTML = "<h1>Welcome " + usernameDB + "</h1>";
-                    }
-                    return [3 /*break*/, 3];
-                case 2:
-                    error_2 = _b.sent();
-                    console.error(error_2);
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
-            }
-        });
-    });
+;
+function throwError(UserValidate) {
+    if (UserValidate.email == "" || UserValidate.name == "" || UserValidate.password == "") {
+        document.querySelector("#errorMsg").innerHTML = "Please fill the required fields";
+        return false;
+    }
+    else if (UserValidate.password.length < 8) {
+        document.querySelector("#errorMsg").innerHTML = "Your password must include atleast 8 characters";
+        return false;
+    }
+    else {
+        alert("Successfully signed up");
+        return true;
+    }
 }
-function handleDelete(event) {
-    return __awaiter(this, void 0, void 0, function () {
-        var userId, data, users, error, error_3;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    _a.trys.push([0, 2, , 3]);
-                    console.log("delete button pressed");
-                    userId = event.target.id;
-                    return [4 /*yield*/, axios["delete"]("/users/delelte-user", { data: { userId: userId, userId: userId } })];
-                case 1:
-                    data = (_a.sent()).data;
-                    users = data.users, error = data.error;
-                    renderUsers(users);
-                    return [3 /*break*/, 3];
-                case 2:
-                    error_3 = _a.sent();
-                    console.error(error_3);
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
-            }
-        });
-    });
-}
-function handleRegister(event) {
-    return __awaiter(this, void 0, Promise, function () {
-        var _a, email, password, data;
-        return __generator(this, function (_b) {
-            switch (_b.label) {
-                case 0:
-                    event.preventDefault();
-                    _a = event.target.elements, email = _a.email, password = _a.password;
-                    email = email.value;
-                    password = password.value;
-                    console.log(email, password);
-                    return [4 /*yield*/, axios.post("/users/add-user", { email: email, password: password })];
-                case 1:
-                    data = (_b.sent()).data;
-                    console.log(data);
-                    return [2 /*return*/];
-            }
-        });
-    });
-}
-function userPage() {
-    var usersTasks = document.querySelector("#usersTasks");
-    var html = "";
-    html += "\n    <div>\n        <h1>hello</h1>\n    </div>\n    ";
-    usersTasks.innerHTML = html;
-    console.log(userPage);
-}
-function getUserByCookie() {
-    return __awaiter(this, void 0, void 0, function () {
-        var data, user, usernameDB, root, error_4;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    _a.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, axios.get("/users/get-user")];
-                case 1:
-                    data = (_a.sent()).data;
-                    console.log(data);
-                    user = data.user;
-                    if (!user) {
-                        throw new Error('User not found');
-                    }
-                    usernameDB = user.username;
-                    root = document.getElementById('root');
-                    if (root) {
-                        root.innerHTML = "<h1>Welcome " + usernameDB + "</h1>";
-                    }
-                    return [3 /*break*/, 3];
-                case 2:
-                    error_4 = _a.sent();
-                    console.error(error_4);
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
-            }
-        });
-    });
-}
-function handleGetUsers() {
-    return __awaiter(this, void 0, void 0, function () {
-        var data, users;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0: return [4 /*yield*/, axios.get('/users/get-users')];
-                case 1:
-                    data = (_a.sent()).data;
-                    console.log(data);
-                    users = data.users;
-                    console.log(users);
-                    if (users) {
-                        renderUsers(users);
-                    }
-                    return [2 /*return*/];
-            }
-        });
-    });
-}
-function handleSearchItems(event) {
-    return __awaiter(this, void 0, void 0, function () {
-        var data, filtereditems, error_5;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    _a.trys.push([0, 2, , 3]);
-                    event.preventDefault();
-                    return [4 /*yield*/, axios.post('/items/searchItems', {})];
-                case 1:
-                    data = (_a.sent()).data;
-                    filtereditems = data;
-                    return [3 /*break*/, 3];
-                case 2:
-                    error_5 = _a.sent();
-                    console.error(error_5);
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
-            }
-        });
-    });
-}
-// export function getUserId(): string | false {
-//     try {
-//       const queryString = window.location.search;
-//       console.log(queryString);
-//       const urlParams = new URLSearchParams(queryString);
-//       const userId = urlParams.get("userId");
-//       console.log(userId);
-//       return userId;
-//     } catch (error) {
-//       console.error(error);
-//       return false;
-//     }
-//   }
+;

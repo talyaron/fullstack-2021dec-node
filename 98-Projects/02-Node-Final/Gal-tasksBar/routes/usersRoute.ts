@@ -1,30 +1,26 @@
 import express from "express";
 const router = express.Router();
-const mainTs = require ('../models/models')
-const passport = require ('passport');
 
 import {
-    handleRegister,
-    // handleAddUser,
-    // getUser,
-    // updateUser,
+    // handleRegister,
+    handleAddUser,
+    updateUser,
     getUserByCookie,
     handleDelete,
-    getUsers,
-    handleLogin,
+    // handleLogin,
     // handleSearchItems
+    // handleGetUsers
 } from "../cont/usersCont";
 
 //
 router
-    .get("/get-users", getUsers)
-  // .patch("/update-user",updateUser )
+  .patch("/update-user",updateUser )
     .delete("/user-delete", handleDelete)
-    .post("/add-user", handleRegister)
-//   .post('/get-user',getUser)
-    .post('/login', handleLogin)
-    // .get('/login', passport.Authenticate('local'))
+    .post("/add-user", handleAddUser)
+    // .post("/register", handleRegister)
+    // .post('/login', handleLogin)
     .get('get-user',getUserByCookie)
-  // .get('get-user', handleSearchItems)
+  // .get('users-search', handleSearchItems)
+  // .get("/get-users", handleGetUsers)
 
 export default router;
