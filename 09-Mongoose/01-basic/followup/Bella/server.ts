@@ -1,5 +1,6 @@
 import express from "express";
 import mongoose from "mongoose";
+import seaAnimalModel from "./model/animalModel" 
 const app = express();
 const port = 4000;
 
@@ -12,31 +13,40 @@ mongoose
   })
   .catch((err) => console.log(err));
 
-//schema (interface)
 
-const CatSchema = new mongoose.Schema({
-  name: String,
-  age: Number,
-  owner: String
-});
+export let SeaAnimals = [
+{
+  name: 'Orca',
+  Donation: '15$',
+  color: 'blue',
+}, 
+{
+  name: 'Starfish',
+  Donation: '5$',
+  color: 'red',
+}, 
+{
+  name: 'Sea otter',
+  Donation: '10$',
+  color: 'green',
+}]
 
-//Model = collection
-const CatModel = mongoose.model("cats", CatSchema);
+seaAnimalModel.create(SeaAnimals).then(() => console.log('docs saved')).catch(err => console.log(err.message));
 
-//instace (document)
-const mitzi = new CatModel({name:'mitzi', age:4});
+//console.log the sea animals collection
+console.log(SeaAnimals);
 
-mitzi.save().then(()=>{console.log('doc saved')}).catch(err=>console.log(err.message));
-
-//search
-
-CatModel.find({age:{$gt:2}}).then(docs=>console.log(docs)).catch(err=>console.log(err.message));
+//search for 'Orca'
+seaAnimalModel.find({name:'Orca'}).then(docs=>console.log(docs)).catch(err=>console.log(err.message));
 
 
 
-app.get("/", (req, res) => {
-  res.send("Hello World!");
-});
+
+
+app.use(express.static('public'))
+
+import seaAnimalsRoute from './routes/seaAnimalsRoute';
+app.use('/seaAnimals', seaAnimalsRoute);
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
