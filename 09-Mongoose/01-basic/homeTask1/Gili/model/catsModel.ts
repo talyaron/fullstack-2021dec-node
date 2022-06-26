@@ -3,10 +3,7 @@ import mongoose from "mongoose";
 const CatSchema = new mongoose.Schema({
   name: String,
   age: Number,
-  owner: {
-    type: String,
-    required: false,
-  },
+  imgUrl: String
 });
 
 const CatModel = mongoose.model("cats", CatSchema);

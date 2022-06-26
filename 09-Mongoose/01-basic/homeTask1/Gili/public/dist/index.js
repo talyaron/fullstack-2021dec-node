@@ -36,17 +36,22 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 function handleAddCat(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var age, name, data, error_1;
+        var age, catName, imgUrl, data, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
                     ev.preventDefault();
                     age = ev.target.age.valueAsNumber;
-                    name = ev.target.name.value;
-                    if (!name || !age)
-                        throw new Error("No name or age");
-                    return [4 /*yield*/, axios.post("/cats/add-cat", { name: name, age: age })];
+                    catName = ev.target.catName.value;
+                    imgUrl = ev.target.imgUrl.value;
+                    console.log(age, catName, imgUrl);
+                    ev.target.age.value = '';
+                    ev.target.catName.value = '';
+                    ev.target.imgUrl.value = '';
+                    if (!catName || !age)
+                        throw new Error('No name or age');
+                    return [4 /*yield*/, axios.post('/cats/add-cat', { catName: catName, age: age, imgUrl: imgUrl })];
                 case 1:
                     data = (_a.sent()).data;
                     console.log(data);
@@ -65,7 +70,7 @@ function handleGetAllCats() {
         var data;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, axios.get("/cats/get-all-cats")];
+                case 0: return [4 /*yield*/, axios.get('/cats/get-all-cats')];
                 case 1:
                     data = (_a.sent()).data;
                     console.log(data);
@@ -74,3 +79,4 @@ function handleGetAllCats() {
         });
     });
 }
+function renderCats(catArr) { }
