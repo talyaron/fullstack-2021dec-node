@@ -5,7 +5,7 @@ var mongoose_1 = require("mongoose");
 var joi_1 = require("joi");
 var UserSchema = new mongoose_1["default"].Schema({
     name: {
-        type: joi_1.string,
+        type: string,
         required: true
     },
     email: {
@@ -14,7 +14,7 @@ var UserSchema = new mongoose_1["default"].Schema({
         unique: true
     },
     password: {
-        type: joi_1.string,
+        type: string,
         required: true
     }
 });
