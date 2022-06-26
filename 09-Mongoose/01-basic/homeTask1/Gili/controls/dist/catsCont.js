@@ -36,24 +36,26 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.addCat = exports.getAllCats = void 0;
+exports.getAllCats = exports.addCat = void 0;
 var catsModel_1 = require("../model/catsModel");
-var allCats = [];
-function getAllCats(req, res) {
+function addCat(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var error_1;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
+        var _a, name, age, newCat, newCatDB, error_1;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
                 case 0:
-                    _a.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, catsModel_1["default"].find({})];
+                    _b.trys.push([0, 2, , 3]);
+                    _a = req.body, name = _a.name, age = _a.age;
+                    if (!name || !age)
+                        throw new Error("missing name or age");
+                    newCat = new catsModel_1["default"]({ name: name, age: age });
+                    return [4 /*yield*/, newCat.save()];
                 case 1:
-                    allCats = _a.sent();
-                    console.debug(allCats);
-                    res.send({ allCats: allCats });
+                    newCatDB = _b.sent();
+                    res.send({ success: true, cat: newCatDB });
                     return [3 /*break*/, 3];
                 case 2:
-                    error_1 = _a.sent();
+                    error_1 = _b.sent();
                     res.send({ error: error_1.message });
                     return [3 /*break*/, 3];
                 case 3: return [2 /*return*/];
@@ -61,34 +63,15 @@ function getAllCats(req, res) {
         });
     });
 }
-exports.getAllCats = getAllCats;
-function addCat(req, res) {
+exports.addCat = addCat;
+function getAllCats(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var _a, name, age, color, src, newCat, newCatDB, error_2;
-        return __generator(this, function (_b) {
-            switch (_b.label) {
-                case 0:
-                    _b.trys.push([0, 2, , 3]);
-                    _a = req.body, name = _a.name, age = _a.age, color = _a.color, src = _a.src;
-                    if (!name || !age || !color || !src)
-                        throw new Error("server:not enough data");
-                    console.debug(name, age, color, src);
-                    newCat = new catsModel_1["default"]({ name: name, age: age, color: color, src: src });
-                    console.debug(newCat);
-                    return [4 /*yield*/, newCat.save()];
-                case 1:
-                    newCatDB = _b.sent();
-                    console.debug(newCat);
-                    res.send({ success: true, cat: newCatDB });
-                    console.debug(newCat);
-                    return [3 /*break*/, 3];
-                case 2:
-                    error_2 = _b.sent();
-                    res.send({ error: error_2.message });
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
-            }
+        var db;
+        return __generator(this, function (_a) {
+            db = catsModel_1["default"].find();
+            console.log(db);
+            return [2 /*return*/];
         });
     });
 }
-exports.addCat = addCat;
+exports.getAllCats = getAllCats;

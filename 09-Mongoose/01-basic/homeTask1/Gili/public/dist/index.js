@@ -1,4 +1,3 @@
-"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -35,60 +34,43 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-exports.__esModule = true;
-exports.addCat = exports.getAllCats = void 0;
-var catsModel_1 = require("../model/catsModel");
-var allCats = [];
-function getAllCats(req, res) {
+function handleAddCat(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var error_1;
+        var age, name, data, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, catsModel_1["default"].find({})];
+                    ev.preventDefault();
+                    age = ev.target.age.valueAsNumber;
+                    name = ev.target.name.value;
+                    if (!name || !age)
+                        throw new Error("No name or age");
+                    return [4 /*yield*/, axios.post("/cats/add-cat", { name: name, age: age })];
                 case 1:
-                    allCats = _a.sent();
-                    console.debug(allCats);
-                    res.send({ allCats: allCats });
+                    data = (_a.sent()).data;
+                    console.log(data);
                     return [3 /*break*/, 3];
                 case 2:
                     error_1 = _a.sent();
-                    res.send({ error: error_1.message });
+                    console.error(error_1);
                     return [3 /*break*/, 3];
                 case 3: return [2 /*return*/];
             }
         });
     });
 }
-exports.getAllCats = getAllCats;
-function addCat(req, res) {
+function handleGetAllCats() {
     return __awaiter(this, void 0, void 0, function () {
-        var _a, name, age, color, src, newCat, newCatDB, error_2;
-        return __generator(this, function (_b) {
-            switch (_b.label) {
-                case 0:
-                    _b.trys.push([0, 2, , 3]);
-                    _a = req.body, name = _a.name, age = _a.age, color = _a.color, src = _a.src;
-                    if (!name || !age || !color || !src)
-                        throw new Error("server:not enough data");
-                    console.debug(name, age, color, src);
-                    newCat = new catsModel_1["default"]({ name: name, age: age, color: color, src: src });
-                    console.debug(newCat);
-                    return [4 /*yield*/, newCat.save()];
+        var data;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, axios.get("/cats/get-all-cats")];
                 case 1:
-                    newCatDB = _b.sent();
-                    console.debug(newCat);
-                    res.send({ success: true, cat: newCatDB });
-                    console.debug(newCat);
-                    return [3 /*break*/, 3];
-                case 2:
-                    error_2 = _b.sent();
-                    res.send({ error: error_2.message });
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
+                    data = (_a.sent()).data;
+                    console.log(data);
+                    return [2 /*return*/];
             }
         });
     });
 }
-exports.addCat = addCat;
