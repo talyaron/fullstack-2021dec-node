@@ -92,7 +92,7 @@ function renderUsers(users) {
 }
 function handleLogin(event) {
     return __awaiter(this, void 0, Promise, function () {
-        var _a, email, password, data, user, usernameDB, root, error_2;
+        var _a, email, password, data, user, error_2;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
@@ -106,14 +106,11 @@ function handleLogin(event) {
                     data = (_b.sent()).data;
                     console.log(data);
                     user = data.user;
-                    window.location.href = "../public/main.html";
                     if (!user) {
                         throw new Error('User not found');
                     }
-                    usernameDB = user.email;
-                    root = document.getElementById('#root');
-                    if (root) {
-                        root.innerHTML = "<h1>Welcome " + usernameDB + "</h1>";
+                    if (user) {
+                        window.location.href = "../public/main.html";
                     }
                     return [3 /*break*/, 3];
                 case 2:
@@ -151,27 +148,38 @@ function handleDelete(event) {
 }
 function handleRegister(event) {
     return __awaiter(this, void 0, Promise, function () {
-        var _a, email, password, data;
-        return __generator(this, function (_b) {
-            switch (_b.label) {
+        var email, password, data, register, error, error_4;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
                 case 0:
                     event.preventDefault();
-                    _a = event.target.elements, email = _a.email, password = _a.password;
-                    email = email.value;
-                    password = password.value;
+                    _a.label = 1;
+                case 1:
+                    _a.trys.push([1, 3, , 4]);
+                    email = event.value.email;
+                    password = event.value.password;
                     console.log(email, password);
                     return [4 /*yield*/, axios.post("/users/register", { email: email, password: password })];
-                case 1:
-                    data = (_b.sent()).data;
+                case 2:
+                    data = (_a.sent()).data;
+                    register = data.register, error = data.error;
+                    console.log(error);
+                    if (error && error.includes("E11000"))
+                        alert("Email is allerady in use");
                     console.log(data);
-                    return [2 /*return*/];
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_4 = _a.sent();
+                    console.error(error_4);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
             }
         });
     });
 }
 function getUserByCookie() {
     return __awaiter(this, void 0, void 0, function () {
-        var data, user, usernameDB, root, error_4;
+        var data, user, usernameDB, root, error_5;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -191,8 +199,8 @@ function getUserByCookie() {
                     }
                     return [3 /*break*/, 3];
                 case 2:
-                    error_4 = _a.sent();
-                    console.error(error_4);
+                    error_5 = _a.sent();
+                    console.error(error_5);
                     return [3 /*break*/, 3];
                 case 3: return [2 /*return*/];
             }
