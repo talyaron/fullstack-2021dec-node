@@ -1,4 +1,3 @@
-// import uid from './helpers';
 import User from "../models/models";
 
 export const getUsers= async (req,res)=>{
@@ -14,51 +13,6 @@ export interface User{
 
 export let users: Array<User> = [];
 
-export const handleRegister = async (req, res) => {
-	try {
-		const { 
-                email,
-                password } = req.body;
-          
-            if (!email)
-                throw new Error("Email is required");
-            if (!password)
-                throw new Error("Permissions are required");
-                
-        const user = new User ({
-            
-            email,
-            password
-        });
-        await user.save()
-        res.send({handleRegister: true})
-	} catch (error) {
-		console.error(error);
-		res.send({ error: error.message });
-	}
-};
-
-export const handleLogin =async (req:any, res:any) => {
-    try {
-        let {email, password} = req.body;
-        const user = await User.findOne({email,password});
-        if (user){
-            if(user.password === password){
-
-                res.cookie('user',user._id);
-                res.send({ handleLogin : true });
-    }else{
-        throw new Error("password not match to user")
-    }
-        }else{
-            throw new Error("user not found");
-        }
-
-    } catch (error) {
-        console.error(error);
-		res.send({ error: error.message });
-    }
-}
 
 export const getUserByCookie = (req,res)=>{
     try {
