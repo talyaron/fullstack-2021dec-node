@@ -2,7 +2,7 @@ const express = require( "express" );
 const app = express();
 const port = 3000; // default port to listen
 
-
+app.use(express.json());
 import uid,{randomNumber} from './control/helpers'
 
 // define a route handler for the default home page
@@ -15,7 +15,7 @@ app.listen( port, () => {
     console.log( `server started at http://localhost:${ port }` );
 } );
 
-import productsRouter from './routes/poductsRoute';
+import productsRouter from './routes/productsRoute';
 app.use('/products',productsRouter);
 
 function randNumber(maxNumber:number):number{

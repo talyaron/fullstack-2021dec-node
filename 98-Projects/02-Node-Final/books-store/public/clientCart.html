@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,15 +9,17 @@
     <link rel="stylesheet" href="dist/style.css">
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
-<body onload="cartGet()" id="cartBody">
-    <button id="backToClient"><a href="./cliant.html">go back to shopping page</a></button>
-    
 
+<body onload="cartGet()">
+    <button id="backToClient"><a href="./cliant.html">go back to shopping page</a></button>
+
+    <div id="cartBody"></div>
     <div id="totalToPay">
         <h2></h2>
     </div>
-    
+
 
     <script src="./dist/index.js"></script>
 </body>
+
 </html>

@@ -5,15 +5,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const mongoose_1 = __importDefault(require("mongoose"));
-var cookieParser = require('cookie-parser');
+let cookieParser = require('cookie-parser');
 const app = express_1.default();
-// @ts-ignore
 const port = process.env.PORT || 3000;
 require('dotenv').config();
+const mongodb_uri = process.env.MONGODB_URI;
 app.use(express_1.default.static("public"));
 app.use(express_1.default.json());
 app.use(cookieParser());
-const mongodb_uri = process.env.MONGODB_URI;
 mongoose_1.default.connect(mongodb_uri).then(res => {
     console.log("connected to DB");
 }).catch(err => {
@@ -22,8 +21,6 @@ mongoose_1.default.connect(mongodb_uri).then(res => {
 });
 const usersRoute_1 = __importDefault(require("./routes/usersRoute"));
 app.use("/users", usersRoute_1.default);
-// import itemsRoute from "./routes/itemsRoute"
-// app.use("/items", itemsRoute);
 app.listen(port, () => {
     console.log(`Express is listening at http://localhost:${port}`);
 });

@@ -1,182 +1,78 @@
-import { getUsers } from "../cont/usersCont";
-import User from "../models/models";
+$(window).on("hashchange", function () {
+    if (location.hash.slice(1) == "signup") {
+      $(".page").addClass("extend");
+      $("#login").removeClass("active");
+      $("#signup").addClass("active");
+    } else {
+      $(".page").removeClass("extend");
+      $("#login").addClass("active");
+      $("#signup").removeClass("active");
+    }
+  });
+  $(window).trigger("hashchange");
 
-interface user{
-    userName: string,
-    email: string,
-    uid: string,
-    password: number
-};
-
-interface tasks{
-    title: string,
-    uid: string,
-    description: string,
-    date: Date,
-}
-
-async function handleAddUser(ev: any) {
+  async function validateLoginForm(ev: any) {
     try {
-        ev.preventDefault();
-
-        const elements = ev.target.elements;
-        const userName = elements.userName.value;
-        const email = elements.email.value;
-        const password = elements.permissions.value;
-        console.log(userName, email, password)
-        if (!userName || !email || !password)
-            throw new Error("Details are required");
-
-        // const {
-        //     data
-        //      // @ts-ignore
-        // } = await axios.post('/api/add-user', {
-        //     userName,
-        //     email,
-        //     password
-        // });
-
-        // const {
-        //     users,
-        //     error
-        // } = data;
-        // if (error)
-        //     throw new Error(error);
-        // renderUsers(users);
-
-    } catch (error) {
-        console.error(error);
-    }
-};
-
-
-
-function renderUsers(users: Array < user > ) {
-    const renderUsers = document.querySelector("#usersTasks");
-}
-
-
-
-function handleLoad() {
-  try {
-        getUserByCookie();
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-async function handleDelete(event) {
-	try {
-		console.log(`delete button pressed`);
-		const userId = event.target.id;
-        // @ts-ignore
-		const { data } = await axios.delete("/users/delelte-user", { data: { userId, userId } });
-		const { users, error } = data;
-		renderUsers(users)
-	} catch (error) {
-		console.error(error);
-	}
-}
-
-
-async function handleRegister(ev) {
-    ev.preventDefault();
-    let { email, password } = ev.target.elements;
-
-    email = email.value;
-    password = password.value;
-
-    console.log(email, password)
-    //@ts-ignore
-    const { data } = await axios.post("/users/add-user", { email, password });
-    console.log(data);
-}
-
-async function handleLogin(ev) {
-    try{
-    ev.preventDefault();
-    let { email, password } = ev.target.elements;
-    email = email.value;
-    password = password.value;
+      ev.preventDefault();
+      const elements = ev.target.elements
+      const name = elements.userName.value;
+      const password = elements.password.value;
+      
+      console.log(name, password);
     
-    //@ts-ignore
-    const { data } = await axios.post("/users/handleLogin", { username, password });
-    console.log(data);
-    const {user} = data;
-    window.location.href = "./main.html";
-    if(!user){
-        throw new Error('User not found');
-    }
-
-    const usernameDB = user.email;
-    const root = document.getElementById('root');
-    if(root){
-        root.innerHTML = `<h1>Welcome ${usernameDB}</h1>`
-    }
+    // @ts-ignore
+      const { data } = await axios.get("/users/login", {
+        name,
+        password
+      });
+      console.log(data)
+    
+      if (!Array.isArray(data)) throw new Error("data should be an array and it is not")
+      throwError(data)
+      ev.target.reset();
+    
     } catch (error) {
-        console.error(error)
+      console.error(error);
     }
-}
-
-async function getUserByCookie() {
-    try{
-    //@ts-ignore
-    const { data } = await axios.get("/users/get-user");
-    console.log(data);
-    const {user} = data;
-    if(!user){
-        throw new Error('User not found');
-    }
-
-    const usernameDB = user.username;
-    const root = document.getElementById('root');
-    if(root){
-        root.innerHTML = `<h1>Welcome ${usernameDB}</h1>`
-    }
+  
+  };
+  
+  
+  
+  
+  function validateSignupForm(ev: any) {
+    try {
+      ev.preventDefault();
+      const elements = ev.target.elements
+      const email = elements.email.value;
+      const name = elements.userName.value;
+      const password = elements.password.value;
+    
+      console.log(name, email, password);
+      
+          // @ts-ignore
+          const { data } = await axios.post("/users/sign-up", ({ name: name, email:email, password:password }));
+    
+          if(!Array.isArray(data)) throw new Error("data should be an array and it is not")
+          throwError(data)
+          ev.target.reset();
+  
     } catch (error) {
-        console.error(error)
+      console.error(error);
     }
-}
-
-async function handleGetUsers() {
-    //@ts-ignore
-   const { data } = await axios.get('/users/get-users')
-   console.log(data)
-
-   const { users } = data;
-   console.log(users)
-   if (users) {
-       renderUsers(users);
-   }
-}
-
-
-async function handleSearchItems(event) {
-	try {
-		event.preventDefault();
-
-		//@ts-ignore
-		const { data } = await axios.post('/items/searchItems', {
-		
-		});
-		const filtereditems  = data;
-	} catch (error) {
-		console.error(error);
-	}
-}
-
-
-// function userPage(){
-//     const usersTasks:HTMLElement= document.querySelector("#usersTasks");
-//     let html= "";
-   
-//     html+=`
-//     <div></div>
-//     `; 
-       
-//     usersTasks.innerHTML=html;
-//     console.log(userPage);
-// }
-
-
-
+  
+  };
+  
+  
+  function throwError(UserValidate: any) {
+      if ( UserValidate.email == "" || UserValidate.name == "" || UserValidate.password == "") {
+        document.querySelector("#errorMsg").innerHTML = "Please fill the required fields"
+        return false;
+      } else if (UserValidate.password.length < 8) {
+        document.querySelector("#errorMsg").innerHTML = "Your password must include atleast 8 characters"
+        return false;
+      } else {
+        alert("Successfully signed up");
+        return true;
+      }
+  };
