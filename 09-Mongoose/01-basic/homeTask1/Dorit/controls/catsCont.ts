@@ -1,5 +1,7 @@
 import CatModel from "../model/catsModel";
 let allCats=[]
+
+
 export async function getAllCats(req,res){
   try{
     allCats=await CatModel.find({})

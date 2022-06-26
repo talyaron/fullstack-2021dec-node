@@ -8,7 +8,8 @@ app.use(express.static('public'))
 import catsRoute from './routes/catsRoute';
 mongoose
   .connect(
-       "mongodb+srv://Doritgy:lk0przzuFHkF44fc@cluster0.ruq8e.mongodb.net/myDataBase?retryWrites=true&w=majority"
+    "mongodb+srv://tal:Fct4jYbHtkSrSnIa@cluster0.0hzknon.mongodb.net/myDataBase?retryWrites=true&w=majority"
+      //  "mongodb+srv://Doritgy:lk0przzuFHkF44fc@cluster0.ruq8e.mongodb.net/myDataBase?retryWrites=true&w=majority"
    )
   .then(() => {
     console.log("Connected to DB!");
