@@ -1,6 +1,6 @@
 "use strict";
 exports.__esModule = true;
-exports.addProduct = exports.getProducts = void 0;
+exports.deleteProduct = exports.addProduct = exports.getProducts = void 0;
 var helpers_1 = require("./helpers");
 var products = [{ id: 'ettreyer', name: 'test' }];
 function getProducts(req, res) {
@@ -22,6 +22,7 @@ function addProduct(req, res) {
         if (!id)
             throw new Error('Id is missing');
         products.push({ name: name, id: id });
+        res.send({ products: products });
     }
     catch (error) {
         console.error(error);
@@ -29,3 +30,17 @@ function addProduct(req, res) {
     }
 }
 exports.addProduct = addProduct;
+function deleteProduct(req, res) {
+    try {
+        var productId_1 = req.body.productId;
+        if (!productId_1)
+            throw new Error('productId is missing');
+        products = products.filter(function (product) { return product.id !== productId_1; });
+        res.send({ products: products });
+    }
+    catch (error) {
+        console.error(error);
+        res.send({ error: error.message });
+    }
+}
+exports.deleteProduct = deleteProduct;

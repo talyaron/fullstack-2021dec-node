@@ -4,7 +4,7 @@ interface Product{
    id:string;
    name:string;
 }
-const products:Array<Product> = [{id:'ettreyer', name:'test'}]
+let products:Array<Product> = [{id:'ettreyer', name:'test'}]
 
 export function getProducts(req, res){
 
@@ -24,8 +24,23 @@ export function addProduct(req, res){
       if(!id) throw new Error('Id is missing');
 
       products.push({name, id});
+      res.send({products})
     } catch (error) {
       console.error(error)
       res.send({error:error.message})
-    }
+   }
+}
+
+export function deleteProduct(req, res) {
+   try {
+      const {productId} = req.body;
+      if(!productId) throw new Error('productId is missing');
+
+      products = products.filter(product => product.id !== productId);
+
+      res.send({products});
+   } catch (error) {
+      console.error(error);
+      res.send({error:error.message});
+   }
 }
