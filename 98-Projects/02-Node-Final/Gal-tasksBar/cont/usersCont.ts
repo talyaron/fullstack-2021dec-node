@@ -31,7 +31,7 @@ export const handleRegister = async (req, res) => {
             password
         });
         await user.save()
-        res.send({ok: true, user})
+        res.send({handleRegister: true})
 	} catch (error) {
 		console.error(error);
 		res.send({ error: error.message });
@@ -41,12 +41,12 @@ export const handleRegister = async (req, res) => {
 export const handleLogin =async (req:any, res:any) => {
     try {
         let {email, password} = req.body;
-        const user = await User.findOne({email});
+        const user = await User.findOne({email,password});
         if (user){
             if(user.password === password){
 
                 res.cookie('user',user._id);
-                res.send({ok:true,user})
+                res.send({ handleLogin : true });
     }else{
         throw new Error("password not match to user")
     }

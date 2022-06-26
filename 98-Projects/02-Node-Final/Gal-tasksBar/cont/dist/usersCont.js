@@ -71,7 +71,7 @@ exports.handleRegister = function (req, res) { return __awaiter(void 0, void 0, 
                 return [4 /*yield*/, user.save()];
             case 1:
                 _b.sent();
-                res.send({ ok: true, user: user });
+                res.send({ handleRegister: true });
                 return [3 /*break*/, 3];
             case 2:
                 error_1 = _b.sent();
@@ -89,13 +89,13 @@ exports.handleLogin = function (req, res) { return __awaiter(void 0, void 0, voi
             case 0:
                 _b.trys.push([0, 2, , 3]);
                 _a = req.body, email = _a.email, password = _a.password;
-                return [4 /*yield*/, models_1["default"].findOne({ email: email })];
+                return [4 /*yield*/, models_1["default"].findOne({ email: email, password: password })];
             case 1:
                 user = _b.sent();
                 if (user) {
                     if (user.password === password) {
                         res.cookie('user', user._id);
-                        res.send({ ok: true, user: user });
+                        res.send({ handleLogin: true });
                     }
                     else {
                         throw new Error("password not match to user");

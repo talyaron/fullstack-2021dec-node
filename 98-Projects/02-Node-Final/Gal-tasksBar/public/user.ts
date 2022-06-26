@@ -1,9 +1,17 @@
+export interface user{
+    userName: string,
+    email: string,
+    // uid: string,
+    password: string
+};
 
-function handleLoad(event) {
+let users:Array<user>=[]
+
+function handleLoad(){
     try {
         getUserByCookie();
-        // handleLogin(event);
-        // handleRegister(event);
+        handleLogin(event);
+        handleRegister(event);
         handleAddUser(event);
     } catch (error) {
       console.error(error);
@@ -37,7 +45,7 @@ async function handleAddUser(ev: any) {
         } = data;
         if (error)
             throw new Error(error);
-        renderUsers(user);
+        renderUsers(users);
 
     } catch (error) {
         console.error(error);
@@ -72,16 +80,13 @@ async function handleLogin(event: any): Promise<void>{
     const { data } = await axios.post("/users/handleLogin", { username, password });
     console.log(data);
     const {user} = data;
-    window.location.href = "../public/main.html";
     if(!user){
         throw new Error('User not found');
     }
-
-    const usernameDB = user.email;
-    const root = document.getElementById('#root');
-    if(root){
-        root.innerHTML = `<h1>Welcome ${usernameDB}</h1>`
+    if(user){
+        window.location.href = "../public/main.html";
     }
+
     } catch (error) {
         console.error(error)
     }
@@ -103,15 +108,19 @@ async function handleDelete(event) {
 
 async function handleRegister(event: any): Promise<void>{
     event.preventDefault();
-    let { email, password } = event.target.elements;
-
-    email = email.value;
-    password = password.value;
-
+    try {
+    const email = event.value.email;
+    const password = event.value.password;
     console.log(email, password)
     //@ts-ignore
     const { data } = await axios.post("/users/register", { email, password });
+    const { register, error } = data;
+    console.log(error);
+    if (error && error.includes("E11000")) alert("Email is allerady in use");
     console.log(data);
+} catch (error) {
+    console.error(error)
+}   
 }
 
 async function getUserByCookie() {
