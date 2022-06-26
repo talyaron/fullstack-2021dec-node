@@ -1,11 +1,11 @@
 
 async function handleLogin(event: any): Promise<void>{
-  try{
   event.preventDefault();
-  let { email, password } = event.target.elements;
-  email = email.value;
-  password = password.value;
-  
+  try{
+    const email = event.target.email.value;
+    const password = event.target.password.value;
+    
+    console.log(email, password);
   //@ts-ignore
   const { data } = await axios.post("/users/login", { username, password });
   console.log(data);
@@ -24,11 +24,11 @@ async function handleLogin(event: any): Promise<void>{
 
 
 
-async function handleRegister(event: any): Promise<void>{
+async function handleRegister(event: any){
   event.preventDefault();
   try {
-  const email = event.value.email;
-  const password = event.value.password;
+  const email = event.target.email.value;
+  const password = event.target.password.value;
   console.log(email, password)
   //@ts-ignore
   const { data } = await axios.post("/users/register", { email, password });

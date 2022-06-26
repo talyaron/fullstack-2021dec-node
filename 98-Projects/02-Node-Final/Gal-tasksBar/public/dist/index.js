@@ -36,18 +36,20 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 function handleLogin(event) {
     return __awaiter(this, void 0, Promise, function () {
-        var _a, email, password, data, user, error_1;
-        return __generator(this, function (_b) {
-            switch (_b.label) {
+        var email, password, data, user, error_1;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
                 case 0:
-                    _b.trys.push([0, 2, , 3]);
                     event.preventDefault();
-                    _a = event.target.elements, email = _a.email, password = _a.password;
-                    email = email.value;
-                    password = password.value;
-                    return [4 /*yield*/, axios.post("/users/login", { username: username, password: password })];
+                    _a.label = 1;
                 case 1:
-                    data = (_b.sent()).data;
+                    _a.trys.push([1, 3, , 4]);
+                    email = event.target.email.value;
+                    password = event.target.password.value;
+                    console.log(email, password);
+                    return [4 /*yield*/, axios.post("/users/login", { username: username, password: password })];
+                case 2:
+                    data = (_a.sent()).data;
                     console.log(data);
                     user = data.user;
                     if (!user) {
@@ -56,18 +58,18 @@ function handleLogin(event) {
                     if (user) {
                         window.location.href = "../public/main.html";
                     }
-                    return [3 /*break*/, 3];
-                case 2:
-                    error_1 = _b.sent();
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_1 = _a.sent();
                     console.error(error_1);
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
             }
         });
     });
 }
 function handleRegister(event) {
-    return __awaiter(this, void 0, Promise, function () {
+    return __awaiter(this, void 0, void 0, function () {
         var email, password, data, register, error, error_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
@@ -76,8 +78,8 @@ function handleRegister(event) {
                     _a.label = 1;
                 case 1:
                     _a.trys.push([1, 3, , 4]);
-                    email = event.value.email;
-                    password = event.value.password;
+                    email = event.target.email.value;
+                    password = event.target.password.value;
                     console.log(email, password);
                     return [4 /*yield*/, axios.post("/users/register", { email: email, password: password })];
                 case 2:

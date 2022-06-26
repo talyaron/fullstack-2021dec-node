@@ -7,7 +7,7 @@ import {
 
 // 
 router
-  .get("/login", handleLogin)
+  .post("/login", handleLogin)
   .post("/register",handleRegister)
 
 
