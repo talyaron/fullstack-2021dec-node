@@ -1,3 +1,4 @@
+import { Model } from "mongoose";
 import CatModel from "../model/catsModel";
 
 
@@ -21,5 +22,6 @@ export async function addCat(req, res) {
 
 export async function getAllCats(req, res) {
   const db = CatModel.find();
-  console.log(db)
+  const dbModel = db.model
+  console.log(dbModel)
 }
