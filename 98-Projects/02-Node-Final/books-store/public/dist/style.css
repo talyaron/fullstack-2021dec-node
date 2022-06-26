@@ -29,7 +29,6 @@ body #books #wrapper {
   position: relative;
   height: 0.3rem;
   width: 0.2rem;
-  border: 1px solid blue;
   padding: 5px;
   white-space: nowrap;
 }
@@ -48,4 +47,50 @@ body #books #wrapper .price {
 }
 body #books #wrapper .buttonUp {
   font-size: 0.6rem;
+}
+body #clientBody {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  margin: auto;
+  text-align: center;
+  width: 100%;
+  height: fit-content;
+  position: relative;
+  top: 2rem;
+  column-gap: 5px;
+  row-gap: 25rem;
+}
+body #clientBody #wrapperClient {
+  position: relative;
+  height: 0.3rem;
+  width: 0.2rem;
+}
+body #clientBody #wrapperClient #imgClient {
+  height: 4rem;
+  width: 4rem;
+}
+body #cartBody {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  margin: auto;
+  text-align: center;
+  width: 100%;
+  height: fit-content;
+  position: relative;
+  top: 2rem;
+  column-gap: 5px;
+  row-gap: 25rem;
+}
+body #cartBody #clientCart {
+  position: relative;
+  height: 0.3rem;
+  width: 0.2rem;
+}
+body #cartBody #clientCart #imgCart {
+  height: 4rem;
+  width: 4rem;
+}
+body #cartBody #totalToPay {
+  position: relative;
+  top: 100rem;
 }
