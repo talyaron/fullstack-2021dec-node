@@ -1,4 +1,3 @@
-"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -35,64 +34,70 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-exports.__esModule = true;
-exports.register = exports.login = void 0;
-var userModel_1 = require("../models/userModel");
-function login(req, res) {
+function handleRegister(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var _a, email, password, error, user, error_1;
-        return __generator(this, function (_b) {
-            switch (_b.label) {
+        var email, password, data, register, error, error_1;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
                 case 0:
-                    _b.trys.push([0, 2, , 3]);
-                    _a = req.body, email = _a.email, password = _a.password;
-                    error = userModel_1.UserValidation.validate({ email: email, password: password }).error;
-                    if (error)
-                        throw error;
-                    return [4 /*yield*/, userModel_1["default"].findOne({ email: email, password: password })];
+                    ev.preventDefault();
+                    _a.label = 1;
                 case 1:
-                    user = _b.sent();
-                    if (!user) {
-                        res.send({ login: false });
-                    }
-                    else {
-                        res.send({ login: true });
-                    }
-                    return [3 /*break*/, 3];
+                    _a.trys.push([1, 3, , 4]);
+                    email = ev.target.email.value;
+                    password = ev.target.password.value;
+                    console.log(email, password);
+                    return [4 /*yield*/, axios.post("/users/register", { email: email, password: password })];
                 case 2:
-                    error_1 = _b.sent();
-                    res.send({ error: error_1.message });
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
+                    data = (_a.sent()).data;
+                    register = data.register, error = data.error;
+                    console.log(error);
+                    if (error && error.includes("E11000"))
+                        alert("Email is allerady in use");
+                    console.log(data);
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_1 = _a.sent();
+                    console.error(error_1);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
             }
         });
     });
 }
-exports.login = login;
-function register(req, res) {
+function handleLogin(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var _a, email, password, error, user, error_2;
-        return __generator(this, function (_b) {
-            switch (_b.label) {
+        var email, password, data, login, error, error_2;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
                 case 0:
-                    _b.trys.push([0, 2, , 3]);
-                    _a = req.body, email = _a.email, password = _a.password;
-                    error = userModel_1.UserValidation.validate({ email: email, password: password }).error;
+                    ev.preventDefault();
+                    _a.label = 1;
+                case 1:
+                    _a.trys.push([1, 3, , 4]);
+                    email = ev.target.email.value;
+                    password = ev.target.password.value;
+                    console.log(email, password);
+                    return [4 /*yield*/, axios.post("/users/login", { email: email, password: password })];
+                case 2:
+                    data = (_a.sent()).data;
+                    login = data.login, error = data.error;
                     if (error)
                         throw error;
-                    user = new userModel_1["default"]({ email: email, password: password });
-                    return [4 /*yield*/, user.save()];
-                case 1:
-                    _b.sent();
-                    res.send({ register: true });
-                    return [3 /*break*/, 3];
-                case 2:
-                    error_2 = _b.sent();
-                    res.send({ error: error_2.message });
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
+                    if (login) {
+                        //redirect to a ssocnd page
+                        window.location.href = './home.html';
+                    }
+                    if (error)
+                        throw error;
+                    console.log(data);
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_2 = _a.sent();
+                    console.error(error_2);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
             }
         });
     });
 }
-exports.register = register;
