@@ -1,9 +1,17 @@
+export interface user{
+    userName: string,
+    email: string,
+    // uid: string,
+    password: string
+};
 
-function handleLoad(event) {
+let users:Array<user>=[]
+
+function handleLoad(){
     try {
         getUserByCookie();
-        // handleLogin(event);
-        // handleRegister(event);
+        handleLogin(event);
+        handleRegister(event);
         handleAddUser(event);
     } catch (error) {
       console.error(error);
@@ -37,7 +45,7 @@ async function handleAddUser(ev: any) {
         } = data;
         if (error)
             throw new Error(error);
-        renderUsers(user);
+        renderUsers(users);
 
     } catch (error) {
         console.error(error);
