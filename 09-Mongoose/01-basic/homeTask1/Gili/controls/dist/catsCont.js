@@ -38,17 +38,18 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 exports.__esModule = true;
 exports.getAllCats = exports.addCat = void 0;
 var catsModel_1 = require("../model/catsModel");
+var catDB = [];
 function addCat(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var _a, name, age, newCat, newCatDB, error_1;
+        var _a, catName, age, imgUrl, newCat, newCatDB, error_1;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
                     _b.trys.push([0, 2, , 3]);
-                    _a = req.body, name = _a.name, age = _a.age;
-                    if (!name || !age)
-                        throw new Error("missing name or age");
-                    newCat = new catsModel_1["default"]({ name: name, age: age });
+                    _a = req.body, catName = _a.catName, age = _a.age, imgUrl = _a.imgUrl;
+                    if (!catName || !age)
+                        throw new Error('missing name or age');
+                    newCat = new catsModel_1["default"]({ catName: catName, age: age, imgUrl: imgUrl });
                     return [4 /*yield*/, newCat.save()];
                 case 1:
                     newCatDB = _b.sent();
@@ -66,12 +67,23 @@ function addCat(req, res) {
 exports.addCat = addCat;
 function getAllCats(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var db, dbModel;
+        var error_2;
         return __generator(this, function (_a) {
-            db = catsModel_1["default"].find();
-            dbModel = db.model;
-            console.log(dbModel);
-            return [2 /*return*/];
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    return [4 /*yield*/, catsModel_1["default"].find({})];
+                case 1:
+                    catDB = _a.sent();
+                    console.debug(catDB);
+                    res.send({ catDB: catDB });
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_2 = _a.sent();
+                    res.send({ error: error_2.message });
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
         });
     });
 }

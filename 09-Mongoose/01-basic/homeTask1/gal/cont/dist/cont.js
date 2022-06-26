@@ -36,8 +36,9 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.addCat = void 0;
+exports.getAllCats = exports.addCat = void 0;
 var model_1 = require("../model/model");
+var allCats = [];
 function addCat(req, res) {
     return __awaiter(this, void 0, void 0, function () {
         var _a, name, age, newCat, newCatDB, error_1;
@@ -64,3 +65,26 @@ function addCat(req, res) {
     });
 }
 exports.addCat = addCat;
+function getAllCats(req, res) {
+    return __awaiter(this, void 0, void 0, function () {
+        var error_2;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    return [4 /*yield*/, model_1["default"].find({})];
+                case 1:
+                    allCats = _a.sent();
+                    console.debug(allCats);
+                    res.send({ allCats: allCats });
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_2 = _a.sent();
+                    res.send({ error: error_2.message });
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
+}
+exports.getAllCats = getAllCats;

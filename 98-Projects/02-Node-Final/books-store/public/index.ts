@@ -132,10 +132,10 @@ async function renderClientBook(books: Array<Book>) {
     let html1 = "";
     books.forEach(book => {
       html1 += `<div id="wrapperClient" >
-         <img src="${book.image}" alt="">
+         <img src="${book.image}" alt="" id="imgClient">
       <h1>${book.name}</h1>
-      <p>description:${book.description}</p>
-      <h1>price: ${book.price} $</h1>
+      <p>description:${book.description} </p>
+      <h1>price: ${book.price} nis</h1>
       <button onclick="handleCart('${book.serialNo}')">add to cart</button>
       </div>`
 
@@ -176,7 +176,7 @@ function renderCart(clientCart: Array<Book>) {
     clientCart.forEach(book => {
       console.log(book)
       html += `<div id="clientCart">
-      <img src="${book.image}" alt="">
+      <img src="${book.image}" alt="" id="imgCart">
       <h1>${book.name}</h1>
       <p>description: ${book.description}</p>
       <h1>price: ${book.price}</h1>
@@ -186,16 +186,21 @@ function renderCart(clientCart: Array<Book>) {
     })
     cartBody.innerHTML = html;
 
-    const totalPrice = document.querySelector('#totalToPay');
-    const total = clientCart.reduce((acc, item) => !isNaN(item.price) ? acc + parseFloat(item.price) : acc, 0);
-
-    console.log(total);
-    totalPrice.innerHTML = `<h1>total to pay ${total} nis</h1>`
+   
 
 
   } catch (error) {
     console.log(error)
   }
+}
+
+function renderTotalPrice(clientCart: Array<Book>){
+  const totalPrice = document.querySelector('#totalToPay');
+  const total = clientCart.reduce((acc, item) => !isNaN(item.price) ? acc + parseFloat(item.price) : acc, 0);
+
+  console.log(total);
+  totalPrice.innerHTML = `<h1>total to pay ${total} nis</h1>`
+
 }
 
 async function handleCart(serialNo) {
@@ -231,6 +236,7 @@ async function cartGet() {
 
 
     renderCart(clientCart);
+    renderTotalPrice(clientCart)
 
   } catch (error) {
     console.log(error)
