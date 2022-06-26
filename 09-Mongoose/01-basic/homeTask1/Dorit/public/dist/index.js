@@ -70,7 +70,7 @@ function renderAllCats(allCats) {
         var catRow = document.querySelector("#catR");
         var html_1 = "";
         allCats.forEach(function (element) {
-            html_1 += "<p>name:" + element.name + ", age:" + element.age + ", color:" + element.color + ", <img src='" + element.src + "' /></p>";
+            html_1 += "<p>name:" + element.name + ", age:" + element.age + ", color:" + element.color + " <img src='" + (element.src || "") + "' /></p>";
         });
         catRow.innerHTML = html_1;
     }
@@ -120,4 +120,30 @@ function handleAddCat(ev) {
 function renderCats(cat) {
     var catR = document.querySelector("#catR");
     catR.innerHTML = "new cat: name=" + cat.name + ", age:" + cat.age + ", color:" + cat.color + ", src:" + cat.src + "}";
+}
+function handleSelectAge(ev) {
+    return __awaiter(this, void 0, void 0, function () {
+        var value, data, cats, error, error_3;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    value = ev.target.value;
+                    return [4 /*yield*/, axios.get("/cats/filter-cats-by-age?age=" + value)];
+                case 1:
+                    data = (_a.sent()).data;
+                    cats = data.cats, error = data.error;
+                    if (error)
+                        throw error;
+                    renderAllCats(cats);
+                    console.log(data);
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_3 = _a.sent();
+                    console.error(error_3);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
 }

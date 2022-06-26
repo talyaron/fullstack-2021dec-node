@@ -15,7 +15,7 @@ async function getAllCats(): Promise<any> {
 
     console.log(data);
     const { allCats, error } = data;
-    if(error) throw error;
+    if (error) throw error;
     renderAllCats(allCats);
   } catch (error) {
     console.error(error);
@@ -28,7 +28,7 @@ function renderAllCats(allCats) {
     let catRow: HTMLDivElement = document.querySelector("#catR");
     let html: string = "";
     allCats.forEach((element) => {
-      html += `<p>name:${element.name}, age:${element.age}, color:${element.color}, <img src='${element.src}' /></p>`;
+      html += `<p>name:${element.name}, age:${element.age}, color:${element.color} <img src='${element.src||""}' /></p>`;
     });
     catRow.innerHTML = html;
   } catch (err) {
@@ -59,7 +59,9 @@ async function handleAddCat(ev: any) {
 
     const { cat } = data;
     console.log(cat.name, cat.age, cat.color, cat.src);
+
     renderCats(cat);
+   
   } catch (error) {
     console.error(error);
   }
@@ -67,4 +69,19 @@ async function handleAddCat(ev: any) {
 function renderCats(cat) {
   const catR = document.querySelector("#catR");
   catR.innerHTML = `new cat: name=${cat.name}, age:${cat.age}, color:${cat.color}, src:${cat.src}}`;
+}
+
+async function handleSelectAge(ev: any) {
+  try {
+    const value = ev.target.value;
+
+    //@ts-ignore
+    const { data } = await axios.get(`/cats/filter-cats-by-age?age=${value}`);
+    const { cats, error } = data;
+    if (error) throw error;
+    renderAllCats(cats);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
 }
