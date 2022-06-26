@@ -7,7 +7,7 @@ const express_1 = __importDefault(require("express"));
 const mongoose_1 = __importDefault(require("mongoose"));
 const model_1 = __importDefault(require("./model/model"));
 const app = express_1.default();
-const port = 4000;
+const port = 3001;
 app.use(express_1.default.static('public'));
 app.use(express_1.default.json());
 mongoose_1.default

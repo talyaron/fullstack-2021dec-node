@@ -1,4 +1,4 @@
-//lk0przzuFHkF44fc
+//bK31clT7HY6mM91S
 import express from "express";
 import mongoose from "mongoose";
 const app = express();
@@ -8,7 +8,7 @@ app.use(express.static('public'))
 import catsRoute from './routes/catsRoute';
 mongoose
   .connect(
-       "mongodb+srv://Doritgy:lk0przzuFHkF44fc@cluster0.ruq8e.mongodb.net/myDataBase?retryWrites=true&w=majority"
+    "mongodb+srv://doritgy:bK31clT7HY6mM91S@cluster0.grzjg.mongodb.net/myDatabase?retryWrites=true&w=majority"
    )
   .then(() => {
     console.log("Connected to DB!");

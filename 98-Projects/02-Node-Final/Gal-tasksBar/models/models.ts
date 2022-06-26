@@ -1,4 +1,3 @@
-
 export interface user{
     userName: string,
     email: string,
@@ -13,25 +12,29 @@ export interface tasks{
 }
 
 import { Schema,model } from "mongoose"
+import Joi from 'joi';
 
 const UserSchema = new Schema({
     userName: String,
-    password: String,
-    email: String
+    email:
+    {
+        type:String,
+        required:true,
+        unique: true
+    },
+    password:{
+        type:String,
+        required:true
+    }
 })
 
-const User= model("user", UserSchema)
+const UserModel= model("user", UserSchema)
 
-export default User
+export default UserModel
 
-User.find({userName:"galgross24@gmail.com"}).then(docs=>console.log(docs)).catch(err=>console.log(err.message));
+// User.find({userName:"galgross24@gmail.com"}).then(docs=>console.log(docs)).catch(err=>console.log(err.message));
 
-// const crypto = require ('crypto');
-
-// const hashPassword = (plainText)=>{
-//     return crypto.createHmac('gal1', 'key')
-//         .update(plainText)
-//         .digest ('hex');
-// }
-
-// export hashPassword
+export const UserValidation = Joi.object({
+    email:Joi.string().email().required(),
+    password:Joi.string().required()
+})

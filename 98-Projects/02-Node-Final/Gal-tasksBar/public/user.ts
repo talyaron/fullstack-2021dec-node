@@ -1,15 +1,30 @@
+export interface user{
+    userName: string,
+    email: string,
+    // uid: string,
+    password: string
+};
 
-function handleLoad(event) {
-    try {
-        getUserByCookie();
-        // handleLogin(event);
-        // handleRegister(event);
-        handleAddUser(event);
-    } catch (error) {
-      console.error(error);
-    }
-  }
+let users:Array<user>=[]
+
+//prams for other page: not fixed
+// export function getUserId(): string | false {
+//     try {
+//       const queryString = window.location.search;
+//       console.log(queryString);
   
+//       const urlParams = new URLSearchParams(queryString);
+  
+//       const userId = urlParams.get("userId");
+//       console.log(userId);
+//       return userId;
+//     } catch (error) {
+//       console.error(error);
+//       return false;
+//     }
+//   }
+
+
 async function handleAddUser(ev: any) {
     try {
         ev.preventDefault();
@@ -37,7 +52,7 @@ async function handleAddUser(ev: any) {
         } = data;
         if (error)
             throw new Error(error);
-        renderUsers(user);
+        renderUsers(users);
 
     } catch (error) {
         console.error(error);
@@ -61,33 +76,6 @@ function renderUsers(users) {
 }
 
 
-async function handleLogin(event: any): Promise<void>{
-    try{
-    event.preventDefault();
-    let { email, password } = event.target.elements;
-    email = email.value;
-    password = password.value;
-    
-    //@ts-ignore
-    const { data } = await axios.post("/users/handleLogin", { username, password });
-    console.log(data);
-    const {user} = data;
-    window.location.href = "../public/main.html";
-    if(!user){
-        throw new Error('User not found');
-    }
-
-    const usernameDB = user.email;
-    const root = document.getElementById('#root');
-    if(root){
-        root.innerHTML = `<h1>Welcome ${usernameDB}</h1>`
-    }
-    } catch (error) {
-        console.error(error)
-    }
-}
-
-
 async function handleDelete(event) {
 	try {
 		console.log(`delete button pressed`);
@@ -101,18 +89,7 @@ async function handleDelete(event) {
 	}
 }
 
-async function handleRegister(event: any): Promise<void>{
-    event.preventDefault();
-    let { email, password } = event.target.elements;
 
-    email = email.value;
-    password = password.value;
-
-    console.log(email, password)
-    //@ts-ignore
-    const { data } = await axios.post("/users/register", { email, password });
-    console.log(data);
-}
 
 async function getUserByCookie() {
     try{
@@ -145,23 +122,6 @@ async function handleUpdateUser(userId) {
     renderUsers(users)
 }
 
-
-// export function getUserId(): string | false {
-//     try {
-//       const queryString = window.location.search;
-//       console.log(queryString);
-  
-//       const urlParams = new URLSearchParams(queryString);
-  
-//       const userId = urlParams.get("userId");
-//       console.log(userId);
-//       return userId;
-//     } catch (error) {
-//       console.error(error);
-//       return false;
-//     }
-//   }
-
 // async function handleGetUsers() {
 //     //@ts-ignore
 //    const { data } = await axios.get('/users/get-users')
@@ -173,3 +133,5 @@ async function handleUpdateUser(userId) {
 //        renderUsers(users);
 //    }
 // }
+
+

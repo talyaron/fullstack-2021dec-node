@@ -1,15 +1,15 @@
 import CatModel from "../model/catsModel";
-let allCats= new CatModel
+let allCats=[]
+
+
 export async function getAllCats(req,res){
-  try {
-    const db ="myDatabase";
-    const coll = "cats";
-    allCats = await db.coll.find()
-    res.send({allcats})    
+  try{
+    allCats=await CatModel.find({})
+    console.debug(allCats)
+    res.send({allCats})    
   } catch (error) {
       res.send({ error: error.message })
   }
-
 }
 
 export async function addCat(req, res) {
@@ -24,12 +24,20 @@ export async function addCat(req, res) {
 
     res.send({ success: true, cat: newCatDB });
     console.debug(newCat)
-    //save to db new cat
-    //newCat = new CatModel({ name:"Banban", age:7 ,color:"white", src:"https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTl8fGN1dGUlMjBjYXR8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60" });
+  } catch (error) {
+    res.send({ error: error.message });
+  }
+}
 
-    //newCatDB = await newCat.save();
+export async function filterCatsByAge(req:any, res:any) {
+  try {
+    const {age} = req.query
+    if(!age) throw new Error('Age is missing');
 
-    //res.send({ success: true, cat: newCatDB });
+    const cats = await CatModel.find({age});
+
+
+    res.send({cats})
   } catch (error) {
     res.send({ error: error.message });
   }
