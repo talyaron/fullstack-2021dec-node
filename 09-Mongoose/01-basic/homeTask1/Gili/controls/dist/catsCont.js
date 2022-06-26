@@ -66,10 +66,11 @@ function addCat(req, res) {
 exports.addCat = addCat;
 function getAllCats(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var db;
+        var db, dbModel;
         return __generator(this, function (_a) {
             db = catsModel_1["default"].find();
-            console.log(db);
+            dbModel = db.model;
+            console.log(dbModel);
             return [2 /*return*/];
         });
     });
