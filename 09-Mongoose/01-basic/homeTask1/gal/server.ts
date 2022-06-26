@@ -2,7 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import Cat from "./model/model";
 const app = express();
-const port = 4000;
+const port = 3001;
 app.use(express.static('public'))
 app.use(express.json());
 

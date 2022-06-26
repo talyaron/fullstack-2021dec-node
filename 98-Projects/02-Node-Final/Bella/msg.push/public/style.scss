@@ -82,6 +82,7 @@ form {
 
 .extend form {
     right: 100%;
+    z-index: 1;
 }
 
 input[type=email],

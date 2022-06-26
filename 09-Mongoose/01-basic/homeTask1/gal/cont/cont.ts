@@ -1,5 +1,7 @@
 import cat from "../model/model";
 
+let allCats=[]
+
 export async function addCat(req,res) {
     try {
         const {name,age} = req.body;
@@ -11,3 +13,13 @@ export async function addCat(req,res) {
         res.send({ error: error.message });
       }
 }
+
+export async function getAllCats(req,res){
+    try{
+      allCats=await cat.find({})
+      console.debug(allCats)
+      res.send({allCats})    
+    } catch (error) {
+        res.send({ error: error.message })
+    }
+  }

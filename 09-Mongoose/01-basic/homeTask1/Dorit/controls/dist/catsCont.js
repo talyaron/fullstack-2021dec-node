@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.addCat = exports.getAllCats = void 0;
+exports.filterCatsByAge = exports.addCat = exports.getAllCats = void 0;
 var catsModel_1 = require("../model/catsModel");
 var allCats = [];
 function getAllCats(req, res) {
@@ -92,3 +92,28 @@ function addCat(req, res) {
     });
 }
 exports.addCat = addCat;
+function filterCatsByAge(req, res) {
+    return __awaiter(this, void 0, void 0, function () {
+        var age, cats, error_3;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    age = req.query.age;
+                    if (!age)
+                        throw new Error('Age is missing');
+                    return [4 /*yield*/, catsModel_1["default"].find({ age: age })];
+                case 1:
+                    cats = _a.sent();
+                    res.send({ cats: cats });
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_3 = _a.sent();
+                    res.send({ error: error_3.message });
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
+}
+exports.filterCatsByAge = filterCatsByAge;

@@ -35,27 +35,52 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 var allCats = [];
-console.log("getAllCats");
-try {
-    //@ts-ignore
-    var data = (await axios.get("/cats/get-all-cats")).data;
-    allCats = data;
-    renderAllCats(allCats);
-}
-catch (error) {
-    console.error(error);
+function getAllCats() {
+    return __awaiter(this, void 0, Promise, function () {
+        var data, allCats_1, error, error_1;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    console.log("getAllCats");
+                    _a.label = 1;
+                case 1:
+                    _a.trys.push([1, 3, , 4]);
+                    return [4 /*yield*/, axios.get("/cats/get-all-cats")];
+                case 2:
+                    data = (_a.sent()).data;
+                    console.log(data);
+                    allCats_1 = data.allCats, error = data.error;
+                    if (error)
+                        throw error;
+                    renderAllCats(allCats_1);
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_1 = _a.sent();
+                    console.error(error_1);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
 }
 function renderAllCats(allCats) {
-    var catRow = document.querySelector("#catR");
-    var html = "";
-    allCats.forEach(function (element) {
-        html += "name:" + element.name + ", age:" + element.age + ", color:" + element.color + ", src:" + element.src;
-    });
-    catRow.innerHTML = html;
+    try {
+        if (!Array.isArray(allCats))
+            throw new Error("All cats is not an array");
+        var catRow = document.querySelector("#catR");
+        var html_1 = "";
+        allCats.forEach(function (element) {
+            html_1 += "<p>name:" + element.name + ", age:" + element.age + ", color:" + element.color + " <img src='" + (element.src || "") + "' /></p>";
+        });
+        catRow.innerHTML = html_1;
+    }
+    catch (err) {
+        console.error(err);
+    }
 }
 function handleAddCat(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var name, age, color, src, data, cat, error_1;
+        var name, age, color, src, data, cat, error_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -70,7 +95,12 @@ function handleAddCat(ev) {
                     src = ev.target.src.value;
                     if (!name || !age || !color || !src)
                         throw new Error("not enough data");
-                    return [4 /*yield*/, axios.post("/cats/add-cat", { name: name, age: age, color: color, src: src })];
+                    return [4 /*yield*/, axios.post("/cats/add-cat", {
+                            name: name,
+                            age: age,
+                            color: color,
+                            src: src
+                        })];
                 case 2:
                     data = (_a.sent()).data;
                     console.log("data from server, index.ts " + data);
@@ -79,8 +109,8 @@ function handleAddCat(ev) {
                     renderCats(cat);
                     return [3 /*break*/, 4];
                 case 3:
-                    error_1 = _a.sent();
-                    console.error(error_1);
+                    error_2 = _a.sent();
+                    console.error(error_2);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
@@ -90,4 +120,30 @@ function handleAddCat(ev) {
 function renderCats(cat) {
     var catR = document.querySelector("#catR");
     catR.innerHTML = "new cat: name=" + cat.name + ", age:" + cat.age + ", color:" + cat.color + ", src:" + cat.src + "}";
+}
+function handleSelectAge(ev) {
+    return __awaiter(this, void 0, void 0, function () {
+        var value, data, cats, error, error_3;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    value = ev.target.value;
+                    return [4 /*yield*/, axios.get("/cats/filter-cats-by-age?age=" + value)];
+                case 1:
+                    data = (_a.sent()).data;
+                    cats = data.cats, error = data.error;
+                    if (error)
+                        throw error;
+                    renderAllCats(cats);
+                    console.log(data);
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_3 = _a.sent();
+                    console.error(error_3);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
 }

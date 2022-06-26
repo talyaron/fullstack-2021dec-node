@@ -34,9 +34,50 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var allCats = [];
+function getAllCats() {
+    return __awaiter(this, void 0, Promise, function () {
+        var data, allCats_1, error, error_1;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    return [4 /*yield*/, axios.get("/cats/get-all-cats")];
+                case 1:
+                    data = (_a.sent()).data;
+                    console.log(data);
+                    allCats_1 = data.allCats, error = data.error;
+                    if (error)
+                        throw error;
+                    renderAllCats(allCats_1);
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_1 = _a.sent();
+                    console.error(error_1);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
+}
+function renderAllCats(allCats) {
+    try {
+        if (!Array.isArray(allCats))
+            throw new Error('the cats are not array');
+        var newCat = document.querySelector('#root');
+        var html_1 = "";
+        allCats.forEach(function (Element) {
+            html_1 += "<p>name:" + Element.name + ", age:" + Element.age + "' /></p>";
+        });
+        newCat.innerHTML = html_1;
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
 function handleAddCat(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var name, age, data, error_1;
+        var name, age, data, error_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -51,13 +92,18 @@ function handleAddCat(ev) {
                     data = (_a.sent()).data;
                     console.log(data);
                     console.dir(data);
+                    renderCats(data);
                     return [3 /*break*/, 3];
                 case 2:
-                    error_1 = _a.sent();
-                    console.error(error_1);
+                    error_2 = _a.sent();
+                    console.error(error_2);
                     return [3 /*break*/, 3];
                 case 3: return [2 /*return*/];
             }
         });
     });
+}
+function renderCats(cat) {
+    var catR = document.querySelector("#root");
+    catR.innerHTML = "new cat: name=" + cat.name + ", age:" + cat.age + "}";
 }

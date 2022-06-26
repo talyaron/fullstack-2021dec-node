@@ -30,22 +30,14 @@ $(window).trigger("hashchange");
 async function validateLoginForm(ev: any) {
   try {
     ev.preventDefault();
-    const elements = ev.target.elements
-    const name = elements.name.value;
-    const password = elements.password.value;
+    const name = ev.target.elements.name.value;
+    const password = ev.target.elements.password.value;
     
     console.log(name, password);
   
   // @ts-ignore
-    const { data } = await axios.get("/users/login", {
-      name,
-      password
-    });
+    const { data } = await axios.post("/users/login", { name, password });
     console.log(data)
-  
-    if (!Array.isArray(data)) throw new Error("data should be an array and it is not")
-    throwError(data)
-    ev.target.reset();
   
   } catch (error) {
     console.error(error);
@@ -70,7 +62,7 @@ function validateSignupForm(ev: any) {
         const { data } = await axios.post("/users/sign-up", { name, email, password });
   
         if(!Array.isArray(data)) throw new Error("data should be an array and it is not")
-        throwError(data)
+        // throwError(data)
         ev.target.reset();
 
   } catch (error) {
@@ -80,18 +72,18 @@ function validateSignupForm(ev: any) {
 };
 
 
-function throwError(UserValidate: any) {
-    if ( UserValidate.email == "" || UserValidate.name == "" || UserValidate.password == "") {
-      document.querySelector("#errorMsg").innerHTML = "Please fill the required fields"
-      return false;
-    } else if (UserValidate.password.length < 8) {
-      document.querySelector("#errorMsg").innerHTML = "Your password must include atleast 8 characters"
-      return false;
-    } else {
-      alert("Successfully signed up");
-      return true;
-    }
-};
+// function throwError(UserValidate: any) {
+//     if ( UserValidate.email == "" || UserValidate.name == "" || UserValidate.password == "") {
+//       document.querySelector("#errorMsg").innerHTML = "Please fill the required fields"
+//       return false;
+//     } else if (UserValidate.password.length < 8) {
+//       document.querySelector("#errorMsg").innerHTML = "Your password must include atleast 8 characters"
+//       return false;
+//     } else {
+//       alert("Successfully signed up");
+//       return true;
+//     }
+// };
 
 
 
