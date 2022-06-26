@@ -12,9 +12,7 @@ app.use(express_1.default.json());
 app.use(express_1.default.static('public'));
 const catsRoute_1 = __importDefault(require("./routes/catsRoute"));
 mongoose_1.default
-    .connect(
-//"mongodb+srv://tal:Fct4jYbHtkSrSnIa@cluster0.0hzknon.mongodb.net/myDataBase?retryWrites=true&w=majority"
-"mongodb+srv://doritgy:bK31clT7HY6mM91S@cluster0.grzjg.mongodb.net/myDatabase?retryWrites=true&w=majority")
+    .connect("mongodb+srv://doritgy:bK31clT7HY6mM91S@cluster0.grzjg.mongodb.net/myDatabase?retryWrites=true&w=majority")
     .then(() => {
     console.log("Connected to DB!");
 })
