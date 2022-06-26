@@ -36,43 +36,39 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.getAllCats = exports.addCat = void 0;
-var catsModel_1 = require("../model/catsModel");
-function addCat(req, res) {
+function handleAddCat(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var _a, name, age, newCat, newCatDB, error_1;
-        return __generator(this, function (_b) {
-            switch (_b.label) {
+        var name, age, color, image, data, root, error_1;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
                 case 0:
-                    _b.trys.push([0, 2, , 3]);
-                    _a = req.body, name = _a.name, age = _a.age;
-                    if (!name || !age)
-                        throw new Error("missing name or age");
-                    newCat = new catsModel_1["default"]({ name: name, age: age });
-                    return [4 /*yield*/, newCat.save()];
+                    _a.trys.push([0, 2, , 3]);
+                    ev.preventDefault();
+                    name = ev.target.name.value;
+                    age = ev.target.age.valueAsNumber;
+                    color = ev.target.color.value;
+                    image = ev.target.image.value;
+                    //  console.log(image);
+                    if (!name || !age || !color || !image)
+                        throw new Error('name,color or age missing ');
+                    return [4 /*yield*/, axios.post("/cats/add-cat", { name: name, age: age, color: color, image: image })];
                 case 1:
-                    newCatDB = _b.sent();
-                    res.send({ success: true, cat: newCatDB });
+                    data = (_a.sent()).data;
+                    console.log(data);
+                    root = document.getElementById('root');
+                    //    root.innerHTML = `  <img src=" ${image} "/>'`;
+                    renderCats(name, age, color, image);
                     return [3 /*break*/, 3];
                 case 2:
-                    error_1 = _b.sent();
-                    res.send({ error: error_1.message });
+                    error_1 = _a.sent();
+                    console.error(error_1);
                     return [3 /*break*/, 3];
                 case 3: return [2 /*return*/];
             }
         });
     });
 }
-exports.addCat = addCat;
-function getAllCats(req, res) {
-    return __awaiter(this, void 0, void 0, function () {
-        var db, dbModel;
-        return __generator(this, function (_a) {
-            db = catsModel_1["default"].find();
-            dbModel = db.model;
-            console.log(dbModel);
-            return [2 /*return*/];
-        });
-    });
+function renderCats(name, age, color, image) {
+    var root = document.querySelector("#root");
+    root.innerHTML = "My cat's name is: " + name + " ,  its " + age + " years old and its color is " + color + " , and here it is:" + image;
 }
-exports.getAllCats = getAllCats;

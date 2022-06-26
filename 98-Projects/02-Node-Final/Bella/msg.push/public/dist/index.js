@@ -63,27 +63,19 @@ $(window).trigger("hashchange");
 // }
 function validateLoginForm(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var elements, name, password, data, error_1;
+        var name, password, data, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
                     ev.preventDefault();
-                    elements = ev.target.elements;
-                    name = elements.name.value;
-                    password = elements.password.value;
+                    name = ev.target.elements.name.value;
+                    password = ev.target.elements.password.value;
                     console.log(name, password);
-                    return [4 /*yield*/, axios.get("/users/login", {
-                            name: name,
-                            password: password
-                        })];
+                    return [4 /*yield*/, axios.post("/users/login", { name: name, password: password })];
                 case 1:
                     data = (_a.sent()).data;
                     console.log(data);
-                    if (!Array.isArray(data))
-                        throw new Error("data should be an array and it is not");
-                    throwError(data);
-                    ev.target.reset();
                     return [3 /*break*/, 3];
                 case 2:
                     error_1 = _a.sent();
@@ -107,7 +99,7 @@ function validateSignupForm(ev) {
         var data = (yield axios.post("/users/sign-up", { name: name, email: email, password: password })).data;
         if (!Array.isArray(data))
             throw new Error("data should be an array and it is not");
-        throwError(data);
+        // throwError(data)
         ev.target.reset();
     }
     catch (error) {
@@ -115,21 +107,18 @@ function validateSignupForm(ev) {
     }
 }
 ;
-function throwError(UserValidate) {
-    if (UserValidate.email == "" || UserValidate.name == "" || UserValidate.password == "") {
-        document.querySelector("#errorMsg").innerHTML = "Please fill the required fields";
-        return false;
-    }
-    else if (UserValidate.password.length < 8) {
-        document.querySelector("#errorMsg").innerHTML = "Your password must include atleast 8 characters";
-        return false;
-    }
-    else {
-        alert("Successfully signed up");
-        return true;
-    }
-}
-;
+// function throwError(UserValidate: any) {
+//     if ( UserValidate.email == "" || UserValidate.name == "" || UserValidate.password == "") {
+//       document.querySelector("#errorMsg").innerHTML = "Please fill the required fields"
+//       return false;
+//     } else if (UserValidate.password.length < 8) {
+//       document.querySelector("#errorMsg").innerHTML = "Your password must include atleast 8 characters"
+//       return false;
+//     } else {
+//       alert("Successfully signed up");
+//       return true;
+//     }
+// };
 // / Anonymous "self-invoking" function
 // (function() {
 //     const startingTime = new Date().getTime();

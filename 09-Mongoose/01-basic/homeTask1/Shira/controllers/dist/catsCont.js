@@ -36,23 +36,23 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.getAllCats = exports.addCat = void 0;
+exports.addCat = void 0;
 var catsModel_1 = require("../model/catsModel");
 function addCat(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var _a, name, age, newCat, newCatDB, error_1;
+        var _a, name, age, color, image, newCat, newCatToDB, error_1;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
                     _b.trys.push([0, 2, , 3]);
-                    _a = req.body, name = _a.name, age = _a.age;
+                    _a = req.body, name = _a.name, age = _a.age, color = _a.color, image = _a.image;
                     if (!name || !age)
-                        throw new Error("missing name or age");
-                    newCat = new catsModel_1["default"]({ name: name, age: age });
+                        throw new Error("missing one or more details");
+                    newCat = new catsModel_1["default"]({ name: name, age: age, color: color, image: image });
                     return [4 /*yield*/, newCat.save()];
                 case 1:
-                    newCatDB = _b.sent();
-                    res.send({ success: true, cat: newCatDB });
+                    newCatToDB = _b.sent();
+                    res.send({ success: true, cat: newCatToDB });
                     return [3 /*break*/, 3];
                 case 2:
                     error_1 = _b.sent();
@@ -64,15 +64,3 @@ function addCat(req, res) {
     });
 }
 exports.addCat = addCat;
-function getAllCats(req, res) {
-    return __awaiter(this, void 0, void 0, function () {
-        var db, dbModel;
-        return __generator(this, function (_a) {
-            db = catsModel_1["default"].find();
-            dbModel = db.model;
-            console.log(dbModel);
-            return [2 /*return*/];
-        });
-    });
-}
-exports.getAllCats = getAllCats;
