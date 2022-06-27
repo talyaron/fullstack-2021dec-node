@@ -1,13 +1,12 @@
 
-// async function handleGetUsers() {
-//   // @ts-ignore
-// 	const {data} = await axios.get('/users/get-users')
-// 	const {users} = data;
-//   if(!Array.isArray(users)) throw new Error("users should be an array and it is not")
+async function handleGetUsers() {
+  // @ts-ignore
+	const {data} = await axios.get('/users/get-users')
+	const {users} = data;
+  if(!Array.isArray(users)) throw new Error("users should be an array and it is not")
     
-// 	renderUsers(users);
-// }
-
+	renderUsers(users);
+}
 
 async function handleDeleteUser(userId: string) {
   try {
@@ -50,7 +49,6 @@ async function handleUpdateUser(userId) {
     if(!Array.isArray(users)) throw new Error("users should be an array ant it is not")
 
     renderUsers(users)
-    // handleGetUsers()
 }
 
 

@@ -33,11 +33,11 @@ async function handleAddProduct(ev:any) {
     try {
         ev.preventDefault();
 
-        const name = ev.target.element.value;
+        const name = ev.target.elements.name.value;
         console.log(name);
         if(!name) throw new Error("Name is misssing");
         //@ts-ignore
-        const {data} = await axios.post('/product/add-product')
+        const {data} = await axios.post("/products/add-product", {name})
         console.log(data)
         const {products, error} = data;
         if(error) throw new Error(error);
@@ -45,7 +45,7 @@ async function handleAddProduct(ev:any) {
     } catch (error) {
        console.error(error); 
     }
-   }
+}
 
 async function handleDelete(productId:string) {
    try {
@@ -60,10 +60,10 @@ async function handleDelete(productId:string) {
    }
 }
 
-  interface Product {
-      id: string;
-      name: string;
- }
+interface Product {
+  id: string;
+  name: string;
+}
   
 function renderProducts(products: Array<Product>): void {
       try {

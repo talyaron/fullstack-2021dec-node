@@ -5,6 +5,6 @@ var router = express_1["default"].Router();
 var loginSignUpCont_1 = require("../cont/loginSignUpCont");
 // 
 router
-    .get("/login", loginSignUpCont_1.validateLoginForm)
-    .post("/sign-up", loginSignUpCont_1.validateSignupForm);
+    .post("/login", loginSignUpCont_1.handleLogin)
+    .post("/register", loginSignUpCont_1.handleRegister);
 exports["default"] = router;
