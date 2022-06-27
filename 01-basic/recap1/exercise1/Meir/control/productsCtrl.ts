@@ -6,14 +6,13 @@ interface Product{
 }
 let products:Array<Product> = [{id:'ettreyer', name:'test'}]
 
-export function getProducts(req, res){
-
-     try {
-        res.send({products})
-     } catch (error) {
-        console.error(error)
-        res.send({error:error.message})
-     }
+export function getProducts(req, res) {
+   try {
+      res.send({products});
+   } catch (error) {
+      console.error(error)
+      res.send({error:error.message})
+   }
 }
 
 export function addProduct(req, res){
@@ -25,7 +24,7 @@ export function addProduct(req, res){
 
       products.push({name, id});
       res.send({products})
-    } catch (error) {
+   } catch (error) {
       console.error(error)
       res.send({error:error.message})
    }
