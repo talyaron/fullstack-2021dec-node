@@ -1,14 +1,14 @@
 import express from "express";
 const router = express.Router();
 import {
-  validateLoginForm,
-  validateSignupForm
+  handleLogin,
+  handleRegister
 } from "../cont/loginSignUpCont";
 
 // 
 router
-  .get("/login", validateLoginForm)
-  .post("/sign-up",validateSignupForm)
+  .post("/login", handleLogin)
+  .post("/register",handleRegister)
 
 
 export default router;

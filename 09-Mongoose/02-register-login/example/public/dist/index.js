@@ -53,7 +53,7 @@ function handleRegister(ev) {
                     register = data.register, error = data.error;
                     console.log(error);
                     if (error && error.includes("E11000"))
-                        alert("Email is allerady in use");
+                        alert("Email is already in use");
                     console.log(data);
                     return [3 /*break*/, 4];
                 case 3:
@@ -85,7 +85,7 @@ function handleLogin(ev) {
                     if (error)
                         throw error;
                     if (login) {
-                        //redirect to a ssocnd page
+                        //redirect to a second page
                         window.location.href = './home.html';
                     }
                     if (error)

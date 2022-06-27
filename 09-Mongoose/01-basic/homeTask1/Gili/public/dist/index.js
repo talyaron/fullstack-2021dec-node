@@ -34,6 +34,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var root = document.querySelector('#root');
 function handleAddCat(ev) {
     return __awaiter(this, void 0, void 0, function () {
         var age, catName, imgUrl, data, error_1;
@@ -45,16 +46,16 @@ function handleAddCat(ev) {
                     age = ev.target.age.valueAsNumber;
                     catName = ev.target.catName.value;
                     imgUrl = ev.target.imgUrl.value;
-                    console.log(age, catName, imgUrl);
-                    ev.target.age.value = '';
-                    ev.target.catName.value = '';
-                    ev.target.imgUrl.value = '';
+                    console.log(catName);
                     if (!catName || !age)
                         throw new Error('No name or age');
                     return [4 /*yield*/, axios.post('/cats/add-cat', { catName: catName, age: age, imgUrl: imgUrl })];
                 case 1:
                     data = (_a.sent()).data;
-                    console.log(data);
+                    handleGetAllCats();
+                    ev.target.age.value = '';
+                    ev.target.catName.value = '';
+                    ev.target.imgUrl.value = '';
                     return [3 /*break*/, 3];
                 case 2:
                     error_1 = _a.sent();
@@ -67,16 +68,53 @@ function handleAddCat(ev) {
 }
 function handleGetAllCats() {
     return __awaiter(this, void 0, void 0, function () {
-        var data;
+        var data, catDB;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0: return [4 /*yield*/, axios.get('/cats/get-all-cats')];
                 case 1:
                     data = (_a.sent()).data;
-                    console.log(data);
+                    catDB = data.catDB;
+                    console.log(catDB);
+                    renderCats(catDB);
                     return [2 /*return*/];
             }
         });
     });
 }
-function renderCats(catArr) { }
+function renderCats(catArr) {
+    var html = "";
+    catArr.forEach(function (cat) {
+        html += "<div class=\"root__catCard\"><img src=\"" + cat.imgUrl + "\"> <span class=\"root__catCard__span\">" + cat.catName + "</span> is " + cat.age + " years old</div>";
+    });
+    root.innerHTML = html;
+}
+function handlefilterCatsByAge(event) {
+    return __awaiter(this, void 0, void 0, function () {
+        var age, data, catsDB, error, error_2;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    event.preventDefault();
+                    age = event.target.age.value;
+                    return [4 /*yield*/, axios.patch('/cats/get-cats-age', { age: age })];
+                case 1:
+                    data = (_a.sent()).data;
+                    if (!data)
+                        throw new Error("Couldn't recive data from axios GET: /cats/get-cats-age ");
+                    catsDB = data.catsDB, error = data.error;
+                    if (error)
+                        throw new Error(error);
+                    console.log(catsDB);
+                    renderCats(catsDB);
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_2 = _a.sent();
+                    console.error(error_2);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
+}

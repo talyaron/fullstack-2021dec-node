@@ -17,9 +17,19 @@ export async function addCat(req, res) {
 export async function getAllCats(req, res) {
 	try {
 		catDB = await CatModel.find({});
-		console.debug(catDB);
 		res.send({ catDB });
 	} catch (error) {
 		res.send({ error: error.message });
 	}
+}
+
+export async function filterCatsByAge(req, res) {
+	try {
+        const { age } = req.body;
+        if(!age) throw new Error("age missing");
+        const catsDB = await CatModel.find({age});
+        res.send({ catsDB });
+    } catch (error) {
+        res.send({ error: error.message });
+    }
 }

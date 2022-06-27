@@ -37,7 +37,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 exports.__esModule = true;
 exports.updateUser = exports.handleAddUser = exports.handleDeleteUser = exports.getAllUsers = exports.users = void 0;
-var helpers_1 = require("../helpers");
+var helpers_1 = require("./helpers");
 exports.users = [];
 function getAllUsers(req, res) {
     return __awaiter(this, void 0, void 0, function () {

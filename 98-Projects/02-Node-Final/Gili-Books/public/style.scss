@@ -147,6 +147,30 @@ body {
   height: 100px;
   background-color: rgb(147, 127, 100);
   font-size: 3rem;
+
+
+  &__form {
+    width: fit-content;
+    margin: auto;
+
+    &__name {
+      border: none;
+      padding: 15px 20px;
+      border-radius: 20px;
+
+    }
+
+    &__submit {
+      border: none;
+      padding: 15px 20px;
+      border-radius: 20px;
+      background-color: white;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
 }
 
 //book list css
@@ -177,7 +201,32 @@ body {
   height: 100px;
   background-color: rgb(147, 127, 100);
   font-size: 3rem;
+
+  &__form {
+    width: fit-content;
+    margin: auto;
+
+    &__text {
+      border: none;
+      padding: 15px 20px;
+      border-radius: 20px;
+
+    }
+
+    &__submit {
+      border: none;
+      padding: 15px 20px;
+      border-radius: 20px;
+      background-color: white;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
 }
+
+
 
 .Book_card {
   height: 500px;
