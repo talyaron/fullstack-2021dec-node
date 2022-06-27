@@ -40,16 +40,16 @@ exports.login = exports.register = void 0;
 var userModel_1 = require("../model/userModel");
 function register(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var _a, name, Email, password, error, user, error_1;
+        var _a, name, email, password, error, user, error_1;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
                     _b.trys.push([0, 2, , 3]);
-                    _a = req.body, name = _a.name, Email = _a.Email, password = _a.password;
-                    error = userModel_1.UserValidation.validate({ name: name, Email: Email, password: password }).error;
+                    _a = req.body, name = _a.name, email = _a.email, password = _a.password;
+                    error = userModel_1.UserValidation.validate({ name: name, email: email, password: password }).error;
                     if (error)
                         throw error;
-                    user = new userModel_1["default"]({ name: name, Email: Email, password: password });
+                    user = new userModel_1["default"]({ name: name, email: email, password: password });
                     return [4 /*yield*/, user.save()];
                 case 1:
                     _b.sent();
@@ -67,16 +67,13 @@ function register(req, res) {
 exports.register = register;
 function login(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var _a, name, Email, password, error, user, error_2;
+        var _a, name, email, password, user, error_2;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
                     _b.trys.push([0, 2, , 3]);
-                    _a = req.body, name = _a.name, Email = _a.Email, password = _a.password;
-                    error = userModel_1.UserValidation.validate({ name: name, Email: Email, password: password }).error;
-                    if (error)
-                        throw error;
-                    return [4 /*yield*/, userModel_1["default"].findOne({ name: name, Email: Email, password: password })];
+                    _a = req.body, name = _a.name, email = _a.email, password = _a.password;
+                    return [4 /*yield*/, userModel_1["default"].findOne({ name: name, email: email, password: password })];
                 case 1:
                     user = _b.sent();
                     if (!user) {

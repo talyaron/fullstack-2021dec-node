@@ -3,7 +3,7 @@ import Joi from "joi";
  
 const UserSchema = new mongoose.Schema({
     name:{
-        type:string,
+        type:String,
         required:true
     },
     
@@ -13,7 +13,7 @@ const UserSchema = new mongoose.Schema({
         unique:true
     },
     password:{
-        type:string,
+        type:String,
         required:true,
     }
 })

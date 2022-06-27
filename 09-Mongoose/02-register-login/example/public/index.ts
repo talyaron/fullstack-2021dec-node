@@ -9,7 +9,7 @@ async function handleRegister(ev: any) {
     const { data } = await axios.post("/users/register", { email, password });
     const { register, error } = data;
     console.log(error);
-    if (error && error.includes("E11000")) alert("Email is allerady in use");
+    if (error && error.includes("E11000")) alert("Email is already in use");
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -29,7 +29,7 @@ async function handleLogin(ev: any) {
       if(error) throw error;
 
       if(login){
-        //redirect to a ssocnd page
+        //redirect to a second page
         window.location.href= './home.html'
       }
  
