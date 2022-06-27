@@ -111,18 +111,13 @@ exports.handleAddUser = function (req, res) {
     exports.users.push(user);
     res.send(exports.users);
 };
-// export const searchUsers = async (req,res)=>{
-//     try {
-//     }  catch (error) {
-//         res.send({
-//             error: error.message
-//         });
 // getUser func without DB:
-// export function getUser(req, res) {
+// export async function getUser(req, res) {
+//     const users= await UserModel.find({})
 // 	try {
-// 		const { uid } = req.body;
-// 		if (!uid) throw new Error('uid is missing');
-// 		const user = users.find((user) => user.uid === uid);
+// 		const { userId } = req.body;
+// 		if (!userId) throw new Error('uid is missing');
+// 		const user = users.find((user) => user.email === userId);
 // 		if (!user) throw new Error('couldnt find user');
 // 		res.send({ user });
 // 	} catch (error) {

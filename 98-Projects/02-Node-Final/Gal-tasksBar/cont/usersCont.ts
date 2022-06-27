@@ -1,7 +1,7 @@
-import User from "../models/models";
+import UserModel from "../models/models";
 
 export const getUsers= async (req,res)=>{
-    const users= await User.find({})
+    const users= await UserModel.find({})
     console.log(users)
 }
 
@@ -44,7 +44,7 @@ export const handleDelete = async (req, res) => {
 	try {
         const {id}= req.body;
         if(id){
-            await User.findByIdAndDelete(id) 
+            await UserModel.findByIdAndDelete(id) 
             res.send({ok:true});
         }
 		// res.send({ users });
@@ -66,21 +66,14 @@ export const handleAddUser = (req, res) => {
     res.send(users);
   };
 
-  // export const searchUsers = async (req,res)=>{
-//     try {
-        
-//     }  catch (error) {
-//         res.send({
-//             error: error.message
-//         });
-
 
 // getUser func without DB:
-// export function getUser(req, res) {
+// export async function getUser(req, res) {
+//     const users= await UserModel.find({})
 // 	try {
-// 		const { uid } = req.body;
-// 		if (!uid) throw new Error('uid is missing');
-// 		const user = users.find((user) => user.uid === uid);
+// 		const { userId } = req.body;
+// 		if (!userId) throw new Error('uid is missing');
+// 		const user = users.find((user) => user.email === userId);
 // 		if (!user) throw new Error('couldnt find user');
 // 		res.send({ user });
 // 	} catch (error) {

@@ -7,7 +7,7 @@ export interface user{
 
 let users:Array<user>=[]
 
-//prams for other page: not fixed
+// prams for other page: not fixed
 // export function getUserId(): string | false {
 //     try {
 //       const queryString = window.location.search;
@@ -15,9 +15,9 @@ let users:Array<user>=[]
   
 //       const urlParams = new URLSearchParams(queryString);
   
-//       const userId = urlParams.get("userId");
-//       console.log(userId);
-//       return userId;
+//     //   const userId = urlParams.get("userId");
+//       console.log();
+//     //   return userId;
 //     } catch (error) {
 //       console.error(error);
 //       return false;

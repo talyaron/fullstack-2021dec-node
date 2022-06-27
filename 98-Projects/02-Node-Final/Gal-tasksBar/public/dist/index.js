@@ -47,7 +47,7 @@ function handleLogin(event) {
                     email = event.target.email.value;
                     password = event.target.password.value;
                     console.log(email, password);
-                    return [4 /*yield*/, axios.post("/users/login", { username: username, password: password })];
+                    return [4 /*yield*/, axios.post("/users/login", { email: email, password: password })];
                 case 2:
                     data = (_a.sent()).data;
                     console.log(data);
