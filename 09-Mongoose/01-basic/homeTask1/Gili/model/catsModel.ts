@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const CatSchema = new mongoose.Schema({
-  name: String,
+  catName: String,
   age: Number,
   imgUrl: String
 });

@@ -36,8 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.handleAddUser = exports.handleDelete = exports.updateUser = exports.getUserByCookie = exports.handleLogin = exports.handleRegister = exports.users = exports.getUsers = void 0;
-// import uid from './helpers';
+exports.handleAddUser = exports.handleDelete = exports.updateUser = exports.getUserByCookie = exports.users = exports.getUsers = void 0;
 var models_1 = require("../models/models");
 exports.getUsers = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var users;
@@ -53,67 +52,6 @@ exports.getUsers = function (req, res) { return __awaiter(void 0, void 0, void 0
 }); };
 ;
 exports.users = [];
-exports.handleRegister = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, email, password, user, error_1;
-    return __generator(this, function (_b) {
-        switch (_b.label) {
-            case 0:
-                _b.trys.push([0, 2, , 3]);
-                _a = req.body, email = _a.email, password = _a.password;
-                if (!email)
-                    throw new Error("Email is required");
-                if (!password)
-                    throw new Error("Permissions are required");
-                user = new models_1["default"]({
-                    email: email,
-                    password: password
-                });
-                return [4 /*yield*/, user.save()];
-            case 1:
-                _b.sent();
-                res.send({ handleRegister: true });
-                return [3 /*break*/, 3];
-            case 2:
-                error_1 = _b.sent();
-                console.error(error_1);
-                res.send({ error: error_1.message });
-                return [3 /*break*/, 3];
-            case 3: return [2 /*return*/];
-        }
-    });
-}); };
-exports.handleLogin = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, email, password, user, error_2;
-    return __generator(this, function (_b) {
-        switch (_b.label) {
-            case 0:
-                _b.trys.push([0, 2, , 3]);
-                _a = req.body, email = _a.email, password = _a.password;
-                return [4 /*yield*/, models_1["default"].findOne({ email: email, password: password })];
-            case 1:
-                user = _b.sent();
-                if (user) {
-                    if (user.password === password) {
-                        res.cookie('user', user._id);
-                        res.send({ handleLogin: true });
-                    }
-                    else {
-                        throw new Error("password not match to user");
-                    }
-                }
-                else {
-                    throw new Error("user not found");
-                }
-                return [3 /*break*/, 3];
-            case 2:
-                error_2 = _b.sent();
-                console.error(error_2);
-                res.send({ error: error_2.message });
-                return [3 /*break*/, 3];
-            case 3: return [2 /*return*/];
-        }
-    });
-}); };
 exports.getUserByCookie = function (req, res) {
     try {
         var user = req.cookies.user;
@@ -141,7 +79,7 @@ exports.updateUser = function (req, res) { return __awaiter(void 0, void 0, void
     });
 }); };
 exports.handleDelete = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var id, error_3;
+    var id, error_1;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
@@ -155,8 +93,8 @@ exports.handleDelete = function (req, res) { return __awaiter(void 0, void 0, vo
                 _a.label = 2;
             case 2: return [3 /*break*/, 4];
             case 3:
-                error_3 = _a.sent();
-                res.send({ error: error_3.message });
+                error_1 = _a.sent();
+                res.send({ error: error_1.message });
                 return [3 /*break*/, 4];
             case 4: return [2 /*return*/];
         }
@@ -173,18 +111,13 @@ exports.handleAddUser = function (req, res) {
     exports.users.push(user);
     res.send(exports.users);
 };
-// export const searchUsers = async (req,res)=>{
-//     try {
-//     }  catch (error) {
-//         res.send({
-//             error: error.message
-//         });
 // getUser func without DB:
-// export function getUser(req, res) {
+// export async function getUser(req, res) {
+//     const users= await UserModel.find({})
 // 	try {
-// 		const { uid } = req.body;
-// 		if (!uid) throw new Error('uid is missing');
-// 		const user = users.find((user) => user.uid === uid);
+// 		const { userId } = req.body;
+// 		if (!userId) throw new Error('uid is missing');
+// 		const user = users.find((user) => user.email === userId);
 // 		if (!user) throw new Error('couldnt find user');
 // 		res.send({ user });
 // 	} catch (error) {

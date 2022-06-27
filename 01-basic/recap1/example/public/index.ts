@@ -15,7 +15,7 @@ async function handleGetProducts(){
 }
 
 async function getProducts(): Promise<Array<Product> | false> {
-  try {
+  try { 
     //@ts-ignore
     const { data } = await axios.get("/products/get-products");
     console.log(data);

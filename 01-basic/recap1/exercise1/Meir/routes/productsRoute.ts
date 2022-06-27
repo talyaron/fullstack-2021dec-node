@@ -1,9 +1,10 @@
 import express from 'express';
-import { getProducts, addProduct } from '../control/productsCtrl';
+import { getProducts, addProduct, deleteProduct } from '../control/productsCtrl';
 const router = express.Router();
 
-router.get('/get-produtcs',getProducts)
-.post("/add-product, addProduct");
+router.get("/get-products",getProducts)
+.post("/add-product", addProduct)
+.delete("/delete-products", deleteProduct);
 
 
 export default router;

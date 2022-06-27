@@ -131,6 +131,24 @@ body {
   background-color: #937f64;
   font-size: 3rem;
 }
+.add_user_footer__form {
+  width: fit-content;
+  margin: auto;
+}
+.add_user_footer__form__name {
+  border: none;
+  padding: 15px 20px;
+  border-radius: 20px;
+}
+.add_user_footer__form__submit {
+  border: none;
+  padding: 15px 20px;
+  border-radius: 20px;
+  background-color: white;
+}
+.add_user_footer__form__submit:hover {
+  cursor: pointer;
+}
 
 .bookListsWrapper {
   position: relative;
@@ -157,6 +175,24 @@ body {
   height: 100px;
   background-color: #937f64;
   font-size: 3rem;
+}
+.add_book_footer__form {
+  width: fit-content;
+  margin: auto;
+}
+.add_book_footer__form__text {
+  border: none;
+  padding: 15px 20px;
+  border-radius: 20px;
+}
+.add_book_footer__form__submit {
+  border: none;
+  padding: 15px 20px;
+  border-radius: 20px;
+  background-color: white;
+}
+.add_book_footer__form__submit:hover {
+  cursor: pointer;
 }
 
 .Book_card {

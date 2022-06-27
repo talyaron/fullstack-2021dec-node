@@ -7,17 +7,24 @@ export interface user{
 
 let users:Array<user>=[]
 
-function handleLoad(){
-    try {
-        getUserByCookie();
-        handleLogin(event);
-        handleRegister(event);
-        handleAddUser(event);
-    } catch (error) {
-      console.error(error);
-    }
-  }
+// prams for other page: not fixed
+// export function getUserId(): string | false {
+//     try {
+//       const queryString = window.location.search;
+//       console.log(queryString);
   
+//       const urlParams = new URLSearchParams(queryString);
+  
+//     //   const userId = urlParams.get("userId");
+//       console.log();
+//     //   return userId;
+//     } catch (error) {
+//       console.error(error);
+//       return false;
+//     }
+//   }
+
+
 async function handleAddUser(ev: any) {
     try {
         ev.preventDefault();
@@ -69,30 +76,6 @@ function renderUsers(users) {
 }
 
 
-async function handleLogin(event: any): Promise<void>{
-    try{
-    event.preventDefault();
-    let { email, password } = event.target.elements;
-    email = email.value;
-    password = password.value;
-    
-    //@ts-ignore
-    const { data } = await axios.post("/users/handleLogin", { username, password });
-    console.log(data);
-    const {user} = data;
-    if(!user){
-        throw new Error('User not found');
-    }
-    if(user){
-        window.location.href = "../public/main.html";
-    }
-
-    } catch (error) {
-        console.error(error)
-    }
-}
-
-
 async function handleDelete(event) {
 	try {
 		console.log(`delete button pressed`);
@@ -106,22 +89,7 @@ async function handleDelete(event) {
 	}
 }
 
-async function handleRegister(event: any): Promise<void>{
-    event.preventDefault();
-    try {
-    const email = event.value.email;
-    const password = event.value.password;
-    console.log(email, password)
-    //@ts-ignore
-    const { data } = await axios.post("/users/register", { email, password });
-    const { register, error } = data;
-    console.log(error);
-    if (error && error.includes("E11000")) alert("Email is allerady in use");
-    console.log(data);
-} catch (error) {
-    console.error(error)
-}   
-}
+
 
 async function getUserByCookie() {
     try{
@@ -154,23 +122,6 @@ async function handleUpdateUser(userId) {
     renderUsers(users)
 }
 
-
-// export function getUserId(): string | false {
-//     try {
-//       const queryString = window.location.search;
-//       console.log(queryString);
-  
-//       const urlParams = new URLSearchParams(queryString);
-  
-//       const userId = urlParams.get("userId");
-//       console.log(userId);
-//       return userId;
-//     } catch (error) {
-//       console.error(error);
-//       return false;
-//     }
-//   }
-
 // async function handleGetUsers() {
 //     //@ts-ignore
 //    const { data } = await axios.get('/users/get-users')
@@ -182,3 +133,5 @@ async function handleUpdateUser(userId) {
 //        renderUsers(users);
 //    }
 // }
+
+

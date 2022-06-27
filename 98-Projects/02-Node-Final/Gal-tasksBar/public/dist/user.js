@@ -38,17 +38,20 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 exports.__esModule = true;
 ;
 var users = [];
-function handleLoad() {
-    try {
-        getUserByCookie();
-        handleLogin(event);
-        handleRegister(event);
-        handleAddUser(event);
-    }
-    catch (error) {
-        console.error(error);
-    }
-}
+// prams for other page: not fixed
+// export function getUserId(): string | false {
+//     try {
+//       const queryString = window.location.search;
+//       console.log(queryString);
+//       const urlParams = new URLSearchParams(queryString);
+//     //   const userId = urlParams.get("userId");
+//       console.log();
+//     //   return userId;
+//     } catch (error) {
+//       console.error(error);
+//       return false;
+//     }
+//   }
 function handleAddUser(ev) {
     return __awaiter(this, void 0, void 0, function () {
         var elements, userName, email, password, data, user, error, error_1;
@@ -94,41 +97,9 @@ function renderUsers(users) {
     var root = document.querySelector('#usersTasks');
     root.innerHTML = html;
 }
-function handleLogin(event) {
-    return __awaiter(this, void 0, Promise, function () {
-        var _a, email, password, data, user, error_2;
-        return __generator(this, function (_b) {
-            switch (_b.label) {
-                case 0:
-                    _b.trys.push([0, 2, , 3]);
-                    event.preventDefault();
-                    _a = event.target.elements, email = _a.email, password = _a.password;
-                    email = email.value;
-                    password = password.value;
-                    return [4 /*yield*/, axios.post("/users/handleLogin", { username: username, password: password })];
-                case 1:
-                    data = (_b.sent()).data;
-                    console.log(data);
-                    user = data.user;
-                    if (!user) {
-                        throw new Error('User not found');
-                    }
-                    if (user) {
-                        window.location.href = "../public/main.html";
-                    }
-                    return [3 /*break*/, 3];
-                case 2:
-                    error_2 = _b.sent();
-                    console.error(error_2);
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
-            }
-        });
-    });
-}
 function handleDelete(event) {
     return __awaiter(this, void 0, void 0, function () {
-        var userId, data, users_1, error, error_3;
+        var userId, data, users_1, error, error_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -142,48 +113,17 @@ function handleDelete(event) {
                     renderUsers(users_1);
                     return [3 /*break*/, 3];
                 case 2:
-                    error_3 = _a.sent();
-                    console.error(error_3);
+                    error_2 = _a.sent();
+                    console.error(error_2);
                     return [3 /*break*/, 3];
                 case 3: return [2 /*return*/];
             }
         });
     });
 }
-function handleRegister(event) {
-    return __awaiter(this, void 0, Promise, function () {
-        var email, password, data, register, error, error_4;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    event.preventDefault();
-                    _a.label = 1;
-                case 1:
-                    _a.trys.push([1, 3, , 4]);
-                    email = event.value.email;
-                    password = event.value.password;
-                    console.log(email, password);
-                    return [4 /*yield*/, axios.post("/users/register", { email: email, password: password })];
-                case 2:
-                    data = (_a.sent()).data;
-                    register = data.register, error = data.error;
-                    console.log(error);
-                    if (error && error.includes("E11000"))
-                        alert("Email is allerady in use");
-                    console.log(data);
-                    return [3 /*break*/, 4];
-                case 3:
-                    error_4 = _a.sent();
-                    console.error(error_4);
-                    return [3 /*break*/, 4];
-                case 4: return [2 /*return*/];
-            }
-        });
-    });
-}
 function getUserByCookie() {
     return __awaiter(this, void 0, void 0, function () {
-        var data, user, usernameDB, root, error_5;
+        var data, user, usernameDB, root, error_3;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -203,8 +143,8 @@ function getUserByCookie() {
                     }
                     return [3 /*break*/, 3];
                 case 2:
-                    error_5 = _a.sent();
-                    console.error(error_5);
+                    error_3 = _a.sent();
+                    console.error(error_3);
                     return [3 /*break*/, 3];
                 case 3: return [2 /*return*/];
             }
@@ -230,19 +170,6 @@ function handleUpdateUser(userId) {
         });
     });
 }
-// export function getUserId(): string | false {
-//     try {
-//       const queryString = window.location.search;
-//       console.log(queryString);
-//       const urlParams = new URLSearchParams(queryString);
-//       const userId = urlParams.get("userId");
-//       console.log(userId);
-//       return userId;
-//     } catch (error) {
-//       console.error(error);
-//       return false;
-//     }
-//   }
 // async function handleGetUsers() {
 //     //@ts-ignore
 //    const { data } = await axios.get('/users/get-users')

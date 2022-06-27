@@ -34,17 +34,19 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-function handleGetProduct(ev) {
+function handleGetProduct() {
     return __awaiter(this, void 0, void 0, function () {
-        var data, error_1;
+        var products, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, axios.get("/products/get-products")];
+                    return [4 /*yield*/, getProducts()];
                 case 1:
-                    data = (_a.sent()).data;
-                    console.log(data);
+                    products = _a.sent();
+                    if (products) {
+                        renderProducts(products);
+                    }
                     return [3 /*break*/, 3];
                 case 2:
                     error_1 = _a.sent();
@@ -55,18 +57,21 @@ function handleGetProduct(ev) {
         });
     });
 }
-function handleAddProduct(ev) {
-    return __awaiter(this, void 0, void 0, function () {
-        var data, error_2;
+function getProducts() {
+    return __awaiter(this, void 0, Promise, function () {
+        var data, products, error, error_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    ev.preventDefault();
-                    return [4 /*yield*/, axios.post('/product/add-product')];
+                    return [4 /*yield*/, axios.get("/products/get-products")];
                 case 1:
                     data = (_a.sent()).data;
-                    return [3 /*break*/, 3];
+                    console.log(data);
+                    products = data.products, error = data.error;
+                    if (error)
+                        throw new Error(error);
+                    return [2 /*return*/, products];
                 case 2:
                     error_2 = _a.sent();
                     console.error(error_2);
@@ -76,23 +81,74 @@ function handleAddProduct(ev) {
         });
     });
 }
-//  interface Product {
-//      id: string;
-//      name: string;
-// }
-// function renderProducts(products: Array<Product>): void {
-//      try {
-//        let html = "";
-//        products.forEach((product) => {
-//          html += `<div class="productCard">
-//          <input id='${product.id}' type='text' value='${product.name}' onblur='handleUpdateProduct(event)'/> 
-//          <button onclick='handleDelete("${product.id}")'>DELETE</button>
-//          </div>`;
-//        });
-//        const root = document.querySelector("#root");
-//        if (!root) throw new Error("No root was captured from DOM");
-//        root.innerHTML = html;
-//      } catch (error) {
-//        console.error(error);
-//      }
-// }
+function handleAddProduct(ev) {
+    return __awaiter(this, void 0, void 0, function () {
+        var name, data, products, error, error_3;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    ev.preventDefault();
+                    name = ev.target.elements.name.value;
+                    console.log(name);
+                    if (!name)
+                        throw new Error("Name is misssing");
+                    return [4 /*yield*/, axios.post("/products/add-product", { name: name })];
+                case 1:
+                    data = (_a.sent()).data;
+                    console.log(data);
+                    products = data.products, error = data.error;
+                    if (error)
+                        throw new Error(error);
+                    renderProducts(products);
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_3 = _a.sent();
+                    console.error(error_3);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
+}
+function handleDelete(productId) {
+    return __awaiter(this, void 0, void 0, function () {
+        var data, products, error, error_4;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    if (!productId)
+                        throw new Error("productId is misssing");
+                    return [4 /*yield*/, axios["delete"]("/products/delete-products", { data: { productId: productId } })];
+                case 1:
+                    data = (_a.sent()).data;
+                    products = data.products, error = data.error;
+                    if (error)
+                        throw new Error(error);
+                    renderProducts(products);
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_4 = _a.sent();
+                    console.error(error_4);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
+}
+function renderProducts(products) {
+    try {
+        var html_1 = "";
+        products.forEach(function (product) {
+            html_1 += "<div class=\"productCard\">" + product.name + "<button onclick='handleDelete(\"" + product.id + "\")'>DELETE</button></div>";
+        });
+        var root = document.querySelector("#root");
+        if (!root)
+            throw new Error("No root was captured from DOM");
+        root.innerHTML = html_1;
+    }
+    catch (error) {
+        console.error(error);
+    }
+}

@@ -34,85 +34,68 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-$(window).on("hashchange", function () {
-    if (location.hash.slice(1) == "signup") {
-        $(".page").addClass("extend");
-        $("#login").removeClass("active");
-        $("#signup").addClass("active");
-    }
-    else {
-        $(".page").removeClass("extend");
-        $("#login").addClass("active");
-        $("#signup").removeClass("active");
-    }
-});
-$(window).trigger("hashchange");
-function validateLoginForm(ev) {
-    return __awaiter(this, void 0, void 0, function () {
-        var elements, name, password, data, error_1;
+function handleLogin(event) {
+    return __awaiter(this, void 0, Promise, function () {
+        var email, password, data, user, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    _a.trys.push([0, 2, , 3]);
-                    ev.preventDefault();
-                    elements = ev.target.elements;
-                    name = elements.userName.value;
-                    password = elements.password.value;
-                    console.log(name, password);
-                    return [4 /*yield*/, axios.get("/users/login", {
-                            name: name,
-                            password: password
-                        })];
+                    event.preventDefault();
+                    _a.label = 1;
                 case 1:
+                    _a.trys.push([1, 3, , 4]);
+                    email = event.target.email.value;
+                    password = event.target.password.value;
+                    console.log(email, password);
+                    return [4 /*yield*/, axios.post("/users/login", { email: email, password: password })];
+                case 2:
                     data = (_a.sent()).data;
                     console.log(data);
-                    if (!Array.isArray(data))
-                        throw new Error("data should be an array and it is not");
-                    throwError(data);
-                    ev.target.reset();
-                    return [3 /*break*/, 3];
-                case 2:
+                    user = data.user;
+                    if (!user) {
+                        throw new Error('User not found');
+                    }
+                    if (user) {
+                        window.location.href = "../public/main.html";
+                    }
+                    return [3 /*break*/, 4];
+                case 3:
                     error_1 = _a.sent();
                     console.error(error_1);
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
             }
         });
     });
 }
-;
-function validateSignupForm(ev) {
-    try {
-        ev.preventDefault();
-        var elements = ev.target.elements;
-        var email = elements.email.value;
-        var name = elements.userName.value;
-        var password = elements.password.value;
-        console.log(name, email, password);
-        // @ts-ignore
-        var data = (yield axios.post("/users/sign-up", ({ name: name, email: email, password: password }))).data;
-        if (!Array.isArray(data))
-            throw new Error("data should be an array and it is not");
-        throwError(data);
-        ev.target.reset();
-    }
-    catch (error) {
-        console.error(error);
-    }
+function handleRegister(event) {
+    return __awaiter(this, void 0, void 0, function () {
+        var email, password, data, register, error, error_2;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    event.preventDefault();
+                    _a.label = 1;
+                case 1:
+                    _a.trys.push([1, 3, , 4]);
+                    email = event.target.email.value;
+                    password = event.target.password.value;
+                    console.log(email, password);
+                    return [4 /*yield*/, axios.post("/users/register", { email: email, password: password })];
+                case 2:
+                    data = (_a.sent()).data;
+                    register = data.register, error = data.error;
+                    console.log(error);
+                    if (error && error.includes("E11000"))
+                        alert("Email is allerady in use");
+                    console.log(data);
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_2 = _a.sent();
+                    console.error(error_2);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
 }
-;
-function throwError(UserValidate) {
-    if (UserValidate.email == "" || UserValidate.name == "" || UserValidate.password == "") {
-        document.querySelector("#errorMsg").innerHTML = "Please fill the required fields";
-        return false;
-    }
-    else if (UserValidate.password.length < 8) {
-        document.querySelector("#errorMsg").innerHTML = "Your password must include atleast 8 characters";
-        return false;
-    }
-    else {
-        alert("Successfully signed up");
-        return true;
-    }
-}
-;
