@@ -1,5 +1,5 @@
-import uid from "../helpers";
-import User from '../model/userModel';
+import uid from "./helpers";
+import User from '../models/userModel';
 
 
 export let users: Array<User> = [];

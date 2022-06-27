@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.getAllCats = exports.addCat = void 0;
+exports.filterCatsByAge = exports.getAllCats = exports.addCat = void 0;
 var catsModel_1 = require("../model/catsModel");
 var catDB = [];
 function addCat(req, res) {
@@ -75,7 +75,6 @@ function getAllCats(req, res) {
                     return [4 /*yield*/, catsModel_1["default"].find({})];
                 case 1:
                     catDB = _a.sent();
-                    console.debug(catDB);
                     res.send({ catDB: catDB });
                     return [3 /*break*/, 3];
                 case 2:
@@ -88,3 +87,28 @@ function getAllCats(req, res) {
     });
 }
 exports.getAllCats = getAllCats;
+function filterCatsByAge(req, res) {
+    return __awaiter(this, void 0, void 0, function () {
+        var age, catsDB, error_3;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    age = req.body.age;
+                    if (!age)
+                        throw new Error("age missing");
+                    return [4 /*yield*/, catsModel_1["default"].find({ age: age })];
+                case 1:
+                    catsDB = _a.sent();
+                    res.send({ catsDB: catsDB });
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_3 = _a.sent();
+                    res.send({ error: error_3.message });
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
+}
+exports.filterCatsByAge = filterCatsByAge;

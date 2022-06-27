@@ -1,33 +1,41 @@
+import UserValidModel, {UserValidation} from "../models/userValidModel";
 
-import uid from "../helpers";
-import UserValidate from '../model/userValidateModel';
+export async function handleRegister(req, res) {
 
-export let usersValidated: Array<UserValidate> = [];
+    try {
+        const {email, password} = req.body;
+        const {error} = UserValidation.validate({email, password});
+        if (error) 
+            throw error;
+        
+        //save to DB;
+        const user = new UserValidModel({email, password});
+        await user.save();
 
+        res.send({register: true});
+        console.log(user);
 
-export const validateSignupForm = (req, res) => {
-    const { name, email, password } = req.body;
-    if (!name || !email || !password) throw new Error("Details are required!");
-  
-    let newUser: UserValidate = {
-      name, email, password, userID: uid(), in: false
-    };
-    // newUser.in = true;
-    usersValidated.push(newUser);
-    res.send({ usersValidated });
-    console.log(usersValidated);
-    console.log(newUser);
-  };
-  
-  
-  export const validateLoginForm = (req, res) => {
-    const { name, password } = req.body;
-    if (!name || !password) throw new Error("Details are required!");
-  
-    res.send({ usersValidated });
-    console.log(usersValidated);
+    } catch (error) {
+        res.send({error: error});
+    }
+};
 
-  };
-  
-  
-  
+export async function handleLogin(req, res) {
+    try {
+      const {email, password} = req.body;
+      const {error} = UserValidation.validate({email, password});
+      if (error) 
+          throw error;
+      
+      const user = await UserValidModel.findOne({email, password});
+      if (!user) {
+          res.send({in: false})
+      } else {
+          res.send({in: true})
+      }
+      console.log(user);
+      
+    } catch (error) {
+      res.send({ error: error.message });
+    }
+};
