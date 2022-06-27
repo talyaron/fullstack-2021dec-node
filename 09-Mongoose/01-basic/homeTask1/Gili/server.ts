@@ -24,9 +24,3 @@ mongoose
 
     import CatsRoute from './routes/catsRoute';
     app.use('/cats', CatsRoute);
-
-
-// const mitzi = new CatModel({name:'mitzi', age:2});
-// mitzi.save();
-
-// CatModel.find({age:2}).then(docs=>console.log(docs)).catch(err=>console.log(err))
