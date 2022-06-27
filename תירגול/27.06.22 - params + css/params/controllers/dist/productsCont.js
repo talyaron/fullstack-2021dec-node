@@ -1,3 +1,4 @@
+"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -34,44 +35,41 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-function getAllProduct() {
+exports.__esModule = true;
+exports.getOneItem = exports.getAllProducts = void 0;
+var products_1 = require("../products");
+// export const 
+function getAllProducts(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var data, productsArray;
         return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0: return [4 /*yield*/, axios.get('/api/get-all-products')];
-                case 1:
-                    data = (_a.sent()).data;
-                    console.log(data);
-                    productsArray = data.productsArray;
-                    renderDataFromServerWithAllProducts(productsArray);
-                    return [2 /*return*/];
+            try {
+                res.send({ ok: true, productsArray: products_1.productsArray });
             }
+            catch (error) {
+                console.log(error);
+                res.send(error);
+            }
+            return [2 /*return*/];
         });
     });
 }
-function getOneItemFromServer(id) {
+exports.getAllProducts = getAllProducts;
+function getOneItem(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var data;
         return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    console.log(id);
-                    return [4 /*yield*/, axios.get("/api/id?" + id)];
-                case 1:
-                    data = (_a.sent()).data;
-                    console.log(data);
-                    return [2 /*return*/];
+            try {
+                console.log(req);
+                // console.log(req.params)
+                // const { id } = req.params
+                // const product = productsArray.filter(item => item.id === id)
+                // // const user = await findById({id})
+                // const item = product[0]
+                // res.send({ ok: true, item })
             }
+            catch (error) {
+            }
+            return [2 /*return*/];
         });
     });
 }
-function renderDataFromServerWithAllProducts(items) {
-    var root = document.querySelector('.rootItems');
-    console.log(items);
-    var html = '';
-    items.forEach(function (product) {
-        html += "<button onclick=\"getOneItemFromServer('" + product.id + "')\">\n            <h3>" + product.name + "</h3>\n        </button>";
-    });
-    root.innerHTML = html;
-}
+exports.getOneItem = getOneItem;
