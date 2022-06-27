@@ -7,7 +7,7 @@ async function handleLogin(event: any): Promise<void>{
     
     console.log(email, password);
   //@ts-ignore
-  const { data } = await axios.post("/users/login", { username, password });
+  const { data } = await axios.post("/users/login", { email, password });
   console.log(data);
   const {user} = data;
   if(!user){

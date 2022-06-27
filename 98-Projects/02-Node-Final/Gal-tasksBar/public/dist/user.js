@@ -38,15 +38,15 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 exports.__esModule = true;
 ;
 var users = [];
-//prams for other page: not fixed
+// prams for other page: not fixed
 // export function getUserId(): string | false {
 //     try {
 //       const queryString = window.location.search;
 //       console.log(queryString);
 //       const urlParams = new URLSearchParams(queryString);
-//       const userId = urlParams.get("userId");
-//       console.log(userId);
-//       return userId;
+//     //   const userId = urlParams.get("userId");
+//       console.log();
+//     //   return userId;
 //     } catch (error) {
 //       console.error(error);
 //       return false;
