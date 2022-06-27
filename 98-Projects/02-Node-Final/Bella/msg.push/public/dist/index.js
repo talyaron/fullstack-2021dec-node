@@ -34,161 +34,81 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-$(window).on("hashchange", function () {
-    if (location.hash.slice(1) == "signup") {
-        $(".page").addClass("extend");
-        $("#login").removeClass("active");
-        $("#signup").addClass("active");
-    }
-    else {
-        $(".page").removeClass("extend");
-        $("#login").addClass("active");
-        $("#signup").removeClass("active");
-    }
-});
-$(window).trigger("hashchange");
-// async function handleAddUser(e) {
-//   try {
-//     e.preventDefault();
-//     const name = e.target.elements.name.value;
-//     console.log(name);
-//     // @ts-ignore
-//     const { data } = await axios.post("/users/user-add", { name });
-//     renderUsers(data);
-//     if(!Array.isArray(data)) throw new Error("data should be an array ant it is not")
-//     e.target.reset();
-//   } catch (error) {
-//     console.error(error);
-//   }
-// }
-function validateLoginForm(ev) {
+function handleRegister(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var name, password, data, error_1;
+        var email, password, data, register, error, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    _a.trys.push([0, 2, , 3]);
                     ev.preventDefault();
-                    name = ev.target.elements.name.value;
-                    password = ev.target.elements.password.value;
-                    console.log(name, password);
-                    return [4 /*yield*/, axios.post("/users/login", { name: name, password: password })];
+                    _a.label = 1;
                 case 1:
-                    data = (_a.sent()).data;
-                    console.log(data);
-                    return [3 /*break*/, 3];
+                    _a.trys.push([1, 3, , 4]);
+                    email = ev.target.elements.email.value;
+                    password = ev.target.elements.password.value;
+                    console.log(email, password);
+                    return [4 /*yield*/, axios.post("/users/register", { email: email, password: password })];
                 case 2:
+                    data = (_a.sent()).data;
+                    register = data.register, error = data.error;
+                    console.log(error, register);
+                    if (error && error.includes("11000"))
+                        throw error;
+                    console.log(data);
+                    return [3 /*break*/, 4];
+                case 3:
                     error_1 = _a.sent();
                     console.error(error_1);
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
             }
         });
     });
 }
 ;
-function validateSignupForm(ev) {
-    try {
-        ev.preventDefault();
-        var elements = ev.target.elements;
-        var email = elements.email.value;
-        var name = elements.name.value;
-        var password = elements.password.value;
-        console.log(name, email, password);
-        // @ts-ignore
-        var data = (yield axios.post("/users/sign-up", { name: name, email: email, password: password })).data;
-        if (!Array.isArray(data))
-            throw new Error("data should be an array and it is not");
-        // throwError(data)
-        ev.target.reset();
-    }
-    catch (error) {
-        console.error(error);
-    }
+function handleLogin(ev) {
+    return __awaiter(this, void 0, void 0, function () {
+        var email, password, data, login, error, error_2;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    ev.preventDefault();
+                    _a.label = 1;
+                case 1:
+                    _a.trys.push([1, 3, , 4]);
+                    email = ev.target.elements.email.value;
+                    password = ev.target.elements.password.value;
+                    console.log(email, password);
+                    return [4 /*yield*/, axios.post("/users/login", { email: email, password: password })];
+                case 2:
+                    data = (_a.sent()).data;
+                    login = data.login, error = data.error;
+                    // if (login) {
+                    //     window.location.href= "/users.html";
+                    // }  
+                    if (error)
+                        throw error;
+                    redirect(login);
+                    // else if (error) {
+                    //     alert('Login failed');
+                    //   }
+                    console.log(data);
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_2 = _a.sent();
+                    console.error(error_2);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
 }
 ;
-// function throwError(UserValidate: any) {
-//     if ( UserValidate.email == "" || UserValidate.name == "" || UserValidate.password == "") {
-//       document.querySelector("#errorMsg").innerHTML = "Please fill the required fields"
-//       return false;
-//     } else if (UserValidate.password.length < 8) {
-//       document.querySelector("#errorMsg").innerHTML = "Your password must include atleast 8 characters"
-//       return false;
-//     } else {
-//       alert("Successfully signed up");
-//       return true;
-//     }
-// };
-// / Anonymous "self-invoking" function
-// (function() {
-//     const startingTime = new Date().getTime();
-//     // Load the script
-//     const script: any = document.createElement("SCRIPT");
-//     script.src = 'https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js';
-//     script.type = 'text/javascript';
-//     document.getElementsByTagName("head")[0].appendChild(script);
-//     // Poll for jQuery to come into existance
-//     const checkReady = function(callback) {
-//             window.setTimeout(function() { checkReady(callback); }, 20);
-//     };
-//     // Start polling...
-//     checkReady(function($) {
-//         $(function() {
-//             const endingTime = new Date().getTime();
-//             const tookTime = endingTime - startingTime;
-//             window.alert("jQuery is loaded, after " + tookTime + " milliseconds!");
-//         });
-//     });
-//   });
-// export const throwError = async (req, res) => {
-//   try {
-//     if (email == "" || name == "" || password == "") {
-//       document.querySelector("#errorMsg").innerHTML = "Please fill the required fields"
-//       return false;
-//     } else if (password.length < 8) {
-//       document.querySelector("#errorMsg").innerHTML = "Your password must include atleast 8 characters"
-//       return false;
-//     } else {
-//       alert("Successfully signed up");
-//       return true;
-//     }
-//   } catch (error) {
-//     res.send({ error: error.message });
-//   }
-// };
-// // sign up
-// if (email == "" || name == "" || password == "") {
-//   document.querySelector("#errorMsg").innerHTML = "Please fill the required fields"
-//   return false;
-// } else if (password.length < 8) {
-//   document.querySelector("#errorMsg").innerHTML = "Your password must include atleast 8 characters"
-//   return false;
-// } else {
-//   alert("Successfully signed up");
-//   return true;
-// }
-// // login
-// if (name == "" || password == "") {
-//   document.querySelector("#errorMsg").innerHTML = "Please fill the required fields"
-//   return false;
-// } else if (password.length < 8) {
-//   document.querySelector("#errorMsg").innerHTML = "Your password must include at least 8 characters"
-//   return false;
-// } else {
-//   alert("Successfully logged in");
-//   return true;
-// }
-// function goToLogin(userSigned) {
-//       location.href = "./login.html";
-//       console.log(userSigned);
-//   };
-// html += `<div class="screen__card-wrapper" id="${user.userId}">
-// <h3 class="screen__title-h3__white">${user.name}</h3>
-// <div class="screen__card-wrapper__actions">
-//     <img onclick="handleUpdateUser('${user.userId}')" class="screen__card-wrapper__actions__icon" src=" ./icons/pencil.svg " alt="edit ">
-//     <img onclick="handleDeleteUser('${user.userId}')" class="screen__card-wrapper__actions__icon" src="./icons/trash.svg " alt="delete ">
-// </div>
-// </div>`;
-//   const root = document.querySelector('#root')
-// root.innerHTML = html;
-// }
+function redirect(login) {
+    return __awaiter(this, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            window.location.href = "/users.html";
+            return [2 /*return*/];
+        });
+    });
+}
