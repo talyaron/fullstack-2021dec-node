@@ -89,11 +89,11 @@ function handleAddProduct(ev) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
                     ev.preventDefault();
-                    name = ev.target.element.value;
+                    name = ev.target.elements.name.value;
                     console.log(name);
                     if (!name)
                         throw new Error("Name is misssing");
-                    return [4 /*yield*/, axios.post('/product/add-product')];
+                    return [4 /*yield*/, axios.post("/products/add-product", { name: name })];
                 case 1:
                     data = (_a.sent()).data;
                     console.log(data);
