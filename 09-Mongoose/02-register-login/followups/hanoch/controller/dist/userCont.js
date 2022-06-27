@@ -54,6 +54,7 @@ function register(req, res) {
                 case 1:
                     _b.sent();
                     res.send({ register: true });
+                    console.log(user);
                     return [3 /*break*/, 3];
                 case 2:
                     error_1 = _b.sent();

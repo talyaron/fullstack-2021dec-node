@@ -8,7 +8,7 @@ async function handleUserReg(ev){
         const {data} = await axios.post('/user/register', {name, email, password});
         const {register, error} = data;
 
-        console.log(data);
+        console.log(register);
         
         
         if( error && error.includes("E11000")) alert ('email is already in use')
@@ -35,7 +35,7 @@ async function handleUserLogin(ev){
 
         if(error) throw error;
         if(login){
-            window.location.href= './home.html'
+            window.location.href= `./home.html?name=${name}`
         }
 
 
@@ -44,3 +44,31 @@ async function handleUserLogin(ev){
         
     }
 }
+
+export function getUserId(): string | false {
+    try {
+      const queryString = window.location.search;
+      console.log(queryString);
+  
+      const urlParams = new URLSearchParams(queryString);
+  
+      const name = urlParams.get("name");
+      console.log(name);
+      return name;
+    } catch (error) {
+      console.error(error);
+      return false;
+    }
+  }
+
+  function welcome(){
+    try {
+        const name = getUserId()
+
+        const welcome = document.querySelector('#welcome')
+        welcome.innerHTML = `<h1>welcome ${name}</h1>`
+    } catch (error) {
+        console.log(error);
+        
+    }
+  }

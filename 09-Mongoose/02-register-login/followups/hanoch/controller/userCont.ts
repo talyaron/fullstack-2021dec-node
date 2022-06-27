@@ -8,6 +8,8 @@ export async function register(req, res){
         const user = new UserModel({name, email, password})
         await user.save();
         res.send({ register: true })
+        console.log(user);
+        
         
     } catch (error) {
         res.send({error:error.message})

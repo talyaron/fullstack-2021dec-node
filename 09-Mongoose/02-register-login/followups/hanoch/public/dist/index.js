@@ -1,3 +1,4 @@
+"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -34,6 +35,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+exports.__esModule = true;
+exports.getUserId = void 0;
 function handleUserReg(ev) {
     return __awaiter(this, void 0, void 0, function () {
         var name, email, password, data, register, error, error_1;
@@ -51,7 +54,7 @@ function handleUserReg(ev) {
                 case 2:
                     data = (_a.sent()).data;
                     register = data.register, error = data.error;
-                    console.log(data);
+                    console.log(register);
                     if (error && error.includes("E11000"))
                         alert('email is already in use');
                     return [3 /*break*/, 4];
@@ -85,7 +88,7 @@ function handleUserLogin(ev) {
                     if (error)
                         throw error;
                     if (login) {
-                        window.location.href = './home.html';
+                        window.location.href = "./home.html?name=" + name;
                     }
                     return [3 /*break*/, 4];
                 case 3:
@@ -96,4 +99,29 @@ function handleUserLogin(ev) {
             }
         });
     });
+}
+function getUserId() {
+    try {
+        var queryString = window.location.search;
+        console.log(queryString);
+        var urlParams = new URLSearchParams(queryString);
+        var name = urlParams.get("name");
+        console.log(name);
+        return name;
+    }
+    catch (error) {
+        console.error(error);
+        return false;
+    }
+}
+exports.getUserId = getUserId;
+function welcome() {
+    try {
+        var name = getUserId();
+        var welcome_1 = document.querySelector('#welcome');
+        welcome_1.innerHTML = "<h1>welcome " + name + "</h1>";
+    }
+    catch (error) {
+        console.log(error);
+    }
 }
