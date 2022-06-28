@@ -23,6 +23,3 @@ mongoose_1.default
     .catch((err) => console.log(err));
 const catsRoute_1 = __importDefault(require("./routes/catsRoute"));
 app.use('/cats', catsRoute_1.default);
-// const mitzi = new CatModel({name:'mitzi', age:2});
-// mitzi.save();
-// CatModel.find({age:2}).then(docs=>console.log(docs)).catch(err=>console.log(err))
