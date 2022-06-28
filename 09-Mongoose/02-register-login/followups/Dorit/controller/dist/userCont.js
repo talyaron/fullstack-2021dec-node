@@ -1,3 +1,4 @@
+"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -34,72 +35,72 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-function handleRegister(ev) {
+exports.__esModule = true;
+exports.login = exports.register = void 0;
+var userModel_1 = require("../models/userModel");
+function register(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var email, password, data, register, error, error_1;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
+        var _a, name, email, password, error, user, error_1;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
                 case 0:
-                    ev.preventDefault();
-                    _a.label = 1;
+                    console.debug("async function register");
+                    _b.label = 1;
                 case 1:
-                    _a.trys.push([1, 3, , 4]);
-                    email = ev.target.email.value;
-                    password = ev.target.password.value;
-                    console.log(email, password);
-                    return [4 /*yield*/, axios.post("/users/register", { email: email, password: password })];
-                case 2:
-                    data = (_a.sent()).data;
-                    register = data.register, error = data.error;
+                    _b.trys.push([1, 3, , 4]);
+                    _a = req.body, name = _a.name, email = _a.email, password = _a.password;
+                    console.debug("got to here");
+                    error = userModel_1.UserValidation.validate({ name: name, email: email, password: password }).error;
                     if (error)
                         throw error;
-                    console.log(data);
-                    if (error && error.includes("E11000"))
-                        alert('email is already in use');
+                    user = new userModel_1["default"]({ name: name, email: email, password: password });
+                    return [4 /*yield*/, user.save()];
+                case 2:
+                    _b.sent();
+                    console.debug(user);
+                    res.send({ register: true });
                     return [3 /*break*/, 4];
                 case 3:
-                    error_1 = _a.sent();
-                    console.error(error_1);
+                    error_1 = _b.sent();
+                    res.send({ error: error_1.message });
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
         });
     });
 }
-function handleLogin(ev) {
+exports.register = register;
+function login(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var name, email, password, data, login, error, error_2;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
+        var _a, name, email, password, error, user, error_2;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
                 case 0:
-                    ev.preventDefault();
-                    _a.label = 1;
-                case 1:
-                    _a.trys.push([1, 3, , 4]);
-                    name = ev.target.name.value;
-                    email = ev.target.email.value;
-                    password = ev.target.password.value;
-                    console.log(name, email, password);
-                    return [4 /*yield*/, axios.post("/users/login", { name: name, email: email, password: password })];
-                case 2:
-                    data = (_a.sent()).data;
-                    login = data.login, error = data.error;
+                    _b.trys.push([0, 2, , 3]);
+                    _a = req.body, name = _a.name, email = _a.email, password = _a.password;
+                    console.debug({ name: name, email: email, password: password });
+                    error = userModel_1.UserValidation.validate({ name: name, email: email, password: password }).error;
                     if (error)
                         throw error;
-                    if (login) {
-                        //redirect to a second page
-                        window.location.href = './home.html';
+                    return [4 /*yield*/, userModel_1["default"].findOne({ name: name, email: email, password: password })];
+                case 1:
+                    user = _b.sent();
+                    console.debug("user:" + user);
+                    if (!user) {
+                        res.send({ login: false });
                     }
-                    if (error)
-                        throw error;
-                    console.log(data);
-                    return [3 /*break*/, 4];
-                case 3:
-                    error_2 = _a.sent();
+                    else {
+                        console.debug("we are sending true");
+                        res.send({ login: true });
+                    }
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_2 = _b.sent();
                     console.error(error_2);
-                    return [3 /*break*/, 4];
-                case 4: return [2 /*return*/];
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
             }
         });
     });
 }
+exports.login = login;
