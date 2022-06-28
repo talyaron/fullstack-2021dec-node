@@ -47,8 +47,9 @@ function handleLogin(req, res) {
                     _b.trys.push([0, 2, , 3]);
                     _a = req.body, email = _a.email, password = _a.password;
                     error = models_1.UserValidation.validate({ email: email, password: password }).error;
-                    if (error)
-                        throw error;
+                    if (error) {
+                        res.send({ login: true });
+                    }
                     return [4 /*yield*/, models_1["default"].findOne({ email: email, password: password })];
                 case 1:
                     user = _b.sent();
