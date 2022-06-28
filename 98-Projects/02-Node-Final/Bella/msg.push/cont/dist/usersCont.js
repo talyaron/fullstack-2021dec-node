@@ -36,54 +36,63 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.updateUser = exports.handleAddUser = exports.handleDeleteUser = exports.getAllUsers = exports.users = void 0;
-var helpers_1 = require("./helpers");
-exports.users = [];
-function getAllUsers(req, res) {
-    return __awaiter(this, void 0, void 0, function () {
-        return __generator(this, function (_a) {
-            try {
-                res.send({ users: exports.users });
-            }
-            catch (error) {
-                console.log("Users array not valid");
-            }
-            return [2 /*return*/];
-        });
-    });
-}
-exports.getAllUsers = getAllUsers;
+exports.updateUser = exports.handleAddUser = exports.handleDeleteUser = void 0;
+// import uid from "./helpers";
+var userModel_1 = require("../models/userModel");
+// export let users: Array<any> = [];
 exports.handleDeleteUser = function (req, res) {
     try {
-        var userId_1 = req.body.userId;
-        console.log("userId", userId_1);
-        var index = exports.users.findIndex(function (user) { return user.userId === userId_1; });
-        if (index === -1)
-            throw new Error("user not found");
-        exports.users = exports.users.filter(function (user) { return user.userId !== userId_1; });
-        console.log("users", exports.users);
-        res.send({ users: exports.users });
+        // const { userId } = req.body;
+        // console.log("userId", userId);
+        // const index: number = users.findIndex((user) => user.userId === userId);
+        // if (index === -1) throw new Error("user not found");
+        // users = users.filter((user) => user.userId !== userId);
+        // console.log("users", users);
+        // res.send({users});
     }
     catch (error) {
         res.send({ error: error.message });
     }
 };
-exports.handleAddUser = function (req, res) {
-    var name = req.body.name;
-    if (!name)
-        throw new Error("name is required");
-    var user = { name: name, userId: helpers_1["default"]() };
-    exports.users.push(user);
-    res.send(exports.users);
-};
+function handleAddUser(req, res) {
+    return __awaiter(this, void 0, void 0, function () {
+        var name, error, user, error_1;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    name = req.body.name;
+                    error = userModel_1.UserVal.validate({ name: name }).error;
+                    if (error)
+                        throw error;
+                    user = new userModel_1["default"]({ name: name });
+                    return [4 /*yield*/, user.save()];
+                case 1:
+                    _a.sent();
+                    // users.push(user);
+                    res.send({ user: user });
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_1 = _a.sent();
+                    res.send({ error: error_1 });
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
+}
+exports.handleAddUser = handleAddUser;
+;
 exports.updateUser = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, userId_2, newName, index;
-    return __generator(this, function (_b) {
+    return __generator(this, function (_a) {
         try {
-            _a = req.body, userId_2 = _a.userId, newName = _a.newName;
-            index = exports.users.findIndex(function (object) { return object.userId === String(userId_2); });
-            exports.users[index].name = newName;
-            res.send({ users: exports.users });
+            // const { userId, newName } = req.body;
+            // const index = users.findIndex(object => {return object.userId === String(userId)})
+            // users[index].name = newName
+            // const newUserName = new UserModel({ newName, userId: uid() });
+            // await newUserName.save();
+            // res.send({ newUserName });
+            // console.log(newUserName);
         }
         catch (error) {
             res.send({ error: error.message });
