@@ -1,10 +1,5 @@
 import UserModel from "../models/models";
 
-export const getUsers= async (req,res)=>{
-    const users= await UserModel.find({})
-    console.log(users)
-}
-
 export interface User{
     username: string,
     email: string,
@@ -13,17 +8,31 @@ export interface User{
 
 export let users: Array<User> = [];
 
-
-export const getUserByCookie = (req,res)=>{
-    try {
-        const {user} = req.cookies;
-        console.log(user);
-        res.send({ok:true,user})
-    } catch (error) {
-        console.error(error);
-        res.send({ error: error.message });
-    }
+export async function getUsers(req, res) {
+    const { email, password } = req.body;
+    const users= await UserModel.find({email,password})
+	try {
+		const { userId } = req.body;
+		if (!userId) throw new Error('uid is missing');
+		const user = users.find((user) => user.email === userId);
+		if (!user) throw new Error('couldnt find user');
+		res.send({ user });
+	} catch (error) {
+		console.error(error);
+		res.send({ error: error.message });
+	}
 }
+
+// export const getUserByCookie = (req,res)=>{
+//     try {
+//         const {user} = req.cookies;
+//         console.log(user);
+//         res.send({ok:true,user})
+//     } catch (error) {
+//         console.error(error);
+//         res.send({ error: error.message });
+//     }
+// }
 
 
 export const updateUser = async (req, res) => {
@@ -67,17 +76,5 @@ export const handleAddUser = (req, res) => {
   };
 
 
-// getUser func without DB:
-// export async function getUser(req, res) {
-//     const users= await UserModel.find({})
-// 	try {
-// 		const { userId } = req.body;
-// 		if (!userId) throw new Error('uid is missing');
-// 		const user = users.find((user) => user.email === userId);
-// 		if (!user) throw new Error('couldnt find user');
-// 		res.send({ user });
-// 	} catch (error) {
-// 		console.error(error);
-// 		res.send({ error: error.message });
-// 	}
-// }
+
+
