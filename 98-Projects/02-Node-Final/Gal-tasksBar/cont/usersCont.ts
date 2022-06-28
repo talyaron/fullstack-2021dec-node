@@ -23,16 +23,16 @@ export async function getUsers(req, res) {
 	}
 }
 
-export const getUserByCookie = (req,res)=>{
-    try {
-        const {user} = req.cookies;
-        console.log(user);
-        res.send({ok:true,user})
-    } catch (error) {
-        console.error(error);
-        res.send({ error: error.message });
-    }
-}
+// export const getUserByCookie = (req,res)=>{
+//     try {
+//         const {user} = req.cookies;
+//         console.log(user);
+//         res.send({ok:true,user})
+//     } catch (error) {
+//         console.error(error);
+//         res.send({ error: error.message });
+//     }
+// }
 
 
 export const updateUser = async (req, res) => {

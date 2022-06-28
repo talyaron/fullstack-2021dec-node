@@ -7,7 +7,7 @@ export interface user{
 
 let users:Array<user>=[]
 
-// prams for other page: not fixed
+// not fixed
 export function getUsers(): string | false {
     try {
     // @ts-ignore
@@ -100,25 +100,25 @@ async function handleUpdateUser(userId) {
 
 
 
-async function getUserByCookie() {
-    try{
-    //@ts-ignore
-    const { data } = await axios.get("/users/get-user");
-    console.log(data);
-    const {user} = data;
-    if(!user){
-        throw new Error('User not found');
-    }
+// async function getUserByCookie() {
+//     try{
+//     //@ts-ignore
+//     const { data } = await axios.get("/users/get-user");
+//     console.log(data);
+//     const {user} = data;
+//     if(!user){
+//         throw new Error('User not found');
+//     }
 
-    const usernameDB = user.username;
-    const root = document.getElementById('root');
-    if(root){
-        root.innerHTML = `<h1>Welcome ${usernameDB}</h1>`
-    }
-    } catch (error) {
-        console.error(error)
-    }
-}
+//     const usernameDB = user.username;
+//     const root = document.getElementById('root');
+//     if(root){
+//         root.innerHTML = `<h1>Welcome ${usernameDB}</h1>`
+//     }
+//     } catch (error) {
+//         console.error(error)
+//     }
+// }
 
 
 

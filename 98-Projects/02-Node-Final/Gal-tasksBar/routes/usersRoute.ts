@@ -6,7 +6,7 @@ import {
     updateUser,
     handleDelete,
     getUsers,
-    getUserByCookie,
+    // getUserByCookie,
 } from "../cont/usersCont";
 
 //
@@ -15,6 +15,6 @@ router
     .delete("/user-delete", handleDelete)
     .post("/add-user", handleAddUser)
     .get('get-user',getUsers)
-    .get('get-user',getUserByCookie)
+    // .get('get-user',getUserByCookie)
 
 export default router;

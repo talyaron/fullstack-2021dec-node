@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.handleAddUser = exports.handleDelete = exports.updateUser = exports.getUserByCookie = exports.getUsers = exports.users = void 0;
+exports.handleAddUser = exports.handleDelete = exports.updateUser = exports.getUsers = exports.users = void 0;
 var models_1 = require("../models/models");
 ;
 exports.users = [];
@@ -69,17 +69,16 @@ function getUsers(req, res) {
     });
 }
 exports.getUsers = getUsers;
-exports.getUserByCookie = function (req, res) {
-    try {
-        var user = req.cookies.user;
-        console.log(user);
-        res.send({ ok: true, user: user });
-    }
-    catch (error) {
-        console.error(error);
-        res.send({ error: error.message });
-    }
-};
+// export const getUserByCookie = (req,res)=>{
+//     try {
+//         const {user} = req.cookies;
+//         console.log(user);
+//         res.send({ok:true,user})
+//     } catch (error) {
+//         console.error(error);
+//         res.send({ error: error.message });
+//     }
+// }
 exports.updateUser = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var _a, email_1, newName, index;
     return __generator(this, function (_b) {
