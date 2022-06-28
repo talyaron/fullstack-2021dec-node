@@ -36,22 +36,25 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
+exports.getUsers = void 0;
 ;
 var users = [];
 // prams for other page: not fixed
-// export function getUserId(): string | false {
-//     try {
-//       const queryString = window.location.search;
-//       console.log(queryString);
-//       const urlParams = new URLSearchParams(queryString);
-//     //   const userId = urlParams.get("userId");
-//       console.log();
-//     //   return userId;
-//     } catch (error) {
-//       console.error(error);
-//       return false;
-//     }
-//   }
+function getUsers() {
+    try {
+        var queryString = window.location.search;
+        console.log(queryString);
+        var urlParams = new URLSearchParams(queryString);
+        //   const userId = urlParams.get("userId");
+        console.log();
+        //   return userId;
+    }
+    catch (error) {
+        console.error(error);
+        return false;
+    }
+}
+exports.getUsers = getUsers;
 function handleAddUser(ev) {
     return __awaiter(this, void 0, void 0, function () {
         var elements, userName, email, password, data, user, error, error_1;
@@ -121,6 +124,25 @@ function handleDelete(event) {
         });
     });
 }
+function handleUpdateUser(userId) {
+    return __awaiter(this, void 0, void 0, function () {
+        var newName, data, users;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    newName = prompt('Enter new user name');
+                    return [4 /*yield*/, axios.patch('/users/update-user', { email: email, newName: newName })];
+                case 1:
+                    data = (_a.sent()).data;
+                    users = data.users;
+                    if (!Array.isArray(users))
+                        throw new Error("users should be an array");
+                    renderUsers(users);
+                    return [2 /*return*/];
+            }
+        });
+    });
+}
 function getUserByCookie() {
     return __awaiter(this, void 0, void 0, function () {
         var data, user, usernameDB, root, error_3;
@@ -151,32 +173,3 @@ function getUserByCookie() {
         });
     });
 }
-function handleUpdateUser(userId) {
-    return __awaiter(this, void 0, void 0, function () {
-        var newName, data, users;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    newName = prompt('Enter new user name');
-                    return [4 /*yield*/, axios.patch('/users/update-user', { email: email, newName: newName })];
-                case 1:
-                    data = (_a.sent()).data;
-                    users = data.users;
-                    if (!Array.isArray(users))
-                        throw new Error("users should be an array");
-                    renderUsers(users);
-                    return [2 /*return*/];
-            }
-        });
-    });
-}
-// async function handleGetUsers() {
-//     //@ts-ignore
-//    const { data } = await axios.get('/users/get-users')
-//    console.log(data)
-//    const { users } = data;
-//    console.log(users)
-//    if (users) {
-//        renderUsers(users);
-//    }
-// }

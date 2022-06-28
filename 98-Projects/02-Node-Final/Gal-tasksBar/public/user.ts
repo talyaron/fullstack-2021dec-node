@@ -8,21 +8,21 @@ export interface user{
 let users:Array<user>=[]
 
 // prams for other page: not fixed
-// export function getUserId(): string | false {
-//     try {
-//       const queryString = window.location.search;
-//       console.log(queryString);
+export function getUsers(): string | false {
+    try {
+      const queryString = window.location.search;
+      console.log(queryString);
   
-//       const urlParams = new URLSearchParams(queryString);
+      const urlParams = new URLSearchParams(queryString);
   
-//     //   const userId = urlParams.get("userId");
-//       console.log();
-//     //   return userId;
-//     } catch (error) {
-//       console.error(error);
-//       return false;
-//     }
-//   }
+    //   const userId = urlParams.get("userId");
+      console.log();
+    //   return userId;
+    } catch (error) {
+      console.error(error);
+      return false;
+    }
+  }
 
 
 async function handleAddUser(ev: any) {
@@ -89,6 +89,16 @@ async function handleDelete(event) {
 	}
 }
 
+async function handleUpdateUser(userId) {
+    const newName = prompt('Enter new user name');
+      // @ts-ignore
+    const {data} = await axios.patch('/users/update-user', {email, newName})
+	  const {users} = data;
+    if(!Array.isArray(users)) throw new Error("users should be an array")
+
+    renderUsers(users)
+}
+
 
 
 async function getUserByCookie() {
@@ -111,27 +121,5 @@ async function getUserByCookie() {
     }
 }
 
-
-async function handleUpdateUser(userId) {
-    const newName = prompt('Enter new user name');
-      // @ts-ignore
-    const {data} = await axios.patch('/users/update-user', {email, newName})
-	  const {users} = data;
-    if(!Array.isArray(users)) throw new Error("users should be an array")
-
-    renderUsers(users)
-}
-
-// async function handleGetUsers() {
-//     //@ts-ignore
-//    const { data } = await axios.get('/users/get-users')
-//    console.log(data)
-
-//    const { users } = data;
-//    console.log(users)
-//    if (users) {
-//        renderUsers(users);
-//    }
-// }
 
 
