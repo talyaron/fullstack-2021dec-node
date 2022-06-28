@@ -15,7 +15,7 @@ export function getUsers(): string | false {
   
       const urlParams = new URLSearchParams(queryString);
   
-    //   const userId = urlParams.get("userId");
+    
       console.log();
     //   return userId;
     } catch (error) {

@@ -45,7 +45,6 @@ function getUsers() {
         var queryString = window.location.search;
         console.log(queryString);
         var urlParams = new URLSearchParams(queryString);
-        //   const userId = urlParams.get("userId");
         console.log();
         //   return userId;
     }
