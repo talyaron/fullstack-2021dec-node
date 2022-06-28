@@ -7,22 +7,20 @@ export interface user{
 
 let users:Array<user>=[]
 
-// prams for other page: not fixed
-// export function getUserId(): string | false {
-//     try {
-//       const queryString = window.location.search;
-//       console.log(queryString);
-  
-//       const urlParams = new URLSearchParams(queryString);
-  
-//     //   const userId = urlParams.get("userId");
-//       console.log();
-//     //   return userId;
-//     } catch (error) {
-//       console.error(error);
-//       return false;
-//     }
-//   }
+// not fixed
+async function getUsers(ev:any) {
+    try {
+    // @ts-ignore
+      const {data} = await axios.get('/users/get-users')
+      const {users} = data;
+    if(!Array.isArray(users)) throw new Error("Error")
+      
+      renderUsers(users);
+    } catch (error) {
+      console.error(error);
+      return false;
+    }
+  }
 
 
 async function handleAddUser(ev: any) {
@@ -53,7 +51,6 @@ async function handleAddUser(ev: any) {
         if (error)
             throw new Error(error);
         renderUsers(users);
-
     } catch (error) {
         console.error(error);
     }
@@ -75,6 +72,7 @@ function renderUsers(users) {
 	root.innerHTML = html;
 }
 
+   //   const queryString = window.location.search;
 
 async function handleDelete(event) {
 	try {
@@ -89,29 +87,6 @@ async function handleDelete(event) {
 	}
 }
 
-
-
-async function getUserByCookie() {
-    try{
-    //@ts-ignore
-    const { data } = await axios.get("/users/get-user");
-    console.log(data);
-    const {user} = data;
-    if(!user){
-        throw new Error('User not found');
-    }
-
-    const usernameDB = user.username;
-    const root = document.getElementById('root');
-    if(root){
-        root.innerHTML = `<h1>Welcome ${usernameDB}</h1>`
-    }
-    } catch (error) {
-        console.error(error)
-    }
-}
-
-
 async function handleUpdateUser(userId) {
     const newName = prompt('Enter new user name');
       // @ts-ignore
@@ -122,16 +97,27 @@ async function handleUpdateUser(userId) {
     renderUsers(users)
 }
 
-// async function handleGetUsers() {
-//     //@ts-ignore
-//    const { data } = await axios.get('/users/get-users')
-//    console.log(data)
 
-//    const { users } = data;
-//    console.log(users)
-//    if (users) {
-//        renderUsers(users);
-//    }
+
+// async function getUserByCookie() {
+//     try{
+//     //@ts-ignore
+//     const { data } = await axios.get("/user/get-userCookie");
+//     console.log(data);
+//     const {user} = data;
+//     if(!user){
+//         throw new Error('User not found');
+//     }
+
+//     const usernameDB = user.username;
+//     const root = document.getElementById('root');
+//     if(root){
+//         root.innerHTML = `<h1>Welcome ${usernameDB}</h1>`
+//     }
+//     } catch (error) {
+//         console.error(error)
+//     }
 // }
+
 
 

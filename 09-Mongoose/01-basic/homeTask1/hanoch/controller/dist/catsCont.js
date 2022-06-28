@@ -36,70 +36,47 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.updateUser = exports.handleAddUser = exports.handleDeleteUser = void 0;
-// import uid from "./helpers";
-var userModel_1 = require("../models/userModel");
-// export let users: Array<any> = [];
-exports.handleDeleteUser = function (req, res) {
-    try {
-        // const { userId } = req.body;
-        // console.log("userId", userId);
-        // const index: number = users.findIndex((user) => user.userId === userId);
-        // if (index === -1) throw new Error("user not found");
-        // users = users.filter((user) => user.userId !== userId);
-        // console.log("users", users);
-        // res.send({users});
-    }
-    catch (error) {
-        res.send({ error: error.message });
-    }
-};
-function handleAddUser(req, res) {
+exports.searchCat = exports.getCats = exports.addCat = void 0;
+var catsModel_1 = require("../model/catsModel");
+function addCat(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var name, error, user, userId, error_1;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
+        var _a, image, name, age, color, cats, catsArray, error_1;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
                 case 0:
-                    _a.trys.push([0, 2, , 3]);
-                    name = req.body.name;
-                    error = userModel_1.UserVal.validate({ name: name }).error;
-                    if (error)
-                        throw error;
-                    user = new userModel_1["default"]({ name: name });
-                    return [4 /*yield*/, user.save()];
+                    _b.trys.push([0, 2, , 3]);
+                    _a = req.body, image = _a.image, name = _a.name, age = _a.age, color = _a.color;
+                    cats = new catsModel_1["default"]({ image: image, name: name, age: age, color: color });
+                    if (!cats) {
+                        throw new Error('missing argument!!');
+                    }
+                    return [4 /*yield*/, cats.save()];
                 case 1:
-                    _a.sent();
-                    userId = userModel_1["default"].find({ user: user._id })
-                        .then(function (docs) { return console.log(docs); })["catch"](function (err) { return console.log(err.message); });
-                    console.log(user._id);
-                    res.send({ user: user });
+                    catsArray = _b.sent();
+                    console.log(cats);
+                    res.send({ catsArray: catsArray });
                     return [3 /*break*/, 3];
                 case 2:
-                    error_1 = _a.sent();
-                    res.send({ error: error_1 });
+                    error_1 = _b.sent();
+                    res.send({ error: error_1.message });
                     return [3 /*break*/, 3];
                 case 3: return [2 /*return*/];
             }
         });
     });
 }
-exports.handleAddUser = handleAddUser;
-;
-function updateUser(req, res) {
+exports.addCat = addCat;
+function getCats(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var newName, userId, newUserName, error_2;
+        var cats, error_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    newName = req.body.newName;
-                    userId = userModel_1["default"].find({ name: newName._id })
-                        .then(function (docs) { return console.log(docs); })["catch"](function (err) { return console.log(err.message); });
-                    newUserName = new userModel_1["default"]({ newName: newName, userId: userId });
-                    return [4 /*yield*/, newUserName.save()];
+                    return [4 /*yield*/, catsModel_1["default"].find({})];
                 case 1:
-                    _a.sent();
-                    res.send({ newUserName: newUserName });
+                    cats = _a.sent();
+                    res.send({ cats: cats });
                     return [3 /*break*/, 3];
                 case 2:
                     error_2 = _a.sent();
@@ -110,5 +87,27 @@ function updateUser(req, res) {
         });
     });
 }
-exports.updateUser = updateUser;
-;
+exports.getCats = getCats;
+function searchCat(req, res) {
+    return __awaiter(this, void 0, void 0, function () {
+        var age, searchCats;
+        return __generator(this, function (_a) {
+            try {
+                age = req.body.age;
+                searchCats = catsModel_1["default"].find(age);
+                if (!searchCats) {
+                    throw new Error('missing argument!!');
+                }
+                else {
+                    res.send({ searchCats: searchCats });
+                }
+                console.log({ searchCats: searchCats });
+            }
+            catch (error) {
+                res.send({ error: error.message });
+            }
+            return [2 /*return*/];
+        });
+    });
+}
+exports.searchCat = searchCat;

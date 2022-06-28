@@ -10,33 +10,31 @@
     <title>users</title>
 </head>
 
-<body class="screen" onload=" handleGetUsers() ">
+<body class="screen">
 
-    <div class="screen__container">
+    <div class="screen__container ">
 
-        <div class="screen__container__top-bar">
+        <div class="screen__container__top-bar ">
             <!-- <div class="screen__userAvatar "></div> -->
             <h3 class="screen__title-h3 ">Hello, Bella</h3>
         </div>
 
-        <div class="screen__container__root">
-            <h4 class="screen__title-h4">Users List</h4>
-            <div id="root"></div>
+        <div class="screen__container__root ">
+            <h4 class="screen__title-h4 ">Users List</h4>
+            <div id="root "></div>
 
         </div>
 
         <div class="screen__container__bottom-bar ">
 
             <form class="screen__form " onsubmit="handleAddUser(event) ">
-                <input class="screen__form__input " type=" text " name="name" placeholder="Name " required>
+                <input class="screen__form__input " type=" text " name="name" placeholder="Name ">
                 <button class="screen__form__btn-form " type="submit ">Add user</button>
             </form>
         </div>
 
     </div>
     <script src="./dist/users.js "></script>
-    <script src="./dist/index.js "></script>
-
 
 </body>
 

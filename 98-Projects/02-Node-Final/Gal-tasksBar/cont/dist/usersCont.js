@@ -36,22 +36,39 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.handleAddUser = exports.handleDelete = exports.updateUser = exports.getUserByCookie = exports.users = exports.getUsers = void 0;
+exports.handleAddUser = exports.handleDelete = exports.updateUser = exports.getUserByCookie = exports.getUsers = exports.users = void 0;
 var models_1 = require("../models/models");
-exports.getUsers = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var users;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0: return [4 /*yield*/, models_1["default"].find({})];
-            case 1:
-                users = _a.sent();
-                console.log(users);
-                return [2 /*return*/];
-        }
-    });
-}); };
 ;
 exports.users = [];
+function getUsers(req, res) {
+    return __awaiter(this, void 0, void 0, function () {
+        var _a, email, password, users, userId_1, user;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
+                case 0:
+                    _a = req.body, email = _a.email, password = _a.password;
+                    return [4 /*yield*/, models_1["default"].find({ email: email, password: password })];
+                case 1:
+                    users = _b.sent();
+                    try {
+                        userId_1 = req.body.userId;
+                        if (!userId_1)
+                            throw new Error('user id is missing');
+                        user = users.find(function (user) { return user.email === userId_1; });
+                        if (!user)
+                            throw new Error('couldnt find user');
+                        res.send({ user: user });
+                    }
+                    catch (error) {
+                        console.error(error);
+                        res.send({ error: error.message });
+                    }
+                    return [2 /*return*/];
+            }
+        });
+    });
+}
+exports.getUsers = getUsers;
 exports.getUserByCookie = function (req, res) {
     try {
         var user = req.cookies.user;
@@ -111,17 +128,3 @@ exports.handleAddUser = function (req, res) {
     exports.users.push(user);
     res.send(exports.users);
 };
-// getUser func without DB:
-// export async function getUser(req, res) {
-//     const users= await UserModel.find({})
-// 	try {
-// 		const { userId } = req.body;
-// 		if (!userId) throw new Error('uid is missing');
-// 		const user = users.find((user) => user.email === userId);
-// 		if (!user) throw new Error('couldnt find user');
-// 		res.send({ user });
-// 	} catch (error) {
-// 		console.error(error);
-// 		res.send({ error: error.message });
-// 	}
-// }

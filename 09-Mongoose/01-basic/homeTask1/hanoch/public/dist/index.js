@@ -1,4 +1,3 @@
-"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -35,65 +34,50 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-exports.__esModule = true;
-exports.handleRegister = exports.handleLogin = void 0;
-var models_1 = require("../models/models");
-function handleLogin(req, res) {
+function handleCats(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var _a, email, password, error, user, error_1;
-        return __generator(this, function (_b) {
-            switch (_b.label) {
+        var image, name, age, color, data, catsArray, error, error_1;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
                 case 0:
-                    _b.trys.push([0, 2, , 3]);
-                    _a = req.body, email = _a.email, password = _a.password;
-                    error = models_1.UserValidation.validate({ email: email, password: password }).error;
-                    if (error) {
-                        res.send({ login: true });
-                    }
-                    return [4 /*yield*/, models_1["default"].findOne({ email: email, password: password })];
+                    ev.preventDefault();
+                    _a.label = 1;
                 case 1:
-                    user = _b.sent();
-                    if (!user) {
-                        res.send({ login: false });
-                    }
-                    else {
-                        res.send({ login: true });
-                    }
-                    return [3 /*break*/, 3];
+                    _a.trys.push([1, 3, , 4]);
+                    image = ev.target.image.value;
+                    name = ev.target.name.value;
+                    age = ev.target.age.value;
+                    color = ev.target.color.value;
+                    return [4 /*yield*/, axios.post('/cat/catsList', { image: image, name: name, age: age, color: color })];
                 case 2:
-                    error_1 = _b.sent();
-                    res.send({ error: error_1.message });
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
-            }
-        });
-    });
-}
-exports.handleLogin = handleLogin;
-function handleRegister(req, res) {
-    return __awaiter(this, void 0, void 0, function () {
-        var _a, email, password, error, user, error_2;
-        return __generator(this, function (_b) {
-            switch (_b.label) {
-                case 0:
-                    _b.trys.push([0, 2, , 3]);
-                    _a = req.body, email = _a.email, password = _a.password;
-                    error = models_1.UserValidation.validate({ email: email, password: password }).error;
+                    data = (_a.sent()).data;
+                    console.log(data);
+                    catsArray = data.catsArray, error = data.error;
                     if (error)
-                        throw error;
-                    user = new models_1["default"]({ email: email, password: password });
-                    return [4 /*yield*/, user.save()];
-                case 1:
-                    _b.sent();
-                    res.send({ register: true });
-                    return [3 /*break*/, 3];
-                case 2:
-                    error_2 = _b.sent();
-                    res.send({ error: error_2.message });
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
+                        throw new error;
+                    console.log(catsArray);
+                    renderCats(catsArray);
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_1 = _a.sent();
+                    console.log(error_1);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
             }
         });
     });
 }
-exports.handleRegister = handleRegister;
+var html = "";
+function renderCats(catsArray) {
+    try {
+        var renderCats_1 = document.querySelector('#renderCats');
+        // if (!Array.isArray(catsArray)) throw new Error("cats is not an array");
+        catsArray.forEach(function (cat) {
+            html += "<div>\n            <img src=\"" + cat.image + "\" id=\"img\">\n            <p>name: " + cat.name + "</p>\n            <p>age: " + cat.age + "</p>\n            <p>color: " + cat.color + "</p>\n        </div>";
+        });
+        renderCats_1.innerHTML = html;
+    }
+    catch (error) {
+        console.log(error);
+    }
+}

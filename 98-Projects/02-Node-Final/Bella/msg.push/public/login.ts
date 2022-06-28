@@ -15,6 +15,8 @@ async function handleLogin(ev : any) {
         runLogin(login)
 
         if (error) throw error;
+        ev.target.reset();
+
     } catch (error) {
         console.error(error);
     }

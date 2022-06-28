@@ -4,7 +4,9 @@ export async function handleLogin(req, res) {
   try {
     const { email, password } = req.body;
     const { error } = UserValidation.validate({ email, password });
-    if (error) throw error;
+    if (error){
+      res.send({ login: true });
+    }
 
     const user = await UserModel.findOne({ email, password });
     if (!user) {

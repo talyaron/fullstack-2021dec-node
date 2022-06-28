@@ -8,12 +8,18 @@
     <link rel="stylesheet" href="./dist/style.css">
     <title>TaskBar/MainPage</title>
 </head>
-<body onload="getUserByCookie()">
+<body onload="getUsers()">
     <div class="TaskTable">
-      <h1>in progress</h1> 
        <button><a id="main-a" href="./index.html">for tests<a></button>
     </div>
-    <!-- <div id="usersTasks"></div> -->
+    <div class="main">
+      <form class="main__form " onsubmit="handleAddUser(ev) ">
+          <input class="main__form__input " type=" text " name="name" placeholder="Name " required>
+          <button class="main__form__btn-form " type="submit ">Add user</button>
+      </form>
+  </div>
+
+    <div id="usersTasks"></div>
     <div class="id"></div>
     <div class="footer">
         <p>@corporation Gal Gross</p>

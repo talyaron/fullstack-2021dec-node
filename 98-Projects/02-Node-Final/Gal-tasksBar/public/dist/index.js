@@ -52,11 +52,11 @@ function handleLogin(event) {
                     data = (_a.sent()).data;
                     console.log(data);
                     user = data.user;
-                    if (!user) {
-                        throw new Error('User not found');
-                    }
                     if (user) {
                         window.location.href = "../public/main.html";
+                    }
+                    if (!user) {
+                        throw new Error('User not found');
                     }
                     return [3 /*break*/, 4];
                 case 3:
