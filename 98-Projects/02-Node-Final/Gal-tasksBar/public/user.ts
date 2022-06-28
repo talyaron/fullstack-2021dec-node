@@ -8,7 +8,7 @@ export interface user{
 let users:Array<user>=[]
 
 // not fixed
-export function getUsers(): string | false {
+async function getUsers(ev:any) {
     try {
     // @ts-ignore
       const {data} = await axios.get('/users/get-users')
@@ -20,7 +20,6 @@ export function getUsers(): string | false {
       console.error(error);
       return false;
     }
-    //   const queryString = window.location.search;
   }
 
 
@@ -52,7 +51,6 @@ async function handleAddUser(ev: any) {
         if (error)
             throw new Error(error);
         renderUsers(users);
-
     } catch (error) {
         console.error(error);
     }
@@ -74,6 +72,7 @@ function renderUsers(users) {
 	root.innerHTML = html;
 }
 
+   //   const queryString = window.location.search;
 
 async function handleDelete(event) {
 	try {
@@ -103,7 +102,7 @@ async function handleUpdateUser(userId) {
 // async function getUserByCookie() {
 //     try{
 //     //@ts-ignore
-//     const { data } = await axios.get("/users/get-user");
+//     const { data } = await axios.get("/user/get-userCookie");
 //     console.log(data);
 //     const {user} = data;
 //     if(!user){

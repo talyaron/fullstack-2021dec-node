@@ -36,29 +36,36 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.getUsers = void 0;
 ;
 var users = [];
 // not fixed
-function getUsers() {
-    try {
-        // @ts-ignore
-        var data = (yield axios.get('/users/get-users')).data;
-        var users_1 = data.users;
-        if (!Array.isArray(users_1))
-            throw new Error("Error");
-        renderUsers(users_1);
-    }
-    catch (error) {
-        console.error(error);
-        return false;
-    }
-    //   const queryString = window.location.search;
+function getUsers(ev) {
+    return __awaiter(this, void 0, void 0, function () {
+        var data, users_1, error_1;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    return [4 /*yield*/, axios.get('/users/get-users')];
+                case 1:
+                    data = (_a.sent()).data;
+                    users_1 = data.users;
+                    if (!Array.isArray(users_1))
+                        throw new Error("Error");
+                    renderUsers(users_1);
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_1 = _a.sent();
+                    console.error(error_1);
+                    return [2 /*return*/, false];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
 }
-exports.getUsers = getUsers;
 function handleAddUser(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var elements, userName, email, password, data, user, error, error_1;
+        var elements, userName, email, password, data, user, error, error_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -84,8 +91,8 @@ function handleAddUser(ev) {
                     renderUsers(users);
                     return [3 /*break*/, 3];
                 case 2:
-                    error_1 = _a.sent();
-                    console.error(error_1);
+                    error_2 = _a.sent();
+                    console.error(error_2);
                     return [3 /*break*/, 3];
                 case 3: return [2 /*return*/];
             }
@@ -101,9 +108,10 @@ function renderUsers(users) {
     var root = document.querySelector('#usersTasks');
     root.innerHTML = html;
 }
+//   const queryString = window.location.search;
 function handleDelete(event) {
     return __awaiter(this, void 0, void 0, function () {
-        var userId, data, users_2, error, error_2;
+        var userId, data, users_2, error, error_3;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -117,8 +125,8 @@ function handleDelete(event) {
                     renderUsers(users_2);
                     return [3 /*break*/, 3];
                 case 2:
-                    error_2 = _a.sent();
-                    console.error(error_2);
+                    error_3 = _a.sent();
+                    console.error(error_3);
                     return [3 /*break*/, 3];
                 case 3: return [2 /*return*/];
             }
@@ -147,7 +155,7 @@ function handleUpdateUser(userId) {
 // async function getUserByCookie() {
 //     try{
 //     //@ts-ignore
-//     const { data } = await axios.get("/users/get-user");
+//     const { data } = await axios.get("/user/get-userCookie");
 //     console.log(data);
 //     const {user} = data;
 //     if(!user){

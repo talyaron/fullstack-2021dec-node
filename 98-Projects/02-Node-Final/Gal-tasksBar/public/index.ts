@@ -9,11 +9,12 @@ async function handleLogin(event: any): Promise<void>{
   const { data } = await axios.post("/users/login", { email, password });
   console.log(data);
   const {user} = data;
-  if(!user){
-      throw new Error('User not found');
-  }
   if(user){
       window.location.href = "../public/main.html";
+  }
+
+  if(!user){
+    throw new Error('User not found');
   }
 
   } catch (error) {

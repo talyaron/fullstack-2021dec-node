@@ -13,7 +13,7 @@ export async function getUsers(req, res) {
     const users= await UserModel.find({email,password})
 	try {
 		const { userId } = req.body;
-		if (!userId) throw new Error('uid is missing');
+		if (!userId) throw new Error('user id is missing');
 		const user = users.find((user) => user.email === userId);
 		if (!user) throw new Error('couldnt find user');
 		res.send({ user });
@@ -23,16 +23,16 @@ export async function getUsers(req, res) {
 	}
 }
 
-// export const getUserByCookie = (req,res)=>{
-//     try {
-//         const {user} = req.cookies;
-//         console.log(user);
-//         res.send({ok:true,user})
-//     } catch (error) {
-//         console.error(error);
-//         res.send({ error: error.message });
-//     }
-// }
+export const getUserByCookie = (req,res)=>{
+    try {
+        const {user} = req.cookies;
+        console.log(user);
+        res.send({ok:true,user})
+    } catch (error) {
+        console.error(error);
+        res.send({ error: error.message });
+    }
+}
 
 
 export const updateUser = async (req, res) => {
