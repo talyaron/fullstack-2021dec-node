@@ -1,7 +1,6 @@
 import express from "express";
 const router = express.Router();
 import {
-  getAllUsers,
   updateUser,
   handleDeleteUser,
   handleAddUser
@@ -9,7 +8,6 @@ import {
 
 // 
 router
-  .get("/get-users", getAllUsers)
   .patch("/update-user", updateUser)
   .delete("/user-delete", handleDeleteUser)
   .post("/user-add", handleAddUser)

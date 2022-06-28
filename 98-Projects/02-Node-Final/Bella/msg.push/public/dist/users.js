@@ -1,3 +1,8 @@
+// async function handleGetUsers() {
+//   try {
+//   // @ts-ignore
+// 	const {data} = await axios.get('/users/get-users')
+// 	const {getUsers, error} = data;
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -34,39 +39,28 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-function handleGetUsers() {
+// 	renderUsers(getUsers);
+//   if (error) throw error;
+//   } catch (error) {
+//     console.error(error);
+//   } 
+// };
+function handleDeleteUser(name) {
     return __awaiter(this, void 0, void 0, function () {
-        var data, users;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0: return [4 /*yield*/, axios.get('/users/get-users')];
-                case 1:
-                    data = (_a.sent()).data;
-                    users = data.users;
-                    if (!Array.isArray(users))
-                        throw new Error("users should be an array and it is not");
-                    renderUsers(users);
-                    return [2 /*return*/];
-            }
-        });
-    });
-}
-function handleDeleteUser(userId) {
-    return __awaiter(this, void 0, void 0, function () {
-        var data, users, error_1;
+        var data, deleteUser, error, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    console.log(userId);
-                    return [4 /*yield*/, axios["delete"]("/users/user-delete", { data: { userId: userId } })];
+                    console.log(name);
+                    return [4 /*yield*/, axios["delete"]("/users/user-delete", { data: { name: name } })];
                 case 1:
                     data = (_a.sent()).data;
                     console.log(data);
-                    users = data.users;
-                    if (!Array.isArray(users))
-                        throw new Error("users should be an array ant it is not");
-                    renderUsers(users);
+                    deleteUser = data.deleteUser, error = data.error;
+                    renderUsers(deleteUser);
+                    if (error)
+                        throw error;
                     return [3 /*break*/, 3];
                 case 2:
                     error_1 = _a.sent();
@@ -77,23 +71,26 @@ function handleDeleteUser(userId) {
         });
     });
 }
-function handleAddUser(e) {
+;
+function handleAddUser(ev) {
     return __awaiter(this, void 0, void 0, function () {
         var name, data, error_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    e.preventDefault();
-                    name = e.target.elements.name.value;
-                    console.log(name);
+                    ev.preventDefault();
+                    name = ev.target.name.value;
+                    console.dir(name);
                     return [4 /*yield*/, axios.post("/users/user-add", { name: name })];
                 case 1:
                     data = (_a.sent()).data;
-                    renderUsers(data);
-                    if (!Array.isArray(data))
-                        throw new Error("data should be an array ant it is not");
-                    e.target.reset();
+                    // const {addUser, error} = data;
+                    console.log(data);
+                    // renderUsers(addUser);    
+                    if (!name)
+                        throw Error;
+                    ev.target.reset();
                     return [3 /*break*/, 3];
                 case 2:
                     error_2 = _a.sent();
@@ -104,30 +101,41 @@ function handleAddUser(e) {
         });
     });
 }
-function handleUpdateUser(userId) {
+;
+function handleUpdateUser(newNames) {
     return __awaiter(this, void 0, void 0, function () {
-        var newName, data, users;
+        var newName, data, updateUser, error, error_3;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
+                    _a.trys.push([0, 2, , 3]);
                     newName = prompt('Enter new user name');
-                    return [4 /*yield*/, axios.patch('/users/update-user', { userId: userId, newName: newName })];
+                    console.log(newNames);
+                    return [4 /*yield*/, axios.patch('/users/update-user', { newName: newName })];
                 case 1:
                     data = (_a.sent()).data;
-                    users = data.users;
-                    if (!Array.isArray(users))
-                        throw new Error("users should be an array ant it is not");
-                    renderUsers(users);
-                    return [2 /*return*/];
+                    updateUser = data.updateUser, error = data.error;
+                    console.log(data);
+                    renderUsers(updateUser);
+                    if (error)
+                        throw error;
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_3 = _a.sent();
+                    console.error(error_3);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
             }
         });
     });
 }
+;
 function renderUsers(users) {
     var html = '';
     users.forEach(function (user) {
-        html += "<div class=\"screen__card-wrapper\" id=\"" + user.userId + "\">\n    <h3 class=\"screen__title-h3__white\">" + user.name + "</h3>\n    <div class=\"screen__card-wrapper__actions\">\n        <img onclick=\"handleUpdateUser('" + user.userId + "')\" class=\"screen__card-wrapper__actions__icon\" src=\" ./icons/pencil.svg\" alt=\"edit\">\n        <img onclick=\"handleDeleteUser('" + user.userId + "')\" class=\"screen__card-wrapper__actions__icon\" src=\"./icons/trash.svg\" alt=\"delete\">\n    </div>\n    </div>";
+        html += "<div class=\"screen__card-wrapper\">\n    <h3 class=\"screen__title-h3__white\">" + user.name + "</h3>\n    <div class=\"screen__card-wrapper__actions\">\n        <img onclick=\"handleUpdateUser()\" class=\"screen__card-wrapper__actions__icon\" src=\" ./icons/pencil.svg\" alt=\"edit\">\n        <img onclick=\"handleDeleteUser()\" class=\"screen__card-wrapper__actions__icon\" src=\"./icons/trash.svg\" alt=\"delete\">\n    </div>\n    </div>";
     });
     var root = document.querySelector('#root');
     root.innerHTML = html;
 }
+;
