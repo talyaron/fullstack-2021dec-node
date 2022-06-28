@@ -7,6 +7,9 @@ var UserScheme = new mongoose_1["default"].Schema({
     name: {
         type: String,
         required: true
+    },
+    userId: {
+        type: String
     }
 });
 var UserModel = mongoose_1["default"].model('users', UserScheme);

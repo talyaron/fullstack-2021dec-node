@@ -56,7 +56,7 @@ exports.handleDeleteUser = function (req, res) {
 };
 function handleAddUser(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var name, error, user, error_1;
+        var name, error, user, userId, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -69,7 +69,9 @@ function handleAddUser(req, res) {
                     return [4 /*yield*/, user.save()];
                 case 1:
                     _a.sent();
-                    // users.push(user);
+                    userId = userModel_1["default"].find({ user: user._id })
+                        .then(function (docs) { return console.log(docs); })["catch"](function (err) { return console.log(err.message); });
+                    console.log(user._id);
                     res.send({ user: user });
                     return [3 /*break*/, 3];
                 case 2:
@@ -83,20 +85,30 @@ function handleAddUser(req, res) {
 }
 exports.handleAddUser = handleAddUser;
 ;
-exports.updateUser = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    return __generator(this, function (_a) {
-        try {
-            // const { userId, newName } = req.body;
-            // const index = users.findIndex(object => {return object.userId === String(userId)})
-            // users[index].name = newName
-            // const newUserName = new UserModel({ newName, userId: uid() });
-            // await newUserName.save();
-            // res.send({ newUserName });
-            // console.log(newUserName);
-        }
-        catch (error) {
-            res.send({ error: error.message });
-        }
-        return [2 /*return*/];
+function updateUser(req, res) {
+    return __awaiter(this, void 0, void 0, function () {
+        var newName, userId, newUserName, error_2;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    newName = req.body.newName;
+                    userId = userModel_1["default"].find({ name: newName._id })
+                        .then(function (docs) { return console.log(docs); })["catch"](function (err) { return console.log(err.message); });
+                    newUserName = new userModel_1["default"]({ newName: newName, userId: userId });
+                    return [4 /*yield*/, newUserName.save()];
+                case 1:
+                    _a.sent();
+                    res.send({ newUserName: newUserName });
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_2 = _a.sent();
+                    res.send({ error: error_2.message });
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
     });
-}); };
+}
+exports.updateUser = updateUser;
+;
