@@ -51,6 +51,8 @@ export function getUserId(): string | false {
       console.log(queryString);
   
       const urlParams = new URLSearchParams(queryString);
+      console.log(urlParams);
+      
   
       const name = urlParams.get("name");
       console.log(name);

@@ -9,7 +9,7 @@ const port = 3000;
 const app = express_1.default();
 app.use(express_1.default.json());
 app.use(express_1.default.static('public'));
-mongoose_1.default.connect('mongodb+srv://hanoch:m3QQqQsCPlSECTbj@cluster0.37kenwy.mongodb.net/userDB?retryWrites=true&w=majority')
+mongoose_1.default.connect('mongodb+srv://hanoch:b2LMpVDUoQRVKqFG@cluster0.37kenwy.mongodb.net/userDB?retryWrites=true&w=majority')
     .then(() => {
     console.log("Connected to DB!");
 })

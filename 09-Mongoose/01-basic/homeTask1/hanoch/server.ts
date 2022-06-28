@@ -7,7 +7,7 @@ const port = 3000;
 app.use(express.json());
 app.use(express.static('public'));
 
-mongoose.connect('mongodb+srv://hanoch:Wih5HKHggXATg2Bc@cluster0.37kenwy.mongodb.net/catsex?retryWrites=true&w=majority')
+mongoose.connect('mongodb+srv://hanoch:Nn6nTMlgtbG6ea6f@cluster0.37kenwy.mongodb.net/cats2?retryWrites=true&w=majority')
 .then(()=>{
     console.log("connect to DB");
     
