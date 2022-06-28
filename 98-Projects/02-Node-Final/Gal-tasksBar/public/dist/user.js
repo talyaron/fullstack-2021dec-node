@@ -42,16 +42,18 @@ var users = [];
 // prams for other page: not fixed
 function getUsers() {
     try {
-        var queryString = window.location.search;
-        console.log(queryString);
-        var urlParams = new URLSearchParams(queryString);
-        console.log();
-        //   return userId;
+        // @ts-ignore
+        var data = (yield axios.get('/users/get-users')).data;
+        var users_1 = data.users;
+        if (!Array.isArray(users_1))
+            throw new Error("Error");
+        renderUsers(users_1);
     }
     catch (error) {
         console.error(error);
         return false;
     }
+    //   const queryString = window.location.search;
 }
 exports.getUsers = getUsers;
 function handleAddUser(ev) {
@@ -101,7 +103,7 @@ function renderUsers(users) {
 }
 function handleDelete(event) {
     return __awaiter(this, void 0, void 0, function () {
-        var userId, data, users_1, error, error_2;
+        var userId, data, users_2, error, error_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -111,8 +113,8 @@ function handleDelete(event) {
                     return [4 /*yield*/, axios["delete"]("/users/delelte-user", { data: { userId: userId, userId: userId } })];
                 case 1:
                     data = (_a.sent()).data;
-                    users_1 = data.users, error = data.error;
-                    renderUsers(users_1);
+                    users_2 = data.users, error = data.error;
+                    renderUsers(users_2);
                     return [3 /*break*/, 3];
                 case 2:
                     error_2 = _a.sent();

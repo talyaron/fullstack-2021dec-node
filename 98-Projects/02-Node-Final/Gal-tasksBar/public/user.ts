@@ -10,18 +10,17 @@ let users:Array<user>=[]
 // prams for other page: not fixed
 export function getUsers(): string | false {
     try {
-      const queryString = window.location.search;
-      console.log(queryString);
-  
-      const urlParams = new URLSearchParams(queryString);
-  
-    
-      console.log();
-    //   return userId;
+    // @ts-ignore
+      const {data} = await axios.get('/users/get-users')
+      const {users} = data;
+    if(!Array.isArray(users)) throw new Error("Error")
+      
+      renderUsers(users);
     } catch (error) {
       console.error(error);
       return false;
     }
+    //   const queryString = window.location.search;
   }
 
 
