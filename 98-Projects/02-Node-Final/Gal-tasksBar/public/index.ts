@@ -1,4 +1,3 @@
-
 async function handleLogin(event: any): Promise<void>{
   event.preventDefault();
   try{
@@ -21,7 +20,6 @@ async function handleLogin(event: any): Promise<void>{
       console.error(error)
   }
 }
-
 
 
 async function handleRegister(event: any){

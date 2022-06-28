@@ -9,6 +9,4 @@ router
     .post("/add-user", usersCont_1.handleAddUser)
     .get('get-user', usersCont_1.getUsers);
 // .get('get-user',getUserByCookie)
-// .get('users-search', handleSearchItems)
-// .get("/get-users", handleGetUsers)
 exports["default"] = router;

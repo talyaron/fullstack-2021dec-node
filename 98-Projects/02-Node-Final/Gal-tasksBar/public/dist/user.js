@@ -36,22 +36,26 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
+exports.getUsers = void 0;
 ;
 var users = [];
-// prams for other page: not fixed
-// export function getUserId(): string | false {
-//     try {
-//       const queryString = window.location.search;
-//       console.log(queryString);
-//       const urlParams = new URLSearchParams(queryString);
-//     //   const userId = urlParams.get("userId");
-//       console.log();
-//     //   return userId;
-//     } catch (error) {
-//       console.error(error);
-//       return false;
-//     }
-//   }
+// not fixed
+function getUsers() {
+    try {
+        // @ts-ignore
+        var data = (yield axios.get('/users/get-users')).data;
+        var users_1 = data.users;
+        if (!Array.isArray(users_1))
+            throw new Error("Error");
+        renderUsers(users_1);
+    }
+    catch (error) {
+        console.error(error);
+        return false;
+    }
+    //   const queryString = window.location.search;
+}
+exports.getUsers = getUsers;
 function handleAddUser(ev) {
     return __awaiter(this, void 0, void 0, function () {
         var elements, userName, email, password, data, user, error, error_1;
@@ -99,7 +103,7 @@ function renderUsers(users) {
 }
 function handleDelete(event) {
     return __awaiter(this, void 0, void 0, function () {
-        var userId, data, users_1, error, error_2;
+        var userId, data, users_2, error, error_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -109,42 +113,12 @@ function handleDelete(event) {
                     return [4 /*yield*/, axios["delete"]("/users/delelte-user", { data: { userId: userId, userId: userId } })];
                 case 1:
                     data = (_a.sent()).data;
-                    users_1 = data.users, error = data.error;
-                    renderUsers(users_1);
+                    users_2 = data.users, error = data.error;
+                    renderUsers(users_2);
                     return [3 /*break*/, 3];
                 case 2:
                     error_2 = _a.sent();
                     console.error(error_2);
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
-            }
-        });
-    });
-}
-function getUserByCookie() {
-    return __awaiter(this, void 0, void 0, function () {
-        var data, user, usernameDB, root, error_3;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    _a.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, axios.get("/users/get-user")];
-                case 1:
-                    data = (_a.sent()).data;
-                    console.log(data);
-                    user = data.user;
-                    if (!user) {
-                        throw new Error('User not found');
-                    }
-                    usernameDB = user.username;
-                    root = document.getElementById('root');
-                    if (root) {
-                        root.innerHTML = "<h1>Welcome " + usernameDB + "</h1>";
-                    }
-                    return [3 /*break*/, 3];
-                case 2:
-                    error_3 = _a.sent();
-                    console.error(error_3);
                     return [3 /*break*/, 3];
                 case 3: return [2 /*return*/];
             }
@@ -170,13 +144,21 @@ function handleUpdateUser(userId) {
         });
     });
 }
-// async function handleGetUsers() {
+// async function getUserByCookie() {
+//     try{
 //     //@ts-ignore
-//    const { data } = await axios.get('/users/get-users')
-//    console.log(data)
-//    const { users } = data;
-//    console.log(users)
-//    if (users) {
-//        renderUsers(users);
-//    }
+//     const { data } = await axios.get("/users/get-user");
+//     console.log(data);
+//     const {user} = data;
+//     if(!user){
+//         throw new Error('User not found');
+//     }
+//     const usernameDB = user.username;
+//     const root = document.getElementById('root');
+//     if(root){
+//         root.innerHTML = `<h1>Welcome ${usernameDB}</h1>`
+//     }
+//     } catch (error) {
+//         console.error(error)
+//     }
 // }

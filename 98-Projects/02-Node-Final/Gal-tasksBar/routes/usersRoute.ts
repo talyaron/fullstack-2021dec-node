@@ -4,11 +4,9 @@ const router = express.Router();
 import {
     handleAddUser,
     updateUser,
-    // getUserByCookie,
     handleDelete,
-    getUsers
-    // handleSearchItems
-    // handleGetUsers
+    getUsers,
+    // getUserByCookie,
 } from "../cont/usersCont";
 
 //
@@ -18,7 +16,5 @@ router
     .post("/add-user", handleAddUser)
     .get('get-user',getUsers)
     // .get('get-user',getUserByCookie)
-  // .get('users-search', handleSearchItems)
-  // .get("/get-users", handleGetUsers)
 
 export default router;

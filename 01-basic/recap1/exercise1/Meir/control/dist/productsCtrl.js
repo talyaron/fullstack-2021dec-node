@@ -2,7 +2,7 @@
 exports.__esModule = true;
 exports.deleteProduct = exports.addProduct = exports.getProducts = void 0;
 var helpers_1 = require("./helpers");
-var products = [];
+var products = [{ id: "por", name: "test" }];
 function getProducts(req, res) {
     try {
         res.send({ products: products });
