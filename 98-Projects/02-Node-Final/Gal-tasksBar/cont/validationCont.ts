@@ -33,4 +33,20 @@ export async function handleRegister(req, res) {
   }
 }
 
-  
+export async function getUser(req,res){
+  try{
+      const {userId} = req.query;
+      if(!userId) throw new Error ("missing userId in query");
+
+      const userDB = await UserModel.findById(userId);
+      if(!userId) throw new Error ("missing userId in DB");
+
+      if(!userDB) throw new Error(`coundt find use with this id: ${userId}` );
+
+      res.send({user:userDB, success:true});
+      
+  }catch (error) {
+      console.error(error);
+  res.send({ error: error.message });
+}
+}

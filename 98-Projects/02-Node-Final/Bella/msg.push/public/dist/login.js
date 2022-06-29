@@ -66,11 +66,11 @@ function handleLogin(ev) {
     });
 }
 ;
-function runLogin(login) {
+function runLogin(user) {
     return __awaiter(this, void 0, void 0, function () {
         return __generator(this, function (_a) {
-            window.location.href = "/users.html";
-            console.log(login);
+            window.location.href = '/users.html?userId=${user._id}';
+            console.log(user);
             return [2 /*return*/];
         });
     });

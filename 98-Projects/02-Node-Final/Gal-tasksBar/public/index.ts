@@ -6,14 +6,19 @@ async function handleLogin(event: any): Promise<void>{
     
     console.log(email, password);
   //@ts-ignore
-  const { data } = await axios.post("/users/login", { email, password });
+  const { data } = await axios.post("/user/login", {email, password });
   console.log(data);
-  const {user} = data;
-  if(user){
-      window.location.href = "../public/main.html";
+  const {user, login, error} = data;
+
+  // if(user){
+  //     window.location.href = "../public/main.html";
+  // }
+
+  if (login) {
+    window.location.href = `./user.html?userId=${user._id}&name=itizik&age=234`;
   }
 
-  if(!user){
+  if(!login){
     throw new Error('User not found');
   }
 
@@ -30,11 +35,13 @@ async function handleRegister(event: any){
   const password = event.target.password.value;
   console.log(email, password)
   //@ts-ignore
-  const { data } = await axios.post("/users/register", { email, password });
+  const { data } = await axios.post("/user/register", { email, password });
   const { register, error } = data;
+  console.log(register)
   console.log(error);
   if (error && error.includes("E11000")) alert("Email is allerady in use");
   console.log(data);
+  event.target.reset();
 } catch (error) {
   console.error(error)
 }   
@@ -42,3 +49,43 @@ async function handleRegister(event: any){
 
 
 
+function getUserId(): string | false {
+  try {
+    const queryString = window.location.search;
+    console.log(queryString);
+
+    const urlParams = new URLSearchParams(queryString);
+    console.log(urlParams)
+    
+    const name = urlParams.get("name");
+    console.log(name);
+
+    return name;
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
+}
+
+async function onscondPageLoad() {
+  try {
+    //get params of userId
+    const userId = getUserId();
+
+    if (!userId) throw new Error("couldnt find user id in url");
+    // @ts-ignore
+    const { data } = await axios.get(`/user/get-user?userId=${userId}`);
+
+    const { error, user } = data;
+    if (error) throw error;
+    console.log(user);
+    const { name } = user;
+
+    const userName = document.querySelector("#userName");
+    userName.innerHTML = `<h1>Welcome  ${name}</h1>`;
+
+    console.log(data);
+  } catch (error) {
+    console.log(error);
+  }
+}

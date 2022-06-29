@@ -20,7 +20,7 @@ async function handleLogin(ev : any) {
     }
 };
 
-async function runLogin(login) {
-    window.location.href= "/users.html";
-    console.log(login);
+async function runLogin(user) {
+    window.location.href= '/users.html?userId=${user._id}';
+    console.log(user);
 };

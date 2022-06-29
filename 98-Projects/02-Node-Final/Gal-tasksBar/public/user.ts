@@ -1,21 +1,20 @@
 export interface user{
     userName: string,
     email: string,
-    // uid: string,
     password: string
 };
 
-let users:Array<user>=[]
+let user:Array<user>=[]
 
-// not fixed
-async function getUsers(ev:any) {
+
+async function getUsers() {
     try {
     // @ts-ignore
-      const {data} = await axios.get('/users/get-users')
-      const {users} = data;
-    if(!Array.isArray(users)) throw new Error("Error")
-      
+      const {data} = await axios.get('/user/get-users')
+      const {users,error} = data;
+      if(error) throw new Error("Error")
       renderUsers(users);
+
     } catch (error) {
       console.error(error);
       return false;
@@ -38,7 +37,7 @@ async function handleAddUser(ev: any) {
         const {
             data
              // @ts-ignore
-        } = await axios.post('/users/add-user', {
+        } = await axios.post('/user/add-user', {
             userName,
             email,
             password
@@ -50,21 +49,21 @@ async function handleAddUser(ev: any) {
         } = data;
         if (error)
             throw new Error(error);
-        renderUsers(users);
+        renderUsers(user);
     } catch (error) {
         console.error(error);
     }
 };
 
 
-function renderUsers(users) {
+function renderUsers(user) {
 	let html = '';
-	users.forEach((user: { password: any; userName: any; email: any; }) => {
+	user.forEach((user: { password: any; userName: any; email: any; }) => {
 		html += `<div class="screen__card-wrapper" id="${user.email}">
-    <h3 class="screen__title-h3__white">${user.userName}</h3>
-    <div class="screen__card-wrapper__actions">
-        <img onclick="handleUpdateUser('${user.email}')" class="screen__card-wrapper__actions__icon" src=" ./icons/pencil.svg" alt="edit">
-        <img onclick="handleDeleteUser('${user.email}')" class="screen__card-wrapper__actions__icon" src="./icons/trash.svg" alt="delete">
+    <h3 class="main__title-h3__white">${user.userName}</h3>
+    <div class="main__wrapper__actions">
+        <img onclick="handleUpdateUser('${user.email}')" class="main__wrapper__actions__icon" src=" ./icons/pencil.svg" alt="edit">
+        <img onclick="handleDeleteUser('${user.email}')" class="main__wrapper__actions__icon" src="./icons/trash.svg" alt="delete">
     </div>
     </div>`;
 	});
@@ -79,7 +78,7 @@ async function handleDelete(event) {
 		console.log(`delete button pressed`);
 		const userId = event.target.id;
         // @ts-ignore
-		const { data } = await axios.delete("/users/delelte-user", { data: { userId, userId } });
+		const { data } = await axios.delete("/user/delelte-user", { data: { userId, userId } });
 		const { users, error } = data;
 		renderUsers(users)
 	} catch (error) {
@@ -87,37 +86,54 @@ async function handleDelete(event) {
 	}
 }
 
-async function handleUpdateUser(userId) {
-    const newName = prompt('Enter new user name');
+async function handleUpdateUser(_newUsers:any) {
+  try{  const newName = prompt('Enter new user name');
+    console.log(newName);
+    
       // @ts-ignore
-    const {data} = await axios.patch('/users/update-user', {email, newName})
-	  const {users} = data;
-    if(!Array.isArray(users)) throw new Error("users should be an array")
+    const {data} = await axios.patch('/user/update-user', { newName})
+	  const {updateUser, error} = data;
+    console.log(data);
 
-    renderUsers(users)
+    renderUsers(updateUser)
+
+    if (error) throw error;
+} catch (error) {
+  console.error(error);
+}
+};
+
+
+
+async function getUserByCookie() {
+    try{
+    //@ts-ignore
+    const { data } = await axios.get("/user/get-userCookie");
+    console.log(data);
+    const {user} = data;
+    if(!user){
+        throw new Error('User not found');
+    }
+
+    const usernameDB = user.username;
+    const root = document.getElementById('root');
+    if(root){
+        root.innerHTML = `<h1>Welcome ${usernameDB}</h1>`
+    }
+    } catch (error) {
+        console.error(error)
+    }
 }
 
-
-
-// async function getUserByCookie() {
-//     try{
-//     //@ts-ignore
-//     const { data } = await axios.get("/user/get-userCookie");
-//     console.log(data);
-//     const {user} = data;
-//     if(!user){
-//         throw new Error('User not found');
-//     }
-
-//     const usernameDB = user.username;
-//     const root = document.getElementById('root');
-//     if(root){
-//         root.innerHTML = `<h1>Welcome ${usernameDB}</h1>`
-//     }
-//     } catch (error) {
-//         console.error(error)
-//     }
-// }
-
-
+  
+  async function toUserPage() {
+    try {
+      const userId = getUsers();
+      const userName = document.querySelector("#userName");
+      userName.innerHTML = `<h1>Welcome  ${name}</h1>`;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  
 

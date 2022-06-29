@@ -37,22 +37,21 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 exports.__esModule = true;
 ;
-var users = [];
-// not fixed
-function getUsers(ev) {
+var user = [];
+function getUsers() {
     return __awaiter(this, void 0, void 0, function () {
-        var data, users_1, error_1;
+        var data, users, error, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, axios.get('/users/get-users')];
+                    return [4 /*yield*/, axios.get('/user/get-users')];
                 case 1:
                     data = (_a.sent()).data;
-                    users_1 = data.users;
-                    if (!Array.isArray(users_1))
+                    users = data.users, error = data.error;
+                    if (error)
                         throw new Error("Error");
-                    renderUsers(users_1);
+                    renderUsers(users);
                     return [3 /*break*/, 3];
                 case 2:
                     error_1 = _a.sent();
@@ -65,7 +64,7 @@ function getUsers(ev) {
 }
 function handleAddUser(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var elements, userName, email, password, data, user, error, error_2;
+        var elements, userName, email, password, data, user_1, error, error_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -78,17 +77,17 @@ function handleAddUser(ev) {
                     console.log(userName, email, password);
                     if (!userName || !email || !password)
                         throw new Error("Details are required");
-                    return [4 /*yield*/, axios.post('/users/add-user', {
+                    return [4 /*yield*/, axios.post('/user/add-user', {
                             userName: userName,
                             email: email,
                             password: password
                         })];
                 case 1:
                     data = (_a.sent()).data;
-                    user = data.user, error = data.error;
+                    user_1 = data.user, error = data.error;
                     if (error)
                         throw new Error(error);
-                    renderUsers(users);
+                    renderUsers(user_1);
                     return [3 /*break*/, 3];
                 case 2:
                     error_2 = _a.sent();
@@ -100,10 +99,10 @@ function handleAddUser(ev) {
     });
 }
 ;
-function renderUsers(users) {
+function renderUsers(user) {
     var html = '';
-    users.forEach(function (user) {
-        html += "<div class=\"screen__card-wrapper\" id=\"" + user.email + "\">\n    <h3 class=\"screen__title-h3__white\">" + user.userName + "</h3>\n    <div class=\"screen__card-wrapper__actions\">\n        <img onclick=\"handleUpdateUser('" + user.email + "')\" class=\"screen__card-wrapper__actions__icon\" src=\" ./icons/pencil.svg\" alt=\"edit\">\n        <img onclick=\"handleDeleteUser('" + user.email + "')\" class=\"screen__card-wrapper__actions__icon\" src=\"./icons/trash.svg\" alt=\"delete\">\n    </div>\n    </div>";
+    user.forEach(function (user) {
+        html += "<div class=\"screen__card-wrapper\" id=\"" + user.email + "\">\n    <h3 class=\"main__title-h3__white\">" + user.userName + "</h3>\n    <div class=\"main__wrapper__actions\">\n        <img onclick=\"handleUpdateUser('" + user.email + "')\" class=\"main__wrapper__actions__icon\" src=\" ./icons/pencil.svg\" alt=\"edit\">\n        <img onclick=\"handleDeleteUser('" + user.email + "')\" class=\"main__wrapper__actions__icon\" src=\"./icons/trash.svg\" alt=\"delete\">\n    </div>\n    </div>";
     });
     var root = document.querySelector('#usersTasks');
     root.innerHTML = html;
@@ -111,18 +110,18 @@ function renderUsers(users) {
 //   const queryString = window.location.search;
 function handleDelete(event) {
     return __awaiter(this, void 0, void 0, function () {
-        var userId, data, users_2, error, error_3;
+        var userId, data, users, error, error_3;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
                     console.log("delete button pressed");
                     userId = event.target.id;
-                    return [4 /*yield*/, axios["delete"]("/users/delelte-user", { data: { userId: userId, userId: userId } })];
+                    return [4 /*yield*/, axios["delete"]("/user/delelte-user", { data: { userId: userId, userId: userId } })];
                 case 1:
                     data = (_a.sent()).data;
-                    users_2 = data.users, error = data.error;
-                    renderUsers(users_2);
+                    users = data.users, error = data.error;
+                    renderUsers(users);
                     return [3 /*break*/, 3];
                 case 2:
                     error_3 = _a.sent();
@@ -133,40 +132,77 @@ function handleDelete(event) {
         });
     });
 }
-function handleUpdateUser(userId) {
+function handleUpdateUser(_newUsers) {
     return __awaiter(this, void 0, void 0, function () {
-        var newName, data, users;
+        var newName, data, updateUser, error, error_4;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
+                    _a.trys.push([0, 2, , 3]);
                     newName = prompt('Enter new user name');
-                    return [4 /*yield*/, axios.patch('/users/update-user', { email: email, newName: newName })];
+                    console.log(newName);
+                    return [4 /*yield*/, axios.patch('/user/update-user', { newName: newName })];
                 case 1:
                     data = (_a.sent()).data;
-                    users = data.users;
-                    if (!Array.isArray(users))
-                        throw new Error("users should be an array");
-                    renderUsers(users);
-                    return [2 /*return*/];
+                    updateUser = data.updateUser, error = data.error;
+                    console.log(data);
+                    renderUsers(updateUser);
+                    if (error)
+                        throw error;
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_4 = _a.sent();
+                    console.error(error_4);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
             }
         });
     });
 }
-// async function getUserByCookie() {
-//     try{
-//     //@ts-ignore
-//     const { data } = await axios.get("/user/get-userCookie");
-//     console.log(data);
-//     const {user} = data;
-//     if(!user){
-//         throw new Error('User not found');
-//     }
-//     const usernameDB = user.username;
-//     const root = document.getElementById('root');
-//     if(root){
-//         root.innerHTML = `<h1>Welcome ${usernameDB}</h1>`
-//     }
-//     } catch (error) {
-//         console.error(error)
-//     }
-// }
+;
+function getUserByCookie() {
+    return __awaiter(this, void 0, void 0, function () {
+        var data, user_2, usernameDB, root, error_5;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    return [4 /*yield*/, axios.get("/user/get-userCookie")];
+                case 1:
+                    data = (_a.sent()).data;
+                    console.log(data);
+                    user_2 = data.user;
+                    if (!user_2) {
+                        throw new Error('User not found');
+                    }
+                    usernameDB = user_2.username;
+                    root = document.getElementById('root');
+                    if (root) {
+                        root.innerHTML = "<h1>Welcome " + usernameDB + "</h1>";
+                    }
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_5 = _a.sent();
+                    console.error(error_5);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
+}
+function toUserPage() {
+    return __awaiter(this, void 0, void 0, function () {
+        var userId, userName;
+        return __generator(this, function (_a) {
+            try {
+                userId = getUsers();
+                userName = document.querySelector("#userName");
+                userName.innerHTML = "<h1>Welcome  " + name + "</h1>";
+            }
+            catch (error) {
+                console.log(error);
+            }
+            return [2 /*return*/];
+        });
+    });
+}

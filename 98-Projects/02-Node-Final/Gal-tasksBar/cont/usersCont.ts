@@ -1,5 +1,5 @@
 import UserModel from "../models/models";
-
+import mongoose from "mongoose";
 export interface User{
     username: string,
     email: string,
@@ -32,7 +32,7 @@ export const getUserByCookie = (req,res)=>{
 }
 
 
-export const updateUser = async (req, res) => {
+export const handleUpdateUser = async (req, res) => {
     try {
       const { email, newName } = req.body;
       const index = users.findIndex(object => {return object.email === String(email)})
@@ -71,7 +71,5 @@ export const handleAddUser = (req, res) => {
     users.push(user);
     res.send(users);
   };
-
-
 
 
