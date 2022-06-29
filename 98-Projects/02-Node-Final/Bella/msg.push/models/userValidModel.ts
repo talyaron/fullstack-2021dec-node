@@ -12,7 +12,7 @@ const UserValidSchema = new mongoose.Schema({
         type:String,
         required:true
     }
-});
+})
 
 const UserValidModel = mongoose.model('valid-users',UserValidSchema);
 
@@ -21,4 +21,4 @@ export default UserValidModel;
 export const UserValidation = Joi.object({
     email:Joi.string().email().required(),
     password:Joi.string().required()
-});
+})
