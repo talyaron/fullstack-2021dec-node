@@ -56,11 +56,11 @@ async function handleUpdateUser(userId) {
 function renderUsers(users) {
 	let html = '';
 	users.forEach((user) => {
-		html += `<div class="screen__card-wrapper" id="${user.userId}">
+		html += `<div class="screen__card-wrapper" id="${user._id}">
     <h3 class="screen__title-h3__white">${user.name}</h3>
     <div class="screen__card-wrapper__actions">
-        <img onclick="handleUpdateUser('${user.userId}')" class="screen__card-wrapper__actions__icon" src=" ./icons/pencil.svg" alt="edit">
-        <img onclick="handleDeleteUser('${user.userId}')" class="screen__card-wrapper__actions__icon" src="./icons/trash.svg" alt="delete">
+        <img onclick="handleUpdateUser('${user._id}')" class="screen__card-wrapper__actions__icon" src=" ./icons/pencil.svg" alt="edit">
+        <img onclick="handleDeleteUser('${user._id}')" class="screen__card-wrapper__actions__icon" src="./icons/trash.svg" alt="delete">
     </div>
     </div>`;
 	});

@@ -126,7 +126,7 @@ function handleUpdateUser(userId) {
 function renderUsers(users) {
     var html = '';
     users.forEach(function (user) {
-        html += "<div class=\"screen__card-wrapper\" id=\"" + user.userId + "\">\n    <h3 class=\"screen__title-h3__white\">" + user.name + "</h3>\n    <div class=\"screen__card-wrapper__actions\">\n        <img onclick=\"handleUpdateUser('" + user.userId + "')\" class=\"screen__card-wrapper__actions__icon\" src=\" ./icons/pencil.svg\" alt=\"edit\">\n        <img onclick=\"handleDeleteUser('" + user.userId + "')\" class=\"screen__card-wrapper__actions__icon\" src=\"./icons/trash.svg\" alt=\"delete\">\n    </div>\n    </div>";
+        html += "<div class=\"screen__card-wrapper\" id=\"" + user._id + "\">\n    <h3 class=\"screen__title-h3__white\">" + user.name + "</h3>\n    <div class=\"screen__card-wrapper__actions\">\n        <img onclick=\"handleUpdateUser('" + user._id + "')\" class=\"screen__card-wrapper__actions__icon\" src=\" ./icons/pencil.svg\" alt=\"edit\">\n        <img onclick=\"handleDeleteUser('" + user._id + "')\" class=\"screen__card-wrapper__actions__icon\" src=\"./icons/trash.svg\" alt=\"delete\">\n    </div>\n    </div>";
     });
     var root = document.querySelector('#root');
     root.innerHTML = html;
