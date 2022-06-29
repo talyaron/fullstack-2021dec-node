@@ -40,7 +40,7 @@ exports.searchCat = exports.getCats = exports.addCat = void 0;
 var catsModel_1 = require("../model/catsModel");
 function addCat(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var _a, image, name, age, color, cats, catsArray, error_1;
+        var _a, image, name, age, color, cats, allCats, error_1;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
@@ -50,11 +50,11 @@ function addCat(req, res) {
                     if (!cats) {
                         throw new Error('missing argument!!');
                     }
-                    return [4 /*yield*/, cats.save()];
+                    cats.save();
+                    return [4 /*yield*/, catsModel_1["default"].find({})];
                 case 1:
-                    catsArray = _b.sent();
-                    console.log(cats);
-                    res.send({ catsArray: catsArray });
+                    allCats = _b.sent();
+                    res.send({ allCats: allCats });
                     return [3 /*break*/, 3];
                 case 2:
                     error_1 = _b.sent();
@@ -93,8 +93,8 @@ function searchCat(req, res) {
         var age, searchCats;
         return __generator(this, function (_a) {
             try {
-                age = req.body.age;
-                searchCats = catsModel_1["default"].find(age);
+                age = req.query.age;
+                searchCats = catsModel_1["default"].find({ age: age });
                 if (!searchCats) {
                     throw new Error('missing argument!!');
                 }
