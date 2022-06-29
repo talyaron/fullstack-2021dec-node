@@ -56,9 +56,9 @@ async function handleAddUser(ev: any) {
 };
 
 
-function renderUsers(users) {
+function renderUsers(user) {
 	let html = '';
-	users.forEach((user: { password: any; userName: any; email: any; }) => {
+	user.forEach((user: { password: any; userName: any; email: any; }) => {
 		html += `<div class="screen__card-wrapper" id="${user.email}">
     <h3 class="main__title-h3__white">${user.userName}</h3>
     <div class="main__wrapper__actions">
