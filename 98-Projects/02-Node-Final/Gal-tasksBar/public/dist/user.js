@@ -38,21 +38,20 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 exports.__esModule = true;
 ;
 var user = [];
-// not fixed
-function getUsers(ev) {
+function getUsers() {
     return __awaiter(this, void 0, void 0, function () {
         var data, users, error, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, axios.get('/users/get-users')];
+                    return [4 /*yield*/, axios.get('/user/get-users')];
                 case 1:
                     data = (_a.sent()).data;
                     users = data.users, error = data.error;
-                    renderUsers(users);
                     if (error)
                         throw new Error("Error");
+                    renderUsers(users);
                     return [3 /*break*/, 3];
                 case 2:
                     error_1 = _a.sent();
@@ -78,7 +77,7 @@ function handleAddUser(ev) {
                     console.log(userName, email, password);
                     if (!userName || !email || !password)
                         throw new Error("Details are required");
-                    return [4 /*yield*/, axios.post('/users/add-user', {
+                    return [4 /*yield*/, axios.post('/user/add-user', {
                             userName: userName,
                             email: email,
                             password: password
@@ -118,7 +117,7 @@ function handleDelete(event) {
                     _a.trys.push([0, 2, , 3]);
                     console.log("delete button pressed");
                     userId = event.target.id;
-                    return [4 /*yield*/, axios["delete"]("/users/delelte-user", { data: { userId: userId, userId: userId } })];
+                    return [4 /*yield*/, axios["delete"]("/user/delelte-user", { data: { userId: userId, userId: userId } })];
                 case 1:
                     data = (_a.sent()).data;
                     users = data.users, error = data.error;
@@ -142,7 +141,7 @@ function handleUpdateUser(_newUsers) {
                     _a.trys.push([0, 2, , 3]);
                     newName = prompt('Enter new user name');
                     console.log(newName);
-                    return [4 /*yield*/, axios.patch('/users/update-user', { newName: newName })];
+                    return [4 /*yield*/, axios.patch('/user/update-user', { newName: newName })];
                 case 1:
                     data = (_a.sent()).data;
                     updateUser = data.updateUser, error = data.error;
@@ -161,21 +160,49 @@ function handleUpdateUser(_newUsers) {
     });
 }
 ;
-// async function getUserByCookie() {
-//     try{
-//     //@ts-ignore
-//     const { data } = await axios.get("/user/get-userCookie");
-//     console.log(data);
-//     const {user} = data;
-//     if(!user){
-//         throw new Error('User not found');
-//     }
-//     const usernameDB = user.username;
-//     const root = document.getElementById('root');
-//     if(root){
-//         root.innerHTML = `<h1>Welcome ${usernameDB}</h1>`
-//     }
-//     } catch (error) {
-//         console.error(error)
-//     }
-// }
+function getUserByCookie() {
+    return __awaiter(this, void 0, void 0, function () {
+        var data, user_2, usernameDB, root, error_5;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    return [4 /*yield*/, axios.get("/user/get-userCookie")];
+                case 1:
+                    data = (_a.sent()).data;
+                    console.log(data);
+                    user_2 = data.user;
+                    if (!user_2) {
+                        throw new Error('User not found');
+                    }
+                    usernameDB = user_2.username;
+                    root = document.getElementById('root');
+                    if (root) {
+                        root.innerHTML = "<h1>Welcome " + usernameDB + "</h1>";
+                    }
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_5 = _a.sent();
+                    console.error(error_5);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
+}
+function toUserPage() {
+    return __awaiter(this, void 0, void 0, function () {
+        var userId, userName;
+        return __generator(this, function (_a) {
+            try {
+                userId = getUsers();
+                userName = document.querySelector("#userName");
+                userName.innerHTML = "<h1>Welcome  " + name + "</h1>";
+            }
+            catch (error) {
+                console.log(error);
+            }
+            return [2 /*return*/];
+        });
+    });
+}

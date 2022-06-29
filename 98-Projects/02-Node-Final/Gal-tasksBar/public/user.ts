@@ -6,15 +6,15 @@ export interface user{
 
 let user:Array<user>=[]
 
-// not fixed
-async function getUsers(ev:any) {
+
+async function getUsers() {
     try {
     // @ts-ignore
-      const {data} = await axios.get('/users/get-users')
+      const {data} = await axios.get('/user/get-users')
       const {users,error} = data;
+      if(error) throw new Error("Error")
       renderUsers(users);
 
-    if(error) throw new Error("Error")
     } catch (error) {
       console.error(error);
       return false;
@@ -37,7 +37,7 @@ async function handleAddUser(ev: any) {
         const {
             data
              // @ts-ignore
-        } = await axios.post('/users/add-user', {
+        } = await axios.post('/user/add-user', {
             userName,
             email,
             password
@@ -78,7 +78,7 @@ async function handleDelete(event) {
 		console.log(`delete button pressed`);
 		const userId = event.target.id;
         // @ts-ignore
-		const { data } = await axios.delete("/users/delelte-user", { data: { userId, userId } });
+		const { data } = await axios.delete("/user/delelte-user", { data: { userId, userId } });
 		const { users, error } = data;
 		renderUsers(users)
 	} catch (error) {
@@ -91,7 +91,7 @@ async function handleUpdateUser(_newUsers:any) {
     console.log(newName);
     
       // @ts-ignore
-    const {data} = await axios.patch('/users/update-user', { newName})
+    const {data} = await axios.patch('/user/update-user', { newName})
 	  const {updateUser, error} = data;
     console.log(data);
 
@@ -105,25 +105,35 @@ async function handleUpdateUser(_newUsers:any) {
 
 
 
-// async function getUserByCookie() {
-//     try{
-//     //@ts-ignore
-//     const { data } = await axios.get("/user/get-userCookie");
-//     console.log(data);
-//     const {user} = data;
-//     if(!user){
-//         throw new Error('User not found');
-//     }
+async function getUserByCookie() {
+    try{
+    //@ts-ignore
+    const { data } = await axios.get("/user/get-userCookie");
+    console.log(data);
+    const {user} = data;
+    if(!user){
+        throw new Error('User not found');
+    }
 
-//     const usernameDB = user.username;
-//     const root = document.getElementById('root');
-//     if(root){
-//         root.innerHTML = `<h1>Welcome ${usernameDB}</h1>`
-//     }
-//     } catch (error) {
-//         console.error(error)
-//     }
-// }
+    const usernameDB = user.username;
+    const root = document.getElementById('root');
+    if(root){
+        root.innerHTML = `<h1>Welcome ${usernameDB}</h1>`
+    }
+    } catch (error) {
+        console.error(error)
+    }
+}
 
-
+  
+  async function toUserPage() {
+    try {
+      const userId = getUsers();
+      const userName = document.querySelector("#userName");
+      userName.innerHTML = `<h1>Welcome  ${name}</h1>`;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  
 

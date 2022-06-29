@@ -1,5 +1,5 @@
 import UserModel from "../models/models";
-
+import mongoose from "mongoose";
 export interface User{
     username: string,
     email: string,
@@ -71,7 +71,5 @@ export const handleAddUser = (req, res) => {
     users.push(user);
     res.send(users);
   };
-
-
 
 
