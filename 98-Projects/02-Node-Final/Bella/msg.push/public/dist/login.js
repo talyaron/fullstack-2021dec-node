@@ -55,7 +55,6 @@ function handleLogin(ev) {
                     runLogin(login);
                     if (error)
                         throw error;
-                    ev.target.reset();
                     return [3 /*break*/, 4];
                 case 3:
                     error_1 = _a.sent();

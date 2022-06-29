@@ -1,89 +1,70 @@
 
-// async function handleGetUsers() {
-//   try {
-//   // @ts-ignore
-// 	const {data} = await axios.get('/users/get-users')
-// 	const {getUsers, error} = data;
+async function handleGetUsers() {
+  // @ts-ignore
+	const {data} = await axios.get('/users/get-users')
+	const {users} = data;
+  if(!Array.isArray(users)) throw new Error("users should be an array and it is not")
     
-// 	renderUsers(getUsers);
-  
-//   if (error) throw error;
-//   } catch (error) {
-//     console.error(error);
-//   } 
-// };
+	renderUsers(users);
+}
 
-
-async function handleDeleteUser(name: string) {
+async function handleDeleteUser(userId: string) {
   try {
-    console.log(name)
+    console.log(userId)
     // @ts-ignore
-    const { data } = await axios.delete("/users/user-delete", {data:{ name }});
+    const { data } = await axios.delete("/users/user-delete", {data:{ userId }});
     console.log(data)
-    
-    const {deleteUser, error} = data;
+    const {users} = data;
+    if(!Array.isArray(users)) throw new Error("users should be an array ant it is not")
+    renderUsers(users);
 
-    renderUsers(deleteUser);
-    
-    if (error) throw error;
+
   } catch (error) {
     console.error(error);
   }
-};
+}
 
 
-async function handleAddUser(ev: any) {
+
+async function handleAddUser(e) {
   try {
-    ev.preventDefault();
-    const name = ev.target.name.value;
-    console.dir(name);
-
+    e.preventDefault();
+    const name = e.target.elements.name.value;
+    console.log(name);
     // @ts-ignore
     const { data } = await axios.post("/users/user-add", { name });
-    // const {addUser, error} = data;
-    console.log(data);
-    
-    // renderUsers(addUser);    
-    if (!name) throw Error;
-        ev.target.reset();
-
+    renderUsers(data);
+    if(!Array.isArray(data)) throw new Error("data should be an array ant it is not")
+    e.target.reset();
   } catch (error) {
     console.error(error);
   }
-};
+}
 
-
-async function handleUpdateUser(newNames: String) {
-  try {
+async function handleUpdateUser(userId) {
     const newName = prompt('Enter new user name');
-    console.log(newNames);
-    
       // @ts-ignore
-    const {data} = await axios.patch('/users/update-user', { newName})
-	  const {updateUser, error} = data;
-    console.log(data);
+    const {data} = await axios.patch('/users/update-user', {userId, newName})
+	  const {users} = data;
+    if(!Array.isArray(users)) throw new Error("users should be an array ant it is not")
 
-    renderUsers(updateUser)
-    
-    if (error) throw error;
-  } catch (error) {
-    console.error(error);
-  }
-};
+    renderUsers(users)
+}
+
 
 
 function renderUsers(users) {
 	let html = '';
 	users.forEach((user) => {
-		html += `<div class="screen__card-wrapper">
+		html += `<div class="screen__card-wrapper" id="${user.userId}">
     <h3 class="screen__title-h3__white">${user.name}</h3>
     <div class="screen__card-wrapper__actions">
-        <img onclick="handleUpdateUser()" class="screen__card-wrapper__actions__icon" src=" ./icons/pencil.svg" alt="edit">
-        <img onclick="handleDeleteUser()" class="screen__card-wrapper__actions__icon" src="./icons/trash.svg" alt="delete">
+        <img onclick="handleUpdateUser('${user.userId}')" class="screen__card-wrapper__actions__icon" src=" ./icons/pencil.svg" alt="edit">
+        <img onclick="handleDeleteUser('${user.userId}')" class="screen__card-wrapper__actions__icon" src="./icons/trash.svg" alt="delete">
     </div>
     </div>`;
 	});
     const root = document.querySelector('#root')
 	root.innerHTML = html;
-};
+}
 
