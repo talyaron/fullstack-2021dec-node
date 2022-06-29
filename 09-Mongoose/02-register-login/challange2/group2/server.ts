@@ -25,7 +25,7 @@ app.use(express.static('public'))
 import route from "./routes/route";  
 app.use('/users', route);
 
-import usersRoute from "./routes/userroute";
+import usersRoute from "./routes/userRoute";
 app.use('/users',  usersRoute);
 
 app.listen(port, () => {

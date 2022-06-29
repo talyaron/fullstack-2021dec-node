@@ -27,3 +27,23 @@ async function profileEdit (user:any) {
     }
 }
 
+async function pushUser(ev: any) {
+    ev.preventDefault();
+    try {
+      const name = ev.target.name.value;
+      const age = ev.target.age.value;
+      const url = ev.target.image.value;
+      
+  
+      console.log(name, age, url);
+      //@ts-ignore
+      const { data } = await axios.post("/users/pushUser", { name, age, url });
+      const { user , error } = data;
+        console.log(user)
+        profileEdit(user)
+      if(error) throw error;
+      console.log(data);
+    } catch (error) {
+      console.error(error);
+    }
+  }

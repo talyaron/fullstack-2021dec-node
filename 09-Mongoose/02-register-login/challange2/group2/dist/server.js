@@ -19,8 +19,8 @@ mongoose_1.default
 app.use(express_1.default.static('public'));
 const route_1 = __importDefault(require("./routes/route"));
 app.use('/users', route_1.default);
-const userroute_1 = __importDefault(require("./routes/userroute"));
-app.use('/users', userroute_1.default);
+const userRoute_1 = __importDefault(require("./routes/userRoute"));
+app.use('/users', userRoute_1.default);
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`);
 });

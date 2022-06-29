@@ -1,6 +1,6 @@
 import UserModel, {UserValidation} from "../models/models";
 
-export async function profileEdit(req, res) {
+export async function pushUser(req, res) {
     try {
         const {name,age,url} = req.body;
         const { error } = UserValidation.validate({ name,age,url });

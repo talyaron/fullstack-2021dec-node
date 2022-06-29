@@ -56,3 +56,36 @@ function profileEdit(user) {
         });
     });
 }
+function pushUser(ev) {
+    return __awaiter(this, void 0, void 0, function () {
+        var name, age, url, data, user_1, error, error_1;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    ev.preventDefault();
+                    _a.label = 1;
+                case 1:
+                    _a.trys.push([1, 3, , 4]);
+                    name = ev.target.name.value;
+                    age = ev.target.age.value;
+                    url = ev.target.image.value;
+                    console.log(name, age, url);
+                    return [4 /*yield*/, axios.post("/users/pushUser", { name: name, age: age, url: url })];
+                case 2:
+                    data = (_a.sent()).data;
+                    user_1 = data.user, error = data.error;
+                    console.log(user_1);
+                    profileEdit(user_1);
+                    if (error)
+                        throw error;
+                    console.log(data);
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_1 = _a.sent();
+                    console.error(error_1);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
+}

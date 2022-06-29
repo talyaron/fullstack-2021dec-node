@@ -36,9 +36,9 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.profileEdit = void 0;
+exports.pushUser = void 0;
 var models_1 = require("../models/models");
-function profileEdit(req, res) {
+function pushUser(req, res) {
     return __awaiter(this, void 0, void 0, function () {
         var _a, name, age, url, error, user, error_1;
         return __generator(this, function (_b) {
@@ -68,4 +68,4 @@ function profileEdit(req, res) {
         });
     });
 }
-exports.profileEdit = profileEdit;
+exports.pushUser = pushUser;

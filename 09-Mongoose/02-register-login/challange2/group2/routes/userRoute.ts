@@ -1,8 +1,8 @@
 import express from 'express';
-import { profileEdit} from '../controllers/userCont';
+import { pushUser} from '../controllers/userCont';
 const router = express.Router();
 
 router
-.post('/profile-edit', profileEdit)
+.post('/push-User', pushUser)
 
 export default router
