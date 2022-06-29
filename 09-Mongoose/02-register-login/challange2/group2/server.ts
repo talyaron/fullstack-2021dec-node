@@ -2,12 +2,15 @@ import express from "express";
 import mongoose from "mongoose";
 const app = express();
 const port = 3000;
+require('dotenv').config()
+
+const mongodb_uri = process.env.MONGODB_URI;
 
 app.use(express.json());
 
 mongoose
   .connect(
-    "mongodb+srv://tal:Fct4jYbHtkSrSnIa@cluster0.0hzknon.mongodb.net/myDataBase?retryWrites=true&w=majority"
+    mongodb_uri
     
   )
   .then(() => {
@@ -19,7 +22,7 @@ mongoose
 
 app.use(express.static('public'))
 
-import usersRoute from './routes/usersRoute';
+import usersRoute from './routes/route';
 app.use('/users', usersRoute);
 
 
