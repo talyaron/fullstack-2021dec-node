@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"
+        integrity="sha512-odNmoc1XJy5x1TMVMdC7EMs3IVdItLPlCeL5vSUPN2llYKMJ2eByTTAIiiuqLg+GdNr9hF6z81p27DArRFKT7A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="./dist/style.css">
+    <title>login</title>
+</head>
+
+<body>
+    <div id="crossfade">
+        <img src="../img/2.jpg" class="ani6 crossfade">
+        <img src="../img/1.jpg" class="king crossfade">
+        <img src="../img/7.jpg" class="dama crossfade">
+        <img src="../img/3.jpg" class="dama2 crossfade">
+        <img src="../img/4.jpg" class="valet2 crossfade">
+    </div>
+    <div class="login-page-container">
+        <p class="title-login">Matching g<span><img class="smilyImg-players" src="../img/smily.png"></span><span
+                style="display: none;">a</span> me</p>
+        <form class="name" onsubmit="handleLogin(event)" style="display: block;">
+            <input type="text" name="name" id="name" placeholder="your name" required>
+            <input type="password" name="password" id="password" placeholder="password" required>
+            <input type="submit" value="Let`s go">
+        </form>
+        <form class="register" onsubmit="handleRegester(event)" style="display: none;">
+            <input type="text" name="name" id="name" placeholder="your name" required>
+            <input type="password" name="password" id="password" placeholder="password" required>
+            <input type="submit" value="Register">
+        </form>
+        <div id="loginPage">
+            <p class="register-link" onclick="handleToRegisterForm()">If you are not a member, there is <span
+                    style="text-decoration: underline; cursor: pointer"> one more step to do</span></p>
+        </div>
+    </div>
+
+</body>
+<script type="text/javascript" async>
+    window.onload = function () {
+        pulseLogin();
+    };
+</script>
+<script src="./dist/index.js"></script>
+
+</html>

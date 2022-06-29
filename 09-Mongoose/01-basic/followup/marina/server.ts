@@ -11,7 +11,7 @@ import routePaint from './routes/routePaint';
 app.use('/art', routePaint);
 
 mongoose.connect(
-  "mongodb+srv://ChicZiv:R7ezBHsv3EIXqWa5@cluster0.nbjog.mongodb.net/art-painting?retryWrites=true&w=majority"
+  "mongodb+srv://ChicZiv:xRRIJs4WjEmo8f6W@cluster0.nbjog.mongodb.net/art-painting?retryWrites=true&w=majority"
 );
 console.log("Connected to DB!");
 

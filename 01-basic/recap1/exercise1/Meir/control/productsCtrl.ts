@@ -4,16 +4,15 @@ interface Product{
    id:string;
    name:string;
 }
-const products:Array<Product> = [{id:'ettreyer', name:'test'}]
+let products: Array<Product> = [{id:"por", name:"test"}]
 
-export function getProducts(req, res){
-
-     try {
-        res.send({products})
-     } catch (error) {
-        console.error(error)
-        res.send({error:error.message})
-     }
+export function getProducts(req, res) {
+   try {
+      res.send({products});
+   } catch (error) {
+      console.error(error)
+      res.send({error:error.message})
+   }
 }
 
 export function addProduct(req, res){
@@ -22,10 +21,25 @@ export function addProduct(req, res){
       if(!name) throw new Error('Name of product is require');
       const id = uid();
       if(!id) throw new Error('Id is missing');
-
-      products.push({name, id});
-    } catch (error) {
+      const product1 = {id, name}
+      products.push(product1);
+      res.send({products})
+   } catch (error) {
       console.error(error)
       res.send({error:error.message})
-    }
+   }
+}
+
+export function deleteProduct(req, res) {
+   try {
+      const {productId} = req.body;
+      if(!productId) throw new Error("productId is missing");
+
+      products = products.filter(product => product.id !== productId);
+
+      res.send({products});
+   } catch (error) {
+      console.error(error);
+      res.send({error:error.message});
+   }
 }

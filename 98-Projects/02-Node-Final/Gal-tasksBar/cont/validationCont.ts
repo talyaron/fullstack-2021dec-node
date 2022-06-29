@@ -1,30 +1,36 @@
+import UserModel, {UserValidation} from '../models/models';
 
-import UserValidate from '../models/validationModel';
+export async function handleLogin(req, res) {
+  try {
+    const { email, password } = req.body;
+    const { error } = UserValidation.validate({ email, password });
+    if (error){
+      res.send({ login: true });
+    }
 
-export let usersValidated: Array<UserValidate> = [];
+    const user = await UserModel.findOne({ email, password });
+    if (!user) {
+      res.send({ login: false });
+    } else {
+      res.send({ login: true });
+    }
+  } catch (error) {
+    res.send({ error: error.message });
+  }
+}
 
+export async function handleRegister(req, res) {
+  try {
+    const { email, password } = req.body;
+    const { error } = UserValidation.validate({ email, password });
+    if (error) throw error;
+    const user = new UserModel({ email, password });
+    await user.save();
 
-export const validateSignupForm = (req, res) => {
-    const {  userName, email, password } = req.body;
-    if (! userName || !email || !password) throw new Error("Details are required!");
-  
-    let newUser: UserValidate = {
-        userName, email, password, in: false
-    };
-    usersValidated.push(newUser);
-    res.send({ usersValidated });
-    console.log(usersValidated);
-    console.log(newUser);
-  };
-  
-  
-  export const validateLoginForm = (req, res) => {
-    const { name, password } = req.body;
-    if (!name || !password) throw new Error("Details are required!");
-  
-    res.send({ usersValidated });
-    console.log(usersValidated);
+    res.send({ register: true });
+  } catch (error) {
+    res.send({ error: error.message });
+  }
+}
 
-  };
-  
   

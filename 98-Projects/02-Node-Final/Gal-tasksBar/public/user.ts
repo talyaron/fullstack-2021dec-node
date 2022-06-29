@@ -1,15 +1,28 @@
+export interface user{
+    userName: string,
+    email: string,
+    // uid: string,
+    password: string
+};
 
-function handleLoad(event) {
+let users:Array<user>=[]
+
+// not fixed
+async function getUsers(ev:any) {
     try {
-        getUserByCookie();
-        // handleLogin(event);
-        // handleRegister(event);
-        handleAddUser(event);
+    // @ts-ignore
+      const {data} = await axios.get('/users/get-users')
+      const {users} = data;
+    if(!Array.isArray(users)) throw new Error("Error")
+      
+      renderUsers(users);
     } catch (error) {
       console.error(error);
+      return false;
     }
   }
-  
+
+
 async function handleAddUser(ev: any) {
     try {
         ev.preventDefault();
@@ -37,8 +50,7 @@ async function handleAddUser(ev: any) {
         } = data;
         if (error)
             throw new Error(error);
-        renderUsers(user);
-
+        renderUsers(users);
     } catch (error) {
         console.error(error);
     }
@@ -60,33 +72,7 @@ function renderUsers(users) {
 	root.innerHTML = html;
 }
 
-
-async function handleLogin(event: any): Promise<void>{
-    try{
-    event.preventDefault();
-    let { email, password } = event.target.elements;
-    email = email.value;
-    password = password.value;
-    
-    //@ts-ignore
-    const { data } = await axios.post("/users/handleLogin", { username, password });
-    console.log(data);
-    const {user} = data;
-    window.location.href = "../public/main.html";
-    if(!user){
-        throw new Error('User not found');
-    }
-
-    const usernameDB = user.email;
-    const root = document.getElementById('#root');
-    if(root){
-        root.innerHTML = `<h1>Welcome ${usernameDB}</h1>`
-    }
-    } catch (error) {
-        console.error(error)
-    }
-}
-
+   //   const queryString = window.location.search;
 
 async function handleDelete(event) {
 	try {
@@ -101,40 +87,6 @@ async function handleDelete(event) {
 	}
 }
 
-async function handleRegister(event: any): Promise<void>{
-    event.preventDefault();
-    let { email, password } = event.target.elements;
-
-    email = email.value;
-    password = password.value;
-
-    console.log(email, password)
-    //@ts-ignore
-    const { data } = await axios.post("/users/register", { email, password });
-    console.log(data);
-}
-
-async function getUserByCookie() {
-    try{
-    //@ts-ignore
-    const { data } = await axios.get("/users/get-user");
-    console.log(data);
-    const {user} = data;
-    if(!user){
-        throw new Error('User not found');
-    }
-
-    const usernameDB = user.username;
-    const root = document.getElementById('root');
-    if(root){
-        root.innerHTML = `<h1>Welcome ${usernameDB}</h1>`
-    }
-    } catch (error) {
-        console.error(error)
-    }
-}
-
-
 async function handleUpdateUser(userId) {
     const newName = prompt('Enter new user name');
       // @ts-ignore
@@ -146,30 +98,26 @@ async function handleUpdateUser(userId) {
 }
 
 
-// export function getUserId(): string | false {
-//     try {
-//       const queryString = window.location.search;
-//       console.log(queryString);
-  
-//       const urlParams = new URLSearchParams(queryString);
-  
-//       const userId = urlParams.get("userId");
-//       console.log(userId);
-//       return userId;
-//     } catch (error) {
-//       console.error(error);
-//       return false;
-//     }
-//   }
 
-// async function handleGetUsers() {
+// async function getUserByCookie() {
+//     try{
 //     //@ts-ignore
-//    const { data } = await axios.get('/users/get-users')
-//    console.log(data)
+//     const { data } = await axios.get("/user/get-userCookie");
+//     console.log(data);
+//     const {user} = data;
+//     if(!user){
+//         throw new Error('User not found');
+//     }
 
-//    const { users } = data;
-//    console.log(users)
-//    if (users) {
-//        renderUsers(users);
-//    }
+//     const usernameDB = user.username;
+//     const root = document.getElementById('root');
+//     if(root){
+//         root.innerHTML = `<h1>Welcome ${usernameDB}</h1>`
+//     }
+//     } catch (error) {
+//         console.error(error)
+//     }
 // }
+
+
+

@@ -51,10 +51,11 @@ function handleRegister(ev) {
                 case 2:
                     data = (_a.sent()).data;
                     register = data.register, error = data.error;
-                    console.log(error);
-                    if (error && error.includes("E11000"))
-                        alert("Email is allerady in use");
+                    if (error)
+                        throw error;
                     console.log(data);
+                    if (error && error.includes("E11000"))
+                        alert('email is already in use');
                     return [3 /*break*/, 4];
                 case 3:
                     error_1 = _a.sent();
@@ -67,7 +68,7 @@ function handleRegister(ev) {
 }
 function handleLogin(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var email, password, data, login, error, error_2;
+        var name, email, password, data, login, error, error_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -75,17 +76,18 @@ function handleLogin(ev) {
                     _a.label = 1;
                 case 1:
                     _a.trys.push([1, 3, , 4]);
+                    name = ev.target.name.value;
                     email = ev.target.email.value;
                     password = ev.target.password.value;
-                    console.log(email, password);
-                    return [4 /*yield*/, axios.post("/users/login", { email: email, password: password })];
+                    console.log(name, email, password);
+                    return [4 /*yield*/, axios.post("/users/login", { name: name, email: email, password: password })];
                 case 2:
                     data = (_a.sent()).data;
                     login = data.login, error = data.error;
                     if (error)
                         throw error;
                     if (login) {
-                        //redirect to a ssocnd page
+                        //redirect to a second page
                         window.location.href = './home.html';
                     }
                     if (error)

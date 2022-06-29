@@ -2,7 +2,7 @@
 exports.__esModule = true;
 var mongoose_1 = require("mongoose");
 var CatSchema = new mongoose_1["default"].Schema({
-    name: String,
+    catName: String,
     age: Number,
     imgUrl: String
 });

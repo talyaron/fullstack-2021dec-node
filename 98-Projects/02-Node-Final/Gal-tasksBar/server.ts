@@ -23,6 +23,8 @@ mongoose.connect(mongodb_uri).then(res =>{
 import usersRoute from "./routes/usersRoute";
 app.use("/users", usersRoute);
 
+import validationRoute from "./routes/validationRoute"
+app.use("/users", validationRoute);
 
 app.listen(port, () => {
     console.log(`Express is listening at http://localhost:${port}`);
