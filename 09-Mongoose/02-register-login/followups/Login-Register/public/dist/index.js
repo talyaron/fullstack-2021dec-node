@@ -77,7 +77,7 @@ function handleRegister(e) {
 }
 function handleLogin(e) {
     return __awaiter(this, void 0, void 0, function () {
-        var _a, email, name, password, data, user, login, error, error_2;
+        var _a, email, password, data, user, login, error, error_2;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
@@ -85,23 +85,21 @@ function handleLogin(e) {
                     _b.label = 1;
                 case 1:
                     _b.trys.push([1, 3, , 4]);
-                    _a = e.target.elements, email = _a.email, name = _a.name, password = _a.password;
+                    _a = e.target.elements, email = _a.email, password = _a.password;
                     email = email.value;
-                    name = name.value;
                     password = password.value;
                     return [4 /*yield*/, axios.post("/users/login", {
                             email: email,
-                            name: name,
                             password: password
                         })];
                 case 2:
                     data = (_b.sent()).data;
                     user = data.user, login = data.login, error = data.error;
+                    console.log(user);
                     console.log("This is the logged in USER", user);
-                    console.log("This is the logged in NAME", name);
                     console.log("This is the logged in DATA", data);
                     if (login) {
-                        window.location.href = "./user.html?name=" + name;
+                        window.location.href = "./user.html?userId=" + user._id + "&name=itizik&age=234";
                     }
                     return [3 /*break*/, 4];
                 case 3:
@@ -118,22 +116,45 @@ function getUserId() {
         var queryString = window.location.search;
         console.log(queryString);
         var urlParams = new URLSearchParams(queryString);
-        var name = urlParams.get("name");
-        console.log(name);
-        return name;
+        console.log(urlParams);
+        var userId = urlParams.get("userId");
+        var age = urlParams.get("age");
+        console.log(age);
+        return userId;
     }
     catch (error) {
         console.error(error);
         return false;
     }
 }
-function toUserPage() {
-    try {
-        var name = getUserId();
-        var userName = document.querySelector("#userName");
-        userName.innerHTML = "<h1>Welcome  " + name + "</h1>";
-    }
-    catch (error) {
-        console.log(error);
-    }
+function onscondPageLoad() {
+    return __awaiter(this, void 0, void 0, function () {
+        var userId, data, error, user, name, userName, error_3;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    userId = getUserId();
+                    if (!userId)
+                        throw new Error("couldnt find user id in url");
+                    return [4 /*yield*/, axios.get("/users/get-user?userId=" + userId)];
+                case 1:
+                    data = (_a.sent()).data;
+                    error = data.error, user = data.user;
+                    if (error)
+                        throw error;
+                    console.log(user);
+                    name = user.name;
+                    userName = document.querySelector("#userName");
+                    userName.innerHTML = "<h1>Welcome  " + name + "</h1>";
+                    console.log(data);
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_3 = _a.sent();
+                    console.log(error_3);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
 }
