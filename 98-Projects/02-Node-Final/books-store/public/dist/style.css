@@ -70,11 +70,14 @@ body #clientBody #wrapperClient #imgClient {
   width: 4rem;
 }
 body #cartBody {
+  margin: auto;
+}
+body #cartBody #cartGrid {
   display: grid;
   grid-template-columns: auto auto auto;
   margin: auto;
   text-align: center;
-  width: 100%;
+  width: 100vw;
   height: fit-content;
   position: relative;
   top: 2rem;

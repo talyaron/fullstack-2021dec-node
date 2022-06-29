@@ -2,7 +2,7 @@ interface Book {
   image: String,
   name: string,
   description: string,
-  price: number|string|null,
+  price: any,
   serialNo: string
 }
 
@@ -142,7 +142,7 @@ async function renderClientBook(books: Array<Book>) {
 
     })
 
-    // <button onclick('handleCart(${book.serialNo})')>add to cart</button>
+    
 
     client.innerHTML = html1;
 
@@ -175,15 +175,17 @@ function renderCart(clientCart: Array<Book>) {
     let html = "";
     clientCart.forEach(book => {
       console.log(book)
-      html += `<div id="clientCart">
+      html += `<div id="cartGrid"><div id="clientCart">
       <img src="${book.image}" alt="" id="imgCart">
       <h1>${book.name}</h1>
       <p>description: ${book.description}</p>
       <h1>price: ${book.price}</h1>
       <button onclick="deleteFromCart('${book.serialNo}')">delete from cart</button>
 
-  </div>`
+  </div></div>`
     })
+    const total = clientCart.reduce((acc, item) => !isNaN(item.price) ? acc + parseFloat(item.price) : acc, 0);
+    html += ` <br> <br> <br> <h1>total to pay ${total} nis</h1>`
     cartBody.innerHTML = html;
 
    
@@ -194,14 +196,14 @@ function renderCart(clientCart: Array<Book>) {
   }
 }
 
-function renderTotalPrice(clientCart: Array<Book>){
-  const totalPrice = document.querySelector('#totalToPay');
-  const total = clientCart.reduce((acc, item) => !isNaN(item.price) ? acc + parseFloat(item.price) : acc, 0);
+// function renderTotalPrice(clientCart: Array<Book>){
+//   const totalPrice = document.querySelector('#totalToPay');
+//   const total = clientCart.reduce((acc, item) => !isNaN(item.price) ? acc + parseFloat(item.price) : acc, 0);
 
-  console.log(total);
-  totalPrice.innerHTML = `<h1>total to pay ${total} nis</h1>`
+//   console.log(total);
+//   totalPrice.innerHTML = `<h1>total to pay ${total} nis</h1>`
 
-}
+// }
 
 async function handleCart(serialNo) {
   console.log(serialNo)
@@ -236,7 +238,7 @@ async function cartGet() {
 
 
     renderCart(clientCart);
-    renderTotalPrice(clientCart)
+    // renderTotalPrice(clientCart)
 
   } catch (error) {
     console.log(error)
