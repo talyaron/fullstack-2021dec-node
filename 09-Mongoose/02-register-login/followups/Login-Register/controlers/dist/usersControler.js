@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.handleLogin = exports.handleRegister = void 0;
+exports.getUser = exports.handleLogin = exports.handleRegister = void 0;
 var UserModel_1 = require("../models/UserModel");
 exports.handleRegister = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var _a, email, name, password, error, user, result, error_1;
@@ -65,14 +65,14 @@ exports.handleRegister = function (req, res) { return __awaiter(void 0, void 0, 
     });
 }); };
 exports.handleLogin = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, email, name, password, error, user, error_2;
+    var _a, email, password, error, user, error_2;
     return __generator(this, function (_b) {
         switch (_b.label) {
             case 0:
                 _b.trys.push([0, 2, , 3]);
-                _a = req.body, email = _a.email, name = _a.name, password = _a.password;
+                _a = req.body, email = _a.email, password = _a.password;
                 error = UserModel_1.UserValidation.validate({ email: email, password: password }).error;
-                return [4 /*yield*/, UserModel_1["default"].findOne({ email: email, name: name, password: password })];
+                return [4 /*yield*/, UserModel_1["default"].findOne({ email: email, password: password })];
             case 1:
                 user = _b.sent();
                 if (!user) {
@@ -92,3 +92,32 @@ exports.handleLogin = function (req, res) { return __awaiter(void 0, void 0, voi
         }
     });
 }); };
+function getUser(req, res) {
+    return __awaiter(this, void 0, void 0, function () {
+        var _a, userId, age, userDB, error_3;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
+                case 0:
+                    _b.trys.push([0, 2, , 3]);
+                    _a = req.query, userId = _a.userId, age = _a.age;
+                    console.log(age);
+                    if (!userId)
+                        throw new Error("missing userId in query");
+                    return [4 /*yield*/, UserModel_1["default"].findById(userId)];
+                case 1:
+                    userDB = _b.sent();
+                    if (!userDB)
+                        throw new Error("coundt find use with this id: " + userId);
+                    res.send({ user: userDB, success: true });
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_3 = _b.sent();
+                    console.error(error_3);
+                    res.send({ eror: error_3.message });
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
+}
+exports.getUser = getUser;

@@ -30,24 +30,22 @@ async function handleRegister(e) {
 async function handleLogin(e) {
   e.preventDefault();
   try {
-    let { email, name, password } = e.target.elements;
+    let { email, password } = e.target.elements;
     email = email.value;
-    name = name.value;
     password = password.value;
 
     const { data } = await axios.post("/users/login", {
       email,
-      name,
       password,
     });
     const { user, login, error } = data;
-
+    console.log(user);
     console.log("This is the logged in USER", user);
-    console.log("This is the logged in NAME", name);
+
     console.log("This is the logged in DATA", data);
 
     if (login) {
-      window.location.href = `./user.html?name=${name}`;
+      window.location.href = `./user.html?userId=${user._id}&name=itizik&age=234`;
     }
   } catch (error) {
     console.error(error);
@@ -60,29 +58,37 @@ function getUserId(): string | false {
     console.log(queryString);
 
     const urlParams = new URLSearchParams(queryString);
+console.log(urlParams)
+    const userId = urlParams.get("userId");
+    const age = urlParams.get("age");
+    console.log(age);
 
-    const name = urlParams.get("name");
-    console.log(name);
-
-    return name;
+    return userId;
   } catch (error) {
     console.error(error);
     return false;
   }
 }
 
-function toUserPage() {
+async function onscondPageLoad() {
   try {
-    const name = getUserId();
+    //get params of userId
+    const userId = getUserId();
+
+    if (!userId) throw new Error("couldnt find user id in url");
+
+    const { data } = await axios.get(`/users/get-user?userId=${userId}`);
+
+    const { error, user } = data;
+    if (error) throw error;
+    console.log(user);
+    const { name } = user;
+
     const userName = document.querySelector("#userName");
     userName.innerHTML = `<h1>Welcome  ${name}</h1>`;
+
+    console.log(data);
   } catch (error) {
     console.log(error);
   }
 }
-
-
-
-
-
-

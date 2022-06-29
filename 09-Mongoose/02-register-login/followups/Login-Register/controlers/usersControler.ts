@@ -24,10 +24,10 @@ export const handleRegister = async (req, res) => {
 export const handleLogin = async (req, res) => {
     try {
 
-        const {email, name, password} = req.body;
+        const {email, password} = req.body;
         const {error} = UserValidation.validate({email, password});
 
-        const user = await UserModel.findOne({email, name, password});
+        const user = await UserModel.findOne({email, password});
 
         if(!user) {
             res.send({login: false});
@@ -43,6 +43,24 @@ export const handleLogin = async (req, res) => {
         res.send({eror: error.message});
     }
 }
+
+export async function getUser(req, res){
+    try {
+        const {userId,age} = req.query;
+        console.log(age)
+        if(!userId) throw new Error("missing userId in query");
+
+        const userDB = await UserModel.findById(userId);
+
+        if(!userDB) throw new Error(`coundt find use with this id: ${userId}` );
+
+        res.send({user:userDB, success:true});
+
+    } catch (error) {
+        console.error(error);
+        res.send({eror: error.message});
+    }
+} 
 
 
 
