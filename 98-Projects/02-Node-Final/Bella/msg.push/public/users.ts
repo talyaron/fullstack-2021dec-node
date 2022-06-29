@@ -36,12 +36,12 @@ async function handleAddUser(ev: any) {
   try {
     ev.preventDefault();
     const name = ev.target.name.value;
-    console.dir(name);
+    console.log(name);
 
     // @ts-ignore
     const { data } = await axios.post("/users/user-add", { name });
     // const {addUser, error} = data;
-    console.log(data);
+    console.dir(data);
     
     // renderUsers(addUser);    
     if (!name) throw Error;

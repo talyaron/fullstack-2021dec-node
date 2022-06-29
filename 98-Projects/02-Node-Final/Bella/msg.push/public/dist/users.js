@@ -81,12 +81,12 @@ function handleAddUser(ev) {
                     _a.trys.push([0, 2, , 3]);
                     ev.preventDefault();
                     name = ev.target.name.value;
-                    console.dir(name);
+                    console.log(name);
                     return [4 /*yield*/, axios.post("/users/user-add", { name: name })];
                 case 1:
                     data = (_a.sent()).data;
                     // const {addUser, error} = data;
-                    console.log(data);
+                    console.dir(data);
                     // renderUsers(addUser);    
                     if (!name)
                         throw Error;
