@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.handleAddUser = exports.handleDelete = exports.updateUser = exports.getUserByCookie = exports.getUsers = exports.users = void 0;
+exports.handleAddUser = exports.handleDelete = exports.handleUpdateUser = exports.getUserByCookie = exports.getUsers = exports.users = void 0;
 var models_1 = require("../models/models");
 ;
 exports.users = [];
@@ -77,7 +77,7 @@ exports.getUserByCookie = function (req, res) {
         res.send({ error: error.message });
     }
 };
-exports.updateUser = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+exports.handleUpdateUser = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var _a, email_1, newName, index;
     return __generator(this, function (_b) {
         try {

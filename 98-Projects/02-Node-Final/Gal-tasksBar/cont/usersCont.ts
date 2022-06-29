@@ -32,7 +32,7 @@ export const getUserByCookie = (req,res)=>{
 }
 
 
-export const updateUser = async (req, res) => {
+export const handleUpdateUser = async (req, res) => {
     try {
       const { email, newName } = req.body;
       const index = users.findIndex(object => {return object.email === String(email)})

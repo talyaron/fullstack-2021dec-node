@@ -1,15 +1,9 @@
 export interface user{
     userName: string,
     email: string,
-    // uid: string,
     password: string
 };
 
-export interface tasks{
-    title: string,
-    description: string,
-    date: Date,
-}
 
 import { Schema,model } from "mongoose"
 import Joi from 'joi';
