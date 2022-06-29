@@ -42,28 +42,25 @@ var models_1 = require("../models/models");
 exports.users = [];
 function getUsers(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var _a, email, password, users, userId_1, user;
+        var _a, email, password, user, error_1;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
+                    _b.trys.push([0, 2, , 3]);
                     _a = req.body, email = _a.email, password = _a.password;
                     return [4 /*yield*/, models_1["default"].find({ email: email, password: password })];
                 case 1:
-                    users = _b.sent();
-                    try {
-                        userId_1 = req.body.userId;
-                        if (!userId_1)
-                            throw new Error('user id is missing');
-                        user = users.find(function (user) { return user.email === userId_1; });
-                        if (!user)
-                            throw new Error('couldnt find user');
-                        res.send({ user: user });
-                    }
-                    catch (error) {
-                        console.error(error);
-                        res.send({ error: error.message });
-                    }
-                    return [2 /*return*/];
+                    user = _b.sent();
+                    if (!user)
+                        throw new Error('couldnt find user');
+                    res.send({ user: user });
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_1 = _b.sent();
+                    console.error(error_1);
+                    res.send({ error: error_1.message });
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
             }
         });
     });
@@ -96,7 +93,7 @@ exports.updateUser = function (req, res) { return __awaiter(void 0, void 0, void
     });
 }); };
 exports.handleDelete = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var id, error_1;
+    var id, error_2;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
@@ -110,8 +107,8 @@ exports.handleDelete = function (req, res) { return __awaiter(void 0, void 0, vo
                 _a.label = 2;
             case 2: return [3 /*break*/, 4];
             case 3:
-                error_1 = _a.sent();
-                res.send({ error: error_1.message });
+                error_2 = _a.sent();
+                res.send({ error: error_2.message });
                 return [3 /*break*/, 4];
             case 4: return [2 /*return*/];
         }

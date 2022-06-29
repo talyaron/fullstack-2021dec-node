@@ -9,12 +9,9 @@ export interface User{
 export let users: Array<User> = [];
 
 export async function getUsers(req, res) {
-    const { email, password } = req.body;
-    const users= await UserModel.find({email,password})
-	try {
-		const { userId } = req.body;
-		if (!userId) throw new Error('user id is missing');
-		const user = users.find((user) => user.email === userId);
+    try {
+        const { email, password } = req.body;
+        const user= await UserModel.find({email,password})
 		if (!user) throw new Error('couldnt find user');
 		res.send({ user });
 	} catch (error) {
