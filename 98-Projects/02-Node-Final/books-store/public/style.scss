@@ -1,130 +1,112 @@
 body {
+  text-align: center;
+  background-color: rgb(191, 21, 78);
+
+  #uploadBook {
+    margin: auto;
     text-align: center;
-    background-color: rgb(94, 10, 38);
+    align-items: center;
+    font-size: 1rem;
+    box-sizing: border-box;
 
-    #uploadBook {
-        margin: auto;
-        text-align: center;
-        align-items: center;
-        font-size: 1rem;
-        box-sizing: border-box;
+    #labelDescription {
+      position: relative;
+      bottom: 25px;
+    }
+  }
 
-        #labelDescription {
-            position: relative;
-            bottom: 25px;
+  #books {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    margin: auto;
+    text-align: center;
+    width: 100%;
+    height: fit-content;
+    // justify-content: space-around;
+    position: relative;
+    top: 2rem;
+    column-gap: 5px;
+    row-gap: 0.5rem;
+    .book {
+      // border: 1px solid blue;
+      padding: 5px;
+      // border-radius: 25px;
+      background-color: wheat;
+      white-space: nowrap;
 
-        }
+      #bookImg {
+        height: 4rem;
+        width: 4rem;
+      }
 
+      .des {
+        display: inline-block;
+        position: inherit;
+        font-size: 0.5rem;
+      }
+
+      .price {
+        display: inline-block;
+        font-size: 0.7rem;
+      }
+
+      .buttonUp {
+        font-size: 0.6rem;
+      }
+    }
+  }
+
+  #clientBody {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    margin: auto;
+    text-align: center;
+    width: 100%;
+    height: fit-content;
+    position: relative;
+    top: 2rem;
+    column-gap: 5px;
+    row-gap: 25rem;
+    #wrapperClient {
+      position: relative;
+      height: 0.3rem;
+      width: 0.2rem;
+
+      #imgClient {
+        height: 4rem;
+        width: 4rem;
+      }
+    }
+  }
+
+  #cartBody {
+    margin: auto;
+    .cartGrid {
+      display: grid;
+      grid-template-columns: auto auto auto;
+      margin: auto;
+      text-align: center;
+      width: 100vw;
+      height: fit-content;
+      position: relative;
+      top: 2rem;
+      column-gap: 5px;
+      row-gap: 25rem;
     }
 
-    #books {
-        display: grid;
-        grid-template-columns: auto auto auto;
-        margin: auto;
-        text-align: center;
-        width: 100%;
-        height: fit-content;
-        // justify-content: space-around;
-        position: relative;
-        top: 2rem;
-        column-gap: 5px;
-        row-gap: 10rem;
-        #wrapper {
-        
-            position: relative;
-            height: 0.3rem;
-            width: 0.2rem;
-            // border: 1px solid blue;
-            padding: 5px;
-            // border-radius: 25px;
-            
-            white-space: nowrap;
+    #clientCart {
+      position: relative;
+     
 
-            #bookImg {
-                height: 4rem;
-                width: 4rem;
+      #imgCart {
+        height: 4rem;
+        width: 4rem;
+      }
+    }
 
-             
-        }
-
-
-            .des {
-                display: inline-block;
-                position: inherit;
-                font-size: 0.5rem;
-
-            }
-
-            .price {
-                display: inline-block;
-                font-size: 0.7rem;
-            }
-
-            .buttonUp {
-                font-size: 0.6rem;
-            }
-
-            
-        }
-        }
-
-        #clientBody{
-            display: grid;
-        grid-template-columns: auto auto auto;
-        margin: auto;
-        text-align: center;
-        width: 100%;
-        height: fit-content;
-        position: relative;
-        top: 2rem;
-        column-gap: 5px;
-        row-gap: 25rem;
-                #wrapperClient{
-                    position: relative;
-                    height: 0.3rem;
-                    width: 0.2rem;
-
-                    #imgClient{
-                        height: 4rem;
-                        width: 4rem;
-                    }
-               }
-
-        }
-
-
-        #cartBody{
-
-            margin: auto;
-            #cartGrid{
-            display: grid;
-        grid-template-columns: auto auto auto;
-        margin: auto;
-        text-align: center;
-        width: 100vw;
-        height: fit-content;
-        position: relative;
-        top: 2rem;
-        column-gap: 5px;
-        row-gap: 25rem};
-
-            #clientCart{
-                position: relative;
-                    height: 0.3rem;
-                    width: 0.2rem;
-
-                    #imgCart{
-                        height: 4rem;
-                        width: 4rem;
-
-                    }
-            }
-
-            #totalToPay{
-                position: relative;
-                top: 100rem;
-            }
-
-        }
-
+    #totalToPay {
+      position: relative;
+      top: 100rem;
+    }
+  }
 }

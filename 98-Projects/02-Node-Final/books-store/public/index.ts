@@ -37,14 +37,13 @@ function renderBook(books: Array<Book>) {
   const htmlBooksHolder = document.querySelector("#books");
   let html = "";
   books.forEach(book => {
-    html += `<div id="wrapper"> <img src="${book.image}"  id="bookImg">  
+    html += `<div class='book'>
+    <img src="${book.image}"  id="bookImg">  
     <p>${book.name} </p> 
-    
-    <p class="des" >description: ${book.description} </p>  <button class="des" onclick="handleUpdateDesc( '${book.serialNo}')" class="buttonUp">update</button> <br>
+     <p class="des" >description: ${book.description} </p>  <button class="des" onclick="handleUpdateDesc( '${book.serialNo}')" class="buttonUp">update</button> <br>
    <p class="price" >price: ${book.price} nis </p> <button class="price" onclick="handleUpdatePrice( '${book.serialNo}')" class="buttonUp">update</button>  <br>
-   
    <button onclick="handleDeleteBook('${book.serialNo}')"  class="buttonUp">delete</button>
-   </div> <br> <br>`
+   </div>`
   });
 
   htmlBooksHolder.innerHTML = html;
@@ -172,18 +171,19 @@ function renderCart(clientCart: Array<Book>) {
   try {
     console.log(clientCart)
     const cartBody = document.querySelector('#cartBody')
-    let html = "";
+    let html = "<div class='cartGrid'>";
     clientCart.forEach(book => {
       console.log(book)
-      html += `<div id="cartGrid"><div id="clientCart">
+      html += `<div id="clientCart">
       <img src="${book.image}" alt="" id="imgCart">
       <h1>${book.name}</h1>
       <p>description: ${book.description}</p>
       <h1>price: ${book.price}</h1>
       <button onclick="deleteFromCart('${book.serialNo}')">delete from cart</button>
 
-  </div></div>`
+  </div>`
     })
+    html +='</div>'
     const total = clientCart.reduce((acc, item) => !isNaN(item.price) ? acc + parseFloat(item.price) : acc, 0);
     html += ` <br> <br> <br> <h1>total to pay ${total} nis</h1>`
     cartBody.innerHTML = html;
