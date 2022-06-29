@@ -99,9 +99,9 @@ function handleAddUser(ev) {
     });
 }
 ;
-function renderUsers(users) {
+function renderUsers(user) {
     var html = '';
-    users.forEach(function (user) {
+    user.forEach(function (user) {
         html += "<div class=\"screen__card-wrapper\" id=\"" + user.email + "\">\n    <h3 class=\"main__title-h3__white\">" + user.userName + "</h3>\n    <div class=\"main__wrapper__actions\">\n        <img onclick=\"handleUpdateUser('" + user.email + "')\" class=\"main__wrapper__actions__icon\" src=\" ./icons/pencil.svg\" alt=\"edit\">\n        <img onclick=\"handleDeleteUser('" + user.email + "')\" class=\"main__wrapper__actions__icon\" src=\"./icons/trash.svg\" alt=\"delete\">\n    </div>\n    </div>";
     });
     var root = document.querySelector('#usersTasks');
