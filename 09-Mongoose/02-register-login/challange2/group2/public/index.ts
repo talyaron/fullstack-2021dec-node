@@ -10,6 +10,11 @@ async function handleRegister(ev: any) {
       const { register, error } = data;
       if (error) throw error;
       console.log(data);
+      
+      if(register){
+        window.location.href= "./login.html";
+      }
+
       if( error && error.includes("E11000")) alert ('email is already in use')
     } catch(error){
       console.error(error)
@@ -32,8 +37,7 @@ async function handleRegister(ev: any) {
         if(error) throw error;
   
         if(login){
-          //redirect to a second page
-          window.location.href= './home.html'
+          window.location.href= "./profile.html";
         }
    
    if(error) throw error;

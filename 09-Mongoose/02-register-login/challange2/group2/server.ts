@@ -1,7 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
 const app = express();
-const port = 3000;
+const port = 3001;
 require('dotenv').config()
 
 const mongodb_uri = process.env.MONGODB_URI;
@@ -22,9 +22,11 @@ mongoose
 
 app.use(express.static('public'))
 
-import usersRoute from './routes/route';
-app.use('/users', usersRoute);
+import route from "./routes/route";  
+app.use('/users', route);
 
+import usersRoute from "./routes/userroute";
+app.use('/users',  usersRoute);
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
