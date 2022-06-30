@@ -90,23 +90,30 @@ function getCats(req, res) {
 exports.getCats = getCats;
 function searchCat(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var age, searchCats;
+        var age, searchCats, error_3;
         return __generator(this, function (_a) {
-            try {
-                age = req.query.age;
-                searchCats = catsModel_1["default"].find({ age: age });
-                if (!searchCats) {
-                    throw new Error('missing argument!!');
-                }
-                else {
-                    res.send({ searchCats: searchCats });
-                }
-                console.log({ searchCats: searchCats });
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    age = req.query.age;
+                    console.log(age);
+                    return [4 /*yield*/, catsModel_1["default"].find({ age: age })];
+                case 1:
+                    searchCats = _a.sent();
+                    if (!searchCats) {
+                        throw new Error('missing argument!!');
+                    }
+                    else {
+                        console.log({ searchCats: searchCats });
+                        res.send({ searchCats: searchCats });
+                    }
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_3 = _a.sent();
+                    res.send({ error: error_3.message });
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
             }
-            catch (error) {
-                res.send({ error: error.message });
-            }
-            return [2 /*return*/];
         });
     });
 }
