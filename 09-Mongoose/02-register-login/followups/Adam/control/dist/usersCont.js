@@ -1,3 +1,4 @@
+"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -34,74 +35,29 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-function handleRegister(ev) {
+exports.__esModule = true;
+exports.register = exports.login = void 0;
+function login(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var email, password, data, register, error, error_1;
         return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    ev.preventDefault();
-                    _a.label = 1;
-                case 1:
-                    _a.trys.push([1, 3, , 4]);
-                    email = ev.target.email.value;
-                    password = ev.target.password.value;
-                    console.log(email, password);
-                    return [4 /*yield*/, axios.post("/users/register", { email: email, password: password })];
-                case 2:
-                    data = (_a.sent()).data;
-                    register = data.register, error = data.error;
-                    if (error)
-                        throw error;
-                    console.log(data);
-                    if (register) {
-                        window.location.href = "./login.html";
-                    }
-                    if (error && error.includes("E11000"))
-                        alert('email is already in use');
-                    return [3 /*break*/, 4];
-                case 3:
-                    error_1 = _a.sent();
-                    console.error(error_1);
-                    return [3 /*break*/, 4];
-                case 4: return [2 /*return*/];
+            try {
             }
+            catch (error) {
+            }
+            return [2 /*return*/];
         });
     });
 }
-function handleLogin(ev) {
+exports.login = login;
+function register(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var name, email, password, data, login, error, error_2;
         return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    ev.preventDefault();
-                    _a.label = 1;
-                case 1:
-                    _a.trys.push([1, 3, , 4]);
-                    name = ev.target.name.value;
-                    email = ev.target.email.value;
-                    password = ev.target.password.value;
-                    console.log(name, email, password);
-                    return [4 /*yield*/, axios.post("/users/login", { name: name, email: email, password: password })];
-                case 2:
-                    data = (_a.sent()).data;
-                    login = data.login, error = data.error;
-                    if (error)
-                        throw error;
-                    if (login) {
-                        window.location.href = "./profile.html";
-                    }
-                    if (error)
-                        throw error;
-                    console.log(data);
-                    return [3 /*break*/, 4];
-                case 3:
-                    error_2 = _a.sent();
-                    console.error(error_2);
-                    return [3 /*break*/, 4];
-                case 4: return [2 /*return*/];
+            try {
             }
+            catch (error) {
+            }
+            return [2 /*return*/];
         });
     });
 }
+exports.register = register;

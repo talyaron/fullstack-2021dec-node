@@ -44,21 +44,17 @@ function handleRegister(ev) {
                     _a.label = 1;
                 case 1:
                     _a.trys.push([1, 3, , 4]);
-                    email = ev.target.email.value;
-                    password = ev.target.password.value;
-                    console.log(email, password);
+                    email = ev.target.elements.email.value;
+                    password = ev.target.elements.password.value;
                     return [4 /*yield*/, axios.post("/users/register", { email: email, password: password })];
                 case 2:
                     data = (_a.sent()).data;
                     register = data.register, error = data.error;
                     if (error)
                         throw error;
-                    console.log(data);
                     if (register) {
-                        window.location.href = "./login.html";
+                        window.location.href = "/login.html";
                     }
-                    if (error && error.includes("E11000"))
-                        alert('email is already in use');
                     return [3 /*break*/, 4];
                 case 3:
                     error_1 = _a.sent();
@@ -69,35 +65,33 @@ function handleRegister(ev) {
         });
     });
 }
-function handleLogin(ev) {
+;
+function handleLogin(e) {
     return __awaiter(this, void 0, void 0, function () {
-        var name, email, password, data, login, error, error_2;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
+        var _a, email, password, data, user, login, error, error_2;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
                 case 0:
-                    ev.preventDefault();
-                    _a.label = 1;
+                    e.preventDefault();
+                    _b.label = 1;
                 case 1:
-                    _a.trys.push([1, 3, , 4]);
-                    name = ev.target.name.value;
-                    email = ev.target.email.value;
-                    password = ev.target.password.value;
-                    console.log(name, email, password);
-                    return [4 /*yield*/, axios.post("/users/login", { name: name, email: email, password: password })];
+                    _b.trys.push([1, 3, , 4]);
+                    _a = e.target.elements, email = _a.email, password = _a.password;
+                    email = email.value;
+                    password = password.value;
+                    return [4 /*yield*/, axios.post("/users/login", { email: email, password: password })];
                 case 2:
-                    data = (_a.sent()).data;
-                    login = data.login, error = data.error;
-                    if (error)
-                        throw error;
+                    data = (_b.sent()).data;
+                    user = data.user, login = data.login, error = data.error;
+                    console.log(user);
+                    console.log("This is the logged in USER", user);
+                    console.log("This is the logged in DATA", data);
                     if (login) {
-                        window.location.href = "./profile.html";
+                        window.location.href = "./profile.html?userId=" + user._id;
                     }
-                    if (error)
-                        throw error;
-                    console.log(data);
                     return [3 /*break*/, 4];
                 case 3:
-                    error_2 = _a.sent();
+                    error_2 = _b.sent();
                     console.error(error_2);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
@@ -105,3 +99,51 @@ function handleLogin(ev) {
         });
     });
 }
+;
+function getUserId() {
+    try {
+        var queryString = window.location.search;
+        console.log(queryString);
+        var urlParams = new URLSearchParams(queryString);
+        console.log(urlParams);
+        var userId = urlParams.get("userId");
+        console.log(userId);
+        return userId;
+    }
+    catch (error) {
+        console.error(error);
+        return false;
+    }
+}
+function onscondPageLoad() {
+    return __awaiter(this, void 0, void 0, function () {
+        var userId, data, error, user, name, userName, error_3;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    userId = getUserId();
+                    if (!userId)
+                        throw new Error("couldnt find user id in url");
+                    return [4 /*yield*/, axios.get("/users/get-user?userId=" + userId)];
+                case 1:
+                    data = (_a.sent()).data;
+                    error = data.error, user = data.user;
+                    if (error)
+                        throw error;
+                    console.log(user);
+                    name = user.name;
+                    userName = document.querySelector("#userName");
+                    userName.innerHTML = "<h1>Welcome  " + name + "</h1>";
+                    console.log(data);
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_3 = _a.sent();
+                    console.log(error_3);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
+}
+;
