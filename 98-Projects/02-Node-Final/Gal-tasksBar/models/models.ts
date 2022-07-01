@@ -4,7 +4,6 @@ export interface user{
     password: string
 };
 
-
 import { Schema,model } from "mongoose"
 import Joi from 'joi';
 

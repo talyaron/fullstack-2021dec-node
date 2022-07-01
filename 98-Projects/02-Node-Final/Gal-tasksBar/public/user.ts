@@ -1,10 +1,10 @@
-export interface user{
+export interface User{
     userName: string,
     email: string,
     password: string
 };
 
-let user:Array<user>=[]
+let user:Array<User>=[]
 
 
 async function getUsers() {
@@ -57,18 +57,22 @@ async function handleAddUser(ev: any) {
 
 
 function renderUsers(user) {
-	let html = '';
+	try{
+    let html = '';
 	user.forEach((user: { password: any; userName: any; email: any; }) => {
 		html += `<div class="screen__card-wrapper" id="${user.email}">
-    <h3 class="main__title-h3__white">${user.userName}</h3>
-    <div class="main__wrapper__actions">
-        <img onclick="handleUpdateUser('${user.email}')" class="main__wrapper__actions__icon" src=" ./icons/pencil.svg" alt="edit">
-        <img onclick="handleDeleteUser('${user.email}')" class="main__wrapper__actions__icon" src="./icons/trash.svg" alt="delete">
+    <h3 class="main">${user.userName}</h3>
+    <div class="main">
+        <img onclick="handleUpdateUser('${user.email}')" class="main" src=" ./icons/pencil.svg" alt="edit">
+        <img onclick="handleDeleteUser('${user.email}')" class="main" src="./icons/trash.svg" alt="delete">
     </div>
     </div>`;
 	});
     const root = document.querySelector('#usersTasks')
 	root.innerHTML = html;
+} catch (error) {
+  console.error(error);
+}
 }
 
    //   const queryString = window.location.search;
@@ -130,7 +134,7 @@ async function getUserByCookie() {
     try {
       const userId = getUsers();
       const userName = document.querySelector("#userName");
-      userName.innerHTML = `<h1>Welcome  ${name}</h1>`;
+      userName.innerHTML = `<h1>Welcome  ${userName}</h1>`;
     } catch (error) {
       console.log(error);
     }
