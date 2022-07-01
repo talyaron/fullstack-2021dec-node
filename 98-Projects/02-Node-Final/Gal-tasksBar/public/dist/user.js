@@ -38,13 +38,16 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 exports.__esModule = true;
 ;
 var user = [];
-function getUsers() {
+function getUsers(event) {
     return __awaiter(this, void 0, void 0, function () {
-        var data, users, error, error_1;
+        var email, password, data, users, error, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
+                    email = event.target.email.value;
+                    password = event.target.password.value;
+                    console.dir(email, password);
                     return [4 /*yield*/, axios.post('/user/get-users', { email: email, password: password })];
                 case 1:
                     data = (_a.sent()).data;
@@ -200,7 +203,7 @@ function toUserPage() {
         var userId, userName;
         return __generator(this, function (_a) {
             try {
-                userId = getUsers();
+                userId = getUsers(event);
                 userName = document.querySelector("#userName");
                 userName.innerHTML = "<h1>Welcome  " + userName + "</h1>";
             }

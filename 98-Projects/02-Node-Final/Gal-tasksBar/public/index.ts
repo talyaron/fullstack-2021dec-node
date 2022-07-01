@@ -34,6 +34,7 @@ async function handleRegister(event: any){
   const email = event.target.email.value;
   const password = event.target.password.value;
   console.log(email, password)
+  // console.dir(email,password)
   //@ts-ignore
   const { data } = await axios.post("/user/register", { email, password });
   const { register, error } = data;

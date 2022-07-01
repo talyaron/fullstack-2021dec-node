@@ -1,3 +1,5 @@
+import { func } from "joi";
+
 export interface User{
     userName: string,
     email: string,
@@ -7,9 +9,12 @@ export interface User{
 let user:Array<User>=[]
 
 
-async function getUsers() {
+async function getUsers(event) {
     try {
-    // @ts-ignore
+      const email = event.target.email.value;
+      const password = event.target.password.value;
+      console.dir(email,password)
+        // @ts-ignore
       const {data} = await axios.post('/user/get-users',{email,password})
       const {users,error} = data;
       if(error) throw new Error("Error")
@@ -132,12 +137,12 @@ async function getUserByCookie() {
   
   async function toUserPage() {
     try {
-      const userId = getUsers();
+      const userId = getUsers(event);
       const userName = document.querySelector("#userName");
       userName.innerHTML = `<h1>Welcome  ${userName}</h1>`;
     } catch (error) {
       console.log(error);
     }
   }
-  
+
 
