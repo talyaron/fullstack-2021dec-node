@@ -10,7 +10,7 @@ let user:Array<User>=[]
 async function getUsers() {
     try {
     // @ts-ignore
-      const {data} = await axios.get('/user/get-users')
+      const {data} = await axios.post('/user/get-users',{email,password})
       const {users,error} = data;
       if(error) throw new Error("Error")
       renderUsers(users);

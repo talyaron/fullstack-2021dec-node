@@ -45,7 +45,7 @@ function getUsers() {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, axios.get('/user/get-users')];
+                    return [4 /*yield*/, axios.post('/user/get-users', { email: email, password: password })];
                 case 1:
                     data = (_a.sent()).data;
                     users = data.users, error = data.error;
