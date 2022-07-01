@@ -7,6 +7,6 @@ var usersCont_1 = require("../cont/usersCont");
 router
     .patch("/update-user", usersCont_1.handleUpdateUser)["delete"]("/user-delete", usersCont_1.handleDelete)
     .post("/add-user", usersCont_1.handleAddUser)
-    .get('/get-users', usersCont_1.getUsers)
+    .post('/get-users', usersCont_1.getUsers)
     .get('/get-userCookie', usersCont_1.getUserByCookie);
 exports["default"] = router;

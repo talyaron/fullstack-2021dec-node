@@ -52,11 +52,11 @@ function handleLogin(event) {
                     data = (_a.sent()).data;
                     console.log(data);
                     user = data.user, login = data.login, error = data.error;
-                    // if(user){
-                    //     window.location.href = "../public/main.html";
-                    // }
+                    if (user) {
+                        window.location.href = "../public/main.html";
+                    }
                     if (login) {
-                        window.location.href = "./user.html?userId=" + user._id + "&name=itizik&age=234";
+                        window.location.href = "./main.html";
                     }
                     if (!login) {
                         throw new Error('User not found');

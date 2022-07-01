@@ -10,12 +10,12 @@ async function handleLogin(event: any): Promise<void>{
   console.log(data);
   const {user, login, error} = data;
 
-  // if(user){
-  //     window.location.href = "../public/main.html";
-  // }
+  if(user){
+      window.location.href = "../public/main.html";
+  }
 
   if (login) {
-    window.location.href = `./user.html?userId=${user._id}&name=itizik&age=234`;
+    window.location.href = `./main.html`;
   }
 
   if(!login){
