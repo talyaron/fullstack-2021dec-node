@@ -34,9 +34,9 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-function handleGetStory(ev) {
+function handleRegister(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var userName, userText, data, myStory, error, error_1;
+        var email, password, name, age, img, data, register, error, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -44,16 +44,20 @@ function handleGetStory(ev) {
                     _a.label = 1;
                 case 1:
                     _a.trys.push([1, 3, , 4]);
-                    userName = document.getElementById('#fname');
-                    userText = document.getElementById('#userStory');
-                    return [4 /*yield*/, axios.post("/api/story", { userName: userName, userText: userText })];
+                    email = ev.target.email.value;
+                    password = ev.target.password.value;
+                    name = ev.target.name.value;
+                    age = ev.target.age.value;
+                    img = ev.target.img.value;
+                    console.log(email, password, name, age, img);
+                    return [4 /*yield*/, axios.post("/users/register", { email: email, password: password, name: name, age: age, img: img })];
                 case 2:
                     data = (_a.sent()).data;
+                    register = data.register, error = data.error;
+                    console.log(error);
+                    if (error && error.includes("E11000"))
+                        alert("Email already exists");
                     console.log(data);
-                    myStory = data.myStory, error = data.error;
-                    if (error)
-                        throw new Error(error);
-                    renderStory(myStory);
                     return [3 /*break*/, 4];
                 case 3:
                     error_1 = _a.sent();
@@ -64,38 +68,84 @@ function handleGetStory(ev) {
         });
     });
 }
-function getUserStory() {
+function handleLogin(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var data, story, error, error_2;
+        var _a, email, password, data, user, login, error, error_2;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
+                case 0:
+                    ev.preventDefault();
+                    _b.label = 1;
+                case 1:
+                    _b.trys.push([1, 3, , 4]);
+                    _a = ev.target.elements, email = _a.email, password = _a.password;
+                    email = email.value;
+                    password = password.value;
+                    // let password = ev.target.password.value;
+                    console.log(email, password);
+                    return [4 /*yield*/, axios.post("/users/login", { email: email, password: password })];
+                case 2:
+                    data = (_b.sent()).data;
+                    user = data.user, login = data.login, error = data.error;
+                    console.log(error);
+                    if (login) {
+                        window.location.href = "./user.html?userId=" + user._id;
+                    }
+                    if (error)
+                        throw error;
+                    console.log(data);
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_2 = _b.sent();
+                    console.error(error_2);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
+}
+function getUserById() {
+    try {
+        var queryString = window.location.search;
+        console.log(queryString);
+        var urlParams = new URLSearchParams(queryString);
+        console.log(urlParams);
+        var userId = urlParams.get("userId");
+        console.log(userId);
+    }
+    catch (error) {
+        console.error(error);
+        return false;
+    }
+}
+function onscondPageLoad() {
+    return __awaiter(this, void 0, void 0, function () {
+        var userId, data, error, user, name, userName, error_3;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, axios.get("/api/getNewStory")];
+                    userId = getUserById();
+                    if (!userId)
+                        throw new Error("couldnt find user id in url");
+                    return [4 /*yield*/, axios.get("/users/get-user?userId=" + userId)];
                 case 1:
                     data = (_a.sent()).data;
-                    story = data.story, error = data.error;
+                    error = data.error, user = data.user;
                     if (error)
-                        throw new Error(error.message);
-                    renderStory(story);
+                        throw error;
+                    console.log(user);
+                    name = user.name;
+                    userName = document.querySelector("#userName");
+                    userName.innerHTML = "<h1>Welcome  " + name + "</h1>";
+                    console.log(data);
                     return [3 /*break*/, 3];
                 case 2:
-                    error_2 = _a.sent();
-                    console.error(error_2);
+                    error_3 = _a.sent();
+                    console.log(error_3);
                     return [3 /*break*/, 3];
                 case 3: return [2 /*return*/];
             }
         });
     });
-}
-function renderStory(addNewStory) {
-    var newStory = document.querySelector('.newStory');
-    //   let userName =  document.querySelector('.userName');
-    //   userName.innerHTML = myStory.name;
-    //   newStory.innerHTML = myStory.text;
-    var html = "";
-    addNewStory.forEach(function (elm) {
-        html += "<p>" + elm.natme + ":</p> " + elm.text + " <br> <br>";
-    });
-    newStory.innerHTML = html;
 }

@@ -22,20 +22,17 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const express = require("express");
+const express = require('express');
 const app = express();
-const port = 3000; // default port to listen;
-app.use(express.json());
-const helpers_1 = __importStar(require("./control/helpers"));
-// define a route handler for the default hnpmome page
-app.use(express.static('public'));
+const port = 3000;
+app.use(express.json()); // to get body from client (body = data from client)
+app.use(express.static("public"));
+const helpers_1 = __importStar(require("./controllers/helpers"));
 console.log(helpers_1.default(), helpers_1.randomNumber(200), helpers_1.x);
-const productsRoute_1 = __importDefault(require("./routes/productsRoute"));
-app.use('/products', productsRoute_1.default);
-// start the Express server
+const recipeRoute_1 = __importDefault(require("./routes/recipeRoute"));
+app.use('/recipes', recipeRoute_1.default);
+const postRoute_1 = __importDefault(require("./routes/postRoute"));
+app.use('/posts', postRoute_1.default);
 app.listen(port, () => {
-    console.log(`server started at http://localhost:${port}`);
+    console.log(`Server listening on port ${port}`);
 });
-function randNumber(maxNumber) {
-    return Math.floor(Math.random() * maxNumber);
-}

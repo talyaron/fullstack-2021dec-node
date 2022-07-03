@@ -34,9 +34,9 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-function handleGetStory(ev) {
+function handleRegister(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var userName, userText, data, myStory, error, error_1;
+        var email, password, data, register, error, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -44,16 +44,17 @@ function handleGetStory(ev) {
                     _a.label = 1;
                 case 1:
                     _a.trys.push([1, 3, , 4]);
-                    userName = document.getElementById('#fname');
-                    userText = document.getElementById('#userStory');
-                    return [4 /*yield*/, axios.post("/api/story", { userName: userName, userText: userText })];
+                    email = ev.target.email.value;
+                    password = ev.target.password.value;
+                    console.log(email, password);
+                    return [4 /*yield*/, axios.post("/users/register", { email: email, password: password })];
                 case 2:
                     data = (_a.sent()).data;
+                    register = data.register, error = data.error;
+                    console.log(error);
+                    if (error && error.includes("E11000"))
+                        alert("Email already exists");
                     console.log(data);
-                    myStory = data.myStory, error = data.error;
-                    if (error)
-                        throw new Error(error);
-                    renderStory(myStory);
                     return [3 /*break*/, 4];
                 case 3:
                     error_1 = _a.sent();
@@ -64,38 +65,37 @@ function handleGetStory(ev) {
         });
     });
 }
-function getUserStory() {
+function handleLogin(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var data, story, error, error_2;
+        var email, password, data, login, error, error_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    _a.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, axios.get("/api/getNewStory")];
+                    ev.preventDefault();
+                    _a.label = 1;
                 case 1:
-                    data = (_a.sent()).data;
-                    story = data.story, error = data.error;
-                    if (error)
-                        throw new Error(error.message);
-                    renderStory(story);
-                    return [3 /*break*/, 3];
+                    _a.trys.push([1, 3, , 4]);
+                    email = ev.target.email.value;
+                    password = ev.target.password.value;
+                    console.log(email, password);
+                    return [4 /*yield*/, axios.post("/users/login", { email: email, password: password })];
                 case 2:
+                    data = (_a.sent()).data;
+                    login = data.login, error = data.error;
+                    console.log(error);
+                    if (login) {
+                        window.location.href = './hello.html';
+                    }
+                    if (error)
+                        throw error;
+                    console.log(data);
+                    return [3 /*break*/, 4];
+                case 3:
                     error_2 = _a.sent();
                     console.error(error_2);
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
             }
         });
     });
-}
-function renderStory(addNewStory) {
-    var newStory = document.querySelector('.newStory');
-    //   let userName =  document.querySelector('.userName');
-    //   userName.innerHTML = myStory.name;
-    //   newStory.innerHTML = myStory.text;
-    var html = "";
-    addNewStory.forEach(function (elm) {
-        html += "<p>" + elm.natme + ":</p> " + elm.text + " <br> <br>";
-    });
-    newStory.innerHTML = html;
 }
