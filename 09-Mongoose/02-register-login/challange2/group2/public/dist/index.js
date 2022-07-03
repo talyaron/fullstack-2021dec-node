@@ -55,7 +55,7 @@ function handleRegister(ev) {
                         throw error;
                     console.log(data);
                     if (register) {
-                        window.location.href = "./login.html";
+                        window.location.href = "./login.html?userId=" + register._id;
                     }
                     if (error && error.includes("E11000"))
                         alert('email is already in use');
@@ -90,7 +90,7 @@ function handleLogin(ev) {
                     if (error)
                         throw error;
                     if (login) {
-                        window.location.href = "./profile.html";
+                        window.location.href = "./profile.html?userId=" + login._id;
                     }
                     if (error)
                         throw error;
@@ -101,6 +101,89 @@ function handleLogin(ev) {
                     console.error(error_2);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
+            }
+        });
+    });
+}
+function handleSaveInfo(ev) {
+    return __awaiter(this, void 0, void 0, function () {
+        var name, age, image, data, user, error, error_3;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    ev.preventDefault();
+                    _a.label = 1;
+                case 1:
+                    _a.trys.push([1, 3, , 4]);
+                    name = ev.target.elements.name.value;
+                    age = ev.target.elements.age.valueAsNumber;
+                    image = ev.target.elements.image.value;
+                    console.log(name, age, image);
+                    return [4 /*yield*/, axios.post("/users/SaveInfo", { name: name, age: age, image: image })];
+                case 2:
+                    data = (_a.sent()).data;
+                    user = data.user, error = data.error;
+                    if (error)
+                        throw error;
+                    if (user) {
+                        window.location.href = "./user.html?userId=" + user._id;
+                    }
+                    if (error)
+                        throw error;
+                    console.log(data);
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_3 = _a.sent();
+                    console.error(error_3);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
+}
+function getUserId() {
+    try {
+        var queryString = window.location.search;
+        console.log(queryString);
+        var urlParams = new URLSearchParams(queryString);
+        console.log(urlParams);
+        var userId = urlParams.get("userId");
+        // const age = urlParams.get("age");
+        // console.log(age);
+        return userId;
+    }
+    catch (error) {
+        console.error(error);
+        return false;
+    }
+}
+function onscondPageLoad() {
+    return __awaiter(this, void 0, void 0, function () {
+        var userId, data, error, user, name, age, image, root, error_4;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    userId = getUserId();
+                    if (!userId)
+                        throw new Error("couldnt find user id in url");
+                    return [4 /*yield*/, axios.get("/users/get-user?userId=" + userId)];
+                case 1:
+                    data = (_a.sent()).data;
+                    error = data.error, user = data.user;
+                    if (error)
+                        throw error;
+                    console.log(user);
+                    name = user.name, age = user.age, image = user.image;
+                    root = document.querySelector("#root");
+                    root.innerHTML = "<h1>Welcome " + name + " " + age + "</h1>";
+                    console.log(data);
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_4 = _a.sent();
+                    console.log(error_4);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
             }
         });
     });

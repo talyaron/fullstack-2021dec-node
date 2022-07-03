@@ -1,8 +1,6 @@
-"use strict";
-exports.__esModule = true;
-var express_1 = require("express");
-var userCont_1 = require("../controllers/userCont");
-var router = express_1["default"].Router();
-router
-    .post('/push-User', userCont_1.pushUser);
-exports["default"] = router;
+// import express from 'express';
+// import { pushUser} from '../controllers/userCont';
+// const router = express.Router();
+// router
+// .post('/push-User', pushUser)
+// export default router
