@@ -9,8 +9,7 @@ const app = express_1.default();
 const port = 3000;
 app.use(express_1.default.json());
 mongoose_1.default
-    .connect("mongodb+srv://Bella:xFS7EsTQz8Frw7UL@cluster0.ceb2t.mongodb.net/?retryWrites=tru" +
-    "e&w=majority")
+    .connect("mongodb+srv://Bella:xFS7EsTQz8Frw7UL@cluster0.ceb2t.mongodb.net/test")
     .then(() => {
     console.log("Connected to DB!");
 })

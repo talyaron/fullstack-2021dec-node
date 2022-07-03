@@ -15,6 +15,14 @@ mongoose_1.default
     console.log("Connected to DB!");
 })
     .catch((err) => console.log(err));
+// mongoose
+//   .connect(
+//     "mongodb+srv://Bella:xFS7EsTQz8Frw7UL@cluster0.ceb2t.mongodb.net/?retryWrites=true&w=majority"
+//   )
+//   .then(() => {
+//     console.log("Connected to DB!");
+//   })
+//   .catch((err) => console.log(err));
 exports.SeaAnimals = [
     {
         name: 'Orca',
