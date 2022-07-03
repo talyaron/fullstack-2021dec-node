@@ -5,14 +5,14 @@ const port = 3000;
 app.use(express.static('public'))
 app.use(express.json());
 
-// mongoose
-//   .connect(
-//     "mongodb+srv://Bella:xFS7EsTQz8Frw7UL@cluster0.ceb2t.mongodb.net/users2?retryWrites=true&w=majority"
-//   )
-//   .then(() => {
-//     console.log("Connected to DB!");
-//   })
-//   .catch((err) => console.log(err));
+mongoose
+  .connect(
+    "mongodb+srv://Bella:xFS7EsTQz8Frw7UL@cluster0.ceb2t.mongodb.net/users2?retryWrites=true&w=majority"
+  )
+  .then(() => {
+    console.log("Connected to DB!");
+  })
+  .catch((err) => console.log(err));
 
 
 
