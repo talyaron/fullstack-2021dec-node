@@ -8,9 +8,9 @@ export async function addCat(req, res){
             throw new Error ('missing argument!!')
         }
 
-       const catsArray = await cats.save()
-       console.log(cats);
-       res.send({catsArray})
+           cats.save()
+       const allCats = await catsModel.find({})
+       res.send({allCats})
        
     } catch (error) {
         res.send({error:error.message})
@@ -28,14 +28,16 @@ export async function addCat(req, res){
 
 export async function searchCat(req, res){
     try {
-        const {age} = req.body;
-        const searchCats = catsModel.find(age);
+        const {age} = req.query;
+        console.log(age);
+        const searchCats = await catsModel.find({age});
         if(!searchCats){
             throw new Error ('missing argument!!')
             
         }else{
-            res.send({searchCats})}
             console.log({searchCats});
+            res.send({searchCats})}
+           
             
         
     } catch (error) {

@@ -71,7 +71,7 @@ function renderBook(books) {
     var htmlBooksHolder = document.querySelector("#books");
     var html = "";
     books.forEach(function (book) {
-        html += "<div id=\"wrapper\"> <img src=\"" + book.image + "\"  id=\"bookImg\">  \n    <p>" + book.name + " </p> \n    \n    <p class=\"des\" >description: " + book.description + " </p>  <button class=\"des\" onclick=\"handleUpdateDesc( '" + book.serialNo + "')\" class=\"buttonUp\">update</button> <br>\n   <p class=\"price\" >price: " + book.price + " nis </p> <button class=\"price\" onclick=\"handleUpdatePrice( '" + book.serialNo + "')\" class=\"buttonUp\">update</button>  <br>\n   \n   <button onclick=\"handleDeleteBook('" + book.serialNo + "')\"  class=\"buttonUp\">delete</button>\n   </div> <br> <br>";
+        html += "<div class='book'>\n    <img src=\"" + book.image + "\"  id=\"bookImg\">  \n    <p>" + book.name + " </p> \n     <p class=\"des\" >description: " + book.description + " </p>  <button class=\"des\" onclick=\"handleUpdateDesc( '" + book.serialNo + "')\" class=\"buttonUp\">update</button> <br>\n   <p class=\"price\" >price: " + book.price + " nis </p> <button class=\"price\" onclick=\"handleUpdatePrice( '" + book.serialNo + "')\" class=\"buttonUp\">update</button>  <br>\n   <button onclick=\"handleDeleteBook('" + book.serialNo + "')\"  class=\"buttonUp\">delete</button>\n   </div>";
     });
     htmlBooksHolder.innerHTML = html;
 }
@@ -189,7 +189,6 @@ function renderClientBook(books) {
                 books.forEach(function (book) {
                     html1_1 += "<div id=\"wrapperClient\" >\n         <img src=\"" + book.image + "\" alt=\"\" id=\"imgClient\">\n      <h1>" + book.name + "</h1>\n      <p>description:" + book.description + " </p>\n      <h1>price: " + book.price + " nis</h1>\n      <button onclick=\"handleCart('" + book.serialNo + "')\">add to cart</button>\n      </div>";
                 });
-                // <button onclick('handleCart(${book.serialNo})')>add to cart</button>
                 client.innerHTML = html1_1;
             }
             catch (error) {
@@ -225,23 +224,26 @@ function renderCart(clientCart) {
     try {
         console.log(clientCart);
         var cartBody = document.querySelector('#cartBody');
-        var html_1 = "";
+        var html_1 = "<div class='cartGrid'>";
         clientCart.forEach(function (book) {
             console.log(book);
             html_1 += "<div id=\"clientCart\">\n      <img src=\"" + book.image + "\" alt=\"\" id=\"imgCart\">\n      <h1>" + book.name + "</h1>\n      <p>description: " + book.description + "</p>\n      <h1>price: " + book.price + "</h1>\n      <button onclick=\"deleteFromCart('" + book.serialNo + "')\">delete from cart</button>\n\n  </div>";
         });
+        html_1 += '</div>';
+        var total = clientCart.reduce(function (acc, item) { return !isNaN(item.price) ? acc + parseFloat(item.price) : acc; }, 0);
+        html_1 += " <br> <br> <br> <h1>total to pay " + total + " nis</h1>";
         cartBody.innerHTML = html_1;
     }
     catch (error) {
         console.log(error);
     }
 }
-function renderTotalPrice(clientCart) {
-    var totalPrice = document.querySelector('#totalToPay');
-    var total = clientCart.reduce(function (acc, item) { return !isNaN(item.price) ? acc + parseFloat(item.price) : acc; }, 0);
-    console.log(total);
-    totalPrice.innerHTML = "<h1>total to pay " + total + " nis</h1>";
-}
+// function renderTotalPrice(clientCart: Array<Book>){
+//   const totalPrice = document.querySelector('#totalToPay');
+//   const total = clientCart.reduce((acc, item) => !isNaN(item.price) ? acc + parseFloat(item.price) : acc, 0);
+//   console.log(total);
+//   totalPrice.innerHTML = `<h1>total to pay ${total} nis</h1>`
+// }
 function handleCart(serialNo) {
     return __awaiter(this, void 0, void 0, function () {
         var data, ok, clientCart, message, error_7;
@@ -289,7 +291,6 @@ function cartGet() {
                     clientCart = data.clientCart;
                     console.log(clientCart);
                     renderCart(clientCart);
-                    renderTotalPrice(clientCart);
                     return [3 /*break*/, 3];
                 case 2:
                     error_8 = _a.sent();

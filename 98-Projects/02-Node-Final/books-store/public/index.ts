@@ -2,7 +2,7 @@ interface Book {
   image: String,
   name: string,
   description: string,
-  price: number|string|null,
+  price: any,
   serialNo: string
 }
 
@@ -37,14 +37,13 @@ function renderBook(books: Array<Book>) {
   const htmlBooksHolder = document.querySelector("#books");
   let html = "";
   books.forEach(book => {
-    html += `<div id="wrapper"> <img src="${book.image}"  id="bookImg">  
+    html += `<div class='book'>
+    <img src="${book.image}"  id="bookImg">  
     <p>${book.name} </p> 
-    
-    <p class="des" >description: ${book.description} </p>  <button class="des" onclick="handleUpdateDesc( '${book.serialNo}')" class="buttonUp">update</button> <br>
+     <p class="des" >description: ${book.description} </p>  <button class="des" onclick="handleUpdateDesc( '${book.serialNo}')" class="buttonUp">update</button> <br>
    <p class="price" >price: ${book.price} nis </p> <button class="price" onclick="handleUpdatePrice( '${book.serialNo}')" class="buttonUp">update</button>  <br>
-   
    <button onclick="handleDeleteBook('${book.serialNo}')"  class="buttonUp">delete</button>
-   </div> <br> <br>`
+   </div>`
   });
 
   htmlBooksHolder.innerHTML = html;
@@ -142,7 +141,7 @@ async function renderClientBook(books: Array<Book>) {
 
     })
 
-    // <button onclick('handleCart(${book.serialNo})')>add to cart</button>
+    
 
     client.innerHTML = html1;
 
@@ -172,7 +171,7 @@ function renderCart(clientCart: Array<Book>) {
   try {
     console.log(clientCart)
     const cartBody = document.querySelector('#cartBody')
-    let html = "";
+    let html = "<div class='cartGrid'>";
     clientCart.forEach(book => {
       console.log(book)
       html += `<div id="clientCart">
@@ -184,6 +183,9 @@ function renderCart(clientCart: Array<Book>) {
 
   </div>`
     })
+    html +='</div>'
+    const total = clientCart.reduce((acc, item) => !isNaN(item.price) ? acc + parseFloat(item.price) : acc, 0);
+    html += ` <br> <br> <br> <h1>total to pay ${total} nis</h1>`
     cartBody.innerHTML = html;
 
    
@@ -194,14 +196,14 @@ function renderCart(clientCart: Array<Book>) {
   }
 }
 
-function renderTotalPrice(clientCart: Array<Book>){
-  const totalPrice = document.querySelector('#totalToPay');
-  const total = clientCart.reduce((acc, item) => !isNaN(item.price) ? acc + parseFloat(item.price) : acc, 0);
+// function renderTotalPrice(clientCart: Array<Book>){
+//   const totalPrice = document.querySelector('#totalToPay');
+//   const total = clientCart.reduce((acc, item) => !isNaN(item.price) ? acc + parseFloat(item.price) : acc, 0);
 
-  console.log(total);
-  totalPrice.innerHTML = `<h1>total to pay ${total} nis</h1>`
+//   console.log(total);
+//   totalPrice.innerHTML = `<h1>total to pay ${total} nis</h1>`
 
-}
+// }
 
 async function handleCart(serialNo) {
   console.log(serialNo)
@@ -236,7 +238,7 @@ async function cartGet() {
 
 
     renderCart(clientCart);
-    renderTotalPrice(clientCart)
+    // renderTotalPrice(clientCart)
 
   } catch (error) {
     console.log(error)

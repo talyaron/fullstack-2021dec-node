@@ -1,6 +1,6 @@
 body {
   text-align: center;
-  background-color: #5e0a26;
+  background-color: #bf154e;
 }
 body #uploadBook {
   margin: auto;
@@ -23,29 +23,27 @@ body #books {
   position: relative;
   top: 2rem;
   column-gap: 5px;
-  row-gap: 10rem;
+  row-gap: 0.5rem;
 }
-body #books #wrapper {
-  position: relative;
-  height: 0.3rem;
-  width: 0.2rem;
+body #books .book {
   padding: 5px;
+  background-color: wheat;
   white-space: nowrap;
 }
-body #books #wrapper #bookImg {
+body #books .book #bookImg {
   height: 4rem;
   width: 4rem;
 }
-body #books #wrapper .des {
+body #books .book .des {
   display: inline-block;
   position: inherit;
   font-size: 0.5rem;
 }
-body #books #wrapper .price {
+body #books .book .price {
   display: inline-block;
   font-size: 0.7rem;
 }
-body #books #wrapper .buttonUp {
+body #books .book .buttonUp {
   font-size: 0.6rem;
 }
 body #clientBody {
@@ -70,11 +68,14 @@ body #clientBody #wrapperClient #imgClient {
   width: 4rem;
 }
 body #cartBody {
+  margin: auto;
+}
+body #cartBody .cartGrid {
   display: grid;
   grid-template-columns: auto auto auto;
   margin: auto;
   text-align: center;
-  width: 100%;
+  width: 100vw;
   height: fit-content;
   position: relative;
   top: 2rem;
@@ -83,8 +84,6 @@ body #cartBody {
 }
 body #cartBody #clientCart {
   position: relative;
-  height: 0.3rem;
-  width: 0.2rem;
 }
 body #cartBody #clientCart #imgCart {
   height: 4rem;

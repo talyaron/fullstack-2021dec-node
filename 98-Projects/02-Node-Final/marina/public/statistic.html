@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"
+        integrity="sha512-odNmoc1XJy5x1TMVMdC7EMs3IVdItLPlCeL5vSUPN2llYKMJ2eByTTAIiiuqLg+GdNr9hF6z81p27DArRFKT7A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="./dist/style.css">
+    <script src="./dist/index.js" async></script>
+    <title>statistic</title>
+</head>
+
+<body>
+    <div class="nav">
+        <span class="material-icons arrow-back-to-game" onclick="handleBackToGame()">arrow_back</span>
+        <p class="title-statistic">General st<span><img class="smilyImg-statistic" src="../img/smily.png"></span>
+            <span style="display: none;">a</span> tistic
+        </p>
+    </div>
+    <div class="playersList" id="playersListRoot"></div>
+    <div class="bestTime" id="bestTime"></div>
+    <div class="generalStatistic" id="statisticRoot"></div>
+
+    <script type="text/javascript" async>
+        window.onload = function () {
+            loadPlayersList();
+            pulseStatistic();
+        };
+    </script>
+</body>
+
+</html>

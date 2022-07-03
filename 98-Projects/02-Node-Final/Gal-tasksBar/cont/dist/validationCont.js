@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.handleRegister = exports.handleLogin = void 0;
+exports.getUser = exports.handleRegister = exports.handleLogin = void 0;
 var models_1 = require("../models/models");
 function handleLogin(req, res) {
     return __awaiter(this, void 0, void 0, function () {
@@ -97,3 +97,33 @@ function handleRegister(req, res) {
     });
 }
 exports.handleRegister = handleRegister;
+function getUser(req, res) {
+    return __awaiter(this, void 0, void 0, function () {
+        var userId, userDB, error_3;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    userId = req.query.userId;
+                    if (!userId)
+                        throw new Error("missing userId in query");
+                    return [4 /*yield*/, models_1["default"].findById(userId)];
+                case 1:
+                    userDB = _a.sent();
+                    if (!userId)
+                        throw new Error("missing userId in DB");
+                    if (!userDB)
+                        throw new Error("coundt find use with this id: " + userId);
+                    res.send({ user: userDB, success: true });
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_3 = _a.sent();
+                    console.error(error_3);
+                    res.send({ error: error_3.message });
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
+}
+exports.getUser = getUser;

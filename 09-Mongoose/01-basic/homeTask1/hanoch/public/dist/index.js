@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 function handleCats(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var image, name, age, color, data, catsArray, error, error_1;
+        var image, name, age, color, data, allCats, error, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -52,11 +52,11 @@ function handleCats(ev) {
                 case 2:
                     data = (_a.sent()).data;
                     console.log(data);
-                    catsArray = data.catsArray, error = data.error;
+                    allCats = data.allCats, error = data.error;
                     if (error)
                         throw new error;
-                    console.log(catsArray);
-                    renderCats(catsArray);
+                    console.log(allCats);
+                    renderCats(allCats);
                     return [3 /*break*/, 4];
                 case 3:
                     error_1 = _a.sent();
@@ -67,17 +67,67 @@ function handleCats(ev) {
         });
     });
 }
+function getCats() {
+    return __awaiter(this, void 0, void 0, function () {
+        var data, cats, error_2;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    return [4 /*yield*/, axios.get('/cat/catsList')];
+                case 1:
+                    data = (_a.sent()).data;
+                    cats = data.cats;
+                    renderCats(cats);
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_2 = _a.sent();
+                    console.log(error_2);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
+}
 var html = "";
 function renderCats(catsArray) {
     try {
         var renderCats_1 = document.querySelector('#renderCats');
         // if (!Array.isArray(catsArray)) throw new Error("cats is not an array");
         catsArray.forEach(function (cat) {
-            html += "<div>\n            <img src=\"" + cat.image + "\" id=\"img\">\n            <p>name: " + cat.name + "</p>\n            <p>age: " + cat.age + "</p>\n            <p>color: " + cat.color + "</p>\n        </div>";
+            html += "<p> <img src=\"" + cat.image + "\" id=\"img\"> name: " + cat.name + " age: " + cat.age + " color: " + cat.color + "</p>";
         });
         renderCats_1.innerHTML = html;
     }
     catch (error) {
         console.log(error);
     }
+}
+function handleSearch(ev) {
+    return __awaiter(this, void 0, void 0, function () {
+        var age, data, searchCats, error_3;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    ev.preventDefault();
+                    _a.label = 1;
+                case 1:
+                    _a.trys.push([1, 3, , 4]);
+                    age = ev.target.age.value;
+                    return [4 /*yield*/, axios.get("/cat/searchCats?age=" + age)];
+                case 2:
+                    data = (_a.sent()).data;
+                    console.log(data);
+                    searchCats = data.searchCats;
+                    console.log(searchCats);
+                    renderCats(searchCats);
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_3 = _a.sent();
+                    console.log(error_3);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
 }

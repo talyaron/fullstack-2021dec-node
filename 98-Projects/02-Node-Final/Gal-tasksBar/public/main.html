@@ -8,22 +8,30 @@
     <link rel="stylesheet" href="./dist/style.css">
     <title>TaskBar/MainPage</title>
 </head>
-<body onload="getUsers()">
-    <div class="TaskTable">
-       <button><a id="main-a" href="./index.html">for tests<a></button>
-    </div>
+<body onload="getUsers(event)">
     <div class="main">
-      <form class="main__form " onsubmit="handleAddUser(ev) ">
-          <input class="main__form__input " type=" text " name="name" placeholder="Name " required>
-          <button class="main__form__btn-form " type="submit ">Add user</button>
+       <button><a id="main-a" href="./index.html">back to login page<a></button>
+
+      <div class="main ">
+          <h4 class="main ">Users List</h4>
+      </div>
+
+    <div class="main">
+      <form class="main" onsubmit="handleAddUser(ev) ">
+          <input class="main" type=" text " name="name" placeholder="Name " required>
+          <button class="main" type="submit ">Add user</button>
       </form>
   </div>
 
     <div id="usersTasks"></div>
+    <div id="userName"></div>
     <div class="id"></div>
+
     <div class="footer">
         <p>@corporation Gal Gross</p>
-      </div>
+    </div>
+
+    </div>
       <script src="./dist/user.js"></script>
 </body>
 </html>

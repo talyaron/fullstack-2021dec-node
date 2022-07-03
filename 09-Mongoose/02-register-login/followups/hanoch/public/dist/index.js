@@ -105,6 +105,7 @@ function getUserId() {
         var queryString = window.location.search;
         console.log(queryString);
         var urlParams = new URLSearchParams(queryString);
+        console.log(urlParams);
         var name = urlParams.get("name");
         console.log(name);
         return name;

@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 function handleLogin(event) {
     return __awaiter(this, void 0, Promise, function () {
-        var email, password, data, user, error_1;
+        var email, password, data, user, login, error, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -47,15 +47,18 @@ function handleLogin(event) {
                     email = event.target.email.value;
                     password = event.target.password.value;
                     console.log(email, password);
-                    return [4 /*yield*/, axios.post("/users/login", { email: email, password: password })];
+                    return [4 /*yield*/, axios.post("/user/login", { email: email, password: password })];
                 case 2:
                     data = (_a.sent()).data;
                     console.log(data);
-                    user = data.user;
+                    user = data.user, login = data.login, error = data.error;
                     if (user) {
                         window.location.href = "../public/main.html";
                     }
-                    if (!user) {
+                    if (login) {
+                        window.location.href = "./main.html";
+                    }
+                    if (!login) {
                         throw new Error('User not found');
                     }
                     return [3 /*break*/, 4];
@@ -81,20 +84,68 @@ function handleRegister(event) {
                     email = event.target.email.value;
                     password = event.target.password.value;
                     console.log(email, password);
-                    return [4 /*yield*/, axios.post("/users/register", { email: email, password: password })];
+                    return [4 /*yield*/, axios.post("/user/register", { email: email, password: password })];
                 case 2:
                     data = (_a.sent()).data;
                     register = data.register, error = data.error;
+                    console.log(register);
                     console.log(error);
                     if (error && error.includes("E11000"))
                         alert("Email is allerady in use");
                     console.log(data);
+                    event.target.reset();
                     return [3 /*break*/, 4];
                 case 3:
                     error_2 = _a.sent();
                     console.error(error_2);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
+            }
+        });
+    });
+}
+function getUserId() {
+    try {
+        var queryString = window.location.search;
+        console.log(queryString);
+        var urlParams = new URLSearchParams(queryString);
+        console.log(urlParams);
+        var name = urlParams.get("name");
+        console.log(name);
+        return name;
+    }
+    catch (error) {
+        console.error(error);
+        return false;
+    }
+}
+function onscondPageLoad() {
+    return __awaiter(this, void 0, void 0, function () {
+        var userId, data, error, user, name, userName, error_3;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    userId = getUserId();
+                    if (!userId)
+                        throw new Error("couldnt find user id in url");
+                    return [4 /*yield*/, axios.get("/user/get-user?userId=" + userId)];
+                case 1:
+                    data = (_a.sent()).data;
+                    error = data.error, user = data.user;
+                    if (error)
+                        throw error;
+                    console.log(user);
+                    name = user.name;
+                    userName = document.querySelector("#userName");
+                    userName.innerHTML = "<h1>Welcome  " + name + "</h1>";
+                    console.log(data);
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_3 = _a.sent();
+                    console.log(error_3);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
             }
         });
     });
