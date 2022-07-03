@@ -38,3 +38,11 @@ export const handleLogin = async (req, res) => {
         res.send({eror: error.message});
     }
 }
+
+export const profileEdit = async (req, res) =>{
+    try {
+        
+    } catch (error) {
+        res.send({error: error.message})
+    }
+}

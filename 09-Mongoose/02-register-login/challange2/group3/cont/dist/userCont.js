@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.handleLogin = exports.handleRegister = void 0;
+exports.profileEdit = exports.handleLogin = exports.handleRegister = void 0;
 var UserModel_1 = require("../models/UserModel");
 exports.handleRegister = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var _a, email, password, error, user, result, error_1;
@@ -90,5 +90,15 @@ exports.handleLogin = function (req, res) { return __awaiter(void 0, void 0, voi
                 return [3 /*break*/, 3];
             case 3: return [2 /*return*/];
         }
+    });
+}); };
+exports.profileEdit = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    return __generator(this, function (_a) {
+        try {
+        }
+        catch (error) {
+            res.send({ error: error.message });
+        }
+        return [2 /*return*/];
     });
 }); };
