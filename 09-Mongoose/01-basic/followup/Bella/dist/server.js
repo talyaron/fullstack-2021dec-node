@@ -5,16 +5,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SeaAnimals = void 0;
 const express_1 = __importDefault(require("express"));
-const mongoose_1 = __importDefault(require("mongoose"));
 const animalModel_1 = __importDefault(require("./model/animalModel"));
 const app = express_1.default();
 const port = 4000;
-mongoose_1.default
-    .connect("mongodb+srv://Bella:xFS7EsTQz8Frw7UL@cluster0.ceb2t.mongodb.net/?retryWrites=true&w=majority")
-    .then(() => {
-    console.log("Connected to DB!");
-})
-    .catch((err) => console.log(err));
 // mongoose
 //   .connect(
 //     "mongodb+srv://Bella:xFS7EsTQz8Frw7UL@cluster0.ceb2t.mongodb.net/?retryWrites=true&w=majority"
