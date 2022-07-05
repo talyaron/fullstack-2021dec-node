@@ -1,4 +1,4 @@
-import UserValidModel, {UserValidation} from "../models/userValidModel";
+import {UserValidModel, UserValidation} from "../models/userModel";
 
 export async function handleRegister(req, res) {
 
@@ -39,3 +39,5 @@ export async function handleLogin(req, res) {
       res.send({ error: error.message });
     }
 };
+
+

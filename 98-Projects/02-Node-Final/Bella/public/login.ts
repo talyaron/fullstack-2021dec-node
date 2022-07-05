@@ -1,4 +1,7 @@
-async function handleLogin(ev : any) {
+// import {getUserId, onscondPageLoad } from './users'
+
+
+async function handleLogin(ev: any) {
     ev.preventDefault();
 
     try {
@@ -12,7 +15,7 @@ async function handleLogin(ev : any) {
         const {login, error} = data;
         console.log(data);
 
-        runLogin(login)
+        runLogin(data)
 
         if (error) throw error;
     } catch (error) {
@@ -20,7 +23,7 @@ async function handleLogin(ev : any) {
     }
 };
 
-async function runLogin(login) {
-    window.location.href= "/users.html";
-    console.log(login);
+async function runLogin(user) {
+    window.location.href = `./users.html?userId=${user._id}&name=${user.name}`;
+    console.log(user);
 };

@@ -36,58 +36,153 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.updateUser = exports.handleAddUser = exports.handleDeleteUser = exports.getAllUsers = exports.users = void 0;
-var helpers_1 = require("./helpers");
-exports.users = [];
-function getAllUsers(req, res) {
+exports.getUser = exports.updateUser = exports.handleAddUser = exports.handleDeleteUser = void 0;
+var userModel_1 = require("../models/userModel");
+// export const handleDeleteUser = (req, res) => {
+//     try {
+//         const {userId} = req.body;
+//         console.log("userId", userId);
+//         const index : number = users.findIndex((user) => user.userId === userId);
+//         if (index === -1) 
+//             throw new Error("user not found");
+//         users = users.filter((user) => user.userId !== userId);
+//         console.log("users", users);
+//         res.send({users});
+//     } catch (error) {
+//         res.send({error: error.message});
+//     }
+// };
+function handleDeleteUser(req, res) {
     return __awaiter(this, void 0, void 0, function () {
+        var name, user, error_1;
         return __generator(this, function (_a) {
-            try {
-                res.send({ users: exports.users });
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 5, , 6]);
+                    name = req.body.name;
+                    if (!name)
+                        throw new Error("name is required");
+                    return [4 /*yield*/, userModel_1.UserModel.findOneAndDelete({ name: name })];
+                case 1:
+                    user = _a.sent();
+                    if (!!name) return [3 /*break*/, 2];
+                    res.send({ "in": false });
+                    return [3 /*break*/, 4];
+                case 2: return [4 /*yield*/, user["delete"]()];
+                case 3:
+                    _a.sent();
+                    _a.label = 4;
+                case 4:
+                    console.log(user);
+                    return [3 /*break*/, 6];
+                case 5:
+                    error_1 = _a.sent();
+                    res.send({ error: error_1.message });
+                    return [3 /*break*/, 6];
+                case 6: return [2 /*return*/];
             }
-            catch (error) {
-                console.log("Users array not valid");
-            }
-            return [2 /*return*/];
         });
     });
 }
-exports.getAllUsers = getAllUsers;
-exports.handleDeleteUser = function (req, res) {
-    try {
-        var userId_1 = req.body.userId;
-        console.log("userId", userId_1);
-        var index = exports.users.findIndex(function (user) { return user.userId === userId_1; });
-        if (index === -1)
-            throw new Error("user not found");
-        exports.users = exports.users.filter(function (user) { return user.userId !== userId_1; });
-        console.log("users", exports.users);
-        res.send({ users: exports.users });
-    }
-    catch (error) {
-        res.send({ error: error.message });
-    }
-};
-exports.handleAddUser = function (req, res) {
-    var name = req.body.name;
-    if (!name)
-        throw new Error("name is required");
-    var user = { name: name, userId: helpers_1["default"]() };
-    exports.users.push(user);
-    res.send(exports.users);
-};
-exports.updateUser = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, userId_2, newName, index;
-    return __generator(this, function (_b) {
-        try {
-            _a = req.body, userId_2 = _a.userId, newName = _a.newName;
-            index = exports.users.findIndex(function (object) { return object.userId === String(userId_2); });
-            exports.users[index].name = newName;
-            res.send({ users: exports.users });
-        }
-        catch (error) {
-            res.send({ error: error.message });
-        }
-        return [2 /*return*/];
+exports.handleDeleteUser = handleDeleteUser;
+;
+function handleAddUser(req, res) {
+    return __awaiter(this, void 0, void 0, function () {
+        var name, user;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    name = req.body.name;
+                    if (!name)
+                        throw new Error("name is required");
+                    return [4 /*yield*/, userModel_1.UserModel.create({ name: name })];
+                case 1:
+                    user = _a.sent();
+                    return [4 /*yield*/, user.save()];
+                case 2:
+                    _a.sent();
+                    res.send({ userAdded: true });
+                    console.log(user);
+                    return [2 /*return*/];
+            }
+        });
     });
-}); };
+}
+exports.handleAddUser = handleAddUser;
+;
+function updateUser(req, res) {
+    return __awaiter(this, void 0, void 0, function () {
+        var name, newName, error_2;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 5, , 6]);
+                    name = req.body.name;
+                    if (!name)
+                        throw new Error("name is required");
+                    return [4 /*yield*/, userModel_1.UserModel.findOneAndUpdate({ name: name })];
+                case 1:
+                    newName = _a.sent();
+                    if (!!name) return [3 /*break*/, 2];
+                    res.send({ "in": false });
+                    return [3 /*break*/, 4];
+                case 2: return [4 /*yield*/, newName.save()];
+                case 3:
+                    _a.sent();
+                    _a.label = 4;
+                case 4:
+                    console.log(newName);
+                    return [3 /*break*/, 6];
+                case 5:
+                    error_2 = _a.sent();
+                    res.send({ error: error_2.message });
+                    return [3 /*break*/, 6];
+                case 6: return [2 /*return*/];
+            }
+        });
+    });
+}
+exports.updateUser = updateUser;
+;
+// export const updateUser = async(req, res) => {
+//     try {
+//         const {userId, newName} = req.body;
+//         const index = users.findIndex(object => {
+//             return object.userId === String(userId)
+//         })
+//         users[index].name = newName
+//         res.send({users});
+//     } catch (error) {
+//         res.send({error: error.message});
+//     }
+// };
+function getUser(req, res) {
+    return __awaiter(this, void 0, void 0, function () {
+        var name, userDB, error_3;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    name = req.query.name;
+                    console.log(name);
+                    if (!name)
+                        throw new Error("missing userId in query");
+                    return [4 /*yield*/, userModel_1.UserModel.findOne(name)];
+                case 1:
+                    userDB = _a.sent();
+                    console.log("my name is " + name);
+                    if (!userDB)
+                        throw new Error("coundt find use with this id: " + name);
+                    res.send({ user: userDB, success: true });
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_3 = _a.sent();
+                    console.error(error_3);
+                    res.send({ eror: error_3.message });
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
+}
+exports.getUser = getUser;

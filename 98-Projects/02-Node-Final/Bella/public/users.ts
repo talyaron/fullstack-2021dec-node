@@ -68,3 +68,45 @@ function renderUsers(users) {
 	root.innerHTML = html;
 }
 
+
+
+function getUserId(): string | false {
+  try {
+    const queryString = window.location.search;
+    console.log(queryString);
+
+    const urlParams = new URLSearchParams(queryString);
+    console.log(urlParams)
+    const userId = urlParams.get("userId");
+    const name = urlParams.get("name");
+    console.log(name);
+
+    return userId;
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
+}
+
+async function onscondPageLoad() {
+  try {
+    //get params of userId
+    const userId = getUserId();
+
+    if (!userId) throw new Error("couldnt find user id in url");
+
+    const { data } = await axios.get(`/users/get-user?userId=${userId}`);
+
+    const { error, user } = data;
+    if (error) throw error;
+    console.log(user);
+    const { name } = user;
+
+    const root = document.querySelector("#root");
+    root.innerHTML = `<h1>Welcome  ${name}</h1>`;
+
+    console.log(data);
+  } catch (error) {
+    console.log(error);
+  }
+}

@@ -24,6 +24,6 @@ async function handleRegister(ev : any) {
 
 
 async function runRegister(register) {
-    window.location.href= "/login.html";
+    window.location.href= "./login.html";
     console.log(register);
 };

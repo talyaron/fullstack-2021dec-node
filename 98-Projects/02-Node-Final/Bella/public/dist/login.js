@@ -1,3 +1,4 @@
+// import {getUserId, onscondPageLoad } from './users'
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -52,7 +53,7 @@ function handleLogin(ev) {
                     data = (_a.sent()).data;
                     login = data.login, error = data.error;
                     console.log(data);
-                    runLogin(login);
+                    runLogin(data);
                     if (error)
                         throw error;
                     return [3 /*break*/, 4];
@@ -66,11 +67,11 @@ function handleLogin(ev) {
     });
 }
 ;
-function runLogin(login) {
+function runLogin(user) {
     return __awaiter(this, void 0, void 0, function () {
         return __generator(this, function (_a) {
-            window.location.href = "/users.html";
-            console.log(login);
+            window.location.href = "./users.html?userId=" + user._id + "&name=" + user.name;
+            console.log(user);
             return [2 /*return*/];
         });
     });

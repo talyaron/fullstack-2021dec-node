@@ -70,7 +70,7 @@ function handleRegister(ev) {
 function runRegister(register) {
     return __awaiter(this, void 0, void 0, function () {
         return __generator(this, function (_a) {
-            window.location.href = "/login.html";
+            window.location.href = "./login.html";
             console.log(register);
             return [2 /*return*/];
         });

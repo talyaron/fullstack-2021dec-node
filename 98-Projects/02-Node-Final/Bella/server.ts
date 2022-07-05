@@ -5,7 +5,7 @@ const port = 3000;
 app.use(express.json());
 
 mongoose
-    .connect("mongodb+srv://Bella:xFS7EsTQz8Frw7UL@cluster0.ceb2t.mongodb.net/test")
+    .connect("mongodb+srv://Bella:xFS7EsTQz8Frw7UL@cluster0.ceb2t.mongodb.net/users")
     .then(() => {
         console.log("Connected to DB!");
     })

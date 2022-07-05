@@ -37,7 +37,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 exports.__esModule = true;
 exports.handleLogin = exports.handleRegister = void 0;
-var userValidModel_1 = require("../models/userValidModel");
+var userModel_1 = require("../models/userModel");
 function handleRegister(req, res) {
     return __awaiter(this, void 0, void 0, function () {
         var _a, email, password, error, user, error_1;
@@ -46,10 +46,10 @@ function handleRegister(req, res) {
                 case 0:
                     _b.trys.push([0, 2, , 3]);
                     _a = req.body, email = _a.email, password = _a.password;
-                    error = userValidModel_1.UserValidation.validate({ email: email, password: password }).error;
+                    error = userModel_1.UserValidation.validate({ email: email, password: password }).error;
                     if (error)
                         throw error;
-                    user = new userValidModel_1["default"]({ email: email, password: password });
+                    user = new userModel_1.UserValidModel({ email: email, password: password });
                     return [4 /*yield*/, user.save()];
                 case 1:
                     _b.sent();
@@ -75,10 +75,10 @@ function handleLogin(req, res) {
                 case 0:
                     _b.trys.push([0, 2, , 3]);
                     _a = req.body, email = _a.email, password = _a.password;
-                    error = userValidModel_1.UserValidation.validate({ email: email, password: password }).error;
+                    error = userModel_1.UserValidation.validate({ email: email, password: password }).error;
                     if (error)
                         throw error;
-                    return [4 /*yield*/, userValidModel_1["default"].findOne({ email: email, password: password })];
+                    return [4 /*yield*/, userModel_1.UserValidModel.findOne({ email: email, password: password })];
                 case 1:
                     user = _b.sent();
                     if (!user) {
