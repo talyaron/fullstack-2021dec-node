@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"
+        integrity="sha512-odNmoc1XJy5x1TMVMdC7EMs3IVdItLPlCeL5vSUPN2llYKMJ2eByTTAIiiuqLg+GdNr9hF6z81p27DArRFKT7A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="./dist/style.css">   
+    <script src="./dist/index.js" async></script>
+    <title>game</title>
+</head>
+
+<body>
+    <p class="title-game">Matching g<span><img class="smilyImg-game" src="../img/smily.png"></span><span
+            style="display: none;">a</span> me</p>
+
+    <div class="gameButtons">
+        <button class="newGameBtm" onclick="handleStartGame()">New game</button>
+        <button class="statisticBtn" onclick="handleToGeneralStatistic()">Statistic</button>
+    </div>
+
+    <div class="statistics">
+        <p class="statistics__title" id="game-title">Game Statistics:</p>
+        <div class="statistics__info-player" id="playerRoot"></div>
+        <div class="statistics__info-time">
+            <span class="material-icons user-icon clock">history</span>
+            Time: <span id="time-remaining" style="color: rgba(130, 29, 18, 0.591);">60</span>
+        </div>
+        <div class="statistics__info-flips">
+            <span class="material-icons user-icon">style</span>
+            Flips: <span id="flips" style="color: rgba(130, 29, 18, 0.591);">0</span>
+        </div>
+    </div>
+
+    <div class="containerGame" id="root"></div>
+
+    <span class="material-icons arrow-back-to-login" onclick="handleBackToLogin()">arrow_back</span>
+
+    <div class="winning-message " id="winningMessage"></div>
+
+    <audio id="creepy" src="audio/creepy.mp3"></audio>
+    <audio id="flip" src="audio/flip.wav"></audio>
+    <audio id="gameOver" src="audio/gameOver.mp3"></audio>
+    <audio id="match" src="audio/match.mp3"></audio>
+    <audio id="victory" src="audio/victory.mp3"></audio>
+
+    <script type="text/javascript" async>
+        window.onload = function () {
+            loadNewGame();
+            pulseGame();
+        };
+    </script>
+</body>
+
+</html>

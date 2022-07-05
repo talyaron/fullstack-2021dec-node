@@ -4,7 +4,7 @@ interface Product{
    id:string;
    name:string;
 }
-let products: Array<Product> = []
+let products: Array<Product> = [{id:"por", name:"test"}]
 
 export function getProducts(req, res) {
    try {

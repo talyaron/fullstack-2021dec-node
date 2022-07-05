@@ -27,7 +27,7 @@ const app = express();
 const port = 3000; // default port to listen;
 app.use(express.json());
 const helpers_1 = __importStar(require("./control/helpers"));
-// define a route handler for the default home page
+// define a route handler for the default hnpmome page
 app.use(express.static('public'));
 console.log(helpers_1.default(), helpers_1.randomNumber(200), helpers_1.x);
 const productsRoute_1 = __importDefault(require("./routes/productsRoute"));

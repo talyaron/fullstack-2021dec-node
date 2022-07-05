@@ -8,6 +8,7 @@ app.use(express.json());
 mongoose
   .connect(
     "mongodb+srv://tal:Fct4jYbHtkSrSnIa@cluster0.0hzknon.mongodb.net/myDataBase?retryWrites=true&w=majority"
+    
   )
   .then(() => {
     console.log("Connected to DB!");
