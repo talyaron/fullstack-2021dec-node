@@ -9,7 +9,7 @@ const mongoose_1 = __importDefault(require("mongoose"));
 require("dotenv").config();
 const url = process.env.MONGODB_URL;
 const app = express_1.default();
-const port = process.env.PORT || 4004;
+const port = process.env.PORT || 3002;
 app.use(express_1.default.static('public'));
 app.use(express_1.default.json());
 const UserRoute_1 = __importDefault(require("./routes/UserRoute"));
