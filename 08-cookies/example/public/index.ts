@@ -1,4 +1,4 @@
-function handleLoad() {
+function handleLoad(): void {
     console.log('handleLoad')
     getUserByCookie();
 }
