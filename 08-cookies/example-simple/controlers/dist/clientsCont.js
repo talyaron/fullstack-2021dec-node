@@ -39,18 +39,19 @@ exports.__esModule = true;
 exports.setHello = void 0;
 function setHello(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var name2;
+        var id;
         return __generator(this, function (_a) {
             try {
                 //somthing else
-                console.log(req.cookies);
-                name2 = req.cookies.name2;
-                console.log(name2);
-                if (name2) {
-                    console.log("Client with id " + name2 + " returned!!!!");
+                console.log(req.headers);
+                id = req.cookies.id;
+                console.log(id);
+                if (id) {
+                    console.log("Client with id " + id + " returned!!!!");
+                    //save some data on name2
                 }
                 else {
-                    res.cookie("name2", Math.floor(Math.random() * 10000000));
+                    res.cookie("id", Math.floor(Math.random() * 10000000));
                     console.log("we have new user!!!!");
                 }
                 res.send({ ok: true }); //Sets name = express

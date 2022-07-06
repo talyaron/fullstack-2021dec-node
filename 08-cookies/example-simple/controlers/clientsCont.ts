@@ -2,14 +2,17 @@ export async function setHello(req, res) {
   try {
     //somthing else
 
-    console.log(req.cookies);
-    const { name2 } = req.cookies;
-    console.log(name2);
+    console.log(req.headers)
 
-    if (name2) {
-      console.log(`Client with id ${name2} returned!!!!`);
+    // console.log(req.cookies);
+    const { id } = req.cookies;
+    console.log(id);
+
+    if (id) {
+      console.log(`Client with id ${id} returned!!!!`);
+      //save some data on name2
     } else {
-      res.cookie("name2", Math.floor(Math.random() * 10000000));
+      res.cookie("id", Math.floor(Math.random() * 10000000));
       console.log("we have new user!!!!");
     }
 

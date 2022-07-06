@@ -9,7 +9,7 @@ function handleLoad(){
 async function helloServer(){
     try {
         //@ts-ignore
-        const {data} = await axios.get('/clients/hello');
+        const {data} = await axios.get('/clients/hello'); //rest-API
 
         console.log(data)
     } catch (error) {
