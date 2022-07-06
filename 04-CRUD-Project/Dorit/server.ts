@@ -2,7 +2,7 @@
 import express from "express";
 
 const app = express();
-const port = process.env.PORT ||2003
+const port = process.env.PORT ||6060
 import rout from "./Routes/rout"
 app.use(express.json()); // to get body from client (body = data from client)
 app.use(express.static("public"));

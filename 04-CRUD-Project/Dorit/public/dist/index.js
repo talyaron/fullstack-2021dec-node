@@ -1,4 +1,3 @@
-"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -35,7 +34,6 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-exports.__esModule = true;
 function handleGetAllRecipes() {
     return __awaiter(this, void 0, void 0, function () {
         var recipeList, data, recipeList_1, error, error_1;
@@ -76,7 +74,10 @@ function renderAllRecipes(recipeList) {
         console.log("root does not exist");
     var html = "";
     recipeList.forEach(function (element) {
-        html += "<div class=\"recipeList\"> recipe name:\"" + element.name + "\" ,adder name:\"" + element.adderName + "\"</div>";
+        var name = element.name;
+        html +=
+            "<a href=\"getOne.html?name=" + name + "\">\n            <div class = \"recipeList\">\n            recipe name:\"" + element.name + "\" ,adder name:\"" + element.adderName + "<br>\n            </div>\n        </a>";
+        //html+=`<div class="recipeList"> recipe name:"${element.name}" ,adder name:"${element.adderName}"</div>` 
     });
     console.log(html);
     root.innerHTML += html;
@@ -90,27 +91,29 @@ function handleGetRecipe() {
     if (forms)
         forms.remove();
     var html = "";
-    html = "\n    <div id=\"forms\">\n        <form onsubmit=\"getRecipe(event)\">\n         <input type=\"text\" name=\"recipeName\" placeholder=\"Recipe Name\">\n         <button type=\"submit\">Get Recipe</button>\n        </form>\n    </div>";
+    html = "\n    <div id=\"forms\">\n        <form onsubmit=\"getRecipe(event,)\">\n         <input type=\"text\" name=\"recipeName\" placeholder=\"Recipe Name\">\n         <button type=\"submit\">Get Recipe</button>\n        </form>\n    </div>";
     var root = document.querySelector("#root");
     root.innerHTML = html;
     root.style.position = "relative";
     root.style.top = "10px";
     root.style.left = "10px";
 }
-function getRecipe(event) {
+function getRecipe() {
     return __awaiter(this, void 0, void 0, function () {
-        var recipeName, data, recipe, error, error_2;
+        var queryString, urlParams, name, data, recipe, error, error_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     console.log("getRecipe");
-                    event.preventDefault();
-                    recipeName = event.target.elements.recipeName.value;
                     _a.label = 1;
                 case 1:
                     _a.trys.push([1, 3, , 4]);
-                    console.log("recipeName from getRecipe client:" + recipeName);
-                    return [4 /*yield*/, axios.put('/api/get-recipe/getRoutRecipe', { recipeName: recipeName })];
+                    queryString = window.location.search;
+                    console.log(queryString);
+                    urlParams = new URLSearchParams(queryString);
+                    name = urlParams.get("name");
+                    console.log(name);
+                    return [4 /*yield*/, axios.put('/api/get-recipe/getRoutRecipe', { name: name })];
                 case 2:
                     data = (_a.sent()).data;
                     recipe = data.recipe, error = data.error;
@@ -122,7 +125,7 @@ function getRecipe(event) {
                 case 3:
                     error_2 = _a.sent();
                     console.error(error_2);
-                    return [3 /*break*/, 4];
+                    return [2 /*return*/, false];
                 case 4: return [2 /*return*/];
             }
         });
