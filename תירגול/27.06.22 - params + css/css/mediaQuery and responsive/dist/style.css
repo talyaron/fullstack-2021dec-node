@@ -1,0 +1,21 @@
+.paragraphs {
+  display: flex;
+  flex-direction: row;
+}
+.paragraphs p {
+  background-color: aqua;
+  font-size: clamp(25px, 2vw, 40px);
+}
+@media only screen and (max-width: 750px) {
+  .paragraphs {
+    flex-direction: column;
+  }
+}
+
+.forExample {
+  background-color: purple;
+  color: white;
+  margin: 1% auto;
+  font-size: clamp(25px, 2vw, 40px);
+  width: clamp(250px, 50%, 600px);
+}

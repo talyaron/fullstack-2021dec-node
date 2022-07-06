@@ -1,0 +1,15 @@
+.position {
+  background-color: aquamarine;
+  position: relative;
+}
+.position__item1, .position__item2 {
+  width: 20%;
+}
+.position__item1 {
+  background-color: bisque;
+  position: absolute;
+  top: 2vh;
+}
+.position__item2 {
+  background-color: purple;
+}

@@ -10,7 +10,7 @@ const port = 3000;
 app.use(express_1.default.static('public'));
 app.use(express_1.default.json());
 mongoose_1.default
-    .connect("mongodb+srv://Bella:xFS7EsTQz8Frw7UL@cluster0.ceb2t.mongodb.net/users2?retryWrites=true&w=majority")
+    .connect("mongodb+srv://@cluster0.ceb2t.mongodb.net/users2?retryWrites=true&w=majority")
     .then(() => {
     console.log("Connected to DB!");
 })

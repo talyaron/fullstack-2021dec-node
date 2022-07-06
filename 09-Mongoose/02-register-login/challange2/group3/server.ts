@@ -7,7 +7,7 @@ app.use(express.json());
 
 mongoose
   .connect(
-    "mongodb+srv://Bella:xFS7EsTQz8Frw7UL@cluster0.ceb2t.mongodb.net/users2?retryWrites=true&w=majority"
+    "mongodb+srv://@cluster0.ceb2t.mongodb.net/users2?retryWrites=true&w=majority"
   )
   .then(() => {
     console.log("Connected to DB!");
