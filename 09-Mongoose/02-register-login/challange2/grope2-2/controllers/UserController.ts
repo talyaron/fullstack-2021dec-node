@@ -1,8 +1,4 @@
 
-import mongoose from "mongoose";
-// import {UserModel} from "../models/UserModel";
-// import { ProfileModel } from "../models/UserModel";
-// import { UserValidation } from "../models/UserModel";
 import { UserModel, ProfileModel, UserValidation } from "../models/UserModel";
 
 export const handleRegister = async (req, res) => {
@@ -12,10 +8,10 @@ export const handleRegister = async (req, res) => {
     if (error) throw error;
 
     const user = new UserModel({ email, password });
-    const result = await user.save();
+    const userDB = await user.save();
 
-    res.status(200).send({ success: true, result });
-    console.log(result);
+    res.status(200).send({ success: true, result:userDB });
+    
 
   } catch (error) {
     console.error(error);

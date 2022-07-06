@@ -1,14 +1,14 @@
 
 import express from "express";
 const router = express.Router();
-import * as UserControler from "../controllers/UserController";
+import {handleRegister,handleLogin, toNextPage,handleUpdate,handleSubmit} from "../controllers/UserController";
 
 router
-  .post("/register", UserControler.handleRegister)
-  .post("/login", UserControler.handleLogin)
-  .get("/get-user", UserControler.toNextPage)
-  .post("/submit", UserControler.handleSubmit)
-  .patch("/update", UserControler.handleUpdate)
+  .post("/register", handleRegister)
+  .post("/login", handleLogin)
+  .get("/get-user", toNextPage)
+  .post("/submit", handleSubmit)
+  .patch("/update", handleUpdate)
 export default router;
 
 

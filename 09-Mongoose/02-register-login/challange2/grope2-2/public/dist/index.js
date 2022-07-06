@@ -62,7 +62,7 @@ function handleRegister(e) {
                         alert("email is already in use");
                     console.log(data);
                     e.target.reset();
-                    window.location.href = "./login.html";
+                    window.location.href = "./login.html?";
                     return [3 /*break*/, 4];
                 case 3:
                     error_1 = _b.sent();
