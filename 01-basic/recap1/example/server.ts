@@ -5,7 +5,7 @@ const port = 3000; // default port to listen;
 app.use(express.json());
 import uid,{randomNumber, x} from './control/helpers'
 
-// define a route handler for the default home page
+// define a route handler for the default hnpmome page
 app.use(express.static('public'))
 
 console.log(uid(), randomNumber(200), x);

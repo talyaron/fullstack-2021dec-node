@@ -105,7 +105,7 @@ function renderCats(catsArray) {
 }
 function handleSearch(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var age, data, searchCat, error_3;
+        var age, data, searchCats, error_3;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -118,9 +118,9 @@ function handleSearch(ev) {
                 case 2:
                     data = (_a.sent()).data;
                     console.log(data);
-                    searchCat = data.searchCat;
-                    console.log(searchCat);
-                    renderCats(searchCat);
+                    searchCats = data.searchCats;
+                    console.log(searchCats);
+                    renderCats(searchCats);
                     return [3 /*break*/, 4];
                 case 3:
                     error_3 = _a.sent();

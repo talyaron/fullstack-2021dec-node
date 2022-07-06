@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 exports.__esModule = true;
 var express_1 = __importDefault(require("express"));
 var app = express_1["default"]();
-var port = process.env.PORT || 2003;
+var port = process.env.PORT || 6060;
 var rout_1 = __importDefault(require("./Routes/rout"));
 app.use(express_1["default"].json()); // to get body from client (body = data from client)
 app.use(express_1["default"].static("public"));
