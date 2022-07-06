@@ -36,17 +36,17 @@ export const UserValidation = Joi.object({
         .required()
 })
 
-// const ProfileSchema = new mongoose.Schema({
-//     name: {
-//         type: String,
-//         required: true
-//     },
-//     age: {
-//         type: Number,
-//         required: true
-//     },
-//     image: {
-//         type: String,
-//         required: true
-//     }
-// });
+const ProfileSchema = new mongoose.Schema({
+    name: {
+        type: String,
+        required: true
+    },
+    age: {
+        type: Number,
+        required: true
+    },
+    image: {
+        type: String,
+        required: true
+    }
+});
