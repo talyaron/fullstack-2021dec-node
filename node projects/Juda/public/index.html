@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.js"
+        integrity="sha512-MNW6IbpNuZZ2VH9ngFhzh6cUt8L/0rSVa60F8L22K1H72ro4Ki3M/816eSDLnhICu7vwH/+/yb8oB3BtBLhMsA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="dist/style.css">
+</head>
+
+<body>
+
+    <form class="formWrapper" id="search" onsubmit="handleSearch(event)">
+
+        <label for="chooseDate">When do you like to dance?</label>
+        <input type="date" name="chooseDate" id="" required><br>
+
+        <h1>What's your style?</h1>
+        <label class="container">Salsa <input type="checkbox" name="danceTypeSalsa" id=""> <span
+                class="checkmark"></span></label>
+
+
+        <label class="container">Bachata <input type="checkbox" name="danceTypeBachata" id=""><span
+                class="checkmark"></span></label>
+
+        <input class="button" type="submit" value="Search" onclick="if(!this.form.danceTypeSalsa.checked&&!this.form.danceTypeBachata.checked){
+    alert('You must choose at least one dance type.');
+    return false;
+}">
+
+    </form>
+
+    <div class="resultsWrapper">
+
+
+    </div>
+
+
+
+    <script src="dist/index.js"></script>
+</body>
+
+</html>
