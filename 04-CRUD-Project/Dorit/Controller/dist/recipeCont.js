@@ -49,11 +49,12 @@ var recipes = [
 ];
 function getRecipe(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var recipeName_1, recipeIndex;
+        var name, recipeName_1, recipeIndex;
         return __generator(this, function (_a) {
             console.debug("getRecipe from controller");
             try {
-                recipeName_1 = req.body.recipeName;
+                name = req.body.name;
+                recipeName_1 = name;
                 if (!recipeName_1)
                     throw new Error("recipeName is required");
                 recipeIndex = recipes.findIndex(function (recipe) { return recipe.name === recipeName_1; });
