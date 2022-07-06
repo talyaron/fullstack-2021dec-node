@@ -4,7 +4,7 @@ const app = express();
 const port = 3001;
 require('dotenv').config()
 
-// const mongodb_uri = process.env.MONGODB_URI;
+const mongodb_uri = process.env.MONGODB_URI;
 
 
 app.use(express.json());
@@ -18,22 +18,22 @@ mongoose
   })
   .catch((err) => console.log(err));
 
-// mongoose
-//   .connect(
-//     mongodb_uri
+mongoose
+  .connect(
+    mongodb_uri
     
-//   )
-//   .then(() => {
-//     console.log("Connected to DB!");
-//   })
-//   .catch((err) => console.log(err));
+  )
+  .then(() => {
+    console.log("Connected to DB!");
+  })
+  .catch((err) => console.log(err));
 
 
 
 app.use(express.static('public'))
 
-// import route from "./routes/route";  
-// app.use('/users', route);
+import route from "./routes/userRoute";  
+app.use('/users', route);
 
 import userRoutes from "./routes/userRoutes";
 app.use('/users',  userRoutes);
