@@ -1,0 +1,24 @@
+{
+    "name": "bella",
+    "version": "1.0.0",
+    "description": "",
+    "main": "server.ts",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "cookie-parser": "^1.4.6",
+        "dotenv": "^16.0.1",
+        "express": "^4.18.1",
+        "mongoose": "^6.4.3"
+    },
+    "devDependencies": {
+        "@types/node": "^18.0.3",
+        "ts-node": "^10.8.2",
+        "tslib": "^2.4.0",
+        "typescript": "^4.7.4"
+    }
+}

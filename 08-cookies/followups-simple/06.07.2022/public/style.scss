@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=BIZ+UDPMincho&family=Cairo:wght@300&family=Josefin+Sans:wght@300&family=Montserrat:wght@100;200&family=Rajdhani:wght@300&family=Red+Hat+Mono:wght@300;400&family=Special+Elite&display=swap');
+
+* {
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+    //   font-weight: 600;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    text-align: center;
+
+    // display: flex;
+    // flex-direction: column;
+    // align-items: center;
+    // justify-content: center;
+    // height: 100vh;
+    overflow: hidden;  
+}
+
+
+// loader
+// .lds-ripple {
+//     display: inline-block;
+//     position: relative;
+//     width: 80px;
+//     height: 80px;
+// }
+
+// .lds-ripple div {
+//     position: absolute;
+//     border: 2px solid #fff;
+//     opacity: 1;
+//     border-radius: 50%;
+//     animation: lds-ripple 2s cubic-bezier(0, 0.4, 0.7, 1) infinite;
+// }
+
+// .lds-ripple div:nth-child(2) {
+//     animation-delay: -0.6s;
+// }
+
+// @keyframes lds-ripple {
+//     0% {
+//         top: 36px;
+//         left: 36px;
+//         width: 0;
+//         height: 0;
+//         opacity: 0;
+//     }
+
+//     4.9% {
+//         top: 36px;
+//         left: 36px;
+//         width: 0;
+//         height: 0;
+//         opacity: 0;
+//     }
+
+//     5% {
+//         top: 36px;
+//         left: 36px;
+//         width: 0;
+//         height: 0;
+//         opacity: 1;
+//     }
+
+//     100% {
+//         top: 0px;
+//         left: 0px;
+//         width: 72px;
+//         height: 72px;
+//         opacity: 0;
+//     }
+// }
