@@ -1,6 +1,4 @@
 "use strict";
-// import express from 'express';
-// import mongoose from "mongoose";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -38,25 +36,17 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.setHello = void 0;
-function setHello(req, res) {
+exports.handleGetCookie = void 0;
+function handleGetCookie(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var name;
         return __generator(this, function (_a) {
             try {
-                name = req.cookie.name;
-                // console.log(req.headers);  
-                res.cookie("name", "express");
-                res.send({ success: true });
-                console.log(req.cookie);
-                console.log(name);
             }
             catch (error) {
-                console.error(error);
                 res.send({ error: error.message });
             }
             return [2 /*return*/];
         });
     });
 }
-exports.setHello = setHello;
+exports.handleGetCookie = handleGetCookie;

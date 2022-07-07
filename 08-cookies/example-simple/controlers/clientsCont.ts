@@ -12,7 +12,7 @@ export async function setHello(req, res) {
       console.log(`Client with id ${id} returned!!!!`);
       //save some data on name2
     } else {
-      res.cookie("id", Math.floor(Math.random() * 10000000));
+      // res.cookie("id", Math.floor(Math.random() * 10000000));
       console.log("we have new user!!!!");
     }
 
