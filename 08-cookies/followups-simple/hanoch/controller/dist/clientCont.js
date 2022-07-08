@@ -37,15 +37,29 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 exports.__esModule = true;
 exports.handleGetCookie = void 0;
+var userModel_1 = require("../model/userModel");
 function handleGetCookie(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        return __generator(this, function (_a) {
-            try {
+        var _a, email, password, error, user, error_1;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
+                case 0:
+                    _b.trys.push([0, 2, , 3]);
+                    _a = req.body, email = _a.email, password = _a.password;
+                    error = userModel_1.userValidation.validate({ email: email, password: password }).error;
+                    if (error)
+                        throw error;
+                    user = new userModel_1["default"]({ email: email, password: password });
+                    return [4 /*yield*/, user.save()];
+                case 1:
+                    _b.sent();
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_1 = _b.sent();
+                    res.send({ error: error_1.message });
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
             }
-            catch (error) {
-                res.send({ error: error.message });
-            }
-            return [2 /*return*/];
         });
     });
 }
