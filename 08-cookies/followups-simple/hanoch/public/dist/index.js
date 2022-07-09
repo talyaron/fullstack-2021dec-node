@@ -34,15 +34,65 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-function handleCookies() {
+function handleLoad() {
+    getCookie();
+}
+function handleCookies(ev) {
     return __awaiter(this, void 0, void 0, function () {
+        var email, password, data, user, error_1;
         return __generator(this, function (_a) {
-            try {
+            switch (_a.label) {
+                case 0:
+                    ev.preventDefault();
+                    _a.label = 1;
+                case 1:
+                    _a.trys.push([1, 3, , 4]);
+                    email = ev.target.email.value;
+                    password = ev.target.password.value;
+                    return [4 /*yield*/, axios.post('/user/addUser', { email: email, password: password })];
+                case 2:
+                    data = (_a.sent()).data;
+                    user = data.user;
+                    console.log(user);
+                    console.log(data);
+                    handleWC(user.email);
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_1 = _a.sent();
+                    console.log(error_1);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
             }
-            catch (error) {
-                console.log(error);
-            }
-            return [2 /*return*/];
         });
     });
+}
+function getCookie() {
+    return __awaiter(this, void 0, void 0, function () {
+        var data, user, root, userEmail, error_2;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    return [4 /*yield*/, axios.get('/user/getCookie')];
+                case 1:
+                    data = (_a.sent()).data;
+                    user = data.user;
+                    console.log(user);
+                    root = document.querySelector('#root');
+                    if (root) {
+                        userEmail = user.email;
+                        root.innerHTML = "welcome " + userEmail;
+                        console.log(data);
+                    }
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_2 = _a.sent();
+                    console.log(error_2);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
+}
+function handleWC(userEmail) {
 }

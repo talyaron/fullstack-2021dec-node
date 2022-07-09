@@ -1,30 +1,32 @@
 import mongoose from "mongoose";
-import joi, { string } from 'joi';
+import joi from 'joi';
 
 const userSchema = new mongoose.Schema({
+    email: {
+        type: String,
+        required: true
+    },
+    password:{
+        type: String,
+        required: true
+    }
+})
+
+const userSchemaEnter = new mongoose.Schema({
     email: {
         type: String,
         required: true,
         unique: true
     },
-    password:{
-        type: String,
-        required: true
+    count: {
+        type: Number
+
     }
 })
 
-const userSchema1 = new mongoose.Schema({
-    email: {
-        type: String,
-        required: true,
-    },
-    password:{
-        type: String,
-        required: true
-    }
-})
+
 const userModel = mongoose.model('user123', userSchema);
-export const userModel1 = mongoose.model('user1234', userSchema1)
+export const userModelEnter = mongoose.model('userEnter', userSchemaEnter)
 
 export default userModel;
 

@@ -36,31 +36,83 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.handleGetCookie = void 0;
+exports.getEntrance = exports.getCookie = exports.handleGetUser = void 0;
 var userModel_1 = require("../model/userModel");
-function handleGetCookie(req, res) {
+exports.handleGetUser = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var _a, email, password, error, user, findUser, cookie, error_1;
+    return __generator(this, function (_b) {
+        switch (_b.label) {
+            case 0:
+                _b.trys.push([0, 2, , 3]);
+                _a = req.body, email = _a.email, password = _a.password;
+                error = userModel_1.userValidation.validate({ email: email, password: password }).error;
+                if (error)
+                    throw error;
+                user = new userModel_1["default"]({ email: email, password: password });
+                user.save();
+                return [4 /*yield*/, userModel_1["default"].findOne({ email: email })];
+            case 1:
+                findUser = _b.sent();
+                if (findUser) {
+                    cookie = findUser._id;
+                    res.cookie('user', cookie);
+                    res.send({ ok: true, user: user });
+                }
+                return [3 /*break*/, 3];
+            case 2:
+                error_1 = _b.sent();
+                res.send({ error: error_1 });
+                return [3 /*break*/, 3];
+            case 3: return [2 /*return*/];
+        }
+    });
+}); };
+function getCookie(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var _a, email, password, error, user, error_1;
-        return __generator(this, function (_b) {
-            switch (_b.label) {
+        var user, userDB, error_2;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
                 case 0:
-                    _b.trys.push([0, 2, , 3]);
-                    _a = req.body, email = _a.email, password = _a.password;
-                    error = userModel_1.userValidation.validate({ email: email, password: password }).error;
-                    if (error)
-                        throw error;
-                    user = new userModel_1["default"]({ email: email, password: password });
-                    return [4 /*yield*/, user.save()];
+                    _a.trys.push([0, 2, , 3]);
+                    user = req.cookie.user;
+                    console.log('user', user);
+                    return [4 /*yield*/, userModel_1["default"].findById({ user: user })];
                 case 1:
-                    _b.sent();
+                    userDB = _a.sent();
+                    console.log(userDB);
+                    res.send({ ok: true, user: userDB });
                     return [3 /*break*/, 3];
                 case 2:
-                    error_1 = _b.sent();
-                    res.send({ error: error_1.message });
+                    error_2 = _a.sent();
+                    res.send({ error: error_2 });
                     return [3 /*break*/, 3];
                 case 3: return [2 /*return*/];
             }
         });
     });
 }
-exports.handleGetCookie = handleGetCookie;
+exports.getCookie = getCookie;
+function getEntrance(req, res) {
+    return __awaiter(this, void 0, void 0, function () {
+        var email, entrance, save, getUser, error_3;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    email = req.body.email;
+                    entrance = new userModel_1.userModelEnter({ email: email });
+                    save = entrance.save();
+                    return [4 /*yield*/, userModel_1.userModelEnter.find({ email: email })];
+                case 1:
+                    getUser = _a.sent();
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_3 = _a.sent();
+                    res.send({ error: error_3 });
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
+}
+exports.getEntrance = getEntrance;
