@@ -5,4 +5,5 @@ var router = express_1["default"].Router();
 var clientCont_1 = require("../controller/clientCont");
 router.post('/addUser', clientCont_1.handleGetUser)
     .get('/getCookie', clientCont_1.getCookie);
+// .post('/getCount', getCountEntrance)
 exports["default"] = router;

@@ -13,7 +13,7 @@ async function handleCookies(ev){
         console.log(data);
         
         
-        
+        // getEnter(email)
         handleWC(user.email)
     } catch (error) {
         console.log(error);
@@ -40,6 +40,17 @@ async function getCookie(){
         
     }
 }
+
+// async function getEnter(email){
+//     try {
+//         //@ts-ignore
+//         const {data} = await axios.post('/user/getCount', {email})
+//         console.log(data);
+        
+//     } catch (error) {
+//         console.log(error);
+//     }
+// }
 
 function handleWC(userEmail:string){
    

@@ -25,6 +25,7 @@ export  const  handleGetUser = async (req, res) => {
 
 export async function getCookie (req, res){
     try {
+        console.log(req.cookie);
         
         const {user} = req.cookie;
         console.log('user', user)
@@ -35,20 +36,22 @@ export async function getCookie (req, res){
         
 
         
-        res.send({ok: true, user:userDB})
+        res.send({ok: true, userDB})
     } catch (error) {
         res.send({error})
         
     }
 }
 
-export async function getEntrance(req, res){
-    try {
-        const {email} = req.body
-        const entrance = new userModelEnter({email})
-        const save = entrance.save();
-        const getUser = await userModelEnter.find({email})
-    } catch (error) {
-        res.send({error})
-    }
-}
+// export async function getCountEntrance(req, res){
+//     try {
+//         const {email} = req.body
+//         const count = userModel.countDocuments({email: email});
+//         const entrance = new userModelEnter({email, count});
+//         await entrance.save()
+//         res.send({count, entrance})
+//         console.log(count);
+//     } catch (error) {
+//         res.send({error})
+//     }
+// }

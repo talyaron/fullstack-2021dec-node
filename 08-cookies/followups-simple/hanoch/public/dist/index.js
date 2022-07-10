@@ -55,6 +55,7 @@ function handleCookies(ev) {
                     user = data.user;
                     console.log(user);
                     console.log(data);
+                    // getEnter(email)
                     handleWC(user.email);
                     return [3 /*break*/, 4];
                 case 3:
@@ -94,5 +95,14 @@ function getCookie() {
         });
     });
 }
+// async function getEnter(email){
+//     try {
+//         //@ts-ignore
+//         const {data} = await axios.post('/user/getCount', {email})
+//         console.log(data);
+//     } catch (error) {
+//         console.log(error);
+//     }
+// }
 function handleWC(userEmail) {
 }

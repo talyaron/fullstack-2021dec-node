@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.getEntrance = exports.getCookie = exports.handleGetUser = void 0;
+exports.getCookie = exports.handleGetUser = void 0;
 var userModel_1 = require("../model/userModel");
 exports.handleGetUser = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var _a, email, password, error, user, findUser, cookie, error_1;
@@ -74,13 +74,14 @@ function getCookie(req, res) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
+                    console.log(req.cookie);
                     user = req.cookie.user;
                     console.log('user', user);
                     return [4 /*yield*/, userModel_1["default"].findById({ user: user })];
                 case 1:
                     userDB = _a.sent();
                     console.log(userDB);
-                    res.send({ ok: true, user: userDB });
+                    res.send({ ok: true, userDB: userDB });
                     return [3 /*break*/, 3];
                 case 2:
                     error_2 = _a.sent();
@@ -92,27 +93,15 @@ function getCookie(req, res) {
     });
 }
 exports.getCookie = getCookie;
-function getEntrance(req, res) {
-    return __awaiter(this, void 0, void 0, function () {
-        var email, entrance, save, getUser, error_3;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    _a.trys.push([0, 2, , 3]);
-                    email = req.body.email;
-                    entrance = new userModel_1.userModelEnter({ email: email });
-                    save = entrance.save();
-                    return [4 /*yield*/, userModel_1.userModelEnter.find({ email: email })];
-                case 1:
-                    getUser = _a.sent();
-                    return [3 /*break*/, 3];
-                case 2:
-                    error_3 = _a.sent();
-                    res.send({ error: error_3 });
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
-            }
-        });
-    });
-}
-exports.getEntrance = getEntrance;
+// export async function getCountEntrance(req, res){
+//     try {
+//         const {email} = req.body
+//         const count = userModel.countDocuments({email: email});
+//         const entrance = new userModelEnter({email, count});
+//         await entrance.save()
+//         res.send({count, entrance})
+//         console.log(count);
+//     } catch (error) {
+//         res.send({error})
+//     }
+// }
