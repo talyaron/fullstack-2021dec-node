@@ -41,6 +41,21 @@ async function getCookie(){
     }
 }
 
+
+async function handleLogin(ev){
+    ev.preventDefault()
+    try {
+        const email = ev.target.email.value;
+        const password = ev.target.password.value;
+        //@ts-ignore
+        const {data} = await axios.post('/user/login', {email, password});
+        console.log(data)
+        const {count} = data;
+        console.log(count)
+    } catch (error) {
+        console.error(error);
+    }
+}
 // async function getEnter(email){
 //     try {
 //         //@ts-ignore

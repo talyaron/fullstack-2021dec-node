@@ -6,12 +6,15 @@ var joi_1 = require("joi");
 var userSchema = new mongoose_1["default"].Schema({
     email: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     password: {
         type: String,
         required: true
-    }
+    },
+    count: Number,
+    datesLoggedIn: [Date]
 });
 var userSchemaEnter = new mongoose_1["default"].Schema({
     email: {
@@ -23,8 +26,8 @@ var userSchemaEnter = new mongoose_1["default"].Schema({
         type: Number
     }
 });
-var userModel = mongoose_1["default"].model('user123', userSchema);
-exports.userModelEnter = mongoose_1["default"].model('userEnter', userSchemaEnter);
+var userModel = mongoose_1["default"].model("users", userSchema);
+exports.userModelEnter = mongoose_1["default"].model("userEnter", userSchemaEnter);
 exports["default"] = userModel;
 exports.userValidation = joi_1["default"].object({
     email: joi_1["default"].string().required().email(),

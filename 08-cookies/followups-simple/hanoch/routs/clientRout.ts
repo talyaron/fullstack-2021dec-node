@@ -1,10 +1,11 @@
 import express from 'express';
 const router = express.Router()
 
-import {handleGetUser, getCookie, } from '../controller/clientCont'
+import {addUser, getCookie,login } from '../controller/clientCont'
 
-router.post('/addUser', handleGetUser)
+router.post('/addUser', addUser)
         .get('/getCookie', getCookie)
+        .post('/login',login)
         // .post('/getCount', getCountEntrance)
 
 

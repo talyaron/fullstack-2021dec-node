@@ -95,6 +95,34 @@ function getCookie() {
         });
     });
 }
+function handleLogin(ev) {
+    return __awaiter(this, void 0, void 0, function () {
+        var email, password, data, count, error_3;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    ev.preventDefault();
+                    _a.label = 1;
+                case 1:
+                    _a.trys.push([1, 3, , 4]);
+                    email = ev.target.email.value;
+                    password = ev.target.password.value;
+                    return [4 /*yield*/, axios.post('/user/login', { email: email, password: password })];
+                case 2:
+                    data = (_a.sent()).data;
+                    console.log(data);
+                    count = data.count;
+                    console.log(count);
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_3 = _a.sent();
+                    console.error(error_3);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
+}
 // async function getEnter(email){
 //     try {
 //         //@ts-ignore
