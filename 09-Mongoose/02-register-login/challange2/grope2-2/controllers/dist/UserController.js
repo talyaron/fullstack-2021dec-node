@@ -37,12 +37,9 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 exports.__esModule = true;
 exports.toNextPage = exports.handleUpdate = exports.handleSubmit = exports.handleLogin = exports.handleRegister = void 0;
-// import {UserModel} from "../models/UserModel";
-// import { ProfileModel } from "../models/UserModel";
-// import { UserValidation } from "../models/UserModel";
 var UserModel_1 = require("../models/UserModel");
 exports.handleRegister = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, email, password, error, user, result, error_1;
+    var _a, email, password, error, user, userDB, error_1;
     return __generator(this, function (_b) {
         switch (_b.label) {
             case 0:
@@ -54,9 +51,8 @@ exports.handleRegister = function (req, res) { return __awaiter(void 0, void 0, 
                 user = new UserModel_1.UserModel({ email: email, password: password });
                 return [4 /*yield*/, user.save()];
             case 1:
-                result = _b.sent();
-                res.status(200).send({ success: true, result: result });
-                console.log(result);
+                userDB = _b.sent();
+                res.status(200).send({ success: true, result: userDB });
                 return [3 /*break*/, 3];
             case 2:
                 error_1 = _b.sent();

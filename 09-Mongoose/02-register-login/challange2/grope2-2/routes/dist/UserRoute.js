@@ -2,11 +2,11 @@
 exports.__esModule = true;
 var express_1 = require("express");
 var router = express_1["default"].Router();
-var UserControler = require("../controllers/UserController");
+var UserController_1 = require("../controllers/UserController");
 router
-    .post("/register", UserControler.handleRegister)
-    .post("/login", UserControler.handleLogin)
-    .get("/get-user", UserControler.toNextPage)
-    .post("/submit", UserControler.handleSubmit)
-    .patch("/update", UserControler.handleUpdate);
+    .post("/register", UserController_1.handleRegister)
+    .post("/login", UserController_1.handleLogin)
+    .get("/get-user", UserController_1.toNextPage)
+    .post("/submit", UserController_1.handleSubmit)
+    .patch("/update", UserController_1.handleUpdate);
 exports["default"] = router;

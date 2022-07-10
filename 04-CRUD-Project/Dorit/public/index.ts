@@ -1,5 +1,3 @@
-import { maxHeaderSize } from "http";
-
 interface Recipe {
     name: string;
     ingredients: Array<string>;
@@ -33,10 +31,18 @@ function renderAllRecipes(recipeList:Array<recipePart>){
     console.log(recipeList[0])
     console.log(recipeList[1])
     let root:HTMLDivElement=document.querySelector("#root")
-    if (!root) console.log("root does not exist")  
+    if (!root) console.log("root does not exist") 
+ 
     let html:string=""
     recipeList.forEach(element => {
-       html+=`<div class="recipeList"> recipe name:"${element.name}" ,adder name:"${element.adderName}"</div>` 
+        const name = element.name
+        html+=
+        `<a href="getOne.html?name=${name}">
+            <div class = "recipeList">
+            recipe name:"${element.name}" ,adder name:"${element.adderName}<br>
+            </div>
+        </a>`
+       //html+=`<div class="recipeList"> recipe name:"${element.name}" ,adder name:"${element.adderName}"</div>` 
     });
     console.log(html)
     root.innerHTML+=html
@@ -47,13 +53,14 @@ function renderAllRecipes(recipeList:Array<recipePart>){
 }
 
 function handleGetRecipe(){
-     console.log("handleGetRecipe")
+    console.log("handleGetRecipe")
+
     let forms:HTMLDivElement = document.querySelector("#forms")
     if(forms) forms.remove()
     let html=""
     html=`
     <div id="forms">
-        <form onsubmit="getRecipe(event)">
+        <form onsubmit="getRecipe(event,)">
          <input type="text" name="recipeName" placeholder="Recipe Name">
          <button type="submit">Get Recipe</button>
         </form>
@@ -66,25 +73,27 @@ function handleGetRecipe(){
    
  }
 
- async function getRecipe(event: any){
+ async function getRecipe(){
      console.log("getRecipe")
-    event.preventDefault();
-    //console.dir(event)
-    //console.dir(event.target.elements.cakeName.value)
-    const recipeName:string = event.target.elements.recipeName.value
-     try {
-         console.log(`recipeName from getRecipe client:${recipeName}`)
-         // @ts-ignore
-         //const { data } = await axios.put('/api/get-recipe', { recipeName });
-         const { data } = await axios.put('/api/get-recipe/getRoutRecipe',{recipeName})
-         const { recipe, error } = data;
-         console.log(`recipe from client recieved from server: ${recipe}`);
-         if (error) throw new Error(error);
-         renderFullRecipe(recipe);
-     } catch (error) {
-         console.error(error);
-     } 
-}
+        try {
+          const queryString = window.location.search;
+          console.log(queryString);
+          const urlParams = new URLSearchParams(queryString);
+          const name = urlParams.get("name");
+          console.log(name);
+          // @ts-ignore
+          const { data } = await axios.put('/api/get-recipe/getRoutRecipe',{name})
+          const { recipe, error } = data;
+          console.log(`recipe from client recieved from server: ${recipe}`);
+          if (error) throw new Error(error);
+          renderFullRecipe(recipe);
+
+        } catch (error) {
+          console.error(error);
+          return false;
+        }
+      }
+
 
  function handleAddRecipe(){
     console.log("handleAddRecipe")
@@ -131,24 +140,19 @@ function handleGetRecipe(){
     inputEl.setAttribute("type", "text")
     inputEl.setAttribute("name", "Array1")
     inputEl.setAttribute("placeholder", "Igredients")
-
-        divIng.append(inputEl)
-        inputEl.focus()
+    divIng.append(inputEl)
+    inputEl.focus()
  }
 
  function handleAddLinePre(){
-
     const divPre = document.querySelector('.linesPre')
-
 
     const inputPl = document.createElement('input')
     inputPl.setAttribute("type", "text")
     inputPl.setAttribute("name", "Array2")
     inputPl.setAttribute("placeholder", "PrepareMode")
-          
-   
-        divPre.append(inputPl)
-        inputPl.focus()
+    divPre.append(inputPl)
+    inputPl.focus()
     }
 
 

@@ -20,7 +20,7 @@ async function handleRegister(e) {
     console.log(data);
     e.target.reset();
 
-    window.location.href = "./login.html";
+    window.location.href = "./login.html?";
 
   } catch (error) {
     console.error(error);
