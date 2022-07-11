@@ -43,3 +43,18 @@ export function deleteProduct(req, res) {
       res.send({error:error.message});
    }
 }
+
+export function updateProduct(req, res) {
+   try {
+      console.log(req.body);
+      const {id, updateProduct} = req.body;
+      const item = products.filter(product => product.id == id)
+      console.log(item);
+      item[0].name = updateProduct
+      console.log(products);
+      res.send({products});
+   } catch (error) {
+     console.error(error);
+     res.send({error:error.message}); 
+   }
+}
