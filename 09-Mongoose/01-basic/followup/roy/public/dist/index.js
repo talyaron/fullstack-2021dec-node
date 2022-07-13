@@ -96,7 +96,7 @@ function rendrReasult(data) {
     console.log(data);
     var html = '';
     data.forEach(function (kitten) {
-        html += "\n        <div class=\"kittens\" >\n        <h4>" + kitten.name + " is " + kitten.age + " yers old and his color is " + kitten.color + "</h4>\n        <img src=\"" + kitten.image + "\" class=\"teamIcon\">\n        </div>";
+        html += "\n        <div class=\"kittens\" >\n        <h4>" + kitten.name + " is " + kitten.age + " yers old and his color is " + kitten.color + "</h4>\n       > <img src=\"" + kitten.image + "\" class=\"teamIcon\"\n        </div>";
     });
     var root = document.querySelector('#root1');
     root.innerHTML = html;
