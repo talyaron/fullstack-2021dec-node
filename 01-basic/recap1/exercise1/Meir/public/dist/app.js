@@ -34,6 +34,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var _this = this;
 function handleGetProduct() {
     return __awaiter(this, void 0, void 0, function () {
         var products, error_1;
@@ -141,7 +142,7 @@ function renderProducts(products) {
     try {
         var html_1 = "";
         products.forEach(function (product) {
-            html_1 += "<div class=\"productCard\">" + product.name + "<button onclick='handleDelete(\"" + product.id + "\")'>DELETE</button></div>";
+            html_1 += "<div class=\"productCard\">\n            <p>" + product.name + "</p>\n            <button onclick='handleDelete(\"" + product.id + "\")'>DELETE</button>\n            <form onsubmit=\"handleUpdate(event, '" + product.id + "')\">\n              <input type=\"text\" name=\"updateProduct\" placeholed=\"update name of product\"/>\n              <button type=\"submit\">Update</button>\n            </form>\n          </div>";
         });
         var root = document.querySelector("#root");
         if (!root)
@@ -152,3 +153,31 @@ function renderProducts(products) {
         console.error(error);
     }
 }
+var handleUpdate = function (ev, id) { return __awaiter(_this, void 0, void 0, function () {
+    var updateProduct, data, products, error, error_5;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                ev.preventDefault();
+                _a.label = 1;
+            case 1:
+                _a.trys.push([1, 3, , 4]);
+                updateProduct = ev.target.elements.updateProduct.value;
+                console.log(updateProduct);
+                return [4 /*yield*/, axios.patch("/products/update-Product", { id: id, updateProduct: updateProduct })];
+            case 2:
+                data = (_a.sent()).data;
+                console.log(data);
+                products = data.products, error = data.error;
+                if (error)
+                    throw new Error(error);
+                renderProducts(products);
+                return [3 /*break*/, 4];
+            case 3:
+                error_5 = _a.sent();
+                console.error(error_5);
+                return [3 /*break*/, 4];
+            case 4: return [2 /*return*/];
+        }
+    });
+}); };

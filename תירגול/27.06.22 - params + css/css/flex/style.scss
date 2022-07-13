@@ -1,0 +1,11 @@
+body {
+    height: 100vh;
+    display: flex;
+}
+
+.flex {
+    display: flex;
+    // flex-direction: row-reverse;
+    justify-content: space-around;
+    align-items: center;
+}

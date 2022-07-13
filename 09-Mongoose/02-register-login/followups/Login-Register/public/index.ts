@@ -58,7 +58,7 @@ function getUserId(): string | false {
     console.log(queryString);
 
     const urlParams = new URLSearchParams(queryString);
-console.log(urlParams)
+    console.log(urlParams)
     const userId = urlParams.get("userId");
     const age = urlParams.get("age");
     console.log(age);

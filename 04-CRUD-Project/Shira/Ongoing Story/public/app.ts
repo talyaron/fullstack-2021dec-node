@@ -51,10 +51,12 @@ async function getUserStory() {
     //   newStory.innerHTML = myStory.text;
     let html = "";
     addNewStory.forEach((elm)=> {
-        html+= `<p>${elm.name}:</p> ${elm.text} <br> <br>`
+        html+= `<p>${elm.natme}:</p> ${elm.text} <br> <br>`
     })
     newStory.innerHTML = html;
 
   }
+
+  
 
 

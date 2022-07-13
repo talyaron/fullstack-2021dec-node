@@ -95,7 +95,7 @@ function renderStory(addNewStory) {
     //   newStory.innerHTML = myStory.text;
     var html = "";
     addNewStory.forEach(function (elm) {
-        html += "<p>" + elm.name + ":</p> " + elm.text + " <br> <br>";
+        html += "<p>" + elm.natme + ":</p> " + elm.text + " <br> <br>";
     });
     newStory.innerHTML = html;
 }

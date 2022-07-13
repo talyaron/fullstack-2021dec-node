@@ -29,13 +29,15 @@ export async function addCat(req, res){
 export async function searchCat(req, res){
     try {
         const {age} = req.query;
-        const searchCats = catsModel.find({age});
+        console.log(age);
+        const searchCats = await catsModel.find({age});
         if(!searchCats){
             throw new Error ('missing argument!!')
             
         }else{
-            res.send({searchCats})}
             console.log({searchCats});
+            res.send({searchCats})}
+           
             
         
     } catch (error) {

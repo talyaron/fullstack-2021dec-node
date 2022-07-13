@@ -23,7 +23,8 @@ let recipes: Array<Recipe> = [
 export async function getRecipe(req:any, res:any) {
             console.debug("getRecipe from controller")
             try {
-                const {recipeName} = req.body
+                const {name} = req.body
+                const recipeName=name
                 if (!recipeName) throw new Error("recipeName is required");
                 const recipeIndex = recipes.findIndex(recipe => recipe.name === recipeName);
                 if (recipeIndex===-1) throw new Error("recipeName not found")

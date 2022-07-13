@@ -1,0 +1,302 @@
+body {
+  background-color: #c76464;
+}
+
+body header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  height: 40px;
+  border-bottom: 1px solid lightgray;
+  color: white;
+}
+
+body header img {
+  position: relative;
+  width: 5%;
+  height: 100%;
+  border-radius: 50%;
+  border-right: 1px solid lightgray;
+}
+
+body header ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin: 0;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 0;
+}
+
+body header ul a {
+  text-decoration: none;
+}
+
+body header ul li {
+  text-decoration: none;
+  list-style-type: none;
+  color: black;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+body header ul .item {
+  padding: 10px 20px;
+  height: 40px;
+  border-right: 1px solid lightgray;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body header ul .item:hover {
+  border-bottom: 3px solid darkblue;
+}
+
+#getAllRecipeBtn {
+  padding: 10px;
+  margin-bottom: 15px;
+  margin-left: 10px;
+  border-radius: 10px;
+  box-shadow: 2px 2px 6px black;
+  width: fit-content;
+  background-color: #964352;
+}
+
+#AddRecipeFormBtn {
+  position: relative;
+  left: 10px;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  box-shadow: 2px 2px 6px black;
+  width: fit-content;
+  background-color: #964352;
+}
+
+#getAllPostsBtn {
+  padding: 10px;
+  margin-left: 380px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  box-shadow: 2px 2px 6px black;
+  width: fit-content;
+  background-color: #964352;
+}
+
+.postsPageLink p {
+  color: white;
+}
+
+.recipeCard {
+  position: relative;
+  top: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 2px 2px 6px black;
+  width: fit-content;
+  background-color: #e7c0c7;
+}
+.recipeCard #btnDeleteRecipe {
+  width: fit-content;
+  height: 30px;
+  margin-top: 13px;
+  padding: 10px;
+  border-radius: 20px;
+  border: none;
+  background-color: #964352;
+}
+.recipeCard #btnFullRecipe {
+  width: fit-content;
+  height: 30px;
+  margin-top: 13px;
+  padding: 10px;
+  border-radius: 20px;
+  border: none;
+  background-color: #964352;
+}
+.recipeCard .recipeTitleP {
+  font-weight: bolder;
+  font-size: larger;
+}
+
+#addRecipeDiv {
+  visibility: hidden;
+}
+#addRecipeDiv #recipeForm {
+  background-color: antiquewhite;
+  border: 1px solid brown;
+  border-radius: 10px;
+  width: 400px;
+  height: fit-content;
+}
+#addRecipeDiv #recipeForm input {
+  position: relative;
+  top: 5px;
+  left: 85px;
+}
+#addRecipeDiv #recipeForm #instructions {
+  position: relative;
+  top: 5px;
+  left: 85px;
+}
+#addRecipeDiv #recipeForm #btnAddRecipe {
+  position: relative;
+  top: 10px;
+  left: 120px;
+}
+
+#fullRecipe {
+  visibility: hidden;
+  position: relative;
+  left: 300px;
+  bottom: 368px;
+}
+
+.fullRecipeCard {
+  position: relative;
+  top: 88px;
+  left: 250px;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 2px 2px 6px black;
+  width: fit-content;
+  background-color: #a1424f;
+}
+.fullRecipeCard .fullRecTitle {
+  color: white;
+  font-size: larger;
+}
+.fullRecipeCard .recOwner {
+  color: white;
+  font-size: small;
+  font-style: italic;
+  font-weight: bolder;
+}
+.fullRecipeCard .recIngredients, .fullRecipeCard .recInstructions {
+  color: white;
+  font-size: small;
+}
+
+.postsPageLink {
+  color: black;
+}
+
+#postFormDiv {
+  visibility: hidden;
+}
+#postFormDiv #postForm {
+  background-color: #fad7ea;
+  border: 1px solid brown;
+  border-radius: 10px;
+  width: 400px;
+  height: fit-content;
+}
+#postFormDiv #postForm #title {
+  position: relative;
+  width: 200px;
+  top: 5px;
+  left: 85px;
+  border-radius: 20px;
+  height: 30px;
+}
+#postFormDiv #postForm #ingred {
+  position: relative;
+  width: 200px;
+  top: 5px;
+  left: 85px;
+  border-radius: 20px;
+  height: 30px;
+}
+#postFormDiv #postForm #owner {
+  position: relative;
+  width: 200px;
+  top: 5px;
+  left: 85px;
+  border-radius: 20px;
+  height: 30px;
+}
+#postFormDiv #postForm #instructions {
+  border: 1px solid black;
+  width: 200px;
+  position: relative;
+  top: 5px;
+  left: 85px;
+  border-radius: 20px;
+  height: fit-content;
+}
+#postFormDiv #postForm #imageSrc {
+  position: relative;
+  width: 200px;
+  top: 5px;
+  left: 85px;
+  border-radius: 20px;
+  height: 30px;
+}
+#postFormDiv #postForm #btnPublishPost {
+  position: relative;
+  top: 10px;
+  left: 120px;
+  border-radius: 20px;
+  height: 20px;
+}
+
+.postCard {
+  background-color: palevioletred;
+  position: relative;
+  top: 10px;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 2px 2px 6px black;
+  width: fit-content;
+}
+.postCard #imgPost {
+  width: 500px;
+  height: 500px;
+}
+.postCard #btnDeletePost {
+  position: relative;
+  background-color: brown;
+  font-weight: bolder;
+  width: 80px;
+  height: 40px;
+  text-align: center;
+  top: -629px;
+  right: 20px;
+  border-radius: 20px;
+}
+.postCard #btnDeletePost:hover {
+  background-color: #c76464;
+}
+.postCard #btnEditPost {
+  position: relative;
+  background-color: #ad8181;
+  font-weight: bolder;
+  width: 80px;
+  height: 40px;
+  text-align: center;
+  top: -623px;
+  right: 20px;
+  border-radius: 20px;
+}
+.postCard #btnEditPost:hover {
+  background-color: #c76464;
+}
+
+.imageRecipe {
+  border-radius: 20px;
+  width: 400px;
+  height: 400px;
+}
+
+#post2 {
+  margin-right: 150px;
+}
+
+#post1 {
+  margin-right: 100px;
+}

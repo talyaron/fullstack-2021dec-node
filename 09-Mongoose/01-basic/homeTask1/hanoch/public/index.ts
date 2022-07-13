@@ -60,11 +60,11 @@ async function handleSearch(ev){
         const {data} = await axios.get(`/cat/searchCats?age=${age}`)
         console.log(data);
         
-        const {searchCat} = data;
+        const {searchCats} = data;
 
-        console.log(searchCat)
+        console.log(searchCats)
 
-        renderCats(searchCat)
+        renderCats(searchCats)
 
 
     } catch (error) {

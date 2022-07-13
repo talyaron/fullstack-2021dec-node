@@ -18,6 +18,7 @@ async function handleGetUsers() {
 	if (!Array.isArray(users)) throw new Error('users should be an array ant it is not');
 	renderUsers(users);
 }
+
 async function handleAddUser(e) {
 	try {
 		e.preventDefault();

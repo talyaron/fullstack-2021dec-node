@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js" integrity="sha512-odNmoc1XJy5x1TMVMdC7EMs3IVdItLPlCeL5vSUPN2llYKMJ2eByTTAIiiuqLg+GdNr9hF6z81p27DArRFKT7A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="./dist/style.css">
+</head>
+<body>
+   <header>
+      <img class="logo" src="./images/chef.jpg">
+      <ul>
+          <a href="./index.html">
+              <li class="item">Recipes</li>
+          </a>
+          <a href="./posts.html">
+              <li class="item">Posts</li>
+          </a>
+      </ul>
+  </header>
+   <h1>What We Cook Today???</h1>
+
+ 
+
+ <button onclick="handleGetRecipes()" id="getAllRecipeBtn"><p>Get All Recipes </p></button>
+ <button onclick="handleAddRecipeVisible()" id="AddRecipeFormBtn"><p>Add Recipe</p></button>
+
+
+ <button  id="getAllPostsBtn">
+  <a href="./posts.html" class="postsPageLink"><p>Get All Posts</p> </a></button>
+
+<div id="addRecipeDiv">
+<form onsubmit="handleAddRecipe(event)" id="recipeForm" >
+   <input type="text" id="titleField" name="title" placeholder="Recipe-title"><br><br>
+   <input type="text" id="ingredField" name="ingredients" placeholder="Recipe-ingredients"  ><br><br>
+   <input type="text" id="owberField" name="owner" placeholder="Recipe-owner"><br><br>
+   <textarea placeholder="Recipe instructions:" name="instructions" id="instructions"></textarea>
+  
+<br>
+   <input type="submit" value="Add Recipe" id="btnAddRecipe">
+  
+</form>
+</div>
+
+<div id="root"></div>
+<div id="fullRecipe"></div>
+
+<img class="imageRecipe" id="post1" src="./images/post1.jpg">
+<img class="imageRecipe" id="post2"  src="./images/post2.jpg">
+<img class="imageRecipe" id="post3"  src="./images/post3.jpg">
+
+
+    <!-- <script>var exports = {};</script>   -->
+    <script src="./dist/index.js"></script>
+</body>
+</html>
