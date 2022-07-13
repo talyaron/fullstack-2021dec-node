@@ -1,0 +1,31 @@
+@import url("https://fonts.googleapis.com/css2?family=BIZ+UDPMincho&family=Cairo:wght@400&family=Josefin+Sans:wght@400&family=Montserrat:wght@100;200&family=Rajdhani:wght@400&family=Red+Hat+Mono:wght@300;400&family=Special+Elite&display=swap");
+* {
+  box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
+  color: black;
+  font-weight: bold;
+  margin: 1rem;
+}
+
+h1 {
+  font-size: 3rem;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+form {
+  margin: 3em;
+}
+form input[type=password],
+form input[type=email],
+form button {
+  border: 1px solid #2a0ee0;
+  font-size: 1.3rem;
+  padding: 0.3rem 0.7rem;
+}

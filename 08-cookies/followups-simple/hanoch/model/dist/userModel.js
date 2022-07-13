@@ -1,6 +1,6 @@
 "use strict";
 exports.__esModule = true;
-exports.userValidation = exports.userModel1 = void 0;
+exports.userValidation = exports.userModelEnter = void 0;
 var mongoose_1 = require("mongoose");
 var joi_1 = require("joi");
 var userSchema = new mongoose_1["default"].Schema({
@@ -12,20 +12,22 @@ var userSchema = new mongoose_1["default"].Schema({
     password: {
         type: String,
         required: true
-    }
+    },
+    count: Number,
+    datesLoggedIn: [Date]
 });
-var userSchema1 = new mongoose_1["default"].Schema({
+var userSchemaEnter = new mongoose_1["default"].Schema({
     email: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
-    password: {
-        type: String,
-        required: true
+    count: {
+        type: Number
     }
 });
-var userModel = mongoose_1["default"].model('user123', userSchema);
-exports.userModel1 = mongoose_1["default"].model('user1234', userSchema1);
+var userModel = mongoose_1["default"].model("users", userSchema);
+exports.userModelEnter = mongoose_1["default"].model("userEnter", userSchemaEnter);
 exports["default"] = userModel;
 exports.userValidation = joi_1["default"].object({
     email: joi_1["default"].string().required().email(),

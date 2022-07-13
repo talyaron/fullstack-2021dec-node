@@ -1,6 +1,6 @@
 "use strict";
 exports.__esModule = true;
-exports.deleteProduct = exports.addProduct = exports.getProducts = void 0;
+exports.updateProduct = exports.deleteProduct = exports.addProduct = exports.getProducts = void 0;
 var helpers_1 = require("./helpers");
 var products = [{ id: "por", name: "test" }];
 function getProducts(req, res) {
@@ -45,3 +45,19 @@ function deleteProduct(req, res) {
     }
 }
 exports.deleteProduct = deleteProduct;
+function updateProduct(req, res) {
+    try {
+        console.log(req.body);
+        var _a = req.body, id_1 = _a.id, updateProduct_1 = _a.updateProduct;
+        var item = products.filter(function (product) { return product.id == id_1; });
+        console.log(item);
+        item[0].name = updateProduct_1;
+        console.log(products);
+        res.send({ products: products });
+    }
+    catch (error) {
+        console.error(error);
+        res.send({ error: error.message });
+    }
+}
+exports.updateProduct = updateProduct;
