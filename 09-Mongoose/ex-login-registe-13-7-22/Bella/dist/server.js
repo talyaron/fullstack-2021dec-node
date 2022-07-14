@@ -15,9 +15,12 @@ app.use(cookieParser());
 app.use(express_1.default.static("public"));
 app.use(express_1.default.json());
 app.use("/users", userRoute_1.default);
-mongoose_1.default.connect(mongodb_uri).then(res => {
+mongoose_1.default
+    .connect(mongodb_uri)
+    .then(res => {
     console.log("Connected to DB");
-}).catch(err => {
+})
+    .catch(err => {
     console.log("Failed to connect");
     console.error(err.message);
 });
