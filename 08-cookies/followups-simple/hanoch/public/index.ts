@@ -56,16 +56,6 @@ async function handleLogin(ev){
         console.error(error);
     }
 }
-// async function getEnter(email){
-//     try {
-//         //@ts-ignore
-//         const {data} = await axios.post('/user/getCount', {email})
-//         console.log(data);
-        
-//     } catch (error) {
-//         console.log(error);
-//     }
-// }
 
 function handleWC(userEmail:string){
    

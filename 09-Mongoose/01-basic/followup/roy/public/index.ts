@@ -46,7 +46,7 @@ function  rendrReasult(data){
 		html += `
         <div class="kittens" >
         <h4>${kitten.name} is ${kitten.age} yers old and his color is ${kitten.color}</h4>
-        <img src="${kitten.image}" class="teamIcon">
+       > <img src="${kitten.image}" class="teamIcon"
         </div>`
     })
     const root= document.querySelector('#root1');

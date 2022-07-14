@@ -83,13 +83,12 @@ function login(req, res) {
                 case 1:
                     userDB = _b.sent();
                     if (!userDB)
-                        throw new Error("User or password are inccorect");
+                        throw new Error("User or password are incorrect");
                     count = userDB.count;
                     if (!count)
                         count = 0;
                     count++;
                     datesLoggedIn = userDB.datesLoggedIn || [];
-                    f;
                     datesLoggedIn.push(new Date());
                     return [4 /*yield*/, userModel_1["default"].updateOne({ email: email }, { count: count, datesLoggedIn: datesLoggedIn })];
                 case 2:

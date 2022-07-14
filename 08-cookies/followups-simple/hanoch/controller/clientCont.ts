@@ -28,7 +28,7 @@ export async function login(req, res) {
     const { email, password } = req.body;
     const userDB = await userModel.findOne({ email, password });
 
-    if (!userDB) throw new Error("User or password are inccorect");
+    if (!userDB) throw new Error("User or password are incorrect");
 
     let count: number | undefined = userDB.count;
     if (!count) count = 0;
@@ -36,7 +36,7 @@ export async function login(req, res) {
 
     let datesLoggedIn = userDB.datesLoggedIn || [];
 
-    f
+    
     datesLoggedIn.push(new Date());
 
     await userModel.updateOne({ email }, { count,datesLoggedIn });

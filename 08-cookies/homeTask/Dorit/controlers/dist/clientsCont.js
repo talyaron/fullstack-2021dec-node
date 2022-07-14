@@ -42,8 +42,6 @@ function setHello(req, res) {
         var id;
         return __generator(this, function (_a) {
             try {
-                //somthing else
-                console.log(req.headers);
                 id = req.cookies.id;
                 console.log(id);
                 if (id) {

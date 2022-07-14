@@ -69,7 +69,14 @@ function renderProducts(products: Array<Product>): void {
       try {
         let html = "";
         products.forEach((product) => {
-          html += `<div class="productCard">${product.name}<button onclick='handleDelete("${product.id}")'>DELETE</button></div>`;
+          html += `<div class="productCard">
+            <p>${product.name}</p>
+            <button onclick='handleDelete("${product.id}")'>DELETE</button>
+            <form onsubmit="handleUpdate(event, '${product.id}')">
+              <input type="text" name="updateProduct" placeholed="update name of product"/>
+              <button type="submit">Update</button>
+            </form>
+          </div>`;
         });
   
         const root = document.querySelector("#root");
@@ -78,4 +85,21 @@ function renderProducts(products: Array<Product>): void {
      } catch (error) {
        console.error(error);
      }
+}
+const handleUpdate = async (ev, id) => {
+
+  ev.preventDefault()
+  
+  try {
+    const updateProduct = ev.target.elements.updateProduct.value;
+    console.log(updateProduct);
+    //@ts-ignore
+    const {data} = await axios.patch("/products/update-Product", {id, updateProduct});
+    console.log(data);
+    const {products, error} = data;
+      if(error) throw new Error(error);
+    renderProducts(products)
+  } catch (error){
+    console.error(error);
+  }
 }
