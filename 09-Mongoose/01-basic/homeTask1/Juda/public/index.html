@@ -1,0 +1,61 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juda's cats</title>
+    <link rel="stylesheet" href="dist/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.0.0-alpha.1/axios.min.js"
+        integrity="sha512-xIPqqrfvUAc/Cspuj7Bq0UtHNo/5qkdyngx6Vwt+tmbvTLDszzXM0G6c91LXmGrRx8KEPulT+AfOOez+TeVylg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+
+<body>
+
+    <h1>Juda's cats</h1>
+
+    <form onsubmit="handleAddCat(event)">
+        <input name="name" type="text" placeholder="Name">
+        <input name="color" type="text" placeholder="Color">
+        <input name="age" type="number" placeholder="Age">
+        <input name="imgUrl" type="text" placeholder="image URL">
+
+        <button type="submit">Add cat</button>
+
+    </form>
+
+
+    <button onclick="handleGetAllCats()">Get all cats</button>
+
+    <div id="root">
+
+    </div>
+
+<h2>Find a cat</h2>
+
+    <form onsubmit="handleFindCat(event)">
+        <input name="age" type="number" placeholder="Age">
+
+        <button type="submit">Find</button>
+
+    </form>
+
+<h2>Find a cat - expert</h2>
+
+<form onsubmit="handleFindCatsExpert(event)">
+    <input name="name" type="text" placeholder="Name">
+    <input name="color" type="text" placeholder="Color">
+    <input name="age" type="number" placeholder="Age">
+
+
+    <button type="submit">find a cat - expret</button>
+
+</form>
+
+
+
+    <script src="./dist/app.js"></script>
+</body>
+
+</html>

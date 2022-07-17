@@ -36,62 +36,20 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.login = exports.register = void 0;
-var userModel_1 = require("../models/userModel");
-var jwt_simple_1 = require("jwt-simple");
-function register(req, res) {
+exports.markClient = void 0;
+function markClient(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var _a, email, password, userDB, error_1;
-        return __generator(this, function (_b) {
-            switch (_b.label) {
-                case 0:
-                    _b.trys.push([0, 2, , 3]);
-                    _a = req.body, email = _a.email, password = _a.password;
-                    return [4 /*yield*/, userModel_1["default"].create({ email: email, password: password })];
-                case 1:
-                    userDB = _b.sent();
-                    res.send({ ok: true });
-                    return [3 /*break*/, 3];
-                case 2:
-                    error_1 = _b.sent();
-                    console.error(error_1);
-                    res.send({ error: error_1.message });
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
+        var clientName;
+        return __generator(this, function (_a) {
+            try {
+                clientName = req.cookies.clientName;
+                console.log(clientName);
             }
+            catch (error) {
+                res.send({ error: error.message });
+            }
+            return [2 /*return*/];
         });
     });
 }
-exports.register = register;
-function login(req, res) {
-    return __awaiter(this, void 0, void 0, function () {
-        var _a, email, password, userDB, role, cookie, secret, JWTCookie, error_2;
-        return __generator(this, function (_b) {
-            switch (_b.label) {
-                case 0:
-                    _b.trys.push([0, 2, , 3]);
-                    _a = req.body, email = _a.email, password = _a.password;
-                    return [4 /*yield*/, userModel_1["default"].findOne({ email: email, password: password })];
-                case 1:
-                    userDB = _b.sent();
-                    if (!userDB)
-                        throw new Error("User name or password do not match");
-                    role = userDB.role || 'user';
-                    console.log(role);
-                    cookie = { userId: userDB._id, role: role };
-                    secret = process.env.JWT_SECRET;
-                    JWTCookie = jwt_simple_1["default"].encode(cookie, secret);
-                    res.cookie('user', JWTCookie, { maxAge: 1000 * 60 * 4 });
-                    res.send({ ok: true });
-                    return [3 /*break*/, 3];
-                case 2:
-                    error_2 = _b.sent();
-                    console.error(error_2);
-                    res.send({ error: error_2.message });
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
-            }
-        });
-    });
-}
-exports.login = login;
+exports.markClient = markClient;
