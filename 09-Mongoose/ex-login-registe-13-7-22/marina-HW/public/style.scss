@@ -1,0 +1,177 @@
+@import url('https://fonts.googleapis.com/css2?family=BIZ+UDPMincho&family=Cairo:wght@300&family=Josefin+Sans:wght@300&family=Montserrat:wght@100;200&family=Rajdhani:wght@300&family=Red+Hat+Mono:wght@300;400&family=Special+Elite&display=swap');
+
+* {
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+}
+
+body {
+  background-color: rgba(6, 6, 87, 0.778);
+}
+
+.form {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin: 2rem;
+  gap: .8em;
+
+  input[type="text"],
+  input[type="number"],
+  input[type="url"],
+  button {
+    width: 15%;
+    border-radius: 5px;
+    font-size: 1.5rem;
+    margin: .5rem;
+    justify-content: center;
+    justify-self: center;
+    background-color: rgba(0, 0, 0, 0.399);
+    color: rgba(255, 255, 255, 0.558);
+    outline: none;
+    border: none;
+    text-align: center;
+  }
+
+  button {
+    cursor: pointer;
+  }
+
+}
+
+.registeLogin {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 30%;
+  left: 50%;
+  text-align: center;
+
+  .login,
+  .register {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-top: 5rem;
+    gap: .8em;
+
+    input[type='email'],
+    input[type='password'],
+    button {
+      width: 30%;
+      border-radius: 5px;
+      font-size: 1.5rem;
+      margin: .5em;
+      justify-content: center;
+      justify-self: center;
+      background-color: rgba(0, 0, 0, 0.399);
+      color: rgba(255, 255, 255, 0.558);
+      outline: none;
+      border: none;
+      text-align: center;
+    }
+
+    button {
+      cursor: pointer;
+    }
+  }
+
+}
+
+
+.slider {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 200px;
+
+  input[type="range"] {
+    -webkit-appearance: none;
+    width: 80%;
+    height: 2px;
+    background-color: rgba(0, 0, 0, 0.399);
+    border-radius: 2px;
+    outline: none;
+    border: none;
+
+    &::after {
+      content: '1983';
+      color: rgba(253, 253, 253, 0.88);
+      position: absolute;
+      top: 19%;
+      left: 62%;
+      font-size: 1.5em;
+    }
+
+    &::before {
+      content: '1980';
+      color: rgba(253, 253, 253, 0.88);
+      position: absolute;
+      top: 19%;
+      left: 36%;
+      font-size: 1.5em;
+    }
+  }
+
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 15px;
+    height: 30px;
+    background: crimson;
+    border-radius: 10px;
+    border: 1px solid rgb(69, 8, 8);
+    cursor: pointer;
+
+  }
+
+  #current-value {
+    font-size: 1.3em;
+    color: rgba(253, 253, 253, 0.48);
+    padding-right: .5em;
+  }
+
+}
+
+
+#root {
+  margin-inline: 8%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+
+  .card-container {
+    display: flex;
+    flex-direction: column;
+    justify-self: center;
+    margin-bottom: 4em;
+
+    .card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 300px;
+      background-color: #FFF;
+      border-radius: 10px;
+      box-shadow: 5px 5px 20px black;
+      margin-bottom: 1em;
+      font-size: 1.3rem;
+      vertical-align: middle;
+      font-weight: bold;
+
+      img {
+        width: 270px;
+        height: 280px;
+        border-radius: 8px;
+        border: 1px solid rgba(6, 6, 87, 0.865);
+      }
+    }
+
+ 
+
+  }
+
+}
