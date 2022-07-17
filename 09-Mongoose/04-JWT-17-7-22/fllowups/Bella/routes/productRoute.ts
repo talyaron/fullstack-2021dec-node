@@ -1,5 +1,5 @@
 import express from "express";
-import { addProduct } from "../ctrls/productCtrl";
+import { addProduct, getProducts } from "../ctrls/productCtrl";
 import { isAdmin } from "../middlewares/middleware";
 
 const router = express.Router();

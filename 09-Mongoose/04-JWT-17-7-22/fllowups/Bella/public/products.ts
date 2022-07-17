@@ -1,4 +1,22 @@
-async function handleAddProduct(ev : any) {
+function handleLoad(){
+    try {
+        getProducts()
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+async function getProducts(){
+    try {
+       //@ts-ignore 
+       const {data} = await axios.get('/products/get-products');
+       console.log(data)
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+async function handleAddProduct(ev: any) {
     ev.preventDefault();
 
     try {
@@ -18,6 +36,7 @@ async function handleAddProduct(ev : any) {
         console.error(error);
     }
 }
+
 
 function renderProducts(products) {
     let html = "";
