@@ -6,7 +6,7 @@ const router = express.Router();
 router.get('/get-my-products',isAdmin, getMyProducts);
 
 //middlware
-function isAdmin(req, res, next){
+function isAdmin(req:any, res:any, next:any){
     try {
         //check if admin
 

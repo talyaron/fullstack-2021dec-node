@@ -1,4 +1,4 @@
-import ProductModel from "../../models/productsModel";
+import ProductModel from "../models/productsModel";
 
 export async function getMyProducts(req, res) {
   try {

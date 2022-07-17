@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import UserModel from "../../models/userModel";
+import UserModel from "../models/userModel";
 import jwt from 'jwt-simple';
 
 
