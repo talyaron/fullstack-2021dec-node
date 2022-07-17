@@ -27,7 +27,7 @@ app.use("/users", usersRoute);
 import productsRouter from './routes/productRoute';
 app.use('/products', productsRouter)
 
-import ProductModel from './models/productsModel';
+import ProductModel from './Models/ProductModels';
 
 // const newProduct = new ProductModel({title:"stam4", ownerId:'123'})
 // newProduct.save()
