@@ -36,6 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 function handleGetUser1() {
     try {
+        //@ts-ignore
         axios.get('/api/user1').then(function (_a) {
             var data = _a.data;
             console.log(data);
@@ -81,6 +82,7 @@ function handleGetUser2() {
 }
 function handleGetUser3() {
     try {
+        //@ts-ignore
         axios.get('/api/user3').then(function (_a) {
             var data = _a.data;
             console.log(data);
