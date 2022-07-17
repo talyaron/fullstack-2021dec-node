@@ -37,7 +37,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 exports.__esModule = true;
 exports.getMyProducts = void 0;
-var productsModel_1 = require("../../models/productsModel");
+var productsModel_1 = require("../models/productsModel");
 function getMyProducts(req, res) {
     return __awaiter(this, void 0, void 0, function () {
         var user, userId, productsDB, error_1;

@@ -36,25 +36,27 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.login = exports.register = void 0;
-var userModel_1 = require("../models/userModel");
-var jwt_simple_1 = require("jwt-simple");
-function register(req, res) {
+exports.findCatsExpert = exports.findCats = exports.getAllCats = exports.addCat = void 0;
+var CatsModel_1 = require("../model/CatsModel");
+var allCats = [];
+function addCat(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var _a, email, password, userDB, error_1;
+        var _a, name, color, age, imgUrl, newCat, newCatDB, error_1;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
                     _b.trys.push([0, 2, , 3]);
-                    _a = req.body, email = _a.email, password = _a.password;
-                    return [4 /*yield*/, userModel_1["default"].create({ email: email, password: password })];
+                    _a = req.body, name = _a.name, color = _a.color, age = _a.age, imgUrl = _a.imgUrl;
+                    if (!name || !color || !age || !imgUrl)
+                        throw new Error("One of the inputs is missing");
+                    newCat = new CatsModel_1["default"]({ name: name, age: age, color: color, imgUrl: imgUrl });
+                    return [4 /*yield*/, newCat.save()];
                 case 1:
-                    userDB = _b.sent();
-                    res.send({ ok: true });
+                    newCatDB = _b.sent();
+                    res.send({ success: true, cat: newCatDB });
                     return [3 /*break*/, 3];
                 case 2:
                     error_1 = _b.sent();
-                    console.error(error_1);
                     res.send({ error: error_1.message });
                     return [3 /*break*/, 3];
                 case 3: return [2 /*return*/];
@@ -62,31 +64,21 @@ function register(req, res) {
         });
     });
 }
-exports.register = register;
-function login(req, res) {
+exports.addCat = addCat;
+function getAllCats(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var _a, email, password, userDB, role, cookie, secret, JWTCookie, error_2;
-        return __generator(this, function (_b) {
-            switch (_b.label) {
+        var error_2;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
                 case 0:
-                    _b.trys.push([0, 2, , 3]);
-                    _a = req.body, email = _a.email, password = _a.password;
-                    return [4 /*yield*/, userModel_1["default"].findOne({ email: email, password: password })];
+                    _a.trys.push([0, 2, , 3]);
+                    return [4 /*yield*/, CatsModel_1["default"].find({})];
                 case 1:
-                    userDB = _b.sent();
-                    if (!userDB)
-                        throw new Error("User name or password do not match");
-                    role = userDB.role || 'user';
-                    console.log(role);
-                    cookie = { userId: userDB._id, role: role };
-                    secret = process.env.JWT_SECRET;
-                    JWTCookie = jwt_simple_1["default"].encode(cookie, secret);
-                    res.cookie('user', JWTCookie, { maxAge: 1000 * 60 * 4 });
-                    res.send({ ok: true });
+                    allCats = _a.sent();
+                    res.send({ allCats: allCats });
                     return [3 /*break*/, 3];
                 case 2:
-                    error_2 = _b.sent();
-                    console.error(error_2);
+                    error_2 = _a.sent();
                     res.send({ error: error_2.message });
                     return [3 /*break*/, 3];
                 case 3: return [2 /*return*/];
@@ -94,4 +86,49 @@ function login(req, res) {
         });
     });
 }
-exports.login = login;
+exports.getAllCats = getAllCats;
+function findCats(req, res) {
+    return __awaiter(this, void 0, void 0, function () {
+        var age, filteredCats, error_3;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    age = req.body.age;
+                    console.log(age);
+                    return [4 /*yield*/, CatsModel_1["default"].find({ age: age })];
+                case 1:
+                    filteredCats = _a.sent();
+                    if (!filteredCats)
+                        throw new Error("age is missing");
+                    res.send(filteredCats);
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_3 = _a.sent();
+                    res.send({ error: error_3.message });
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
+}
+exports.findCats = findCats;
+function findCatsExpert(req, res) {
+    return __awaiter(this, void 0, void 0, function () {
+        var _a, name, color, age, filteredCats;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
+                case 0:
+                    _a = req.body, name = _a.name, color = _a.color, age = _a.age;
+                    console.log(name);
+                    return [4 /*yield*/, CatsModel_1["default"].find({ name: name, color: color, age: age }).exec()];
+                case 1:
+                    filteredCats = _b.sent();
+                    console.log(filteredCats);
+                    res.send(filteredCats);
+                    return [2 /*return*/];
+            }
+        });
+    });
+}
+exports.findCatsExpert = findCatsExpert;

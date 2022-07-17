@@ -25,11 +25,11 @@ export async function getAllCats(req, res) {
 
 export async function filterCatsByAge(req, res) {
 	try {
-        const { age } = req.body;
-        if(!age) throw new Error("age missing");
-        const catsDB = await CatModel.find({age});
-        res.send({ catsDB });
-    } catch (error) {
-        res.send({ error: error.message });
-    }
+		const { age } = req.body;
+		if (!age) throw new Error("age missing");
+		const catsDB = await CatModel.find({ age });
+		res.send({ catsDB });
+	} catch (error) {
+		res.send({ error: error.message });
+	}
 }
