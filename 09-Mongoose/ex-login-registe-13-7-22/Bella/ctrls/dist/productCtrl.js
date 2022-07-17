@@ -1,3 +1,4 @@
+"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -34,70 +35,31 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-function handleGetUser1() {
-    try {
-        //@ts-ignore
-        axios.get('/api/user1').then(function (_a) {
-            var data = _a.data;
-            console.log(data);
-            var user = data.user, error = data.error;
-            if (error)
-                throw new Error(error);
-            console.log(user);
-            renderUser(user);
-        });
-    }
-    catch (error) {
-        console.error(error);
-    }
-}
-function handleGetUser2() {
+exports.__esModule = true;
+exports.addProduct = void 0;
+var productModel_1 = require("../models/productModel");
+function addProduct(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var data, user, error, error_1;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
+        var _a, title, ownerId, userDB, error_1;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
                 case 0:
-                    _a.trys.push([0, 2, , 3]);
-                    console.log("get user (1)");
-                    console.log("get user After fetch (2)");
-                    return [4 /*yield*/, axios.get("/api/user2")];
+                    _b.trys.push([0, 2, , 3]);
+                    _a = req.body, title = _a.title, ownerId = _a.ownerId;
+                    return [4 /*yield*/, productModel_1["default"].create({ title: title, ownerId: ownerId })];
                 case 1:
-                    data = (_a.sent()).data;
-                    console.log(data);
-                    console.log("get user After fetch (2.5)");
-                    user = data.user, error = data.error;
-                    if (error)
-                        throw new Error(error);
-                    renderUser(user);
-                    console.log("get user After the end of fetch (3)");
+                    userDB = _b.sent();
+                    res.send({ ok: true, userDB: userDB });
                     return [3 /*break*/, 3];
                 case 2:
-                    error_1 = _a.sent();
+                    error_1 = _b.sent();
                     console.error(error_1);
+                    res.send({ error: error_1 });
                     return [3 /*break*/, 3];
                 case 3: return [2 /*return*/];
             }
         });
     });
 }
-function handleGetUser3() {
-    try {
-        //@ts-ignore
-        axios.get('/api/user3').then(function (_a) {
-            var data = _a.data;
-            console.log(data);
-            var user = data.user, error = data.error;
-            if (error)
-                throw new Error(error);
-            console.log(user);
-            renderUser(user);
-        });
-    }
-    catch (error) {
-        console.error(error);
-    }
-}
-function renderUser(user) {
-    var root = document.querySelector("#root");
-    root.innerText = "user " + user.name + " is " + user.age + " years old";
-}
+exports.addProduct = addProduct;
+;
