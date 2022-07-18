@@ -34,9 +34,38 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+function handleLoad() {
+    try {
+        getProducts();
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+function getProducts() {
+    return __awaiter(this, void 0, void 0, function () {
+        var data, error_1;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    return [4 /*yield*/, axios.get('/products/get-products')];
+                case 1:
+                    data = (_a.sent()).data;
+                    console.log(data);
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_1 = _a.sent();
+                    console.error(error_1);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
+}
 function handleAddProduct(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var title, data, ok, error_1;
+        var title, data, ok, error_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -56,8 +85,8 @@ function handleAddProduct(ev) {
                     }
                     return [3 /*break*/, 4];
                 case 3:
-                    error_1 = _a.sent();
-                    console.error(error_1);
+                    error_2 = _a.sent();
+                    console.error(error_2);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
