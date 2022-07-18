@@ -20,7 +20,7 @@ mongoose_1.default.connect(URI).then(res => {
     console.error(err.message);
 });
 const route_1 = __importDefault(require("./router/route"));
-app.use('users', route_1.default);
+app.use('/users', route_1.default);
 app.listen(port, () => {
     return console.log(`Server is listening at http://localhost:${port}`);
 });

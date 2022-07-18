@@ -7,8 +7,9 @@ var regSchema = new mongoose_1["default"].Schema({
     password: { type: String, required: true }
 });
 var productSchema = new mongoose_1["default"].Schema({
-    name: { type: String, required: true },
-    owner: { type: String, required: true }
+    product: { type: String, required: true },
+    price: { type: Number, required: true },
+    user: { type: String }
 });
 exports.productModel = mongoose_1["default"].model("products", productSchema);
 exports.regModel = mongoose_1["default"].model('users', regSchema);

@@ -6,8 +6,9 @@ const regSchema = new mongoose.Schema({
 });
 
 const productSchema = new mongoose.Schema({
-    name: {type: String, required: true},
-    owner: {type: String, required: true}
+    product: {type: String, required: true},
+    price:{type: Number, required: true },
+    user: {type: String}
 })
 
 export const productModel = mongoose.model("products", productSchema)
