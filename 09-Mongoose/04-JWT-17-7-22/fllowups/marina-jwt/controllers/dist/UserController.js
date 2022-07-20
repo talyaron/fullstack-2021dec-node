@@ -106,7 +106,7 @@ exports.login = function (req, res) { return __awaiter(void 0, void 0, void 0, f
                     isMatchPassword = bcrypt_1["default"].compare(password, userDB.password);
                     if (!isMatchPassword)
                         throw new Error('Username or password is not matched');
-                    res.cookie('user', JWTCookie, { maxAge: 1000 * 60 * 5 });
+                    res.cookie('user', JWTCookie, { maxAge: 1000 * 60 * 60 * 24 });
                     res.send({ success: true, user: userDB, entrances: entrances });
                 }
                 return [3 /*break*/, 4];

@@ -50,12 +50,13 @@ export const login = async (req, res) => {
       const secret = process.env.JWT_SECRET;
       const JWTCookie = jwt.encode(cookie, secret);
 
+
       if(!userDB) {
         res.send({login: false});
       } else {
         const isMatchPassword = bcrypt.compare(password, userDB.password);
         if(!isMatchPassword) throw new Error ('Username or password is not matched');
-        res.cookie('user', JWTCookie, {maxAge: 1000*60*5});
+        res.cookie('user', JWTCookie, {maxAge: 1000*60*60*24});
         res.send({success: true, user: userDB, entrances});
       }
 

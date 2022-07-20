@@ -13,8 +13,11 @@ function isUser(req: any, res: any, next: any) {
     let decodedCookie = jwt.decode(user, secret);
     console.log(decodedCookie);
 
+    req.user = decodedCookie;
+
     // const { role } = decodedCookie;
     // if (role !== "admin") {
+      
     //   res.status(403).send({ error: "Not authorized" });
     // } else {
     //   next();
