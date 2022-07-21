@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=BIZ+UDPMincho&family=Cairo:wght@300&family=Josefin+Sans:wght@300&family=Montserrat:wght@100;200&family=Rajdhani:wght@300&family=Red+Hat+Mono:wght@300;400&family=Special+Elite&display=swap');
+
+* {
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    padding: 0;
+    margin: 0;
+    border: none;
+    border-radius: 16px;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.container {
+    margin-left: auto;
+    margin-right: auto;
+    width: 500px;
+    height: 500px;
+    margin-top: 50px;    
+}
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-gap: 10px;
+    width: 500px;
+    height: 500px;
+    border-radius: 16px;
+    background: #e6e8ef;
+    box-shadow: rgba(0, 0, 0, 0.445) 5px 10px 15px;
+}
+
+.board button {
+    color: #aa1f21;
+    font-size: x-large;
+    text-shadow: 5px 5px 5px #818080;
+    font-size: 60px;
+    font-weight: bold;
+    border: .3 solid rgb(55, 112, 69);
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 10px;
+}
+
+.board>#cell0:hover,
+.board>#cell1:hover,
+.board>#cell2:hover,
+.board>#cell3:hover,
+.board>#cell4:hover,
+.board>#cell5:hover,
+.board>#cell6:hover,
+.board>#cell7:hover,
+.board>#cell8:hover {
+    border-radius: 16px;
+    background: #a4c3b2;
+}
+
+.board>#cell0,
+.board>#cell1,
+.board>#cell2,
+.board>#cell3,
+.board>#cell4,
+.board>#cell5,
+.board>#cell6,
+.board>#cell7,
+.board>#cell8 {
+    transition: box-shadow 1s linear 1s;
+}
+
+
+
+

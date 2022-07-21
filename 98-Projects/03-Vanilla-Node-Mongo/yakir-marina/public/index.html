@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Jquery-->
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <!-- axios -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"
+        integrity="sha512-odNmoc1XJy5x1TMVMdC7EMs3IVdItLPlCeL5vSUPN2llYKMJ2eByTTAIiiuqLg+GdNr9hF6z81p27DArRFKT7A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="./dist/style.css">
+    <title>Tic Tac Toe</title>
+</head>
+
+<body>
+    <h1>Tic Tac Toe</h1>
+
+    <div id="message">Waiting for oponent...</div>
+
+
+    <div class="container">
+        <div class="board">
+            <button id="cell0"></button> <button id="cell1"></button> <button id="cell2"></button>
+            <button id="cell3"></button> <button id="cell4"></button> <button id="cell5"></button>
+            <button id="cell6"></button> <button id="cell7"></button> <button id="cell8"></button>
+        </div>
+    </div>
+
+
+    <div id="root"></div>
+    <script src="/socket.io/socket.io.js"></script>
+<!-- 
+    <script src="/socket.io/socket.io.js"></script>
+    <script >
+       var socket = io();
+    </script> -->
+    
+    <script src="./dist/index.js"></script>
+</body>
+
+</html>
