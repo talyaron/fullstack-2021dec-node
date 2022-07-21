@@ -1,14 +1,14 @@
 import CatModel from "../model/catsModel";
-let allCats=[]
+let allCats = []
 
 
-export async function getAllCats(req,res){
-  try{
-    allCats=await CatModel.find({})
+export async function getAllCats(req, res) {
+  try {
+    allCats = await CatModel.find({})
     console.debug(allCats)
-    res.send({allCats})    
+    res.send({ allCats })
   } catch (error) {
-      res.send({ error: error.message })
+    res.send({ error: error.message })
   }
 }
 
@@ -17,7 +17,7 @@ export async function addCat(req, res) {
     const { name, age, color, src } = req.body;
     if (!name || !age || !color || !src) throw new Error("server:not enough data");
     console.debug(name, age, color, src)
-    let newCat = new CatModel({name:name,age:age,color:color,src:src})
+    let newCat = new CatModel({ name: name, age: age, color: color, src: src })
     console.debug(newCat)
     let newCatDB = await newCat.save();
     console.debug(newCat)
@@ -29,15 +29,15 @@ export async function addCat(req, res) {
   }
 }
 
-export async function filterCatsByAge(req:any, res:any) {
+export async function filterCatsByAge(req: any, res: any) {
   try {
-    const {age} = req.query
-    if(!age) throw new Error('Age is missing');
+    const { age } = req.query
+    if (!age) throw new Error('Age is missing');
 
-    const cats = await CatModel.find({age});
+    const cats = await CatModel.find({ age });
 
 
-    res.send({cats})
+    res.send({ cats })
   } catch (error) {
     res.send({ error: error.message });
   }

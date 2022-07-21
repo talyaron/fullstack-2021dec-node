@@ -1,0 +1,25 @@
+{
+  "name": "realtime-simple-chat-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WebDevSimplified/Realtime-Simple-Chat-App.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/WebDevSimplified/Realtime-Simple-Chat-App/issues"
+  },
+  "homepage": "https://github.com/WebDevSimplified/Realtime-Simple-Chat-App#readme",
+  "dependencies": {
+    "express": "^4.18.1",
+    "express4": "^0.0.1",
+    "nodemon": "^2.0.19",
+    "socket.io": "^4.5.1"
+  }
+}

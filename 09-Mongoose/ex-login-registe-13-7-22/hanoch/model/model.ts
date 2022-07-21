@@ -3,11 +3,13 @@ import mongoose from "mongoose";
 const regSchema = new mongoose.Schema({
     email: {type: String, required: true, unique: true },
     password: {type:String, required:true}
+    role:
 });
 
 const productSchema = new mongoose.Schema({
-    name: {type: String, required: true},
-    owner: {type: String, required: true}
+    product: {type: String, required: true},
+    price:{type: Number, required: true },
+    user:String
 })
 
 export const productModel = mongoose.model("products", productSchema)

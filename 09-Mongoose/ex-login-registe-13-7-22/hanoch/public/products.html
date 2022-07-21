@@ -10,9 +10,12 @@
 </head>
 <body>
     <form onsubmit="handleProduct(event)">
-    <input type="text" name="product">
+    <input type="text" name="product" placeholder="name">
+    <input type="number" name="price" placeholder="price" >
     <input type="submit" value="add product">
     </form>
+
+    <div id="root"></div>
     
     <script src="./dist/products.js"></script>
 </body>
