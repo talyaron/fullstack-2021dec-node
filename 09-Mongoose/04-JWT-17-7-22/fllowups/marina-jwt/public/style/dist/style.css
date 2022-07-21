@@ -1,0 +1,83 @@
+@import url("https://fonts.googleapis.com/css2?family=BIZ+UDPMincho&family=Cairo:wght@300&family=Josefin+Sans:wght@300&family=Montserrat:wght@100;200&family=Rajdhani:wght@300&family=Red+Hat+Mono:wght@300;400&family=Special+Elite&display=swap");
+* {
+  box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
+}
+
+*:focus {
+  outline: none;
+}
+
+body {
+  background: rgba(10, 10, 10, 0.916);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  text-align: center;
+  margin: 0;
+}
+
+.title {
+  color: rgba(255, 255, 255, 0.609);
+  font-size: 3em;
+}
+
+#video {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+}
+
+.content {
+  position: fixed;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.132);
+  color: #f1f1f1;
+  width: 100%;
+  padding: 20px;
+}
+.content .videoPouseBtn {
+  font-size: 1.1em;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 7px;
+  background: #000;
+  color: #fff;
+  cursor: pointer;
+}
+.content .videoPouseBtn:hover {
+  border: 0.5px solid rgba(255, 255, 255, 0.558);
+  color: white;
+}
+
+.navbar {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  position: fixed;
+  top: 2.6%;
+  right: 7%;
+}
+.navbar ul {
+  flex: 1;
+  text-align: right;
+}
+.navbar ul li {
+  list-style: none;
+  color: rgba(255, 255, 255, 0.599);
+}
+.navbar ul li a {
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.195);
+  font-size: 1em;
+  cursor: pointer;
+  margin: 1em;
+  transition: all ease-in 0.1s;
+}
+.navbar ul li a:hover {
+  color: rgba(255, 255, 255, 0.574);
+}
