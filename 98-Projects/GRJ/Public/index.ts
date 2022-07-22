@@ -14,6 +14,7 @@ async function handleRegister(ev : any) {
 
         if (register) {
             window.location.href = `./login.html?userId=${register._id}`;
+            
         }
 
         if (error && error.includes("E11000")) 

@@ -1,4 +1,6 @@
 import UserModel, { UserValidation } from "../Models/UserModel";
+import mongoose from "mongoose";
+import jwt from 'jwt-simple';
 
 export async function login(req, res) {
   try {
