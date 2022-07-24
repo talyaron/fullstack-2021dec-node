@@ -129,5 +129,5 @@ function opponent(socket) {
     }
 }
 server.listen(4007, () => {
-    console.log("Server listening on port 4007");
+    console.log(`Server listening on port ${port}, url: http://localhost:${port}/`);
 });

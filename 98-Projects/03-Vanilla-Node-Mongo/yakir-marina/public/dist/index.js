@@ -143,6 +143,9 @@ socket.on("move-made", function (data) {
                 $("#message").text("You Win! :)");
                 $("#message").css("background", "#006e7a40");
                 $("#message").css("color", "white");
+                // call function update score to winner
+                handleUpdateWinnerScore();
+                //
             }
             $(".container__game__board__cell").attr("disabled", true); // Disable board
         }
@@ -216,4 +219,7 @@ function displayGameMessage(message) {
     catch (error) {
         console.error(error);
     }
+}
+function handleUpdateWinnerScore() {
+    console.log("test update score on win");
 }
