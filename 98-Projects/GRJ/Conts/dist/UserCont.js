@@ -38,9 +38,10 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 exports.__esModule = true;
 exports.getUserByCookie = exports.saveInfo = exports.register = exports.login = void 0;
 var UserModel_1 = require("../Models/UserModel");
+var jwt_simple_1 = require("jwt-simple");
 function login(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var _a, email, password, error, user, error_1;
+        var _a, email, password, error, user, cookie, secret, JWTCookie, userId, error_1;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
@@ -53,8 +54,12 @@ function login(req, res) {
                 case 1:
                     user = _b.sent();
                     if (user) {
-                        res.cookie('user', user._id);
-                        res.send({ login: true, user: user });
+                        cookie = { userPassword: user.password };
+                        secret = process.env.JWT_SECRET;
+                        JWTCookie = jwt_simple_1["default"].encode(cookie, secret);
+                        userId = user._id;
+                        res.cookie('user', JWTCookie, { maxAge: 1000 * 60 * 4 });
+                        res.send({ login: true, userId: userId });
                     }
                     else {
                         throw new Error("user not found");

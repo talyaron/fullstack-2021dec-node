@@ -45,12 +45,12 @@ async function handleLogin(ev: any) {
       password,
     });
     console.log(data);
-    const { login, error } = data;
-    console.log(login);
+    const { login, user, error } = data;
+    console.log(user);
     if (error) throw error;
 
     if (login) {
-      window.location.href = `./profile.html?userId=${login._id}`;
+      window.location.href = `./profile.html?userId=${user._id}`;
     }
 
     if (error) throw error;
@@ -69,6 +69,7 @@ async function handleSaveInfo(ev: any) {
     //@ts-ignore
     const { data } = await axios.post("/users/SaveInfo", { name });
     const { user, error } = data;
+    console.log(user)
     if (error) throw error;
 
     if (user) {
@@ -82,20 +83,6 @@ async function handleSaveInfo(ev: any) {
   }
 }
 
-function getUserId(): string | false {
-  try {
-    const queryString = window.location.search;
-    console.log(queryString);
-
-    const urlParams = new URLSearchParams(queryString);
-    console.log(urlParams);
-    const userId = urlParams.get("userId");
-    return userId;
-  } catch (error) {
-    console.error(error);
-    return false;
-  }
-}
 
 async function getUserByCookie() {
   try {
@@ -117,41 +104,3 @@ async function getUserByCookie() {
   }
 }
 
-async function onscondPageLoad() {
-  try {
-    //get params of userId
-    const userId = getUserId();
-
-    if (!userId) throw new Error("couldnt find user id in url");
-
-    // @ts-ignore
-    const { data } = await axios.get(`/users/get-user?userId=${userId}`);
-
-    const { error, user } = data;
-    if (error) throw error;
-    console.log(user);
-    const { name, age, image } = user;
-
-    const root = document.querySelector("#root");
-    root.innerHTML = `<h1>Welcome ${name} ${age}</h1>`;
-
-    console.log(data);
-  } catch (error) {
-    console.log(error);
-  }
-}
-
-function renderUsers(users) {
-  const html = users
-    .map((user) => {
-      console.log(user);
-      return `<div>${user.username} 
-        <input type='text' placeholder='role' value="${user.role}" onblur='handleUpdate(event, "${user._id}")'/>
-        <button onclick='handleDelete("${user._id}")'>DELETE</button>
-        </div>`;
-    })
-    .join("");
-  console.log(html);
-
-  document.getElementById("users").innerHTML = html;
-}

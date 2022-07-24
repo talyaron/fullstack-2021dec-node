@@ -11,8 +11,12 @@ export async function login(req, res) {
     const user = await UserModel.findOne({ email, password });
 
     if (user) {
-      res.cookie('user', user._id);
-      res.send({ login: true, user });
+      const cookie={userPassword: user.password};
+      const secret=process.env.JWT_SECRET;
+      const JWTCookie = jwt.encode(cookie, secret);
+      const userId=user._id;
+      res.cookie('user',JWTCookie,{maxAge:1000*60*4});
+      res.send({ login: true, userId });
     } else {
       throw new Error("user not found");
     }

@@ -25,8 +25,8 @@ app.use(express.static('public'))
 import userRoutes from "../GRJ/Routes/UserRoute";
 app.use('/users',  userRoutes);
 
-import ProfileRoutes from "../GRJ/Routes/ProfileRoutes";
-app.use('/users',  ProfileRoutes);
+import profileRoutes from "../GRJ/Routes/ProfileRoute";
+app.use('/profile',  profileRoutes);
 
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`);

@@ -21,8 +21,8 @@ mongoose_1.default.connect(mongodb_uri).then(res => {
 app.use(express_1.default.static('public'));
 const UserRoute_1 = __importDefault(require("../GRJ/Routes/UserRoute"));
 app.use('/users', UserRoute_1.default);
-const GRJ_1 = __importDefault(require("../GRJ/"));
-app.use('/users', GRJ_1.default);
+const ProfileRoute_1 = __importDefault(require("../GRJ/Routes/ProfileRoute"));
+app.use('/profile', ProfileRoute_1.default);
 app.listen(port, () => {
     console.log(`Server listening on port ${port}`);
 });

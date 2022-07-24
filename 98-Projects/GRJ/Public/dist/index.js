@@ -79,7 +79,7 @@ function handleRegister(ev) {
 }
 function handleLogin(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var name, email, password, data, login, error, error_2;
+        var name, email, password, data, login, user, error, error_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -99,12 +99,12 @@ function handleLogin(ev) {
                 case 2:
                     data = (_a.sent()).data;
                     console.log(data);
-                    login = data.login, error = data.error;
-                    console.log(login);
+                    login = data.login, user = data.user, error = data.error;
+                    console.log(user);
                     if (error)
                         throw error;
                     if (login) {
-                        window.location.href = "./profile.html?userId=" + login._id;
+                        window.location.href = "./profile.html?userId=" + user._id;
                     }
                     if (error)
                         throw error;
@@ -135,6 +135,7 @@ function handleSaveInfo(ev) {
                 case 2:
                     data = (_a.sent()).data;
                     user = data.user, error = data.error;
+                    console.log(user);
                     if (error)
                         throw error;
                     if (user) {
@@ -152,20 +153,6 @@ function handleSaveInfo(ev) {
             }
         });
     });
-}
-function getUserId() {
-    try {
-        var queryString = window.location.search;
-        console.log(queryString);
-        var urlParams = new URLSearchParams(queryString);
-        console.log(urlParams);
-        var userId = urlParams.get("userId");
-        return userId;
-    }
-    catch (error) {
-        console.error(error);
-        return false;
-    }
 }
 function getUserByCookie() {
     return __awaiter(this, void 0, void 0, function () {
@@ -196,45 +183,4 @@ function getUserByCookie() {
             }
         });
     });
-}
-function onscondPageLoad() {
-    return __awaiter(this, void 0, void 0, function () {
-        var userId, data, error, user, name, age, image, root, error_5;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    _a.trys.push([0, 2, , 3]);
-                    userId = getUserId();
-                    if (!userId)
-                        throw new Error("couldnt find user id in url");
-                    return [4 /*yield*/, axios.get("/users/get-user?userId=" + userId)];
-                case 1:
-                    data = (_a.sent()).data;
-                    error = data.error, user = data.user;
-                    if (error)
-                        throw error;
-                    console.log(user);
-                    name = user.name, age = user.age, image = user.image;
-                    root = document.querySelector("#root");
-                    root.innerHTML = "<h1>Welcome " + name + " " + age + "</h1>";
-                    console.log(data);
-                    return [3 /*break*/, 3];
-                case 2:
-                    error_5 = _a.sent();
-                    console.log(error_5);
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
-            }
-        });
-    });
-}
-function renderUsers(users) {
-    var html = users
-        .map(function (user) {
-        console.log(user);
-        return "<div>" + user.username + " \n        <input type='text' placeholder='role' value=\"" + user.role + "\" onblur='handleUpdate(event, \"" + user._id + "\")'/>\n        <button onclick='handleDelete(\"" + user._id + "\")'>DELETE</button>\n        </div>";
-    })
-        .join("");
-    console.log(html);
-    document.getElementById("users").innerHTML = html;
 }
