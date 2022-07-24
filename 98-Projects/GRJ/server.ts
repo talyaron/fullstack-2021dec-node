@@ -1,9 +1,11 @@
 import express from "express";
 import mongoose from "mongoose";
+var cookieParser = require('cookie-parser')
 const app = express();
-const port = 3000;
+const port = 3001;
 require('dotenv').config()
 
+app.use(cookieParser());
 const mongodb_uri = process.env.MONGODB_URI;
 
 

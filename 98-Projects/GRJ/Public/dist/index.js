@@ -34,9 +34,12 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+function handleLoad() {
+    getUserByCookie();
+}
 function handleRegister(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var email, password, data, register, error, error_1;
+        var email, password, name, data, register, error, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -46,8 +49,13 @@ function handleRegister(ev) {
                     _a.trys.push([1, 3, , 4]);
                     email = ev.target.email.value;
                     password = ev.target.password.value;
-                    console.log(email, password);
-                    return [4 /*yield*/, axios.post("/users/register", { email: email, password: password })];
+                    name = ev.target.name.value;
+                    console.log(email, password, name);
+                    return [4 /*yield*/, axios.post("/users/register", {
+                            email: email,
+                            password: password,
+                            name: name
+                        })];
                 case 2:
                     data = (_a.sent()).data;
                     register = data.register, error = data.error;
@@ -55,10 +63,10 @@ function handleRegister(ev) {
                         throw error;
                     console.log(data);
                     if (register) {
-                        window.location.href = "./login.html?userId=" + register._id;
+                        window.location.href = "./profile.html?userId=" + register._id;
                     }
                     if (error && error.includes("E11000"))
-                        alert('email is already in use');
+                        alert("email is already in use");
                     return [3 /*break*/, 4];
                 case 3:
                     error_1 = _a.sent();
@@ -83,10 +91,16 @@ function handleLogin(ev) {
                     email = ev.target.email.value;
                     password = ev.target.password.value;
                     console.log(name, email, password);
-                    return [4 /*yield*/, axios.post("/users/login", { name: name, email: email, password: password })];
+                    return [4 /*yield*/, axios.post("/users/login", {
+                            name: name,
+                            email: email,
+                            password: password
+                        })];
                 case 2:
                     data = (_a.sent()).data;
+                    console.log(data);
                     login = data.login, error = data.error;
+                    console.log(login);
                     if (error)
                         throw error;
                     if (login) {
@@ -107,7 +121,7 @@ function handleLogin(ev) {
 }
 function handleSaveInfo(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var name, age, image, data, user, error, error_3;
+        var name, data, user, error, error_3;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -116,10 +130,8 @@ function handleSaveInfo(ev) {
                 case 1:
                     _a.trys.push([1, 3, , 4]);
                     name = ev.target.elements.name.value;
-                    age = ev.target.elements.age.valueAsNumber;
-                    image = ev.target.elements.image.value;
-                    console.log(name, age, image);
-                    return [4 /*yield*/, axios.post("/users/SaveInfo", { name: name, age: age, image: image })];
+                    console.log(name);
+                    return [4 /*yield*/, axios.post("/users/SaveInfo", { name: name })];
                 case 2:
                     data = (_a.sent()).data;
                     user = data.user, error = data.error;
@@ -148,8 +160,6 @@ function getUserId() {
         var urlParams = new URLSearchParams(queryString);
         console.log(urlParams);
         var userId = urlParams.get("userId");
-        // const age = urlParams.get("age");
-        // console.log(age);
         return userId;
     }
     catch (error) {
@@ -157,9 +167,39 @@ function getUserId() {
         return false;
     }
 }
+function getUserByCookie() {
+    return __awaiter(this, void 0, void 0, function () {
+        var data, user, usernameDB, root, error_4;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    return [4 /*yield*/, axios.get("/users/get-user")];
+                case 1:
+                    data = (_a.sent()).data;
+                    console.log(data);
+                    user = data.user;
+                    if (!user) {
+                        throw new Error("User not found");
+                    }
+                    usernameDB = user.username;
+                    root = document.getElementById("root");
+                    if (root) {
+                        root.innerHTML = "<h1>Welcome " + usernameDB + "</h1>";
+                    }
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_4 = _a.sent();
+                    console.error(error_4);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
+}
 function onscondPageLoad() {
     return __awaiter(this, void 0, void 0, function () {
-        var userId, data, error, user, name, age, image, root, error_4;
+        var userId, data, error, user, name, age, image, root, error_5;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -180,11 +220,21 @@ function onscondPageLoad() {
                     console.log(data);
                     return [3 /*break*/, 3];
                 case 2:
-                    error_4 = _a.sent();
-                    console.log(error_4);
+                    error_5 = _a.sent();
+                    console.log(error_5);
                     return [3 /*break*/, 3];
                 case 3: return [2 /*return*/];
             }
         });
     });
+}
+function renderUsers(users) {
+    var html = users
+        .map(function (user) {
+        console.log(user);
+        return "<div>" + user.username + " \n        <input type='text' placeholder='role' value=\"" + user.role + "\" onblur='handleUpdate(event, \"" + user._id + "\")'/>\n        <button onclick='handleDelete(\"" + user._id + "\")'>DELETE</button>\n        </div>";
+    })
+        .join("");
+    console.log(html);
+    document.getElementById("users").innerHTML = html;
 }

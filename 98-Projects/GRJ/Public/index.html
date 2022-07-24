@@ -15,11 +15,17 @@
   <div class="navBar">
 
     <form onsubmit="handleRegister(event)">
+        <input type="text" name="name" placeholder="Name">
         <input type="email" name="email" placeholder="Email">
         <input type="password" name="password" placeholder="Password">
         <button type="submit">Register</button>
     </form>
 
+    <form onsubmit="handleLogin(event)">
+        <input type="email" name="email" placeholder="Email">
+        <input type="password" name="password" placeholder="Password">
+        <button type="submit">Login</button>
+    </form>
   </div>
 
 

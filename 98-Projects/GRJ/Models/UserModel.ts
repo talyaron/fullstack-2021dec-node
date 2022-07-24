@@ -14,12 +14,6 @@ const UserSchema = new mongoose.Schema({
     name: {
         type: String
     },
-    age: {
-        type: Number
-    },
-    image: {
-        type: String
-    }
 });
 
 const UserModel = mongoose.model('users', UserSchema);

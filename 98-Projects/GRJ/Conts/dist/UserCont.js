@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.getUser = exports.saveInfo = exports.register = exports.login = void 0;
+exports.getUserByCookie = exports.saveInfo = exports.register = exports.login = void 0;
 var UserModel_1 = require("../Models/UserModel");
 function login(req, res) {
     return __awaiter(this, void 0, void 0, function () {
@@ -52,15 +52,17 @@ function login(req, res) {
                     return [4 /*yield*/, UserModel_1["default"].findOne({ email: email, password: password })];
                 case 1:
                     user = _b.sent();
-                    if (!user) {
-                        res.send({ login: false });
+                    if (user) {
+                        res.cookie('user', user._id);
+                        res.send({ login: true, user: user });
                     }
                     else {
-                        res.send({ login: true });
+                        throw new Error("user not found");
                     }
                     return [3 /*break*/, 3];
                 case 2:
                     error_1 = _b.sent();
+                    console.error(error_1);
                     res.send({ error: error_1.message });
                     return [3 /*break*/, 3];
                 case 3: return [2 /*return*/];
@@ -71,16 +73,16 @@ function login(req, res) {
 exports.login = login;
 function register(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var _a, email, password, error, user, error_2;
+        var _a, email, password, name, error, user, error_2;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
                     _b.trys.push([0, 2, , 3]);
-                    _a = req.body, email = _a.email, password = _a.password;
+                    _a = req.body, email = _a.email, password = _a.password, name = _a.name;
                     error = UserModel_1.UserValidation.validate({ email: email, password: password }).error;
                     if (error)
                         throw error;
-                    user = new UserModel_1["default"]({ email: email, password: password });
+                    user = new UserModel_1["default"]({ email: email, password: password, name: name });
                     return [4 /*yield*/, user.save()];
                 case 1:
                     _b.sent();
@@ -98,22 +100,22 @@ function register(req, res) {
 exports.register = register;
 function saveInfo(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var _a, name, age, image, user, error_3;
-        return __generator(this, function (_b) {
-            switch (_b.label) {
+        var name, user, error_3;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
                 case 0:
-                    _b.trys.push([0, 2, , 3]);
-                    _a = req.body, name = _a.name, age = _a.age, image = _a.image;
-                    if (!name || !age || !image)
+                    _a.trys.push([0, 2, , 3]);
+                    name = req.body.name;
+                    if (!name)
                         throw Error;
-                    user = new UserModel_1["default"]({ name: name, age: age, image: image });
+                    user = new UserModel_1["default"]({ name: name });
                     return [4 /*yield*/, user.save()];
                 case 1:
-                    _b.sent();
+                    _a.sent();
                     res.send({ user: user });
                     return [3 /*break*/, 3];
                 case 2:
-                    error_3 = _b.sent();
+                    error_3 = _a.sent();
                     res.send({ error: error_3.message });
                     return [3 /*break*/, 3];
                 case 3: return [2 /*return*/];
@@ -123,32 +125,31 @@ function saveInfo(req, res) {
 }
 exports.saveInfo = saveInfo;
 ;
-function getUser(req, res) {
-    return __awaiter(this, void 0, void 0, function () {
-        var _a, userId, age, userDB, error_4;
-        return __generator(this, function (_b) {
-            switch (_b.label) {
-                case 0:
-                    _b.trys.push([0, 2, , 3]);
-                    _a = req.query, userId = _a.userId, age = _a.age;
-                    console.log(age);
-                    if (!userId)
-                        throw new Error("missing userId in query");
-                    return [4 /*yield*/, UserModel_1["default"].findById(userId)];
-                case 1:
-                    userDB = _b.sent();
-                    if (!userDB)
-                        throw new Error("coundt find use with this id: " + userId);
-                    res.send({ user: userDB, success: true });
-                    return [3 /*break*/, 3];
-                case 2:
-                    error_4 = _b.sent();
-                    console.error(error_4);
-                    res.send({ eror: error_4.message });
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
-            }
-        });
+exports.getUserByCookie = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var user, userDB, error_4;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                _a.trys.push([0, 2, , 3]);
+                user = req.cookies.user;
+                console.log('user', user);
+                if (!user) {
+                    throw new Error("user not found");
+                }
+                return [4 /*yield*/, user.findById(user)];
+            case 1:
+                userDB = _a.sent();
+                console.log('userDB', userDB);
+                if (!userDB)
+                    throw new Error("user not found in DB");
+                res.send({ ok: true, user: userDB });
+                return [3 /*break*/, 3];
+            case 2:
+                error_4 = _a.sent();
+                console.log(error_4.error);
+                res.send({ error: error_4.message });
+                return [3 /*break*/, 3];
+            case 3: return [2 /*return*/];
+        }
     });
-}
-exports.getUser = getUser;
+}); };

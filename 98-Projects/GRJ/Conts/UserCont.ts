@@ -9,23 +9,26 @@ export async function login(req, res) {
     if (error) throw error;
 
     const user = await UserModel.findOne({ email, password });
-    if (!user) {
-      res.send({ login: false });
+
+    if (user) {
+      res.cookie('user', user._id);
+      res.send({ login: true, user });
     } else {
-      res.send({ login: true });
+      throw new Error("user not found");
     }
-  } catch (error) {
+    }catch (error) {
+      console.error(error);
     res.send({ error: error.message });
   }
 }
 
 export async function register(req, res) {
   try {
-    const { email, password } = req.body;
-    const { error } = UserValidation.validate({ email, password });
+    const { email, password, name } = req.body;
+    const { error } = UserValidation.validate({ email, password});
     if (error) throw error;
 
-    const user = new UserModel({ email, password });
+    const user = new UserModel({ email, password, name });
     await user.save();
 
     res.send({ register: true });
@@ -37,11 +40,11 @@ export async function register(req, res) {
 
 export async function saveInfo(req, res) {
   try {
-    const { name, age, image } = req.body;
+    const { name } = req.body;
     
-    if (!name || !age || !image ) throw Error;
+    if (!name) throw Error;
 
-    const user = new UserModel({ name, age, image });
+    const user = new UserModel({ name });
     await user.save();
 
     res.send({ user });
@@ -51,20 +54,23 @@ export async function saveInfo(req, res) {
 };
 
 
-export async function getUser(req, res){
+export const getUserByCookie = async (req, res)=>{
   try {
-      const {userId,age} = req.query;
-      console.log(age)
-      if(!userId) throw new Error("missing userId in query");
+    const {user} = req.cookies;
+    console.log('user', user)
 
-      const userDB = await UserModel.findById(userId);
+    if (!user) {
+      throw new Error("user not found");
+    }
 
-      if(!userDB) throw new Error(`coundt find use with this id: ${userId}` );
+    const userDB = await user.findById(user);
+    console.log('userDB', userDB)
 
-      res.send({user:userDB, success:true});
+    if(!userDB) throw new Error("user not found in DB")
 
+    res.send({ok:true, user:userDB})
   } catch (error) {
-      console.error(error);
-      res.send({eror: error.message});
+    console.log(error.error);
+    res.send({ error: error.message });
   }
-} 
+}
