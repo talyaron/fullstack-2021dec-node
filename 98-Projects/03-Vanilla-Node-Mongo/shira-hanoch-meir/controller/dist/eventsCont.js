@@ -40,10 +40,11 @@ exports.eventList = exports.addEvents = void 0;
 var model_1 = require("../model/model");
 function addEvents(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var _a, lesson, date, price, events;
+        var coach, _a, lesson, date, price, events;
         return __generator(this, function (_b) {
             try {
-                _a = void 0, lesson = _a.lesson, date = _a.date, price = _a.price;
+                coach = req.cookies.coach;
+                _a = req.body, lesson = _a.lesson, date = _a.date, price = _a.price;
                 events = model_1.lessonsModel.find({});
                 res.send(events);
             }

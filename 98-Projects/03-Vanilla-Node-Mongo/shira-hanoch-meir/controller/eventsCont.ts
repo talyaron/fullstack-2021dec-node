@@ -1,9 +1,10 @@
-import {lessonsModel, cartModel} from '../model/model';
+import {lessonsModel, cartModel, coachModel} from '../model/model';
 
 export async function addEvents(req, res){
     try {
+        const {coach} = req.cookies;
         
-        const {lesson, date, price}
+        const {lesson, date, price} = req.body;
         const events = lessonsModel.find({});
         res.send(events)
     } catch (error) {

@@ -5,6 +5,7 @@ const regSchema = new mongoose.Schema({
     password: {type:String, required:true}
 });
 const coachSchema = new mongoose.Schema({
+    name: String,
     email: {type: String, required: true, unique: true },
     password: {type:String, required:true}
 });
