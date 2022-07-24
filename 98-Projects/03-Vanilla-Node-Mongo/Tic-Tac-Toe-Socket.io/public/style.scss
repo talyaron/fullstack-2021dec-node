@@ -1,0 +1,233 @@
+@import url('https://fonts.googleapis.com/css2?family=BIZ+UDPMincho&family=Cairo:wght@300&family=Josefin+Sans:wght@300&family=Montserrat:wght@100;200&family=Rajdhani:wght@300&family=Red+Hat+Mono:wght@300;400&family=Special+Elite&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Monoton&display=swap');
+
+* {
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background: linear-gradient(to bottom right, #93AB8F 50%, #006D7A 50%);
+    // background: linear-gradient(to bottom right, #93AB8F 20%, rgba(57, 57, 7, 0.759) 20% 21%, #93AB8F 21% 50%, #006D7A 50% 85%, #aa1f219e 85%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+h1 {
+    font-size: 3.5em;
+    color: #aa1f21b2;
+    text-shadow: 5px 5px 5px #03030360;
+    font-family: 'Monoton', cursive;
+}
+
+// .gameStatus {
+//     display: flex;
+//     gap: 0.5em;
+
+//     &--message,
+//     &--gameRoomNumber {
+//         font-size: 1.5em;
+//         background-color: #006e7a40;
+//         border-radius: 7px;
+//         padding: .1em .5em .1em .5em;
+//         color: #151414cb;
+//         text-shadow: 5px 5px 5px #0303032b;
+//     }
+
+//     &--gameRoomNumber {
+//         background: #3d507f5f;
+//     }
+
+//     &--message {
+//         background: #006e7a40;
+//     }
+// }
+
+.message {
+    font-size: 1.5em;
+    background-color: #006e7a40;
+    border-radius: 7px;
+    padding: .1em .5em .1em .5em;
+    color: #151414cb;
+    text-shadow: 5px 5px 5px #0303032b;   
+}
+
+.container {
+    display: flex;
+    align-items: center;
+
+    &__game {
+
+        &__board {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+            grid-gap: 10px;
+            width: 37.5em;
+            height: 37.5em;
+            border-radius: 16px;
+            margin-top: 40px;
+
+            &__cell {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 170px;
+                height: 170px;
+                border: 5px solid #aa1f215c;
+                border-style: double;
+                border-radius: 16px;
+                font-size: 5.5em;
+                color: #aa1f21d5;
+                text-shadow: 5px 5px 5px #030303;
+                font-family: 'Monoton', cursive;
+                background: #131313a0;
+                box-shadow: rgba(0, 0, 0, 0.437) 0px 14px 28px,
+                    rgba(0, 0, 0, 0.402) 0px 10px 10px;
+                transition: all ease-in .7s;
+                cursor: pointer;
+            }
+        }
+
+        &__board>#cell0:hover,
+        &__board>#cell1:hover,
+        &__board>#cell2:hover,
+        &__board>#cell3:hover,
+        &__board>#cell4:hover,
+        &__board>#cell5:hover,
+        &__board>#cell6:hover,
+        &__board>#cell7:hover,
+        &__board>#cell8:hover {
+            border-radius: 16px;
+            background: #3d507f;
+        }
+
+        &__board>#cell0,
+        &__board>#cell1,
+        &__board>#cell2,
+        &__board>#cell3,
+        &__board>#cell4,
+        &__board>#cell5,
+        &__board>#cell6,
+        &__board>#cell7,
+        &__board>#cell8 {
+            transition: box-shadow 1s linear 1s;
+            transition: all ease-in-out .3s;
+        }
+
+        &__gameRoomForm {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5em;
+
+            input[type="text"],
+            button[type="submit"] {
+                border: none;
+                border-radius: 5px;
+                font-size: 1.2em;
+                font-weight: normal;
+                background: #1313136e;
+                color: rgba(255, 255, 255, 0.671);
+                box-shadow: rgba(0, 0, 0, 0.437) 0px 14px 28px,
+                    rgba(0, 0, 0, 0.212) 0px 10px 10px;
+            }
+
+            input[type="text"] {
+                padding: .3em 0em .3em 1em;
+            }
+
+            button[type="submit"] {
+                padding: .3em 1em .3em 1em;
+                cursor: pointer;
+            }
+
+            button[type="submit"]:hover {
+                background: #414f74;
+                color: rgba(255, 255, 255, 0.959);
+            }
+
+        }
+        
+    }   
+
+    &__chat {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.1em;
+
+        #chat-container {
+            width: 25em;
+            height: 34em;
+            border-radius: 16px;
+            margin: 9% auto auto 9%;
+            overflow-y: auto;
+            background-color: #d0e0d0e7;
+            box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.657);
+            border: 5px solid #aa1f215c;
+            border-style: double;
+        }
+
+        #chat-container div {
+            border-radius: 10px;
+            background-color: rgba(37, 164, 111, 0.101);
+            padding: 5px;
+            text-align: left;
+            font-size: 18px;
+        }
+
+        #chat-container div:nth-child(2n) {
+            background-color: rgba(255, 255, 255, 0.886);
+        }
+
+        &__chatForm {
+            display: grid;
+            grid-template-columns: 1fr 5em;
+            width: 95%;
+            position: relative;
+            left: 10%;
+            gap: 0.5em;
+
+            input[type="text"],
+            button[type="submit"] {
+                border: none;
+                border-radius: 5px;
+                font-size: 1.2em;
+                font-weight: bold;
+                background: #d0e0d0d9;
+                color: rgb(10, 10, 10);
+                box-shadow: rgba(0, 0, 0, 0.437) 0px 14px 28px,
+                    rgba(0, 0, 0, 0.212) 0px 10px 10px;
+            }
+
+            input[type="text"] {
+                padding: .3em 0em .3em 1em;
+                width: 95%;
+            }
+
+            button[type="submit"] {
+                padding: .3em 1em .3em 1em;
+                cursor: pointer;
+            }
+
+            button[type="submit"]:hover {
+                background: #414f74;
+                color: rgba(255, 255, 255, 0.959);
+                font-weight: normal;
+            }
+
+        }
+
+    }
+
+}
+
