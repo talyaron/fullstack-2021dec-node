@@ -26,6 +26,8 @@ if (MONGODB_URI) {
     console.log("No MongoDB URI specified");
 };
 
+//add userRoute and stockRoute
+
 
 app.listen(port, () => {
     return console.log(`Server is listening at http://localhost:${port}`);
