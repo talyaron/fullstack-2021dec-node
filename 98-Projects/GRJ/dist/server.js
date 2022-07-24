@@ -5,9 +5,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const mongoose_1 = __importDefault(require("mongoose"));
+var cookieParser = require('cookie-parser');
 const app = express_1.default();
-const port = 3000;
+const port = 3001;
 require('dotenv').config();
+app.use(cookieParser());
 const mongodb_uri = process.env.MONGODB_URI;
 app.use(express_1.default.json());
 mongoose_1.default.connect(mongodb_uri).then(res => {
@@ -19,6 +21,8 @@ mongoose_1.default.connect(mongodb_uri).then(res => {
 app.use(express_1.default.static('public'));
 const UserRoute_1 = __importDefault(require("../GRJ/Routes/UserRoute"));
 app.use('/users', UserRoute_1.default);
+const GRJ_1 = __importDefault(require("../GRJ/"));
+app.use('/users', GRJ_1.default);
 app.listen(port, () => {
     console.log(`Server listening on port ${port}`);
 });
