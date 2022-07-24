@@ -41,7 +41,7 @@ var UserModel_1 = require("../Models/UserModel");
 var jwt_simple_1 = require("jwt-simple");
 function login(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var _a, email, password, error, user, cookie, secret, JWTCookie, userId, error_1;
+        var _a, email, password, error, user, cookie, secret, JWTCookie, error_1;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
@@ -54,12 +54,11 @@ function login(req, res) {
                 case 1:
                     user = _b.sent();
                     if (user) {
-                        cookie = { userPassword: user.password };
+                        cookie = { user: user._id };
                         secret = process.env.JWT_SECRET;
                         JWTCookie = jwt_simple_1["default"].encode(cookie, secret);
-                        userId = user._id;
-                        res.cookie('user', JWTCookie, { maxAge: 1000 * 60 * 4 });
-                        res.send({ login: true, userId: userId });
+                        res.cookie('user', JWTCookie);
+                        res.send({ login: true });
                     }
                     else {
                         throw new Error("user not found");
