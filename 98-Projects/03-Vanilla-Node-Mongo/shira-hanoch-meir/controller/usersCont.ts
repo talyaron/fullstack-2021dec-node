@@ -16,7 +16,7 @@ export async function login(req:any, res:any){
         const {email, password} = req.body;
         const findUser:any = await regModel.findOne({email, password});
         if (!findUser) throw new Error("User name or password do not match");
-        const cookie = (findUser._id, role)
+        const cookie = (findUser._id)
         res.cookie('user', findUser._id)
         res.send({ok:true})
     } catch (error:any) {
