@@ -51,6 +51,10 @@ function handleGetUser3(){
 }
 
 
+
+
+
+
 function renderUser(user:User) {
     const root:HTMLElement = document.querySelector("#root");
     root.innerText = `user ${user.name} is ${user.age} years old`;
