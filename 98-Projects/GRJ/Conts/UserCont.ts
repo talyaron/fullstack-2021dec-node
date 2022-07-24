@@ -4,7 +4,9 @@ import jwt from 'jwt-simple';
 import bcrypt from "bcrypt";
 const saltRounds = 10;
 
-export async function login(req, res) {
+//WE HAVE A PROBLAM WITH THE Bcrypt(LOGIN MENU)
+
+export async function login(req, res) 
   try {
     const { email, password } = req.body;
     // const { error } = UserValidation.validate({ email, password });

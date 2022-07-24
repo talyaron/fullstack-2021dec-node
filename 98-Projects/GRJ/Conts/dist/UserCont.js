@@ -41,6 +41,7 @@ var UserModel_1 = require("../Models/UserModel");
 var jwt_simple_1 = require("jwt-simple");
 var bcrypt_1 = require("bcrypt");
 var saltRounds = 10;
+//WE HAVE A PROBLAM WITH THE Bcrypt
 function login(req, res) {
     return __awaiter(this, void 0, void 0, function () {
         var _a, email, password, userDB, isMatch, role, cookie, secret, JWTCookie, error_1;
