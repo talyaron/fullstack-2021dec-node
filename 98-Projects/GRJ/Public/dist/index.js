@@ -100,7 +100,7 @@ function handleLogin(ev) {
                     data = (_a.sent()).data;
                     console.log(data);
                     login = data.login, user = data.user, error = data.error;
-                    console.log(user);
+                    // console.log(user);
                     if (error)
                         throw error;
                     if (login) {

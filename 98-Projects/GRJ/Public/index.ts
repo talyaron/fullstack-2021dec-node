@@ -46,7 +46,7 @@ async function handleLogin(ev: any) {
     });
     console.log(data);
     const { login, user, error } = data;
-    console.log(user);
+    // console.log(user);
     if (error) throw error;
 
     if (login) {

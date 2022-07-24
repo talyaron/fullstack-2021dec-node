@@ -1,6 +1,8 @@
 import UserModel, { UserValidation } from "../Models/UserModel";
 import mongoose from "mongoose";
 import jwt from 'jwt-simple';
+import bcrypt from "bcrypt";
+const saltRounds = 10;
 
 export async function login(req, res) {
   try {
@@ -8,19 +10,27 @@ export async function login(req, res) {
     const { error } = UserValidation.validate({ email, password });
     if (error) throw error;
 
-    const user = await UserModel.findOne({ email, password });
+    const user = await UserModel.findOne({ email });
+    if (!user) throw new Error("User name or password do not match");
+    if(!user.password) throw new Error('No password in DB')
+    const isMatch = await bcrypt.compare(password, user.password)
+    console.log(password,user.password)
+    if(!isMatch) throw new Error ('Username or password do not match')
 
     if (user) {
+      
+
       const cookie={user: user._id};
       const secret=process.env.JWT_SECRET;
       const JWTCookie = jwt.encode(cookie, secret);
 
       res.cookie('user',JWTCookie);
-      res.send({ login: true });
+      res.send({ login: true, user });
 
     } else {
       throw new Error("user not found");
     }
+
     }catch (error) {
       console.error(error);
     res.send({ error: error.message });
@@ -31,9 +41,13 @@ export async function register(req, res) {
   try {
     const { email, password, name } = req.body;
     const { error } = UserValidation.validate({ email, password});
+
+    const salt = bcrypt.genSaltSync(saltRounds);
+    const hash = bcrypt.hashSync(password, salt);
+
     if (error) throw error;
 
-    const user = new UserModel({ email, password, name });
+    const user = new UserModel({ email, password, name, hash });
     await user.save();
 
     res.send({ register: true });
