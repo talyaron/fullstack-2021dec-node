@@ -83,7 +83,7 @@ function login(req, res) {
 exports.login = login;
 function register(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var _a, email, password, name, error, salt, hash, user, error_2;
+        var _a, email, password, name, error, salt, hash, userDB, error_2;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
@@ -92,13 +92,11 @@ function register(req, res) {
                     error = UserModel_1.UserValidation.validate({ email: email, password: password }).error;
                     salt = bcrypt_1["default"].genSaltSync(saltRounds);
                     hash = bcrypt_1["default"].hashSync(password, salt);
-                    if (error)
-                        throw error;
-                    user = new UserModel_1["default"]({ email: email, password: password, name: name, hash: hash });
-                    return [4 /*yield*/, user.save()];
+                    return [4 /*yield*/, UserModel_1["default"].create({ email: email, name: name, password: hash })];
                 case 1:
-                    _b.sent();
-                    res.send({ register: true });
+                    userDB = _b.sent();
+                    // await user.save();
+                    res.send({ ok: true });
                     return [3 /*break*/, 3];
                 case 2:
                     error_2 = _b.sent();

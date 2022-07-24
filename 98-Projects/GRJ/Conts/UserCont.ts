@@ -7,8 +7,8 @@ const saltRounds = 10;
 export async function login(req, res) {
   try {
     const { email, password } = req.body;
-    const { error } = UserValidation.validate({ email, password });
-    if (error) throw error;
+    // const { error } = UserValidation.validate({ email, password });
+    // if (error) throw error;
 
     const userDB = await UserModel.findOne({ email });
     if (!userDB) throw new Error("User name or password do not match");
@@ -42,12 +42,12 @@ export async function register(req, res) {
     const salt = bcrypt.genSaltSync(saltRounds);
     const hash = bcrypt.hashSync(password, salt);
 
-    if (error) throw error;
+    // if (error) throw error;
 
-    const user = new UserModel({ email, password, name, hash });
-    await user.save();
+    const userDB = await UserModel.create({ email,name, password: hash });
+    // await user.save();
 
-    res.send({ register: true });
+    res.send({ ok: true });
   } catch (error) {
     res.send({ error: error.message });
   }
