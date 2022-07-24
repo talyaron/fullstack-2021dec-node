@@ -4,7 +4,8 @@ import jwt from 'jwt-simple';
 import bcrypt from "bcrypt";
 const saltRounds = 10;
 
-//WE HAVE A PROBLAM WITH THE Bcrypt(LOGIN MENU)
+//WE HAVE A PROBLAM WITH THE Bcrypt
+// (LOGIN MENU-PUT COMMENT & SEE)
 
 export async function login(req, res) 
   try {

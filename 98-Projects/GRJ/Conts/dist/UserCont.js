@@ -36,55 +36,39 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.getUserByCookie = exports.saveInfo = exports.register = exports.login = void 0;
+exports.getUserByCookie = exports.saveInfo = exports.register = void 0;
 var UserModel_1 = require("../Models/UserModel");
 var jwt_simple_1 = require("jwt-simple");
 var bcrypt_1 = require("bcrypt");
 var saltRounds = 10;
-//WE HAVE A PROBLAM WITH THE Bcrypt
-function login(req, res) {
-    return __awaiter(this, void 0, void 0, function () {
-        var _a, email, password, userDB, isMatch, role, cookie, secret, JWTCookie, error_1;
-        return __generator(this, function (_b) {
-            switch (_b.label) {
-                case 0:
-                    _b.trys.push([0, 3, , 4]);
-                    _a = req.body, email = _a.email, password = _a.password;
-                    return [4 /*yield*/, UserModel_1["default"].findOne({ email: email })];
-                case 1:
-                    userDB = _b.sent();
-                    if (!userDB)
-                        throw new Error("User name or password do not match");
-                    if (!userDB.password)
-                        throw new Error('No password in DB');
-                    return [4 /*yield*/, bcrypt_1["default"].compare(password, userDB.password)];
-                case 2:
-                    isMatch = _b.sent();
-                    console.log(password, userDB.password);
-                    if (!isMatch)
-                        throw new Error('Username or password do not match');
-                    role = userDB.role || "user";
-                    console.log(role);
-                    cookie = { user: userDB._id };
-                    secret = process.env.JWT_SECRET;
-                    JWTCookie = jwt_simple_1["default"].encode(cookie, secret);
-                    res.cookie('user', JWTCookie);
-                    res.send({ login: true });
-                    return [3 /*break*/, 4];
-                case 3:
-                    error_1 = _b.sent();
-                    console.error(error_1);
-                    res.send({ error: error_1.message });
-                    return [3 /*break*/, 4];
-                case 4: return [2 /*return*/];
-            }
-        });
-    });
+try {
+    var _a = req.body, email = _a.email, password = _a.password;
+    // const { error } = UserValidation.validate({ email, password });
+    // if (error) throw error;
+    var userDB = await UserModel_1["default"].findOne({ email: email });
+    if (!userDB)
+        throw new Error("User name or password do not match");
+    if (!userDB.password)
+        throw new Error('No password in DB');
+    var isMatch = await bcrypt_1["default"].compare(password, userDB.password);
+    console.log(password, userDB.password);
+    if (!isMatch)
+        throw new Error('Username or password do not match');
+    var role = userDB.role || "user";
+    console.log(role);
+    var cookie = { user: userDB._id };
+    var secret = process.env.JWT_SECRET;
+    var JWTCookie = jwt_simple_1["default"].encode(cookie, secret);
+    res.cookie('user', JWTCookie);
+    res.send({ login: true });
 }
-exports.login = login;
+catch (error) {
+    console.error(error);
+    res.send({ error: error.message });
+}
 function register(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var _a, email, password, name, error, salt, hash, userDB, error_2;
+        var _a, email, password, name, error, salt, hash, userDB, error_1;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
@@ -100,8 +84,8 @@ function register(req, res) {
                     res.send({ ok: true });
                     return [3 /*break*/, 3];
                 case 2:
-                    error_2 = _b.sent();
-                    res.send({ error: error_2.message });
+                    error_1 = _b.sent();
+                    res.send({ error: error_1.message });
                     return [3 /*break*/, 3];
                 case 3: return [2 /*return*/];
             }
@@ -111,7 +95,7 @@ function register(req, res) {
 exports.register = register;
 function saveInfo(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var name, user, error_3;
+        var name, user, error_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -126,8 +110,8 @@ function saveInfo(req, res) {
                     res.send({ user: user });
                     return [3 /*break*/, 3];
                 case 2:
-                    error_3 = _a.sent();
-                    res.send({ error: error_3.message });
+                    error_2 = _a.sent();
+                    res.send({ error: error_2.message });
                     return [3 /*break*/, 3];
                 case 3: return [2 /*return*/];
             }
@@ -137,7 +121,7 @@ function saveInfo(req, res) {
 exports.saveInfo = saveInfo;
 ;
 exports.getUserByCookie = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var user, userDB, error_4;
+    var user, userDB, error_3;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
@@ -156,9 +140,9 @@ exports.getUserByCookie = function (req, res) { return __awaiter(void 0, void 0,
                 res.send({ ok: true, user: userDB });
                 return [3 /*break*/, 3];
             case 2:
-                error_4 = _a.sent();
-                console.log(error_4.error);
-                res.send({ error: error_4.message });
+                error_3 = _a.sent();
+                console.log(error_3.error);
+                res.send({ error: error_3.message });
                 return [3 /*break*/, 3];
             case 3: return [2 /*return*/];
         }
