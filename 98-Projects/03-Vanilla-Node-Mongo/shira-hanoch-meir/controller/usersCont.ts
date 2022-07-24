@@ -29,7 +29,7 @@ export async function coachLogin(req:any, res:any){
         const findUser:any = await regModel.findOne({email, password});
         if (!findUser) throw new Error("User name or password do not match");
         const cookie = (findUser._id)
-        res.cookie('user', findUser._id)
+        res.cookie('coach', findUser._id)
         res.send({ok:true})
     } catch (error:any) {
         res.send({error: error.message})
