@@ -4,17 +4,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./dist/style.css">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <title>Document</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.0.0-alpha.1/axios.js" integrity="sha512-uplugzeh2/XrRr7RgSloGLHjFV0b4FqUtbT5t9Sa/XcilDr1M3+88u/c+mw6+HepH7M2C5EVmahySsyilVHI/A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <title>Meir-Express</title>
+    <link rel="stylesheet" href="./dist/style.css">
 </head>
-<body>
-    <h1>HI</h1>
-    <button onclick="handleGetUser1()">Get User 1</button>
-    <button onclick="handleGetUser2()">Get User 2</button>
-    <button onclick="handleGetUser3()">Get User 3</button>
-    <div id="root"></div>
-    <script src="./dist/app.js"></script>
+<body onload="handleLoadCoach()">
+    <form onsubmit="handleAddEvent(event)">
+    <input type="text" name="lesson" placeholder="lesson">
+    <input type="datetime-local" name="date" >
+    <input type="number" name="price" placeholder="price">
+    <input type="submit" value="add lesson">
+    </form>
+    <script src="./dist/events.js"></script>
 </body>
 </html>
