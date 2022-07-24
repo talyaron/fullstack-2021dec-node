@@ -1,7 +1,12 @@
 body {
   margin: 0%;
+  background-color: rgba(0, 255, 255, 0.847);
 }
 
 h1 {
   color: red;
+}
+
+button {
+  color: #ff7300;
 }

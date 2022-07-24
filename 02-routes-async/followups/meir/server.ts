@@ -9,9 +9,9 @@ interface User{
 }
 
 const users:Array<User> = [
-    {name:'Meir', age:45},
-    {name:'Meiital', age:41},
-    {name:'Iosef Itzjak', age:0}
+    {name:'Yair', age:45, id: "wfwcwdc"},
+    {name:'Moshe', age:41},
+    {name:'Sagui', age:34}
 ]
 
 app.get('/api/user1', (req, res) =>{
