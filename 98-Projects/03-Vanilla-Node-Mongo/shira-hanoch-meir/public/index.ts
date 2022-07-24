@@ -31,3 +31,23 @@ async function handleLogin(ev:any){
         
     }
 }
+
+
+
+async function handleLoadCoach(ev:any){
+    try {
+        ev.preventDefault();
+        const email = ev.target.email.value;
+        const password = ev.target.password.value;
+        //@ts-ignore
+        const {data} = await axios.post('/users/coachLogin', {email, password});
+        const {ok} = data;
+        if(ok){
+            window.location.href = './coach.html';
+        }
+
+    } catch (error) {
+        console.log(error);
+        
+    }
+}

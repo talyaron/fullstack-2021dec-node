@@ -87,3 +87,30 @@ function handleLogin(ev) {
         });
     });
 }
+function handleLoadCoach(ev) {
+    return __awaiter(this, void 0, void 0, function () {
+        var email, password, data, ok, error_3;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    ev.preventDefault();
+                    email = ev.target.email.value;
+                    password = ev.target.password.value;
+                    return [4 /*yield*/, axios.post('/users/coachLogin', { email: email, password: password })];
+                case 1:
+                    data = (_a.sent()).data;
+                    ok = data.ok;
+                    if (ok) {
+                        window.location.href = './coach.html';
+                    }
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_3 = _a.sent();
+                    console.log(error_3);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
+}
