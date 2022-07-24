@@ -10,27 +10,24 @@ export async function login(req, res) {
     const { error } = UserValidation.validate({ email, password });
     if (error) throw error;
 
-    const user = await UserModel.findOne({ email });
-    if (!user) throw new Error("User name or password do not match");
-    if(!user.password) throw new Error('No password in DB')
-    const isMatch = await bcrypt.compare(password, user.password)
-    console.log(password,user.password)
+    const userDB = await UserModel.findOne({ email });
+    if (!userDB) throw new Error("User name or password do not match");
+    if(!userDB.password) throw new Error('No password in DB')
+    const isMatch = await bcrypt.compare(password, userDB.password)
+    console.log(password,userDB.password)
     if(!isMatch) throw new Error ('Username or password do not match')
 
-    if (user) {
-      
-
-      const cookie={user: user._id};
+    const role = userDB.role || "user";
+    console.log(role);
+    
+      const cookie={user: userDB._id};
       const secret=process.env.JWT_SECRET;
       const JWTCookie = jwt.encode(cookie, secret);
 
       res.cookie('user',JWTCookie);
-      res.send({ login: true, user });
+      res.send({ login: true });
 
-    } else {
-      throw new Error("user not found");
-    }
-
+    
     }catch (error) {
       console.error(error);
     res.send({ error: error.message });
