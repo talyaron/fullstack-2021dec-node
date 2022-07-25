@@ -8,4 +8,5 @@ var GameSchema = new mongoose_1["default"].Schema({
     time: { type: String, requierd: true },
     winnerId: { type: String, requierd: true }
 });
-exports["default"] = GameSchema;
+var GameModel = mongoose_1["default"].model("games", GameSchema);
+exports["default"] = GameModel;

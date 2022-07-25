@@ -8,5 +8,5 @@ const GameSchema = new mongoose.Schema({
   winnerId: { type: String, requierd: true },
 });
 
-
-export default GameSchema;
+const GameModel = mongoose.model("games", GameSchema);
+export default GameModel;

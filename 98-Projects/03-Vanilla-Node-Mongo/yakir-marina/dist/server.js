@@ -18,7 +18,10 @@ const port = process.env.PORT || 4007;
 app.use(express_1.default.static("public"));
 app.use(express_1.default.json());
 app.use(cookieParser());
-//=======================================================================
+const UserRoute_1 = __importDefault(require("./routes/UserRoute"));
+app.use("/users", UserRoute_1.default);
+app.use("/games", GameRoute);
+// mongoDB =======================================================================
 let users = {};
 let players = {};
 let unmatched;
@@ -31,12 +34,11 @@ mongoose_1.default
     console.log("Failed to connect to DB:");
     console.log(err.message);
 });
-//======================================================================
+// socket.io ======================================================================
 io.on("connection", (socket) => {
     try {
         console.log("New user is connected ID:", socket.id);
-        //======================================================
-        // game
+        // Game =====================================
         let id = socket.id;
         users[socket.id] = socket;
         join(socket); // Fill 'players' data structure
@@ -76,8 +78,7 @@ io.on("connection", (socket) => {
             socket.broadcast.emit("The user is disconnected", id);
             delete users[socket.id];
         });
-        //==========================================================
-        // chat
+        // Chat =========================================
         socket.on("send-message", (message, room) => {
             if (room === "") {
                 socket.broadcast.emit("recieve-message", message);

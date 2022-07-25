@@ -18,7 +18,12 @@ app.use(express.static("public"));
 app.use(express.json());
 app.use(cookieParser());
 
-//=======================================================================
+import UserRoute from "./routes/UserRoute";
+app.use("/users", UserRoute);
+import GamesRoute from "./routes/GameRoute";
+app.use("/games", GameRoute);
+
+// mongoDB =======================================================================
 
 let users = {};
 let players = {};
@@ -34,15 +39,14 @@ mongoose
     console.log(err.message);
   });
 
-//======================================================================
+// socket.io ======================================================================
 
 io.on("connection", (socket) => {
   try {
     console.log("New user is connected ID:", socket.id);
 
-    //======================================================
+    // Game =====================================
 
-    // game
     let id = socket.id;
     users[socket.id] = socket;
 
@@ -90,9 +94,7 @@ io.on("connection", (socket) => {
       delete users[socket.id];
     });
 
-    //==========================================================
-
-    // chat
+    // Chat =========================================
     socket.on("send-message", (message, room) => {
       if (room === "") {
         socket.broadcast.emit("recieve-message", message);
