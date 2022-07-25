@@ -1,4 +1,9 @@
 import express  from "express";
-const route = express.Router();
+const router = express.Router();
 
-import {addEvents, eventList} from '../controller/eve'
+import {addEvents, eventList} from '../controller/eventsCont';
+
+router.post('/add-events', addEvents)
+        .get('get-events', eventList)
+
+export default router

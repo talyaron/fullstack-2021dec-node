@@ -40,33 +40,45 @@ exports.eventList = exports.addEvents = void 0;
 var model_1 = require("../model/model");
 function addEvents(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var _a, name, lesson, date, price, events;
+        var _a, lesson, date, price, coach, error_1;
         return __generator(this, function (_b) {
-            try {
-                _a = req.body, name = _a.name, lesson = _a.lesson, date = _a.date, price = _a.price;
-                events = model_1.lessonsModel.find({});
-                res.send(events);
+            switch (_b.label) {
+                case 0:
+                    _b.trys.push([0, 2, , 3]);
+                    _a = req.body, lesson = _a.lesson, date = _a.date, price = _a.price, coach = _a.coach;
+                    return [4 /*yield*/, model_1.lessonsModel.create({ lesson: lesson, date: date, price: price, coach: coach })];
+                case 1:
+                    _b.sent();
+                    res.send({ ok: true });
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_1 = _b.sent();
+                    res.send({ error: error_1.message });
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
             }
-            catch (error) {
-                res.send({ error: error.message });
-            }
-            return [2 /*return*/];
         });
     });
 }
 exports.addEvents = addEvents;
 function eventList(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var events;
+        var events, error_2;
         return __generator(this, function (_a) {
-            try {
-                events = model_1.lessonsModel.find({});
-                res.send(events);
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    return [4 /*yield*/, model_1.lessonsModel.find({})];
+                case 1:
+                    events = _a.sent();
+                    res.send(events);
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_2 = _a.sent();
+                    res.send({ error: error_2.message });
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
             }
-            catch (error) {
-                res.send({ error: error.message });
-            }
-            return [2 /*return*/];
         });
     });
 }

@@ -21,3 +21,8 @@ mongoose_1.default.connect(URI).then(res => {
 });
 const usersRouts_1 = __importDefault(require("./router/usersRouts"));
 app.use('/users', usersRouts_1.default);
+const eventsRout_1 = __importDefault(require("./router/eventsRout"));
+app.use('events', eventsRout_1.default);
+app.listen(port, () => {
+    return console.log(`Server is listening at http://localhost:${port}`);
+});
