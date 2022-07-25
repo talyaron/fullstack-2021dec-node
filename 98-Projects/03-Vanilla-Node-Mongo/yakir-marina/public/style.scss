@@ -21,7 +21,7 @@ body {
 }
 
 h1 {
-    font-size: 3.5em;
+    font-size: 2.8em;
     color: #aa1f21b2;
     text-shadow: 5px 5px 5px #03030360;
     font-family: 'Monoton', cursive;
@@ -51,12 +51,12 @@ h1 {
 // }
 
 .message {
-    font-size: 1.5em;
+    font-size: 1.2em;
     background-color: #006e7a40;
     border-radius: 7px;
     padding: .1em .5em .1em .5em;
     color: #151414cb;
-    text-shadow: 5px 5px 5px #0303032b;   
+    text-shadow: 5px 5px 5px #0303032b;
 }
 
 .container {
@@ -69,9 +69,9 @@ h1 {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             grid-template-rows: repeat(3, 1fr);
-            grid-gap: 10px;
-            width: 37.5em;
-            height: 37.5em;
+            // grid-gap: 0px;
+            width: 31em;
+            height: 34em;
             border-radius: 16px;
             margin-top: 40px;
 
@@ -79,8 +79,8 @@ h1 {
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                width: 170px;
-                height: 170px;
+                width: 150px;
+                height: 150px;
                 border: 5px solid #aa1f215c;
                 border-style: double;
                 border-radius: 16px;
@@ -156,8 +156,8 @@ h1 {
             }
 
         }
-        
-    }   
+
+    }
 
     &__chat {
         display: flex;
@@ -167,7 +167,7 @@ h1 {
 
         #chat-container {
             width: 25em;
-            height: 34em;
+            height: 30em;
             border-radius: 16px;
             margin: 9% auto auto 9%;
             overflow-y: auto;
@@ -230,4 +230,3 @@ h1 {
     }
 
 }
-
