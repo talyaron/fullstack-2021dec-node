@@ -9,7 +9,7 @@ interface User{
 }
 
 const users:Array<User> = [
-    {name:'Yair', age:45, id: "wfwcwdc"},
+    {name:'Yair', age:45,},
     {name:'Moshe', age:41},
     {name:'Sagui', age:34}
 ]
