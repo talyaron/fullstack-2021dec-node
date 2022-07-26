@@ -25,7 +25,7 @@ body {
   flex-direction: column;
   justify-content: center;
   text-align: center;
-  width: 45%;
+  width: 40%;
 }
 .login-page-container form,
 .login-page-container .register-link,
@@ -38,7 +38,7 @@ body {
   top: 50%;
 }
 .login-page-container form input[type=submit] {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   cursor: pointer;
   color: rgba(110, 20, 10, 0.647);
   transition: transform 0.4s ease-in-out;
@@ -50,7 +50,7 @@ body {
 }
 .login-page-container form input[type=text],
 .login-page-container form input[type=password] {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   letter-spacing: 2px;
   outline: none;
 }
@@ -59,7 +59,7 @@ body {
 }
 .login-page-container .register-link {
   position: relative;
-  top: -180%;
+  top: -160%;
   font-family: "Montserrat", sans-serif;
   font-weight: bold;
   font-size: 1.4rem;
@@ -76,13 +76,13 @@ body {
   position: absolute;
   top: 0%;
   left: 33%;
-  font-size: 4.5rem;
-  letter-spacing: 9px;
+  font-size: 3.8em;
+  letter-spacing: 7px;
 }
 .login-page-container .title-login .smilyImg-players {
-  width: 2.9rem;
+  width: 2.3rem;
   top: 29%;
-  left: 73.7%;
+  left: 73.8%;
   opacity: 0.7;
 }
 
@@ -112,16 +112,16 @@ input[type=password],
   left: 50%;
   position: absolute;
   color: rgba(45, 31, 18, 0.525);
-  font-size: 3rem;
+  font-size: 2.4em;
   font-weight: bold;
-  letter-spacing: 10px;
+  letter-spacing: 8px;
   text-shadow: 0 20px 30px rgba(39, 28, 17, 0.779);
 }
 
 .title-game .smilyImg-game {
-  width: 2.1rem;
+  width: 1.8rem;
   top: 24%;
-  left: 73.7%;
+  left: 73.5%;
   opacity: 0.7;
   transition: all 0.5s ease;
 }
@@ -130,9 +130,9 @@ input[type=password],
 }
 
 .title-statistic .smilyImg-statistic {
-  width: 2.1rem;
-  top: 24%;
-  left: 61%;
+  width: 1.9rem;
+  top: 19%;
+  left: 60.4%;
   opacity: 0.7;
   transition: all 0.5s ease;
 }
@@ -155,7 +155,7 @@ input[type=password],
   border: 5px solid rgba(110, 20, 10, 0.242);
   box-shadow: 0 15px 30px rgba(0, 5, 24, 0.454);
   border-style: double;
-  font-size: 1.7rem;
+  font-size: 1.5em;
   background-color: transparent;
   border-radius: 5px;
   padding: 0;
@@ -167,6 +167,7 @@ input[type=password],
   width: 30%;
   justify-content: center;
   text-align: center;
+  letter-spacing: 2px;
 }
 .bestTime .user-icon {
   font-size: 2rem;
@@ -174,18 +175,18 @@ input[type=password],
 }
 
 .generalStatistic {
-  top: 50%;
+  top: 55%;
   left: 50%;
-  width: 40%;
+  width: 38%;
 }
 .generalStatistic__info-totalRounds, .generalStatistic__info-time, .generalStatistic__info-winPoints, .generalStatistic__info-flips {
   display: flex;
   text-align: center;
   justify-content: space-between;
-  padding: 0 5em 0 5em;
+  padding: 0 4.5rem 0 4.5rem;
 }
 .generalStatistic .user-icon {
-  font-size: 2.1rem;
+  font-size: 2rem;
   color: rgba(130, 29, 18, 0.531);
 }
 .generalStatistic .gen-stat-inner {
@@ -198,7 +199,7 @@ input[type=password],
 .playersList {
   top: 50%;
   left: 13%;
-  width: 15%;
+  width: 20%;
   font-size: 25px;
   font-weight: bold;
   letter-spacing: 2px;
@@ -233,8 +234,7 @@ input[type=password],
   border: 5px solid rgba(110, 20, 10, 0.242);
   box-shadow: 0 15px 30px rgba(0, 5, 24, 0.454);
   border-style: double;
-  padding: 0.2em 0.9em;
-  font-family: "Montserrat", sans-serif;
+  padding: 0.2em 0.6em;
 }
 
 .gameButtons {
@@ -247,6 +247,9 @@ input[type=password],
 .gameButtons .newGameBtm,
 .gameButtons .statisticBtn {
   font-size: 1.2rem;
+  font-family: "Russo One", sans-serif;
+  font-weight: normal;
+  color: rgba(45, 31, 18, 0.557);
   letter-spacing: 2px;
   transition: all 0.3s ease;
   cursor: pointer;
@@ -262,8 +265,8 @@ input[type=password],
   transform: translate(-50%, -50%);
   justify-content: center;
   position: absolute;
-  margin: 30px auto;
-  grid-gap: 20px 25px;
+  margin: 25px auto;
+  grid-gap: 15px 20px;
   display: grid;
   perspective: 700px;
   top: 50%;
@@ -272,8 +275,8 @@ input[type=password],
 .containerGame__card {
   position: relative;
   cursor: pointer;
-  height: 175px;
-  width: 125px;
+  height: 160px;
+  width: 115px;
   border-radius: 8px;
   transform-style: preserve-3d;
   transition: all 0.8s ease;
@@ -290,8 +293,8 @@ input[type=password],
   align-items: center;
   transition: transform 500ms ease-in-out;
   backface-visibility: hidden;
-  width: 125px;
-  height: 175px;
+  width: 115px;
+  height: 160px;
   border-radius: 10px;
 }
 .containerGame__card__back {
@@ -328,16 +331,16 @@ input[type=password],
 .statistics__title {
   max-width: 90%;
   top: -5%;
-  color: #2d1f12;
+  color: rgba(45, 31, 18, 0.393);
   font-size: 1.5rem;
-  font-weight: bold;
+  font-weight: normal;
   letter-spacing: 5px;
   text-shadow: 0 20px 30px rgba(0, 5, 24, 0.96);
   border: 5px solid rgba(110, 20, 10, 0.242);
   box-shadow: 0 15px 30px rgba(0, 5, 24, 0.454);
   border-style: double;
   padding: 0.2em 0.9em;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Russo One", sans-serif;
 }
 .statistics__info-player {
   top: -14%;

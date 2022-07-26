@@ -7,6 +7,7 @@ var regSchema = new mongoose_1["default"].Schema({
     password: { type: String, required: true }
 });
 var coachSchema = new mongoose_1["default"].Schema({
+    name: String,
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true }
 });
