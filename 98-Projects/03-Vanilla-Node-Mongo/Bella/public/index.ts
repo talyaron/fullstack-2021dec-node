@@ -10,8 +10,12 @@ async function handleRegister(ev : any) {
         const {data} = await axios.post("/users/register", {name, email, password});
         console.log(data);
 
-        const {ok} = data;
-        if (ok) {
+        const { register, error } = data;
+        if (error) throw error;
+        console.log(data);
+    
+        if( error && error.includes("E11000")) alert ('email is already in use')
+        else {
             window.location.href = "./login.html"
         }
     } catch (error) {
