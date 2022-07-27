@@ -34,73 +34,42 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-function handleRegister(ev) {
+function handleLoad() {
+    try {
+        // //@ts-ignore const { data } = await axios.get("/data/get-all-data");
+        // console.log(data); stocksAPI()
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+function stocksAPI(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var name, email, password, data, ok, error, error_1;
+        var userInput, data, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
+                    _a.trys.push([0, 2, , 3]);
                     ev.preventDefault();
-                    _a.label = 1;
+                    userInput = ev.target.elements.userInput.value;
+                    console.log(userInput);
+                    return [4 /*yield*/, axios.get("https://cloud.iexapis.com/stable/tops?token=pk_421d8331d521478798685db9b5be24fa&symbols=" + userInput)];
                 case 1:
-                    _a.trys.push([1, 3, , 4]);
-                    name = ev.target.elements.name.value;
-                    email = ev.target.elements.email.value;
-                    password = ev.target.elements.password.value;
-                    console.log(name, email, password);
-                    return [4 /*yield*/, axios.post("/users/register", { name: name, email: email, password: password })];
-                case 2:
                     data = (_a.sent()).data;
                     console.log(data);
-                    ok = data.ok, error = data.error;
-                    if (error)
-                        throw error;
-                    if (error && error.includes("E11000"))
-                        alert('email is already in use');
-                    else {
-                        window.location.href = "./login.html";
-                    }
-                    ev.target.reset();
-                    return [3 /*break*/, 4];
-                case 3:
+                    render(data);
+                    return [3 /*break*/, 3];
+                case 2:
                     error_1 = _a.sent();
                     console.error(error_1);
-                    return [3 /*break*/, 4];
-                case 4: return [2 /*return*/];
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
             }
         });
     });
 }
 ;
-function handleLogin(ev) {
-    return __awaiter(this, void 0, void 0, function () {
-        var email, password, data, ok, error_2;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    ev.preventDefault();
-                    _a.label = 1;
-                case 1:
-                    _a.trys.push([1, 3, , 4]);
-                    email = ev.target.elements.email.value;
-                    password = ev.target.elements.password.value;
-                    console.log(email, password);
-                    return [4 /*yield*/, axios.post("/users/login", { email: email, password: password })];
-                case 2:
-                    data = (_a.sent()).data;
-                    console.log(data);
-                    ok = data.ok;
-                    if (ok) {
-                        window.location.href = "./dashboard.html";
-                    }
-                    return [3 /*break*/, 4];
-                case 3:
-                    error_2 = _a.sent();
-                    console.error(error_2);
-                    return [3 /*break*/, 4];
-                case 4: return [2 /*return*/];
-            }
-        });
-    });
+function render(data) {
+    var root = document.querySelector("#root");
+    root.innerHTML = "<h3>" + data + "</h3>";
 }
-;
