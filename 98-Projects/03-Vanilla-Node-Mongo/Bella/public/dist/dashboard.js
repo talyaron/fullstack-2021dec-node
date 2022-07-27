@@ -36,23 +36,24 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 function handleLoad() {
     try {
-        // //@ts-ignore
-        // const { data } = await axios.get("/data/get-all-data");
-        // console.log(data);
-        stocksAPI();
+        // //@ts-ignore const { data } = await axios.get("/data/get-all-data");
+        // console.log(data); stocksAPI()
     }
     catch (error) {
         console.error(error);
     }
 }
-function stocksAPI() {
+function stocksAPI(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var data, error_1;
+        var userInput, data, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, axios.get("https://cloud.iexapis.com/stable/tops?token=pk_421d8331d521478798685db9b5be24fa&symbols=aapl")];
+                    ev.preventDefault();
+                    userInput = ev.target.elements.userInput.value;
+                    console.log(userInput);
+                    return [4 /*yield*/, axios.get("https://cloud.iexapis.com/stable/tops?token=pk_421d8331d521478798685db9b5be24fa&symbols=" + userInput)];
                 case 1:
                     data = (_a.sent()).data;
                     console.log(data);
