@@ -28,7 +28,7 @@ if (MONGODB_URI) {
 
 //userRoutes and stockRoutes
 import userRoute from "./routes/userRoute";
-app.use("./users", userRoute);
+app.use("/users", userRoute);
 
 
 app.listen(port, () => {

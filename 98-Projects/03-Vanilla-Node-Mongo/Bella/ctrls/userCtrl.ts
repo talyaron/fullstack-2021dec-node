@@ -10,8 +10,9 @@ export async function register(req, res) {
         const salt = bcrypt.genSaltSync(saltRounds);
         const hash = bcrypt.hashSync(password, salt);
 
-        const userDB = await UserModel.create({ name, email, hash });
-        res.send({ok: true})
+        const userDB = await UserModel.create({ name, email, password:hash });
+
+        res.send({ ok: true })
     } catch (error) {
         console.log(error);
     }
@@ -24,9 +25,9 @@ export async function login(req, res) {
         if (!userDB) 
             throw new Error("Email or password don't match");
         
-        const validUser = await bcrypt.compare(userDB.password, password);
+        const validUser = await bcrypt.compare(password, userDB.password);
         if (!validUser) 
-            throw new Error("Email or password don't match");
+            throw new Error("Email or password doesn't match");
         
         const name = userDB.name || "user";
         console.log(name);

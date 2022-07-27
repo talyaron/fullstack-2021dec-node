@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 function handleRegister(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var name, email, password, data, register, error, error_1;
+        var name, email, password, data, ok, error, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -52,10 +52,9 @@ function handleRegister(ev) {
                 case 2:
                     data = (_a.sent()).data;
                     console.log(data);
-                    register = data.register, error = data.error;
+                    ok = data.ok, error = data.error;
                     if (error)
                         throw error;
-                    console.log(data);
                     if (error && error.includes("E11000"))
                         alert('email is already in use');
                     else {

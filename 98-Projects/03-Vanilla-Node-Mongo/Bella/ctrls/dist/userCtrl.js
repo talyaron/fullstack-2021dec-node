@@ -51,7 +51,7 @@ function register(req, res) {
                     _a = req.body, name = _a.name, email = _a.email, password = _a.password;
                     salt = bcrypt_1["default"].genSaltSync(saltRounds);
                     hash = bcrypt_1["default"].hashSync(password, salt);
-                    return [4 /*yield*/, userModel_1["default"].create({ name: name, email: email, hash: hash })];
+                    return [4 /*yield*/, userModel_1["default"].create({ name: name, email: email, password: hash })];
                 case 1:
                     userDB = _b.sent();
                     res.send({ ok: true });
@@ -80,11 +80,11 @@ function login(req, res) {
                     userDB = _b.sent();
                     if (!userDB)
                         throw new Error("Email or password don't match");
-                    return [4 /*yield*/, bcrypt_1["default"].compare(userDB.password, password)];
+                    return [4 /*yield*/, bcrypt_1["default"].compare(password, userDB.password)];
                 case 2:
                     validUser = _b.sent();
                     if (!validUser)
-                        throw new Error("Email or password don't match");
+                        throw new Error("Email or password doesn't match");
                     name = userDB.name || "user";
                     console.log(name);
                     cookie = {

@@ -30,7 +30,7 @@ else {
 ;
 //userRoutes and stockRoutes
 const userRoute_1 = __importDefault(require("./routes/userRoute"));
-app.use("./users", userRoute_1.default);
+app.use("/users", userRoute_1.default);
 app.listen(port, () => {
     return console.log(`Server is listening at http://localhost:${port}`);
 });
