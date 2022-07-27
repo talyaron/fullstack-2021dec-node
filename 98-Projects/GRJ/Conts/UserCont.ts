@@ -25,7 +25,7 @@ export async function login(req, res){
       const JWTCookie = jwt.encode(cookie, secret);
 
       res.cookie('user',JWTCookie);
-      res.send({ login: true });
+      res.send({ login: true, userId:userDB.id });
 
     
     }catch (error) {
