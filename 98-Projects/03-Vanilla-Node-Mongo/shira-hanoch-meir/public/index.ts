@@ -34,7 +34,7 @@ async function handleLogin(ev:any){
 
 
 
-async function handleLoadCoach(ev:any){
+async function handleCoachLogin(ev:any){
     try {
         ev.preventDefault();
         const email = ev.target.email.value;

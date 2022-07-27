@@ -87,7 +87,7 @@ function handleLogin(ev) {
         });
     });
 }
-function handleLoadCoach(ev) {
+function handleCoachLogin(ev) {
     return __awaiter(this, void 0, void 0, function () {
         var email, password, data, ok, error_3;
         return __generator(this, function (_a) {

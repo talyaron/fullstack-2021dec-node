@@ -24,7 +24,7 @@ mongoose.connect(URI).then(res => {
   import userRoute from './router/usersRouts';
   app.use('/users', userRoute)
   import eventsRoute from './router/eventsRout';
-  app.use('events', eventsRoute)
+  app.use('/events', eventsRoute)
 
   app.listen(port, () => {
     return console.log(`Server is listening at http://localhost:${port}`);
