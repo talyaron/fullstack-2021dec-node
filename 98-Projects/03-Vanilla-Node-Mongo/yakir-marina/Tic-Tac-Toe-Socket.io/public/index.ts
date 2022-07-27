@@ -9,13 +9,18 @@ const roomForm: any = document.querySelector("#gameRoomForm");
 // chat
 const joinChatRoomBtn: any = document.querySelector("#chatRoomBtn");
 const chatForm: any = document.querySelector("#chatForm");
-const chatInput = document.querySelector("#chatMessageInput") as HTMLInputElement;
-const chatRoomInput = document.querySelector("#chatRoomInput") as HTMLInputElement;
-const chatMessage = document.querySelector("#chat-container") as HTMLInputElement;
+const chatInput = document.querySelector(
+  "#chatMessageInput"
+) as HTMLInputElement;
+const chatRoomInput = document.querySelector(
+  "#chatRoomInput"
+) as HTMLInputElement;
+const chatMessage = document.querySelector(
+  "#chat-container"
+) as HTMLInputElement;
 
 let myMove = true;
 let symbol;
-
 
 function handleLoad() {
   try {
@@ -24,15 +29,6 @@ function handleLoad() {
     console.error(error);
   }
 }
-
-
-
-
-
-
-
-
-
 
 // CHAT ===========================================
 socket.on("connect", () => {
@@ -89,25 +85,6 @@ function displayChatMessage(message) {
   }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // GAME =================================================
 
 function getBoardState() {
@@ -127,20 +104,19 @@ function getBoardState() {
 function isGameOver() {
   try {
     let winCombination = getBoardState();
-    let matches = ["XXX", "OOO"]; 
-    
+    let matches = ["XXX", "OOO"];
+
     let rows = [
-      winCombination.cell0 + winCombination.cell1 + winCombination.cell2, 
-      winCombination.cell3 + winCombination.cell4 + winCombination.cell5, 
-      winCombination.cell6 + winCombination.cell7 + winCombination.cell8, 
-      winCombination.cell0 + winCombination.cell3 + winCombination.cell6, 
-      winCombination.cell1 + winCombination.cell4 + winCombination.cell7, 
-      winCombination.cell2 + winCombination.ce5l5 + winCombination.cell8, 
-      winCombination.cell0 + winCombination.cell4 + winCombination.cell8, 
-      winCombination.cell2 + winCombination.cell4 + winCombination.cell6, 
+      winCombination.cell0 + winCombination.cell1 + winCombination.cell2,
+      winCombination.cell3 + winCombination.cell4 + winCombination.cell5,
+      winCombination.cell6 + winCombination.cell7 + winCombination.cell8,
+      winCombination.cell0 + winCombination.cell3 + winCombination.cell6,
+      winCombination.cell1 + winCombination.cell4 + winCombination.cell7,
+      winCombination.cell2 + winCombination.ce5l5 + winCombination.cell8,
+      winCombination.cell0 + winCombination.cell4 + winCombination.cell8,
+      winCombination.cell2 + winCombination.cell4 + winCombination.cell6,
     ];
 
-    
     for (let i = 0; i < rows.length; i++) {
       if (rows[i] === matches[0] || rows[i] === matches[1]) {
         return true;
@@ -148,12 +124,10 @@ function isGameOver() {
     }
 
     return false;
-
   } catch (error) {
     console.error(error.message);
   }
 }
-
 
 function makeMove() {
   try {
@@ -178,7 +152,7 @@ function makeMove() {
 // Bind event on players move
 socket.on("move-made", (data) => {
   try {
-    $("#" + data.position).text(data.symbol); 
+    $("#" + data.position).text(data.symbol);
 
     // If the symbol of the last move was the same as the current player
     // means that now is opponent's turn
@@ -187,7 +161,6 @@ socket.on("move-made", (data) => {
     if (!isGameOver()) {
       renderTurnMessage();
     } else {
-      
       if (myMove) {
         $("#message")
           .text("Ups..You lost :(")
@@ -201,7 +174,7 @@ socket.on("move-made", (data) => {
           .css("font-family", "Montserrat")
           .css("color", "white")
           .css("font-weight", "normal");
-        $("#message").css("background", "#006e7a40")
+        $("#message").css("background", "#006e7a40");
       }
 
       $(".container__game__board__cell").attr("disabled", true); // Disable board
@@ -210,7 +183,6 @@ socket.on("move-made", (data) => {
     console.error(error.message);
   }
 });
-
 
 socket.on("game-begin", (data) => {
   try {
@@ -221,7 +193,6 @@ socket.on("game-begin", (data) => {
     console.error(error.message);
   }
 });
-
 
 socket.on("opponent-left", () => {
   try {
@@ -292,7 +263,7 @@ function displayGameMessage(message) {
 
 function handleBackToGame() {
   try {
-    window.location.href = "./game.html"
+    window.location.href = "./game.html";
   } catch (error) {
     console.error(error);
   }
@@ -305,20 +276,6 @@ function handleGoToStats() {
     console.error(error);
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // REGISTER / LOGIN ========================================
 
@@ -376,21 +333,22 @@ async function handleLogin(e) {
 async function getPlayerByCookie() {
   try {
     const { data } = await axios.get("/players/player-by-cookie");
-    const { player, decodedCookie } = data;
+    // const { player, decodedCookie } = data;
+    const { player } = data;
+    console.log(data);
     if (!player) throw new Error("player not found");
     console.log("This player from getPlayerByCookie:", player);
 
-    
-    console.log("decodedCookie is: ", decodedCookie);
+    // console.log("decodedCookie is: ", decodedCookie);
     const { name } = player;
     console.log("name is:", name);
-    
+
     const gameRoot: any = document.querySelector("#gameRoot");
-    gameRoot.innerHTML = `<h2>Wellcome, ${decodedCookie.name}!</h2>`;
-    displayChatMessage(`You connected as ${decodedCookie.name}`); 
+    // gameRoot.innerHTML = `<h2>Wellcome, ${decodedCookie.name}!</h2>`;
+    gameRoot.innerHTML = `<h2>Wellcome, ${name}!</h2>`;
+    // displayChatMessage(`You connected as ${decodedCookie.name}`);
     // gameRoot.innerHTML = `<h1>Wellcome, ${name}!</h1>`;
   } catch (error) {
     console.error(error.message);
   }
 }
-

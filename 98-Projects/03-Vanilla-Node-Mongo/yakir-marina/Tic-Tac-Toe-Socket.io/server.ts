@@ -40,10 +40,6 @@ mongoose
     console.log(err.message);
   });
 
-//======================================================================
-
-
-
 
 
 io.on("connection", (socket) => {

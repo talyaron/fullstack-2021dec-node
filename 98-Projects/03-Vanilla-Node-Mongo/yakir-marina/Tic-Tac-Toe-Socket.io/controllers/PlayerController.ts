@@ -69,11 +69,13 @@ export const getPlayerByCookie = async (req, res) => {
     console.log("player is:", player);
     if (!player) throw new Error("Cookie player not found");
 
-    const secret = process.env.JWT_SECRET;
-    let decodedCookie = jwt.decode(player, secret);
-    console.log(decodedCookie);
+    // const secret = process.env.JWT_SECRET;
+    // let decodedCookie = jwt.decode(player, secret);
+    // console.log(decodedCookie);
+   
 
-    res.send({ success: true, player, decodedCookie });
+    // res.send({ success: true, player, decodedCookie });
+    res.send({ success: true, player});
     // res.send({ success: true, player });
     console.log("player is:", player);
   } catch (error) {

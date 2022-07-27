@@ -373,7 +373,7 @@ function handleLogin(e) {
 }
 function getPlayerByCookie() {
     return __awaiter(this, void 0, void 0, function () {
-        var data, player, decodedCookie, name, gameRoot, error_3;
+        var data, player, name, gameRoot, error_3;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -381,16 +381,16 @@ function getPlayerByCookie() {
                     return [4 /*yield*/, axios.get("/players/player-by-cookie")];
                 case 1:
                     data = (_a.sent()).data;
-                    player = data.player, decodedCookie = data.decodedCookie;
+                    player = data.player;
+                    console.log(data);
                     if (!player)
                         throw new Error("player not found");
                     console.log("This player from getPlayerByCookie:", player);
-                    console.log("decodedCookie is: ", decodedCookie);
                     name = player.name;
                     console.log("name is:", name);
                     gameRoot = document.querySelector("#gameRoot");
-                    gameRoot.innerHTML = "<h2>Wellcome, " + decodedCookie.name + "!</h2>";
-                    displayChatMessage("You connected as " + decodedCookie.name);
+                    // gameRoot.innerHTML = `<h2>Wellcome, ${decodedCookie.name}!</h2>`;
+                    gameRoot.innerHTML = "<h2>Wellcome, " + name + "!</h2>";
                     return [3 /*break*/, 3];
                 case 2:
                     error_3 = _a.sent();

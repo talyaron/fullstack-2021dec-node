@@ -35,7 +35,6 @@ mongoose_1.default
     console.log("Failed to connect to DB:");
     console.log(err.message);
 });
-//======================================================================
 io.on("connection", (socket) => {
     try {
         console.log("New user is connected ID:", socket.id);
