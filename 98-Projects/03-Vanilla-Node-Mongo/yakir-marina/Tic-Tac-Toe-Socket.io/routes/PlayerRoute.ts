@@ -4,7 +4,7 @@ import jwt from "jwt-simple";
 // import {isUser} from '../middleware/helpers';
 
 // isUser check to authrized user for login
-export function getUser(req, res, next) {
+export function getUserData(req, res, next) {
   try {
     const { player } = req.cookies;
     if (!player) throw new Error("user cookie not found");
@@ -14,9 +14,9 @@ export function getUser(req, res, next) {
 
     console.log("decodedCookie is:", decodedCookie);
     req.player = decodedCookie;
-    console.log("req.user is:", req.player);
-
+    console.log("req.player is:", req.player);
     next();
+
   } catch (error) {
     res.send({ error: error });
   }
@@ -38,5 +38,5 @@ import {
 router
   .post("/register", register)
   .post("/login", login)
-  .get("/player-by-cookie", getUser, getPlayerByCookie);
+  .get("/player-by-cookie", getUserData, getPlayerByCookie);
 export default router;
