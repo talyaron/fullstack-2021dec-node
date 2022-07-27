@@ -1,0 +1,121 @@
+@import url('https://fonts.googleapis.com/css2?family=BIZ+UDPMincho&family=Cairo:wght@300&family=Josefin+Sans:wght@300&family=Montserrat:wght@100;200&family=Rajdhani:wght@300&family=Red+Hat+Mono:wght@300;400&family=Special+Elite&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Monoton&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&family=Faster+One&family=Sarpanch&display=swap');
+
+* {
+    box-sizing: border-box;
+    font-family: 'Sarpanch', sans-serif;
+    padding: 0;
+    margin: 0;
+}
+
+
+body {
+    background: linear-gradient(160deg, #1289A7 50%, #0652DD 50%);
+    height: 100vh;
+    overflow: hidden;
+}
+
+html,
+body {
+    overflow-x: hidden;
+}
+
+.nav {
+    width: 100%;
+    height: 4em;
+    background-color: #1483665b;
+    box-shadow: 10px 10px 10px rgba(8, 8, 8, 0.322);
+    border: 5px solid #aa1f215c;
+    border-style: double;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-bottom-left-radius: 30px;
+    border-top-left-radius: 30px;
+    padding: 10px 0;
+
+    &__message {
+        display: block;
+        width: 105%;
+        transform: translateX(100%);
+        animation: move 15s linear infinite;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.3em;
+        color: #163157ec;
+        font-family: 'Monoton', cursive;
+    }
+
+    @keyframes move {
+        to {
+            transform: translateX(-10%);
+        }
+    }
+
+    &__logo {
+        width: 3%;
+        cursor: pointer;
+        position: absolute;
+        top: 0%;
+        z-index: 1;
+    }
+
+}
+
+h1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    top: 10%;
+    font-size: 2.8em;
+    color: #aa1f21b2;
+    text-shadow: 5px 5px 5px #03030360;
+    font-family: 'Monoton', cursive;
+}
+
+.container {
+
+    &__scoreTable {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.1em;
+        margin-left: 3em;
+
+        #scoreTable-container {
+            width: 80%;
+            height: 30em;
+            border-radius: 16px;
+            margin: 9% auto auto 9%;
+            overflow-y: auto;
+            background-color: rgba(15, 14, 14, 0.463);
+            backdrop-filter: blur(5px);
+            box-shadow: 10px 10px 10px rgba(8, 8, 8, 0.322);
+            box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.657);
+            border: 5px solid #aa1f215c;
+            border-style: double;
+        }
+
+        #scoreTable-container div {
+            border-radius: 10px;
+            background-color: rgba(44, 204, 137, 0.177);
+            font-family: Montserrat;
+            font-weight: bold;
+            padding: 5px;
+            text-align: left;
+            font-size: 18px;
+            color: rgb(4, 4, 4);
+        }
+
+        #scoreTable-container div:nth-child(2n) {
+            background-color: rgba(162, 159, 159, 0);
+            color: rgba(235, 228, 228, 0.663);
+            font-weight: normal;
+        }
+
+    }
+
+}
