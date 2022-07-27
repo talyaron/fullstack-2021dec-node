@@ -3,17 +3,18 @@ const router = express.Router();
 import jwt from "jwt-simple";
 // import {isUser} from '../middleware/helpers';
 
-export function isUser(req, res, next) {
+// isUser check to authrized user for login
+export function getUser(req, res, next) {
   try {
-    const { user } = req.cookies;
-    if (!user) throw new Error("user cookie not found");
+    const { player } = req.cookies;
+    if (!player) throw new Error("user cookie not found");
 
     const secret = process.env.JWT_SECRET;
-    let decodedCookie = jwt.decode(user, secret);
+    let decodedCookie = jwt.decode(player, secret);
 
     console.log("decodedCookie is:", decodedCookie);
-    req.user = decodedCookie;
-    console.log("req.user is:", req.user);
+    req.player = decodedCookie;
+    console.log("req.user is:", req.player);
 
     next();
   } catch (error) {
@@ -35,7 +36,7 @@ import {
 // export default router;
 
 router
-  .post("/register", isUser, register)
-  .post("/login", isUser, login)
-  .get("/player-by-cookie", isUser, getPlayerByCookie);
+  .post("/register", register)
+  .post("/login", login)
+  .get("/player-by-cookie", getUser, getPlayerByCookie);
 export default router;

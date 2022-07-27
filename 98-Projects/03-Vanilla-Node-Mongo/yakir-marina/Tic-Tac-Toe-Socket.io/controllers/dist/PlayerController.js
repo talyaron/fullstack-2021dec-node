@@ -120,13 +120,10 @@ exports.getPlayerByCookie = function (req, res) { return __awaiter(void 0, void 
     var player;
     return __generator(this, function (_a) {
         try {
-            player = req.cookies.player;
+            player = req.player;
             console.log("player is:", player);
             if (!player)
                 throw new Error("Cookie player not found");
-            // const secret = process.env.JWT_SECRET;
-            // let decodedCookie = jwt.decode(player, secret);
-            // console.log(decodedCookie);
             // res.send({ success: true, player, decodedCookie });
             res.send({ success: true, player: player });
             // res.send({ success: true, player });
