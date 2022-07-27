@@ -57,6 +57,7 @@ function stocksAPI(ev) {
                 case 1:
                     data = (_a.sent()).data;
                     console.log(data);
+                    render(data);
                     return [3 /*break*/, 3];
                 case 2:
                     error_1 = _a.sent();
@@ -68,3 +69,7 @@ function stocksAPI(ev) {
     });
 }
 ;
+function render(data) {
+    var root = document.querySelector("#root");
+    root.innerHTML = "<h3>" + data + "</h3>";
+}

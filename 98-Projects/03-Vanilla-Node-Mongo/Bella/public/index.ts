@@ -1,9 +1,9 @@
 async function handleRegister(ev : any) {
     ev.preventDefault();
     try {
-        const name = ev.target.elements.name.value;
-        const email = ev.target.elements.email.value;
-        const password = ev.target.elements.password.value;
+        const name:HTMLInputElement = ev.target.elements.name.value;
+        const email:HTMLInputElement = ev.target.elements.email.value;
+        const password:HTMLInputElement = ev.target.elements.password.value;
         console.log(name, email, password);
 
         //@ts-ignore
@@ -20,6 +20,8 @@ async function handleRegister(ev : any) {
         else {
             window.location.href = "./login.html"
         }
+        ev.target.reset()
+
 
     } catch (error) {
         console.error(error);

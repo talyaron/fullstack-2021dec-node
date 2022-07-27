@@ -12,12 +12,15 @@
             referrerpolicy="no-referrer"></script>
         <link rel="stylesheet" href="./dist/style.css">
     </head>
-    <body onload="handleLoad()">
+    <body class="screen__dashboard" onload="handleLoad()">
+        <div class="content">
+
         <form onsubmit="stocksAPI(event)">
             <input type="text" name="userInput" value="write here">
-            <button type="submit">Search</button>
+            <input type="submit" name="search" value="Search">        
         </form>
-        <div id="root">Root</div>
+        <div id="root"></div>
+    </div>
 
         <script src="./dist/dashboard.js"></script>
     </body>

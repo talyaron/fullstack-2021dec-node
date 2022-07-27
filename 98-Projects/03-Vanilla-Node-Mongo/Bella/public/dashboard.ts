@@ -18,9 +18,16 @@ async function stocksAPI(ev) {
 
         const {data} = await axios.get(`https://cloud.iexapis.com/stable/tops?token=pk_421d8331d521478798685db9b5be24fa&symbols=${userInput}`);
         console.log(data);
+        render(data)
+
 
     } catch (error) {
         console.error(error);
     }
 };
 
+function render(data) {
+            
+    const root = document.querySelector("#root");
+    root.innerHTML = `<h3>${data}</h3>`;
+}
