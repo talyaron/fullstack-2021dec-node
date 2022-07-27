@@ -5,13 +5,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const mongoose_1 = __importDefault(require("mongoose"));
-var cookieParser = require('cookie-parser');
+const socket_io_1 = require("socket.io");
+const http_1 = require("http");
 const app = express_1.default();
-const { createServer } = require("http");
-const { Server } = require("socket.io");
-const httpServer = createServer();
-const io = new Server(httpServer, { /* options */});
+const httpServer = http_1.createServer(app);
+const io = new socket_io_1.Server(httpServer, { /* options */});
 const port = 3001;
+const cookieParser = require('cookie-parser');
 require('dotenv').config();
 app.use(cookieParser());
 const mongodb_uri = process.env.MONGODB_URI;

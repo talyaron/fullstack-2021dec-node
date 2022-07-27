@@ -1,12 +1,14 @@
 import express from "express";
 import mongoose from "mongoose";
-var cookieParser = require('cookie-parser')
+import { Server } from "socket.io";
+import { createServer } from "http";
+
 const app = express();
-const { createServer } = require("http");
-const { Server } = require("socket.io");
-const httpServer = createServer();
+const httpServer = createServer(app);
 const io = new Server(httpServer, { /* options */ });
 const port = 3001;
+
+const cookieParser = require('cookie-parser')
 require('dotenv').config()
 
 app.use(cookieParser());
