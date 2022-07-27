@@ -26,7 +26,9 @@ if (MONGODB_URI) {
     console.log("No MongoDB URI specified");
 };
 
-//add userRoute and stockRoute
+//userRoutes and stockRoutes
+import userRoute from "./routes/userRoute";
+app.use("./users", userRoute);
 
 
 app.listen(port, () => {

@@ -1,7 +1,7 @@
 async function handleRegister(ev : any) {
     ev.preventDefault();
     try {
-        const name = ev.target.elements.userName.value;
+        const name = ev.target.elements.name.value;
         const email = ev.target.elements.email.value;
         const password = ev.target.elements.password.value;
         console.log(name, email, password);

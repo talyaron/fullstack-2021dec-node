@@ -44,7 +44,7 @@ function handleRegister(ev) {
                     _a.label = 1;
                 case 1:
                     _a.trys.push([1, 3, , 4]);
-                    name = ev.target.elements.userName.value;
+                    name = ev.target.elements.name.value;
                     email = ev.target.elements.email.value;
                     password = ev.target.elements.password.value;
                     console.log(name, email, password);
