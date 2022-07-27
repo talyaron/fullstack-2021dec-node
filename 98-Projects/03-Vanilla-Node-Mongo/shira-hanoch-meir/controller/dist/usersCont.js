@@ -90,7 +90,7 @@ function login(req, res) {
 exports.login = login;
 function coachLogin(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var _a, email, password, findCoach, cookie, error_3;
+        var _a, email, password, findCoach, error_3;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
@@ -101,7 +101,6 @@ function coachLogin(req, res) {
                     findCoach = _b.sent();
                     if (!findCoach)
                         throw new Error("User name or password do not match");
-                    cookie = (findCoach._id);
                     res.cookie('coach', findCoach._id);
                     res.send({ ok: true });
                     return [3 /*break*/, 3];

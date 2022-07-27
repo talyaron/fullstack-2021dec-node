@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.eventList = exports.addEvents = void 0;
+exports.cartCookie = exports.cartByUser = exports.addToCart = exports.eventList = exports.addEvents = void 0;
 var model_1 = require("../model/model");
 function addEvents(req, res) {
     return __awaiter(this, void 0, void 0, function () {
@@ -83,3 +83,67 @@ function eventList(req, res) {
     });
 }
 exports.eventList = eventList;
+function addToCart(req, res) {
+    return __awaiter(this, void 0, void 0, function () {
+        var _a, lesson, date, price, user, customer, error_3;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
+                case 0:
+                    _b.trys.push([0, 2, , 3]);
+                    _a = req.body, lesson = _a.lesson, date = _a.date, price = _a.price;
+                    user = req.cookies.user;
+                    customer = user;
+                    return [4 /*yield*/, model_1.cartModel.create(lesson, date, price, customer)];
+                case 1:
+                    _b.sent();
+                    res.send({ ok: true });
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_3 = _b.sent();
+                    res.send({ error: error_3.message });
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
+}
+exports.addToCart = addToCart;
+function cartByUser(req, res) {
+    return __awaiter(this, void 0, void 0, function () {
+        var customer, userCart, error_4;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    customer = req.cookies.customer;
+                    return [4 /*yield*/, model_1.cartModel.find({ customer: customer })];
+                case 1:
+                    userCart = _a.sent();
+                    res.send(userCart);
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_4 = _a.sent();
+                    res.send({ error: error_4.message });
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
+}
+exports.cartByUser = cartByUser;
+function cartCookie(req, res) {
+    return __awaiter(this, void 0, void 0, function () {
+        var user;
+        return __generator(this, function (_a) {
+            try {
+                user = req.cookies.user;
+                res.cookie('customer', user);
+            }
+            catch (error) {
+                res.send({ error: error.message });
+            }
+            return [2 /*return*/];
+        });
+    });
+}
+exports.cartCookie = cartCookie;

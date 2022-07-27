@@ -109,7 +109,7 @@ function handleEvent() {
                 case 1:
                     data = (_a.sent()).data;
                     console.log(data);
-                    renderEventForCusts(data);
+                    renderEventForCust(data);
                     return [3 /*break*/, 3];
                 case 2:
                     error_3 = _a.sent();
@@ -120,7 +120,7 @@ function handleEvent() {
         });
     });
 }
-function renderEventForCusts(events) {
+function renderEventForCust(events) {
     try {
         var html_2 = '';
         events.forEach(function (event) {
@@ -135,4 +135,79 @@ function renderEventForCusts(events) {
     catch (error) {
         console.log(error);
     }
+}
+function addToCart(events) {
+    return __awaiter(this, void 0, void 0, function () {
+        var lesson, date, price, data, error_4;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    lesson = events.lesson;
+                    date = events.date;
+                    price = events.price;
+                    return [4 /*yield*/, axios.post('/add-to-cart', { lesson: lesson, date: date, price: price })];
+                case 1:
+                    data = (_a.sent()).data;
+                    console.log(data);
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_4 = _a.sent();
+                    console.log(error_4);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
+}
+function handleCart() {
+    return __awaiter(this, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            try {
+                renderCart();
+            }
+            catch (error) {
+                console.log(error);
+            }
+            return [2 /*return*/];
+        });
+    });
+}
+function moveToCart() {
+    return __awaiter(this, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            try {
+                window.location.href = './cart.html';
+            }
+            catch (error) {
+                console.log(error);
+            }
+            return [2 /*return*/];
+        });
+    });
+}
+function renderCart() {
+    return __awaiter(this, void 0, void 0, function () {
+        var data, root, html_3, error_5;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    return [4 /*yield*/, axios.get('/events/find-cart-by-user')];
+                case 1:
+                    data = (_a.sent()).data;
+                    root = document.querySelector('#root');
+                    html_3 = '';
+                    data.forEach(function (event) {
+                        html_3 += "<div id=\"cart\">\n        <h3>Lesson:" + event.lesson + "</h3>\n        <h3>Date:" + event.date + "</h3>\n        <h3>Price:" + event.price + "</h3>\n        </div>";
+                    });
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_5 = _a.sent();
+                    console.log(error_5);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
 }

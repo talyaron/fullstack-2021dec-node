@@ -64,7 +64,7 @@ async function handleEvent() {
         const {data}  = await axios.get('/events/get-events')
         console.log(data);
 
-        renderEventForCusts(data)
+        renderEventForCust(data)
         
     } catch (error) {
         console.log(error);
@@ -72,7 +72,7 @@ async function handleEvent() {
     }
 }
 
-function renderEventForCusts(events){
+function renderEventForCust(events){
 try {
     let html = '';
     events.forEach(event => {
@@ -94,4 +94,67 @@ try {
     console.log(error);
 }
 }
+
+
+async function addToCart(events){
+try {
+const lesson = events.lesson;
+const date = events.date;
+const price = events.price;
+
+
+//@ts-ignore
+const {data} = await axios.post('/add-to-cart',{lesson,date,price})
+
+    console.log(data);
+    
+} catch (error) {
+    console.log(error);
+    
+}
+}
+
+
+async function handleCart(){
+    try {
+    renderCart()
+    } catch (error) {
+        console.log(error);
+        
+    }
+}
+
+async function moveToCart() {
+    try {
+        window.location.href = './cart.html';
+        
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+async function renderCart(){
+    try {
+        //@ts-ignore
+        const {data}  = await axios.get('/events/find-cart-by-user')
+        const root = document.querySelector('#root');
+    let html='';
+    data.forEach(event=>{
+        html += `<div id="cart">
+        <h3>Lesson:${event.lesson}</h3>
+        <h3>Date:${event.date}</h3>
+        <h3>Price:${event.price}</h3>
+        </div>`
+    });
+    } 
+    catch (error) {
+        console.log(error);
+        
+    }
+}
+
+
+
+
+
 

@@ -17,3 +17,42 @@ export async function eventList(req, res){
         res.send({error: error.message})
     }
 }
+
+export async function addToCart(req, res) {
+    try {
+        const {lesson , date, price} = req.body;
+        const {user} = req.cookies;
+        const customer = user;
+
+        await cartModel.create(lesson , date, price, customer)
+        res.send({ok: true})
+
+    } catch (error) {
+        res.send({error: error.message})
+        
+    }
+}
+
+export async function cartByUser(req, res){
+    //check
+    try {
+        const {customer}  = req.cookies;
+        const userCart = await cartModel.find({customer})
+
+        res.send(userCart);
+
+    } catch (error) {
+        res.send({error: error.message})
+        
+    }
+}
+
+export async function cartCookie(req, res) {
+    try {
+        const {user} = req.cookies;
+        res.cookie('customer', user)
+    } catch (error) {
+        res.send({error: error.message})
+        
+    }
+}

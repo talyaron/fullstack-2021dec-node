@@ -29,7 +29,6 @@ export async function coachLogin(req:any, res:any){
         const {email, password} = req.body;
         const findCoach:any = await coachModel.findOne({email, password});
         if (!findCoach) throw new Error("User name or password do not match");
-        const cookie = (findCoach._id)
         res.cookie('coach', findCoach._id)
         res.send({ok:true})
     } catch (error:any) {
