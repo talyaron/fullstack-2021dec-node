@@ -50,7 +50,7 @@ function getUserId() {
 }
 function onscondPageLoad() {
     return __awaiter(this, void 0, void 0, function () {
-        var userId, data, error, user, name, age, image, root, error_1;
+        var userId, data, error, user, name, age, image, nav, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -66,8 +66,8 @@ function onscondPageLoad() {
                         throw error;
                     console.log(user);
                     name = user.name, age = user.age, image = user.image;
-                    root = document.querySelector("#root");
-                    root.innerHTML = "<h1>Welcome " + name + " " + age + "</h1>";
+                    nav = document.querySelector("#Navbar");
+                    nav.innerHTML = "<h1>Hello " + name + "! What would you like to do</h1>";
                     console.log(data);
                     return [3 /*break*/, 3];
                 case 2:

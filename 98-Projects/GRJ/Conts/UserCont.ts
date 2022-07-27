@@ -7,7 +7,7 @@ const saltRounds = 10;
 //WE HAVE A PROBLAM WITH THE Bcrypt
 // (LOGIN MENU-PUT COMMENT & SEE)
 
-export async function login(req, res) 
+export async function login(req, res){ 
   try {
     const { email, password } = req.body;
     // const { error } = UserValidation.validate({ email, password });

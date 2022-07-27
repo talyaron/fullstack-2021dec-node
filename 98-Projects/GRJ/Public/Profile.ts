@@ -29,8 +29,8 @@ async function onscondPageLoad() {
       console.log(user);
       const { name, age, image } = user;
   
-      const root = document.querySelector("#root");
-      root.innerHTML = `<h1>Welcome ${name} ${age}</h1>`;
+      const nav = document.querySelector("#Navbar");
+      nav.innerHTML = `<h1>Hello ${name}! What would you like to do</h1>`;
   
       console.log(data);
     } catch (error) {
