@@ -34,3 +34,8 @@ body {
 #actions .fa-comment-medical {
   margin-left: 20px;
 }
+
+.scheduleMeeting {
+  background-color: #f54444;
+  border: none;
+}
