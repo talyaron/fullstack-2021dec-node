@@ -41,12 +41,12 @@ async function handleLogin(ev: any) {
       password,
     });
     console.log(data);
-    const { login, user, error } = data;
-    console.log(user);
+    const { login, userId, error } = data;
+    console.log(userId);
     if (error) throw error;
 
-    if (login) {
-      window.location.href = `./profile.html?userId`;
+    if (login && userId) {
+      window.location.href = `/profile.html?userId=${userId}`;
     }
 
     if (error) throw error;
