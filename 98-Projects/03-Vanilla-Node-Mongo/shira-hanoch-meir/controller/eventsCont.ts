@@ -24,7 +24,7 @@ export async function addToCart(req, res) {
         const {user} = req.cookies;
         const customer = user;
 
-        await cartModel.create(lesson , date, price, customer)
+        await cartModel.create({lesson , date, price, customer});
         res.send({ok: true})
 
     } catch (error) {
@@ -47,12 +47,12 @@ export async function cartByUser(req, res){
     }
 }
 
-export async function cartCookie(req, res) {
-    try {
-        const {user} = req.cookies;
-        res.cookie('customer', user)
-    } catch (error) {
-        res.send({error: error.message})
+// export async function cartCookie(req, res) {
+//     try {
+//         const {user} = req.cookies;
+//         res.cookie('customer', user)
+//     } catch (error) {
+//         res.send({error: error.message})
         
-    }
-}
+//     }
+// }

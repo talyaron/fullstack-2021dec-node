@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.cartCookie = exports.cartByUser = exports.addToCart = exports.eventList = exports.addEvents = void 0;
+exports.cartByUser = exports.addToCart = exports.eventList = exports.addEvents = void 0;
 var model_1 = require("../model/model");
 function addEvents(req, res) {
     return __awaiter(this, void 0, void 0, function () {
@@ -93,7 +93,7 @@ function addToCart(req, res) {
                     _a = req.body, lesson = _a.lesson, date = _a.date, price = _a.price;
                     user = req.cookies.user;
                     customer = user;
-                    return [4 /*yield*/, model_1.cartModel.create(lesson, date, price, customer)];
+                    return [4 /*yield*/, model_1.cartModel.create({ lesson: lesson, date: date, price: price, customer: customer })];
                 case 1:
                     _b.sent();
                     res.send({ ok: true });
@@ -131,19 +131,11 @@ function cartByUser(req, res) {
     });
 }
 exports.cartByUser = cartByUser;
-function cartCookie(req, res) {
-    return __awaiter(this, void 0, void 0, function () {
-        var user;
-        return __generator(this, function (_a) {
-            try {
-                user = req.cookies.user;
-                res.cookie('customer', user);
-            }
-            catch (error) {
-                res.send({ error: error.message });
-            }
-            return [2 /*return*/];
-        });
-    });
-}
-exports.cartCookie = cartCookie;
+// export async function cartCookie(req, res) {
+//     try {
+//         const {user} = req.cookies;
+//         res.cookie('customer', user)
+//     } catch (error) {
+//         res.send({error: error.message})
+//     }
+// }

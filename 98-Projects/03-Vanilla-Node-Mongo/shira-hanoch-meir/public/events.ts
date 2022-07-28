@@ -82,7 +82,7 @@ try {
         <h2>Date:${event.date}</h2>
         <h2>Price:${event.price}</h2>
         <h2>Coach:${event.coach}</h2>
-        <button id="addToCartBtn" onclick="addToCart(${events})">Add Lesson to My Cart</button>
+        <button id="addToCartBtn" onclick="addToCart(${event})">Add Lesson to My Cart</button>
         </div>`      
     });
     
@@ -146,6 +146,7 @@ async function renderCart(){
         <h3>Price:${event.price}</h3>
         </div>`
     });
+    root.innerHTML = html;
     } 
     catch (error) {
         console.log(error);

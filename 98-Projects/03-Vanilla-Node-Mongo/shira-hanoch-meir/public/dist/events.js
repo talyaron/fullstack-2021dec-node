@@ -125,7 +125,7 @@ function renderEventForCust(events) {
         var html_2 = '';
         events.forEach(function (event) {
             html_2 +=
-                "<div class=\"event1\">\n        <h2>Lesson:" + event.lesson + "</h2>\n        <h2>Date:" + event.date + "</h2>\n        <h2>Price:" + event.price + "</h2>\n        <h2>Coach:" + event.coach + "</h2>\n        <button id=\"addToCartBtn\" onclick=\"addToCart(" + events + ")\">Add Lesson to My Cart</button>\n        </div>";
+                "<div class=\"event1\">\n        <h2>Lesson:" + event.lesson + "</h2>\n        <h2>Date:" + event.date + "</h2>\n        <h2>Price:" + event.price + "</h2>\n        <h2>Coach:" + event.coach + "</h2>\n        <button id=\"addToCartBtn\" onclick=\"addToCart(" + event + ")\">Add Lesson to My Cart</button>\n        </div>";
         });
         var root = document.querySelector('#root');
         if (!root)
@@ -201,6 +201,7 @@ function renderCart() {
                     data.forEach(function (event) {
                         html_3 += "<div id=\"cart\">\n        <h3>Lesson:" + event.lesson + "</h3>\n        <h3>Date:" + event.date + "</h3>\n        <h3>Price:" + event.price + "</h3>\n        </div>";
                     });
+                    root.innerHTML = html_3;
                     return [3 /*break*/, 3];
                 case 2:
                     error_5 = _a.sent();
