@@ -71,7 +71,7 @@ function login(req, res) {
                     secret = process.env.JWT_SECRET;
                     JWTCookie = jwt_simple_1["default"].encode(cookie, secret);
                     res.cookie('user', JWTCookie);
-                    res.send({ login: true, userId: userDB._id });
+                    res.send({ login: true });
                     return [3 /*break*/, 4];
                 case 3:
                     error_1 = _b.sent();
