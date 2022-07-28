@@ -39,3 +39,24 @@ body {
   background-color: #f54444;
   border: none;
 }
+
+.sceduleMeetingPage {
+  display: flex;
+  justify-content: center;
+}
+
+#img {
+  width: 5vw;
+  height: 8vh;
+  display: flex;
+  justify-content: center;
+  margin: auto;
+}
+
+.buttonDiv {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 50px;
+}
