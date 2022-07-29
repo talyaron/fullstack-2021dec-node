@@ -48,7 +48,7 @@ export async function register(req, res) {
     const userDB = await UserModel.create({ email, name, password: hash });
     // await user.save();
 
-    res.send({ ok: true });
+    res.send({ register: true, userId: userDB.id });
   } catch (error) {
     res.send({ error: error.message });
   }

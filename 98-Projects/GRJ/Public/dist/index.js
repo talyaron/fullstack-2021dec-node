@@ -39,7 +39,7 @@ function handleLoad() {
 }
 function handleRegister(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var email, password, name, data, register, error, error_1;
+        var email, password, name, data, register, error, userId, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -58,12 +58,12 @@ function handleRegister(ev) {
                         })];
                 case 2:
                     data = (_a.sent()).data;
-                    register = data.register, error = data.error;
+                    register = data.register, error = data.error, userId = data.userId;
                     console.log(data);
                     if (error)
                         throw error;
-                    if (register) {
-                        window.location.href = "./profile.html?userId=" + register._id;
+                    if (register && userId) {
+                        window.location.href = "./profile.html?userId=" + userId;
                     }
                     if (error && error.includes("E11000"))
                         alert("email is already in use");

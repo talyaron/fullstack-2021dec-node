@@ -100,7 +100,7 @@ function register(req, res) {
                 case 1:
                     userDB = _b.sent();
                     // await user.save();
-                    res.send({ ok: true });
+                    res.send({ register: true, userId: userDB.id });
                     return [3 /*break*/, 3];
                 case 2:
                     error_2 = _b.sent();

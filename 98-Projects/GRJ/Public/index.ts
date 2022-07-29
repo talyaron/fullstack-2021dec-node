@@ -15,12 +15,12 @@ async function handleRegister(ev: any) {
       password,
       name
     });
-    const { register, error } = data;
+    const { register, error,userId } = data;
     console.log(data);
     if (error) throw error;
  
-    if (register) {
-      window.location.href = `./profile.html?userId=${register._id}`;
+    if (register && userId) {
+      window.location.href = `./profile.html?userId=${userId}`;
     }
 
     if (error && error.includes("E11000")) alert("email is already in use");
