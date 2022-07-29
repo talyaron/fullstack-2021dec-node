@@ -15,11 +15,6 @@ var UserSchema = new mongoose_1["default"].Schema({
     },
     name: {
         type: String
-    },
-    role: {
-        type: String,
-        "enum": ["user", "admin"],
-        "default": "user"
     }
 });
 var UserModel = mongoose_1["default"].model('users', UserSchema);

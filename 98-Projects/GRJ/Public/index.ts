@@ -7,12 +7,13 @@ async function handleRegister(ev: any) {
   try {
     const email = ev.target.email.value;
     const password = ev.target.password.value;
-
+    const name= ev.target.name.value;
     console.log(email, password);
     //@ts-ignore
     const { data } = await axios.post("/users/register", {
       email,
       password,
+      name
     });
     const { register, error } = data;
     console.log(data);
@@ -44,10 +45,10 @@ async function handleLogin(ev: any) {
     const { login, userId, error } = data;
     console.log(userId);
     if (error) throw error;
-
+    
     if (login && userId) {
-      window.location.href = `./profile.html?userId=${userId}`;
-    }
+    window.location.href = `./profile.html?userId=${userId}`;
+   }
 
     if (error) throw error;
     console.log(data);
@@ -56,14 +57,12 @@ async function handleLogin(ev: any) {
   }
 }
 
-async function handleSaveInfo(ev: any) {
+async function handleSaveInfo(ev) {
   ev.preventDefault();
   try {
-    const name = ev.target.elements.name.value;
-
-    console.log(name);
+    
     //@ts-ignore
-    const { data } = await axios.post("/users/SaveInfo", { name });
+    const { data } = await axios.post("/users/SaveInfo",{});
     const { user, error } = data;
     console.log(user)
     if (error) throw error;

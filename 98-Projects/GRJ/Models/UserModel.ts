@@ -14,11 +14,7 @@ const UserSchema = new mongoose.Schema({
     name: {
         type: String
     },
-    role: {
-        type: String,
-        enum: ["user", "admin"],
-        default: "user",
-      },
+   
 });
 
 const UserModel = mongoose.model('users', UserSchema);
@@ -32,5 +28,6 @@ export const UserValidation = Joi.object({
         .required(),
     password: Joi
         .string()
-        .required()
+        .required(),
+        
 })
