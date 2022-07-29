@@ -45,6 +45,11 @@ body {
   justify-content: center;
 }
 
+.ContactADoctor {
+  background-color: #f54444;
+  border: none;
+}
+
 #img {
   width: 5vw;
   height: 8vh;
