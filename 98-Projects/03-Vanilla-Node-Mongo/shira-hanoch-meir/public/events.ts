@@ -41,6 +41,17 @@ function renderEvent(events){
     }
 }
 
+async function deleteLesson(id){
+    try {
+        //@ts-ignore
+        const {data} = await axios.post('/events/delete-for-coach', {id});
+        console.log(data);
+        
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 async function handleAddEvent(ev:any) {
     try {
         ev.preventDefault();
@@ -162,7 +173,18 @@ async function renderCart(){
         console.log(error);
         
     }
-}
+};
+
+async function deleteLessonFromCart(id){
+    try {
+        //@ts-ignore
+        const {data} = await axios.post('/events/delete-from-cart', {id});
+        console.log(data);
+        
+    } catch (error) {
+        console.log(error);
+    }
+};
 
 
 

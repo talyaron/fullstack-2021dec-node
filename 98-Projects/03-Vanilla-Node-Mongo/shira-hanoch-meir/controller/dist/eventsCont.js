@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.deleteForCoach = exports.cartByUser = exports.addToCart = exports.eventList = exports.addEvents = void 0;
+exports.deleteFromCart = exports.deleteForCoach = exports.cartByUser = exports.addToCart = exports.eventList = exports.addEvents = void 0;
 var model_1 = require("../model/model");
 function addEvents(req, res) {
     return __awaiter(this, void 0, void 0, function () {
@@ -149,6 +149,25 @@ function deleteForCoach(req, res) {
     });
 }
 exports.deleteForCoach = deleteForCoach;
+;
+function deleteFromCart(req, res) {
+    return __awaiter(this, void 0, void 0, function () {
+        var id;
+        return __generator(this, function (_a) {
+            try {
+                id = req.body;
+                model_1.cartModel.findById({ id: id }).remove(function () {
+                    res.send('deleted successfully!!');
+                });
+            }
+            catch (error) {
+                res.send({ error: error.message });
+            }
+            return [2 /*return*/];
+        });
+    });
+}
+exports.deleteFromCart = deleteFromCart;
 // export async function cartCookie(req, res) {
 //     try {
 //         const {user} = req.cookies;

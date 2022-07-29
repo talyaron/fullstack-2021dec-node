@@ -56,8 +56,19 @@ export async function deleteForCoach(req, res){
         res.send({error: error.message})
         
     }
-}
+};
 
+export async function deleteFromCart(req, res){
+    try{
+        const id = req.body;
+        cartModel.findById({id}).remove(()=>{
+            res.send('deleted successfully!!')
+        });
+    }catch (error) {
+        res.send({error: error.message})
+        
+    }
+}
 // export async function cartCookie(req, res) {
 //     try {
 //         const {user} = req.cookies;

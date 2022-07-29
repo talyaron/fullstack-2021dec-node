@@ -74,9 +74,30 @@ function renderEvent(events) {
         console.log(error);
     }
 }
+function deleteLesson(id) {
+    return __awaiter(this, void 0, void 0, function () {
+        var data, error_2;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    return [4 /*yield*/, axios.post('/events/delete-for-coach', { id: id })];
+                case 1:
+                    data = (_a.sent()).data;
+                    console.log(data);
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_2 = _a.sent();
+                    console.log(error_2);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
+}
 function handleAddEvent(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var lesson, date, price, coach, data, error_2;
+        var lesson, date, price, coach, data, error_3;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -92,8 +113,8 @@ function handleAddEvent(ev) {
                     console.log(data);
                     return [3 /*break*/, 3];
                 case 2:
-                    error_2 = _a.sent();
-                    console.log(error_2);
+                    error_3 = _a.sent();
+                    console.log(error_3);
                     return [3 /*break*/, 3];
                 case 3: return [2 /*return*/];
             }
@@ -102,7 +123,7 @@ function handleAddEvent(ev) {
 }
 function handleEvent() {
     return __awaiter(this, void 0, void 0, function () {
-        var data, error_3;
+        var data, error_4;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -114,8 +135,8 @@ function handleEvent() {
                     renderEventForCust(data);
                     return [3 /*break*/, 3];
                 case 2:
-                    error_3 = _a.sent();
-                    console.log(error_3);
+                    error_4 = _a.sent();
+                    console.log(error_4);
                     return [3 /*break*/, 3];
                 case 3: return [2 /*return*/];
             }
@@ -140,7 +161,7 @@ function renderEventForCust(events) {
 }
 function addToCart(events) {
     return __awaiter(this, void 0, void 0, function () {
-        var lesson, date, price, data, error_4;
+        var lesson, date, price, data, error_5;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -154,8 +175,8 @@ function addToCart(events) {
                     console.log(data);
                     return [3 /*break*/, 3];
                 case 2:
-                    error_4 = _a.sent();
-                    console.log(error_4);
+                    error_5 = _a.sent();
+                    console.log(error_5);
                     return [3 /*break*/, 3];
                 case 3: return [2 /*return*/];
             }
@@ -190,7 +211,7 @@ function moveToCart() {
 }
 function renderCart() {
     return __awaiter(this, void 0, void 0, function () {
-        var data, root, html_3, i, total, totalToPay, error_5;
+        var data, root, html_3, i, total, totalToPay, error_6;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -212,11 +233,34 @@ function renderCart() {
                     ;
                     return [3 /*break*/, 3];
                 case 2:
-                    error_5 = _a.sent();
-                    console.log(error_5);
+                    error_6 = _a.sent();
+                    console.log(error_6);
                     return [3 /*break*/, 3];
                 case 3: return [2 /*return*/];
             }
         });
     });
 }
+;
+function deleteLessonFromCart(id) {
+    return __awaiter(this, void 0, void 0, function () {
+        var data, error_7;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    return [4 /*yield*/, axios.post('/events/delete-from-cart', { id: id })];
+                case 1:
+                    data = (_a.sent()).data;
+                    console.log(data);
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_7 = _a.sent();
+                    console.log(error_7);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
+}
+;

@@ -7,5 +7,6 @@ router.post('/add-events', eventsCont_1.addEvents)
     .get('/get-events', eventsCont_1.eventList)
     .post('/add-to-cart', eventsCont_1.addToCart)
     .get('/find-cart-by-user', eventsCont_1.cartByUser)
-    .post('/delete-for-coach', eventsCont_1.deleteForCoach);
+    .post('/delete-for-coach', eventsCont_1.deleteForCoach)
+    .post('/delete-from-cart', eventsCont_1.deleteFromCart);
 exports["default"] = router;
