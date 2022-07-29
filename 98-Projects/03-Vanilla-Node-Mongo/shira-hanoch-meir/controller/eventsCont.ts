@@ -20,10 +20,14 @@ export async function eventList(req, res){
 
 export async function addToCart(req, res) {
     try {
-        const {lesson , date, price} = req.body;
+        const {id} = req.body;
+        const Cart = await lessonsModel.findById({id});
+        const lesson = Cart.lesson;
+        const date = Cart.date;
+        const price = Cart.price;
+        
         const {user} = req.cookies;
-
-        await cartModel.create({lesson , date, price, user});
+         await cartModel.create({lesson,date, price, user});
         res.send({ok: true})
 
     } catch (error) {

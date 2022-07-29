@@ -1,4 +1,6 @@
-import { stringify } from "querystring";
+// import { stringify } from "querystring";
+
+import { json } from "stream/consumers";
 
 async function handleLoadCoach() {
     try {
@@ -78,7 +80,7 @@ async function handleEvent() {
         const {data}  = await axios.get('/events/get-events')
         console.log(data);
 
-        renderEventForCust(data)
+        renderForCustomer(data)
         
     } catch (error) {
         console.log(error);
@@ -86,19 +88,39 @@ async function handleEvent() {
     }
 }
 
-function renderEventForCust(events){
-try {
-    let html = '';
-    events.forEach(event => {
+
+
+function renderForCustomer(events){
+    try {
+        let html = '';
+        events.forEach(event => {
+          
+            
+        // console.log(button);
+        
         html += 
         `<div class="event1">
         <h2>Lesson:${event.lesson}</h2>
         <h2>Date:${event.date}</h2>
         <h2>Price:${event.price}</h2>
         <h2>Coach:${event.coach}</h2>
-        <button id="addToCartBtn" onclick="addToCart(${event})">Add Lesson to My Cart</button>
+        <button id="addToCartBtn" onclick="addToCart(${event._id}))">Add Lesson to My Cart</button>
+
         </div>`      
     });
+    async function addToCart(id){
+   
+        try {
+            //@ts-ignore
+        const {data} = await axios.post('/add-to-cart',{id})
+        
+            console.log(data);
+            
+        } catch (error) {
+            console.log(error);
+        }
+        }
+        
     
     const root = document.querySelector('#root');
     if(!root) throw new Error ('No root !')
@@ -110,23 +132,6 @@ try {
 }
 
 
-async function addToCart(events){
-try {
-const lesson = events.lesson;
-const date = events.date;
-const price = events.price;
-
-
-//@ts-ignore
-const {data} = await axios.post('/add-to-cart',{lesson,date,price})
-
-    console.log(data);
-    
-} catch (error) {
-    console.log(error);
-    
-}
-}
 
 
 async function handleCart(){

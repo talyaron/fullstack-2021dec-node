@@ -85,23 +85,29 @@ function eventList(req, res) {
 exports.eventList = eventList;
 function addToCart(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var _a, lesson, date, price, user, error_3;
-        return __generator(this, function (_b) {
-            switch (_b.label) {
+        var id, Cart, lesson, date, price, user, error_3;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
                 case 0:
-                    _b.trys.push([0, 2, , 3]);
-                    _a = req.body, lesson = _a.lesson, date = _a.date, price = _a.price;
+                    _a.trys.push([0, 3, , 4]);
+                    id = req.body.id;
+                    return [4 /*yield*/, model_1.lessonsModel.findById({ id: id })];
+                case 1:
+                    Cart = _a.sent();
+                    lesson = Cart.lesson;
+                    date = Cart.date;
+                    price = Cart.price;
                     user = req.cookies.user;
                     return [4 /*yield*/, model_1.cartModel.create({ lesson: lesson, date: date, price: price, user: user })];
-                case 1:
-                    _b.sent();
-                    res.send({ ok: true });
-                    return [3 /*break*/, 3];
                 case 2:
-                    error_3 = _b.sent();
+                    _a.sent();
+                    res.send({ ok: true });
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_3 = _a.sent();
                     res.send({ error: error_3.message });
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
             }
         });
     });
