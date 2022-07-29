@@ -4,14 +4,11 @@ import jwt from 'jwt-simple';
 import bcrypt from "bcrypt";
 const saltRounds = 10;
 
-//WE HAVE A PROBLAM WITH THE Bcrypt
-// (LOGIN MENU-PUT COMMENT & SEE)
-
 export async function login(req, res){ 
   try {
     const { email, password } = req.body;
-    // const { error } = UserValidation.validate({ email, password });
-    // if (error) throw error;
+    const { error } = UserValidation.validate({ email, password });
+    if (error) throw error;
 
     const userDB = await UserModel.findOne({ email });
     if (!userDB) throw new Error("User name or password do not match");
@@ -28,7 +25,7 @@ export async function login(req, res){
       const JWTCookie = jwt.encode(cookie, secret);
 
       res.cookie('user',JWTCookie);
-      res.send({ login: true });
+      res.send({ login: true, userId:userDB.id });
 
     
     }catch (error) {
@@ -44,7 +41,7 @@ export async function register(req, res) {
 
     const salt = bcrypt.genSaltSync(saltRounds);
     const hash = bcrypt.hashSync(password, salt);
-
+    console.log(hash);
     // if (error) throw error;
 
     const userDB = await UserModel.create({ email,name, password: hash });

@@ -7,19 +7,17 @@ async function handleRegister(ev: any) {
   try {
     const email = ev.target.email.value;
     const password = ev.target.password.value;
-    const name = ev.target.name.value;
 
-    console.log(email, password, name);
+    console.log(email, password);
     //@ts-ignore
     const { data } = await axios.post("/users/register", {
       email,
       password,
-      name,
     });
     const { register, error } = data;
-    if (error) throw error;
     console.log(data);
-
+    if (error) throw error;
+ 
     if (register) {
       window.location.href = `./profile.html?userId=${register._id}`;
     }
@@ -33,24 +31,22 @@ async function handleRegister(ev: any) {
 async function handleLogin(ev: any) {
   ev.preventDefault();
   try {
-    const name = ev.target.name.value;
     const email = ev.target.email.value;
     const password = ev.target.password.value;
 
-    console.log(name, email, password);
+    console.log(email, password);
     //@ts-ignore
     const { data } = await axios.post("/users/login", {
-      name,
       email,
       password,
     });
     console.log(data);
-    const { login, user, error } = data;
-    // console.log(user);
+    const { login, userId, error } = data;
+    console.log(userId);
     if (error) throw error;
 
-    if (login) {
-      window.location.href = `./profile.html?userId=${user._id}`;
+    if (login && userId) {
+      window.location.href = `./profile.html?userId=${userId}`;
     }
 
     if (error) throw error;

@@ -28,6 +28,11 @@ app.use('/users',  userRoutes);
 import profileRoutes from "../GRJ/Routes/ProfileRoute";
 app.use('/profile',  profileRoutes);
 
+import appoRoutes from "../GRJ/Routes/AppoRoute";
+app.use('/appo',  appoRoutes);
+
+
+
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
 });

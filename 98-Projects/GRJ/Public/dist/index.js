@@ -39,7 +39,7 @@ function handleLoad() {
 }
 function handleRegister(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var email, password, name, data, register, error, error_1;
+        var email, password, data, register, error, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -49,19 +49,17 @@ function handleRegister(ev) {
                     _a.trys.push([1, 3, , 4]);
                     email = ev.target.email.value;
                     password = ev.target.password.value;
-                    name = ev.target.name.value;
-                    console.log(email, password, name);
+                    console.log(email, password);
                     return [4 /*yield*/, axios.post("/users/register", {
                             email: email,
-                            password: password,
-                            name: name
+                            password: password
                         })];
                 case 2:
                     data = (_a.sent()).data;
                     register = data.register, error = data.error;
+                    console.log(data);
                     if (error)
                         throw error;
-                    console.log(data);
                     if (register) {
                         window.location.href = "./profile.html?userId=" + register._id;
                     }
@@ -79,7 +77,7 @@ function handleRegister(ev) {
 }
 function handleLogin(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var name, email, password, data, login, user, error, error_2;
+        var email, password, data, login, userId, error, error_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -87,24 +85,22 @@ function handleLogin(ev) {
                     _a.label = 1;
                 case 1:
                     _a.trys.push([1, 3, , 4]);
-                    name = ev.target.name.value;
                     email = ev.target.email.value;
                     password = ev.target.password.value;
-                    console.log(name, email, password);
+                    console.log(email, password);
                     return [4 /*yield*/, axios.post("/users/login", {
-                            name: name,
                             email: email,
                             password: password
                         })];
                 case 2:
                     data = (_a.sent()).data;
                     console.log(data);
-                    login = data.login, user = data.user, error = data.error;
-                    // console.log(user);
+                    login = data.login, userId = data.userId, error = data.error;
+                    console.log(userId);
                     if (error)
                         throw error;
-                    if (login) {
-                        window.location.href = "./profile.html?userId=" + user._id;
+                    if (login && userId) {
+                        window.location.href = "./profile.html?userId=" + userId;
                     }
                     if (error)
                         throw error;

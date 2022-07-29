@@ -34,3 +34,34 @@ body {
 #actions .fa-comment-medical {
   margin-left: 20px;
 }
+
+.scheduleMeeting {
+  background-color: #f54444;
+  border: none;
+}
+
+.sceduleMeetingPage {
+  display: flex;
+  justify-content: center;
+}
+
+.ContactADoctor {
+  background-color: #f54444;
+  border: none;
+}
+
+#img {
+  width: 5vw;
+  height: 8vh;
+  display: flex;
+  justify-content: center;
+  margin: auto;
+}
+
+.buttonDiv {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 50px;
+}

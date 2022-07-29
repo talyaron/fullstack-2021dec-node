@@ -37,3 +37,35 @@ color: black;
     margin-left: 20px;
   }
 }
+
+.scheduleMeeting{
+  background-color: rgb(245, 68, 68);
+  border: none;
+}
+
+.sceduleMeetingPage{
+  display: flex;
+  justify-content: center;
+}
+
+.ContactADoctor{
+  background-color: rgb(245, 68, 68);
+  border: none;
+}
+
+#img{
+  width: 5vw;
+  height: 8vh;
+  display: flex;
+  justify-content: center;
+  margin: auto;
+}
+
+.buttonDiv{
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 50px;
+}
+
