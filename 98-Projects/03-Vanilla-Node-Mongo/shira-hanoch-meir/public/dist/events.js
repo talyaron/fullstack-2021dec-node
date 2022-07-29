@@ -1,3 +1,4 @@
+"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -34,6 +35,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+exports.__esModule = true;
 function handleLoadCoach() {
     return __awaiter(this, void 0, void 0, function () {
         var data, error_1;
@@ -61,7 +63,7 @@ function renderEvent(events) {
         var html_1 = '';
         events.forEach(function (event) {
             html_1 +=
-                "<div class=\"event1\">\n            <h2>Lesson:" + event.lesson + "</h2>\n            <h2>Date:" + event.date + "</h2>\n            <h2>Price:" + event.price + "</h2>\n            <h2>Coach:" + event.coach + "</h2>\n            </div>";
+                "<div class=\"event1\">\n            <h2>Lesson:" + event.lesson + "</h2>\n            <h2>Date:" + event.date + "</h2>\n            <h2>Price:" + event.price + "</h2>\n            <h2>Coach:" + event.coach + "</h2>\n            <button onclick=\"deleteLesson(" + event._id + ")\"></button>\n            </div>";
         });
         var root = document.querySelector('#root');
         if (!root)
@@ -188,7 +190,7 @@ function moveToCart() {
 }
 function renderCart() {
     return __awaiter(this, void 0, void 0, function () {
-        var data, root, html_3, error_5;
+        var data, root, html_3, i, total, totalToPay, error_5;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -199,9 +201,15 @@ function renderCart() {
                     root = document.querySelector('#root');
                     html_3 = '';
                     data.forEach(function (event) {
-                        html_3 += "<div id=\"cart\">\n        <h3>Lesson:" + event.lesson + "</h3>\n        <h3>Date:" + event.date + "</h3>\n        <h3>Price:" + event.price + "</h3>\n        </div>";
+                        html_3 += "<div id=\"cart\">\n        <h3>Lesson:" + event.lesson + "</h3>\n        <h3>Date:" + event.date + "</h3>\n        <h3>Price:" + event.price + "</h3>\n        <button onclick=\"deleteLessonFromCart(" + event._id + ")\"></button>\n        </div>";
                     });
                     root.innerHTML = html_3;
+                    for (i = 0; i < data.length; i++) {
+                        total = data.price[i] + data.price[i];
+                        totalToPay = document.querySelector('#totalToPay');
+                        totalToPay.innerHTML = "total to pay <br> " + (total);
+                    }
+                    ;
                     return [3 /*break*/, 3];
                 case 2:
                     error_5 = _a.sent();

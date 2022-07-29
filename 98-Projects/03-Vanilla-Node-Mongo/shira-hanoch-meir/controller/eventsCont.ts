@@ -22,9 +22,8 @@ export async function addToCart(req, res) {
     try {
         const {lesson , date, price} = req.body;
         const {user} = req.cookies;
-        const customer = user;
 
-        await cartModel.create({lesson , date, price, customer});
+        await cartModel.create({lesson , date, price, user});
         res.send({ok: true})
 
     } catch (error) {
@@ -36,12 +35,24 @@ export async function addToCart(req, res) {
 export async function cartByUser(req, res){
     //check
     try {
-        const {customer}  = req.cookies;
-        const userCart = await cartModel.find({customer})
+        const {user}  = req.cookies;
+        const userCart = await cartModel.find({user})
 
         res.send(userCart);
 
     } catch (error) {
+        res.send({error: error.message})
+        
+    }
+};
+
+export async function deleteForCoach(req, res){
+    try{
+        const id = req.body;
+        lessonsModel.findById({id}).remove(()=>{
+            res.send('deleted successfully!!')
+        });
+    }catch (error) {
         res.send({error: error.message})
         
     }

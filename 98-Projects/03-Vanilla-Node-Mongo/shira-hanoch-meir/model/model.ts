@@ -19,7 +19,7 @@ const cartSchema = new mongoose.Schema({
     lesson: String,
     date: Date,
     price: Number,
-    customer: String
+    user: String
 });
 export const regModel = mongoose.model('users', regSchema);
 export const coachModel = mongoose.model('coachers', coachSchema);

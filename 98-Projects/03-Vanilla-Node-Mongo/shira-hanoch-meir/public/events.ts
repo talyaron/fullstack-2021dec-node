@@ -1,3 +1,5 @@
+import { stringify } from "querystring";
+
 async function handleLoadCoach() {
     try {
         //@ts-ignore
@@ -24,6 +26,7 @@ function renderEvent(events){
             <h2>Date:${event.date}</h2>
             <h2>Price:${event.price}</h2>
             <h2>Coach:${event.coach}</h2>
+            <button onclick="deleteLesson(${event._id})"></button>
             </div>`      
         });
         
@@ -144,9 +147,16 @@ async function renderCart(){
         <h3>Lesson:${event.lesson}</h3>
         <h3>Date:${event.date}</h3>
         <h3>Price:${event.price}</h3>
+        <button onclick="deleteLessonFromCart(${event._id})"></button>
         </div>`
     });
     root.innerHTML = html;
+    for(let i=0; i< data.length; i++){
+        const total:Number = data.price[i] + data.price[i];
+        const totalToPay = document.querySelector('#totalToPay');
+        totalToPay.innerHTML = `total to pay <br> ${(total)}`;
+    };
+    
     } 
     catch (error) {
         console.log(error);

@@ -21,7 +21,7 @@ var cartSchema = new mongoose_1["default"].Schema({
     lesson: String,
     date: Date,
     price: Number,
-    customer: String
+    user: String
 });
 exports.regModel = mongoose_1["default"].model('users', regSchema);
 exports.coachModel = mongoose_1["default"].model('coachers', coachSchema);
