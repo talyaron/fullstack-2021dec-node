@@ -1,4 +1,5 @@
-function handleLoad(){
+
+function handleLoad() {
     try {
         getMyProducts()
     } catch (error) {

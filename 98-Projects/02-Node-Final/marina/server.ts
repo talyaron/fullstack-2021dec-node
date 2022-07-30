@@ -1,5 +1,5 @@
 console.log("Connected now!");
-import uid from "./helpers";
+// import uid from "./helpers";
 import express from "express";
 const app = express();
 const port = process.env.PORT || 4006;

@@ -56,6 +56,7 @@ var loadNewGame = function loadgame() {
                 case 0: return [4 /*yield*/, getDeck()];
                 case 1:
                     _a = _b.sent(), pairedCardArray = _a.pairedCardArray, lastLoggedInPlayer = _a.lastLoggedInPlayer;
+                    // console.log("this is loadNewGame data: ", pairedCardArray, lastLoggedInPlayer);
                     renderDeck(pairedCardArray);
                     renderPlayer(lastLoggedInPlayer);
                     return [2 /*return*/];
@@ -71,6 +72,7 @@ var loadPlayersList = function loadgame() {
                 case 0: return [4 /*yield*/, getDeck()];
                 case 1:
                     _a = _b.sent(), players = _a.players, lastLoggedInPlayer = _a.lastLoggedInPlayer;
+                    // console.log("this is loadPlayersList data: ", players, lastLoggedInPlayer);
                     renderPlayerList(players);
                     renderGeneralStatisticLastPlayer(lastLoggedInPlayer);
                     showBestTime();
@@ -88,6 +90,7 @@ function handleToRegisterForm() {
     registerLink.style.display = "none";
     formLogin.style.display = "none";
     error.style.display = "none";
+    // console.log("this is handleToRegisterForm: ", formRegister);
 }
 function getDeck() {
     return __awaiter(this, void 0, void 0, function () {
@@ -100,8 +103,12 @@ function getDeck() {
                 case 1:
                     data = (_a.sent()).data;
                     pairedCardArray = data.pairedCardArray, players = data.players, lastLoggedInPlayer = data.lastLoggedInPlayer;
+                    // console.log("this is the get-deck data:", data);
+                    // console.log("players is:", players);   
+                    // console.log("lastLoggedInPlayer.playerID is:", lastLoggedInPlayer.playerID);  
                     state.playerID = lastLoggedInPlayer.playerID;
                     state.userID.push(state.playerID);
+                    // console.log("lastLoggedInPlayer.playerID is:", state.playerID);
                     return [2 /*return*/, data];
                 case 2:
                     error_1 = _a.sent();
@@ -119,6 +126,7 @@ function handleRegester(e) {
             switch (_b.label) {
                 case 0:
                     _b.trys.push([0, 2, , 3]);
+                    // console.dir(e.target);
                     e.preventDefault();
                     _a = e.target.elements, name = _a.name, password = _a.password;
                     name = name.value;
@@ -127,6 +135,7 @@ function handleRegester(e) {
                 case 1:
                     data = (_b.sent()).data;
                     players = data.players;
+                    // console.log("this is handleRegester data:", players);
                     window.location.href = "./game.html";
                     e.target.reset();
                     return [3 /*break*/, 3];
@@ -146,13 +155,16 @@ function handleLogin(e) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
+                    // console.log(e.target);
                     e.preventDefault();
                     name = e.target.elements.name.value;
                     password = e.target.elements.password.value;
+                    console.log(name, password);
                     return [4 /*yield*/, axios.get("/game/check-if-exist?name=" + name + "&password=" + password)];
                 case 1:
                     data = (_a.sent()).data;
                     filteredPlayers = data.filteredPlayers;
+                    // console.log("this is handleLogin data:", data);
                     e.target.reset();
                     if (filteredPlayers.length > 0) {
                         window.location.href = "./game.html";
@@ -188,6 +200,7 @@ var handleStartGame = function () {
             }
             state.seconds++;
             var timeStatist = state.seconds;
+            // console.log("timeStatist is:", timeStatist);
             var updateTime = function (playerID) { return __awaiter(_this, void 0, void 0, function () {
                 var data, lastLoggedInPlayer, error, error_4;
                 return __generator(this, function (_a) {
@@ -230,12 +243,14 @@ var handleFlipCard = function (e, playerID) {
         state.totalFlipsStatist++;
         ticker.innerText = "" + state.totalFlipsStatist;
         var totalFlip_1 = ticker.innerText;
+        // console.log(totalFlip);
         var updateFlips = function (playerID) { return __awaiter(_this, void 0, void 0, function () {
             var data, lastLoggedInPlayer, error, error_5;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
+                        // console.log(playerID);
                         if (!playerID)
                             throw new Error("no playerID");
                         return [4 /*yield*/, axios.put("/game/player-flips-update", {
@@ -294,6 +309,11 @@ var handleFlipCard = function (e, playerID) {
             flipBackUnPairedCards();
             state.clickNumber = 0;
         }
+        // console.dir(state.clickNumber);
+        // console.dir(e.target.id);
+        // console.log(element.id);
+        // console.log(element);
+        // console.log(state.matchedCards);
     }
     catch (error) {
         console.error(error.message);
@@ -369,18 +389,21 @@ function renderPlayer(lastLoggedInPlayer) {
 function renderGeneralStatisticLastPlayer(lastLoggedInPlayer) {
     var statisticRoot = document.querySelector("#statisticRoot");
     var html = "";
-    html += " \n                <h3 " + lastLoggedInPlayer.playerID + "><span class=\"material-icons user-icon\">psychology</span>&nbsp;Name&nbsp;: &nbsp;&nbsp;&nbsp;&nbsp; <span style=\"color:rgba(130, 29, 18, 0.691); letter-spacing: 2px; font-family: 'Russo One', sans-serif;  font-weight: bold; font-size: 1.7rem;\">" + lastLoggedInPlayer.name + "</span></h3>\n            <div class=\"generalStatistic__info-time\" " + state.playerID + ">\n              <div class=\"gen-stat-inner\">               \n                 <p>Time&nbsp;: <span style=\"color: rgba(130, 29, 18, 0.691); font-weight: bold;\"></span></p>\n              </div>\n                 <h1 style=\"color: rgba(130, 29, 18, 0.691);font-weight: bold;\">" + lastLoggedInPlayer.timeStatist + "</h1>\n            </div>  \n\n            <div class=\"generalStatistic__info-flips\" " + state.playerID + ">\n              <div class=\"gen-stat-inner\">                \n                 <p>Flips&nbsp;:</p>\n              </div> \n                <h1 style=\"color: rgba(130, 29, 18, 0.691); font-weight: bold;\">" + lastLoggedInPlayer.totalFlip + "</h1>\n            </div>         \n        ";
+    html += " \n                <h3 " + lastLoggedInPlayer.playerID + "><span class=\"material-icons user-icon\">psychology</span>&nbsp;Name&nbsp;: &nbsp;&nbsp;&nbsp;&nbsp; <span style=\"color:rgba(130, 29, 18, 0.691); letter-spacing: 2px; font-family: 'Russo One', sans-serif;  font-weight: bold; font-size: 1.5rem;\">" + lastLoggedInPlayer.name + "</span></h3>\n            <div class=\"generalStatistic__info-time\" " + state.playerID + ">\n              <div class=\"gen-stat-inner\">               \n                 <p>Time&nbsp;: <span style=\"color: rgba(130, 29, 18, 0.691); font-weight: bold;\"></span></p>\n              </div>\n                 <h1 style=\"color: rgba(130, 29, 18, 0.691);font-weight: bold;\">" + lastLoggedInPlayer.timeStatist + "</h1>\n            </div>  \n\n            <div class=\"generalStatistic__info-flips\" " + state.playerID + ">\n              <div class=\"gen-stat-inner\">                \n                 <p>Flips&nbsp;:</p>\n              </div> \n                <h1 style=\"color: rgba(130, 29, 18, 0.691); font-weight: bold;\">" + lastLoggedInPlayer.totalFlip + "</h1>\n            </div>         \n        ";
     statisticRoot.innerHTML = html;
 }
 function renderPlayerList(players) {
     var playersList = document.querySelector("#playersListRoot");
     var playerhtml = "";
     players.forEach(function (player) {
-        playerhtml += "  \n        <div class=\"playersList-inner\">\n        <span class=\"material-icons user-icon\">psychology</span>&nbsp;\n        <p class=\"generalStatisicPlayerList\" onclick=\"handleSelectPlayer(event,'" + player.playerID + "', '" + player.name + "', '" + player.timeStatist + "', '" + player.totalFlip + "')\">Player&nbsp;: \n        <span style=\"color: rgba(130, 29, 18, 0.691);  font-family: 'Russo One', sans-serif;  font-weight: bold; cursor: pointer;\">&nbsp;" + player.name + "</span>\n        </p> \n        </div>\n    ";
+        playerhtml += "  \n        <div class=\"playersList-inner\">\n          <span class=\"material-icons user-icon\">psychology</span>&nbsp;\n          <p class=\"generalStatisicPlayerList\" onclick=\"handleSelectPlayer(event,'" + player.playerID + "', '" + player.name + "', '" + player.timeStatist + "', '" + player.totalFlip + "')\">Player&nbsp;: \n          <span style=\"color: rgba(130, 29, 18, 0.691);  font-family: 'Russo One', sans-serif;  font-weight: bold; cursor: pointer;\">&nbsp;" + player.name + "</span>\n          </p> \n        </div>\n    ";
     });
     playersList.innerHTML = playerhtml;
 }
 var winStateCheck = function () {
+    // console.log("i am winStateCheck from 288");
+    // console.log(state.matchedCards.length);
+    // console.log(state.totalMachedCards.length);
     if (state.totalMachedCards.length == 8) {
         victory();
     }
