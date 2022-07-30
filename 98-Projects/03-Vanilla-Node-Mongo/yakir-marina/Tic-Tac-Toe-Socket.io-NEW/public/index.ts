@@ -198,8 +198,7 @@ socket.on("game-begin", (data) => {
     timer();
     $("#clock").css("display", "none");
     $("#timer").css("display", "block");
-    renderTurnMessage();
-    // $("#opponentName").html(`<p>${data.id} VS ${data.id}</p>`);
+    renderTurnMessage();    
     $("#playingSymbol").html(
       `<span style="color: #811618ad; font-size: 1.5em; font-weight: bold;">${data.symbol} </span> is playing`
     );
@@ -371,7 +370,21 @@ async function getPlayerByCookie() {
 
     const greetingFunc = timeOfDay();
     $("#greeting").html(`<h2>Good ${greetingFunc}, ${name}!</h2>`);
-    $("#opponentName").html(`<p>${player1.name} VS ${player2.name}</p>`);
+   
+        $("#opponentName").html(`
+    <div class="container__currentStatistic__gemerIcons">
+      <div>
+         <span class="material-icons">person</span>
+         <p>${player1.name}</p>
+      </div>
+    <div>VS</div>
+      <div>
+         <span class="material-icons">perm_identity</span>
+        <p>${player2.name}</p>
+      </div>
+    </div>
+    `);
+    
   } catch (error) {
     console.error(error.message);
   }

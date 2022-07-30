@@ -125,6 +125,15 @@ h1 {
 .container__currentStatistic__opponentName {
   font-size: 1.3em;
 }
+.container__currentStatistic__gemerIcons {
+  display: flex;
+  font-size: 1.3em;
+  text-align: center;
+  margin: 0 0.4em 0 0.4em;
+}
+.container__currentStatistic__gemerIcons .material-icons {
+  font-size: 1.3em;
+}
 .container__game__board {
   display: grid;
   grid-template-columns: repeat(3, 1fr);

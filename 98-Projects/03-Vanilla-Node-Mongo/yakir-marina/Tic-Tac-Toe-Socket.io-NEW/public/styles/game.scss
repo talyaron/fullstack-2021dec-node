@@ -145,6 +145,17 @@ h1 {
             font-size: 1.3em;
         }
 
+        &__gemerIcons {
+            display: flex;
+            font-size: 1.3em;
+            text-align: center;
+            margin: 0 .4em 0 .4em;
+
+            .material-icons {
+                font-size: 1.3em;
+            }
+        }
+
 
     }
 

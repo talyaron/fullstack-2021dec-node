@@ -212,7 +212,6 @@ socket.on("game-begin", function (data) {
         $("#clock").css("display", "none");
         $("#timer").css("display", "block");
         renderTurnMessage();
-        // $("#opponentName").html(`<p>${data.id} VS ${data.id}</p>`);
         $("#playingSymbol").html("<span style=\"color: #811618ad; font-size: 1.5em; font-weight: bold;\">" + data.symbol + " </span> is playing");
     }
     catch (error) {
@@ -409,7 +408,7 @@ function getPlayerByCookie() {
                     console.log("name is:", name);
                     greetingFunc = timeOfDay();
                     $("#greeting").html("<h2>Good " + greetingFunc + ", " + name + "!</h2>");
-                    $("#opponentName").html("<p>" + player1.name + " VS " + player2.name + "</p>");
+                    $("#opponentName").html("\n    <div class=\"container__currentStatistic__gemerIcons\">\n      <div>\n         <span class=\"material-icons\">person</span>\n         <p>" + player1.name + "</p>\n      </div>\n    <div>VS</div>\n      <div>\n         <span class=\"material-icons\">perm_identity</span>\n        <p>" + player2.name + "</p>\n      </div>\n    </div>\n    ");
                     return [3 /*break*/, 3];
                 case 2:
                     error_3 = _a.sent();
