@@ -123,7 +123,7 @@ h1 {
             margin: 1em 0 1em 0;
         }
 
-       
+
         &__clock,
         &__timer,
         &__playingSymbol {
@@ -156,6 +156,9 @@ h1 {
             }
         }
 
+        &__wins {
+            font-size: 2.3em;
+        }
 
     }
 
