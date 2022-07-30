@@ -21,7 +21,8 @@ const coachSchema = new mongoose.Schema({
 });
 const lessonsSchema = new mongoose.Schema({
     lesson: String,
-    date: Date,
+    dateSrart: Date,
+    dateEnd: Date,
     price: Number,
     coach: String
 });

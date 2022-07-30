@@ -58,12 +58,13 @@ async function handleAddEvent(ev:any) {
     try {
         ev.preventDefault();
         const lesson = ev.target.lesson.value;
-        const date = ev.target.date.value;
+        const dateSrart = ev.target.date.value;
+        const dateRnd = ev.target.date.value;
         const price = ev.target.price.value;
         const coach = ev.target.coach.value;
 
         //@ts-ignore
-        const {data}  = await axios.post('/events/add-events', {lesson,date,price,coach})
+        const {data}  = await axios.post('/events/add-events', {lesson,dateSrart,dateRnd,price,coach})
         console.log(data);
 
         // renderEvent(data)
@@ -97,7 +98,8 @@ function renderForCustomer(events){
         html += 
         `<div class="event1">
         <h2>Lesson:${event.lesson}</h2>
-        <h2>Date:${event.date}</h2>
+        <h2>Date:${event.dateSrart}</h2>
+        <h2>Date:${event.dateEnd}</h2>
         <h2>Price:${event.price}</h2>
         <h2>Coach:${event.coach}</h2>
         <button id="addToCartBtn" onclick="addToCart(${event._id})">Add Lesson to My Cart</button>

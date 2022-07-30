@@ -97,17 +97,18 @@ function deleteLesson(id) {
 }
 function handleAddEvent(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var lesson, date, price, coach, data, error_3;
+        var lesson, dateSrart, dateRnd, price, coach, data, error_3;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
                     ev.preventDefault();
                     lesson = ev.target.lesson.value;
-                    date = ev.target.date.value;
+                    dateSrart = ev.target.date.value;
+                    dateRnd = ev.target.date.value;
                     price = ev.target.price.value;
                     coach = ev.target.coach.value;
-                    return [4 /*yield*/, axios.post('/events/add-events', { lesson: lesson, date: date, price: price, coach: coach })];
+                    return [4 /*yield*/, axios.post('/events/add-events', { lesson: lesson, dateSrart: dateSrart, dateRnd: dateRnd, price: price, coach: coach })];
                 case 1:
                     data = (_a.sent()).data;
                     console.log(data);
@@ -148,7 +149,7 @@ function renderForCustomer(events) {
         var html_2 = '';
         events.forEach(function (event) {
             html_2 +=
-                "<div class=\"event1\">\n        <h2>Lesson:" + event.lesson + "</h2>\n        <h2>Date:" + event.date + "</h2>\n        <h2>Price:" + event.price + "</h2>\n        <h2>Coach:" + event.coach + "</h2>\n        <button id=\"addToCartBtn\" onclick=\"addToCart(" + event._id + ")\">Add Lesson to My Cart</button>\n        </div>";
+                "<div class=\"event1\">\n        <h2>Lesson:" + event.lesson + "</h2>\n        <h2>Date:" + event.dateSrart + "</h2>\n        <h2>Date:" + event.dateEnd + "</h2>\n        <h2>Price:" + event.price + "</h2>\n        <h2>Coach:" + event.coach + "</h2>\n        <button id=\"addToCartBtn\" onclick=\"addToCart(" + event._id + ")\">Add Lesson to My Cart</button>\n        </div>";
         });
         var root = document.querySelector('#root');
         if (!root)
