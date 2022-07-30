@@ -37,7 +37,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 var x = 4;
 function handleSchedule(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var date, type, data;
+        var date, type, data, result;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -45,9 +45,11 @@ function handleSchedule(ev) {
                     date = ev.target.date.value;
                     type = ev.target.type.value;
                     console.log(date, type);
-                    return [4 /*yield*/, axios.get('/')];
+                    return [4 /*yield*/, axios.get('/appo/getAppo', { date: date, type: type })];
                 case 1:
                     data = (_a.sent()).data;
+                    result = data;
+                    console.log(result);
                     return [2 /*return*/];
             }
         });
