@@ -93,35 +93,16 @@ async function handleEvent() {
 function renderForCustomer(events){
     try {
         let html = '';
-        events.forEach(event => {
-          
-            
-        // console.log(button);
-        
+        events.forEach(event => {  
         html += 
         `<div class="event1">
         <h2>Lesson:${event.lesson}</h2>
         <h2>Date:${event.date}</h2>
         <h2>Price:${event.price}</h2>
         <h2>Coach:${event.coach}</h2>
-        <button id="addToCartBtn" onclick="addToCart(${event._id}))">Add Lesson to My Cart</button>
-
+        <button id="addToCartBtn" onclick="addToCart(${event._id})">Add Lesson to My Cart</button>
         </div>`      
     });
-    async function addToCart(id){
-   
-        try {
-            //@ts-ignore
-        const {data} = await axios.post('/add-to-cart',{id})
-        
-            console.log(data);
-            
-        } catch (error) {
-            console.log(error);
-        }
-        }
-        
-    
     const root = document.querySelector('#root');
     if(!root) throw new Error ('No root !')
     root.innerHTML = html;
@@ -130,6 +111,21 @@ function renderForCustomer(events){
     console.log(error);
 }
 }
+
+async function addToCart(id){
+   
+    try {
+        console.log(id);
+        
+        //@ts-ignore
+    const {data} = await axios.post('/add-to-cart',{id})
+    
+        console.log(data);
+        
+    } catch (error) {
+        console.log(error);
+    }
+    }
 
 
 

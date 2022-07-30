@@ -74,7 +74,10 @@ function handleLogin(ev) {
                 case 1:
                     data = (_a.sent()).data;
                     ok = data.ok;
-                    if (ok) {
+                    if (!ok) {
+                        console.log('error');
+                    }
+                    else {
                         window.location.href = './events.html';
                     }
                     return [3 /*break*/, 3];

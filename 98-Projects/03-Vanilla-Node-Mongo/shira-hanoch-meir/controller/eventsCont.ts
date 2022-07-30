@@ -1,4 +1,6 @@
 import {lessonsModel, cartModel, coachModel} from '../model/model';
+import jwt from 'jwt-simple';
+
 
 export async function addEvents(req, res){
     try {
@@ -40,7 +42,10 @@ export async function cartByUser(req, res){
     //check
     try {
         const {user}  = req.cookies;
-        const userCart = await cartModel.find({user})
+        // const secret = process.env.JWT_SECRET;
+        // var decodedCookie = jwt.decode(user, secret);
+        // const {User} = decodedCookie;
+        const userCart = await cartModel.find({user});
 
         res.send(userCart);
 

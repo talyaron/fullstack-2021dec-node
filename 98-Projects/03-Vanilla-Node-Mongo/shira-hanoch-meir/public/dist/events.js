@@ -147,31 +147,9 @@ function renderForCustomer(events) {
     try {
         var html_2 = '';
         events.forEach(function (event) {
-            // console.log(button);
             html_2 +=
-                "<div class=\"event1\">\n        <h2>Lesson:" + event.lesson + "</h2>\n        <h2>Date:" + event.date + "</h2>\n        <h2>Price:" + event.price + "</h2>\n        <h2>Coach:" + event.coach + "</h2>\n        <button id=\"addToCartBtn\" onclick=\"addToCart(" + event._id + "))\">Add Lesson to My Cart</button>\n\n        </div>";
+                "<div class=\"event1\">\n        <h2>Lesson:" + event.lesson + "</h2>\n        <h2>Date:" + event.date + "</h2>\n        <h2>Price:" + event.price + "</h2>\n        <h2>Coach:" + event.coach + "</h2>\n        <button id=\"addToCartBtn\" onclick=\"addToCart(" + event._id + ")\">Add Lesson to My Cart</button>\n        </div>";
         });
-        function addToCart(id) {
-            return __awaiter(this, void 0, void 0, function () {
-                var data, error_5;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0:
-                            _a.trys.push([0, 2, , 3]);
-                            return [4 /*yield*/, axios.post('/add-to-cart', { id: id })];
-                        case 1:
-                            data = (_a.sent()).data;
-                            console.log(data);
-                            return [3 /*break*/, 3];
-                        case 2:
-                            error_5 = _a.sent();
-                            console.log(error_5);
-                            return [3 /*break*/, 3];
-                        case 3: return [2 /*return*/];
-                    }
-                });
-            });
-        }
         var root = document.querySelector('#root');
         if (!root)
             throw new Error('No root !');
@@ -180,6 +158,28 @@ function renderForCustomer(events) {
     catch (error) {
         console.log(error);
     }
+}
+function addToCart(id) {
+    return __awaiter(this, void 0, void 0, function () {
+        var data, error_5;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    console.log(id);
+                    return [4 /*yield*/, axios.post('/add-to-cart', { id: id })];
+                case 1:
+                    data = (_a.sent()).data;
+                    console.log(data);
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_5 = _a.sent();
+                    console.log(error_5);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
 }
 function handleCart() {
     return __awaiter(this, void 0, void 0, function () {
