@@ -133,6 +133,7 @@ h1 {
 }
 .container__currentStatistic__gemerIcons .material-icons {
   font-size: 1.3em;
+  color: rgba(15, 15, 130, 0.715);
 }
 .container__currentStatistic__wins {
   font-size: 2.3em;

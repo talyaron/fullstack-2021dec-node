@@ -166,18 +166,18 @@ socket.on("move-made", (data) => {
         $(".nav__message")
           .text("Ups..You lost :(")
           .css("font-family", "Monoton")
-          .css("color", "#202a438f")
-          .css("font-size", "1.6em")
-          .css("font-weight", "bold");
+          .css("color", "#202941c4")
+          .css("font-size", "1.5em");
+          // .css("font-weight", "bold");
 
       } else {
       
         $(".nav__message")
           .text("Congrats! You Win! :)")
           .css("font-family", "Monoton")
-          .css("color", "#006D7A")
-          .css("font-size", "1.6em")
-          .css("font-weight", "bold");
+          .css("color", "#085861")
+          .css("font-size", "1.5em");
+          // .css("font-weight", "bold");
 
         console.log("score:", score);
       }
@@ -447,7 +447,7 @@ function showTime(){
   sec = (sec < 10) ? "0" + sec : sec;
     
   $("#clock").html(
-    `Time &nbsp;&nbsp; <span style="color: #811618ad;">${hour}</span> : <span style="color: #811618ad;">${min}</span> : <span style="color: #811618ad;">${sec}</span>`
+    `Time &nbsp;&nbsp; <span style="color: rgba(15, 15, 130, 0.715);">${hour}</span> : <span style="color: rgba(15, 15, 130, 0.715);">${min}</span> : <span style="color: rgba(15, 15, 130, 0.715);">${sec}</span>`
   );
   setTimeout(showTime, 1000);
 }
