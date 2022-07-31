@@ -1,65 +1,64 @@
-
 body {
   background-color: rgb(245, 68, 68);
 }
 
 //profile.html- css
 
-#Navbar{
+#Navbar {
   display: flex;
   width: 100vw;
   height: 10vh;
   text-align: center;
-  
+
   position: fixed;
-top: 0%;
-left: 0%;
-font-size: large;
-color: black;
-  img{
+  top: 0%;
+  left: 0%;
+  font-size: large;
+  color: black;
+  img {
     height: 50px;
     width: 40px;
   }
-  h1{
+  h1 {
     margin-left: 27vw;
   }
 }
 
-#actions{
+#actions {
   padding: 100px;
   color: beige;
   display: grid;
   grid-template-columns: 1fr 1fr;
   justify-items: center;
   gap: 30px;
-  .fas{
+  .fas {
     display: flex;
     color: black;
     text-align: center;
     font-size: 50px;
     margin-left: 50px;
   }
-  .fa-comment-medical{
+  .fa-comment-medical {
     margin-left: 20px;
   }
 }
 
-.scheduleMeeting{
+.scheduleMeeting {
   background-color: rgb(245, 68, 68);
   border: none;
 }
 
-.sceduleMeetingPage{
+.sceduleMeetingPage {
   display: flex;
   justify-content: center;
 }
 
-.ContactADoctor{
+.ContactADoctor {
   background-color: rgb(245, 68, 68);
   border: none;
 }
 
-#img{
+#img {
   width: 5vw;
   height: 8vh;
   display: flex;
@@ -67,7 +66,7 @@ color: black;
   margin: auto;
 }
 
-.buttonDiv{
+.buttonDiv {
   display: flex;
   flex-direction: row;
   gap: 20px;
@@ -75,3 +74,22 @@ color: black;
   margin-top: 50px;
 }
 
+//myMeeting.css
+.formsDiv {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+
+  @media (min-width: 768px) {
+    width: auto;
+  }
+}
+
+.firstForm {
+  width: 50vw;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}

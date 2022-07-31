@@ -70,3 +70,23 @@ body {
   justify-content: center;
   margin-top: 50px;
 }
+
+.formsDiv {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+}
+@media (min-width: 768px) {
+  .formsDiv {
+    width: auto;
+  }
+}
+
+.firstForm {
+  width: 50vw;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}

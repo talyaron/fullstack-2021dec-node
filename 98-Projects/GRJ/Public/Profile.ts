@@ -1,7 +1,3 @@
-
-
-
-
 function getUserId(): string | false {
   try {
     const queryString = window.location.search;
