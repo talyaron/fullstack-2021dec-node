@@ -79,7 +79,7 @@ function handleRegister(ev) {
 }
 function handleLogin(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var email, password, data, login, userId, error, error_2;
+        var email, password, data, userDB, error, error_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -97,12 +97,15 @@ function handleLogin(ev) {
                 case 2:
                     data = (_a.sent()).data;
                     console.log(data);
-                    login = data.login, userId = data.userId, error = data.error;
-                    console.log(userId);
+                    userDB = data.userDB, error = data.error;
+                    console.log(userDB);
                     if (error)
                         throw error;
-                    if (login && userId) {
-                        window.location.href = "./profile.html?userId=" + userId;
+                    if (userDB.role === 'admin') {
+                        window.location.href = "./profile.html?userId=" + userDB._id;
+                    }
+                    else {
+                        window.location.href = "./profile.html?userId=" + userDB._id;
                     }
                     if (error)
                         throw error;

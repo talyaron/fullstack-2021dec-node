@@ -42,13 +42,17 @@ async function handleLogin(ev: any) {
       password,
     });
     console.log(data);
-    const { login, userId, error } = data;
-    console.log(userId);
+    const { userDB, error } = data;
+    console.log(userDB);
     if (error) throw error;
-    
-    if (login && userId) {
-    window.location.href = `./profile.html?userId=${userId}`;
-   }
+
+  if(userDB.role === 'admin'){
+    window.location.href = `./profile.html?userId=${userDB._id}`;
+  }
+  
+  else{
+    window.location.href = `./profile.html?userId=${userDB._id}`;
+  }
 
     if (error) throw error;
     console.log(data);
