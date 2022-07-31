@@ -1,3 +1,4 @@
+// import Chartjs, { Chart } from 'chart.js';
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -34,42 +35,198 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-function handleLoad() {
-    try {
-        // //@ts-ignore const { data } = await axios.get("/data/get-all-data");
-        // console.log(data); stocksAPI()
-    }
-    catch (error) {
-        console.error(error);
-    }
-}
-function stocksAPI(ev) {
+var employeeLabel = [], employeeSalaryData = [], employeeAgeData = [];
+function dummyChart() {
     return __awaiter(this, void 0, void 0, function () {
-        var userInput, data, error_1;
+        var ctx, chart;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0:
-                    _a.trys.push([0, 2, , 3]);
-                    ev.preventDefault();
-                    userInput = ev.target.elements.userInput.value;
-                    console.log(userInput);
-                    return [4 /*yield*/, axios.get("https://cloud.iexapis.com/stable/tops?token=pk_421d8331d521478798685db9b5be24fa&symbols=" + userInput)];
+                case 0: return [4 /*yield*/, getDummyData()];
                 case 1:
-                    data = (_a.sent()).data;
-                    console.log(data);
-                    render(data);
-                    return [3 /*break*/, 3];
-                case 2:
-                    error_1 = _a.sent();
-                    console.error(error_1);
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
+                    _a.sent();
+                    ctx = document.getElementById('myChart');
+                    chart = new Chart(ctx, {
+                        // The type of chart
+                        type: 'bar',
+                        // The data for the dataset
+                        data: {
+                            labels: employeeLabel,
+                            datasets: [{
+                                    label: 'Employee Salary',
+                                    backgroundColor: 'blue',
+                                    borderColor: 'rgb(255, 99, 132)',
+                                    data: employeeSalaryData
+                                },
+                                {
+                                    label: 'Employee Age',
+                                    backgroundColor: 'pink',
+                                    borderColor: 'rgb(255, 99, 132)',
+                                    data: employeeAgeData
+                                }
+                            ]
+                        },
+                        // Configuration options
+                        options: {
+                            tooltips: {
+                                mode: 'index'
+                            }
+                        }
+                    });
+                    return [2 /*return*/];
             }
         });
     });
 }
-;
-function render(data) {
-    var root = document.querySelector("#root");
-    root.innerHTML = "<h3>" + data + "</h3>";
+function secondChart() {
+    return __awaiter(this, void 0, void 0, function () {
+        var ctx, chart;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, getDummyData()];
+                case 1:
+                    _a.sent();
+                    ctx = document.getElementById('myChart2');
+                    chart = new Chart(ctx, {
+                        // The type of chart
+                        type: 'bar',
+                        // The data for the dataset
+                        data: {
+                            labels: employeeLabel,
+                            datasets: [{
+                                    label: 'Employee Salary',
+                                    backgroundColor: 'green',
+                                    borderColor: 'rgb(255, 99, 132)',
+                                    data: employeeSalaryData
+                                },
+                                {
+                                    label: 'Employee Age',
+                                    backgroundColor: 'purple',
+                                    borderColor: 'rgb(255, 99, 132)',
+                                    data: employeeAgeData
+                                }
+                            ]
+                        },
+                        // Configuration options
+                        options: {
+                            tooltips: {
+                                mode: 'index'
+                            }
+                        }
+                    });
+                    return [2 /*return*/];
+            }
+        });
+    });
+}
+function thirdChart() {
+    return __awaiter(this, void 0, void 0, function () {
+        var ctx, chart;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, getDummyData()];
+                case 1:
+                    _a.sent();
+                    ctx = document.getElementById('myChart3');
+                    chart = new Chart(ctx, {
+                        // The type of chart
+                        type: 'bubble',
+                        // The data for the dataset
+                        data: {
+                            labels: employeeLabel,
+                            datasets: [{
+                                    label: 'Employee Salary',
+                                    backgroundColor: 'magenta',
+                                    borderColor: 'rgb(255, 99, 132)',
+                                    data: employeeSalaryData
+                                },
+                                {
+                                    label: 'Employee Age',
+                                    backgroundColor: 'orange',
+                                    borderColor: 'rgb(255, 99, 132)',
+                                    data: employeeAgeData
+                                }
+                            ]
+                        },
+                        // Configuration options
+                        options: {
+                            tooltips: {
+                                mode: 'index'
+                            }
+                        }
+                    });
+                    return [2 /*return*/];
+            }
+        });
+    });
+}
+function forthChart() {
+    return __awaiter(this, void 0, void 0, function () {
+        var ctx, chart;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, getDummyData()];
+                case 1:
+                    _a.sent();
+                    ctx = document.getElementById('myChart4');
+                    chart = new Chart(ctx, {
+                        // The type of chart
+                        type: 'line',
+                        // The data for the dataset
+                        data: {
+                            labels: employeeLabel,
+                            datasets: [{
+                                    label: 'Employee Salary',
+                                    backgroundColor: 'red',
+                                    borderColor: 'rgb(255, 99, 132)',
+                                    data: employeeSalaryData
+                                },
+                                {
+                                    label: 'Employee Age',
+                                    backgroundColor: 'yellow',
+                                    borderColor: 'rgb(255, 99, 132)',
+                                    data: employeeAgeData
+                                }
+                            ]
+                        },
+                        // Configuration options
+                        options: {
+                            tooltips: {
+                                mode: 'index'
+                            }
+                        }
+                    });
+                    return [2 /*return*/];
+            }
+        });
+    });
+}
+secondChart();
+thirdChart();
+forthChart();
+dummyChart();
+//Fetch Data from API
+function getDummyData() {
+    return __awaiter(this, void 0, void 0, function () {
+        var apiUrl, response, barChatData, salary, age, name;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    apiUrl = "http://dummy.restapiexample.com/api/v1/employees";
+                    return [4 /*yield*/, fetch(apiUrl)];
+                case 1:
+                    response = _a.sent();
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    barChatData = _a.sent();
+                    salary = barChatData.data.map(function (obg) { return obg.employee_salary; });
+                    console.log(salary);
+                    age = barChatData.data.map(function (obg) { return obg.employee_age; });
+                    name = barChatData.data.map(function (obg) { return obg.employee_name; });
+                    employeeSalaryData = salary;
+                    employeeAgeData = age;
+                    employeeLabel = name;
+                    return [2 /*return*/];
+            }
+        });
+    });
 }

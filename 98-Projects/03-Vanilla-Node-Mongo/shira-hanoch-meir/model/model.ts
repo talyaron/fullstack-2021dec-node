@@ -21,13 +21,17 @@ const coachSchema = new mongoose.Schema({
 });
 const lessonsSchema = new mongoose.Schema({
     lesson: String,
-    date: Date,
+    day: String,
+    dateStart: Date,
+    dateEnd: Date,
     price: Number,
     coach: String
 });
 const cartSchema = new mongoose.Schema({
     lesson: String,
-    date: Date,
+    day: String,
+    dateSrart: Date,
+    dateEnd: Date,
     price: Number,
     user: String
 });

@@ -39,15 +39,19 @@ exports.__esModule = true;
 exports.coachLogin = exports.login = exports.register = void 0;
 var model_1 = require("../model/model");
 var jwt_simple_1 = require("jwt-simple");
+var bcrypt_1 = require("bcrypt");
+var saltRounds = 10;
 function register(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var _a, email, password, userDB, error_1;
+        var _a, email, password, salt, hash, userDB, error_1;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
                     _b.trys.push([0, 2, , 3]);
                     _a = req.body, email = _a.email, password = _a.password;
-                    return [4 /*yield*/, model_1.regModel.create({ email: email, password: password })];
+                    salt = bcrypt_1["default"].genSaltSync(saltRounds);
+                    hash = bcrypt_1["default"].hashSync(password, salt);
+                    return [4 /*yield*/, model_1.regModel.create({ email: email, password: hash })];
                 case 1:
                     userDB = _b.sent();
                     res.send({ ok: true });
@@ -64,29 +68,36 @@ function register(req, res) {
 exports.register = register;
 function login(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var _a, email, password, findUser, role, cookie, secret, JWTCookie, error_2;
+        var _a, email, password, userDB, isMatch, role, cookie, secret, JWTCookie, error_2;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
-                    _b.trys.push([0, 2, , 3]);
+                    _b.trys.push([0, 3, , 4]);
                     _a = req.body, email = _a.email, password = _a.password;
-                    return [4 /*yield*/, model_1.regModel.findOne({ email: email, password: password })];
+                    return [4 /*yield*/, model_1.regModel.findOne({ email: email })];
                 case 1:
-                    findUser = _b.sent();
-                    if (!findUser)
+                    userDB = _b.sent();
+                    if (!userDB)
                         throw new Error("User name or password do not match");
-                    role = findUser.role;
-                    cookie = (findUser._id, role);
+                    if (!userDB.password)
+                        throw new Error('No password in DB');
+                    return [4 /*yield*/, bcrypt_1["default"].compare(password, userDB.password)];
+                case 2:
+                    isMatch = _b.sent();
+                    if (!isMatch)
+                        throw new Error('Username or password do not match');
+                    role = userDB.role;
+                    cookie = { userId: userDB._id, role: role };
                     secret = process.env.JWT_SECRET;
                     JWTCookie = jwt_simple_1["default"].encode(cookie, secret);
                     res.cookie('user', JWTCookie);
                     res.send({ ok: true });
-                    return [3 /*break*/, 3];
-                case 2:
+                    return [3 /*break*/, 4];
+                case 3:
                     error_2 = _b.sent();
                     res.send({ error: error_2.message });
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
             }
         });
     });
@@ -122,3 +133,19 @@ function coachLogin(req, res) {
     });
 }
 exports.coachLogin = coachLogin;
+//Backup login function before add becrypt:
+// export async function login(req:any, res:any){
+//     try {
+//         const {email, password} = req.body;
+//         const findUser:any = await regModel.findOne({email, password});
+//         if (!findUser) throw new Error("User name or password do not match");
+//         const role = findUser.role
+//         const cookie = (findUser._id, role);
+//         const secret = process.env.JWT_SECRET;
+//         const JWTCookie = jwt.encode(cookie, secret);
+//         res.cookie('user', JWTCookie)
+//         res.send({ok:true})
+//     } catch (error:any) {
+//         res.send({error: error.message})
+//     }
+// }
