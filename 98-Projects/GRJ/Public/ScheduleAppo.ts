@@ -14,7 +14,7 @@ async function handleSchedule(ev) {
 
 
 }
-
+  
 
 async function handleCreateAppo(ev) {
     ev.preventDefault()
@@ -31,9 +31,14 @@ async function handleCreateAppo(ev) {
         if (!date || !time || !doctorId || !kind) throw new Error('one of the insert is missing')
         // @ts-ignore
         const { data } = await axios.post("/appo/createAppo", { date, kind, doctorId, time })
-
-        const appoArray = data;
-        console.log(appoArray)
+        const { user, error } = data;
+        console.log(user)
+        if (error) throw error;
+  
+        if (user) {
+            const appoArray = data;
+            console.log(appoArray)
+        }
 
 
     } catch (error) {

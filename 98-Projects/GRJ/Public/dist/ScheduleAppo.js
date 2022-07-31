@@ -56,7 +56,7 @@ function handleSchedule(ev) {
 }
 function handleCreateAppo(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var date, kind, doctorId, time, data, appoArray, error_1;
+        var date, kind, doctorId, time, data, user, error, appoArray, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -74,8 +74,14 @@ function handleCreateAppo(ev) {
                     return [4 /*yield*/, axios.post("/appo/createAppo", { date: date, kind: kind, doctorId: doctorId, time: time })];
                 case 2:
                     data = (_a.sent()).data;
-                    appoArray = data;
-                    console.log(appoArray);
+                    user = data.user, error = data.error;
+                    console.log(user);
+                    if (error)
+                        throw error;
+                    if (user) {
+                        appoArray = data;
+                        console.log(appoArray);
+                    }
                     return [3 /*break*/, 4];
                 case 3:
                     error_1 = _a.sent();
