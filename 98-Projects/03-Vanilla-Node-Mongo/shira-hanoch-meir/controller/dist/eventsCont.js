@@ -85,7 +85,7 @@ function eventList(req, res) {
 exports.eventList = eventList;
 function addToCart(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var id, Cart, lesson, date, price, user, error_3;
+        var id, Cart, lesson, startDate, endDate, price, user, error_3;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -95,10 +95,11 @@ function addToCart(req, res) {
                 case 1:
                     Cart = _a.sent();
                     lesson = Cart.lesson;
-                    date = Cart.date;
+                    startDate = Cart.dateSrart;
+                    endDate = Cart.dateEnd;
                     price = Cart.price;
                     user = req.cookies.user;
-                    return [4 /*yield*/, model_1.cartModel.create({ lesson: lesson, date: date, price: price, user: user })];
+                    return [4 /*yield*/, model_1.cartModel.create({ lesson: lesson, startDate: startDate, endDate: endDate, price: price, user: user })];
                 case 2:
                     _a.sent();
                     res.send({ ok: true });

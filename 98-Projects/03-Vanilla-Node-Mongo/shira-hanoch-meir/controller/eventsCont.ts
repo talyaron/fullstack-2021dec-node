@@ -25,11 +25,13 @@ export async function addToCart(req, res) {
         const {id} = req.body;
         const Cart = await lessonsModel.findById({id});
         const lesson = Cart.lesson;
-        const date = Cart.date;
+        const startDate = Cart.dateSrart;
+        const endDate = Cart.dateEnd;
+
         const price = Cart.price;
         
         const {user} = req.cookies;
-         await cartModel.create({lesson,date, price, user});
+         await cartModel.create({lesson,startDate,endDate, price, user});
         res.send({ok: true})
 
     } catch (error) {
