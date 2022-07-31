@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="./dist/style.css">
 </head>
 <body onload="handleLoadCoach()">
+    <div class="formDiv">
     <form onsubmit="handleAddEvent(event)">
     <input type="text" name="lesson" placeholder="lesson">
     <input type="text" name="day" placeholder="day">
@@ -19,13 +20,10 @@
     <input type="submit" value="add lesson">
     
     </form>
+</div>
     <div id="root"></div>
     <script src="./dist/events.js"></script>
     <div id="totalToPay"></div>
-
-    
-
-
 
 
 </body>
