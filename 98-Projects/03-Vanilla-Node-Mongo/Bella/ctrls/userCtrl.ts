@@ -50,3 +50,24 @@ export async function login(req, res) {
         res.send({error: error.message});
     }
 };
+
+export const getUserByCookie = async (req, res)=>{
+    try {
+      const {user} = req.cookies;
+      console.log('user', user)
+
+      if (!user) {
+        throw new Error("user not found");
+      }
+
+      const userDB = await UserModel.findById(user);
+      console.log('userDB', userDB)
+
+      if(!userDB) throw new Error("user not found in DB")
+
+      res.send({ok:true, user:userDB})
+    } catch (error) {
+      console.log(error.error);
+      res.send({ error: error.message });
+    }
+  }

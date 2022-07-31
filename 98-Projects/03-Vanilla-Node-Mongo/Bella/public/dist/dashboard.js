@@ -73,3 +73,33 @@ function render(data) {
     var root = document.querySelector("#root");
     root.innerHTML = "<h3>" + data + "</h3>";
 }
+function getUserByCookie() {
+    return __awaiter(this, void 0, void 0, function () {
+        var data, user, usernameDB, root, error_2;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    return [4 /*yield*/, axios.get("/users/get-user")];
+                case 1:
+                    data = (_a.sent()).data;
+                    console.log(data);
+                    user = data.user;
+                    if (!user) {
+                        throw new Error('User not found');
+                    }
+                    usernameDB = user.username;
+                    root = document.getElementById('root');
+                    if (root) {
+                        root.innerHTML = "<h1>Welcome " + usernameDB + "</h1>";
+                    }
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_2 = _a.sent();
+                    console.error(error_2);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
+}

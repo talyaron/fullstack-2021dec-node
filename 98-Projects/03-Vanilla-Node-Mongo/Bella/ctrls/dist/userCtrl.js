@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.login = exports.register = void 0;
+exports.getUserByCookie = exports.login = exports.register = void 0;
 var userModel_1 = require("../models/userModel");
 var jwt_simple_1 = require("jwt-simple");
 var bcrypt_1 = require("bcrypt");
@@ -110,3 +110,31 @@ function login(req, res) {
 }
 exports.login = login;
 ;
+exports.getUserByCookie = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var user, userDB, error_3;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                _a.trys.push([0, 2, , 3]);
+                user = req.cookies.user;
+                console.log('user', user);
+                if (!user) {
+                    throw new Error("user not found");
+                }
+                return [4 /*yield*/, userModel_1["default"].findById(user)];
+            case 1:
+                userDB = _a.sent();
+                console.log('userDB', userDB);
+                if (!userDB)
+                    throw new Error("user not found in DB");
+                res.send({ ok: true, user: userDB });
+                return [3 /*break*/, 3];
+            case 2:
+                error_3 = _a.sent();
+                console.log(error_3.error);
+                res.send({ error: error_3.message });
+                return [3 /*break*/, 3];
+            case 3: return [2 /*return*/];
+        }
+    });
+}); };
