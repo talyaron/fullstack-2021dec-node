@@ -4,8 +4,8 @@ import jwt from 'jwt-simple';
 
 export async function addEvents(req, res){
     try {
-        const { lesson, dateStart, dateEnd, price, coach} = req.body;
-        await lessonsModel.create({lesson, dateStart, dateEnd, price, coach});
+        const { lesson,day, dateStart, dateEnd, price, coach} = req.body;
+        await lessonsModel.create({lesson,day, dateStart, dateEnd, price, coach});
         res.send({ok: true})
     } catch (error) {
         res.send({error: error.message})
