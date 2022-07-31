@@ -63,7 +63,7 @@ function renderEvent(events) {
         var html_1 = '';
         events.forEach(function (event) {
             html_1 +=
-                "<div class=\"event1\">\n            <h2>Lesson:" + event.lesson + "</h2>\n            <h2>Date:" + event.date + "</h2>\n            <h2>Price:" + event.price + "</h2>\n            <h2>Coach:" + event.coach + "</h2>\n            <button onclick=\"deleteLesson(" + event._id + ")\"></button>\n            </div>";
+                "<div class=\"event1\">\n            <h2>Lesson:" + event.lesson + "</h2>\n            <h2>Start At:" + event.dateStart + "</h2>\n            <h2>End At:" + event.dateEnd + "</h2>\n            <h2>Day:" + event.day + "</h2>\n            <h2>Price:" + event.price + "</h2>\n            <h2>Coach:" + event.coach + "</h2>\n            <button onclick=\"deleteLesson(" + event._id + ")\"></button>\n            </div>";
         });
         var root = document.querySelector('#root');
         if (!root)
@@ -97,18 +97,19 @@ function deleteLesson(id) {
 }
 function handleAddEvent(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var lesson, dateSrart, dateRnd, price, coach, data, error_3;
+        var lesson, day, dateSrart, dateEnd, price, coach, data, error_3;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
                     ev.preventDefault();
                     lesson = ev.target.lesson.value;
-                    dateSrart = ev.target.date.value;
-                    dateRnd = ev.target.date.value;
+                    day = ev.target.day.value;
+                    dateSrart = ev.target.dateStart.value;
+                    dateEnd = ev.target.dateEnd.value;
                     price = ev.target.price.value;
                     coach = ev.target.coach.value;
-                    return [4 /*yield*/, axios.post('/events/add-events', { lesson: lesson, dateSrart: dateSrart, dateRnd: dateRnd, price: price, coach: coach })];
+                    return [4 /*yield*/, axios.post('/events/add-events', { lesson: lesson, day: day, dateSrart: dateSrart, dateEnd: dateEnd, price: price, coach: coach })];
                 case 1:
                     data = (_a.sent()).data;
                     console.log(data);

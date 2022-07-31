@@ -25,7 +25,9 @@ function renderEvent(events){
             html += 
             `<div class="event1">
             <h2>Lesson:${event.lesson}</h2>
-            <h2>Date:${event.date}</h2>
+            <h2>Start At:${event.dateStart}</h2>
+            <h2>End At:${event.dateEnd}</h2>
+            <h2>Day:${event.day}</h2>
             <h2>Price:${event.price}</h2>
             <h2>Coach:${event.coach}</h2>
             <button onclick="deleteLesson(${event._id})"></button>
@@ -58,13 +60,14 @@ async function handleAddEvent(ev:any) {
     try {
         ev.preventDefault();
         const lesson = ev.target.lesson.value;
-        const dateSrart = ev.target.date.value;
-        const dateRnd = ev.target.date.value;
+        const day = ev.target.day.value;
+        const dateSrart = ev.target.dateStart.value;
+        const dateEnd = ev.target.dateEnd.value;
         const price = ev.target.price.value;
         const coach = ev.target.coach.value;
 
         //@ts-ignore
-        const {data}  = await axios.post('/events/add-events', {lesson,dateSrart,dateRnd,price,coach})
+        const {data}  = await axios.post('/events/add-events', {lesson,day,dateSrart,dateEnd,price,coach})
         console.log(data);
 
         // renderEvent(data)

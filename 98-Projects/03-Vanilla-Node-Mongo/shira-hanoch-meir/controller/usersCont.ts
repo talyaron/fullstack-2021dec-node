@@ -7,7 +7,12 @@ const saltRounds = 10;
 export async function register(req:any, res:any){
     try {
         const {email, password} = req.body;
-        const userDB = await regModel.create({email, password});
+
+        const salt = bcrypt.genSaltSync(saltRounds);
+        const hash = bcrypt.hashSync(password, salt);
+
+        const userDB = await regModel.create({email, password:hash});
+
         res.send({ok:true})
     } catch (error:any) {
         res.send({error: error.message})
@@ -26,8 +31,9 @@ export async function login(req:any, res:any){
     
         if(!isMatch) throw new Error ('Username or password do not match')
     
-        const role = userDB.role
-        const cookie = (userDB._id, role);
+        const role = userDB.role;
+        const cookie = { userId: userDB._id, role };
+
         const secret = process.env.JWT_SECRET;
         const JWTCookie = jwt.encode(cookie, secret);
         res.cookie('user', JWTCookie)
@@ -56,7 +62,7 @@ export async function coachLogin(req:any, res:any){
 
 //Backup login function before add becrypt:
 
-//export async function login(req:any, res:any){
+// export async function login(req:any, res:any){
 //     try {
 //         const {email, password} = req.body;
         

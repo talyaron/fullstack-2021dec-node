@@ -43,13 +43,15 @@ var bcrypt_1 = require("bcrypt");
 var saltRounds = 10;
 function register(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var _a, email, password, userDB, error_1;
+        var _a, email, password, salt, hash, userDB, error_1;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
                     _b.trys.push([0, 2, , 3]);
                     _a = req.body, email = _a.email, password = _a.password;
-                    return [4 /*yield*/, model_1.regModel.create({ email: email, password: password })];
+                    salt = bcrypt_1["default"].genSaltSync(saltRounds);
+                    hash = bcrypt_1["default"].hashSync(password, salt);
+                    return [4 /*yield*/, model_1.regModel.create({ email: email, password: hash })];
                 case 1:
                     userDB = _b.sent();
                     res.send({ ok: true });
@@ -85,7 +87,7 @@ function login(req, res) {
                     if (!isMatch)
                         throw new Error('Username or password do not match');
                     role = userDB.role;
-                    cookie = (userDB._id, role);
+                    cookie = { userId: userDB._id, role: role };
                     secret = process.env.JWT_SECRET;
                     JWTCookie = jwt_simple_1["default"].encode(cookie, secret);
                     res.cookie('user', JWTCookie);
@@ -132,7 +134,7 @@ function coachLogin(req, res) {
 }
 exports.coachLogin = coachLogin;
 //Backup login function before add becrypt:
-//export async function login(req:any, res:any){
+// export async function login(req:any, res:any){
 //     try {
 //         const {email, password} = req.body;
 //         const findUser:any = await regModel.findOne({email, password});
