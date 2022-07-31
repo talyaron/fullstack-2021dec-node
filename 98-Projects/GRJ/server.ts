@@ -41,8 +41,10 @@ import userRoutes from "../GRJ/Routes/UserRoute";
 app.use('/users',  userRoutes);
 
 import profileRoutes from "../GRJ/Routes/ProfileRoute";
-
 app.use('/profile',  profileRoutes);
+
+import AppoRoutes from "../GRJ/Routes/AppoRoute";
+app.use('/Appo',  AppoRoutes);
 
 httpServer.listen(port, () => {
   console.log(`Server listening on port ${port}`);
