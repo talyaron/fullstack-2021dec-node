@@ -37,12 +37,29 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 exports.__esModule = true;
 exports.getAppo = void 0;
+var AppoModel_1 = require("../Models/AppoModel");
 function getAppo(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var _a, date, type;
+        var _a, date, type, apposResult, error_1;
         return __generator(this, function (_b) {
-            _a = req.body, date = _a.date, type = _a.type;
-            return [2 /*return*/];
+            switch (_b.label) {
+                case 0:
+                    _b.trys.push([0, 2, , 3]);
+                    _a = req.body, date = _a.date, type = _a.type;
+                    console.log(date);
+                    console.log(type);
+                    return [4 /*yield*/, AppoModel_1["default"].find({ date: date, type: type }).exec()];
+                case 1:
+                    apposResult = _b.sent();
+                    res.send(apposResult);
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_1 = _b.sent();
+                    console.error(error_1);
+                    res.send({ error: error_1.message });
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
         });
     });
 }
