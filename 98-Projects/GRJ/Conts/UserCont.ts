@@ -19,14 +19,15 @@ export async function login(req, res) {
     console.log(password, userDB.password)
     if (!isMatch) throw new Error('Username or password do not match')
 
-
+    const role = userDB.role || "user";
+    console.log(role);
 
     const cookie = { user: userDB._id };
     const secret = process.env.JWT_SECRET;
     const JWTCookie = jwt.encode(cookie, secret);
 
     res.cookie('user', JWTCookie);
-    res.send({ login: true, userId: userDB.id });
+    res.send({ login: true, userDB});
 
 
   } catch (error) {

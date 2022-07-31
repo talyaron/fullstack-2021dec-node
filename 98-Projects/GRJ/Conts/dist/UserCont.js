@@ -43,7 +43,7 @@ var bcrypt_1 = require("bcrypt");
 var saltRounds = 10;
 function login(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var _a, email, password, error, userDB, isMatch, cookie, secret, JWTCookie, error_1;
+        var _a, email, password, error, userDB, isMatch, role, cookie, secret, JWTCookie, error_1;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
@@ -67,11 +67,13 @@ function login(req, res) {
                     console.log(password, userDB.password);
                     if (!isMatch)
                         throw new Error('Username or password do not match');
+                    role = userDB.role || "user";
+                    console.log(role);
                     cookie = { user: userDB._id };
                     secret = process.env.JWT_SECRET;
                     JWTCookie = jwt_simple_1["default"].encode(cookie, secret);
                     res.cookie('user', JWTCookie);
-                    res.send({ login: true, userId: userDB.id });
+                    res.send({ login: true, userDB: userDB });
                     return [3 /*break*/, 4];
                 case 3:
                     error_1 = _b.sent();

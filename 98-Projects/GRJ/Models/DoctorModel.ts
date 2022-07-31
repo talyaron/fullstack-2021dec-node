@@ -13,9 +13,6 @@ const DoctorSchema = new mongoose.Schema({
         type: String,
         required: true
     }
-
-
-
 });
 
 const DoctorModel = mongoose.model('doctors', DoctorSchema);
