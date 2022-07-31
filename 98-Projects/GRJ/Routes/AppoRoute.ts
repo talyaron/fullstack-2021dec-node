@@ -1,10 +1,11 @@
 import express from 'express';
-import {getAppo} from '../Conts/AppoCont'
+import {getAppo, createAppo} from '../Conts/AppoCont'
 
 const router = express.Router();
 
 router
- .get('/getAppo', getAppo)
+ .post('/getAppo', getAppo)
+ .post('/createAppo', createAppo)
 
 export default router
 

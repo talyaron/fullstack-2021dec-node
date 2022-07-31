@@ -34,24 +34,64 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var x = 4;
 function handleSchedule(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var date, type, data, result;
+        var date, kind, data, filteredAppos;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     ev.preventDefault();
                     date = ev.target.date.value;
-                    type = ev.target.type.value;
-                    console.log(date, type);
-                    return [4 /*yield*/, axios.get('/appo/getAppo', { date: date, type: type })];
+                    kind = ev.target.kind.value;
+                    console.log(date, kind);
+                    return [4 /*yield*/, axios.post("/appo/getAppo", { kind: kind, date: date })];
                 case 1:
                     data = (_a.sent()).data;
-                    result = data;
-                    console.log(result);
+                    filteredAppos = data;
+                    console.log(filteredAppos);
                     return [2 /*return*/];
             }
         });
     });
+}
+function handleCreateAppo(ev) {
+    return __awaiter(this, void 0, void 0, function () {
+        var date, kind, doctorId, time, data, appoArray, error_1;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    ev.preventDefault();
+                    _a.label = 1;
+                case 1:
+                    _a.trys.push([1, 3, , 4]);
+                    date = ev.target.date.value;
+                    kind = ev.target.kind.value;
+                    doctorId = ev.target.doctorId.value;
+                    time = ev.target.time.value;
+                    console.log(date, kind, doctorId, time);
+                    if (!date || !time || !doctorId || !kind)
+                        throw new Error('one of the insert is missing');
+                    return [4 /*yield*/, axios.post("/appo/createAppo", { date: date, kind: kind, doctorId: doctorId, time: time })];
+                case 2:
+                    data = (_a.sent()).data;
+                    appoArray = data;
+                    console.log(appoArray);
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_1 = _a.sent();
+                    console.error(error_1);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
+}
+function renderAppo(apposArray) {
+    var filteredAppo = document.querySelector('#filteredAppo');
+    var html = "";
+    console.log(apposArray.lenght);
+    for (var i = 0; i < apposArray.lenght; i++) {
+        html += "date: " + apposArray[i].date + " <br>\n        kind: " + apposArray[i].kind + " <br>\n        doctorId: " + apposArray[i].doctorId + " <br>\n        time: " + apposArray[i].time + " <br>\n        ";
+    }
+    filteredAppo.innerHTML = html;
 }
