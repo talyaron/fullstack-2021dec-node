@@ -77,6 +77,132 @@ function dummyChart() {
         });
     });
 }
+function secondChart() {
+    return __awaiter(this, void 0, void 0, function () {
+        var ctx, chart;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, getDummyData()];
+                case 1:
+                    _a.sent();
+                    ctx = document.getElementById('myChart2');
+                    chart = new Chart(ctx, {
+                        // The type of chart
+                        type: 'bar',
+                        // The data for the dataset
+                        data: {
+                            labels: employeeLabel,
+                            datasets: [{
+                                    label: 'Employee Salary',
+                                    backgroundColor: 'green',
+                                    borderColor: 'rgb(255, 99, 132)',
+                                    data: employeeSalaryData
+                                },
+                                {
+                                    label: 'Employee Age',
+                                    backgroundColor: 'purple',
+                                    borderColor: 'rgb(255, 99, 132)',
+                                    data: employeeAgeData
+                                }
+                            ]
+                        },
+                        // Configuration options
+                        options: {
+                            tooltips: {
+                                mode: 'index'
+                            }
+                        }
+                    });
+                    return [2 /*return*/];
+            }
+        });
+    });
+}
+function thirdChart() {
+    return __awaiter(this, void 0, void 0, function () {
+        var ctx, chart;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, getDummyData()];
+                case 1:
+                    _a.sent();
+                    ctx = document.getElementById('myChart3');
+                    chart = new Chart(ctx, {
+                        // The type of chart
+                        type: 'bubble',
+                        // The data for the dataset
+                        data: {
+                            labels: employeeLabel,
+                            datasets: [{
+                                    label: 'Employee Salary',
+                                    backgroundColor: 'magenta',
+                                    borderColor: 'rgb(255, 99, 132)',
+                                    data: employeeSalaryData
+                                },
+                                {
+                                    label: 'Employee Age',
+                                    backgroundColor: 'orange',
+                                    borderColor: 'rgb(255, 99, 132)',
+                                    data: employeeAgeData
+                                }
+                            ]
+                        },
+                        // Configuration options
+                        options: {
+                            tooltips: {
+                                mode: 'index'
+                            }
+                        }
+                    });
+                    return [2 /*return*/];
+            }
+        });
+    });
+}
+function forthChart() {
+    return __awaiter(this, void 0, void 0, function () {
+        var ctx, chart;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, getDummyData()];
+                case 1:
+                    _a.sent();
+                    ctx = document.getElementById('myChart4');
+                    chart = new Chart(ctx, {
+                        // The type of chart
+                        type: 'line',
+                        // The data for the dataset
+                        data: {
+                            labels: employeeLabel,
+                            datasets: [{
+                                    label: 'Employee Salary',
+                                    backgroundColor: 'red',
+                                    borderColor: 'rgb(255, 99, 132)',
+                                    data: employeeSalaryData
+                                },
+                                {
+                                    label: 'Employee Age',
+                                    backgroundColor: 'yellow',
+                                    borderColor: 'rgb(255, 99, 132)',
+                                    data: employeeAgeData
+                                }
+                            ]
+                        },
+                        // Configuration options
+                        options: {
+                            tooltips: {
+                                mode: 'index'
+                            }
+                        }
+                    });
+                    return [2 /*return*/];
+            }
+        });
+    });
+}
+secondChart();
+thirdChart();
+forthChart();
 dummyChart();
 //Fetch Data from API
 function getDummyData() {
