@@ -85,13 +85,13 @@ function eventList(req, res) {
 exports.eventList = eventList;
 function addToCart(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var id, Cart, lesson, date, price, user, error_3;
+        var _id, Cart, lesson, date, price, user, error_3;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
-                    id = req.body.id;
-                    return [4 /*yield*/, model_1.lessonsModel.findById({ id: id })];
+                    _id = req.body._id;
+                    return [4 /*yield*/, model_1.lessonsModel.findById(_id)];
                 case 1:
                     Cart = _a.sent();
                     lesson = Cart.lesson;
@@ -139,18 +139,23 @@ exports.cartByUser = cartByUser;
 ;
 function deleteForCoach(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var id;
+        var _id, error_5;
         return __generator(this, function (_a) {
-            try {
-                id = req.body;
-                model_1.lessonsModel.findById({ id: id }).remove(function () {
-                    res.send('deleted successfully!!');
-                });
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    _id = req.body;
+                    console.log(_id);
+                    return [4 /*yield*/, model_1.lessonsModel.deleteOne({ _id: _id })];
+                case 1:
+                    _a.sent();
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_5 = _a.sent();
+                    res.send({ error: error_5.message });
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
             }
-            catch (error) {
-                res.send({ error: error.message });
-            }
-            return [2 /*return*/];
         });
     });
 }
@@ -158,18 +163,27 @@ exports.deleteForCoach = deleteForCoach;
 ;
 function deleteFromCart(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var id;
+        var _id, error_6;
         return __generator(this, function (_a) {
-            try {
-                id = req.body;
-                model_1.cartModel.findById({ id: id }).remove(function () {
-                    res.send('deleted successfully!!');
-                });
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    _id = req.body;
+                    console.log(_id);
+                    // const id = JSON.parse(_id)
+                    // const findOne = cartModel.findById({id});
+                    return [4 /*yield*/, model_1.cartModel.deleteOne({ _id: _id })];
+                case 1:
+                    // const id = JSON.parse(_id)
+                    // const findOne = cartModel.findById({id});
+                    _a.sent();
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_6 = _a.sent();
+                    res.send({ error: error_6.message });
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
             }
-            catch (error) {
-                res.send({ error: error.message });
-            }
-            return [2 /*return*/];
         });
     });
 }

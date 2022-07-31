@@ -63,7 +63,7 @@ function renderEvent(events) {
         var html_1 = '';
         events.forEach(function (event) {
             html_1 +=
-                "<div class=\"event1\">\n            <h2>Lesson:" + event.lesson + "</h2>\n            <h2>Date:" + event.date + "</h2>\n            <h2>Price:" + event.price + "</h2>\n            <h2>Coach:" + event.coach + "</h2>\n            <button onclick=\"deleteLesson(" + event._id + ")\"></button>\n            </div>";
+                "<div class=\"event1\">\n            <h2>Lesson:" + event.lesson + "</h2>\n            <h2>Date:" + event.date + "</h2>\n            <h2>Price:" + event.price + "</h2>\n            <h2>Coach:" + event.coach + "</h2>\n            <button onclick=\"deleteLesson('" + event._id + "')\">delete lesson</button>\n            </div>";
         });
         var root = document.querySelector('#root');
         if (!root)
@@ -74,14 +74,14 @@ function renderEvent(events) {
         console.log(error);
     }
 }
-function deleteLesson(id) {
+function deleteLesson(_id) {
     return __awaiter(this, void 0, void 0, function () {
         var data, error_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, axios.post('/events/delete-for-coach', { id: id })];
+                    return [4 /*yield*/, axios.post('/events/delete-for-coach', { _id: _id })];
                 case 1:
                     data = (_a.sent()).data;
                     console.log(data);
@@ -147,8 +147,8 @@ function renderForCustomer(events) {
     try {
         var html_2 = '';
         events.forEach(function (event) {
-            html_2 +=
-                "<div class=\"event1\">\n        <h2>Lesson:" + event.lesson + "</h2>\n        <h2>Date:" + event.date + "</h2>\n        <h2>Price:" + event.price + "</h2>\n        <h2>Coach:" + event.coach + "</h2>\n        <button id=\"addToCartBtn\" onclick=\"addToCart(" + event._id + ")\">Add Lesson to My Cart</button>\n        </div>";
+            html_2 += "<div class=\"event1\">\n                <h2>Lesson:" + event.lesson + "</h2>\n                <h2>Date:" + event.date + "</h2>\n                <h2>Price:" + event.price + "</h2>\n                <h2>Coach:" + event.coach + "</h2>\n                <button id=\"addToCartBtn\" onclick=\"addToCart('" + event._id + "')\">Add Lesson to My Cart</button>\n                </div>";
+            console.log(event._id);
         });
         var root = document.querySelector('#root');
         if (!root)
@@ -159,15 +159,15 @@ function renderForCustomer(events) {
         console.log(error);
     }
 }
-function addToCart(id) {
+function addToCart(_id) {
     return __awaiter(this, void 0, void 0, function () {
         var data, error_5;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    console.log(id);
-                    return [4 /*yield*/, axios.post('/add-to-cart', { id: id })];
+                    console.log(_id);
+                    return [4 /*yield*/, axios.post('/events/add-to-cart', { _id: _id })];
                 case 1:
                     data = (_a.sent()).data;
                     console.log(data);
@@ -209,7 +209,7 @@ function moveToCart() {
 }
 function renderCart() {
     return __awaiter(this, void 0, void 0, function () {
-        var data, root, html_3, i, total, totalToPay, error_6;
+        var data, root, cart_1, i, total, totalToPay, error_6;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -217,14 +217,17 @@ function renderCart() {
                     return [4 /*yield*/, axios.get('/events/find-cart-by-user')];
                 case 1:
                     data = (_a.sent()).data;
+                    console.log(data);
                     root = document.querySelector('#root');
-                    html_3 = '';
+                    cart_1 = '';
                     data.forEach(function (event) {
-                        html_3 += "<div id=\"cart\">\n        <h3>Lesson:" + event.lesson + "</h3>\n        <h3>Date:" + event.date + "</h3>\n        <h3>Price:" + event.price + "</h3>\n        <button onclick=\"deleteLessonFromCart(" + event._id + ")\"></button>\n        </div>";
+                        cart_1 += "<div id=\"cart\">\n        <h3>Lesson:" + event.lesson + "</h3>\n        <h3>Date:" + event.date + "</h3>\n        <h3>Price:" + event.price + "</h3>\n        <button onclick=\"deleteLessonFromCart('" + event._id + "')\">delete lesson</button>\n        </div>";
                     });
-                    root.innerHTML = html_3;
+                    root.innerHTML = cart_1;
+                    // let total = 0;
                     for (i = 0; i < data.length; i++) {
-                        total = data.price[i] + data.price[i];
+                        console.log(data[i].price);
+                        total = data.reduce(function (acc, lesson) { return acc + lesson.price; }, 0);
                         totalToPay = document.querySelector('#totalToPay');
                         totalToPay.innerHTML = "total to pay <br> " + (total);
                     }
@@ -240,14 +243,14 @@ function renderCart() {
     });
 }
 ;
-function deleteLessonFromCart(id) {
+function deleteLessonFromCart(_id) {
     return __awaiter(this, void 0, void 0, function () {
         var data, error_7;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, axios.post('/events/delete-from-cart', { id: id })];
+                    return [4 /*yield*/, axios.post('/events/delete-from-cart', { _id: _id })];
                 case 1:
                     data = (_a.sent()).data;
                     console.log(data);

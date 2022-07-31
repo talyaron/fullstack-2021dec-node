@@ -22,8 +22,8 @@ export async function eventList(req, res){
 
 export async function addToCart(req, res) {
     try {
-        const {id} = req.body;
-        const Cart = await lessonsModel.findById({id});
+        const {_id} = req.body;
+        const Cart = await lessonsModel.findById(_id);
         const lesson = Cart.lesson;
         const date = Cart.date;
         const price = Cart.price;
@@ -57,10 +57,9 @@ export async function cartByUser(req, res){
 
 export async function deleteForCoach(req, res){
     try{
-        const id = req.body;
-        lessonsModel.findById({id}).remove(()=>{
-            res.send('deleted successfully!!')
-        });
+        const _id = req.body;
+        console.log(_id);
+        await lessonsModel.deleteOne({_id:_id})
     }catch (error) {
         res.send({error: error.message})
         
@@ -69,10 +68,12 @@ export async function deleteForCoach(req, res){
 
 export async function deleteFromCart(req, res){
     try{
-        const id = req.body;
-        cartModel.findById({id}).remove(()=>{
-            res.send('deleted successfully!!')
-        });
+        const _id = req.body;
+        console.log(_id);
+        // const id = JSON.parse(_id)
+        
+        // const findOne = cartModel.findById({id});
+        await cartModel.deleteOne({_id: _id})
     }catch (error) {
         res.send({error: error.message})
         
