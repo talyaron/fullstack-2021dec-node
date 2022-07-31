@@ -96,6 +96,103 @@ function getBoardState() {
   }
 }
 
+socket.on("game-begin", (data) => {
+  try {
+    symbol = data.symbol;
+    myMove = symbol === "X";
+    timer();
+
+    $("#clock").css("display", "none");
+    $("#timer").css("display", "block");
+    renderTurnMessage();
+
+    $("#playingSymbol").html(
+      `<span style="color: #811618ad; font-size: 1.5em; font-weight: bold;">${data.symbol} </span> is playing`
+    );
+  } catch (error) {
+    console.error(error.message);
+  }
+});
+
+socket.on;
+
+function makeMove() {
+  try {
+    if (!myMove) {
+      return; // Shouldn't happen since the board is disabled
+    }
+
+    if ($(this).text().length) {
+      return; // If cell is already checked
+    }
+
+    socket.emit("make-move", {
+      // Valid move (on client side) -> emit to server
+      symbol: symbol,
+      position: $(this).attr("id"),
+    });
+  } catch (error) {
+    console.error(error.message);
+  }
+}
+
+
+// Bind event on players move
+socket.on("move-made", (data) => {
+  try {
+    $("#" + data.position).text(data.symbol);   
+    // If the symbol of the last move was the same as the current player
+    // means that now is opponent's turn
+    myMove = data.symbol !== symbol;
+
+    if (!isGameOver()) {
+      renderTurnMessage();
+    } else {
+
+      $("#clock").css("display", "block");
+      $("#timer").css("display", "none");
+    
+      if (myMove) {
+
+        $(".nav__message")
+          .text("Ups..You lost :(")
+          .css("font-family", "Monoton")
+          .css("color", "#202941c4")
+          .css("font-size", "1.7em");
+
+      } else {
+      
+        $(".nav__message")
+          .text("Congrats! You Win! :)")
+          .css("font-family", "Monoton")
+          .css("color", "#085861")
+          .css("font-size", "1.7em");
+
+        console.log("score:", score);
+      }
+
+      $(".container__game__board__cell").attr("disabled", true); // Disable board
+      
+    }
+  } catch (error) {
+    console.error(error.message);
+  }
+});
+
+
+socket.on("opponent-left", () => {
+  try {
+    $(".nav__message").text("Your opponent has left the game");
+    $(".container__game__board__cell").attr("disabled", true);
+    $("#clock").css("display", "block");
+    $("#timer").css("display", "none");
+  } catch (error) {
+    console.error(error.message);
+  }
+  showTime();
+});
+
+
 function isGameOver() {
   try {
     let winCombination = getBoardState();
@@ -123,103 +220,6 @@ function isGameOver() {
     console.error(error.message);
   }
 }
-
-function makeMove() {
-  try {
-    
-    if (!myMove) {
-      return; // Shouldn't happen since the board is disabled
-    }
-
-    if ($(this).text().length) {
-      return; // If cell is already checked
-    }
-
-    socket.emit("make-move", {
-      // Valid move (on client side) -> emit to server
-      symbol: symbol,
-      position: $(this).attr("id"),
-    });
-    
-  } catch (error) {
-    console.error(error.message);
-  }
-}
-
-// Bind event on players move
-socket.on("move-made", (data) => {
-  try {
-    $("#" + data.position).text(data.symbol);   
-    // If the symbol of the last move was the same as the current player
-    // means that now is opponent's turn
-    myMove = data.symbol !== symbol;
-
-    if (!isGameOver()) {
-      renderTurnMessage();
-    } else {
-
-      $("#clock").css("display", "block");
-      $("#timer").css("display", "none");
-    
-      if (myMove) {
-
-        $(".nav__message")
-          .text("Ups..You lost :(")
-          .css("font-family", "Monoton")
-          .css("color", "#202941c4")
-          .css("font-size", "1.5em");
-          // .css("font-weight", "bold");
-
-      } else {
-      
-        $(".nav__message")
-          .text("Congrats! You Win! :)")
-          .css("font-family", "Monoton")
-          .css("color", "#085861")
-          .css("font-size", "1.5em");
-          // .css("font-weight", "bold");
-
-        console.log("score:", score);
-      }
-
-      $(".container__game__board__cell").attr("disabled", true); // Disable board
-      
-    }
-  } catch (error) {
-    console.error(error.message);
-  }
-});
-
-socket.on("game-begin", (data) => {
-  try {
-      
-    symbol = data.symbol; 
-    myMove = symbol === "X"; 
-    timer();
-    $("#clock").css("display", "none");
-    $("#timer").css("display", "block");
-    renderTurnMessage();    
-    $("#playingSymbol").html(
-      `<span style="color: #811618ad; font-size: 1.5em; font-weight: bold;">${data.symbol} </span> is playing`
-    );
-  } catch (error) {
-    console.error(error.message);
-  }
-});
-
-socket.on
-
-socket.on("opponent-left", () => {
-  try {
-    $(".nav__message").text("Your opponent has left the game");
-    $(".container__game__board__cell").attr("disabled", true);
-    $("#clock").css("display", "block");
-    $("#timer").css("display", "none");
-  } catch (error) {
-    console.error(error.message);
-  }
-  showTime();
-});
 
 
 $(function () {

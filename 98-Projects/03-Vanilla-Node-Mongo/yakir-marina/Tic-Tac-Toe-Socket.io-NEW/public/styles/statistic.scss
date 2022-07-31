@@ -25,6 +25,7 @@ body {
     width: 100%;
     height: 4em;
     background-color: #1483665b;
+    backdrop-filter: blur(6px);
     box-shadow: 10px 10px 10px rgba(8, 8, 8, 0.322);
     border: 5px solid #aa1f215c;
     border-style: double;
@@ -85,8 +86,8 @@ h1 {
         align-items: center;
         gap: 1.1em;
         margin-left: 3%;
-        
-        #scoreTable-container {           
+
+        #scoreTable-container {
             width: 80%;
             height: 35em;
             border-radius: 16px;

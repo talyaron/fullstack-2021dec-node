@@ -54,6 +54,7 @@ body {
   border-radius: 5px;
   font-size: 1.2em;
   background: #1313136e;
+  backdrop-filter: blur(4px);
   box-shadow: rgba(0, 0, 0, 0.437) 0px 14px 28px, rgba(0, 0, 0, 0.212) 0px 10px 10px;
   padding: 10px;
   margin-bottom: 2em;
@@ -64,11 +65,12 @@ body {
 .form button[type=submit] {
   padding: 0.3em 1em 0.3em 1em;
   cursor: pointer;
-  transition: all ease-in 0.2s;
+  transition: all ease-in-out 0.2s;
 }
 .form button[type=submit]:hover {
   background: #414f74;
   color: rgba(255, 255, 255, 0.493);
+  transform: scale(0.98);
 }
 .form input::placeholder {
   color: #030303;
