@@ -3,8 +3,12 @@ let axios;
 const clientUrl = window.location.origin;
 let socket = io(clientUrl);
 const gameRoomInput: any = document.querySelector("#gameRoomInput");
-const chatInput = document.querySelector("#chatMessageInput") as HTMLInputElement;
-const chatRoomInput = document.querySelector("#chatRoomInput") as HTMLInputElement;
+const chatInput = document.querySelector(
+  "#chatMessageInput"
+) as HTMLInputElement;
+const chatRoomInput = document.querySelector(
+  "#chatRoomInput"
+) as HTMLInputElement;
 
 let myMove = true;
 let symbol;
@@ -23,7 +27,6 @@ function handleLoad() {
 
 // CHAT ===========================================
 socket.on("connect", () => {
-
   try {
     displayChatMessage(`You connected with id: ${socket.id}`);
     showTime();
@@ -90,7 +93,6 @@ function getBoardState() {
     });
 
     return obj;
-    
   } catch (error) {
     console.error(error.message);
   }
@@ -136,32 +138,37 @@ function makeMove() {
   }
 }
 
-
 // Bind event on players move
 socket.on("move-made", (data) => {
   try {
-    $("#" + data.position).text(data.symbol);   
+    $("#" + data.position).text(data.symbol);
     // If the symbol of the last move was the same as the current player
     // means that now is opponent's turn
     myMove = data.symbol !== symbol;
 
+    if (!myMove) {
+      $("#" + data.position)
+        .text(data.symbol)
+        .css("color", "#a21719f8");
+    } else {
+      $("#" + data.position)
+        .text(data.symbol)
+        .css("color", "rgba(41, 41, 202, 0.718)");
+    }
+
     if (!isGameOver()) {
       renderTurnMessage();
     } else {
-
       $("#clock").css("display", "block");
       $("#timer").css("display", "none");
-    
-      if (myMove) {
 
+      if (myMove) {
         $(".nav__message")
           .text("Ups..You lost :(")
           .css("font-family", "Monoton")
           .css("color", "#202941c4")
           .css("font-size", "1.7em");
-
       } else {
-      
         $(".nav__message")
           .text("Congrats! You Win! :)")
           .css("font-family", "Monoton")
@@ -172,13 +179,11 @@ socket.on("move-made", (data) => {
       }
 
       $(".container__game__board__cell").attr("disabled", true); // Disable board
-      
     }
   } catch (error) {
     console.error(error.message);
   }
 });
-
 
 socket.on("opponent-left", () => {
   try {
@@ -191,7 +196,6 @@ socket.on("opponent-left", () => {
   }
   showTime();
 });
-
 
 function isGameOver() {
   try {
@@ -215,12 +219,10 @@ function isGameOver() {
       }
     }
     return false;
-      
   } catch (error) {
     console.error(error.message);
   }
 }
-
 
 $(function () {
   try {
@@ -257,7 +259,6 @@ function handleJoinGameRoom(e) {
       $("#joinedGameRoom").text(`${message}`).css("display", "block");
       $(".container__game__board__cell").attr("disabled", true);
     });
-
   } catch (error) {
     console.error(error);
   }
@@ -370,8 +371,8 @@ async function getPlayerByCookie() {
 
     const greetingFunc = timeOfDay();
     $("#greeting").html(`<h2>Good ${greetingFunc}, ${name}!</h2>`);
-   
-        $("#opponentName").html(`
+
+    $("#opponentName").html(`
     <div class="container__currentStatistic__gemerIcons">
       <div>
          <span class="material-icons">person</span>
@@ -384,7 +385,6 @@ async function getPlayerByCookie() {
       </div>
     </div>
     `);
-    
   } catch (error) {
     console.error(error.message);
   }
@@ -432,25 +432,24 @@ function timer(): void {
       sec = 0;
     }
 
-    $("#timer").html(`Timer &nbsp;&nbsp;<span style="color: #811618ad;">${min}</span> : <span style="color: #811618ad;">${sec}</span>`);
+    $("#timer").html(
+      `Timer &nbsp;&nbsp;<span style="color: #811618ad;">${min}</span> : <span style="color: #811618ad;">${sec}</span>`
+    );
   }, 1000);
 }
 
-function showTime(){
+function showTime() {
   let date = new Date();
-  let hour = date.getHours(); 
-  let min = date.getMinutes(); 
-  let sec = date.getSeconds(); 
+  let hour = date.getHours();
+  let min = date.getMinutes();
+  let sec = date.getSeconds();
 
-  hour = (hour < 10) ? "0" + hour : hour;
-  min = (min < 10) ? "0" + min : min;
-  sec = (sec < 10) ? "0" + sec : sec;
-    
+  hour = hour < 10 ? "0" + hour : hour;
+  min = min < 10 ? "0" + min : min;
+  sec = sec < 10 ? "0" + sec : sec;
+
   $("#clock").html(
     `Time &nbsp;&nbsp; <span style="color: rgba(15, 15, 130, 0.715);">${hour}</span> : <span style="color: rgba(15, 15, 130, 0.715);">${min}</span> : <span style="color: rgba(15, 15, 130, 0.715);">${sec}</span>`
   );
   setTimeout(showTime, 1000);
 }
-
-
-

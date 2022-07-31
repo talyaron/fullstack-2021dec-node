@@ -164,6 +164,16 @@ socket.on("move-made", function (data) {
         // If the symbol of the last move was the same as the current player
         // means that now is opponent's turn
         myMove = data.symbol !== symbol;
+        if (!myMove) {
+            $("#" + data.position)
+                .text(data.symbol)
+                .css("color", "#a21719f8");
+        }
+        else {
+            $("#" + data.position)
+                .text(data.symbol)
+                .css("color", "rgba(41, 41, 202, 0.718)");
+        }
         if (!isGameOver()) {
             renderTurnMessage();
         }
@@ -460,9 +470,9 @@ function showTime() {
     var hour = date.getHours();
     var min = date.getMinutes();
     var sec = date.getSeconds();
-    hour = (hour < 10) ? "0" + hour : hour;
-    min = (min < 10) ? "0" + min : min;
-    sec = (sec < 10) ? "0" + sec : sec;
+    hour = hour < 10 ? "0" + hour : hour;
+    min = min < 10 ? "0" + min : min;
+    sec = sec < 10 ? "0" + sec : sec;
     $("#clock").html("Time &nbsp;&nbsp; <span style=\"color: rgba(15, 15, 130, 0.715);\">" + hour + "</span> : <span style=\"color: rgba(15, 15, 130, 0.715);\">" + min + "</span> : <span style=\"color: rgba(15, 15, 130, 0.715);\">" + sec + "</span>");
     setTimeout(showTime, 1000);
 }

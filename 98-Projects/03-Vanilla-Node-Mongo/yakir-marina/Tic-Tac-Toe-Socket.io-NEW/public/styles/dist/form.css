@@ -38,11 +38,12 @@ body {
 }
 .form__heading {
   font-size: 3.8em;
-  color: #aa1f2174;
+  color: #a71d20d5;
   text-shadow: 5px 5px 5px #03030360;
   font-family: "Monoton", cursive;
   text-align: center;
   margin-bottom: 40px;
+  font-weight: normal;
 }
 .form__login, .form__register {
   color: rgba(14, 14, 14, 0.458);
@@ -68,7 +69,7 @@ body {
   transition: all ease-in-out 0.2s;
 }
 .form button[type=submit]:hover {
-  background: #414f74;
+  background: #4a4d9d93;
   color: rgba(255, 255, 255, 0.493);
   transform: scale(0.98);
 }

@@ -73,9 +73,12 @@ h1 {
     position: relative;
     top: 10%;
     font-size: 2.8em;
+    font-weight: normal;
+    color: #a21719f8;
     color: #aa1f21b2;
     text-shadow: 5px 5px 5px #03030360;
     font-family: 'Monoton', cursive;
+    letter-spacing: .1em;
 }
 
 .container {
@@ -105,7 +108,7 @@ h1 {
             border-radius: 10px;
             background-color: rgba(44, 204, 137, 0.177);
             font-family: Montserrat;
-            font-weight: bold;
+            font-weight: bolder;
             padding: 5px;
             text-align: left;
             font-size: 18px;
