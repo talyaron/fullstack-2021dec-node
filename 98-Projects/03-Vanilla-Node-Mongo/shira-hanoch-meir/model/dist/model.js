@@ -4,16 +4,27 @@ exports.lessonsModel = exports.cartModel = exports.coachModel = exports.regModel
 var mongoose_1 = require("mongoose");
 var regSchema = new mongoose_1["default"].Schema({
     email: { type: String, required: true, unique: true },
-    password: { type: String, required: true }
+    password: { type: String, required: true },
+    role: {
+        type: String,
+        "enum": "User",
+        "default": "User"
+    }
 });
 var coachSchema = new mongoose_1["default"].Schema({
     name: String,
     email: { type: String, required: true, unique: true },
-    password: { type: String, required: true }
+    password: { type: String, required: true },
+    role: {
+        type: String,
+        "enum": "admin",
+        "default": "admin"
+    }
 });
 var lessonsSchema = new mongoose_1["default"].Schema({
     lesson: String,
-    date: Date,
+    dateSrart: Date,
+    dateEnd: Date,
     price: Number,
     coach: String
 });

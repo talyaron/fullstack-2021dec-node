@@ -22,7 +22,10 @@ async function handleLogin(ev:any){
         //@ts-ignore
         const {data} = await axios.post('/users/login', {email, password});
         const {ok} = data;
-        if(ok){
+        if(!ok){
+            console.log('error');
+            
+        }else{
             window.location.href = './events.html';
         }
 
