@@ -32,7 +32,7 @@ var lessonsSchema = new mongoose_1["default"].Schema({
 var cartSchema = new mongoose_1["default"].Schema({
     lesson: String,
     day: String,
-    dateSrart: Date,
+    dateStart: Date,
     dateEnd: Date,
     price: Number,
     user: String

@@ -30,7 +30,7 @@ const lessonsSchema = new mongoose.Schema({
 const cartSchema = new mongoose.Schema({
     lesson: String,
     day: String,
-    dateSrart: Date,
+    dateStart: Date,
     dateEnd: Date,
     price: Number,
     user: String

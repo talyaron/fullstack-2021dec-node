@@ -61,13 +61,13 @@ async function handleAddEvent(ev:any) {
         ev.preventDefault();
         const lesson = ev.target.lesson.value;
         const day = ev.target.day.value;
-        const dateSrart = ev.target.dateStart.value;
+        const dateStart = ev.target.dateStart.value;
         const dateEnd = ev.target.dateEnd.value;
         const price = ev.target.price.value;
         const coach = ev.target.coach.value;
 
         //@ts-ignore
-        const {data}  = await axios.post('/events/add-events', {lesson,day,dateSrart,dateEnd,price,coach})
+        const {data}  = await axios.post('/events/add-events', {lesson,day,dateStart,dateEnd,price,coach})
         console.log(data);
 
         // renderEvent(data)
@@ -101,11 +101,12 @@ function renderForCustomer(events){
         html += 
         `<div class="event1">
         <h2>Lesson:${event.lesson}</h2>
-        <h2>Date:${event.dateSrart}</h2>
-        <h2>Date:${event.dateEnd}</h2>
+        <h2>start at:${event.dateStart}</h2>
+        <h2>end at:${event.dateEnd}</h2>
+        <h2>day:${event.day}</h2>
         <h2>Price:${event.price}</h2>
         <h2>Coach:${event.coach}</h2>
-        <button id="addToCartBtn" onclick="addToCart(${event._id})">Add Lesson to My Cart</button>
+        <button id="addToCartBtn" onclick="addToCart('${event._id}')">Add Lesson to My Cart</button>
         </div>`      
     });
     const root = document.querySelector('#root');
@@ -164,7 +165,9 @@ async function renderCart(){
     data.forEach(event => {
         cart += `<div id="cart">
         <h3>Lesson:${event.lesson}</h3>
-        <h3>Date:${event.date}</h3>
+        <h2>start at:${event.dateStart}</h2>
+        <h2>end at:${event.dateEnd}</h2>
+        <h2>day:${event.day}</h2>
         <h3>Price:${event.price}</h3>
         <button onclick="deleteLessonFromCart('${event._id}')">delete lesson</button>
         </div>`
