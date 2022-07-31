@@ -10,11 +10,11 @@ async function handleSchedule(ev) {
     const { data } = await axios.post("/appo/getAppo", { kind, date })
 
     const filteredAppos = data
-    console.log(filteredAppos)
-
+    console.log(filteredAppos[0].date)
+    renderAppo(filteredAppos)
 
 }
-  
+
 
 async function handleCreateAppo(ev) {
     ev.preventDefault()
@@ -34,7 +34,7 @@ async function handleCreateAppo(ev) {
         const { user, error } = data;
         console.log(user)
         if (error) throw error;
-  
+
         if (user) {
             const appoArray = data;
             console.log(appoArray)
@@ -48,19 +48,19 @@ async function handleCreateAppo(ev) {
 }
 
 function renderAppo(apposArray) {
-
+console.log(apposArray)
     const filteredAppo: HTMLDivElement = document.querySelector('#filteredAppo');
     let html = ""
-    console.log(apposArray.lenght)
-    for (let i = 0; i < apposArray.lenght; i++) {
 
-        html += `date: ${apposArray[i].date} <br>
-        kind: ${apposArray[i].kind} <br>
-        doctorId: ${apposArray[i].doctorId} <br>
-        time: ${apposArray[i].time} <br>
+
+    apposArray.forEach(appo => {
+        html += `date: ${appo.date} <br>
+        kind: ${appo.kind} <br>
+        doctorId: ${appo.doctorId} <br>
+        time: ${appo.time} <br>
         `
-    }
-
+    });
+  
     filteredAppo.innerHTML = html
 
 }

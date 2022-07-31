@@ -48,7 +48,8 @@ function handleSchedule(ev) {
                 case 1:
                     data = (_a.sent()).data;
                     filteredAppos = data;
-                    console.log(filteredAppos);
+                    console.log(filteredAppos[0].date);
+                    renderAppo(filteredAppos);
                     return [2 /*return*/];
             }
         });
@@ -93,11 +94,11 @@ function handleCreateAppo(ev) {
     });
 }
 function renderAppo(apposArray) {
+    console.log(apposArray);
     var filteredAppo = document.querySelector('#filteredAppo');
     var html = "";
-    console.log(apposArray.lenght);
-    for (var i = 0; i < apposArray.lenght; i++) {
-        html += "date: " + apposArray[i].date + " <br>\n        kind: " + apposArray[i].kind + " <br>\n        doctorId: " + apposArray[i].doctorId + " <br>\n        time: " + apposArray[i].time + " <br>\n        ";
-    }
+    apposArray.forEach(function (appo) {
+        html += "date: " + appo.date + " <br>\n        kind: " + appo.kind + " <br>\n        doctorId: " + appo.doctorId + " <br>\n        time: " + appo.time + " <br>\n        ";
+    });
     filteredAppo.innerHTML = html;
 }
