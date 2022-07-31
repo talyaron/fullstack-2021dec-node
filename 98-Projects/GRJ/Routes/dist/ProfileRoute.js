@@ -4,5 +4,5 @@ var express_1 = require("express");
 var ProfileCont_1 = require("../Conts/ProfileCont");
 var router = express_1["default"].Router();
 router
-    .get('/get-name', ProfileCont_1.onscondPageLoad);
+    .post('/get-name', ProfileCont_1.onscondPageLoad);
 exports["default"] = router;

@@ -59,7 +59,6 @@ function handleRegister(ev) {
                 case 2:
                     data = (_a.sent()).data;
                     register = data.register, error = data.error, userId = data.userId;
-                    console.log(data);
                     if (error)
                         throw error;
                     if (register && userId) {
@@ -89,14 +88,12 @@ function handleLogin(ev) {
                     _a.trys.push([1, 3, , 4]);
                     email = ev.target.email.value;
                     password = ev.target.password.value;
-                    console.log(email, password);
                     return [4 /*yield*/, axios.post("/users/login", {
                             email: email,
                             password: password
                         })];
                 case 2:
                     data = (_a.sent()).data;
-                    console.log(data);
                     login = data.login, userId = data.userId, error = data.error;
                     console.log(userId);
                     if (error)
@@ -106,7 +103,6 @@ function handleLogin(ev) {
                     }
                     if (error)
                         throw error;
-                    console.log(data);
                     return [3 /*break*/, 4];
                 case 3:
                     error_2 = _a.sent();
