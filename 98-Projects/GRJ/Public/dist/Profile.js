@@ -37,10 +37,9 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 function getUserId() {
     try {
         var queryString = window.location.search;
-        console.log(queryString);
         var urlParams = new URLSearchParams(queryString);
-        console.log(urlParams);
         var userId = urlParams.get("userId");
+        console.log(userId);
         return userId;
     }
     catch (error) {
@@ -50,7 +49,7 @@ function getUserId() {
 }
 function onscondPageLoad() {
     return __awaiter(this, void 0, void 0, function () {
-        var userId, data, error, name, nav, error_1;
+        var userId, data, error, userDB, name, nav, email, nav, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -58,16 +57,23 @@ function onscondPageLoad() {
                     userId = getUserId();
                     if (!userId)
                         throw new Error("couldnt find user id in url");
-                    return [4 /*yield*/, axios.get("/profile/get-name", { userId: userId })];
+                    return [4 /*yield*/, axios.post("/profile/get-name", { userId: userId })];
                 case 1:
                     data = (_a.sent()).data;
-                    error = data.error, name = data.name;
+                    error = data.error, userDB = data.userDB;
                     console.log(data);
                     if (error)
                         throw error;
-                    nav = document.querySelector("#Navbar");
-                    nav.innerHTML = "<h1>Hello " + name + "! What would you like to do?</h1>";
-                    console.log(data);
+                    if (data.name) {
+                        name = data.name;
+                        nav = document.querySelector("#Navbar");
+                        nav.innerHTML = "<img\n      src=\"https://toppng.com/uploads/preview/medical-symbol-11563573249uiwcpj6pbe.png\"/>\n      <h1>Hello " + name + "! What would you like to do?</h1>";
+                    }
+                    email = data.email;
+                    if (email) {
+                        nav = document.querySelector("#Navbar");
+                        nav.innerHTML = "<img src=\"https://toppng.com/uploads/preview/medical-symbol-11563573249uiwcpj6pbe.png\"/>\n      <h1>Hello " + email + "! What would you like to do?</h1>";
+                    }
                     return [3 /*break*/, 3];
                 case 2:
                     error_1 = _a.sent();

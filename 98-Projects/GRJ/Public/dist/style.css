@@ -3,8 +3,10 @@ body {
 }
 
 #Navbar {
+  display: flex;
   width: 100vw;
   height: 10vh;
+  text-align: center;
   position: fixed;
   top: 0%;
   left: 0%;
@@ -14,6 +16,9 @@ body {
 #Navbar img {
   height: 50px;
   width: 40px;
+}
+#Navbar h1 {
+  margin-left: 27vw;
 }
 
 #actions {

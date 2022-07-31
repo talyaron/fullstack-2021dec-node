@@ -40,21 +40,19 @@ exports.onscondPageLoad = void 0;
 var UserModel_1 = require("../Models/UserModel");
 function onscondPageLoad(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var userId, userDB, name, error_1;
+        var userId, userDB, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    userId = req.body;
-                    return [4 /*yield*/, UserModel_1["default"].findOne({ userId: userId })];
+                    userId = req.body.userId;
+                    console.log(userId);
+                    return [4 /*yield*/, UserModel_1["default"].findOne({ _id: userId })];
                 case 1:
                     userDB = _a.sent();
                     if (!userDB)
                         throw new Error("userId does not match");
-                    console.log(userDB);
-                    name = userDB.name;
-                    console.log(name);
-                    res.send(name);
+                    res.send(userDB);
                     return [3 /*break*/, 3];
                 case 2:
                     error_1 = _a.sent();
