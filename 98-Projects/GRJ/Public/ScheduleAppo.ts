@@ -28,12 +28,11 @@ async function handleCreateAppo(ev) {
 
         console.log(date, kind, doctorId, time)
 
-        if (!date || !time || !doctorId || !kind) throw new Error('one of the insert is missing')
+        // if (!date || !time || !doctorId || !kind) throw new Error('one of the insert is missing')
         // @ts-ignore
         const { data } = await axios.post("/appo/createAppo", { date, kind, doctorId, time })
         console.log(data)
         const { user, error } = data;
-        console.log(user)
         if (error) throw error;
 
         if (user) {

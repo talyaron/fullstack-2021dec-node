@@ -101,8 +101,10 @@ function register(req, res) {
                     return [4 /*yield*/, UserModel_1["default"].create({ email: email, name: name, password: hash })];
                 case 1:
                     userDB = _b.sent();
-                    // await user.save();
-                    res.send({ register: true, userId: userDB.id });
+                    // await userDB.save();
+                    // const role = userDB.role || "user";
+                    // console.log(role);
+                    res.send({ register: true, userDB: userDB });
                     return [3 /*break*/, 3];
                 case 2:
                     error_2 = _b.sent();

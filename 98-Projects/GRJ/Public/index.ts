@@ -8,7 +8,8 @@ async function handleRegister(ev: any) {
     const email = ev.target.email.value;
     const password = ev.target.password.value;
     const name = ev.target.name.value;
-    const role = ev.target.role.value;
+    // console.log(ev.target.elements.role.value);
+    // const role = ev.target.elements.role.value;
 
     console.log(email, password);
     //@ts-ignore
@@ -16,24 +17,22 @@ async function handleRegister(ev: any) {
       email,
       password,
       name,
-      role 
+      // role
     });
+
     const { register, error, userDB } = data;
     console.log(data);
     if (error) throw error;
 
-    // if (register && user) {
-    //   window.location.href = `./profile.html?userId=${userId}`;
-    // }
-
-    
-    if (userDB.role === "admin") {
-      window.location.href = `./adminProfile.html?userId=${userDB._id}`;
-    } else {
-      window.location.href = `./profile.html?userId=${userDB._id}`;
+    if (register && userDB) {
+      if (userDB.email === "GRJ@gmail.com") {
+        window.location.href = `./adminProfile.html?userId=${userDB._id}`;
+      } else {
+        window.location.href = `./profile.html?userId=${userDB._id}`;
+      }
     }
 
-    // if (error && error.includes("E11000")) alert("email is already in use");
+    if (error && error.includes("E11000")) alert("email is already in use");
   } catch (error) {
     console.error(error);
   }

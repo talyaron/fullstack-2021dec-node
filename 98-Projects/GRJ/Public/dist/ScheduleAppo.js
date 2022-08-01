@@ -70,14 +70,11 @@ function handleCreateAppo(ev) {
                     doctorId = ev.target.doctorId.value;
                     time = ev.target.time.value;
                     console.log(date, kind, doctorId, time);
-                    if (!date || !time || !doctorId || !kind)
-                        throw new Error('one of the insert is missing');
                     return [4 /*yield*/, axios.post("/appo/createAppo", { date: date, kind: kind, doctorId: doctorId, time: time })];
                 case 2:
                     data = (_a.sent()).data;
                     console.log(data);
                     user = data.user, error = data.error;
-                    console.log(user);
                     if (error)
                         throw error;
                     if (user) {

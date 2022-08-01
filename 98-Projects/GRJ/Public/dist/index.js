@@ -39,7 +39,7 @@ function handleLoad() {
 }
 function handleRegister(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var email, password, name, role, data, register, error, userDB, error_1;
+        var email, password, name, data, register, error, userDB, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -50,13 +50,13 @@ function handleRegister(ev) {
                     email = ev.target.email.value;
                     password = ev.target.password.value;
                     name = ev.target.name.value;
-                    role = ev.target.role.value;
+                    // console.log(ev.target.elements.role.value);
+                    // const role = ev.target.elements.role.value;
                     console.log(email, password);
                     return [4 /*yield*/, axios.post("/users/register", {
                             email: email,
                             password: password,
-                            name: name,
-                            role: role
+                            name: name
                         })];
                 case 2:
                     data = (_a.sent()).data;
@@ -64,15 +64,16 @@ function handleRegister(ev) {
                     console.log(data);
                     if (error)
                         throw error;
-                    // if (register && user) {
-                    //   window.location.href = `./profile.html?userId=${userId}`;
-                    // }
-                    if (userDB.role === "admin") {
-                        window.location.href = "./adminProfile.html?userId=" + userDB._id;
+                    if (register && userDB) {
+                        if (userDB.email === "GRJ@gmail.com") {
+                            window.location.href = "./adminProfile.html?userId=" + userDB._id;
+                        }
+                        else {
+                            window.location.href = "./profile.html?userId=" + userDB._id;
+                        }
                     }
-                    else {
-                        window.location.href = "./profile.html?userId=" + userDB._id;
-                    }
+                    if (error && error.includes("E11000"))
+                        alert("email is already in use");
                     return [3 /*break*/, 4];
                 case 3:
                     error_1 = _a.sent();
