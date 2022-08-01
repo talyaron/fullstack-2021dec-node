@@ -149,11 +149,11 @@ socket.on("move-made", (data) => {
     if (!myMove) {
       $("#" + data.position)
         .text(data.symbol)
-        .css("color", "#a21719f8");
+        .css("color", "#ee272bfe");
     } else {
       $("#" + data.position)
         .text(data.symbol)
-        .css("color", "rgba(41, 41, 202, 0.718)");
+        .css("color", "#1e1eedcb");
     }
 
     if (!isGameOver()) {
@@ -167,14 +167,16 @@ socket.on("move-made", (data) => {
           .text("Ups..You lost :(")
           .css("font-family", "Monoton")
           .css("color", "#202941c4")
-          .css("font-size", "1.7em");
+          .css("font-size", "1.7em")
+          .css("letter-spacing", "2px");
 
       } else {
         $(".nav__message")
           .text("Congrats! You Win! :)")
           .css("font-family", "Monoton")
           .css("color", "#085861")
-          .css("font-size", "1.7em");
+          .css("font-size", "1.7em")
+          .css("letter-spacing", "2px");
           handleWinScoreUpdate()
       }
 
