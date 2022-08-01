@@ -504,8 +504,18 @@ function handleLostUpdate() {
                     return [4 /*yield*/, axios.patch("/players/update-lost", lost)];
                 case 1:
                     data = (_a.sent()).data;
+                    console.log(data);
                     return [2 /*return*/];
             }
+        });
+    });
+}
+function randerScoreBoard() {
+    return __awaiter(this, void 0, void 0, function () {
+        var scoreBoardHtml;
+        return __generator(this, function (_a) {
+            scoreBoardHtml = document.querySelector(".scoreBoard");
+            return [2 /*return*/];
         });
     });
 }

@@ -17,4 +17,5 @@ router
   .get("/player-by-cookie", getUserData, getPlayerByCookie)
   .patch("/update-score", updateScore)
   .patch("/update-lost", updateLost)
+  .get("/score-board")
 export default router;

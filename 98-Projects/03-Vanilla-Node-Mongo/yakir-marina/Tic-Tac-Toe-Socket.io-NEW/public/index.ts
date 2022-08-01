@@ -468,6 +468,16 @@ async function handleLostUpdate(){
   lost++;
   console.log("New lost:", lost);
   const {data} = await axios.patch("/players/update-lost", lost);
+  console.log(data)
+}
+
+
+async function randerScoreBoard(){
+  const scoreBoardHtml = document.querySelector(".scoreBoard")
+  // not finish
+  // for(i=0, i<)
+  // scoreBoardHtml =+ "<li></li>"
+
 }
 
 

@@ -9,5 +9,6 @@ router
     .post("/login", PlayerController_1.login)
     .get("/player-by-cookie", getUserData_1.getUserData, PlayerController_1.getPlayerByCookie)
     .patch("/update-score", PlayerController_1.updateScore)
-    .patch("/update-lost", PlayerController_1.updateLost);
+    .patch("/update-lost", PlayerController_1.updateLost)
+    .get("/score-board");
 exports["default"] = router;
