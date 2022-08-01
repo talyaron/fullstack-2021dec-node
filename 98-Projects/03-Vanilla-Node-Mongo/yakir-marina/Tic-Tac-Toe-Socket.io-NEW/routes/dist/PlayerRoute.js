@@ -8,7 +8,7 @@ router
     .post("/register", PlayerController_1.register)
     .post("/login", PlayerController_1.login)
     .get("/player-by-cookie", getUserData_1.getUserData, PlayerController_1.getPlayerByCookie)
-    .patch("/update-score", PlayerController_1.updateScore)
-    .patch("/update-lost", PlayerController_1.updateLost)
+    .patch("/update-score", PlayerController_1.updateScoreByID)
+    .patch("/update-lost", PlayerController_1.updateLostByID)
     .get("/score-board");
 exports["default"] = router;

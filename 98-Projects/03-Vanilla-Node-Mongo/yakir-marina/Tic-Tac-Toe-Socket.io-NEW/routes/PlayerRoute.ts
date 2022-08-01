@@ -7,15 +7,15 @@ import {
   register,
   login,
   getPlayerByCookie,
-  updateLost,
-  updateScore,
+  updateScoreByID,
+  updateLostByID
 } from "../controllers/PlayerController";
 
 router
   .post("/register", register)
   .post("/login", login)
   .get("/player-by-cookie", getUserData, getPlayerByCookie)
-  .patch("/update-score", updateScore)
-  .patch("/update-lost", updateLost)
+  .patch("/update-score", updateScoreByID)
+  .patch("/update-lost", updateLostByID)
   .get("/score-board")
 export default router;

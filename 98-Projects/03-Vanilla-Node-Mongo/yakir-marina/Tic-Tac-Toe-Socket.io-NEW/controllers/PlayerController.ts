@@ -91,7 +91,7 @@ export const getPlayerByCookie = async (req, res) => {
   }
 };
 
-export const updateLost = async (req, res) => {
+export const updateLostByID = async (req, res) => {
   try {
     const {lost, playerID} = req.body;
 
@@ -104,7 +104,7 @@ export const updateLost = async (req, res) => {
   }
 }
 
-export const updateScore = async (req, res) => {
+export const updateScoreByID = async (req, res) => {
   try {
     
     const { score } = req.body;

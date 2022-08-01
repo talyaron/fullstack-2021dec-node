@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.updateScore = exports.updateLost = exports.getPlayerByCookie = exports.login = exports.register = void 0;
+exports.updateScoreByID = exports.updateLostByID = exports.getPlayerByCookie = exports.login = exports.register = void 0;
 var PlayerModel_1 = require("../models/PlayerModel");
 var jwt_simple_1 = require("jwt-simple");
 var bcrypt_1 = require("bcrypt");
@@ -144,7 +144,7 @@ exports.getPlayerByCookie = function (req, res) { return __awaiter(void 0, void 
         return [2 /*return*/];
     });
 }); };
-exports.updateLost = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+exports.updateLostByID = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var _a, lost, playerID, playerDB, error_3;
     return __generator(this, function (_b) {
         switch (_b.label) {
@@ -165,7 +165,7 @@ exports.updateLost = function (req, res) { return __awaiter(void 0, void 0, void
         }
     });
 }); };
-exports.updateScore = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+exports.updateScoreByID = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var score, playerDB, error_4;
     return __generator(this, function (_a) {
         switch (_a.label) {
