@@ -34,6 +34,19 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+function getUserId() {
+    try {
+        var queryString = window.location.search;
+        var urlParams = new URLSearchParams(queryString);
+        var userId = urlParams.get("userId");
+        console.log(userId);
+        return userId;
+    }
+    catch (error) {
+        console.error(error);
+        return false;
+    }
+}
 function handleSchedule(ev) {
     return __awaiter(this, void 0, void 0, function () {
         var date, kind, data, filteredAppos;

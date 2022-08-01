@@ -38,23 +38,43 @@ async function onscondPageLoad() {
       nav.innerHTML = `<img src="https://toppng.com/uploads/preview/medical-symbol-11563573249uiwcpj6pbe.png"/>
       <h1>Hello ${email}! What would you like to do?</h1>`;
     }
-
+    renderAll(data)
   } catch (error) {
     console.log(error);
   }
 }
 
-function renderUsers(users) {
-  const html = users
-    .map((user) => {
-      console.log(user);
-      return `<div>${user.username} 
-          <input type='text' placeholder='role' value="${user.role}" onblur='handleUpdate(event, "${user._id}")'/>
-          <button onclick='handleDelete("${user._id}")'>DELETE</button>
-          </div>`;
-    })
-    .join("");
-  console.log(html);
-
-  document.getElementById("users").innerHTML = html;
+function renderAll(data) {
+  const userDB= data
+  let html = "";
+   html= `<div class="ScheduleApointmant">
+   <button class="scheduleMeeting">
+     <a href="./ScheduleAppo.html?userId=${userDB._id}" alt="scheduleMeeting">
+       <i id="calenderPlusIcon" class="fas fa-calendar-plus"></i>
+     </a>
+   </button>
+   <p>schedule a meeting</p>
+ </div>
+ <div>
+   <button class="scheduleMeeting">
+     <a href="./myMeetings.html?userId=${userDB._id}" alt="my meetings">
+     <i class="fas fa-calendar-check"></i>
+   </a>
+   </button>
+   <p>check my meetings</p>
+ </div>
+ <div>
+   <button class="ContactADoctor">
+     <a href="./Connect.html?userId=${userDB._id}" alt="online Doctor">
+       <i class="fas fa-comment-medical"></i>
+     </a>
+   </button>
+   <p>online Doctor</p>
+ </div>
+</div>`
+  
+const actions= document.querySelector('#actions')
+actions.innerHTML=html
+  
+  
 }

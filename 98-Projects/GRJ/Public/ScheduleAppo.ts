@@ -1,4 +1,15 @@
-
+function getUserId(): string | false {
+    try {
+      const queryString = window.location.search;
+      const urlParams = new URLSearchParams(queryString);
+      const userId = urlParams.get("userId");
+      console.log(userId)
+      return userId;
+    } catch (error) {
+      console.error(error);
+      return false;
+    }
+  }
 
 async function handleSchedule(ev) {
     ev.preventDefault()
