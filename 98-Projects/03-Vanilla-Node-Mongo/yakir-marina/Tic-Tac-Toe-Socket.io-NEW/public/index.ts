@@ -189,7 +189,7 @@ socket.on("move-made", (data) => {
 
 socket.on("opponent-left", () => {
   try {
-    $(".nav__message").text("Your opponent has left the game");
+    $(".nav__message").text("Your opponent has left the game").css("letter-spacing", "2px");
     $(".container__game__board__cell").attr("disabled", true);
     $("#clock").css("display", "block");
     $("#timer").css("display", "none");
@@ -238,10 +238,10 @@ $(function () {
 function renderTurnMessage() {
   try {
     if (!myMove) {
-      $(".nav__message").text("Turn of your opponent");
+      $(".nav__message").text("Turn of your opponent").css("letter-spacing", "2px");
       $(".container__game__board__cell").attr("disabled", true);
     } else {
-      $(".nav__message").text("Make a move");
+      $(".nav__message").text("Make a move").css("letter-spacing", "2px");
       $(".container__game__board__cell").removeAttr("disabled");
     }
   } catch (error) {
