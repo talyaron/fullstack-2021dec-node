@@ -1,6 +1,15 @@
-form {
-  width: 27em;
-  max-height: 45em;
+body {
+  width: 90%;
+  height: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  background-color: whitesmoke;
+  padding-top: 56px;
+}
+body form {
+  width: 180em;
+  max-height: 60em;
   display: flex;
   flex-direction: column;
   background-color: white;
@@ -10,8 +19,11 @@ form {
   box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
   margin: 25px;
 }
-
-input {
+body .coachAddLessonForm {
+  width: 30em;
+  max-height: 30em;
+}
+body input {
   height: 2.5em;
   margin-bottom: 1em;
   padding: 8px 24px;
@@ -19,17 +31,18 @@ input {
   border: 1px solid lightgray;
   font-size: 15px;
 }
-input:nth-last-child(3) {
+body input:nth-last-child(3) {
   margin-bottom: 2em;
 }
-
-input:focus {
+body input:focus {
   border-color: #613dc1;
   outline: none;
 }
-
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
+body input::-webkit-outer-spin-button,
+body input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+body #MoveToCartBtn {
+  margin-right: 300px;
 }

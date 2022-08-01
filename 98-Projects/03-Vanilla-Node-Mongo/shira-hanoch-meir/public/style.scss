@@ -1,9 +1,17 @@
 
+    body {
+        width: 90%;
+        height: 100%;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        background-color: whitesmoke;
+        padding-top: 56px;
 
-    
+
     form {
-        width: 27em;
-        max-height: 45em;
+        width: 180em;
+        max-height: 60em;
         display: flex;
         flex-direction: column;
         background-color: rgb(255, 255, 255);
@@ -12,6 +20,10 @@
         border-radius: 20px;
         box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
         margin: 25px;
+    }
+    .coachAddLessonForm{
+        width: 30em;
+        max-height: 30em;
     }
 
 
@@ -38,3 +50,9 @@
         -webkit-appearance: none;
         margin: 0;
     }
+    #MoveToCartBtn{
+        margin-right: 300px;
+       
+
+    }
+}
