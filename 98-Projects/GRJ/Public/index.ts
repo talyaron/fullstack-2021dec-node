@@ -8,22 +8,32 @@ async function handleRegister(ev: any) {
     const email = ev.target.email.value;
     const password = ev.target.password.value;
     const name = ev.target.name.value;
+    const role = ev.target.role.value;
+
     console.log(email, password);
     //@ts-ignore
     const { data } = await axios.post("/users/register", {
       email,
       password,
       name,
+      role 
     });
-    const { register, error, userId } = data;
+    const { register, error, userDB } = data;
     console.log(data);
     if (error) throw error;
 
-    if (register && userId) {
-      window.location.href = `./profile.html?userId=${userId}`;
+    // if (register && user) {
+    //   window.location.href = `./profile.html?userId=${userId}`;
+    // }
+
+    
+    if (userDB.role === "admin") {
+      window.location.href = `./adminProfile.html?userId=${userDB._id}`;
+    } else {
+      window.location.href = `./profile.html?userId=${userDB._id}`;
     }
 
-    if (error && error.includes("E11000")) alert("email is already in use");
+    // if (error && error.includes("E11000")) alert("email is already in use");
   } catch (error) {
     console.error(error);
   }
@@ -47,7 +57,7 @@ async function handleLogin(ev: any) {
     if (error) throw error;
 
     if (userDB.role === "admin") {
-      window.location.href = `./admin.html?userId=${userDB._id}`;
+      window.location.href = `./adminProfile.html?userId=${userDB._id}`;
     } else {
       window.location.href = `./profile.html?userId=${userDB._id}`;
     }
