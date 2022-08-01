@@ -28,16 +28,16 @@ async function onscondPageLoad() {
     const { error, userDB } = data;
     console.log(data);
     if (error) throw error;
-    
-    if ( data.name) {
-      const name= data.name
+    const name = data.name
+
+
+    const email = data.email
+    if (name) {
       const nav = document.querySelector("#Navbar");
       nav.innerHTML = `<img
       src="https://toppng.com/uploads/preview/medical-symbol-11563573249uiwcpj6pbe.png"/>
       <h1>Hello ${name}! What would you like to do?</h1>`;
-    }
-    const email = data.email
-    if (email) {
+    } else {
       const nav = document.querySelector("#Navbar");
       nav.innerHTML = `<img src="https://toppng.com/uploads/preview/medical-symbol-11563573249uiwcpj6pbe.png"/>
       <h1>Hello ${email}! What would you like to do?</h1>`;

@@ -49,7 +49,7 @@ function getUserId() {
 }
 function onscondPageLoad() {
     return __awaiter(this, void 0, void 0, function () {
-        var userId, data, error, userDB, name, nav, email, nav, error_1;
+        var userId, data, error, userDB, name, email, nav, nav, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -64,13 +64,13 @@ function onscondPageLoad() {
                     console.log(data);
                     if (error)
                         throw error;
-                    if (data.name) {
-                        name = data.name;
+                    name = data.name;
+                    email = data.email;
+                    if (name) {
                         nav = document.querySelector("#Navbar");
                         nav.innerHTML = "<img\n      src=\"https://toppng.com/uploads/preview/medical-symbol-11563573249uiwcpj6pbe.png\"/>\n      <h1>Hello " + name + "! What would you like to do?</h1>";
                     }
-                    email = data.email;
-                    if (email) {
+                    else {
                         nav = document.querySelector("#Navbar");
                         nav.innerHTML = "<img src=\"https://toppng.com/uploads/preview/medical-symbol-11563573249uiwcpj6pbe.png\"/>\n      <h1>Hello " + email + "! What would you like to do?</h1>";
                     }
