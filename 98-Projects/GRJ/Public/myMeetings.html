@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Schedule Meeting</title>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.0.0-alpha.1/axios.min.js"
+      integrity="sha512-xIPqqrfvUAc/Cspuj7Bq0UtHNo/5qkdyngx6Vwt+tmbvTLDszzXM0G6c91LXmGrRx8KEPulT+AfOOez+TeVylg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script
+      src="https://kit.fontawesome.com/a076d05399.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="dist/style.css" />
+  </head>
+
+  <body>
+    <h1 class="sceduleMeetingPage">התורים שלי</h1>
+
+    <div id="root"></div>
+    // render the divs inside root //
+    <div class="formsDiv">
+
+        <!-- first form -->
+      <form class="firstForm" onsubmit="{'add onsubmit func'}">
+        <input type="date" name="date" placeholder="When?" />
+
+        <select type="text" name="type">
+          <option value="none">Doctor type</option>
+          <option value="family">Family Doc</option>
+          <option value="eyes">Eyes Doc</option>
+          <option value="heart">Heart Doc</option>
+        </select>
+
+        <select type="text" name="medicalClinic">
+          <option value="none">Medical Clinic type</option>
+          <option value="oranim">oranim</option>
+          <option value="alonim">alonim</option>
+          <option value="gozalim">gozalim</option>
+        </select>
+
+        <button onclick="{'add Delete func'}" type="deleteAppo">Delete</button>
+      </form>
+
+      <!-- second form -->
+      <form class="firstForm" onsubmit="{'add onsubmit func'}">
+        <input type="date" name="date" placeholder="When?" />
+
+        <select type="text" name="type">
+          <option value="none">Doctor type</option>
+          <option value="family">Family Doc</option>
+          <option value="eyes">Eyes Doc</option>
+          <option value="heart">Heart Doc</option>
+        </select>
+
+        <select type="text" name="medicalClinic">
+          <option value="none">Medical Clinic type</option>
+          <option value="oranim">oranim</option>
+          <option value="alonim">alonim</option>
+          <option value="gozalim">gozalim</option>
+        </select>
+
+        <button onclick="{'add Delete func'}" type="deleteAppo">Delete</button>
+      </form>
+
+      <!-- third form -->
+      <form class="firstForm" onsubmit="{'add onsubmit func'}">
+        <input type="date" name="date" placeholder="When?" />
+
+        <select type="text" name="type">
+          <option value="none">Doctor type</option>
+          <option value="family">Family Doc</option>
+          <option value="eyes">Eyes Doc</option>
+          <option value="heart">Heart Doc</option>
+        </select>
+
+        <select type="text" name="medicalClinic">
+          <option value="none">Medical Clinic type</option>
+          <option value="oranim">oranim</option>
+          <option value="alonim">alonim</option>
+          <option value="gozalim">gozalim</option>
+        </select>
+
+        <button onclick="{'add Delete func'}" type="deleteAppo">Delete</button>
+      </form>
+      
+    </div>
+
+    <script src="./dist/myMeetings.js"></script>
+  </body>
+</html>

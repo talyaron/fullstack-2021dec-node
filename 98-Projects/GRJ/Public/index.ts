@@ -7,18 +7,18 @@ async function handleRegister(ev: any) {
   try {
     const email = ev.target.email.value;
     const password = ev.target.password.value;
-    const name= ev.target.name.value;
+    const name = ev.target.name.value;
     console.log(email, password);
     //@ts-ignore
     const { data } = await axios.post("/users/register", {
       email,
       password,
-      name
+      name,
     });
-    const { register, error,userId } = data;
+    const { register, error, userId } = data;
     console.log(data);
     if (error) throw error;
- 
+
     if (register && userId) {
       window.location.href = `./profile.html?userId=${userId}`;
     }
@@ -46,13 +46,11 @@ async function handleLogin(ev: any) {
     console.log(userDB);
     if (error) throw error;
 
-  if(userDB.role === 'admin'){
-    window.location.href = `./profile.html?userId=${userDB._id}`;
-  }
-  
-  else{
-    window.location.href = `./profile.html?userId=${userDB._id}`;
-  }
+    if (userDB.role === "admin") {
+      window.location.href = `./admin.html?userId=${userDB._id}`;
+    } else {
+      window.location.href = `./profile.html?userId=${userDB._id}`;
+    }
 
     if (error) throw error;
     console.log(data);
@@ -64,11 +62,10 @@ async function handleLogin(ev: any) {
 async function handleSaveInfo(ev) {
   ev.preventDefault();
   try {
-    
     //@ts-ignore
-    const { data } = await axios.post("/users/SaveInfo",{});
+    const { data } = await axios.post("/users/SaveInfo", {});
     const { user, error } = data;
-    console.log(user)
+    console.log(user);
     if (error) throw error;
 
     if (user) {
@@ -81,7 +78,6 @@ async function handleSaveInfo(ev) {
     console.error(error);
   }
 }
-
 
 async function getUserByCookie() {
   try {
@@ -102,4 +98,3 @@ async function getUserByCookie() {
     console.error(error);
   }
 }
-

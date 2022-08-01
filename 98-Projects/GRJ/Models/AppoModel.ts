@@ -13,8 +13,10 @@ const AppoSchema = new mongoose.Schema({
     },
     time: {
         type: String
-      },
-
+    },
+    kind: {
+        type: String
+    }
 
 });
 

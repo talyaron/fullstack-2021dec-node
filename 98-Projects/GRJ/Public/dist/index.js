@@ -101,8 +101,8 @@ function handleLogin(ev) {
                     console.log(userDB);
                     if (error)
                         throw error;
-                    if (userDB.role === 'admin') {
-                        window.location.href = "./profile.html?userId=" + userDB._id;
+                    if (userDB.role === "admin") {
+                        window.location.href = "./admin.html?userId=" + userDB._id;
                     }
                     else {
                         window.location.href = "./profile.html?userId=" + userDB._id;

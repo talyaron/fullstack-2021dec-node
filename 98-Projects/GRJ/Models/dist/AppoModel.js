@@ -14,6 +14,9 @@ var AppoSchema = new mongoose_1["default"].Schema({
     },
     time: {
         type: String
+    },
+    kind: {
+        type: String
     }
 });
 var AppoModel = mongoose_1["default"].model('appos', AppoSchema);
