@@ -106,6 +106,7 @@ export const updateLost = async (req, res) => {
 
 export const updateScore = async (req, res) => {
   try {
+    
     const { score } = req.body;
     const playerDB = await PlayerModel.updateOne({ score });
     res.send({ success: true, player: playerDB });

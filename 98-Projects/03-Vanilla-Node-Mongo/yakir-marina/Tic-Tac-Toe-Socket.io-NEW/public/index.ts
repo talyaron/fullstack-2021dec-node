@@ -168,14 +168,14 @@ socket.on("move-made", (data) => {
           .css("font-family", "Monoton")
           .css("color", "#202941c4")
           .css("font-size", "1.7em");
+
       } else {
         $(".nav__message")
           .text("Congrats! You Win! :)")
           .css("font-family", "Monoton")
           .css("color", "#085861")
           .css("font-size", "1.7em");
-
-        console.log("score:", score);
+          handleWinScoreUpdate()
       }
 
       $(".container__game__board__cell").attr("disabled", true); // Disable board
@@ -453,3 +453,21 @@ function showTime() {
   );
   setTimeout(showTime, 1000);
 }
+
+
+async function handleWinScoreUpdate(){
+
+  score++;
+  console.log("New score:", score);
+  const {data} = await axios.patch("/players/update-score", score);
+  console.log(data)
+}
+
+async function handleLostUpdate(){
+
+  lost++;
+  console.log("New lost:", lost);
+  const {data} = await axios.patch("/players/update-lost", lost);
+}
+
+

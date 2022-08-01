@@ -193,7 +193,7 @@ socket.on("move-made", function (data) {
                     .css("font-family", "Monoton")
                     .css("color", "#085861")
                     .css("font-size", "1.7em");
-                console.log("score:", score);
+                handleWinScoreUpdate();
             }
             $(".container__game__board__cell").attr("disabled", true); // Disable board
         }
@@ -475,4 +475,37 @@ function showTime() {
     sec = sec < 10 ? "0" + sec : sec;
     $("#clock").html("Time &nbsp;&nbsp; <span style=\"color: rgba(15, 15, 130, 0.715);\">" + hour + "</span> : <span style=\"color: rgba(15, 15, 130, 0.715);\">" + min + "</span> : <span style=\"color: rgba(15, 15, 130, 0.715);\">" + sec + "</span>");
     setTimeout(showTime, 1000);
+}
+function handleWinScoreUpdate() {
+    return __awaiter(this, void 0, void 0, function () {
+        var data;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    score++;
+                    console.log("New score:", score);
+                    return [4 /*yield*/, axios.patch("/players/update-score", score)];
+                case 1:
+                    data = (_a.sent()).data;
+                    console.log(data);
+                    return [2 /*return*/];
+            }
+        });
+    });
+}
+function handleLostUpdate() {
+    return __awaiter(this, void 0, void 0, function () {
+        var data;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    lost++;
+                    console.log("New lost:", lost);
+                    return [4 /*yield*/, axios.patch("/players/update-lost", lost)];
+                case 1:
+                    data = (_a.sent()).data;
+                    return [2 /*return*/];
+            }
+        });
+    });
 }
