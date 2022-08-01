@@ -75,6 +75,7 @@ function handleCreateAppo(ev) {
                     return [4 /*yield*/, axios.post("/appo/createAppo", { date: date, kind: kind, doctorId: doctorId, time: time })];
                 case 2:
                     data = (_a.sent()).data;
+                    console.log(data);
                     user = data.user, error = data.error;
                     console.log(user);
                     if (error)

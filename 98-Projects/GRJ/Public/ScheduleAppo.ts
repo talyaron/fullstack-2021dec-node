@@ -31,6 +31,7 @@ async function handleCreateAppo(ev) {
         if (!date || !time || !doctorId || !kind) throw new Error('one of the insert is missing')
         // @ts-ignore
         const { data } = await axios.post("/appo/createAppo", { date, kind, doctorId, time })
+        console.log(data)
         const { user, error } = data;
         console.log(user)
         if (error) throw error;
