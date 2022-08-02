@@ -130,6 +130,25 @@ function renderAppo(apposArray) {
     filteredAppo.innerHTML = html;
 }
 function handlePickAppoTime(ev) {
-    console.log(ev.path[0].id);
     var appoId = ev.path[0].id;
+    var userId = getUserId();
+    console.log(userId);
+    console.log(ev.path[0].id);
+    pairAppoToUser(appoId, userId);
 }
+function pairAppoToUser(userId, appoId) {
+    return __awaiter(this, void 0, void 0, function () {
+        var data, pairedAppo, error;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, axios.put("/appo/pairAppoToUser", { userId: userId, appoId: appoId })];
+                case 1:
+                    data = (_a.sent()).data;
+                    pairedAppo = data.pairedAppo, error = data.error;
+                    console.log(data);
+                    return [2 /*return*/];
+            }
+        });
+    });
+}
+51;

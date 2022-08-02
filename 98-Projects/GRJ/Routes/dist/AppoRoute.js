@@ -5,5 +5,6 @@ var AppoCont_1 = require("../Conts/AppoCont");
 var router = express_1["default"].Router();
 router
     .post('/getAppo', AppoCont_1.getAppo)
-    .post('/createAppo', AppoCont_1.createAppo);
+    .post('/createAppo', AppoCont_1.createAppo)
+    .put('/pairAppoToUser', AppoCont_1.pairAppoToUser);
 exports["default"] = router;

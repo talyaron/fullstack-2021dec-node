@@ -1,7 +1,6 @@
 import mongoose from "mongoose";
 import AppoModel from "../Models/AppoModel";
 
-
 export async function getAppo(req, res) {
 
     try {
@@ -41,4 +40,25 @@ export async function createAppo(req, res) {
     }
 
 
+}
+
+export async function pairAppoToUser(req, res) {
+
+    try {
+        const { userId, appoId } = req.body;
+
+        console.log(userId, appoId)
+
+
+
+       
+       
+
+       
+
+
+
+    } catch (error) {
+        res.send({ error: error.message });
+    }
 }

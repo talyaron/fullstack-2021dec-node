@@ -103,8 +103,20 @@ console.log(apposArray)
 }
 
 function handlePickAppoTime(ev) {
-console.log(ev.path[0].id)
+
 const appoId = ev.path[0].id;
+const userId = getUserId()
+console.log(userId)
+console.log(ev.path[0].id)
 
-
+pairAppoToUser(appoId, userId)
 }
+
+
+async function pairAppoToUser(userId, appoId){
+ // @ts-ignore
+    const { data} = await axios.put("/appo/pairAppoToUser", {userId, appoId})
+    const {pairedAppo, error} = data
+    console.log(data)
+
+}51
