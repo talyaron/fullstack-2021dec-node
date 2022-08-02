@@ -47,6 +47,14 @@ function getUserId() {
         return false;
     }
 }
+function handleSelectDoctorType(ev) {
+    ev.preventDefault();
+    console.log(ev.target.id);
+    var doctorType = ev.target.id;
+    var searchBox = document.querySelector("#searchBox");
+    var html = " <br> <form onsubmit=\"handleSchedule(event)\">\n<input type=\"date\" name=\"date\" >\n<input type=\"hidden\" name=\"doctorType\" id=" + doctorType + ">\n<button type=\"submit\">Search</button>\n\n</form>";
+    searchBox.innerHTML = html;
+}
 function handleSchedule(ev) {
     return __awaiter(this, void 0, void 0, function () {
         var date, kind, data, filteredAppos;
@@ -54,8 +62,9 @@ function handleSchedule(ev) {
             switch (_a.label) {
                 case 0:
                     ev.preventDefault();
+                    console.log();
                     date = ev.target.date.value;
-                    kind = ev.target.kind.value;
+                    kind = ev.target.doctorType.id;
                     console.log(date, kind);
                     return [4 /*yield*/, axios.post("/appo/getAppo", { kind: kind, date: date })];
                 case 1:

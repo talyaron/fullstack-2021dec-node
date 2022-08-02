@@ -1,3 +1,8 @@
+
+
+
+
+
 function getUserId(): string | false {
     try {
       const queryString = window.location.search;
@@ -11,10 +16,29 @@ function getUserId(): string | false {
     }
   }
 
+  function handleSelectDoctorType(ev){
+    ev.preventDefault()
+console.log(ev.target.id)
+const doctorType = ev.target.id;
+
+const searchBox = document.querySelector("#searchBox");
+
+let html = ` <br> <form onsubmit="handleSchedule(event)">
+<input type="date" name="date" >
+<input type="hidden" name="doctorType" id=${doctorType}>
+<button type="submit">Search</button>
+
+</form>`
+
+searchBox.innerHTML = html
+
+  }
+
 async function handleSchedule(ev) {
     ev.preventDefault()
+    console.log()
     const date: string = ev.target.date.value;
-    const kind: string = ev.target.kind.value;
+    const kind: string = ev.target.doctorType.id;
 
     console.log(date, kind)
     // @ts-ignore

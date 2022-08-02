@@ -16,22 +16,20 @@
 <body onload="getUserId()">
     <h1>Schedule an appointment</h1>
 
-
-    <form onsubmit="handleSchedule(event)">
-        <input type="date" name="date" placeholder="When?">
-        <select id="kind" name="kind">
-            <option value="family">family</option>
-            <option value="eyes">eyes</option>
-            <option value="heart">heart</option>
-
-        </select>
+    
+    <button id="family" onclick="handleSelectDoctorType(event)">Family</button>
+    <button id="bloodTest" onclick="handleSelectDoctorType(event)">Blood test</button>
+    <button id="nurse" onclick="handleSelectDoctorType(event)">Nurse</button>
+    
+    <div id="searchBox"></div>
 
 
-        <button type="submit">Search</button>
-    </form>
+  
 
 
     <h1>Create Appo</h1>
+
+   
 
     <form onsubmit="handleCreateAppo(event)">
         <input type="date" name="date" placeholder="When?">
