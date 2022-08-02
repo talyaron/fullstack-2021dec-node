@@ -46,3 +46,22 @@ body input::-webkit-inner-spin-button {
 body #MoveToCartBtn {
   margin-right: 300px;
 }
+body #signUpTitle {
+  position: absolute;
+  top: 10px;
+  left: 50px;
+}
+body #loginTitle {
+  position: absolute;
+  top: 10px;
+  right: 900px;
+}
+body #coachTitle {
+  position: absolute;
+  top: 10px;
+  right: 75px;
+}
+body #coachLoginForm {
+  position: relative;
+  left: 150px;
+}
