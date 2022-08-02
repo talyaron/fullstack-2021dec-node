@@ -6,13 +6,13 @@ export async function getAppo(req, res) {
 
     try {
 
-        const { date, kind } = req.body;
+        const { date, doctorType } = req.body;
 
         console.log(date)
 
-        console.log(kind)
+        console.log(doctorType)
 
-        const apposResult = await AppoModel.find({ date: date, kind: kind }).exec();
+        const apposResult = await AppoModel.find({ date: date, doctorType: doctorType }).exec();
 
         res.send(apposResult)
 
@@ -25,11 +25,11 @@ export async function getAppo(req, res) {
 export async function createAppo(req, res) {
 
     try {
-        const { date, time, kind, doctorId } = req.body;
+        const { date, time, doctorType, doctorId } = req.body;
 
-        console.log(date, time, kind, doctorId)
+        console.log(date, time, doctorType, doctorId)
 
-        const newAppo = new AppoModel({ date, time, kind, doctorId });
+        const newAppo = new AppoModel({ date, time, doctorType, doctorId });
 
         const newAppoDB = await newAppo.save();
 

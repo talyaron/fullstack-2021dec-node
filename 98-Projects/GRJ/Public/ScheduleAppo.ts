@@ -38,14 +38,14 @@ async function handleSchedule(ev) {
     ev.preventDefault()
     console.log()
     const date: string = ev.target.date.value;
-    const kind: string = ev.target.doctorType.id;
+    const doctorType: string = ev.target.doctorType.id;
 
-    console.log(date, kind)
+    console.log(date, doctorType)
     // @ts-ignore
-    const { data } = await axios.post("/appo/getAppo", { kind, date })
+    const { data } = await axios.post("/appo/getAppo", { doctorType, date })
 
     const filteredAppos = data
-    console.log(filteredAppos[0].date)
+
     renderAppo(filteredAppos)
 
 }
@@ -57,15 +57,15 @@ async function handleCreateAppo(ev) {
     try {
 
         const date: string = ev.target.date.value;
-        const kind: string = ev.target.kind.value;
+        const doctorType: string = ev.target.doctorType.value;
         const doctorId: string = ev.target.doctorId.value;
         const time: string = ev.target.time.value;
 
-        console.log(date, kind, doctorId, time)
+        console.log(date, doctorType, doctorId, time)
 
-        // if (!date || !time || !doctorId || !kind) throw new Error('one of the insert is missing')
+        if (!date || !time || !doctorId || !doctorType) throw new Error('one of the insert is missing')
         // @ts-ignore
-        const { data } = await axios.post("/appo/createAppo", { date, kind, doctorId, time })
+        const { data } = await axios.post("/appo/createAppo", { date, doctorType, doctorId, time })
         console.log(data)
         const { user, error } = data;
         if (error) throw error;
@@ -89,13 +89,22 @@ console.log(apposArray)
 
 
     apposArray.forEach(appo => {
-        html += `date: ${appo.date} <br>
-        kind: ${appo.kind} <br>
-        doctorId: ${appo.doctorId} <br>
-        time: ${appo.time} <br>
-        `
+
+        html += `<button id="${appo._id}" onclick="handlePickAppoTime(event)">${appo.time}</button>`
+        // html += `date: ${appo.date} <br>
+        // doctorType: ${appo.doctorType} <br>
+        // doctorId: ${appo.doctorId} <br>
+        // time: ${appo.time} <br>
+        // `
     });
-  
+  console.log(apposArray[0])
     filteredAppo.innerHTML = html
+
+}
+
+function handlePickAppoTime(ev) {
+console.log(ev.path[0].id)
+const appoId = ev.path[0].id;
+
 
 }

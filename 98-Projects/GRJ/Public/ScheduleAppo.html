@@ -24,7 +24,7 @@
     <div id="searchBox"></div>
 
 
-  
+    <div id="filteredAppo"></div>
 
 
     <h1>Create Appo</h1>
@@ -34,10 +34,10 @@
     <form onsubmit="handleCreateAppo(event)">
         <input type="date" name="date" placeholder="When?">
         <input type="time" name="time" placeholder="Select a time">
-        <select id="kind" name="kind">
-            <option value="family">family</option>
-            <option value="eyes">eyes</option>
-            <option value="heart">heart</option>
+        <select id="doctorType" name="doctorType">
+            <option value="family">Family</option>
+            <option value="bloodTest">Blood test</option>
+            <option value="nurse">Nurse</option>
             <input type="text" name="doctorId" placeholder="Doctor's name">
 
 
@@ -48,7 +48,7 @@
     </form>
 
 
-<div id="filteredAppo"></div>
+
 
 
     <script src="./dist/ScheduleAppo.js"></script>

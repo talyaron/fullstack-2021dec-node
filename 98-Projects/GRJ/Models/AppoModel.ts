@@ -14,7 +14,7 @@ const AppoSchema = new mongoose.Schema({
     time: {
         type: String
     },
-    kind: {
+    doctorType: {
         type: String
     }
 

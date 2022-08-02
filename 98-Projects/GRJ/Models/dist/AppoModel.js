@@ -15,7 +15,7 @@ var AppoSchema = new mongoose_1["default"].Schema({
     time: {
         type: String
     },
-    kind: {
+    doctorType: {
         type: String
     }
 });

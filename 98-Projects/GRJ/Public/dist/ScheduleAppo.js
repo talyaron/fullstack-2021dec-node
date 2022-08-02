@@ -57,20 +57,19 @@ function handleSelectDoctorType(ev) {
 }
 function handleSchedule(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var date, kind, data, filteredAppos;
+        var date, doctorType, data, filteredAppos;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     ev.preventDefault();
                     console.log();
                     date = ev.target.date.value;
-                    kind = ev.target.doctorType.id;
-                    console.log(date, kind);
-                    return [4 /*yield*/, axios.post("/appo/getAppo", { kind: kind, date: date })];
+                    doctorType = ev.target.doctorType.id;
+                    console.log(date, doctorType);
+                    return [4 /*yield*/, axios.post("/appo/getAppo", { doctorType: doctorType, date: date })];
                 case 1:
                     data = (_a.sent()).data;
                     filteredAppos = data;
-                    console.log(filteredAppos[0].date);
                     renderAppo(filteredAppos);
                     return [2 /*return*/];
             }
@@ -79,7 +78,7 @@ function handleSchedule(ev) {
 }
 function handleCreateAppo(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var date, kind, doctorId, time, data, user, error, appoArray, error_1;
+        var date, doctorType, doctorId, time, data, user, error, appoArray, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -88,11 +87,13 @@ function handleCreateAppo(ev) {
                 case 1:
                     _a.trys.push([1, 3, , 4]);
                     date = ev.target.date.value;
-                    kind = ev.target.kind.value;
+                    doctorType = ev.target.doctorType.value;
                     doctorId = ev.target.doctorId.value;
                     time = ev.target.time.value;
-                    console.log(date, kind, doctorId, time);
-                    return [4 /*yield*/, axios.post("/appo/createAppo", { date: date, kind: kind, doctorId: doctorId, time: time })];
+                    console.log(date, doctorType, doctorId, time);
+                    if (!date || !time || !doctorId || !doctorType)
+                        throw new Error('one of the insert is missing');
+                    return [4 /*yield*/, axios.post("/appo/createAppo", { date: date, doctorType: doctorType, doctorId: doctorId, time: time })];
                 case 2:
                     data = (_a.sent()).data;
                     console.log(data);
@@ -118,7 +119,17 @@ function renderAppo(apposArray) {
     var filteredAppo = document.querySelector('#filteredAppo');
     var html = "";
     apposArray.forEach(function (appo) {
-        html += "date: " + appo.date + " <br>\n        kind: " + appo.kind + " <br>\n        doctorId: " + appo.doctorId + " <br>\n        time: " + appo.time + " <br>\n        ";
+        html += "<button id=\"" + appo._id + "\" onclick=\"handlePickAppoTime(event)\">" + appo.time + "</button>";
+        // html += `date: ${appo.date} <br>
+        // doctorType: ${appo.doctorType} <br>
+        // doctorId: ${appo.doctorId} <br>
+        // time: ${appo.time} <br>
+        // `
     });
+    console.log(apposArray[0]);
     filteredAppo.innerHTML = html;
+}
+function handlePickAppoTime(ev) {
+    console.log(ev.path[0].id);
+    var appoId = ev.path[0].id;
 }
