@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.createAppo = exports.getAppo = void 0;
+exports.pairAppoToUser = exports.createAppo = exports.getAppo = void 0;
 var AppoModel_1 = require("../Models/AppoModel");
 function getAppo(req, res) {
     return __awaiter(this, void 0, void 0, function () {
@@ -89,3 +89,19 @@ function createAppo(req, res) {
     });
 }
 exports.createAppo = createAppo;
+function pairAppoToUser(req, res) {
+    return __awaiter(this, void 0, void 0, function () {
+        var _a, userId, appoId;
+        return __generator(this, function (_b) {
+            try {
+                _a = req.body, userId = _a.userId, appoId = _a.appoId;
+                console.log(userId, appoId);
+            }
+            catch (error) {
+                res.send({ error: error.message });
+            }
+            return [2 /*return*/];
+        });
+    });
+}
+exports.pairAppoToUser = pairAppoToUser;
