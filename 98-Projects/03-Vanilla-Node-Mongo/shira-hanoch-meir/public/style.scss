@@ -1,6 +1,6 @@
 
-    body 
-    {
+ 
+  body  {
         width: 90%;
         height: 100%;
         display: flex;
@@ -8,9 +8,15 @@
         justify-content: center;
         background-color: whitesmoke;
         padding-top: 56px;
+        background-image:url('../Images/Gym1.jpg') ;
+        background-repeat: no-repeat;
+        background-size: cover; 
+        min-height: 500px;
+        height: 100vh;
+        color: rgb(128, 0, 30);
 
 
-    form {
+     form {
         width: 180em;
         max-height: 60em;
         display: flex;
@@ -75,7 +81,7 @@
         left: 150px;
         }
 
-    }
+}
 
 
 

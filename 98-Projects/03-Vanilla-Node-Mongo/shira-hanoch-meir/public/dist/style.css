@@ -6,6 +6,12 @@ body {
   justify-content: center;
   background-color: whitesmoke;
   padding-top: 56px;
+  background-image: url("../Images/Gym1.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 500px;
+  height: 100vh;
+  color: #80001e;
 }
 body form {
   width: 180em;
