@@ -14,8 +14,8 @@ body {
   color: #80001e;
 }
 body form {
-  width: 180em;
-  max-height: 60em;
+  width: 200em;
+  max-height: 600px;
   display: flex;
   flex-direction: column;
   background-color: white;
@@ -24,6 +24,7 @@ body form {
   border-radius: 20px;
   box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
   margin: 25px;
+  margin-top: 300px;
 }
 body .coachAddLessonForm {
   width: 30em;
@@ -52,22 +53,20 @@ body input::-webkit-inner-spin-button {
 body #MoveToCartBtn {
   margin-right: 300px;
 }
-body #signUpTitle {
+body .title {
+  font-weight: bolder;
+  color: #f60a0a;
+  top: 250px;
+}
+body .title--signUp {
   position: absolute;
-  top: 10px;
   left: 50px;
 }
-body #loginTitle {
+body .title--login {
   position: absolute;
-  top: 10px;
   right: 900px;
 }
-body #coachTitle {
+body .title--coach {
   position: absolute;
-  top: 10px;
   right: 75px;
-}
-body #coachLoginForm {
-  position: relative;
-  left: 150px;
 }

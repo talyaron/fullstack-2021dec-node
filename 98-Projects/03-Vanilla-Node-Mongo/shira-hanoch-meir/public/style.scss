@@ -17,8 +17,8 @@
 
 
      form {
-        width: 180em;
-        max-height: 60em;
+        width: 200em;
+        max-height: 600px;
         display: flex;
         flex-direction: column;
         background-color: rgb(255, 255, 255);
@@ -27,7 +27,9 @@
         border-radius: 20px;
         box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
         margin: 25px;
+        margin-top: 300px;
     }
+ 
     .coachAddLessonForm{
         width: 30em;
         max-height: 30em;
@@ -62,24 +64,34 @@
        
 
     }
-    #signUpTitle{
-        position: absolute;
-        top: 10px;
-        left: 50px;
-        }
-        #loginTitle {
+
+    .title{
+        font-weight: bolder;
+        color: #f60a0a;
+        top: 250px;
+        // box-shadow: white;
+
+        &--signUp{
             position: absolute;
-            top: 10px;
-            right: 900px;
-            }    #coachTitle {
-                position: absolute;
-                top: 10px;
-                right: 75px;
-                }
-        #coachLoginForm {
-        position: relative;
-        left: 150px;
+            left: 50px;
         }
+
+             &--login{
+            position: absolute;
+            right: 900px;
+            }
+
+            &--coach{
+                position: absolute;
+                right: 75px;
+            }
+    }
+
+
+        // #coachLoginForm {
+        // position: relative;
+        // left: 150px;
+        // }
 
 }
 
