@@ -40,6 +40,8 @@ const ProfileRoute_1 = __importDefault(require("../GRJ/Routes/ProfileRoute"));
 app.use('/profile', ProfileRoute_1.default);
 const AppoRoute_1 = __importDefault(require("../GRJ/Routes/AppoRoute"));
 app.use('/Appo', AppoRoute_1.default);
+const meetingRoute_1 = __importDefault(require("../GRJ/Routes/meetingRoute"));
+app.use('/meetings', meetingRoute_1.default);
 httpServer.listen(port, () => {
     console.log(`Server listening on port ${port}`);
 });

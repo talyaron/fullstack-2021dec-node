@@ -1,3 +1,4 @@
+"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -34,70 +35,54 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-function getUserId() {
-    try {
-        var queryString = window.location.search;
-        var urlParams = new URLSearchParams(queryString);
-        var userId = urlParams.get("userId");
-        console.log(userId);
-        return userId;
-    }
-    catch (error) {
-        console.error(error);
-        return false;
-    }
-}
-function searchMeetings() {
+exports.__esModule = true;
+exports.handleDelete = exports.getUserMeting = void 0;
+var AppoModel_1 = require("../Models/AppoModel");
+function getUserMeting(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var userId, data, error, userDB, error_1;
+        var userId, userDB, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    userId = getUserId();
-                    if (!userId)
-                        throw new Error("couldnt find user id in url");
-                    return [4 /*yield*/, axios.post("/meetings/get-meetings", { userId: userId })];
+                    userId = req.body.userId;
+                    console.log(userId);
+                    return [4 /*yield*/, AppoModel_1["default"].find({ _id: userId }).exec()];
                 case 1:
-                    data = (_a.sent()).data;
-                    error = data.error, userDB = data.userDB;
-                    console.log(data);
-                    renderAll(userDB);
-                    if (error)
-                        throw error;
+                    userDB = _a.sent();
+                    console.log(userDB);
+                    if (!userDB)
+                        throw new Error("userId does not match");
+                    res.send(userDB);
                     return [3 /*break*/, 3];
                 case 2:
                     error_1 = _a.sent();
-                    console.log(error_1);
+                    console.error(error_1);
                     return [3 /*break*/, 3];
                 case 3: return [2 /*return*/];
             }
         });
     });
 }
-function renderAll(userDB) {
-    var html = "";
-    userDB.forEach(function (appo) {
-        html = "you have an appointment to " + appo.doctorType + " doctor- dr. " + appo.doctorId + "\n    on " + appo.time + "\n    at " + appo.date + "\n    <button onclick=\"handleDelete(appo)\" type=\"deleteAppo\">Delete</button>";
-    });
-}
-function handleDelete(appo) {
+exports.getUserMeting = getUserMeting;
+function handleDelete(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var userId, date, time, doctor, data, error, success;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
+        var _a, date, time, doctor, AppoDB;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
                 case 0:
-                    userId = getUserId();
-                    date = appo.date;
-                    time = appo.time;
-                    doctor = appo.doctorId;
-                    return [4 /*yield*/, axios["delete"]("/meetings/get-meetings", { date: date, time: time, doctor: doctor })];
+                    _a = req.body, date = _a.date, time = _a.time, doctor = _a.doctor;
+                    console.log(date, time, doctor);
+                    return [4 /*yield*/, AppoModel_1["default"].find({ date: date, time: time, doctorId: doctor })];
                 case 1:
-                    data = (_a.sent()).data;
-                    error = data.error, success = data.success;
-                    console.log(data);
+                    AppoDB = _b.sent();
+                    console.log(AppoDB);
+                    if (!AppoDB)
+                        throw new Error("couldn't be found");
+                    res.send(AppoDB);
                     return [2 /*return*/];
             }
         });
     });
 }
+exports.handleDelete = handleDelete;

@@ -46,6 +46,9 @@ app.use('/profile',  profileRoutes);
 import AppoRoutes from "../GRJ/Routes/AppoRoute";
 app.use('/Appo',  AppoRoutes);
 
+import MeetingsRoute from "../GRJ/Routes/meetingRoute";
+app.use('/meetings',  MeetingsRoute);
+
 httpServer.listen(port, () => {
   console.log(`Server listening on port ${port}`);
 });

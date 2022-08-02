@@ -18,77 +18,17 @@
     <link rel="stylesheet" href="dist/style.css" />
   </head>
 
-  <body>
+  <body onload="searchMeetings()">
     <h1 class="sceduleMeetingPage">התורים שלי</h1>
 
     <div id="root"></div>
     // render the divs inside root //
-    <div class="formsDiv">
+    
 
-        <!-- first form -->
-      <form class="firstForm" onsubmit="{'add onsubmit func'}">
-        <input type="date" name="date" placeholder="When?" />
-
-        <select type="text" name="type">
-          <option value="none">Doctor type</option>
-          <option value="family">Family Doc</option>
-          <option value="eyes">Eyes Doc</option>
-          <option value="heart">Heart Doc</option>
-        </select>
-
-        <select type="text" name="medicalClinic">
-          <option value="none">Medical Clinic type</option>
-          <option value="oranim">oranim</option>
-          <option value="alonim">alonim</option>
-          <option value="gozalim">gozalim</option>
-        </select>
+       
 
         <button onclick="{'add Delete func'}" type="deleteAppo">Delete</button>
-      </form>
-
-      <!-- second form -->
-      <form class="firstForm" onsubmit="{'add onsubmit func'}">
-        <input type="date" name="date" placeholder="When?" />
-
-        <select type="text" name="type">
-          <option value="none">Doctor type</option>
-          <option value="family">Family Doc</option>
-          <option value="eyes">Eyes Doc</option>
-          <option value="heart">Heart Doc</option>
-        </select>
-
-        <select type="text" name="medicalClinic">
-          <option value="none">Medical Clinic type</option>
-          <option value="oranim">oranim</option>
-          <option value="alonim">alonim</option>
-          <option value="gozalim">gozalim</option>
-        </select>
-
-        <button onclick="{'add Delete func'}" type="deleteAppo">Delete</button>
-      </form>
-
-      <!-- third form -->
-      <form class="firstForm" onsubmit="{'add onsubmit func'}">
-        <input type="date" name="date" placeholder="When?" />
-
-        <select type="text" name="type">
-          <option value="none">Doctor type</option>
-          <option value="family">Family Doc</option>
-          <option value="eyes">Eyes Doc</option>
-          <option value="heart">Heart Doc</option>
-        </select>
-
-        <select type="text" name="medicalClinic">
-          <option value="none">Medical Clinic type</option>
-          <option value="oranim">oranim</option>
-          <option value="alonim">alonim</option>
-          <option value="gozalim">gozalim</option>
-        </select>
-
-        <button onclick="{'add Delete func'}" type="deleteAppo">Delete</button>
-      </form>
-      
-    </div>
+     
 
     <script src="./dist/myMeetings.js"></script>
   </body>

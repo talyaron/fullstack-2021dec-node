@@ -1,6 +1,5 @@
 
 import mongoose from "mongoose";
-import { json } from "stream/consumers";
 import UserModel from "../Models/UserModel";
 
  export async function onscondPageLoad(req, res) {
