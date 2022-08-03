@@ -109,7 +109,7 @@ const userId = getUserId()
 console.log(userId)
 console.log(ev.path[0].id)
 
-pairAppoToUser(appoId, userId)
+pairAppoToUser(userId, appoId)
 }
 
 
@@ -119,4 +119,5 @@ async function pairAppoToUser(userId, appoId){
     const {pairedAppo, error} = data
     console.log(data)
 
-}51
+}
+

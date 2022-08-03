@@ -134,7 +134,7 @@ function handlePickAppoTime(ev) {
     var userId = getUserId();
     console.log(userId);
     console.log(ev.path[0].id);
-    pairAppoToUser(appoId, userId);
+    pairAppoToUser(userId, appoId);
 }
 function pairAppoToUser(userId, appoId) {
     return __awaiter(this, void 0, void 0, function () {
@@ -151,4 +151,3 @@ function pairAppoToUser(userId, appoId) {
         });
     });
 }
-51;

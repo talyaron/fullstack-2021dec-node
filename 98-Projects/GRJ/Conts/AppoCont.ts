@@ -11,7 +11,7 @@ export async function getAppo(req, res) {
 
         console.log(doctorType)
 
-        const apposResult = await AppoModel.find({ date: date, doctorType: doctorType }).exec();
+        const apposResult = await AppoModel.find({ date: date, doctorType: doctorType, userId:'empty' }).exec();
 
         res.send(apposResult)
 
@@ -26,9 +26,11 @@ export async function createAppo(req, res) {
     try {
         const { date, time, doctorType, doctorId } = req.body;
 
+        const userId: string = 'empty'
+
         console.log(date, time, doctorType, doctorId)
 
-        const newAppo = new AppoModel({ date, time, doctorType, doctorId });
+        const newAppo = new AppoModel({ date, time, doctorType, doctorId, userId });
 
         const newAppoDB = await newAppo.save();
 
@@ -50,15 +52,22 @@ export async function pairAppoToUser(req, res) {
         console.log(userId, appoId)
 
 
-
-       
-       
-
-       
+        const filter = { _id: appoId };
+        const update = { userId: userId };
 
 
+        let doc = await AppoModel.findOneAndUpdate(filter, update, { new: true })
+
+        console.log(doc);
+
+        res.send(doc)
 
     } catch (error) {
+
         res.send({ error: error.message });
     }
+
+
+
 }
+

@@ -48,7 +48,7 @@ function getAppo(req, res) {
                     _a = req.body, date = _a.date, doctorType = _a.doctorType;
                     console.log(date);
                     console.log(doctorType);
-                    return [4 /*yield*/, AppoModel_1["default"].find({ date: date, doctorType: doctorType }).exec()];
+                    return [4 /*yield*/, AppoModel_1["default"].find({ date: date, doctorType: doctorType, userId: 'empty' }).exec()];
                 case 1:
                     apposResult = _b.sent();
                     res.send(apposResult);
@@ -66,14 +66,15 @@ function getAppo(req, res) {
 exports.getAppo = getAppo;
 function createAppo(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var _a, date, time, doctorType, doctorId, newAppo, newAppoDB, error_2;
+        var _a, date, time, doctorType, doctorId, userId, newAppo, newAppoDB, error_2;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
                     _b.trys.push([0, 2, , 3]);
                     _a = req.body, date = _a.date, time = _a.time, doctorType = _a.doctorType, doctorId = _a.doctorId;
+                    userId = 'empty';
                     console.log(date, time, doctorType, doctorId);
-                    newAppo = new AppoModel_1["default"]({ date: date, time: time, doctorType: doctorType, doctorId: doctorId });
+                    newAppo = new AppoModel_1["default"]({ date: date, time: time, doctorType: doctorType, doctorId: doctorId, userId: userId });
                     return [4 /*yield*/, newAppo.save()];
                 case 1:
                     newAppoDB = _b.sent();
@@ -91,16 +92,27 @@ function createAppo(req, res) {
 exports.createAppo = createAppo;
 function pairAppoToUser(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var _a, userId, appoId;
+        var _a, userId, appoId, filter, update, doc, error_3;
         return __generator(this, function (_b) {
-            try {
-                _a = req.body, userId = _a.userId, appoId = _a.appoId;
-                console.log(userId, appoId);
+            switch (_b.label) {
+                case 0:
+                    _b.trys.push([0, 2, , 3]);
+                    _a = req.body, userId = _a.userId, appoId = _a.appoId;
+                    console.log(userId, appoId);
+                    filter = { _id: appoId };
+                    update = { userId: userId };
+                    return [4 /*yield*/, AppoModel_1["default"].findOneAndUpdate(filter, update, { "new": true })];
+                case 1:
+                    doc = _b.sent();
+                    console.log(doc);
+                    res.send(doc);
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_3 = _b.sent();
+                    res.send({ error: error_3.message });
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
             }
-            catch (error) {
-                res.send({ error: error.message });
-            }
-            return [2 /*return*/];
         });
     });
 }
