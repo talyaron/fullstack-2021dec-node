@@ -1,0 +1,39 @@
+
+body {
+  background-color: rgb(245, 68, 68);
+}
+
+//profile.html- css
+
+#Navbar{
+  width: 100vw;
+  height: 10vh;
+  position: fixed;
+top: 0%;
+left: 0%;
+font-size: large;
+color: black;
+  img{
+    height: 50px;
+    width: 40px;
+  }
+}
+
+#actions{
+  padding: 100px;
+  color: beige;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+  gap: 30px;
+  .fas{
+    display: flex;
+    color: black;
+    text-align: center;
+    font-size: 50px;
+    margin-left: 50px;
+  }
+  .fa-comment-medical{
+    margin-left: 20px;
+  }
+}
