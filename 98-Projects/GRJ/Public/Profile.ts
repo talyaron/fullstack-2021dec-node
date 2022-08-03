@@ -45,9 +45,9 @@ async function onscondPageLoad() {
 }
 
 function renderAll(data) {
-  const userDB= data
+  const userDB = data
   let html = "";
-   html= `<div class="ScheduleApointmant">
+  html = `<div class="ScheduleApointmant">
    <button class="scheduleMeeting">
      <a href="./ScheduleAppo.html?userId=${userDB._id}" alt="scheduleMeeting">
        <i id="calenderPlusIcon" class="fas fa-calendar-plus"></i>
@@ -68,13 +68,26 @@ function renderAll(data) {
      <a href="./Connect.html?userId=${userDB._id}" alt="online Doctor">
        <i class="fas fa-comment-medical"></i>
      </a>
-   </button>
-   <p>online Doctor</p>
+     </button>
+     <p>online Doctor</p>
  </div>
-</div>`
-  
-const actions= document.querySelector('#actions')
-actions.innerHTML=html
-  
-  
+ <div>
+ <button class="ContactADoctor">
+ <a href="./createAppo.html?userId=${userDB._id}" alt="online Doctor">
+   <i class="fas fa-user-md"></i>
+ </a>
+ <p>Scheduling the Doctors</p>
+</button>
+
+</div>
+
+
+`
+
+
+
+  const actions = document.querySelector('#actions')
+  actions.innerHTML = html
+
+
 }

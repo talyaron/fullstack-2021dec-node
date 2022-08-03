@@ -45,6 +45,11 @@ app.use('/profile',  profileRoutes);
 
 import AppoRoutes from "../GRJ/Routes/AppoRoute";
 app.use('/Appo',  AppoRoutes);
+ 
+import DoctorsRoutes from "../GRJ/Routes/DoctorsRoute";
+app.use('/doctors',  DoctorsRoutes);
+
+
 
 import MeetingsRoute from "../GRJ/Routes/meetingRoute";
 app.use('/meetings',  MeetingsRoute);

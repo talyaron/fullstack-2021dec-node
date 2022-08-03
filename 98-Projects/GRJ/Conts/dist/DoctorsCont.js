@@ -1,3 +1,4 @@
+"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -34,82 +35,21 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-function getUserId() {
-    try {
-        var queryString = window.location.search;
-        var urlParams = new URLSearchParams(queryString);
-        var userId = urlParams.get("userId");
-        console.log(userId);
-        return userId;
-    }
-    catch (error) {
-        console.error(error);
-        return false;
-    }
-}
-function handleSelectDoctorType(ev) {
-    ev.preventDefault();
-    console.log(ev.target.id);
-    var doctorType = ev.target.id;
-    var searchBox = document.querySelector("#searchBox");
-    var html = " <br> <form onsubmit=\"handleSchedule(event)\">\n<input type=\"date\" name=\"date\" >\n<input type=\"hidden\" name=\"doctorType\" id=" + doctorType + ">\n<button type=\"submit\">Search</button>\n\n</form>";
-    searchBox.innerHTML = html;
-}
-function handleSchedule(ev) {
+exports.__esModule = true;
+exports.getAllDoctors = void 0;
+var DoctorModel_1 = require("../Models/DoctorModel");
+function getAllDoctors(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var date, doctorType, data, filteredAppos;
+        var allDoctors;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0:
-                    ev.preventDefault();
-                    console.log();
-                    date = ev.target.date.value;
-                    doctorType = ev.target.doctorType.id;
-                    console.log(date, doctorType);
-                    return [4 /*yield*/, axios.post("/appo/getAppo", { doctorType: doctorType, date: date })];
+                case 0: return [4 /*yield*/, DoctorModel_1["default"].find()];
                 case 1:
-                    data = (_a.sent()).data;
-                    filteredAppos = data;
-                    renderAppo(filteredAppos);
+                    allDoctors = _a.sent();
+                    console.log(allDoctors);
                     return [2 /*return*/];
             }
         });
     });
 }
-function renderAppo(apposArray) {
-    console.log(apposArray);
-    var filteredAppo = document.querySelector('#filteredAppo');
-    var html = "";
-    apposArray.forEach(function (appo) {
-        html += "<button id=\"" + appo._id + "\" onclick=\"handlePickAppoTime(event)\">" + appo.time + "</button>";
-        // html += `date: ${appo.date} <br>
-        // doctorType: ${appo.doctorType} <br>
-        // doctorId: ${appo.doctorId} <br>
-        // time: ${appo.time} <br>
-        // `
-    });
-    console.log(apposArray[0]);
-    filteredAppo.innerHTML = html;
-}
-function handlePickAppoTime(ev) {
-    var appoId = ev.path[0].id;
-    var userId = getUserId();
-    console.log(userId);
-    console.log(ev.path[0].id);
-    pairAppoToUser(userId, appoId);
-}
-function pairAppoToUser(userId, appoId) {
-    return __awaiter(this, void 0, void 0, function () {
-        var data, pairedAppo, error;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0: return [4 /*yield*/, axios.put("/appo/pairAppoToUser", { userId: userId, appoId: appoId })];
-                case 1:
-                    data = (_a.sent()).data;
-                    pairedAppo = data.pairedAppo, error = data.error;
-                    console.log(data);
-                    return [2 /*return*/];
-            }
-        });
-    });
-}
+exports.getAllDoctors = getAllDoctors;
