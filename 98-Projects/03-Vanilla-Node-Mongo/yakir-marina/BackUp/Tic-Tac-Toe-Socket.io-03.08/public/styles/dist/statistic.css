@@ -1,0 +1,110 @@
+@import url("https://fonts.googleapis.com/css2?family=BIZ+UDPMincho&family=Cairo:wght@300&family=Josefin+Sans:wght@300&family=Montserrat:wght@100;200&family=Rajdhani:wght@300&family=Red+Hat+Mono:wght@300;400&family=Special+Elite&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Monoton&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Audiowide&family=Faster+One&family=Sarpanch&display=swap");
+* {
+  box-sizing: border-box;
+  font-family: "Sarpanch", sans-serif;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background: linear-gradient(160deg, #1289A7 50%, #0652DD 50%);
+  height: 100vh;
+  overflow: hidden;
+}
+
+html,
+body {
+  overflow-x: hidden;
+}
+
+.nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4em;
+  background-color: #1483665b;
+  backdrop-filter: blur(6px);
+  box-shadow: 10px 10px 10px rgba(8, 8, 8, 0.322);
+  border: 5px solid #aa1f215c;
+  border-style: double;
+  border-bottom-left-radius: 30px;
+  border-top-left-radius: 30px;
+  padding: 10px 0;
+  display: flex;
+}
+.nav__message {
+  display: block;
+  width: 105%;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3em;
+  color: #163157ec;
+  font-family: "Monoton", cursive;
+  transform: translateX(100%);
+  animation: move 15s linear infinite;
+}
+@keyframes move {
+  to {
+    transform: translateX(-20%);
+  }
+}
+.nav__logo {
+  position: absolute;
+  top: 0%;
+  width: 3%;
+  cursor: pointer;
+  z-index: 1;
+}
+
+h1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  top: 10%;
+  font-size: 2.8em;
+  font-weight: normal;
+  color: #c71d1ff8;
+  text-shadow: 5px 5px 5px #0303039b;
+  font-family: "Monoton", cursive;
+  letter-spacing: 2px;
+}
+
+.container__scoreTable {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.1em;
+  margin-left: 3%;
+}
+.container__scoreTable #scoreTable-container {
+  width: 80%;
+  height: 35em;
+  border: 30px solid #aa1f215c;
+  border-radius: 16px;
+  border-style: double;
+  background-color: rgba(15, 14, 14, 0.463);
+  backdrop-filter: blur(6px);
+  box-shadow: 10px 10px 10px rgba(8, 8, 8, 0.322);
+  box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.657);
+  margin: 9% auto auto 9%;
+  overflow-y: auto;
+}
+.container__scoreTable #scoreTable-container div {
+  font-size: 1.6em;
+  color: #18054a;
+  font-family: Sarpanch;
+  border-radius: 10px;
+  background-color: rgba(44, 204, 137, 0.177);
+  padding: 5px;
+  text-align: center;
+}
+.container__scoreTable #scoreTable-container div:nth-child(2n) {
+  color: rgba(235, 228, 228, 0.663);
+  font-weight: normal;
+  background-color: rgba(162, 159, 159, 0);
+}

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"
+        integrity="sha512-odNmoc1XJy5x1TMVMdC7EMs3IVdItLPlCeL5vSUPN2llYKMJ2eByTTAIiiuqLg+GdNr9hF6z81p27DArRFKT7A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- material icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="./styles/dist/game.css">
+    <title>game</title>
+</head>
+
+<body onload="handleLoad()">
+    <div class="nav">
+        <img class="nav__logo" onclick="handleGoToStats()" src="./styles/img/xo.png" alt="xo.png">
+        <span class="nav__message" id="message">Waiting for oponent... </span>
+        <span class="nav__message" id="message">Waiting for oponent... </span>
+        <span class="nav__message" id="message">Waiting for oponent... </span>
+    </div>
+    <h1>Tic - Tac - Toe&nbsp;&nbsp;&nbsp; Buttle</h1>
+    <div class="gameStatus">
+        <div class="gameStatus--joinedGameRoom" id="joinedGameRoom">Privet room is empty</div>
+    </div>
+    <div class="container">
+        <div class="container__currentStatistic" id="gameRoot">
+            <div class="greeting" id="greeting"></div>
+            <div class="container__currentStatistic__clock" id="clock">
+                <span> 00 </span> : <span> 00 </span>
+            </div>
+            <div class="container__currentStatistic__opponentName" id="opponentName"></div>
+            <div class="container__currentStatistic__wins" id="wins">
+                <p><span style="color: #811618ad">0</span> : <span style="color: #811618ad">0</span></p>
+            </div>
+            <div class="container__currentStatistic__playingSymbol" id="playingSymbol"></div>
+            <div class="container__currentStatistic__timer" id="timer">
+                <span> 00 </span> : <span> 00 </span>
+            </div>
+        </div>
+        <div class="container__game">
+            <div class="container__game__board">
+                <div class="container__game__board__cell" id="cell0"></div>
+                <div class="container__game__board__cell" id="cell1"></div>
+                <div class="container__game__board__cell" id="cell2"></div>
+                <div class="container__game__board__cell" id="cell3"></div>
+                <div class="container__game__board__cell" id="cell4"></div>
+                <div class="container__game__board__cell" id="cell5"></div>
+                <div class="container__game__board__cell" id="cell6"></div>
+                <div class="container__game__board__cell" id="cell7"></div>
+                <div class="container__game__board__cell" id="cell8"></div>
+            </div>
+            <form class="container__game__gameRoomForm" id="gameRoomForm" onsubmit="handleJoinGameRoom(event)">
+                <form class="container__game__gameRoomForm" id="gameRoomForm">
+                    <input type="text" class="room" id="gameRoomInput" name="room" placeholder="Type a room">
+                    <button type="submit" id="gameRoomBtn">Join</button>
+                </form>
+        </div>
+        <div class="container__chat">
+            <div id="chat-container"></div>
+            <form class="container__chat__chatForm" id="chatForm">
+                <input type="text" id="chatMessageInput" placeholder="Type a message">
+                <button type="submit" id="chatBtn">Send</button>
+                <input type="text" id="chatRoomInput" placeholder="Type a room">
+                <button type="submit" id="chatRoomBtn">Join</button>
+            </form>
+        </div>
+    </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="./jquery.js"></script>
+    <script src="./dist/index.js"></script>
+</body>
+
+</html>

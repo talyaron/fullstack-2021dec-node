@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"
+        integrity="sha512-odNmoc1XJy5x1TMVMdC7EMs3IVdItLPlCeL5vSUPN2llYKMJ2eByTTAIiiuqLg+GdNr9hF6z81p27DArRFKT7A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="./styles/dist/statistic.css">
+    <title>statistic</title>
+</head>
+
+<body onload="loadStatistic()">
+    <div class="nav">
+        <img class="nav__logo" onclick="handleBackToGame()" src="./styles/img/xo.png" alt="xo.png">
+        <span class="nav__message" id="message">The &nbsp;&nbsp;&nbsp; highest &nbsp;&nbsp;&nbsp; score
+            &nbsp;&nbsp;&nbsp; here..</span>
+        <span class="nav__message" id="message">The &nbsp;&nbsp;&nbsp; highest &nbsp;&nbsp;&nbsp; score
+            &nbsp;&nbsp;&nbsp; here..</span>
+        <span class="nav__message" id="message">The &nbsp;&nbsp;&nbsp; highest &nbsp;&nbsp;&nbsp; score
+            &nbsp;&nbsp;&nbsp; here..</span>
+    </div>
+    <h1>Score &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Table</h1>
+    <div class="container">
+        <div class="container__scoreTable">
+            <div id="scoreTable-container"></div>
+        </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="./jquery.js"></script>
+    <script src="./dist/index.js"></script>
+</body>
+
+</html>
