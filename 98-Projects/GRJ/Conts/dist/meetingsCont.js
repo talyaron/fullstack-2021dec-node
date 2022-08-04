@@ -36,9 +36,9 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.handleDelete = exports.getUserMeting = void 0;
+exports.handleDelete = exports.getDoctorMeeting = exports.getUserMeeting = void 0;
 var AppoModel_1 = require("../Models/AppoModel");
-function getUserMeting(req, res) {
+function getUserMeeting(req, res) {
     return __awaiter(this, void 0, void 0, function () {
         var userId, userDB, error_1;
         return __generator(this, function (_a) {
@@ -47,7 +47,7 @@ function getUserMeting(req, res) {
                     _a.trys.push([0, 2, , 3]);
                     userId = req.body.userId;
                     console.log(userId);
-                    return [4 /*yield*/, AppoModel_1["default"].find({ _id: userId }).exec()];
+                    return [4 /*yield*/, AppoModel_1["default"].find({ userId: userId })];
                 case 1:
                     userDB = _a.sent();
                     console.log(userDB);
@@ -64,18 +64,47 @@ function getUserMeting(req, res) {
         });
     });
 }
-exports.getUserMeting = getUserMeting;
+exports.getUserMeeting = getUserMeeting;
+function getDoctorMeeting(req, res) {
+    return __awaiter(this, void 0, void 0, function () {
+        var DoctorName, userDB, newUserDB, error_2;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    DoctorName = req.body.DoctorName;
+                    console.log(DoctorName);
+                    return [4 /*yield*/, AppoModel_1["default"].find({ doctorId: DoctorName })];
+                case 1:
+                    userDB = _a.sent();
+                    console.log(userDB);
+                    if (!userDB)
+                        throw new Error("userId does not match");
+                    newUserDB = userDB.filter(function (userDB) { return userDB.userId != "empty"; });
+                    console.log(newUserDB);
+                    res.send(newUserDB);
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_2 = _a.sent();
+                    console.error(error_2);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
+}
+exports.getDoctorMeeting = getDoctorMeeting;
 function handleDelete(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var _a, date, time, doctor, AppoDB;
-        return __generator(this, function (_b) {
-            switch (_b.label) {
+        var appoId, AppoDB;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
                 case 0:
-                    _a = req.body, date = _a.date, time = _a.time, doctor = _a.doctor;
-                    console.log(date, time, doctor);
-                    return [4 /*yield*/, AppoModel_1["default"].find({ date: date, time: time, doctorId: doctor })];
+                    appoId = req.body.appoId;
+                    console.log(appoId, "1");
+                    return [4 /*yield*/, AppoModel_1["default"].findByIdAndRemove({ _id: appoId })];
                 case 1:
-                    AppoDB = _b.sent();
+                    AppoDB = _a.sent();
                     console.log(AppoDB);
                     if (!AppoDB)
                         throw new Error("couldn't be found");

@@ -22,36 +22,40 @@ async function searchMeetings() {
     // @ts-ignore
     const { data } = await axios.post("/meetings/get-meetings", { userId });
     const { error, userDB } = data;
-    console.log(data);
-    renderAll(userDB)
-    if(error) throw error 
-    }
-    
-   catch (error) {
+    console.log(data, "1");
+    renderAll(data)
+    if (error) throw error
+  }
+
+  catch (error) {
     console.log(error);
   }
 }
 
-function renderAll(userDB){
-  let html="";
+function renderAll(userDB) {
+  let html = "";
+  console.log(userDB)
   userDB.forEach(appo => {
-    html=`you have an appointment to ${appo.doctorType} doctor- dr. ${appo.doctorId}
+    html += `${appo.doctorType}</br>you have an appointment to ${appo.doctorType} doctor- dr. ${appo.doctorId}</br>
     on ${appo.time}
-    at ${appo.date}
-    <button onclick="handleDelete(appo)" type="deleteAppo">Delete</button>`
-    
+    at ${appo.date}</br>
+    <button id=${appo._id} onclick="handleDelete(event)" type="deleteAppo">Delete</button></br></br></br>`
+
   });
+  const root = document.querySelector('#root')
+  root.innerHTML = html;
 }
 
-async function handleDelete(appo){
+async function handleDelete(event) {
   const userId = getUserId();
-  const date= appo.date;
-  const time= appo.time;
-  const doctor= appo.doctorId
-  // @ts-ignore
-  const { data } = await axios.delete("/meetings/get-meetings", {  date, time, doctor });
-  const { error, success } = data;
-  console.log(data)
+  const appoId = event.path[0].id;
 
+  // @ts-ignore
+  const { data } = await axios.delete("/meetings/delete-meetings", { data: { appoId } });
+  const { error, AppoDB } = data;
+  console.log(data)
+  if(!AppoDB){
+    document.location.reload()
+  }
 }
 

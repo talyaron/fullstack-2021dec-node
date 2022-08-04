@@ -61,8 +61,8 @@ function searchMeetings() {
                 case 1:
                     data = (_a.sent()).data;
                     error = data.error, userDB = data.userDB;
-                    console.log(data);
-                    renderAll(userDB);
+                    console.log(data, "1");
+                    renderAll(data);
                     if (error)
                         throw error;
                     return [3 /*break*/, 3];
@@ -77,25 +77,29 @@ function searchMeetings() {
 }
 function renderAll(userDB) {
     var html = "";
+    console.log(userDB);
     userDB.forEach(function (appo) {
-        html = "you have an appointment to " + appo.doctorType + " doctor- dr. " + appo.doctorId + "\n    on " + appo.time + "\n    at " + appo.date + "\n    <button onclick=\"handleDelete(appo)\" type=\"deleteAppo\">Delete</button>";
+        html += appo.doctorType + "</br>you have an appointment to " + appo.doctorType + " doctor- dr. " + appo.doctorId + "</br>\n    on " + appo.time + "\n    at " + appo.date + "</br>\n    <button id=" + appo._id + " onclick=\"handleDelete(event)\" type=\"deleteAppo\">Delete</button></br></br></br>";
     });
+    var root = document.querySelector('#root');
+    root.innerHTML = html;
 }
-function handleDelete(appo) {
+function handleDelete(event) {
     return __awaiter(this, void 0, void 0, function () {
-        var userId, date, time, doctor, data, error, success;
+        var userId, appoId, data, error, AppoDB;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     userId = getUserId();
-                    date = appo.date;
-                    time = appo.time;
-                    doctor = appo.doctorId;
-                    return [4 /*yield*/, axios["delete"]("/meetings/get-meetings", { date: date, time: time, doctor: doctor })];
+                    appoId = event.path[0].id;
+                    return [4 /*yield*/, axios["delete"]("/meetings/delete-meetings", { data: { appoId: appoId } })];
                 case 1:
                     data = (_a.sent()).data;
-                    error = data.error, success = data.success;
+                    error = data.error, AppoDB = data.AppoDB;
                     console.log(data);
+                    if (!AppoDB) {
+                        document.location.reload();
+                    }
                     return [2 /*return*/];
             }
         });

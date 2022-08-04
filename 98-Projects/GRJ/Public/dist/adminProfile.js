@@ -47,70 +47,48 @@ function getUserId() {
         return false;
     }
 }
-function handleSelectDoctorType(ev) {
-    ev.preventDefault();
-    console.log(ev.target.id);
-    var doctorType = ev.target.id;
-    var searchBox = document.querySelector("#searchBox");
-    var html = " <br> <form onsubmit=\"handleSchedule(event)\">\n<input type=\"date\" name=\"date\" >\n<input type=\"hidden\" name=\"doctorType\" id=" + doctorType + ">\n<button type=\"submit\">Search</button>\n\n</form>";
-    searchBox.innerHTML = html;
-}
-function handleSchedule(ev) {
+function onscondPageLoad() {
     return __awaiter(this, void 0, void 0, function () {
-        var date, doctorType, data, filteredAppos;
+        var userId, data, error, userDB, name, email, nav, nav, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    ev.preventDefault();
-                    console.log();
-                    date = ev.target.date.value;
-                    doctorType = ev.target.doctorType.id;
-                    console.log(date, doctorType);
-                    return [4 /*yield*/, axios.post("/appo/getAppo", { doctorType: doctorType, date: date })];
+                    _a.trys.push([0, 2, , 3]);
+                    userId = getUserId();
+                    if (!userId)
+                        throw new Error("couldnt find user id in url");
+                    return [4 /*yield*/, axios.post("/profile/get-name", { userId: userId })];
                 case 1:
                     data = (_a.sent()).data;
-                    filteredAppos = data;
-                    console.log(filteredAppos);
-                    renderAppo(filteredAppos);
-                    return [2 /*return*/];
-            }
-        });
-    });
-}
-function renderAppo(apposArray) {
-    console.log(apposArray);
-    var filteredAppo = document.querySelector('#filteredAppo');
-    var html = "";
-    apposArray.forEach(function (appo) {
-        html += "<button id=\"" + appo._id + "\" onclick=\"handlePickAppoTime(event)\">" + appo.time + "</button>";
-        // html += `date: ${appo.date} <br>
-        // doctorType: ${appo.doctorType} <br>
-        // doctorId: ${appo.doctorId} <br>
-        // time: ${appo.time} <br>
-        // `
-    });
-    console.log(apposArray[0]);
-    filteredAppo.innerHTML = html;
-}
-function handlePickAppoTime(ev) {
-    var appoId = ev.path[0].id;
-    var userId = getUserId();
-    console.log(userId);
-    console.log(ev.path[0].id);
-    pairAppoToUser(userId, appoId);
-}
-function pairAppoToUser(userId, appoId) {
-    return __awaiter(this, void 0, void 0, function () {
-        var data, pairedAppo, error;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0: return [4 /*yield*/, axios.put("/appo/pairAppoToUser", { userId: userId, appoId: appoId })];
-                case 1:
-                    data = (_a.sent()).data;
-                    pairedAppo = data.pairedAppo, error = data.error;
+                    error = data.error, userDB = data.userDB;
                     console.log(data);
-                    return [2 /*return*/];
+                    if (error)
+                        throw error;
+                    name = data.name;
+                    email = data.email;
+                    if (name) {
+                        nav = document.querySelector("#Navbar");
+                        nav.innerHTML = "<img\n        src=\"https://toppng.com/uploads/preview/medical-symbol-11563573249uiwcpj6pbe.png\"/>\n        <h1>Hello " + name + "! What would you like to do?</h1>";
+                    }
+                    else {
+                        nav = document.querySelector("#Navbar");
+                        nav.innerHTML = "<img src=\"https://toppng.com/uploads/preview/medical-symbol-11563573249uiwcpj6pbe.png\"/>\n        <h1>Hello " + email + "! What would you like to do?</h1>";
+                    }
+                    renderAll(data);
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_1 = _a.sent();
+                    console.log(error_1);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
             }
         });
     });
+}
+function renderAll(data) {
+    var userDB = data;
+    var html = "";
+    html = "<div class=\"ScheduleApointmant\">\n     <button class=\"scheduleMeeting\">\n       <a href=\"./createAppo.html?userId=" + userDB._id + "\" alt=\"scheduleMeeting\">\n         <i id=\"calenderPlusIcon\" class=\"fas fa-calendar-plus\"></i>\n       </a>\n     </button>\n     <p>schedule a meeting</p>\n   </div>\n   <div>\n     <button class=\"scheduleMeeting\">\n       <a href=\"./adminMeetings.html?userId=" + userDB._id + "\" alt=\"my meetings\">\n       <i class=\"fas fa-calendar-check\"></i>\n     </a>\n     </button>\n     <p>check my meetings</p>\n   </div>\n   <div>\n     <button class=\"ContactADoctor\">\n       <a href=\"./Connect.html?userId=" + userDB._id + "\" alt=\"online Doctor\">\n         <i class=\"fas fa-comment-medical\"></i>\n       </a>\n       </button>\n       <p>online Doctor</p>\n   </div>\n   <div>\n   <button class=\"ContactADoctor\">\n   <a href=\"./createAppo.html?userId=" + userDB._id + "\" alt=\"online Doctor\">\n     <i class=\"fas fa-user-md\"></i>\n   </a>\n   <p>Scheduling the Doctors</p>\n  </button>\n  \n  </div>\n  \n  \n  ";
+    var actions = document.querySelector('#actions');
+    actions.innerHTML = html;
 }

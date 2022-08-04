@@ -13,7 +13,7 @@ form.addEventListener('submit', function (ev: any) {
 })
 
 socket.on('chat message', function (msg) {
-    const item = document.createElement('li');
+    const item = document.createElement('ul');
     item.textContent = msg;
     messages.appendChild(item)
     window.scrollTo(0, document.body.scrollHeight)

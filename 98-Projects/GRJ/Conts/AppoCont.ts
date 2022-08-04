@@ -12,7 +12,7 @@ export async function getAppo(req, res) {
         console.log(doctorType)
 
         const apposResult = await AppoModel.find({ date: date, doctorType: doctorType, userId:'empty' }).exec();
-
+         
         res.send(apposResult)
 
     } catch (error) {
@@ -33,6 +33,7 @@ export async function createAppo(req, res) {
         const newAppo = new AppoModel({ date, time, doctorType, doctorId, userId });
 
         const newAppoDB = await newAppo.save();
+        
 
         res.send({ success: true, appo: newAppoDB });
 

@@ -1,8 +1,10 @@
 import express from 'express';
-import { getUserMeting } from '../Conts/meetingsCont';
+import { getDoctorMeeting, getUserMeeting, handleDelete } from '../Conts/meetingsCont';
 const router = express.Router()
 
-.post('/get-meetings', getUserMeting)
+.post('/get-meetings', getUserMeeting)
+.delete('/delete-meetings', handleDelete)
+.post('/Doc-meetings', getDoctorMeeting)
 router
 
 

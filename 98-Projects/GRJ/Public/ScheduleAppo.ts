@@ -45,7 +45,7 @@ async function handleSchedule(ev) {
     const { data } = await axios.post("/appo/getAppo", { doctorType, date })
 
     const filteredAppos = data
-
+    console.log(filteredAppos)
     renderAppo(filteredAppos)
 
 }
