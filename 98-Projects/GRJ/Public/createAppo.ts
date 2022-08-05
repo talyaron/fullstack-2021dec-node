@@ -31,14 +31,62 @@ async function handleCreateAppo(ev) {
 }
 
 
+async function handleCreateNewDoctor(ev) {
+    ev.preventDefault()
+    try {
+        const firstName: string = ev.target.doctorFirstName.value;
+        const lastName: string = ev.target.doctorLastName.value;
+        const doctorId: number = ev.target.doctorId.value;
+        const doctorType: string = ev.target.doctorType.value;
+        console.log(firstName);
+        console.log(lastName);
+        console.log(doctorId);
+        console.log(doctorType);
+        if (!firstName || !lastName || !doctorId || !doctorType) throw new Error("One of the parameters is missing")
+        // @ts-ignore
+
+        const { data } = await axios.post('/doctors/createNewDoctor', { firstName, lastName, doctorId, doctorType })
+        console.log(data);
+
+        const { doctor, error } = data;
+        if (error) throw error;
+        console.log(doctor);
+
+      
+        console.log(`Dr.${doctor.lastName} is succesfuly created`)
+
+        
+        
+
+    } catch (error) {
+        console.error(error)
+    }
+
+}
+
 
 async function handleGetAllDoctors() {
 
-    const doctors: HTMLDivElement = document.querySelector("#doctorsBtns")
+    const doctorsBtns: HTMLDivElement = document.querySelector("#doctorsBtns")
 
-    // @ts-ignore
-    const { data } = await axios.get('/doctors/getAllDoctors')
 
+    try {
+
+        // @ts-ignore
+        const { data } = await axios.get('/doctors/getAllDoctors')
+
+        const allDoctors = data;
+
+        let html = ""
+        allDoctors.forEach(doctor => {
+            html += `<button id="${doctor.doctorId} onclick="handleSelectDoctor(event)">Dr. ${doctor.lastName} (${doctor.doctorType})</button> `
+
+        });
+        const doctorsBtns = html
+
+    } catch (error) {
+        console.error(error)
+    }
 
 
 }

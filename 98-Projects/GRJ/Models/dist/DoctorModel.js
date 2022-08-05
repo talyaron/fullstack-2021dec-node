@@ -3,14 +3,18 @@ exports.__esModule = true;
 var mongoose_1 = require("mongoose");
 var DoctorSchema = new mongoose_1["default"].Schema({
     doctorId: {
+        type: Number,
+        required: true
+    },
+    doctorType: {
         type: String,
         required: true
     },
-    type: {
+    firstName: {
         type: String,
         required: true
     },
-    name: {
+    lastName: {
         type: String,
         required: true
     }

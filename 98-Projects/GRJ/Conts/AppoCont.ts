@@ -37,6 +37,7 @@ export async function createAppo(req, res) {
 
         res.send({ success: true, appo: newAppoDB });
 
+        
 
     } catch (error) {
         res.send({ error: error.message });

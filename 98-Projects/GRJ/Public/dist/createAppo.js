@@ -72,17 +72,70 @@ function handleCreateAppo(ev) {
         });
     });
 }
-function handleGetAllDoctors() {
+function handleCreateNewDoctor(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var doctors, data;
+        var firstName, lastName, doctorId, doctorType, data, doctor, error, error_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    doctors = document.querySelector("#doctorsBtns");
-                    return [4 /*yield*/, axios.get('/doctors/getAllDoctors')];
+                    ev.preventDefault();
+                    _a.label = 1;
                 case 1:
+                    _a.trys.push([1, 3, , 4]);
+                    firstName = ev.target.doctorFirstName.value;
+                    lastName = ev.target.doctorLastName.value;
+                    doctorId = ev.target.doctorId.value;
+                    doctorType = ev.target.doctorType.value;
+                    console.log(firstName);
+                    console.log(lastName);
+                    console.log(doctorId);
+                    console.log(doctorType);
+                    if (!firstName || !lastName || !doctorId || !doctorType)
+                        throw new Error("One of the parameters is missing");
+                    return [4 /*yield*/, axios.post('/doctors/createNewDoctor', { firstName: firstName, lastName: lastName, doctorId: doctorId, doctorType: doctorType })];
+                case 2:
                     data = (_a.sent()).data;
-                    return [2 /*return*/];
+                    console.log(data);
+                    doctor = data.doctor, error = data.error;
+                    if (error)
+                        throw error;
+                    console.log(doctor);
+                    console.log("Dr." + doctor.lastName + " is succesfuly created");
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_2 = _a.sent();
+                    console.error(error_2);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
+}
+function handleGetAllDoctors() {
+    return __awaiter(this, void 0, void 0, function () {
+        var doctorsBtns, data, allDoctors, html_1, doctorsBtns_1, error_3;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    doctorsBtns = document.querySelector("#doctorsBtns");
+                    _a.label = 1;
+                case 1:
+                    _a.trys.push([1, 3, , 4]);
+                    return [4 /*yield*/, axios.get('/doctors/getAllDoctors')];
+                case 2:
+                    data = (_a.sent()).data;
+                    allDoctors = data;
+                    html_1 = "";
+                    allDoctors.forEach(function (doctor) {
+                        html_1 += "<button id=\"" + doctor.doctorId + " onclick=\"handleSelectDoctor(event)\">Dr. " + doctor.lastName + " (" + doctor.doctorType + ")</button> ";
+                    });
+                    doctorsBtns_1 = html_1;
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_3 = _a.sent();
+                    console.error(error_3);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
             }
         });
     });
