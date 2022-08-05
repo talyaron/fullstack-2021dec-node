@@ -38,18 +38,18 @@ export async function login(req, res) {
 
 export async function register(req, res) {
   try {
-    const { email, password, name } = req.body;
+    const { email, password, name} = req.body;
     const { error } = UserValidation.validate({ email, password });
 
     const salt = bcrypt.genSaltSync(saltRounds);
     const hash = bcrypt.hashSync(password, salt);
     console.log(hash);
-    // if (error) throw error;
+    if (error) throw error;
 
-    const userDB = await UserModel.create({ email, name, password: hash });
-    // await userDB.save();
+    const userDB = await UserModel.create({ email, name, password: hash});
+    await userDB.save();
 
-    // const role = userDB.role || "user";
+    // const role = userDB.role || "admin";
     // console.log(role);
 
     res.send({ register: true, userDB });

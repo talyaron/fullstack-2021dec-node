@@ -92,25 +92,29 @@ function register(req, res) {
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
-                    _b.trys.push([0, 2, , 3]);
+                    _b.trys.push([0, 3, , 4]);
                     _a = req.body, email = _a.email, password = _a.password, name = _a.name;
                     error = UserModel_1.UserValidation.validate({ email: email, password: password }).error;
                     salt = bcrypt_1["default"].genSaltSync(saltRounds);
                     hash = bcrypt_1["default"].hashSync(password, salt);
                     console.log(hash);
+                    if (error)
+                        throw error;
                     return [4 /*yield*/, UserModel_1["default"].create({ email: email, name: name, password: hash })];
                 case 1:
                     userDB = _b.sent();
-                    // await userDB.save();
-                    // const role = userDB.role || "user";
+                    return [4 /*yield*/, userDB.save()];
+                case 2:
+                    _b.sent();
+                    // const role = userDB.role || "admin";
                     // console.log(role);
                     res.send({ register: true, userDB: userDB });
-                    return [3 /*break*/, 3];
-                case 2:
+                    return [3 /*break*/, 4];
+                case 3:
                     error_2 = _b.sent();
                     res.send({ error: error_2.message });
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
             }
         });
     });
