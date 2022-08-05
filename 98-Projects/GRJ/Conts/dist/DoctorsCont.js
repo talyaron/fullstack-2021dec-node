@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.getAllDoctors = void 0;
+exports.createNewDoctor = exports.getAllDoctors = void 0;
 var DoctorModel_1 = require("../Models/DoctorModel");
 function getAllDoctors(req, res) {
     return __awaiter(this, void 0, void 0, function () {
@@ -53,3 +53,29 @@ function getAllDoctors(req, res) {
     });
 }
 exports.getAllDoctors = getAllDoctors;
+function createNewDoctor(req, res) {
+    return __awaiter(this, void 0, void 0, function () {
+        var _a, firstName, lastName, doctorId, doctorType, newDr, newDrDB, error_1;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
+                case 0:
+                    _b.trys.push([0, 2, , 3]);
+                    console.log("creating new dr");
+                    _a = req.body, firstName = _a.firstName, lastName = _a.lastName, doctorId = _a.doctorId, doctorType = _a.doctorType;
+                    console.log(firstName, lastName, doctorId, doctorType);
+                    newDr = new DoctorModel_1["default"]({ firstName: firstName, lastName: lastName, doctorId: doctorId, doctorType: doctorType });
+                    return [4 /*yield*/, newDr.save()];
+                case 1:
+                    newDrDB = _b.sent();
+                    res.send({ success: true, doctor: newDrDB });
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_1 = _b.sent();
+                    res.send({ error: error_1.message });
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
+}
+exports.createNewDoctor = createNewDoctor;

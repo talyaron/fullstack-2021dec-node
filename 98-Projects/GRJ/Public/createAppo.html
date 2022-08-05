@@ -52,11 +52,19 @@
     </div>
 
 <h1>Create Doctor</h1>
-<form onsubmit="handleCreateNewDoctor">
+<form onsubmit="handleCreateNewDoctor(event)">
+
 <input type="text" id="doctorFirstName" placeholder="Doctor's first name">
 <input type="text" id="doctorLastName" placeholder="Doctor's last name">
+<input type="number" id="doctorId" placeholder="doctor's ID">
+<select id="doctorType">
+  <option value="family">Family</option>
+  <option value="nurse">Nurse</option>
+  <option value="bloodTest">Blood test</option>
+  
+</select>
 
-
+<button type="submit">Create</button>
 
 </form>
 
