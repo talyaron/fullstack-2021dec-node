@@ -4,8 +4,7 @@ var mongoose_1 = require("mongoose");
 var DoctorSchema = new mongoose_1["default"].Schema({
     doctorId: {
         type: Number,
-        required: true,
-        unique: true
+        required: true
     },
     doctorType: {
         type: String,

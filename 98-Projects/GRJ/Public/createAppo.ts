@@ -52,9 +52,11 @@ async function handleCreateNewDoctor(ev) {
         if (error) throw error;
         console.log(doctor);
 
-
+      
         console.log(`Dr.${doctor.lastName} is succesfuly created`)
 
+        
+        
 
     } catch (error) {
         console.error(error)
@@ -64,11 +66,11 @@ async function handleCreateNewDoctor(ev) {
 
 
 async function handleGetAllDoctors() {
-  
+
     const doctorsBtns: HTMLDivElement = document.querySelector("#doctorsBtns")
 
+
     try {
-        console.log("Getting all doctors");
 
         // @ts-ignore
         const { data } = await axios.get('/doctors/getAllDoctors')
@@ -77,35 +79,14 @@ async function handleGetAllDoctors() {
 
         let html = ""
         allDoctors.forEach(doctor => {
-            html += `<button onclick="handleSelectDoctor(event)" id='${doctor.doctorId}'> Dr.${doctor.lastName} (${doctor.doctorType})</button>`
+            html += `<button id="${doctor.doctorId} onclick="handleSelectDoctor(event)">Dr. ${doctor.lastName} (${doctor.doctorType})</button> `
 
         });
-        doctorsBtns.innerHTML = html
+        const doctorsBtns = html
 
     } catch (error) {
         console.error(error)
     }
-
-}
-
-
-async function handleSelectDoctor(ev){
-ev.preventDefault();
-console.log(ev.target.id);
-const doctorId = ev.target.id
-const doctorsBtns: HTMLDivElement = document.querySelector("#doctorsBtns");
-doctorsBtns.innerHTML = ``
-
-
-doctorsBtns.innerHTML = `<form onsubmit="handleCreateDoctorWeeklySchedule(event)">
-
-
-
-
-
-<button type="submit">Create</button>
-
-</form>`
 
 
 }

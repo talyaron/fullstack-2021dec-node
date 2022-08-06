@@ -113,7 +113,7 @@ function handleCreateNewDoctor(ev) {
 }
 function handleGetAllDoctors() {
     return __awaiter(this, void 0, void 0, function () {
-        var doctorsBtns, data, allDoctors, html_1, error_3;
+        var doctorsBtns, data, allDoctors, html_1, doctorsBtns_1, error_3;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -121,16 +121,15 @@ function handleGetAllDoctors() {
                     _a.label = 1;
                 case 1:
                     _a.trys.push([1, 3, , 4]);
-                    console.log("Getting all doctors");
                     return [4 /*yield*/, axios.get('/doctors/getAllDoctors')];
                 case 2:
                     data = (_a.sent()).data;
                     allDoctors = data;
                     html_1 = "";
                     allDoctors.forEach(function (doctor) {
-                        html_1 += "<button onclick=\"handleSelectDoctor(event)\" id='" + doctor.doctorId + "'> Dr." + doctor.lastName + " (" + doctor.doctorType + ")</button>";
+                        html_1 += "<button id=\"" + doctor.doctorId + " onclick=\"handleSelectDoctor(event)\">Dr. " + doctor.lastName + " (" + doctor.doctorType + ")</button> ";
                     });
-                    doctorsBtns.innerHTML = html_1;
+                    doctorsBtns_1 = html_1;
                     return [3 /*break*/, 4];
                 case 3:
                     error_3 = _a.sent();
@@ -138,20 +137,6 @@ function handleGetAllDoctors() {
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
-        });
-    });
-}
-function handleSelectDoctor(ev) {
-    return __awaiter(this, void 0, void 0, function () {
-        var doctorId, doctorsBtns;
-        return __generator(this, function (_a) {
-            ev.preventDefault();
-            console.log(ev.target.id);
-            doctorId = ev.target.id;
-            doctorsBtns = document.querySelector("#doctorsBtns");
-            doctorsBtns.innerHTML = "";
-            doctorsBtns.innerHTML = "<form onsubmit=\"handleCreateDoctorWeeklySchedule(event)\">\n\n\n\n\n\n<button type=\"submit\">Create</button>\n\n</form>";
-            return [2 /*return*/];
         });
     });
 }

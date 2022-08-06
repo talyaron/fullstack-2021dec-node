@@ -1,63 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create Appoitments</title>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.0.0-alpha.1/axios.min.js"
+      integrity="sha512-xIPqqrfvUAc/Cspuj7Bq0UtHNo/5qkdyngx6Vwt+tmbvTLDszzXM0G6c91LXmGrRx8KEPulT+AfOOez+TeVylg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script
+      src="https://kit.fontawesome.com/a076d05399.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="dist/style.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Create Appoitments</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.0.0-alpha.1/axios.min.js"
-    integrity="sha512-xIPqqrfvUAc/Cspuj7Bq0UtHNo/5qkdyngx6Vwt+tmbvTLDszzXM0G6c91LXmGrRx8KEPulT+AfOOez+TeVylg=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="dist/style.css" />
-</head>
+  <body>
 
-<body>
+    <h1 class="h1">Create single Appo</h1>
+    <div class="formsDiv">
+      <form class="form" onsubmit="handleCreateAppo(event)">
+        <input
+          class="form__input"
+          type="date"
+          name="date"
+          placeholder="When?"
+        />
+        <input
+          class="form__input"
+          type="time"
+          name="time"
+          placeholder="Select a time"
+        />
+        <select class="form__input" id="doctorType" name="doctorType">
+          <option value="family">Family</option>
+          <option value="bloodTest">Blood test</option>
+          <option value="nurse">Nurse</option>
+          <input
+            class="form__input"
+            type="text"
+            name="doctorId"
+            placeholder="Doctor's name"
+          />
+        </select>
 
-  <h1 class="h1">Create single Appo</h1>
-  <div class="formsDiv">
-    <form class="form" onsubmit="handleCreateAppo(event)">
-      <input class="form__input" type="date" name="date" placeholder="When?" />
-      <input class="form__input" type="time" name="time" placeholder="Select a time" />
-      <select class="form__input" id="doctorType" name="doctorType">
-        <option value="family">Family</option>
-        <option value="bloodTest">Blood test</option>
-        <option value="nurse">Nurse</option>
-        <input class="form__input" type="text" name="doctorId" placeholder="Doctor's name" />
-      </select>
+        <button class="button" type="submit">Create</button>
+      </form>
+    </div>
 
-      <button class="button" type="submit">Create</button>
-    </form>
-  </div>
+<h1>Create Doctor</h1>
+<form onsubmit="handleCreateNewDoctor(event)">
 
-  <h1>Create Doctor</h1>
-  <form onsubmit="handleCreateNewDoctor(event)">
+<input type="text" id="doctorFirstName" placeholder="Doctor's first name">
+<input type="text" id="doctorLastName" placeholder="Doctor's last name">
+<input type="number" id="doctorId" placeholder="doctor's ID">
+<select id="doctorType">
+  <option value="family">Family</option>
+  <option value="nurse">Nurse</option>
+  <option value="bloodTest">Blood test</option>
+  
+</select>
 
-    <input type="text" id="doctorFirstName" placeholder="Doctor's first name">
-    <input type="text" id="doctorLastName" placeholder="Doctor's last name">
-    <input type="number" id="doctorId" placeholder="doctor's ID">
-    <select id="doctorType">
-      <option value="family">Family</option>
-      <option value="nurse">Nurse</option>
-      <option value="bloodTest">Blood test</option>
+<button type="submit">Create</button>
 
-    </select>
+</form>
 
-    <button type="submit">Create</button>
+    <h1 class="h1">Create weekly Luz</h1>
+   
+<form onsubmit="handleCreateWorkSchedule(event)">
 
-  </form>
+    <button onclick="handleGetAllDoctors()">Load all doctors</button>
 
-  <h1 class="h1">Create weekly Luz</h1>
+    <div id="doctorsBtns"></div>
 
 
-  <button onclick="handleGetAllDoctors()">Load all doctors</button>
+</form>
 
 
-  <div id="doctorsBtns"></div>
 
-
-  <script src="./dist/createAppo.js"></script>
-</body>
-
+    <script src="./dist/createAppo.js"></script>
+  </body>
 </html>

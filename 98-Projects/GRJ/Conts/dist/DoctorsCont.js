@@ -47,7 +47,6 @@ function getAllDoctors(req, res) {
                 case 1:
                     allDoctors = _a.sent();
                     console.log(allDoctors);
-                    res.send(allDoctors);
                     return [2 /*return*/];
             }
         });

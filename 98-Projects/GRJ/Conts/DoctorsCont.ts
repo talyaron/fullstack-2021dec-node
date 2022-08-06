@@ -6,7 +6,6 @@ export async function getAllDoctors(req, res) {
     const allDoctors = await DoctorModel.find()
 
     console.log(allDoctors);
-    res.send(allDoctors)
 
 }
 
@@ -18,7 +17,6 @@ export async function createNewDoctor(req, res) {
         const { firstName, lastName, doctorId, doctorType } = req.body;
         console.log(firstName, lastName, doctorId, doctorType)
 
-        
         // const checkIfExist = await DoctorModel.find({doctorId: drId})
         const newDr = new DoctorModel({ firstName, lastName, doctorId, doctorType });
 
