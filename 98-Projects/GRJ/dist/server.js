@@ -10,7 +10,7 @@ const http_1 = require("http");
 const app = express_1.default();
 const httpServer = http_1.createServer(app);
 const io = new socket_io_1.Server(httpServer, { /* options */});
-const port = 3000;
+const port = 3001;
 const cookieParser = require('cookie-parser');
 require('dotenv').config();
 app.use(cookieParser());

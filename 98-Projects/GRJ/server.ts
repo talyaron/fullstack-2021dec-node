@@ -5,7 +5,7 @@ import { createServer } from "http";
 const app = express();
 const httpServer = createServer(app);
 const io = new Server(httpServer, { /* options */ });
-const port = 3000;
+const port = 3001;
 const cookieParser = require('cookie-parser')
 require('dotenv').config()
 
