@@ -2,30 +2,10 @@ body {
   background-color:lightskyblue;
 }
 
-.navBar{
-  margin-top: 5%;
-}
-
 //profile.html- css
 
-#Navbar {
-  display: flex;
-  width: 100vw;
-  height: 10vh;
-  text-align: center;
-  margin-top: 10px;
-  position: fixed;
-  top: 0%;
-  left: 0%;
-  font-size: large;
-  color: black;
-  img {
-    height: 50px;
-    width: 40px;
-  }
-  h1 {
-    margin-left: 27vw;
-  }
+.navBar {
+  margin-top: 5%;
 }
 
 #actions {

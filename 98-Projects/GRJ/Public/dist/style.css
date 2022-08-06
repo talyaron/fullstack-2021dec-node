@@ -6,26 +6,6 @@ body {
   margin-top: 5%;
 }
 
-#Navbar {
-  display: flex;
-  width: 100vw;
-  height: 10vh;
-  text-align: center;
-  margin-top: 10px;
-  position: fixed;
-  top: 0%;
-  left: 0%;
-  font-size: large;
-  color: black;
-}
-#Navbar img {
-  height: 50px;
-  width: 40px;
-}
-#Navbar h1 {
-  margin-left: 27vw;
-}
-
 #actions {
   padding: 100px;
   color: beige;
