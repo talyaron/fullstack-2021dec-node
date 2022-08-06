@@ -1,72 +1,44 @@
 body {
-  width: 90%;
-  height: 100%;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  background-color: whitesmoke;
-  padding-top: 56px;
-  background-image: url("../Images/Gym1.jpg");
-  background-repeat: no-repeat;
+  background-image: url("../Images/bar_refaeli.jpg");
   background-size: cover;
-  min-height: 500px;
-  height: 100vh;
-  color: #80001e;
 }
-body form {
-  width: 200em;
-  max-height: 600px;
-  display: flex;
-  flex-direction: column;
-  background-color: white;
-  padding: 44px;
+body .userEnter {
   margin: auto;
-  border-radius: 20px;
-  box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
-  margin: 25px;
-  margin-top: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
-body .coachAddLessonForm {
-  width: 30em;
-  max-height: 30em;
+body .userEnter__userReg .titleSignUp {
+  color: aquamarine;
 }
-body input {
-  height: 2.5em;
-  margin-bottom: 1em;
-  padding: 8px 24px;
-  border-radius: 0.6em;
-  border: 1px solid lightgray;
-  font-size: 15px;
+body .userEnter__userReg .formReg {
+  padding-right: 0.3rem;
 }
-body input:nth-last-child(3) {
-  margin-bottom: 2em;
+body .userEnter__userReg .formReg input {
+  margin: 0.3rem;
 }
-body input:focus {
-  border-color: #613dc1;
-  outline: none;
+body .userEnter__userLogin .titleLogin {
+  color: aquamarine;
 }
-body input::-webkit-outer-spin-button,
-body input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+body .userEnter__userLogin .formLogin {
+  padding-left: 0.3rem;
 }
-body #MoveToCartBtn {
-  margin-right: 300px;
+body .userEnter__userLogin .formLogin input {
+  margin: 0.3rem;
 }
-body .title {
-  font-weight: bolder;
-  color: #f60a0a;
-  top: 250px;
+body .titleCoach {
+  color: blue;
 }
-body .title--signUp {
-  position: absolute;
-  left: 50px;
+body .formCoach {
+  text-align: center;
 }
-body .title--login {
-  position: absolute;
-  right: 900px;
+body .formCoach .coachAddLessonForm input {
+  margin: 0.4rem;
 }
-body .title--coach {
-  position: absolute;
-  right: 75px;
+body #root1 {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  width: 100vw;
+  margin: 0.5rem;
 }

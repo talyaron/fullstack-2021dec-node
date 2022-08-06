@@ -9,19 +9,21 @@
     <link rel="stylesheet" href="./dist/style.css">
 </head>
 <body onload="handleLoadCoach()">
-    <div class="formDiv">
+    <div class="formCoach">
     <form class="coachAddLessonForm" onsubmit="handleAddEvent(event)">
     <input type="text" name="lesson" placeholder="lesson">
-    <input type="text" name="day" placeholder="day">
-    <input type="datetime-local" name="dateStart">
-    <input type="datetime-local" name="dateEnd">
+    <input type="text" name="day" placeholder="day"> <br>
+    <label for="dateS">start date:</label>
+    <input type="date" name="dateStart" id="dateS">
+    <label for="dateE">end date:</label>
+    <input type="date" name="dateEnd" id="dateE">
     <input type="number" name="price" placeholder="price">
-    <input type="text" name="coach" placeholder="coach">
+    <input type="text" name="coach" placeholder="coach"> <br>
     <input type="submit" value="add lesson">
     
     </form>
 </div>
-    <div id="root"></div>
+    <div id="root1"></div>
     <script src="./dist/events.js"></script>
     <div id="totalToPay"></div>
 

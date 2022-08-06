@@ -10,24 +10,32 @@
     <link rel="stylesheet" href="./dist/style.css">
 </head>
 <body>
-    <h1 class="title title--signUp">SIGN - UP:</h1>
-
+    <div class="userEnter">
+        <div class="userEnter__userReg">
+    <h4 class="titleSignUp">SIGN - UP:</h4>
+            <div class="formReg">
     <form onsubmit="handleRegister(event)">
-    <input type="email" name="email" placeholder="email">
-    <input type="password" name="password" placeholder="password">
-    <input type="submit" value="Sign Up">
+    <input type="email" name="email" placeholder="email"> 
+    <input type="password" name="password" placeholder="password"> 
+     <input type="submit" value="Sign Up">
     </form>
-
-    <h1 class="title title--login">Already registered? Log in here:👇🏼</h1>
-    
+            </div>
+        </div> 
+        <div class="userEnter__userLogin">
+    <p class="titleLogin">Already registered? <br> Log in here:👇🏼</p>
+            <div class="formLogin">
     <form onsubmit="handleLogin(event)">
-        <input type="email" name="email" placeholder="email">
-        <input type="password" name="password" placeholder="password">
-        <input type="submit" value="Login">
+        <input type="email" name="email" placeholder="email"> 
+        <input type="password" name="password" placeholder="password"> 
+         <input type="submit" value="Login">
     </form>
+            </div>
+        </div> 
+    </div>
+
     <br><br>
 
-    <h1 class="title title--coach">If you are a coach please enter here:👇🏼</h1>
+    <h1 class="titleCoach">If you are a coach please enter here:👇🏼</h1>
     <form id="coachLoginForm" onsubmit="handleCoachLogin(event)">
         <input type="email" name="email" placeholder="email">
         <input type="password" name="password" placeholder="password">

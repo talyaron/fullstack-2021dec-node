@@ -1,3 +1,4 @@
+"use strict";
 // import { stringify } from "querystring";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
@@ -35,6 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+exports.__esModule = true;
 // import { json } from "stream/consumers";
 function handleLoadCoach() {
     return __awaiter(this, void 0, void 0, function () {
@@ -62,13 +64,16 @@ function renderEvent(events) {
     try {
         var html_1 = '';
         events.forEach(function (event) {
+            // const date = stringify (event.dateStart)
+            // const userTimezoneOffset = date.getTimezoneOffset() * 60000;
+            // const date1 = new Date(date.getTime() - userTimezoneOffset);
             html_1 +=
-                "<div class=\"event1\">\n            <h2>Lesson:" + event.lesson + "</h2>\n            <h2>Start At:" + event.dateStart + "</h2>\n            <h2>End At:" + event.dateEnd + "</h2>\n            <h2>Day:" + event.day + "</h2>\n            <h2>Price:" + event.price + "</h2>\n            <h2>Coach:" + event.coach + "</h2>\n            <button onclick=\"deleteLesson('" + event._id + "')\">delete lesson</button>\n            </div>";
+                "<div class=\"event1\">\n            <p>Lesson:" + event.lesson + "</p>\n            <p>Start At:" + event.dateStart + "</p>\n            <p>End At:" + event.dateEnd + "</p>\n            <p>Day:" + event.day + "</p>\n            <p>Price:" + event.price + "</p>\n            <p>Coach:" + event.coach + "</p>\n            <button onclick=\"deleteLesson('" + event._id + "')\">delete lesson</button>\n            </div>";
         });
-        var root = document.querySelector('#root');
-        if (!root)
+        var root1 = document.querySelector('#root1');
+        if (!root1)
             throw new Error('No root !');
-        root.innerHTML = html_1;
+        root1.innerHTML = html_1;
     }
     catch (error) {
         console.log(error);
@@ -152,10 +157,10 @@ function renderForCustomer(events) {
             html_2 +=
                 "<div class=\"event1\">\n        <h2>Lesson:" + event.lesson + "</h2>\n        <h2>start at:" + event.dateStart + "</h2>\n        <h2>end at:" + event.dateEnd + "</h2>\n        <h2>day:" + event.day + "</h2>\n        <h2>Price:" + event.price + "</h2>\n        <h2>Coach:" + event.coach + "</h2>\n        <button id=\"addToCartBtn\" onclick=\"addToCart('" + event._id + "')\">Add Lesson to My Cart</button>\n        </div>";
         });
-        var root = document.querySelector('#root');
-        if (!root)
+        var root2 = document.querySelector('#root2');
+        if (!root2)
             throw new Error('No root !');
-        root.innerHTML = html_2;
+        root2.innerHTML = html_2;
     }
     catch (error) {
         console.log(error);

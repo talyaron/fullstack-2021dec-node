@@ -1,5 +1,7 @@
 // import { stringify } from "querystring";
 
+import { stringify } from "querystring";
+
 // import { json } from "stream/consumers";
 
 async function handleLoadCoach() {
@@ -22,21 +24,25 @@ function renderEvent(events){
     try {
         let html = '';
         events.forEach(event => {
+            // const date = stringify (event.dateStart)
+            // const userTimezoneOffset = date.getTimezoneOffset() * 60000;
+            // const date1 = new Date(date.getTime() - userTimezoneOffset);
+
             html += 
             `<div class="event1">
-            <h2>Lesson:${event.lesson}</h2>
-            <h2>Start At:${event.dateStart}</h2>
-            <h2>End At:${event.dateEnd}</h2>
-            <h2>Day:${event.day}</h2>
-            <h2>Price:${event.price}</h2>
-            <h2>Coach:${event.coach}</h2>
+            <p>Lesson:${event.lesson}</p>
+            <p>Start At:${event.dateStart}</p>
+            <p>End At:${event.dateEnd}</p>
+            <p>Day:${event.day}</p>
+            <p>Price:${event.price}</p>
+            <p>Coach:${event.coach}</p>
             <button onclick="deleteLesson('${event._id}')">delete lesson</button>
             </div>`      
         });
         
-        const root = document.querySelector('#root');
-        if(!root) throw new Error ('No root !')
-        root.innerHTML = html;
+        const root1 = document.querySelector('#root1');
+        if(!root1) throw new Error ('No root !')
+        root1.innerHTML = html;
       
     }
      catch (error) {
@@ -109,9 +115,9 @@ function renderForCustomer(events){
         <button id="addToCartBtn" onclick="addToCart('${event._id}')">Add Lesson to My Cart</button>
         </div>`      
     });
-    const root = document.querySelector('#root');
-    if(!root) throw new Error ('No root !')
-    root.innerHTML = html;
+    const root2 = document.querySelector('#root2');
+    if(!root2) throw new Error ('No root !')
+    root2.innerHTML = html;
   
 } catch (error) {
     console.log(error);
