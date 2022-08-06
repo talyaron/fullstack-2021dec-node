@@ -68,11 +68,11 @@ function onscondPageLoad() {
                     email = data.email;
                     if (name) {
                         nav = document.querySelector("#Navbar");
-                        nav.innerHTML = "<img\n      <h1>Hello " + name + "! What would you like to do?</h1>";
+                        nav.innerHTML = "\n      <h1>Hello " + name + "! What would you like to do?</h1>";
                     }
                     else {
                         nav = document.querySelector("#Navbar");
-                        nav.innerHTML = "<h1>Hello " + email + "! What would you like to do?</h1>";
+                        nav.innerHTML = "<h1> Hello " + email + "! What would you like to do?</h1>";
                     }
                     renderAll(data);
                     return [3 /*break*/, 3];
