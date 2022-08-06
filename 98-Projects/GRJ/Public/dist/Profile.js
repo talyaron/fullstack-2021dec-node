@@ -68,11 +68,11 @@ function onscondPageLoad() {
                     email = data.email;
                     if (name) {
                         nav = document.querySelector("#Navbar");
-                        nav.innerHTML = "<img\n      src=\"https://toppng.com/uploads/preview/medical-symbol-11563573249uiwcpj6pbe.png\"/>\n      <h1>Hello " + name + "! What would you like to do?</h1>";
+                        nav.innerHTML = "\n      <h1>Hello " + name + "! What would you like to do?</h1>";
                     }
                     else {
                         nav = document.querySelector("#Navbar");
-                        nav.innerHTML = "<img src=\"https://toppng.com/uploads/preview/medical-symbol-11563573249uiwcpj6pbe.png\"/>\n      <h1>Hello " + email + "! What would you like to do?</h1>";
+                        nav.innerHTML = "\n      <h1>Hello " + email + "! What would you like to do?</h1>";
                     }
                     renderAll(data);
                     return [3 /*break*/, 3];
@@ -88,7 +88,7 @@ function onscondPageLoad() {
 function renderAll(data) {
     var userDB = data;
     var html = "";
-    html = "<div class=\"ScheduleApointmant\">\n   <button class=\"scheduleMeeting\">\n     <a href=\"./ScheduleAppo.html?userId=" + userDB._id + "\" alt=\"scheduleMeeting\">\n       <i id=\"calenderPlusIcon\" class=\"fas fa-calendar-plus\"></i>\n     </a>\n   </button>\n   <p>schedule a meeting</p>\n </div>\n <div>\n   <button class=\"scheduleMeeting\">\n     <a href=\"./myMeetings.html?userId=" + userDB._id + "\" alt=\"my meetings\">\n     <i class=\"fas fa-calendar-check\"></i>\n   </a>\n   </button>\n   <p>check my meetings</p>\n </div>\n <div>\n   <button class=\"ContactADoctor\">\n     <a href=\"./Connect.html?userId=" + userDB._id + "\" alt=\"online Doctor\">\n       <i class=\"fas fa-comment-medical\"></i>\n     </a>\n     </button>\n     <p>online Doctor</p>\n </div>\n <div>\n <button class=\"ContactADoctor\">\n <a href=\"./createAppo.html?userId=" + userDB._id + "\" alt=\"online Doctor\">\n   <i class=\"fas fa-user-md\"></i>\n </a>\n <p>Scheduling the Doctors</p>\n</button>\n\n</div>\n\n\n";
+    html = "<div class=\"ScheduleApointmant\">\n   <button class=\"scheduleMeeting\">\n     <a href=\"./ScheduleAppo.html?userId=" + userDB._id + "\" alt=\"scheduleMeeting\">\n     \n     </a>\n   </button>\n   <p>schedule a meeting</p>\n </div>\n <div>\n   <button class=\"scheduleMeeting\">\n     <a href=\"./myMeetings.html?userId=" + userDB._id + "\" alt=\"my meetings\">\n     <i class=\"fas fa-calendar-check\"></i>\n   </a>\n   </button>\n   <p>check my meetings</p>\n </div>\n <div>\n   <button class=\"ContactADoctor\">\n     <a href=\"./Connect.html?userId=" + userDB._id + "\" alt=\"online Doctor\">\n       <i class=\"fas fa-comment-medical\"></i>\n     </a>\n     </button>\n     <p>online Doctor</p>\n </div>\n <div>\n <button class=\"ContactADoctor\">\n <a href=\"./createAppo.html?userId=" + userDB._id + "\" alt=\"online Doctor\">\n   <i class=\"fas fa-user-md\"></i>\n </a>\n <p>Scheduling the Doctors</p>\n</button>\n\n</div>\n\n\n";
     var actions = document.querySelector('#actions');
     actions.innerHTML = html;
 }

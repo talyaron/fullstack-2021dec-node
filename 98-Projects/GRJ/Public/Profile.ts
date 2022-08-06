@@ -30,12 +30,11 @@ async function onscondPageLoad() {
     const email = data.email
     if (name) {
       const nav = document.querySelector("#Navbar");
-      nav.innerHTML = `<img
-      src="https://toppng.com/uploads/preview/medical-symbol-11563573249uiwcpj6pbe.png"/>
+      nav.innerHTML = `
       <h1>Hello ${name}! What would you like to do?</h1>`;
     } else {
       const nav = document.querySelector("#Navbar");
-      nav.innerHTML = `<img src="https://toppng.com/uploads/preview/medical-symbol-11563573249uiwcpj6pbe.png"/>
+      nav.innerHTML = `
       <h1>Hello ${email}! What would you like to do?</h1>`;
     }
     renderAll(data)
@@ -50,7 +49,7 @@ function renderAll(data) {
   html = `<div class="ScheduleApointmant">
    <button class="scheduleMeeting">
      <a href="./ScheduleAppo.html?userId=${userDB._id}" alt="scheduleMeeting">
-       <i id="calenderPlusIcon" class="fas fa-calendar-plus"></i>
+     
      </a>
    </button>
    <p>schedule a meeting</p>
