@@ -26,6 +26,7 @@ var lessonsSchema = new mongoose_1["default"].Schema({
     day: String,
     dateStart: Date,
     dateEnd: Date,
+    hour: String,
     price: Number,
     coach: String
 });
@@ -34,6 +35,7 @@ var cartSchema = new mongoose_1["default"].Schema({
     day: String,
     dateStart: Date,
     dateEnd: Date,
+    hour: String,
     price: Number,
     user: String
 });

@@ -69,11 +69,13 @@ async function handleAddEvent(ev:any) {
         const day = ev.target.day.value;
         const dateStart = ev.target.dateStart.value;
         const dateEnd = ev.target.dateEnd.value;
+        const hour = ev.target.hour.value;
+
         const price = ev.target.price.value;
         const coach = ev.target.coach.value;
 
         //@ts-ignore
-        const {data}  = await axios.post('/events/add-events', {lesson,day,dateStart,dateEnd,price,coach})
+        const {data}  = await axios.post('/events/add-events', {lesson,day,dateStart,dateEnd,hour,price,coach})
         console.log(data);
 
         // renderEvent(data)
@@ -109,6 +111,8 @@ function renderForCustomer(events){
         <h2>Lesson:${event.lesson}</h2>
         <h2>start at:${event.dateStart}</h2>
         <h2>end at:${event.dateEnd}</h2>
+        <h2>Time:${event.hour}</h2>
+
         <h2>day:${event.day}</h2>
         <h2>Price:${event.price}</h2>
         <h2>Coach:${event.coach}</h2>
@@ -173,6 +177,8 @@ async function renderCart(){
         <h3>Lesson:${event.lesson}</h3>
         <h2>start at:${event.dateStart}</h2>
         <h2>end at:${event.dateEnd}</h2>
+        <h2>Time:${event.hour}</h2>
+
         <h2>day:${event.day}</h2>
         <h3>Price:${event.price}</h3>
         <button onclick="deleteLessonFromCart('${event._id}')">delete lesson</button>

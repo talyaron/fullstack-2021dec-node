@@ -40,15 +40,15 @@ exports.deleteFromCart = exports.deleteForCoach = exports.cartByUser = exports.a
 var model_1 = require("../model/model");
 function addEvents(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var _a, lesson, day, dateStart, dateEnd, price, coach, error_1;
+        var _a, lesson, day, dateStart, dateEnd, hour, price, coach, error_1;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
                     _b.trys.push([0, 2, , 3]);
-                    _a = req.body, lesson = _a.lesson, day = _a.day, dateStart = _a.dateStart, dateEnd = _a.dateEnd, price = _a.price, coach = _a.coach;
-                    return [4 /*yield*/, model_1.lessonsModel.create({ lesson: lesson, day: day, dateStart: dateStart, dateEnd: dateEnd, price: price, coach: coach })];
+                    _a = req.body, lesson = _a.lesson, day = _a.day, dateStart = _a.dateStart, dateEnd = _a.dateEnd, hour = _a.hour, price = _a.price, coach = _a.coach;
+                    return [4 /*yield*/, model_1.lessonsModel.create({ lesson: lesson, day: day, dateStart: dateStart, dateEnd: dateEnd, hour: hour, price: price, coach: coach })];
                 case 1:
-                    _b.sent();
+                    _b.sent(); //
                     res.send({ ok: true });
                     return [3 /*break*/, 3];
                 case 2:
@@ -85,7 +85,7 @@ function eventList(req, res) {
 exports.eventList = eventList;
 function addToCart(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var _id, Cart, lesson, dateStart, dateEnd, day, price, user, error_3;
+        var _id, Cart, lesson, dateStart, dateEnd, hour, day, price, user, error_3;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -97,10 +97,11 @@ function addToCart(req, res) {
                     lesson = Cart.lesson;
                     dateStart = Cart.dateStart;
                     dateEnd = Cart.dateEnd;
+                    hour = Cart.hour;
                     day = Cart.day;
                     price = Cart.price;
                     user = req.cookies.user;
-                    return [4 /*yield*/, model_1.cartModel.create({ lesson: lesson, day: day, dateStart: dateStart, dateEnd: dateEnd, price: price, user: user })];
+                    return [4 /*yield*/, model_1.cartModel.create({ lesson: lesson, day: day, dateStart: dateStart, dateEnd: dateEnd, hour: hour, price: price, user: user })];
                 case 2:
                     _a.sent();
                     res.send({ ok: true });
