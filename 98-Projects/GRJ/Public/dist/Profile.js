@@ -68,7 +68,7 @@ function onscondPageLoad() {
                     email = data.email;
                     if (name) {
                         nav = document.querySelector("#Navbar");
-                        nav.innerHTML = "<img\n      src=\"https://toppng.com/uploads/preview/medical-symbol-11563573249uiwcpj6pbe.png\"/>\n      <h1>Hello " + name + "! What would you like to do?</h1>";
+                        nav.innerHTML = "<img\n      <h1>Hello " + name + "! What would you like to do?</h1>";
                     }
                     else {
                         nav = document.querySelector("#Navbar");

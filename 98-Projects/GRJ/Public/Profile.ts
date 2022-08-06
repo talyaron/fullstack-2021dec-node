@@ -31,7 +31,6 @@ async function onscondPageLoad() {
     if (name) {
       const nav = document.querySelector("#Navbar");
       nav.innerHTML = `<img
-      src="https://toppng.com/uploads/preview/medical-symbol-11563573249uiwcpj6pbe.png"/>
       <h1>Hello ${name}! What would you like to do?</h1>`;
     } else {
       const nav = document.querySelector("#Navbar");
