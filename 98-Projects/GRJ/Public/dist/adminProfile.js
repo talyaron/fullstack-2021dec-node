@@ -72,7 +72,7 @@ function onscondPageLoad() {
                     }
                     else {
                         nav = document.querySelector("#Navbar");
-                        nav.innerHTML = "<img src=\"https://toppng.com/uploads/preview/medical-symbol-11563573249uiwcpj6pbe.png\"/>\n        <h1>Hello " + email + "! What would you like to do?</h1>";
+                        nav.innerHTML = "<h1>Hello " + email + "! What would you like to do?</h1>";
                     }
                     renderAll(data);
                     return [3 /*break*/, 3];

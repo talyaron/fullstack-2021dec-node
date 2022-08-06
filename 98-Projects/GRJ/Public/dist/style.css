@@ -2,8 +2,10 @@ body {
   background-color: lightskyblue;
 }
 
-.navBar {
+#Navbar {
   margin-top: 5%;
+  display: flex;
+  justify-content: center;
 }
 
 #actions {
@@ -26,7 +28,7 @@ body {
 }
 
 .scheduleMeeting {
-  background-color: #f54444;
+  background-color: lightskyblue;
   border: none;
 }
 
@@ -36,7 +38,7 @@ body {
 }
 
 .ContactADoctor {
-  background-color: #f54444;
+  background-color: lightskyblue;
   border: none;
 }
 

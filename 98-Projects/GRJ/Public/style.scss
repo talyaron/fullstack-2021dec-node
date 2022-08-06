@@ -4,8 +4,10 @@ body {
 
 //profile.html- css
 
-.navBar {
+#Navbar {
   margin-top: 5%;
+  display: flex;
+  justify-content: center;
 }
 
 #actions {
@@ -28,7 +30,7 @@ body {
 }
 
 .scheduleMeeting {
-  background-color: rgb(245, 68, 68);
+  background-color:lightskyblue;
   border: none;
 }
 
@@ -38,7 +40,7 @@ body {
 }
 
 .ContactADoctor {
-  background-color: rgb(245, 68, 68);
+  background-color:lightskyblue;
   border: none;
 }
 
