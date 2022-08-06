@@ -49,22 +49,22 @@
 
         <button class="button" type="submit">Create</button>
       </form>
-    </div>
+   
 
 <h1>Create Doctor</h1>
-<form onsubmit="handleCreateNewDoctor(event)">
+<form class="form" onsubmit="handleCreateNewDoctor(event)">
 
-<input type="text" id="doctorFirstName" placeholder="Doctor's first name">
-<input type="text" id="doctorLastName" placeholder="Doctor's last name">
-<input type="number" id="doctorId" placeholder="doctor's ID">
-<select id="doctorType">
+<input class="form__input" type="text" id="doctorFirstName" placeholder="Doctor's first name">
+<input class="form__input" type="text" id="doctorLastName" placeholder="Doctor's last name">
+<input class="form__input" type="number" id="doctorId" placeholder="doctor's ID">
+<select class="form__input" id="doctorType">
   <option value="family">Family</option>
   <option value="nurse">Nurse</option>
   <option value="bloodTest">Blood test</option>
   
 </select>
 
-<button type="submit">Create</button>
+<button class="button" type="submit">Create</button>
 
 </form>
 
@@ -72,14 +72,14 @@
    
 <form onsubmit="handleCreateWorkSchedule(event)">
 
-    <button onclick="handleGetAllDoctors()">Load all doctors</button>
+    <button class="button" onclick="handleGetAllDoctors()">Load all doctors</button>
 
     <div id="doctorsBtns"></div>
 
 
 </form>
 
-
+</div>
 
     <script src="./dist/createAppo.js"></script>
   </body>
