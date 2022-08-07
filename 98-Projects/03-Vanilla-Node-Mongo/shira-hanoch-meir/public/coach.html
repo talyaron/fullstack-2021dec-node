@@ -12,7 +12,20 @@
     <div class="formCoach">
     <form class="coachAddLessonForm" onsubmit="handleAddEvent(event)">
     <input type="text" name="lesson" placeholder="lesson">
-    <input type="text" name="day" placeholder="day"> <br>
+    <!-- <input type="text" name="day" placeholder="day"> <br> -->
+    <label for="days">Choose a day:</label>
+
+<select name="day" id="days">
+  <option value="" selected disabled hidden>Choose day</option>
+  <option value="Sun">Sun</option>
+  <option value="Mon">Mon</option>
+  <option value="Tue">Tue</option>
+  <option value="WEd">Wed</option>
+  <option value="WEd">Thu</option>
+  <option value="WEd">Fri</option>
+  <option value="Sat">Sat</option>
+</select>
+
     <label for="dateS">start date:</label>
     <input type="date" name="dateStart" id="dateS">
     <label for="dateE">end date:</label>
