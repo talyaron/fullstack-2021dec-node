@@ -33,6 +33,8 @@ function renderEvent(events){
             <p>Lesson:${event.lesson}</p>
             <p>Start At:${event.dateStart}</p>
             <p>End At:${event.dateEnd}</p>
+            <p>Time:${event.hour}</p>
+
             <p>Day:${event.day}</p>
             <p>Price:${event.price}</p>
             <p>Coach:${event.coach}</p>

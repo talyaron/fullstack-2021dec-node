@@ -68,7 +68,7 @@ function renderEvent(events) {
             // const userTimezoneOffset = date.getTimezoneOffset() * 60000;
             // const date1 = new Date(date.getTime() - userTimezoneOffset);
             html_1 +=
-                "<div class=\"event1\">\n            <p>Lesson:" + event.lesson + "</p>\n            <p>Start At:" + event.dateStart + "</p>\n            <p>End At:" + event.dateEnd + "</p>\n            <p>Day:" + event.day + "</p>\n            <p>Price:" + event.price + "</p>\n            <p>Coach:" + event.coach + "</p>\n            <button onclick=\"deleteLesson('" + event._id + "')\">delete lesson</button>\n            </div>";
+                "<div class=\"event1\">\n            <p>Lesson:" + event.lesson + "</p>\n            <p>Start At:" + event.dateStart + "</p>\n            <p>End At:" + event.dateEnd + "</p>\n            <p>Time:" + event.hour + "</p>\n\n            <p>Day:" + event.day + "</p>\n            <p>Price:" + event.price + "</p>\n            <p>Coach:" + event.coach + "</p>\n            <button onclick=\"deleteLesson('" + event._id + "')\">delete lesson</button>\n            </div>";
         });
         var root1 = document.querySelector('#root1');
         if (!root1)
