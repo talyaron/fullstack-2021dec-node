@@ -29,6 +29,13 @@ body .userEnter__userLogin .formLogin input {
 }
 body .titleCoach {
   color: blue;
+  text-align: center;
+}
+body #coachLoginForm {
+  text-align: center;
+}
+body #coachLoginForm input {
+  margin: 0.3rem;
 }
 body .formCoach {
   text-align: center;
