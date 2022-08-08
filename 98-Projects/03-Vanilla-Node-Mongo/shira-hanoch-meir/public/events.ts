@@ -108,16 +108,16 @@ function renderForCustomer(events){
         let html = '';
         events.forEach(event => {  
         html += 
-        `<div class="event1">
-        <h2>Lesson:${event.lesson}</h2>
-        <h2>start at:${event.dateS2}</h2>
-        <h2>end at:${event.dateE2}</h2>
-        <h2>Time:${event.hour}</h2>
+        `<div class="event2">
+        <h2 class="evDetails1">Lesson:${event.lesson}</h2>
+        <h2 class="evDetails1">start at:${event.dateS2}</h2>
+        <h2 class="evDetails1">end at:${event.dateE2}</h2>
+        <h2 class="evDetails1">Time:${event.hour}</h2>
 
-        <h2>day:${event.day}</h2>
-        <h2>Price:${event.price}</h2>
-        <h2>Coach:${event.coach}</h2>
-        <button id="addToCartBtn" onclick="addToCart('${event._id}')">Add Lesson to My Cart</button>
+        <h2 class="evDetails1">day:${event.day}</h2>
+        <h2 class="evDetails1">Price:${event.price}</h2>
+        <h2 class="evDetails1">Coach:${event.coach}</h2>
+        <button id="addToCartBtn" onclick="addToCart('${event._id}')">Add to Cart</button>
         </div>`      
     });
     const root2 = document.querySelector('#root2');
@@ -175,13 +175,13 @@ async function renderCart(){
     let cart='';
     data.forEach(event => {
         cart += `<div id="cart">
-        <h3>Lesson:${event.lesson}</h3>
-        <h2>start at:${event.dateS2}</h2>
-        <h2>end at:${event.dateE2}</h2>
-        <h2>Time:${event.hour}</h2>
+        <h3 class="evDetails2">Lesson:${event.lesson}</h3>
+        <h2 class="evDetails2">start at:${event.dateS2}</h2>
+        <h2 class="evDetails2">end at:${event.dateE2}</h2>
+        <h2 class="evDetails2">Time:${event.hour}</h2>
 
-        <h2>day:${event.day}</h2>
-        <h3>Price:${event.price}</h3>
+        <h2 class="evDetails2">day:${event.day}</h2>
+        <h3 class="evDetails2">Price:${event.price}</h3>
         <button onclick="deleteLessonFromCart('${event._id}')">delete lesson</button>
         </div>`
     });
@@ -193,7 +193,7 @@ async function renderCart(){
         //  total:Number += data[i].price
         const total:Number = data.reduce((acc, lesson) => acc + lesson.price, 0)
         const totalToPay = document.querySelector('#totalToPay');
-        totalToPay.innerHTML = `total to pay <br> ${(total)}`;
+        totalToPay.innerHTML = `<h1>total to pay <br> ${(total)} nis</h1>`;
     };
     
     } 

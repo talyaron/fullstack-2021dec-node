@@ -55,3 +55,41 @@ body #root1 .event1 {
 body #root1 .event1 .evDetails {
   color: purple;
 }
+body #root2 {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  width: 100%;
+  margin: 0.5rem;
+}
+body #root2 .event2 {
+  border: 1px solid;
+  background-color: darksalmon;
+  border-radius: 25px;
+  text-align: center;
+  margin: 0.3rem;
+  padding: 0.3rem;
+}
+body #root2 .event2 .evDetails1 {
+  color: purple;
+}
+body #root {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  width: 100%;
+  margin: 0.5rem;
+}
+body #root #cart {
+  border: 1px solid;
+  background-color: darksalmon;
+  border-radius: 25px;
+  text-align: center;
+  margin: 0.3rem;
+  padding: 0.3rem;
+}
+body #root #cart .evDetails2 {
+  color: purple;
+}
+body #totalToPay {
+  text-align: center;
+  color: blue;
+}
