@@ -1,5 +1,3 @@
-"use strict";
-// import { stringify } from "querystring";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -36,8 +34,6 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-exports.__esModule = true;
-// import { json } from "stream/consumers";
 function handleLoadCoach() {
     return __awaiter(this, void 0, void 0, function () {
         var data, error_1;
@@ -64,11 +60,8 @@ function renderEvent(events) {
     try {
         var html_1 = '';
         events.forEach(function (event) {
-            // const date = stringify (event.dateStart)
-            // const userTimezoneOffset = date.getTimezoneOffset() * 60000;
-            // const date1 = new Date(date.getTime() - userTimezoneOffset);
             html_1 +=
-                "<div class=\"event1\">\n            <p>Lesson:" + event.lesson + "</p>\n            <p>Start At:" + event.dateStart + "</p>\n            <p>End At:" + event.dateEnd + "</p>\n            <p>Time:" + event.hour + "</p>\n\n            <p>Day:" + event.day + "</p>\n            <p>Price:" + event.price + "</p>\n            <p>Coach:" + event.coach + "</p>\n            <button onclick=\"deleteLesson('" + event._id + "')\">delete lesson</button>\n            </div>";
+                "<div class=\"event1\">\n            <p class=\"evDetails\">Lesson:" + event.lesson + "</p>\n            <p class=\"evDetails\">Start At:" + event.dateS2 + "</p>\n            <p class=\"evDetails\">End At:" + event.dateE2 + "</p>\n            <p class=\"evDetails\">Time:" + event.hour + "</p>\n\n            <p class=\"evDetails\">Day:" + event.day + "</p>\n            <p class=\"evDetails\">Price:" + event.price + "</p>\n            <p class=\"evDetails\">Coach:" + event.coach + "</p>\n            <button onclick=\"deleteLesson('" + event._id + "')\" class=\"evDetails\">delete lesson</button>\n            </div>";
         });
         var root1 = document.querySelector('#root1');
         if (!root1)
@@ -102,7 +95,7 @@ function deleteLesson(_id) {
 }
 function handleAddEvent(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var lesson, day, dateStart, dateEnd, hour, price, coach, data, error_3;
+        var lesson, day, dateStart, dateEnd, hour, dateS, dateS1, dateS2, dateE, dateE1, dateE2, price, coach, data, error_3;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -113,9 +106,15 @@ function handleAddEvent(ev) {
                     dateStart = ev.target.dateStart.value;
                     dateEnd = ev.target.dateEnd.value;
                     hour = ev.target.hour.value;
+                    dateS = new Date(dateStart);
+                    dateS1 = dateS.toUTCString();
+                    dateS2 = dateS1.replace("00:00:00 GMT", "");
+                    dateE = new Date(dateStart);
+                    dateE1 = dateE.toUTCString();
+                    dateE2 = dateE1.replace("00:00:00 GMT", "");
                     price = ev.target.price.value;
                     coach = ev.target.coach.value;
-                    return [4 /*yield*/, axios.post('/events/add-events', { lesson: lesson, day: day, dateStart: dateStart, dateEnd: dateEnd, hour: hour, price: price, coach: coach })];
+                    return [4 /*yield*/, axios.post('/events/add-events', { lesson: lesson, day: day, dateS2: dateS2, dateE2: dateE2, hour: hour, price: price, coach: coach })];
                 case 1:
                     data = (_a.sent()).data;
                     console.log(data);
@@ -156,7 +155,7 @@ function renderForCustomer(events) {
         var html_2 = '';
         events.forEach(function (event) {
             html_2 +=
-                "<div class=\"event1\">\n        <h2>Lesson:" + event.lesson + "</h2>\n        <h2>start at:" + event.dateStart + "</h2>\n        <h2>end at:" + event.dateEnd + "</h2>\n        <h2>Time:" + event.hour + "</h2>\n\n        <h2>day:" + event.day + "</h2>\n        <h2>Price:" + event.price + "</h2>\n        <h2>Coach:" + event.coach + "</h2>\n        <button id=\"addToCartBtn\" onclick=\"addToCart('" + event._id + "')\">Add Lesson to My Cart</button>\n        </div>";
+                "<div class=\"event1\">\n        <h2>Lesson:" + event.lesson + "</h2>\n        <h2>start at:" + event.dateS2 + "</h2>\n        <h2>end at:" + event.dateE2 + "</h2>\n        <h2>Time:" + event.hour + "</h2>\n\n        <h2>day:" + event.day + "</h2>\n        <h2>Price:" + event.price + "</h2>\n        <h2>Coach:" + event.coach + "</h2>\n        <button id=\"addToCartBtn\" onclick=\"addToCart('" + event._id + "')\">Add Lesson to My Cart</button>\n        </div>";
         });
         var root2 = document.querySelector('#root2');
         if (!root2)
@@ -229,7 +228,7 @@ function renderCart() {
                     root = document.querySelector('#root');
                     cart_1 = '';
                     data.forEach(function (event) {
-                        cart_1 += "<div id=\"cart\">\n        <h3>Lesson:" + event.lesson + "</h3>\n        <h2>start at:" + event.dateStart + "</h2>\n        <h2>end at:" + event.dateEnd + "</h2>\n        <h2>Time:" + event.hour + "</h2>\n\n        <h2>day:" + event.day + "</h2>\n        <h3>Price:" + event.price + "</h3>\n        <button onclick=\"deleteLessonFromCart('" + event._id + "')\">delete lesson</button>\n        </div>";
+                        cart_1 += "<div id=\"cart\">\n        <h3>Lesson:" + event.lesson + "</h3>\n        <h2>start at:" + event.dateS2 + "</h2>\n        <h2>end at:" + event.dateE2 + "</h2>\n        <h2>Time:" + event.hour + "</h2>\n\n        <h2>day:" + event.day + "</h2>\n        <h3>Price:" + event.price + "</h3>\n        <button onclick=\"deleteLessonFromCart('" + event._id + "')\">delete lesson</button>\n        </div>";
                     });
                     root.innerHTML = cart_1;
                     // let total = 0;

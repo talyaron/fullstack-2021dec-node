@@ -40,13 +40,13 @@ exports.deleteFromCart = exports.deleteForCoach = exports.cartByUser = exports.a
 var model_1 = require("../model/model");
 function addEvents(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var _a, lesson, day, dateStart, dateEnd, hour, price, coach, error_1;
+        var _a, lesson, day, dateS2, dateE2, hour, price, coach, error_1;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
                     _b.trys.push([0, 2, , 3]);
-                    _a = req.body, lesson = _a.lesson, day = _a.day, dateStart = _a.dateStart, dateEnd = _a.dateEnd, hour = _a.hour, price = _a.price, coach = _a.coach;
-                    return [4 /*yield*/, model_1.lessonsModel.create({ lesson: lesson, day: day, dateStart: dateStart, dateEnd: dateEnd, hour: hour, price: price, coach: coach })];
+                    _a = req.body, lesson = _a.lesson, day = _a.day, dateS2 = _a.dateS2, dateE2 = _a.dateE2, hour = _a.hour, price = _a.price, coach = _a.coach;
+                    return [4 /*yield*/, model_1.lessonsModel.create({ lesson: lesson, day: day, dateS2: dateS2, dateE2: dateE2, hour: hour, price: price, coach: coach })];
                 case 1:
                     _b.sent(); //
                     res.send({ ok: true });
@@ -95,8 +95,8 @@ function addToCart(req, res) {
                 case 1:
                     Cart = _a.sent();
                     lesson = Cart.lesson;
-                    dateStart = Cart.dateStart;
-                    dateEnd = Cart.dateEnd;
+                    dateStart = Cart.dateS2;
+                    dateEnd = Cart.dateE2;
                     hour = Cart.hour;
                     day = Cart.day;
                     price = Cart.price;

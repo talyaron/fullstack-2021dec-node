@@ -4,8 +4,8 @@ import jwt from 'jwt-simple';
 
 export async function addEvents(req, res){
     try {
-        const { lesson,day, dateStart, dateEnd,hour, price, coach} = req.body;//
-        await lessonsModel.create({lesson,day, dateStart, dateEnd,hour, price, coach});//
+        const { lesson,day, dateS2, dateE2,hour, price, coach} = req.body;//
+        await lessonsModel.create({lesson,day, dateS2, dateE2,hour, price, coach});//
         res.send({ok: true})
     } catch (error) {
         res.send({error: error.message})
@@ -25,8 +25,8 @@ export async function addToCart(req, res) {
         const {_id} = req.body;
         const Cart = await lessonsModel.findById(_id);
         const lesson = Cart.lesson;
-        const dateStart = Cart.dateStart;
-        const dateEnd = Cart.dateEnd;
+        const dateStart = Cart.dateS2;
+        const dateEnd = Cart.dateE2;
         const hour = Cart.hour;//
         const day = Cart.day;
         const price = Cart.price;

@@ -1,8 +1,3 @@
-// import { stringify } from "querystring";
-
-import { stringify } from "querystring";
-
-// import { json } from "stream/consumers";
 
 async function handleLoadCoach() {
     try {
@@ -24,21 +19,18 @@ function renderEvent(events){
     try {
         let html = '';
         events.forEach(event => {
-            // const date = stringify (event.dateStart)
-            // const userTimezoneOffset = date.getTimezoneOffset() * 60000;
-            // const date1 = new Date(date.getTime() - userTimezoneOffset);
 
             html += 
             `<div class="event1">
-            <p>Lesson:${event.lesson}</p>
-            <p>Start At:${event.dateStart}</p>
-            <p>End At:${event.dateEnd}</p>
-            <p>Time:${event.hour}</p>
+            <p class="evDetails">Lesson:${event.lesson}</p>
+            <p class="evDetails">Start At:${event.dateS2}</p>
+            <p class="evDetails">End At:${event.dateE2}</p>
+            <p class="evDetails">Time:${event.hour}</p>
 
-            <p>Day:${event.day}</p>
-            <p>Price:${event.price}</p>
-            <p>Coach:${event.coach}</p>
-            <button onclick="deleteLesson('${event._id}')">delete lesson</button>
+            <p class="evDetails">Day:${event.day}</p>
+            <p class="evDetails">Price:${event.price}</p>
+            <p class="evDetails">Coach:${event.coach}</p>
+            <button onclick="deleteLesson('${event._id}')" class="evDetails">delete lesson</button>
             </div>`      
         });
         
@@ -73,11 +65,18 @@ async function handleAddEvent(ev:any) {
         const dateEnd = ev.target.dateEnd.value;
         const hour = ev.target.hour.value;
 
+        const dateS = new Date(dateStart)
+            const dateS1 = dateS.toUTCString()
+            const dateS2 = dateS1.replace("00:00:00 GMT", "")
+            const dateE = new Date(dateStart)
+            const dateE1 = dateE.toUTCString()
+            const dateE2 = dateE1.replace("00:00:00 GMT", "")
+
         const price = ev.target.price.value;
         const coach = ev.target.coach.value;
 
         //@ts-ignore
-        const {data}  = await axios.post('/events/add-events', {lesson,day,dateStart,dateEnd,hour,price,coach})
+        const {data}  = await axios.post('/events/add-events', {lesson,day,dateS2,dateE2,hour,price,coach})
         console.log(data);
 
         // renderEvent(data)
@@ -111,8 +110,8 @@ function renderForCustomer(events){
         html += 
         `<div class="event1">
         <h2>Lesson:${event.lesson}</h2>
-        <h2>start at:${event.dateStart}</h2>
-        <h2>end at:${event.dateEnd}</h2>
+        <h2>start at:${event.dateS2}</h2>
+        <h2>end at:${event.dateE2}</h2>
         <h2>Time:${event.hour}</h2>
 
         <h2>day:${event.day}</h2>
@@ -177,8 +176,8 @@ async function renderCart(){
     data.forEach(event => {
         cart += `<div id="cart">
         <h3>Lesson:${event.lesson}</h3>
-        <h2>start at:${event.dateStart}</h2>
-        <h2>end at:${event.dateEnd}</h2>
+        <h2>start at:${event.dateS2}</h2>
+        <h2>end at:${event.dateE2}</h2>
         <h2>Time:${event.hour}</h2>
 
         <h2>day:${event.day}</h2>

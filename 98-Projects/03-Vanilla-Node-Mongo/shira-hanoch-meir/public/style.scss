@@ -139,13 +139,26 @@ body{
         input{
             margin: 0.4rem;
         }
+        .labels{
+            color: aquamarine;
+        }
     }
 
 }
 #root1{
     display: grid;
     grid-template-columns: auto auto auto;
-    width: 100vw;
+    width: 100%;
     margin: 0.5rem;
+    .event1{
+        border: 1px solid;
+        background-color: darksalmon;
+        border-radius: 25px;
+        text-align: center;
+        margin: 00.3rem;
+        .evDetails{
+            color: purple;
+        }
+    }
 }
 }
