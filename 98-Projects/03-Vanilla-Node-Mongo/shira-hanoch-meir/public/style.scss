@@ -131,8 +131,16 @@ body{
     }
 
 }
+
 .titleCoach{
     color: blue;
+    text-align: center;
+}
+#coachLoginForm{
+    text-align: center;
+    input{
+        margin: 0.3rem;
+    }
 }
 .formCoach{
     text-align: center;
