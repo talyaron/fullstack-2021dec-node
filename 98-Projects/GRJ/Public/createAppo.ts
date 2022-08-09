@@ -2,7 +2,6 @@
 async function createSingleAppo() {
     const createSingleAppo: HTMLDivElement = document.querySelector(".createSingleAppo");
 
-
     createSingleAppo.innerHTML =
         `<h1 class="h1">Create single Appo</h1>
 <div class="formsDiv">
@@ -32,10 +31,9 @@ async function createSingleAppo() {
     <button class="button" type="submit">Create</button>
   </form>
 `
-
 }
 async function changeDoctorsList() {
- 
+
 
     const doctorType = document.getElementById('doctorType').value;
     const { data } = await axios.post('/doctors/getDoctorsByType', { doctorType })
@@ -49,23 +47,18 @@ async function changeDoctorsList() {
     });
 
     doctorsNameBox.innerHTML =
-  `<select class="form__input" id="doctorsNames" name="doctorsNames">
+        `<select class="form__input" id="doctorsNames" name="doctorsNames">
     ${doctorsList}
     </select>`
 }
-
-
 
 async function handleCreateAppo(ev) {
     ev.preventDefault()
 
     try {
-console.log(ev);
-console.log(document.getElementById('doctorType').value);
-console.dir(ev.target[3].value);
 
         const date: string = ev.target.date.value;
-        const doctorType: string = document.getElementById('doctorType').value;
+        const doctorType: string = ev.target[2].value;
         const doctorId: string = ev.target[3].value;
         const time: string = ev.target.time.value;
 
@@ -83,13 +76,10 @@ console.dir(ev.target[3].value);
             console.log(appoArray)
         }
 
-
     } catch (error) {
         console.error(error)
     }
-
 }
-
 
 async function handleCreateNewDoctor(ev) {
     ev.preventDefault()
@@ -98,10 +88,7 @@ async function handleCreateNewDoctor(ev) {
         const lastName: string = ev.target.doctorLastName.value;
         const doctorId: number = ev.target.doctorId.value;
         const doctorType: string = ev.target.doctorType.value;
-        console.log(firstName);
-        console.log(lastName);
-        console.log(doctorId);
-        console.log(doctorType);
+
         if (!firstName || !lastName || !doctorId || !doctorType) throw new Error("One of the parameters is missing")
         // @ts-ignore
 
@@ -112,18 +99,13 @@ async function handleCreateNewDoctor(ev) {
         if (error) throw error;
         console.log(doctor);
 
-
         console.log(`Dr.${doctor.lastName} is succesfuly created`)
-
-
-
 
     } catch (error) {
         console.error(error)
     }
 
 }
-
 
 async function handleGetAllDoctors() {
 
@@ -132,23 +114,74 @@ async function handleGetAllDoctors() {
     try {
 
         // @ts-ignore
-        const { data } = await axios.get('/doctors/getAllDoctors')
+        const { data } = await axios.get('/doctors/getAllDoctors');
 
         const allDoctors = data;
         console.log(allDoctors)
         let html = ""
         allDoctors.forEach(doctor => {
-            html += `<button id="${doctor.doctorId} onclick="handleSelectDoctor(event)">Dr. ${doctor.lastName} (${doctor.doctorType})</button> `
+            html += `<button id="${doctor._id}" onclick ='handleSelectDoctor(event)' >Dr. ${doctor.lastName} (${doctor.doctorType}) </button>`
 
         });
-        doctorsBtns.innerHTML = html
-
-
+        doctorsBtns.innerHTML = html;
 
     } catch (error) {
         console.error(error)
     }
+}
 
+function handleSelectDoctor(ev) {
+    ev.preventDefault()
+    const form: HTMLDivElement = document.querySelector(".createWorkSchedule");
+    form.innerHTML = "";
+
+    const selectedDoctor_id = ev.target.id;
+    let html: string = "";
+
+    var today: any = new Date();
+
+
+    for (let i = 0; i < 7; i++) {
+        today.setDate(today.getDate() + i)
+
+        let dayName = today.toLocaleString('en-us', { weekday: 'long' })
+
+        html += `<br> <input id="${todayDate(i)}" type="checkbox" /> ${todayDate(i)} ${dayName}`
+    }
+
+
+    form.innerHTML = `<h1></h1>
+ <form class="form" id="${selectedDoctor_id}" onsubmit="createDoctorSchedule(event)">
+
+${html}
+
+<br>
+<button class="button" type="submit">Create work schedule</button>
+
+</form>
+`
 
 }
 
+
+
+
+function todayDate(addDays) {
+    var today: any = new Date();
+    today.setDate(today.getDate() + addDays)
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0');
+    var yyyy = today.getFullYear();
+
+    today = mm + '/' + dd + '/' + yyyy;
+    return today
+}
+
+
+function createDoctorSchedule(ev) {
+    ev.preventDefault()
+
+    console.log(ev)
+
+
+}

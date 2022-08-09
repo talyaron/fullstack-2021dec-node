@@ -79,11 +79,8 @@ function handleCreateAppo(ev) {
                     _a.label = 1;
                 case 1:
                     _a.trys.push([1, 3, , 4]);
-                    console.log(ev);
-                    console.log(document.getElementById('doctorType').value);
-                    console.dir(ev.target[3].value);
                     date = ev.target.date.value;
-                    doctorType = document.getElementById('doctorType').value;
+                    doctorType = ev.target[2].value;
                     doctorId = ev.target[3].value;
                     time = ev.target.time.value;
                     console.log(date, doctorType, doctorId, time);
@@ -124,10 +121,6 @@ function handleCreateNewDoctor(ev) {
                     lastName = ev.target.doctorLastName.value;
                     doctorId = ev.target.doctorId.value;
                     doctorType = ev.target.doctorType.value;
-                    console.log(firstName);
-                    console.log(lastName);
-                    console.log(doctorId);
-                    console.log(doctorType);
                     if (!firstName || !lastName || !doctorId || !doctorType)
                         throw new Error("One of the parameters is missing");
                     return [4 /*yield*/, axios.post('/doctors/createNewDoctor', { firstName: firstName, lastName: lastName, doctorId: doctorId, doctorType: doctorType })];
@@ -166,7 +159,7 @@ function handleGetAllDoctors() {
                     console.log(allDoctors);
                     html_1 = "";
                     allDoctors.forEach(function (doctor) {
-                        html_1 += "<button id=\"" + doctor.doctorId + " onclick=\"handleSelectDoctor(event)\">Dr. " + doctor.lastName + " (" + doctor.doctorType + ")</button> ";
+                        html_1 += "<button id=\"" + doctor._id + "\" onclick ='handleSelectDoctor(event)' >Dr. " + doctor.lastName + " (" + doctor.doctorType + ") </button>";
                     });
                     doctorsBtns.innerHTML = html_1;
                     return [3 /*break*/, 4];
@@ -178,4 +171,31 @@ function handleGetAllDoctors() {
             }
         });
     });
+}
+function handleSelectDoctor(ev) {
+    ev.preventDefault();
+    var form = document.querySelector(".createWorkSchedule");
+    form.innerHTML = "";
+    var selectedDoctor_id = ev.target.id;
+    var html = "";
+    var today = new Date();
+    for (var i = 0; i < 7; i++) {
+        today.setDate(today.getDate() + i);
+        var dayName = today.toLocaleString('en-us', { weekday: 'long' });
+        html += "<br> <input id=\"" + todayDate(i) + "\" type=\"checkbox\" /> " + todayDate(i) + " " + dayName;
+    }
+    form.innerHTML = "<h1></h1>\n <form class=\"form\" id=\"" + selectedDoctor_id + "\" onsubmit=\"createDoctorSchedule(event)\">\n\n" + html + "\n\n<br>\n<button class=\"button\" type=\"submit\">Create work schedule</button>\n\n</form>\n";
+}
+function todayDate(addDays) {
+    var today = new Date();
+    today.setDate(today.getDate() + addDays);
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0');
+    var yyyy = today.getFullYear();
+    today = mm + '/' + dd + '/' + yyyy;
+    return today;
+}
+function createDoctorSchedule(ev) {
+    ev.preventDefault();
+    console.log(ev);
 }

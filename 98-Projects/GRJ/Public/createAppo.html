@@ -1,60 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Create Appoitments</title>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.0.0-alpha.1/axios.min.js"
-      integrity="sha512-xIPqqrfvUAc/Cspuj7Bq0UtHNo/5qkdyngx6Vwt+tmbvTLDszzXM0G6c91LXmGrRx8KEPulT+AfOOez+TeVylg=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    ></script>
-    <script
-      src="https://kit.fontawesome.com/a076d05399.js"
-      crossorigin="anonymous"
-    ></script>
-    <link rel="stylesheet" href="dist/style.css" />
-  </head>
 
-  <body onload="createSingleAppo()">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create Appoitments</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.0.0-alpha.1/axios.min.js"
+    integrity="sha512-xIPqqrfvUAc/Cspuj7Bq0UtHNo/5qkdyngx6Vwt+tmbvTLDszzXM0G6c91LXmGrRx8KEPulT+AfOOez+TeVylg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="dist/style.css" />
+</head>
 
-<div class="createSingleAppo"></div>
+<body>
 
+  <button onclick="createSingleAppo()">Create Single Appoitment</button>
+  <div class="createSingleAppo"></div>
+
+
+  <h1>Create Doctor</h1>
+  <form class="form" onsubmit="handleCreateNewDoctor(event)">
+
+    <input class="form__input" type="text" id="doctorFirstName" placeholder="Doctor's first name">
+    <input class="form__input" type="text" id="doctorLastName" placeholder="Doctor's last name">
+    <input class="form__input" type="number" id="doctorId" placeholder="doctor's ID">
+    <select class="form__input" id="doctorType">
+      <option value="family">Family</option>
+      <option value="nurse">Nurse</option>
+      <option value="bloodTest">Blood test</option>
+
+    </select>
+
+    <button class="button" type="submit">Create</button>
+
+  </form>
+
+  <h1 class="h1">Create weekly Luz</h1>
+
+  <button class="button" onclick="handleGetAllDoctors()">Load all doctors</button>
+
+  <div id="doctorsBtns"></div>
+
+ 
+<div class="createWorkSchedule"></div>
     
-   
-
-<h1>Create Doctor</h1>
-<form class="form" onsubmit="handleCreateNewDoctor(event)">
-
-<input class="form__input" type="text" id="doctorFirstName" placeholder="Doctor's first name">
-<input class="form__input" type="text" id="doctorLastName" placeholder="Doctor's last name">
-<input class="form__input" type="number" id="doctorId" placeholder="doctor's ID">
-<select class="form__input" id="doctorType">
-  <option value="family">Family</option>
-  <option value="nurse">Nurse</option>
-  <option value="bloodTest">Blood test</option>
-  
-</select>
-
-<button class="button" type="submit">Create</button>
-
-</form>
-
-    <h1 class="h1">Create weekly Luz</h1>
-   
-<form onsubmit="handleCreateWorkSchedule(event)">
-
-    <button class="button" onclick="handleGetAllDoctors()">Load all doctors</button>
-
-    <div id="doctorsBtns"></div>
 
 
-</form>
 
-</div>
 
-    <script src="./dist/createAppo.js"></script>
-  </body>
+  <script src="./dist/createAppo.js"></script>
+</body>
+
 </html>
