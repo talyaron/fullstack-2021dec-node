@@ -146,18 +146,14 @@ function handleSelectDoctor(ev) {
 
         let dayName = today.toLocaleString('en-us', { weekday: 'long' })
 
-        html += `<br> <input id="${todayDate(i)}" type="checkbox" /> ${todayDate(i)} ${dayName}`
+        html += `<input type="checkbox" id="${todayDate(i)}"/> ${todayDate(i)} ${dayName} <br>`
     }
 
 
-    form.innerHTML = `<h1></h1>
- <form class="form" id="${selectedDoctor_id}" onsubmit="createDoctorSchedule(event)">
-
+    form.innerHTML = `
+ <form  id="${selectedDoctor_id}" onsubmit="createDoctorSchedule(event)">
 ${html}
-
-<br>
 <button class="button" type="submit">Create work schedule</button>
-
 </form>
 `
 
@@ -173,15 +169,33 @@ function todayDate(addDays) {
     var mm = String(today.getMonth() + 1).padStart(2, '0');
     var yyyy = today.getFullYear();
 
-    today = mm + '/' + dd + '/' + yyyy;
+    today = dd + '/' + mm + '/' + yyyy;
     return today
 }
 
 
 function createDoctorSchedule(ev) {
     ev.preventDefault()
+    const doctor_id = ev.target.id
+    const daysLenght = ev.srcElement.length -1;
+console.log(doctor_id);
+console.log(ev.target[0].checked);
+console.log(daysLenght);
 
-    console.log(ev)
+    const detailsArray = [];
+
+    for (let i = 0; i < daysLenght; i++) {
+let checkbox = ev.target[i].checked;
+console.log(checkbox);
+
+let date = ev.target[i].id;
+if(checkbox === true){
+    let workday = {date: date};
+    detailsArray.push(workday);
+}
+    }
+    
+console.log(detailsArray);
 
 
 }

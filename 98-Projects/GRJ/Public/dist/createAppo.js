@@ -182,9 +182,9 @@ function handleSelectDoctor(ev) {
     for (var i = 0; i < 7; i++) {
         today.setDate(today.getDate() + i);
         var dayName = today.toLocaleString('en-us', { weekday: 'long' });
-        html += "<br> <input id=\"" + todayDate(i) + "\" type=\"checkbox\" /> " + todayDate(i) + " " + dayName;
+        html += "<input type=\"checkbox\" id=\"" + todayDate(i) + "\"/> " + todayDate(i) + " " + dayName + " <br>";
     }
-    form.innerHTML = "<h1></h1>\n <form class=\"form\" id=\"" + selectedDoctor_id + "\" onsubmit=\"createDoctorSchedule(event)\">\n\n" + html + "\n\n<br>\n<button class=\"button\" type=\"submit\">Create work schedule</button>\n\n</form>\n";
+    form.innerHTML = "\n <form  id=\"" + selectedDoctor_id + "\" onsubmit=\"createDoctorSchedule(event)\">\n" + html + "\n<button class=\"button\" type=\"submit\">Create work schedule</button>\n</form>\n";
 }
 function todayDate(addDays) {
     var today = new Date();
@@ -192,10 +192,25 @@ function todayDate(addDays) {
     var dd = String(today.getDate()).padStart(2, '0');
     var mm = String(today.getMonth() + 1).padStart(2, '0');
     var yyyy = today.getFullYear();
-    today = mm + '/' + dd + '/' + yyyy;
+    today = dd + '/' + mm + '/' + yyyy;
     return today;
 }
 function createDoctorSchedule(ev) {
     ev.preventDefault();
-    console.log(ev);
+    var doctor_id = ev.target.id;
+    var daysLenght = ev.srcElement.length - 1;
+    console.log(doctor_id);
+    console.log(ev.target[0].checked);
+    console.log(daysLenght);
+    var detailsArray = [];
+    for (var i = 0; i < daysLenght; i++) {
+        var checkbox = ev.target[i].checked;
+        console.log(checkbox);
+        var date = ev.target[i].id;
+        if (checkbox === true) {
+            var workday = { date: date };
+            detailsArray.push(workday);
+        }
+    }
+    console.log(detailsArray);
 }
