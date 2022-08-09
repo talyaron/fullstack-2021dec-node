@@ -20,9 +20,12 @@
 
   <body">
     <h1 class="sceduleMeetingPage">התורים שלי</h1>
-    <form onchange="searchByDoctor(event)">
-        <input type="search" name="searchDoctor" placeholder="enter doctor name">
+    <form onclick="changeDoctorsList(event)">
+        <button type="submit" value="family">family</button>
+        <button type="submit" value="blood test">blood test</button>
+        <button type="submit" value="nurse">nurse</button>
     </form>
+    <div class="doctorsNameBox"></div>
     <div id="root"></div>
    
     

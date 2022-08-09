@@ -36,7 +36,7 @@ function renderAll(userDB) {
   let html = "";
   console.log(userDB)
   userDB.forEach(appo => {
-    html += `${appo.doctorType}</br>you have an appointment to ${appo.doctorType} doctor- dr. ${appo.doctorId}</br>
+    html += `${appo.doctorType}</br>you have an appointment to ${appo.doctorType} doctor</br>
     on ${appo.time}
     at ${appo.date}</br>
     <button id=${appo._id} onclick="handleDelete(event)" type="deleteAppo">Delete</button></br></br></br>`

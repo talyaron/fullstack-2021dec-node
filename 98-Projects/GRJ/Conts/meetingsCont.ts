@@ -1,13 +1,17 @@
+import { number } from "joi";
 import mongoose from "mongoose";
 import AppoModel from "../Models/AppoModel";
+import DoctorModel from "../Models/DoctorModel";
 
 export async function getUserMeeting(req, res) {
     try {
         const {userId}= req.body
        
-        console.log(userId)
+        
         const userDB = await AppoModel.find( {userId:userId} );
         console.log(userDB)
+      
+        
         if (!userDB) throw new Error("userId does not match");
         
         res.send(userDB)
@@ -20,14 +24,16 @@ export async function getUserMeeting(req, res) {
 export async function getDoctorMeeting(req, res) {
     try {
         const {DoctorName}= req.body
-       
         console.log(DoctorName)
         const userDB = await AppoModel.find( {doctorId:DoctorName} );
-        console.log(userDB)
+        const doctorFirstName= await DoctorModel.findById(DoctorName)
+        console.log(doctorFirstName)
+        let doctorName= doctorFirstName.firstName
         if (!userDB) throw new Error("userId does not match");
         let newUserDB = userDB.filter((userDB) => userDB.userId != "empty");
-        console.log(newUserDB)
-        res.send(newUserDB)
+        
+        res.send({newUserDB, doctorName})
+        
 
     } catch (error) {
         console.error(error)

@@ -1,4 +1,24 @@
+async function changeDoctorsList(event) {
+ 
+event.preventDefault()
+  const doctorType = event.target.value;
+  console.log(doctorType)
+  // @ts-ignore
+  const { data } = await axios.post('/doctors/getDoctorsByType', { doctorType })
+  const allDoctors = data;
+  let doctorsList = "";
+  const doctorsNameBox: HTMLDivElement = document.querySelector(".doctorsNameBox");
+ 
 
+  allDoctors.forEach(doctor => {
+      doctorsList += `<button value="${doctor._id}" onclick="searchByDoctor(event)">Dr. ${doctor.lastName}</button>`
+  });
+  
+  doctorsNameBox.innerHTML=doctorsList
+      
+ 
+ 
+}
 
 async function searchByDoctor(event) {
     try {
@@ -8,7 +28,7 @@ async function searchByDoctor(event) {
 
         // @ts-ignore
         const { data } = await axios.post("/meetings/Doc-meetings", { DoctorName });
-        const { error, userDB } = data;
+        const { error, userDB, firstName } = data;
         console.log(data, "1");
         renderAll(data)
         if (error) throw error
@@ -19,12 +39,13 @@ async function searchByDoctor(event) {
     }
 }
 
-function renderAll(userDB) {
+function renderAll(data) {
     let html = "";
-    
+    let userDB= data.newUserDB
+    let firstName= data.doctorName
 
     userDB.forEach(appo => {
-        html += `</br>dr. ${appo.doctorId} has an appointment</br>
+        html += `</br>dr. ${firstName} has an appointment</br>
       on ${appo.time}
       at ${appo.date}</br>
       <button id=${appo._id} onclick="handleDelete(event)" type="deleteAppo">Delete</button></br></br></br>`

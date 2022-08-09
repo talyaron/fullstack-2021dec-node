@@ -34,9 +34,33 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+function changeDoctorsList(event) {
+    return __awaiter(this, void 0, void 0, function () {
+        var doctorType, data, allDoctors, doctorsList, doctorsNameBox;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    event.preventDefault();
+                    doctorType = event.target.value;
+                    console.log(doctorType);
+                    return [4 /*yield*/, axios.post('/doctors/getDoctorsByType', { doctorType: doctorType })];
+                case 1:
+                    data = (_a.sent()).data;
+                    allDoctors = data;
+                    doctorsList = "";
+                    doctorsNameBox = document.querySelector(".doctorsNameBox");
+                    allDoctors.forEach(function (doctor) {
+                        doctorsList += "<button value=\"" + doctor._id + "\" onclick=\"searchByDoctor(event)\">Dr. " + doctor.lastName + "</button>";
+                    });
+                    doctorsNameBox.innerHTML = doctorsList;
+                    return [2 /*return*/];
+            }
+        });
+    });
+}
 function searchByDoctor(event) {
     return __awaiter(this, void 0, void 0, function () {
-        var DoctorName, data, error, userDB, error_1;
+        var DoctorName, data, error, userDB, firstName, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -48,7 +72,7 @@ function searchByDoctor(event) {
                     return [4 /*yield*/, axios.post("/meetings/Doc-meetings", { DoctorName: DoctorName })];
                 case 1:
                     data = (_a.sent()).data;
-                    error = data.error, userDB = data.userDB;
+                    error = data.error, userDB = data.userDB, firstName = data.firstName;
                     console.log(data, "1");
                     renderAll(data);
                     if (error)
@@ -63,10 +87,12 @@ function searchByDoctor(event) {
         });
     });
 }
-function renderAll(userDB) {
+function renderAll(data) {
     var html = "";
+    var userDB = data.newUserDB;
+    var firstName = data.doctorName;
     userDB.forEach(function (appo) {
-        html += "</br>dr. " + appo.doctorId + " has an appointment</br>\n      on " + appo.time + "\n      at " + appo.date + "</br>\n      <button id=" + appo._id + " onclick=\"handleDelete(event)\" type=\"deleteAppo\">Delete</button></br></br></br>";
+        html += "</br>dr. " + firstName + " has an appointment</br>\n      on " + appo.time + "\n      at " + appo.date + "</br>\n      <button id=" + appo._id + " onclick=\"handleDelete(event)\" type=\"deleteAppo\">Delete</button></br></br></br>";
     });
     var root = document.querySelector('#root');
     root.innerHTML = html;

@@ -1,8 +1,9 @@
+import { string } from 'joi';
 import mongoose from 'mongoose';
 
 const DoctorSchema = new mongoose.Schema({
     doctorId: {
-        type: Number,
+        type: String,
         required: true
     },
     doctorType: {
