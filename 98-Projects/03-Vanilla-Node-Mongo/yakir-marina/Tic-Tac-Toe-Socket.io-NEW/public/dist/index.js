@@ -47,9 +47,12 @@ var lost = 0;
 var score = 0;
 var sec = 0;
 var min = 0;
+// const player1;
 function handleLoad() {
     try {
         getPlayerByCookie();
+        var player1 = axios.get("/players/player-by-cookie").player1;
+        console.log("test: " + player1);
     }
     catch (error) {
         console.error(error);
@@ -187,6 +190,7 @@ socket.on("move-made", function (data) {
                     .css("color", "#202941c4")
                     .css("font-size", "1.7em")
                     .css("letter-spacing", "2px");
+                handleLostUpdate();
             }
             else {
                 $(".nav__message")
@@ -486,7 +490,7 @@ function handleWinScoreUpdate() {
                 case 0:
                     score++;
                     console.log("New score:", score);
-                    return [4 /*yield*/, axios.patch("/players/update-score", score)];
+                    return [4 /*yield*/, axios.patch("/players/update-score", { score: score, playerID: playerID })];
                 case 1:
                     data = (_a.sent()).data;
                     console.log(data);
@@ -503,7 +507,7 @@ function handleLostUpdate() {
                 case 0:
                     lost++;
                     console.log("New lost:", lost);
-                    return [4 /*yield*/, axios.patch("/players/update-lost", lost)];
+                    return [4 /*yield*/, axios.patch("/players/update-lost", { lost: lost, playerID: playerID })];
                 case 1:
                     data = (_a.sent()).data;
                     console.log(data);

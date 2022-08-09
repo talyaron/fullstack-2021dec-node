@@ -16,10 +16,15 @@ let lost = 0;
 let score = 0;
 let sec = 0;
 let min = 0;
+// const player1;
 
 function handleLoad() {
   try {
     getPlayerByCookie();
+
+    const {player1} = axios.get("/players/player-by-cookie");
+    console.log(`test: ${player1}`);
+
   } catch (error) {
     console.error(error);
   }
@@ -169,7 +174,7 @@ socket.on("move-made", (data) => {
           .css("color", "#202941c4")
           .css("font-size", "1.7em")
           .css("letter-spacing", "2px");
-
+          handleLostUpdate()
       } else {
         $(".nav__message")
           .text("Congrats! You Win! :)")
@@ -461,7 +466,7 @@ async function handleWinScoreUpdate(){
 
   score++;
   console.log("New score:", score);
-  const {data} = await axios.patch("/players/update-score", score);
+  const {data} = await axios.patch("/players/update-score", {score, playerID});
   console.log(data)
 }
 
@@ -469,7 +474,7 @@ async function handleLostUpdate(){
 
   lost++;
   console.log("New lost:", lost);
-  const {data} = await axios.patch("/players/update-lost", lost);
+  const {data} = await axios.patch("/players/update-lost", {lost, playerID});
   console.log(data)
 }
 
