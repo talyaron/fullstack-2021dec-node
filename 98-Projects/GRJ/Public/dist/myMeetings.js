@@ -79,7 +79,7 @@ function renderAll(userDB) {
     var html = "";
     console.log(userDB);
     userDB.forEach(function (appo) {
-        html += appo.doctorType + "</br>you have an appointment to " + appo.doctorType + " doctor- dr. " + appo.doctorId + "</br>\n    on " + appo.time + "\n    at " + appo.date + "</br>\n    <button id=" + appo._id + " onclick=\"handleDelete(event)\" type=\"deleteAppo\">Delete</button></br></br></br>";
+        html += appo.doctorType + "</br>you have an appointment to " + appo.doctorType + " doctor</br>\n    on " + appo.time + "\n    at " + appo.date + "</br>\n    <button id=" + appo._id + " onclick=\"handleDelete(event)\" type=\"deleteAppo\">Delete</button></br></br></br>";
     });
     var root = document.querySelector('#root');
     root.innerHTML = html;
