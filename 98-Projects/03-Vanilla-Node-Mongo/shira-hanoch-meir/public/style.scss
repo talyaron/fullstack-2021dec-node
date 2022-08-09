@@ -4,6 +4,12 @@ body{
     height: 100vh;
     background-size: cover;
     margin:auto;
+    input{
+        border-radius: 20px;
+        box-shadow: rgba(105, 100, 129, 0.15) 0px 48px 100px 0px;
+        width: 250px;
+        height: 40px;
+    }
 .userEnter{
     margin: auto;
     display: flex;
@@ -19,6 +25,9 @@ body{
            input{
             margin: 0.3rem;
            }
+           .SignUpBtn{
+            background-color: aquamarine;
+           }
         }
     }
     &__userLogin{
@@ -30,6 +39,10 @@ body{
             input{
                 margin: 0.3rem;
                }
+               .loginBtn{
+                background-color: aquamarine;
+               }
+
             
         }
     }
@@ -45,9 +58,13 @@ body{
     input{
         margin: 0.3rem;
     }
+    .loginCoachBtn{
+        background-color: rgb(44, 73, 190);
+    }
 }
 .formCoach{
     text-align: center;
+    padding: 0.5rem;
     .coachAddLessonForm{
         input{
             margin: 0.4rem;
@@ -55,6 +72,14 @@ body{
         .labels{
             color: aquamarine;
         }
+        #dateS{
+        width: fit-content;
+        }
+        #dateE{
+            width: fit-content;
+            } #hour{
+                width: 90px;
+                }
     }
 
 }
@@ -68,7 +93,8 @@ body{
         background-color: darksalmon;
         border-radius: 25px;
         text-align: center;
-        margin: 00.3rem;
+        margin: 0.3rem;
+        padding: 0.3rem;
         .evDetails{
             color: purple;
         }

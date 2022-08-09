@@ -5,6 +5,12 @@ body {
   background-size: cover;
   margin: auto;
 }
+body input {
+  border-radius: 20px;
+  box-shadow: rgba(105, 100, 129, 0.15) 0px 48px 100px 0px;
+  width: 250px;
+  height: 40px;
+}
 body .userEnter {
   margin: auto;
   display: flex;
@@ -21,6 +27,9 @@ body .userEnter__userReg .formReg {
 body .userEnter__userReg .formReg input {
   margin: 0.3rem;
 }
+body .userEnter__userReg .formReg .SignUpBtn {
+  background-color: aquamarine;
+}
 body .userEnter__userLogin .titleLogin {
   color: aquamarine;
 }
@@ -29,6 +38,9 @@ body .userEnter__userLogin .formLogin {
 }
 body .userEnter__userLogin .formLogin input {
   margin: 0.3rem;
+}
+body .userEnter__userLogin .formLogin .loginBtn {
+  background-color: aquamarine;
 }
 body .titleCoach {
   color: blue;
@@ -40,14 +52,27 @@ body #coachLoginForm {
 body #coachLoginForm input {
   margin: 0.3rem;
 }
+body #coachLoginForm .loginCoachBtn {
+  background-color: #2c49be;
+}
 body .formCoach {
   text-align: center;
+  padding: 0.5rem;
 }
 body .formCoach .coachAddLessonForm input {
   margin: 0.4rem;
 }
 body .formCoach .coachAddLessonForm .labels {
   color: aquamarine;
+}
+body .formCoach .coachAddLessonForm #dateS {
+  width: fit-content;
+}
+body .formCoach .coachAddLessonForm #dateE {
+  width: fit-content;
+}
+body .formCoach .coachAddLessonForm #hour {
+  width: 90px;
 }
 body #root1 {
   display: grid;
@@ -61,6 +86,7 @@ body #root1 .event1 {
   border-radius: 25px;
   text-align: center;
   margin: 0.3rem;
+  padding: 0.3rem;
 }
 body #root1 .event1 .evDetails {
   color: purple;
