@@ -68,19 +68,7 @@ function renderAll(data) {
      </a>
      </button>
      <p>online Doctor</p>
- </div>
- <div>
- <button class="ContactADoctor">
- <a href="./createAppo.html?userId=${userDB._id}" alt="online Doctor">
-   <i class="fas fa-user-md"></i>
- </a>
- <p>Scheduling the Doctors</p>
-</button>
-
-</div>
-
-
-`
+ </div>`
 
 
 

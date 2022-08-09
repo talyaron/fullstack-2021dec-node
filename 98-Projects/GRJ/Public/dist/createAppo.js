@@ -34,6 +34,53 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+function createSingleAppo() {
+    return __awaiter(this, void 0, void 0, function () {
+        var createSingleAppo, data, allDoctors, doctorsList;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    createSingleAppo = document.querySelector(".createSingleAppo");
+                    return [4 /*yield*/, axios.get('/doctors/getAllDoctors')];
+                case 1:
+                    data = (_a.sent()).data;
+                    allDoctors = data;
+                    console.log(allDoctors);
+                    doctorsList = "";
+                    allDoctors.forEach(function (doctor) {
+                        doctorsList += "<option value=\"" + doctor._id + "\">Dr. " + doctor.lastName + " (" + doctor.doctorId + ")</option>";
+                    });
+                    createSingleAppo.innerHTML =
+                        "<h1 class=\"h1\">Create single Appo</h1>\n<div class=\"formsDiv\">\n  <form class=\"form\" onsubmit=\"handleCreateAppo(event)\">\n    <input\n      class=\"form__input\"\n      type=\"date\"\n      name=\"date\"\n      placeholder=\"When?\"\n    />\n    <input\n      class=\"form__input\"\n      type=\"time\"\n      name=\"time\"\n      placeholder=\"Select a time\"\n    />\n    <select onChange=\"changeDoctorsList(event);\" class=\"form__input\" id=\"doctorType\" name=\"doctorType\">\n      <option value=\"family\">Family</option>\n      <option value=\"bloodTest\">Blood test</option>\n      <option value=\"nurse\">Nurse</option>\n      </select>\n\n\n    <button class=\"button\" type=\"submit\">Create</button>\n  </form>\n";
+                    return [2 /*return*/];
+            }
+        });
+    });
+}
+function changeDoctorsList() {
+    return __awaiter(this, void 0, void 0, function () {
+        var doctorType, data, allDoctors, doctorsList, createSingleAppo;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    doctorType = document.getElementById('doctorType').value;
+                    return [4 /*yield*/, axios.post('/doctors/getDoctorsByType', { doctorType: doctorType })];
+                case 1:
+                    data = (_a.sent()).data;
+                    allDoctors = data;
+                    doctorsList = "";
+                    createSingleAppo = document.querySelector(".createSingleAppo");
+                    createSingleAppo.innerHTML = "";
+                    allDoctors.forEach(function (doctor) {
+                        doctorsList += "<option value=\"" + doctor._id + "\">Dr. " + doctor.lastName + " (" + doctor.doctorId + ")</option>";
+                    });
+                    createSingleAppo.innerHTML =
+                        "<h1 class=\"h1\">Create single Appo</h1>\n<div class=\"formsDiv\">\n  <form class=\"form\" onsubmit=\"handleCreateAppo(event)\">\n    <input\n      class=\"form__input\"\n      type=\"date\"\n      name=\"date\"\n      placeholder=\"When?\"\n    />\n    <input\n      class=\"form__input\"\n      type=\"time\"\n      name=\"time\"\n      placeholder=\"Select a time\"\n    />\n    <select onChange=\"changeDoctorsList();\" class=\"form__input\" id=\"doctorType\" name=\"doctorType\">\n      <option value=\"family\">Family</option>\n      <option value=\"bloodTest\">Blood test</option>\n      <option value=\"nurse\">Nurse</option>\n      </select>\n\n      <select class=\"form__input\" id=\"doctorsNames\" name=\"doctorsNames\">\n    " + doctorsList + "\n\n\n    </select>\n\n    <button class=\"button\" type=\"submit\">Create</button>\n  </form>\n";
+                    return [2 /*return*/];
+            }
+        });
+    });
+}
 function handleCreateAppo(ev) {
     return __awaiter(this, void 0, void 0, function () {
         var date, doctorType, doctorId, time, data, user, error, appoArray, error_1;
@@ -113,7 +160,7 @@ function handleCreateNewDoctor(ev) {
 }
 function handleGetAllDoctors() {
     return __awaiter(this, void 0, void 0, function () {
-        var doctorsBtns, data, allDoctors, html_1, doctorsBtns_1, error_3;
+        var doctorsBtns, data, allDoctors, html_1, error_3;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -125,11 +172,12 @@ function handleGetAllDoctors() {
                 case 2:
                     data = (_a.sent()).data;
                     allDoctors = data;
+                    console.log(allDoctors);
                     html_1 = "";
                     allDoctors.forEach(function (doctor) {
                         html_1 += "<button id=\"" + doctor.doctorId + " onclick=\"handleSelectDoctor(event)\">Dr. " + doctor.lastName + " (" + doctor.doctorType + ")</button> ";
                     });
-                    doctorsBtns_1 = html_1;
+                    doctorsBtns.innerHTML = html_1;
                     return [3 /*break*/, 4];
                 case 3:
                     error_3 = _a.sent();

@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.createNewDoctor = exports.getAllDoctors = void 0;
+exports.getDoctorsByType = exports.createNewDoctor = exports.getAllDoctors = void 0;
 var DoctorModel_1 = require("../Models/DoctorModel");
 function getAllDoctors(req, res) {
     return __awaiter(this, void 0, void 0, function () {
@@ -46,7 +46,7 @@ function getAllDoctors(req, res) {
                 case 0: return [4 /*yield*/, DoctorModel_1["default"].find()];
                 case 1:
                     allDoctors = _a.sent();
-                    console.log(allDoctors);
+                    res.send(allDoctors);
                     return [2 /*return*/];
             }
         });
@@ -79,3 +79,20 @@ function createNewDoctor(req, res) {
     });
 }
 exports.createNewDoctor = createNewDoctor;
+function getDoctorsByType(req, res) {
+    return __awaiter(this, void 0, void 0, function () {
+        var doctorType, allDoctors;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    doctorType = req.body.doctorType;
+                    return [4 /*yield*/, DoctorModel_1["default"].find({ doctorType: doctorType })];
+                case 1:
+                    allDoctors = _a.sent();
+                    res.send(allDoctors);
+                    return [2 /*return*/];
+            }
+        });
+    });
+}
+exports.getDoctorsByType = getDoctorsByType;

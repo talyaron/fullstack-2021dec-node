@@ -5,7 +5,7 @@ export async function getAllDoctors(req, res) {
 
     const allDoctors = await DoctorModel.find()
 
-    console.log(allDoctors);
+    res.send(allDoctors)
 
 }
 
@@ -29,5 +29,13 @@ export async function createNewDoctor(req, res) {
     } catch (error) {
         res.send({ error: error.message });
     }
+
+}
+
+
+export async function getDoctorsByType(req, res){
+const {doctorType} = req.body;
+const allDoctors = await DoctorModel.find({doctorType:doctorType});
+res.send(allDoctors)
 
 }

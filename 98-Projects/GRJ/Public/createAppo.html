@@ -18,37 +18,11 @@
     <link rel="stylesheet" href="dist/style.css" />
   </head>
 
-  <body>
+  <body onload="createSingleAppo()">
 
-    <h1 class="h1">Create single Appo</h1>
-    <div class="formsDiv">
-      <form class="form" onsubmit="handleCreateAppo(event)">
-        <input
-          class="form__input"
-          type="date"
-          name="date"
-          placeholder="When?"
-        />
-        <input
-          class="form__input"
-          type="time"
-          name="time"
-          placeholder="Select a time"
-        />
-        <select class="form__input" id="doctorType" name="doctorType">
-          <option value="family">Family</option>
-          <option value="bloodTest">Blood test</option>
-          <option value="nurse">Nurse</option>
-          <input
-            class="form__input"
-            type="text"
-            name="doctorId"
-            placeholder="Doctor's name"
-          />
-        </select>
+<div class="createSingleAppo"></div>
 
-        <button class="button" type="submit">Create</button>
-      </form>
+    
    
 
 <h1>Create Doctor</h1>

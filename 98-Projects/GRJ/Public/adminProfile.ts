@@ -46,7 +46,7 @@ function getUserId(): string | false {
     let html = "";
     html = `<div class="ScheduleApointmant">
      <button class="scheduleMeeting">
-       <a href="./createAppo.html?userId=${userDB._id}" alt="scheduleMeeting">
+       <a href="./ScheduleAppo.html?userId=${userDB._id}" alt="scheduleMeeting">
          <i id="calenderPlusIcon" class="fas fa-calendar-plus"></i>
        </a>
      </button>
@@ -70,18 +70,14 @@ function getUserId(): string | false {
    </div>
    <div>
    <button class="ContactADoctor">
-   <a href="./createAppo.html?userId=${userDB._id}" alt="online Doctor">
+   <a href="./createAppo.html?userId=${userDB._id}" alt="Admin page">
      <i class="fas fa-user-md"></i>
    </a>
    <p>Scheduling the Doctors</p>
   </button>
   
   </div>
-  
-  
   `
-  
-  
   
     const actions = document.querySelector('#actions')
     actions.innerHTML = html
