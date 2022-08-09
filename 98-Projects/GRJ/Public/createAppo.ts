@@ -2,15 +2,6 @@
 async function createSingleAppo() {
     const createSingleAppo: HTMLDivElement = document.querySelector(".createSingleAppo");
 
-    const { data } = await axios.get('/doctors/getAllDoctors');
-    const allDoctors = data;
-    console.log(allDoctors);
-
-    let doctorsList = "";
-
-    allDoctors.forEach(doctor => {
-        doctorsList += `<option value="${doctor._id}">Dr. ${doctor.lastName} (${doctor.doctorId})</option>`
-    });
 
     createSingleAppo.innerHTML =
         `<h1 class="h1">Create single Appo</h1>
@@ -34,6 +25,9 @@ async function createSingleAppo() {
       <option value="nurse">Nurse</option>
       </select>
 
+      <div class="doctorsNameBox">
+    
+      </div>
 
     <button class="button" type="submit">Create</button>
   </form>
@@ -47,44 +41,17 @@ async function changeDoctorsList() {
     const { data } = await axios.post('/doctors/getDoctorsByType', { doctorType })
     const allDoctors = data;
     let doctorsList = "";
-    const createSingleAppo: HTMLDivElement = document.querySelector(".createSingleAppo");
-    createSingleAppo.innerHTML = ""
+    const doctorsNameBox: HTMLDivElement = document.querySelector(".doctorsNameBox");
+    doctorsNameBox.innerHTML = ""
 
     allDoctors.forEach(doctor => {
         doctorsList += `<option value="${doctor._id}">Dr. ${doctor.lastName} (${doctor.doctorId})</option>`
     });
 
-    createSingleAppo.innerHTML =
-        `<h1 class="h1">Create single Appo</h1>
-<div class="formsDiv">
-  <form class="form" onsubmit="handleCreateAppo(event)">
-    <input
-      class="form__input"
-      type="date"
-      name="date"
-      placeholder="When?"
-    />
-    <input
-      class="form__input"
-      type="time"
-      name="time"
-      placeholder="Select a time"
-    />
-    <select onChange="changeDoctorsList();" class="form__input" id="doctorType" name="doctorType">
-      <option value="family">Family</option>
-      <option value="bloodTest">Blood test</option>
-      <option value="nurse">Nurse</option>
-      </select>
-
-      <select class="form__input" id="doctorsNames" name="doctorsNames">
+    doctorsNameBox.innerHTML =
+  `<select class="form__input" id="doctorsNames" name="doctorsNames">
     ${doctorsList}
-
-
-    </select>
-
-    <button class="button" type="submit">Create</button>
-  </form>
-`
+    </select>`
 }
 
 
@@ -93,10 +60,13 @@ async function handleCreateAppo(ev) {
     ev.preventDefault()
 
     try {
+console.log(ev);
+console.log(document.getElementById('doctorType').value);
+console.dir(ev.target[3].value);
 
         const date: string = ev.target.date.value;
-        const doctorType: string = ev.target.doctorType.value;
-        const doctorId: string = ev.target.doctorId.value;
+        const doctorType: string = document.getElementById('doctorType').value;
+        const doctorId: string = ev.target[3].value;
         const time: string = ev.target.time.value;
 
         console.log(date, doctorType, doctorId, time)

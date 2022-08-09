@@ -36,30 +36,18 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 function createSingleAppo() {
     return __awaiter(this, void 0, void 0, function () {
-        var createSingleAppo, data, allDoctors, doctorsList;
+        var createSingleAppo;
         return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    createSingleAppo = document.querySelector(".createSingleAppo");
-                    return [4 /*yield*/, axios.get('/doctors/getAllDoctors')];
-                case 1:
-                    data = (_a.sent()).data;
-                    allDoctors = data;
-                    console.log(allDoctors);
-                    doctorsList = "";
-                    allDoctors.forEach(function (doctor) {
-                        doctorsList += "<option value=\"" + doctor._id + "\">Dr. " + doctor.lastName + " (" + doctor.doctorId + ")</option>";
-                    });
-                    createSingleAppo.innerHTML =
-                        "<h1 class=\"h1\">Create single Appo</h1>\n<div class=\"formsDiv\">\n  <form class=\"form\" onsubmit=\"handleCreateAppo(event)\">\n    <input\n      class=\"form__input\"\n      type=\"date\"\n      name=\"date\"\n      placeholder=\"When?\"\n    />\n    <input\n      class=\"form__input\"\n      type=\"time\"\n      name=\"time\"\n      placeholder=\"Select a time\"\n    />\n    <select onChange=\"changeDoctorsList(event);\" class=\"form__input\" id=\"doctorType\" name=\"doctorType\">\n      <option value=\"family\">Family</option>\n      <option value=\"bloodTest\">Blood test</option>\n      <option value=\"nurse\">Nurse</option>\n      </select>\n\n\n    <button class=\"button\" type=\"submit\">Create</button>\n  </form>\n";
-                    return [2 /*return*/];
-            }
+            createSingleAppo = document.querySelector(".createSingleAppo");
+            createSingleAppo.innerHTML =
+                "<h1 class=\"h1\">Create single Appo</h1>\n<div class=\"formsDiv\">\n  <form class=\"form\" onsubmit=\"handleCreateAppo(event)\">\n    <input\n      class=\"form__input\"\n      type=\"date\"\n      name=\"date\"\n      placeholder=\"When?\"\n    />\n    <input\n      class=\"form__input\"\n      type=\"time\"\n      name=\"time\"\n      placeholder=\"Select a time\"\n    />\n    <select onChange=\"changeDoctorsList(event);\" class=\"form__input\" id=\"doctorType\" name=\"doctorType\">\n      <option value=\"family\">Family</option>\n      <option value=\"bloodTest\">Blood test</option>\n      <option value=\"nurse\">Nurse</option>\n      </select>\n\n      <div class=\"doctorsNameBox\">\n    \n      </div>\n\n    <button class=\"button\" type=\"submit\">Create</button>\n  </form>\n";
+            return [2 /*return*/];
         });
     });
 }
 function changeDoctorsList() {
     return __awaiter(this, void 0, void 0, function () {
-        var doctorType, data, allDoctors, doctorsList, createSingleAppo;
+        var doctorType, data, allDoctors, doctorsList, doctorsNameBox;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -69,13 +57,13 @@ function changeDoctorsList() {
                     data = (_a.sent()).data;
                     allDoctors = data;
                     doctorsList = "";
-                    createSingleAppo = document.querySelector(".createSingleAppo");
-                    createSingleAppo.innerHTML = "";
+                    doctorsNameBox = document.querySelector(".doctorsNameBox");
+                    doctorsNameBox.innerHTML = "";
                     allDoctors.forEach(function (doctor) {
                         doctorsList += "<option value=\"" + doctor._id + "\">Dr. " + doctor.lastName + " (" + doctor.doctorId + ")</option>";
                     });
-                    createSingleAppo.innerHTML =
-                        "<h1 class=\"h1\">Create single Appo</h1>\n<div class=\"formsDiv\">\n  <form class=\"form\" onsubmit=\"handleCreateAppo(event)\">\n    <input\n      class=\"form__input\"\n      type=\"date\"\n      name=\"date\"\n      placeholder=\"When?\"\n    />\n    <input\n      class=\"form__input\"\n      type=\"time\"\n      name=\"time\"\n      placeholder=\"Select a time\"\n    />\n    <select onChange=\"changeDoctorsList();\" class=\"form__input\" id=\"doctorType\" name=\"doctorType\">\n      <option value=\"family\">Family</option>\n      <option value=\"bloodTest\">Blood test</option>\n      <option value=\"nurse\">Nurse</option>\n      </select>\n\n      <select class=\"form__input\" id=\"doctorsNames\" name=\"doctorsNames\">\n    " + doctorsList + "\n\n\n    </select>\n\n    <button class=\"button\" type=\"submit\">Create</button>\n  </form>\n";
+                    doctorsNameBox.innerHTML =
+                        "<select class=\"form__input\" id=\"doctorsNames\" name=\"doctorsNames\">\n    " + doctorsList + "\n    </select>";
                     return [2 /*return*/];
             }
         });
@@ -91,9 +79,12 @@ function handleCreateAppo(ev) {
                     _a.label = 1;
                 case 1:
                     _a.trys.push([1, 3, , 4]);
+                    console.log(ev);
+                    console.log(document.getElementById('doctorType').value);
+                    console.dir(ev.target[3].value);
                     date = ev.target.date.value;
-                    doctorType = ev.target.doctorType.value;
-                    doctorId = ev.target.doctorId.value;
+                    doctorType = document.getElementById('doctorType').value;
+                    doctorId = ev.target[3].value;
                     time = ev.target.time.value;
                     console.log(date, doctorType, doctorId, time);
                     if (!date || !time || !doctorId || !doctorType)

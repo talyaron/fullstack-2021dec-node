@@ -1,3 +1,5 @@
+
+
 async function searchByDoctor(event) {
     try {
         const DoctorName = event.target.value;
@@ -20,6 +22,7 @@ async function searchByDoctor(event) {
 function renderAll(userDB) {
     let html = "";
     
+
     userDB.forEach(appo => {
         html += `</br>dr. ${appo.doctorId} has an appointment</br>
       on ${appo.time}
