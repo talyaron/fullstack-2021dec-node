@@ -490,7 +490,7 @@ function handleWinScoreUpdate() {
                 case 0:
                     score++;
                     console.log("New score:", score);
-                    return [4 /*yield*/, axios.patch("/players/update-score", { score: score, playerID: playerID })];
+                    return [4 /*yield*/, axios.patch("/players/update-score", { score: score })];
                 case 1:
                     data = (_a.sent()).data;
                     console.log(data);
@@ -507,7 +507,7 @@ function handleLostUpdate() {
                 case 0:
                     lost++;
                     console.log("New lost:", lost);
-                    return [4 /*yield*/, axios.patch("/players/update-lost", { lost: lost, playerID: playerID })];
+                    return [4 /*yield*/, axios.patch("/players/update-lost", { lost: lost })];
                 case 1:
                     data = (_a.sent()).data;
                     console.log(data);

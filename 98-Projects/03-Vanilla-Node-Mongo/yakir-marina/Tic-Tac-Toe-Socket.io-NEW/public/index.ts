@@ -466,7 +466,7 @@ async function handleWinScoreUpdate(){
 
   score++;
   console.log("New score:", score);
-  const {data} = await axios.patch("/players/update-score", {score, playerID});
+  const {data} = await axios.patch("/players/update-score", {score});
   console.log(data)
 }
 
@@ -474,7 +474,7 @@ async function handleLostUpdate(){
 
   lost++;
   console.log("New lost:", lost);
-  const {data} = await axios.patch("/players/update-lost", {lost, playerID});
+  const {data} = await axios.patch("/players/update-lost", {lost});
   console.log(data)
 }
 
