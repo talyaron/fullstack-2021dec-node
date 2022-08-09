@@ -155,7 +155,7 @@ function renderForCustomer(events) {
         var html_2 = '';
         events.forEach(function (event) {
             html_2 +=
-                "<div class=\"event2\">\n        <h2 class=\"evDetails1\">Lesson:" + event.lesson + "</h2>\n        <h2 class=\"evDetails1\">start at:" + event.dateS2 + "</h2>\n        <h2 class=\"evDetails1\">end at:" + event.dateE2 + "</h2>\n        <h2 class=\"evDetails1\">Time:" + event.hour + "</h2>\n\n        <h2 class=\"evDetails1\">day:" + event.day + "</h2>\n        <h2 class=\"evDetails1\">Price:" + event.price + "</h2>\n        <h2 class=\"evDetails1\">Coach:" + event.coach + "</h2>\n        <button id=\"addToCartBtn\" onclick=\"addToCart('" + event._id + "')\">Add to Cart</button>\n        </div>";
+                "<div class=\"event2\">\n        <h2 class=\"evDetails1\">Lesson:" + event.lesson + "</h2>\n        <h2 class=\"evDetails1\">start at:" + event.dateS2 + "</h2>\n        <h2 class=\"evDetails1\">end at:" + event.dateE2 + "</h2>\n        <h2 class=\"evDetails1\">Time:" + event.hour + "</h2>\n        <h2 class=\"evDetails1\">day:" + event.day + "</h2>\n        <h2 class=\"evDetails1\">Price:" + event.price + "</h2>\n        <h2 class=\"evDetails1\">Coach:" + event.coach + "</h2>\n        <button id=\"addToCartBtn\" onclick=\"addToCart('" + event._id + "')\">Add to Cart</button>\n        </div>";
         });
         var root2 = document.querySelector('#root2');
         if (!root2)

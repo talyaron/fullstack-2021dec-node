@@ -1,6 +1,7 @@
 body {
   background-image: url("../Images/bar_refaeli.jpg");
   background-size: cover;
+  margin: auto;
 }
 body .userEnter {
   margin: auto;
@@ -50,7 +51,7 @@ body #root1 {
   display: grid;
   grid-template-columns: auto auto auto;
   width: 100%;
-  margin: 0.5rem;
+  margin: 0.3rem;
 }
 body #root1 .event1 {
   border: 1px solid;
@@ -62,11 +63,17 @@ body #root1 .event1 {
 body #root1 .event1 .evDetails {
   color: purple;
 }
+body .moveToCart {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+}
 body #root2 {
   display: grid;
   grid-template-columns: auto auto auto;
   width: 100%;
-  margin: 0.5rem;
 }
 body #root2 .event2 {
   border: 1px solid;
@@ -83,7 +90,6 @@ body #root {
   display: grid;
   grid-template-columns: auto auto auto;
   width: 100%;
-  margin: 0.5rem;
 }
 body #root #cart {
   border: 1px solid;

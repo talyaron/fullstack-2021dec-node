@@ -113,7 +113,6 @@ function renderForCustomer(events){
         <h2 class="evDetails1">start at:${event.dateS2}</h2>
         <h2 class="evDetails1">end at:${event.dateE2}</h2>
         <h2 class="evDetails1">Time:${event.hour}</h2>
-
         <h2 class="evDetails1">day:${event.day}</h2>
         <h2 class="evDetails1">Price:${event.price}</h2>
         <h2 class="evDetails1">Coach:${event.coach}</h2>
