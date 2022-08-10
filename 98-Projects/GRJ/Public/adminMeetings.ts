@@ -7,11 +7,11 @@ event.preventDefault()
   const { data } = await axios.post('/doctors/getDoctorsByType', { doctorType })
   const allDoctors = data;
   let doctorsList = "";
-  const doctorsNameBox: HTMLDivElement = document.querySelector(".doctorsNameBox");
+  const doctorsNameBox: HTMLDivElement = document.querySelector("#doctorsNameBox");
  
 
   allDoctors.forEach(doctor => {
-      doctorsList += `<button value="${doctor._id}" onclick="searchByDoctor(event)">Dr. ${doctor.lastName}</button>`
+      doctorsList += `<div class="formsDiv_row"> <button class="buttonLoad" value="${doctor._id}" onclick="searchByDoctor(event)">Dr. ${doctor.lastName}</button> </div>`
   });
   
   doctorsNameBox.innerHTML=doctorsList
@@ -48,7 +48,7 @@ function renderAll(data) {
         html += `</br>dr. ${firstName} has an appointment</br>
       on ${appo.time}
       at ${appo.date}</br>
-      <button id=${appo._id} onclick="handleDelete(event)" type="deleteAppo">Delete</button></br></br></br>`
+     <div class="formDiv"> <button class="button" id=${appo._id} onclick="handleDelete(event)" type="deleteAppo">Delete</button></br></br></br></div>`
 
     });
     const root = document.querySelector('#root')

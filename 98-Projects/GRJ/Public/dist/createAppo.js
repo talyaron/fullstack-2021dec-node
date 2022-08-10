@@ -159,7 +159,7 @@ function handleGetAllDoctors() {
                     console.log(allDoctors);
                     html_1 = "";
                     allDoctors.forEach(function (doctor) {
-                        html_1 += "<button id=\"" + doctor._id + "\" onclick ='handleSelectDoctor(event)' >Dr. " + doctor.lastName + " (" + doctor.doctorType + ") </button>";
+                        html_1 += "\n            <div class=\"formsDiv\"> <button class=\"buttonLoad\" id=\"" + doctor._id + "\" onclick ='handleSelectDoctor(event)' >Dr. " + doctor.lastName + " (" + doctor.doctorType + ") </button>\n            </div>";
                     });
                     doctorsBtns.innerHTML = html_1;
                     return [3 /*break*/, 4];

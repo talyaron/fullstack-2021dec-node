@@ -152,3 +152,29 @@ body {
   display: flex;
   justify-content: center;
 }
+
+
+.buttonLoad {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  font: inherit;
+  padding: 0.5rem 1.5rem;
+  border: 1px solid #008b00;
+  color: white;
+  background: #13008b;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.26);
+  cursor: pointer;
+}
+
+  .buttonLoad:focus {
+    outline: none;
+  }
+  
+  .buttonLoad:hover,
+  .buttonLoad:active {
+    background: #0eac3d;
+    border-color: #0eac4b;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.26);
+  }
+ 

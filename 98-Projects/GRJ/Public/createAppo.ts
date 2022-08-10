@@ -120,8 +120,9 @@ async function handleGetAllDoctors() {
         console.log(allDoctors)
         let html = ""
         allDoctors.forEach(doctor => {
-            html += `<button id="${doctor._id}" onclick ='handleSelectDoctor(event)' >Dr. ${doctor.lastName} (${doctor.doctorType}) </button>`
-
+            html += `
+            <div class="formsDiv"> <button class="buttonLoad" id="${doctor._id}" onclick ='handleSelectDoctor(event)' >Dr. ${doctor.lastName} (${doctor.doctorType}) </button>
+            </div>`
         });
         doctorsBtns.innerHTML = html;
 

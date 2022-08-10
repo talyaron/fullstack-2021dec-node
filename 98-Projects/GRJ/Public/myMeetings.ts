@@ -36,10 +36,10 @@ function renderAll(userDB) {
   let html = "";
   console.log(userDB)
   userDB.forEach(appo => {
-    html += `${appo.doctorType}</br>you have an appointment to ${appo.doctorType} doctor</br>
+    html += `<div class="formsDiv_row"> ${appo.doctorType}</br>you have an appointment to ${appo.doctorType} doctor</br>
     on ${appo.time}
     at ${appo.date}</br>
-    <button id=${appo._id} onclick="handleDelete(event)" type="deleteAppo">Delete</button></br></br></br>`
+      <button id=${appo._id} onclick="handleDelete(event)" type="deleteAppo">Delete</button></br></br></br> </div>`
 
   });
   const root = document.querySelector('#root')
