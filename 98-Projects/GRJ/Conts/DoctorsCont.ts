@@ -83,6 +83,7 @@ async function create8to5workDay(userId, doctorId, doctorType, date) {
         const newAppo = new AppoModel({ userId, doctorId, doctorType, date, time });
         const newAppoDB = await newAppo.save();
         console.log(newAppoDB)
+        console.log(newAppoDB)
     }
 
 }
