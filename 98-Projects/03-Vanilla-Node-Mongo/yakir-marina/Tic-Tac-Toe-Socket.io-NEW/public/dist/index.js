@@ -63,6 +63,7 @@ function handleLoad() {
                     player1 = data.player1;
                     _id = player1.playerId;
                     console.log("test: " + player1.name + " and id: " + _id);
+                    lost = player1.lost;
                     score = player1.score;
                     return [3 /*break*/, 3];
                 case 2:

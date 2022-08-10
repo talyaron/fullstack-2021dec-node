@@ -27,7 +27,7 @@ async function handleLoad() {
     const {player1} = data;
     _id = player1.playerId;
     console.log(`test: ${player1.name} and id: ${_id}`);
-
+    lost = player1.lost;
     score = player1.score;
   } catch (error) {
     console.error(error);
