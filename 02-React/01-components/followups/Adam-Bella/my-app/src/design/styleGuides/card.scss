@@ -7,6 +7,7 @@
     display: flex;
     flex-direction: column;
     color: $textColor;
+    max-width: 250px;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;    
     .tag{
         padding: 8px;
