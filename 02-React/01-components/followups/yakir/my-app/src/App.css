@@ -37,14 +37,3 @@
   }
 }
 
-.wrapper{
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: repeat(200px, 3);
-  grid-column-gap: 20px;
-}
-
-.card{
-border-radius: 20px;
-border: 2px solid black;
-}
-

@@ -4,6 +4,20 @@ $textColor:blue;
 @import 'btns';
 
 
+.wrapper{
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  grid-template-rows: repeat(200px, 3);
+  grid-column-gap: 20px;
+}
+
+.card{
+border-radius: 20px;
+border: 2px solid black;
+}
+
+
+
 .App {
     text-align: center;
   }
