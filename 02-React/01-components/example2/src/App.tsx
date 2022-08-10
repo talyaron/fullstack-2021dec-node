@@ -8,11 +8,11 @@ function App() {
     <div className="App">
       <header className="App-header">
       <div className="btn">OK</div>
-        <Card text='a'/>
-        <Card text='b'/>
-        <Card text='c'/>
-        <Card text='d'/>
-        <Card text='e'/>
+        <Card text='a' title='aa'/>
+        <Card text='b' title='aa'/>
+        <Card text='c' title='aa'/>
+        <Card text='d' title='aa'/>
+        <Card text='e' title='aa'/>
         <button>OK2</button>
       </header>
     </div>
