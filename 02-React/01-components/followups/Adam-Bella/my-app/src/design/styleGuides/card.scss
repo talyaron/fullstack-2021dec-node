@@ -1,0 +1,15 @@
+.card{
+    padding: 20px;
+    border-radius: 10px;
+    background-color: wheat;
+    margin: 2px;
+    display: flex;
+    flex-direction: column;
+    color: $textColor;
+    
+    .tag{
+        padding: 8px;
+        border-radius: 10px;
+        background-color: rgb(255, 255, 255);
+    }
+}
