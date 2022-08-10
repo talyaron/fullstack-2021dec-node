@@ -6,5 +6,6 @@ var router = express_1["default"].Router();
 router
     .get('/getAllDoctors', DoctorsCont_1.getAllDoctors)
     .post('/createNewDoctor', DoctorsCont_1.createNewDoctor)
-    .post('/getDoctorsByType', DoctorsCont_1.getDoctorsByType);
+    .post('/getDoctorsByType', DoctorsCont_1.getDoctorsByType)
+    .post('/createDoctorWorkSchedule', DoctorsCont_1.createDoctorWorkSchedule);
 exports["default"] = router;

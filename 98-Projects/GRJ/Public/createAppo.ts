@@ -174,13 +174,10 @@ function todayDate(addDays) {
 }
 
 
-function createDoctorSchedule(ev) {
+async function createDoctorSchedule(ev) {
     ev.preventDefault()
     const doctor_id = ev.target.id
     const daysLenght = ev.srcElement.length -1;
-console.log(doctor_id);
-console.log(ev.target[0].checked);
-console.log(daysLenght);
 
     const detailsArray = [];
 
@@ -194,8 +191,10 @@ if(checkbox === true){
     detailsArray.push(workday);
 }
     }
-    
+
 console.log(detailsArray);
+
+const {data} = await axios.post("/doctors/createDoctorWorkSchedule", ({detailsArray, doctor_id}))
 
 
 }

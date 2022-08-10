@@ -196,21 +196,30 @@ function todayDate(addDays) {
     return today;
 }
 function createDoctorSchedule(ev) {
-    ev.preventDefault();
-    var doctor_id = ev.target.id;
-    var daysLenght = ev.srcElement.length - 1;
-    console.log(doctor_id);
-    console.log(ev.target[0].checked);
-    console.log(daysLenght);
-    var detailsArray = [];
-    for (var i = 0; i < daysLenght; i++) {
-        var checkbox = ev.target[i].checked;
-        console.log(checkbox);
-        var date = ev.target[i].id;
-        if (checkbox === true) {
-            var workday = { date: date };
-            detailsArray.push(workday);
-        }
-    }
-    console.log(detailsArray);
+    return __awaiter(this, void 0, void 0, function () {
+        var doctor_id, daysLenght, detailsArray, i, checkbox, date, workday, data;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    ev.preventDefault();
+                    doctor_id = ev.target.id;
+                    daysLenght = ev.srcElement.length - 1;
+                    detailsArray = [];
+                    for (i = 0; i < daysLenght; i++) {
+                        checkbox = ev.target[i].checked;
+                        console.log(checkbox);
+                        date = ev.target[i].id;
+                        if (checkbox === true) {
+                            workday = { date: date };
+                            detailsArray.push(workday);
+                        }
+                    }
+                    console.log(detailsArray);
+                    return [4 /*yield*/, axios.post("/doctors/createDoctorWorkSchedule", ({ detailsArray: detailsArray, doctor_id: doctor_id }))];
+                case 1:
+                    data = (_a.sent()).data;
+                    return [2 /*return*/];
+            }
+        });
+    });
 }

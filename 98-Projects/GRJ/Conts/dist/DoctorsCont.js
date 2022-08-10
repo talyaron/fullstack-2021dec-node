@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.getDoctorsByType = exports.createNewDoctor = exports.getAllDoctors = void 0;
+exports.createDoctorWorkSchedule = exports.getDoctorsByType = exports.createNewDoctor = exports.getAllDoctors = void 0;
 var DoctorModel_1 = require("../Models/DoctorModel");
 function getAllDoctors(req, res) {
     return __awaiter(this, void 0, void 0, function () {
@@ -96,3 +96,14 @@ function getDoctorsByType(req, res) {
     });
 }
 exports.getDoctorsByType = getDoctorsByType;
+function createDoctorWorkSchedule(req, res) {
+    return __awaiter(this, void 0, void 0, function () {
+        var _a, detailsArray, doctor_id;
+        return __generator(this, function (_b) {
+            _a = req.body, detailsArray = _a.detailsArray, doctor_id = _a.doctor_id;
+            console.log(detailsArray, doctor_id);
+            return [2 /*return*/];
+        });
+    });
+}
+exports.createDoctorWorkSchedule = createDoctorWorkSchedule;

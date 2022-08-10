@@ -39,3 +39,11 @@ const allDoctors = await DoctorModel.find({doctorType:doctorType});
 res.send(allDoctors)
 
 }
+
+export async function createDoctorWorkSchedule(req,res){
+    const {detailsArray, doctor_id} = req.body;
+console.log(detailsArray, doctor_id);
+
+
+    
+}
