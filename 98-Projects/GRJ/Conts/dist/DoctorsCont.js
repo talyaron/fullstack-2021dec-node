@@ -152,7 +152,6 @@ function create8to5workDay(userId, doctorId, doctorType, date) {
                 case 2:
                     newAppoDB = _a.sent();
                     console.log(newAppoDB);
-                    console.log(newAppoDB);
                     _a.label = 3;
                 case 3:
                     timeInMin += 15;

@@ -34,8 +34,9 @@ async function createSingleAppo() {
 }
 async function changeDoctorsList() {
 
-
+    // @ts-ignore
     const doctorType = document.getElementById('doctorType').value;
+    // @ts-ignore
     const { data } = await axios.post('/doctors/getDoctorsByType', { doctorType })
     const allDoctors = data;
     let doctorsList = "";
@@ -178,26 +179,26 @@ function todayDate(addDays) {
 async function createDoctorSchedule(ev) {
     ev.preventDefault()
     const doctor_id = ev.target.id
-    const daysLenght = ev.srcElement.length -1;
+    const daysLenght = ev.srcElement.length - 1;
 
     const detailsArray = [];
 
     for (let i = 0; i < daysLenght; i++) {
-let checkbox = ev.target[i].checked;
-console.log(checkbox);
+        let checkbox = ev.target[i].checked;
+        console.log(checkbox);
 
-let date = ev.target[i].id;
-if(checkbox === true){
-    let workday = {date: date};
-    detailsArray.push(workday);
-}
+        let date = ev.target[i].id;
+        if (checkbox === true) {
+            let workday = { date: date };
+            detailsArray.push(workday);
+        }
     }
 
-console.log(detailsArray);
-
-const {data} = await axios.post("/doctors/createDoctorWorkSchedule", ({detailsArray, doctor_id}));
-const messageR = data
-console.log(messageR)
+    console.log(detailsArray);
+    // @ts-ignore
+    const { data } = await axios.post("/doctors/createDoctorWorkSchedule", ({ detailsArray, doctor_id }));
+    const messageR = data
+    console.log(messageR)
 
 
 }
