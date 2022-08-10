@@ -48,9 +48,9 @@ function changeDoctorsList(event) {
                     data = (_a.sent()).data;
                     allDoctors = data;
                     doctorsList = "";
-                    doctorsNameBox = document.querySelector(".doctorsNameBox");
+                    doctorsNameBox = document.querySelector("#doctorsNameBox");
                     allDoctors.forEach(function (doctor) {
-                        doctorsList += "<button value=\"" + doctor._id + "\" onclick=\"searchByDoctor(event)\">Dr. " + doctor.lastName + "</button>";
+                        doctorsList += "<div class=\"formsDiv_row\"> <button class=\"buttonLoad\" value=\"" + doctor._id + "\" onclick=\"searchByDoctor(event)\">Dr. " + doctor.lastName + "</button> </div>";
                     });
                     doctorsNameBox.innerHTML = doctorsList;
                     return [2 /*return*/];
@@ -92,7 +92,7 @@ function renderAll(data) {
     var userDB = data.newUserDB;
     var firstName = data.doctorName;
     userDB.forEach(function (appo) {
-        html += "</br>dr. " + firstName + " has an appointment</br>\n      on " + appo.time + "\n      at " + appo.date + "</br>\n      <button id=" + appo._id + " onclick=\"handleDelete(event)\" type=\"deleteAppo\">Delete</button></br></br></br>";
+        html += "</br>dr. " + firstName + " has an appointment</br>\n      on " + appo.time + "\n      at " + appo.date + "</br>\n     <div class=\"formDiv\"> <button class=\"button\" id=" + appo._id + " onclick=\"handleDelete(event)\" type=\"deleteAppo\">Delete</button></br></br></br></div>";
     });
     var root = document.querySelector('#root');
     root.innerHTML = html;
