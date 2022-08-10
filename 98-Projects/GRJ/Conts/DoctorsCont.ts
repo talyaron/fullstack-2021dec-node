@@ -66,35 +66,19 @@ async function create8to5workDay(userId, doctorId, doctorType, date) {
     var eightAMtotalInMinutes = (parseInt(eightAM.split(":")[0]) * 60) + parseInt(eightAM.split(":")[1]);
     var fivePMtotalInMinutes = (parseInt(fivePM.split(":")[0]) * 60) + parseInt(fivePM.split(":")[1]);
 
-    console.log(eightAMtotalInMinutes);
-    console.log(fivePMtotalInMinutes);
 
-    var minutes: any = (eightAMtotalInMinutes % 60).toLocaleString('en-US', {
-        minimumIntegerDigits: 2,
-        useGrouping: false
-    });
+    for (let timeInMin = eightAMtotalInMinutes; timeInMin < fivePMtotalInMinutes; timeInMin += 15) {
 
-    var hours = ((eightAMtotalInMinutes - minutes) / 60).toLocaleString('en-US', {
-        minimumIntegerDigits: 2,
-        useGrouping: false
-    });
-    var output: string = hours + ':' + minutes;
-
-    console.log(output);
-
-
-    for (let timeInMin = eightAMtotalInMinutes; timeInMin < fivePMtotalInMinutes; timeInMin + 15) {
-
-        var minutes: any = (eightAMtotalInMinutes % 60).toLocaleString('en-US', {
+        let minutes: any = (timeInMin % 60).toLocaleString('en-US', {
             minimumIntegerDigits: 2,
             useGrouping: false
         });
-        var hours = ((eightAMtotalInMinutes - minutes) / 60).toLocaleString('en-US', {
+        let hours = ((timeInMin - minutes) / 60).toLocaleString('en-US', {
             minimumIntegerDigits: 2,
             useGrouping: false
         });
-        var output: string = hours + ':' + minutes;
-        var time = output;
+        let output: string = hours + ':' + minutes;
+        let time = output;
 
         const newAppo = new AppoModel({ userId, doctorId, doctorType, date, time });
         const newAppoDB = await newAppo.save();

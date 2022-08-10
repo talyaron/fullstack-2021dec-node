@@ -125,7 +125,7 @@ function createDoctorWorkSchedule(req, res) {
 exports.createDoctorWorkSchedule = createDoctorWorkSchedule;
 function create8to5workDay(userId, doctorId, doctorType, date) {
     return __awaiter(this, void 0, void 0, function () {
-        var eightAM, fivePM, eightAMtotalInMinutes, fivePMtotalInMinutes, minutes, hours, output, timeInMin, minutes, hours, output, time, newAppo, newAppoDB;
+        var eightAM, fivePM, eightAMtotalInMinutes, fivePMtotalInMinutes, timeInMin, minutes, hours, output, time, newAppo, newAppoDB;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -133,27 +133,15 @@ function create8to5workDay(userId, doctorId, doctorType, date) {
                     fivePM = "17:00";
                     eightAMtotalInMinutes = (parseInt(eightAM.split(":")[0]) * 60) + parseInt(eightAM.split(":")[1]);
                     fivePMtotalInMinutes = (parseInt(fivePM.split(":")[0]) * 60) + parseInt(fivePM.split(":")[1]);
-                    console.log(eightAMtotalInMinutes);
-                    console.log(fivePMtotalInMinutes);
-                    minutes = (eightAMtotalInMinutes % 60).toLocaleString('en-US', {
-                        minimumIntegerDigits: 2,
-                        useGrouping: false
-                    });
-                    hours = ((eightAMtotalInMinutes - minutes) / 60).toLocaleString('en-US', {
-                        minimumIntegerDigits: 2,
-                        useGrouping: false
-                    });
-                    output = hours + ':' + minutes;
-                    console.log(output);
                     timeInMin = eightAMtotalInMinutes;
                     _a.label = 1;
                 case 1:
                     if (!(timeInMin < fivePMtotalInMinutes)) return [3 /*break*/, 4];
-                    minutes = (eightAMtotalInMinutes % 60).toLocaleString('en-US', {
+                    minutes = (timeInMin % 60).toLocaleString('en-US', {
                         minimumIntegerDigits: 2,
                         useGrouping: false
                     });
-                    hours = ((eightAMtotalInMinutes - minutes) / 60).toLocaleString('en-US', {
+                    hours = ((timeInMin - minutes) / 60).toLocaleString('en-US', {
                         minimumIntegerDigits: 2,
                         useGrouping: false
                     });
@@ -166,7 +154,7 @@ function create8to5workDay(userId, doctorId, doctorType, date) {
                     console.log(newAppoDB);
                     _a.label = 3;
                 case 3:
-                    timeInMin + 15;
+                    timeInMin += 15;
                     return [3 /*break*/, 1];
                 case 4: return [2 /*return*/];
             }
