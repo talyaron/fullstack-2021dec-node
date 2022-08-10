@@ -25,7 +25,7 @@ function handleLoad() {
 
     const {player1} = axios.get("/players/player-by-cookie");
     console.log(`test: ${player1}`);
-    _id = player1._id;
+    _id = player1.playerId;
     score = player1.score;
   } catch (error) {
     console.error(error);
