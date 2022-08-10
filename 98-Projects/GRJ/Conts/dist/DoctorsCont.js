@@ -38,6 +38,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 exports.__esModule = true;
 exports.createDoctorWorkSchedule = exports.getDoctorsByType = exports.createNewDoctor = exports.getAllDoctors = void 0;
 var DoctorModel_1 = require("../Models/DoctorModel");
+var AppoModel_1 = require("../Models/AppoModel");
 function getAllDoctors(req, res) {
     return __awaiter(this, void 0, void 0, function () {
         var allDoctors;
@@ -98,12 +99,77 @@ function getDoctorsByType(req, res) {
 exports.getDoctorsByType = getDoctorsByType;
 function createDoctorWorkSchedule(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var _a, detailsArray, doctor_id;
+        var _a, detailsArray, doctor_id, doctorId, userId, doctor, doctorType;
         return __generator(this, function (_b) {
-            _a = req.body, detailsArray = _a.detailsArray, doctor_id = _a.doctor_id;
-            console.log(detailsArray, doctor_id);
-            return [2 /*return*/];
+            switch (_b.label) {
+                case 0:
+                    _a = req.body, detailsArray = _a.detailsArray, doctor_id = _a.doctor_id;
+                    console.log(doctor_id);
+                    doctorId = doctor_id;
+                    userId = 'empty';
+                    return [4 /*yield*/, DoctorModel_1["default"].find({ _id: doctorId })];
+                case 1:
+                    doctor = _b.sent();
+                    doctorType = doctor.doctorType;
+                    console.log(detailsArray[0].date);
+                    detailsArray.forEach(function (day) {
+                        var date = day.date;
+                        create8to5workDay(userId, doctorId, doctorType, date);
+                    });
+                    res.send("The appoitments created successfully");
+                    return [2 /*return*/];
+            }
         });
     });
 }
 exports.createDoctorWorkSchedule = createDoctorWorkSchedule;
+function create8to5workDay(userId, doctorId, doctorType, date) {
+    return __awaiter(this, void 0, void 0, function () {
+        var eightAM, fivePM, eightAMtotalInMinutes, fivePMtotalInMinutes, minutes, hours, output, timeInMin, minutes, hours, output, time, newAppo, newAppoDB;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    eightAM = "08:00";
+                    fivePM = "17:00";
+                    eightAMtotalInMinutes = (parseInt(eightAM.split(":")[0]) * 60) + parseInt(eightAM.split(":")[1]);
+                    fivePMtotalInMinutes = (parseInt(fivePM.split(":")[0]) * 60) + parseInt(fivePM.split(":")[1]);
+                    console.log(eightAMtotalInMinutes);
+                    console.log(fivePMtotalInMinutes);
+                    minutes = (eightAMtotalInMinutes % 60).toLocaleString('en-US', {
+                        minimumIntegerDigits: 2,
+                        useGrouping: false
+                    });
+                    hours = ((eightAMtotalInMinutes - minutes) / 60).toLocaleString('en-US', {
+                        minimumIntegerDigits: 2,
+                        useGrouping: false
+                    });
+                    output = hours + ':' + minutes;
+                    console.log(output);
+                    timeInMin = eightAMtotalInMinutes;
+                    _a.label = 1;
+                case 1:
+                    if (!(timeInMin < fivePMtotalInMinutes)) return [3 /*break*/, 4];
+                    minutes = (eightAMtotalInMinutes % 60).toLocaleString('en-US', {
+                        minimumIntegerDigits: 2,
+                        useGrouping: false
+                    });
+                    hours = ((eightAMtotalInMinutes - minutes) / 60).toLocaleString('en-US', {
+                        minimumIntegerDigits: 2,
+                        useGrouping: false
+                    });
+                    output = hours + ':' + minutes;
+                    time = output;
+                    newAppo = new AppoModel_1["default"]({ userId: userId, doctorId: doctorId, doctorType: doctorType, date: date, time: time });
+                    return [4 /*yield*/, newAppo.save()];
+                case 2:
+                    newAppoDB = _a.sent();
+                    console.log(newAppoDB);
+                    _a.label = 3;
+                case 3:
+                    timeInMin + 15;
+                    return [3 /*break*/, 1];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
+}

@@ -197,7 +197,7 @@ function todayDate(addDays) {
 }
 function createDoctorSchedule(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var doctor_id, daysLenght, detailsArray, i, checkbox, date, workday, data;
+        var doctor_id, daysLenght, detailsArray, i, checkbox, date, workday, data, messageR;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -218,6 +218,8 @@ function createDoctorSchedule(ev) {
                     return [4 /*yield*/, axios.post("/doctors/createDoctorWorkSchedule", ({ detailsArray: detailsArray, doctor_id: doctor_id }))];
                 case 1:
                     data = (_a.sent()).data;
+                    messageR = data;
+                    console.log(messageR);
                     return [2 /*return*/];
             }
         });

@@ -194,7 +194,9 @@ if(checkbox === true){
 
 console.log(detailsArray);
 
-const {data} = await axios.post("/doctors/createDoctorWorkSchedule", ({detailsArray, doctor_id}))
+const {data} = await axios.post("/doctors/createDoctorWorkSchedule", ({detailsArray, doctor_id}));
+const messageR = data
+console.log(messageR)
 
 
 }
