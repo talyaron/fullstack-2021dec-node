@@ -108,8 +108,15 @@ export const updateScoreByID = async (req, res) => {
   try {
     
     const { score } = req.body;
-    const playerDB = await PlayerModel.updateOne({ score });
-    res.send({ success: true, player: playerDB });
+    const {_id} = req.body;
+    PlayerModel.findOneAndUpdate({_id: _id},{score: score},(error, data) =>{
+      if(error){
+        console.log(error)
+      }else{
+        console.log(data)
+      }
+    })
+    // res.send({ success: true, player: playerDB });
   } catch (error) {
     console.error(error.message);
     res.send({ error: error.message });

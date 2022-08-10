@@ -10,6 +10,7 @@ const chatRoomInput = document.querySelector(
   "#chatRoomInput"
 ) as HTMLInputElement;
 
+let _id = ""
 let myMove = true;
 let symbol;
 let lost = 0;
@@ -24,7 +25,8 @@ function handleLoad() {
 
     const {player1} = axios.get("/players/player-by-cookie");
     console.log(`test: ${player1}`);
-
+    _id = player1._id;
+    score = player1.score;
   } catch (error) {
     console.error(error);
   }
@@ -466,7 +468,8 @@ async function handleWinScoreUpdate(){
 
   score++;
   console.log("New score:", score);
-  const {data} = await axios.patch("/players/update-score", {score});
+  const {data} = await axios.patch("/players/update-score", {_id, score});
+  document.querySelector("#myScore").innerHTML = `${score}`;
   console.log(data)
 }
 

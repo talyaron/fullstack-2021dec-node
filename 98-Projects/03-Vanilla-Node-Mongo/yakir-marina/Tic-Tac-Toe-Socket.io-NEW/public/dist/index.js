@@ -41,6 +41,7 @@ var socket = io(clientUrl);
 var gameRoomInput = document.querySelector("#gameRoomInput");
 var chatInput = document.querySelector("#chatMessageInput");
 var chatRoomInput = document.querySelector("#chatRoomInput");
+var _id = "";
 var myMove = true;
 var symbol;
 var lost = 0;
@@ -53,6 +54,8 @@ function handleLoad() {
         getPlayerByCookie();
         var player1 = axios.get("/players/player-by-cookie").player1;
         console.log("test: " + player1);
+        _id = player1._id;
+        score = player1.score;
     }
     catch (error) {
         console.error(error);
@@ -490,9 +493,10 @@ function handleWinScoreUpdate() {
                 case 0:
                     score++;
                     console.log("New score:", score);
-                    return [4 /*yield*/, axios.patch("/players/update-score", { score: score })];
+                    return [4 /*yield*/, axios.patch("/players/update-score", { _id: _id, score: score })];
                 case 1:
                     data = (_a.sent()).data;
+                    document.querySelector("#myScore").innerHTML = "" + score;
                     console.log(data);
                     return [2 /*return*/];
             }
