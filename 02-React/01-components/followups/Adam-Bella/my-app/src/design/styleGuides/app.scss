@@ -1,4 +1,4 @@
-$textColor:blue;
+$textColor:rgb(34, 34, 34);
 
 @import 'card';
 @import 'btns';
@@ -6,6 +6,16 @@ $textColor:blue;
 
 .App {
     text-align: center;
+
+  }
+  
+  .wrapper-card{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+    gap: 24px;
   }
   
   .App-logo {
