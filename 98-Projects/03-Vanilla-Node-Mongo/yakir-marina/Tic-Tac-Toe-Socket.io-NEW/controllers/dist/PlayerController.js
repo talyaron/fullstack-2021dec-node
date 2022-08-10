@@ -145,24 +145,26 @@ exports.getPlayerByCookie = function (req, res) { return __awaiter(void 0, void 
     });
 }); };
 exports.updateLostByID = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, lost, playerID, playerDB, error_3;
-    return __generator(this, function (_b) {
-        switch (_b.label) {
-            case 0:
-                _b.trys.push([0, 2, , 3]);
-                _a = req.body, lost = _a.lost, playerID = _a.playerID;
-                return [4 /*yield*/, PlayerModel_1["default"].updateOne({ lost: lost, playerId: playerID })];
-            case 1:
-                playerDB = _b.sent();
-                res.send({ success: true, player: playerDB });
-                return [3 /*break*/, 3];
-            case 2:
-                error_3 = _b.sent();
-                console.error(error_3.message);
-                res.send({ error: error_3.message });
-                return [3 /*break*/, 3];
-            case 3: return [2 /*return*/];
+    var lost, _id;
+    return __generator(this, function (_a) {
+        try {
+            lost = req.body.lost;
+            _id = req.body._id;
+            PlayerModel_1["default"].findOneAndUpdate({ _id: _id }, { lost: lost }, function (error, data) {
+                if (error) {
+                    console.log(error);
+                }
+                else {
+                    console.log(data);
+                }
+            });
+            // res.send({ success: true, player: playerDB });
         }
+        catch (error) {
+            console.error(error.message);
+            res.send({ error: error.message });
+        }
+        return [2 /*return*/];
     });
 }); };
 exports.updateScoreByID = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {

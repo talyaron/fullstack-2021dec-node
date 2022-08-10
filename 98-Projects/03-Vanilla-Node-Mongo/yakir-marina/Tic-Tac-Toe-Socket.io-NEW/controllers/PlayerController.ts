@@ -81,7 +81,7 @@ export const getPlayerByCookie = async (req, res) => {
     if (!player1) throw new Error("Cookie player not found");
     if (!player2) throw new Error("Cookie player not found");
 
-    res.send({ success: true, player1, player2 });
+    res.send({ success: true, player1, player2});
     console.log("player1 is:", player1);
     console.log("player2 is:", player2);
 
@@ -93,11 +93,17 @@ export const getPlayerByCookie = async (req, res) => {
 
 export const updateLostByID = async (req, res) => {
   try {
-    const {lost, playerID} = req.body;
-
-    const playerDB = await PlayerModel.updateOne({ lost, playerId: playerID });
-    res.send({ success: true, player: playerDB});
-
+    
+    const { lost } = req.body;
+    const {_id} = req.body;
+    PlayerModel.findOneAndUpdate({_id: _id},{lost: lost},(error, data) =>{
+      if(error){
+        console.log(error)
+      }else{
+        console.log(data)
+      }
+    })
+    // res.send({ success: true, player: playerDB });
   } catch (error) {
     console.error(error.message);
     res.send({ error: error.message });

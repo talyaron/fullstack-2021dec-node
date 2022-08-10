@@ -19,13 +19,15 @@ let sec = 0;
 let min = 0;
 // const player1;
 
-function handleLoad() {
+async function handleLoad() {
   try {
     getPlayerByCookie();
 
-    const {player1} = axios.get("/players/player-by-cookie");
-    console.log(`test: ${player1}`);
+    const {data} = await axios.get("/players/player-by-cookie");
+    const {player1} = data;
     _id = player1.playerId;
+    console.log(`test: ${player1.name} and id: ${_id}`);
+
     score = player1.score;
   } catch (error) {
     console.error(error);
@@ -477,7 +479,7 @@ async function handleLostUpdate(){
 
   lost++;
   console.log("New lost:", lost);
-  const {data} = await axios.patch("/players/update-lost", {lost});
+  const {data} = await axios.patch("/players/update-lost", {_id, lost});
   console.log(data)
 }
 

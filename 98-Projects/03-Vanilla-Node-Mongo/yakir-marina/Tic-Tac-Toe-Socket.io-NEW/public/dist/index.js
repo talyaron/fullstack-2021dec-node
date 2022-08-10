@@ -50,16 +50,29 @@ var sec = 0;
 var min = 0;
 // const player1;
 function handleLoad() {
-    try {
-        getPlayerByCookie();
-        var player1 = axios.get("/players/player-by-cookie").player1;
-        console.log("test: " + player1);
-        _id = player1.playerId;
-        score = player1.score;
-    }
-    catch (error) {
-        console.error(error);
-    }
+    return __awaiter(this, void 0, void 0, function () {
+        var data, player1, error_1;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    getPlayerByCookie();
+                    return [4 /*yield*/, axios.get("/players/player-by-cookie")];
+                case 1:
+                    data = (_a.sent()).data;
+                    player1 = data.player1;
+                    _id = player1.playerId;
+                    console.log("test: " + player1.name + " and id: " + _id);
+                    score = player1.score;
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_1 = _a.sent();
+                    console.error(error_1);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
 }
 // CHAT ===========================================
 socket.on("connect", function () {
@@ -330,7 +343,7 @@ function handleGoToStats() {
 // REGISTER / LOGIN ========================================
 function handleRegister(e) {
     return __awaiter(this, void 0, void 0, function () {
-        var _a, name, email, password, data, error, player, error_1;
+        var _a, name, email, password, data, error, player, error_2;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
@@ -359,8 +372,8 @@ function handleRegister(e) {
                     }
                     return [3 /*break*/, 3];
                 case 2:
-                    error_1 = _b.sent();
-                    console.error(error_1.message);
+                    error_2 = _b.sent();
+                    console.error(error_2.message);
                     return [3 /*break*/, 3];
                 case 3: return [2 /*return*/];
             }
@@ -369,7 +382,7 @@ function handleRegister(e) {
 }
 function handleLogin(e) {
     return __awaiter(this, void 0, void 0, function () {
-        var _a, email, password, data, error, player, entrances, error_2;
+        var _a, email, password, data, error, player, entrances, error_3;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
@@ -395,8 +408,8 @@ function handleLogin(e) {
                         alert("This email is already in use");
                     return [3 /*break*/, 3];
                 case 2:
-                    error_2 = _b.sent();
-                    console.error(error_2.message);
+                    error_3 = _b.sent();
+                    console.error(error_3.message);
                     return [3 /*break*/, 3];
                 case 3: return [2 /*return*/];
             }
@@ -405,7 +418,7 @@ function handleLogin(e) {
 }
 function getPlayerByCookie() {
     return __awaiter(this, void 0, void 0, function () {
-        var data, player1, player2, name, greetingFunc, error_3;
+        var data, player1, player2, name, greetingFunc, error_4;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -428,8 +441,8 @@ function getPlayerByCookie() {
                     $("#opponentName").html("\n    <div class=\"container__currentStatistic__gemerIcons\">\n      <div>\n         <span class=\"material-icons\">person</span>\n         <p>" + player1.name + "</p>\n      </div>\n    <div>VS</div>\n      <div>\n         <span class=\"material-icons\">perm_identity</span>\n        <p>" + player2.name + "</p>\n      </div>\n    </div>\n    ");
                     return [3 /*break*/, 3];
                 case 2:
-                    error_3 = _a.sent();
-                    console.error(error_3.message);
+                    error_4 = _a.sent();
+                    console.error(error_4.message);
                     return [3 /*break*/, 3];
                 case 3: return [2 /*return*/];
             }
@@ -511,7 +524,7 @@ function handleLostUpdate() {
                 case 0:
                     lost++;
                     console.log("New lost:", lost);
-                    return [4 /*yield*/, axios.patch("/players/update-lost", { lost: lost })];
+                    return [4 /*yield*/, axios.patch("/players/update-lost", { _id: _id, lost: lost })];
                 case 1:
                     data = (_a.sent()).data;
                     console.log(data);
