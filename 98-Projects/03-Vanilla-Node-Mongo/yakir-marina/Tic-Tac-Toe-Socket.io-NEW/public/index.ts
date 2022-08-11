@@ -10,7 +10,7 @@ const chatRoomInput = document.querySelector(
   "#chatRoomInput"
 ) as HTMLInputElement;
 
-let _id = ""
+let _id = "";
 let myMove = true;
 let symbol;
 let lost = 0;
@@ -23,18 +23,40 @@ async function handleLoad() {
   try {
     getPlayerByCookie();
 
-    const {data} = await axios.get("/players/player-by-cookie");
-    const {player1} = data;
+    const { data } = await axios.get("/players/player-by-cookie");
+    const { player1, player2 } = data;
     _id = player1.playerId;
+    let id = player2.playerId;
+
     console.log(`test: ${player1.name} and id: ${_id}`);
+    console.log(`test: ${player2.name} and id: ${id}`);
     lost = player1.lost;
     score = player1.score;
+
+    let lost2 = player2.lost;
+    let score2 = player2.score;
+
+    const div = document.createElement("div");
+    div.textContent = `Name:  ${player1.name},  Score is:  ${score}, Losts:  ${lost}`;
+    div.textContent = `Name:  ${player2.name},  Score is:  ${score2}, Losts:  ${lost2}`;
+    $("#scoreTable-container").append(div);
   } catch (error) {
     console.error(error);
   }
 }
 
-// CHAT ===========================================
+function loadStatistic() {
+  try {
+    handleLoad();
+    handleWinScoreUpdate();
+    handleLostUpdate();
+    // updateStats();
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// CHAT
 socket.on("connect", () => {
   try {
     displayChatMessage(`You connected with id: ${socket.id}`);
@@ -91,8 +113,7 @@ function displayChatMessage(message) {
   }
 }
 
-// GAME =================================================
-
+// GAME
 function getBoardState() {
   try {
     let obj = {};
@@ -118,7 +139,7 @@ socket.on("game-begin", (data) => {
     renderTurnMessage();
 
     $("#playingSymbol").html(
-      `<span style="color: #811618ad; font-size: 1.5em; font-weight: bold;">${data.symbol} </span> is playing`
+      `<span style="color: #0f0f82b6; font-size: 1.5em;font-weight: 600; font-family: 'Monoton';">${data.symbol} </span> is playing`
     );
   } catch (error) {
     console.error(error.message);
@@ -158,11 +179,11 @@ socket.on("move-made", (data) => {
     if (!myMove) {
       $("#" + data.position)
         .text(data.symbol)
-        .css("color", "#ee272bfe");
+        .css("color", "#ee272ac8");
     } else {
       $("#" + data.position)
         .text(data.symbol)
-        .css("color", "#1e1eedcb");
+        .css("color", "#1e1eedae");
     }
 
     if (!isGameOver()) {
@@ -173,20 +194,26 @@ socket.on("move-made", (data) => {
 
       if (myMove) {
         $(".nav__message")
-          .text("Ups..You lost :(")
+          .text("Ups..You lost =(")
           .css("font-family", "Monoton")
           .css("color", "#202941c4")
-          .css("font-size", "1.7em")
           .css("letter-spacing", "2px");
-          handleLostUpdate()
+
+        $("#playingSymbol").css("display", "none");
+        handleLostUpdate();
+        console.log("Lost is:", lost);
+        
       } else {
         $(".nav__message")
-          .text("Congrats! You Win! :)")
+          .text("Congrats! You Win!")
           .css("font-family", "Monoton")
           .css("color", "#085861")
-          .css("font-size", "1.7em")
           .css("letter-spacing", "2px");
-          handleWinScoreUpdate()
+
+        $("#playingSymbol").css("display", "none");
+        $(".container__game__board__cell").attr("disabled", true);
+        handleWinScoreUpdate();
+        console.log("score:", score);
       }
 
       $(".container__game__board__cell").attr("disabled", true); // Disable board
@@ -198,7 +225,9 @@ socket.on("move-made", (data) => {
 
 socket.on("opponent-left", () => {
   try {
-    $(".nav__message").text("Your opponent has left the game").css("letter-spacing", "2px");
+    $(".nav__message")
+      .text("Your opponent has left the game")
+      .css("letter-spacing", "2px");
     $(".container__game__board__cell").attr("disabled", true);
     $("#clock").css("display", "block");
     $("#timer").css("display", "none");
@@ -247,7 +276,9 @@ $(function () {
 function renderTurnMessage() {
   try {
     if (!myMove) {
-      $(".nav__message").text("Turn of your opponent").css("letter-spacing", "2px");
+      $(".nav__message")
+        .text("Turn of your opponent")
+        .css("letter-spacing", "2px");
       $(".container__game__board__cell").attr("disabled", true);
     } else {
       $(".nav__message").text("Make a move").css("letter-spacing", "2px");
@@ -296,8 +327,6 @@ function displayGameMessage(message) {
   }
 }
 
-// =====================================================
-
 function handleBackToGame() {
   try {
     window.location.href = "./game.html";
@@ -314,8 +343,7 @@ function handleGoToStats() {
   }
 }
 
-// REGISTER / LOGIN ========================================
-
+// REGISTER / LOGIN
 async function handleRegister(e) {
   try {
     e.preventDefault();
@@ -401,8 +429,6 @@ async function getPlayerByCookie() {
   }
 }
 
-// =============================================
-
 function timeOfDay() {
   let realtoday = new Date();
   let realtime = realtoday.getHours();
@@ -465,33 +491,27 @@ function showTime() {
   setTimeout(showTime, 1000);
 }
 
-
-async function handleWinScoreUpdate(){
-
+async function handleWinScoreUpdate() {
   score++;
   console.log("New score:", score);
-  const {data} = await axios.patch("/players/update-score", {_id, score});
+  const { data } = await axios.patch("/players/update-score", { _id, score });
   document.querySelector("#myScore").innerHTML = `${score}`;
-  console.log(data)
+  console.log("The Data from handleWinScoreUpdate:", data);
 }
 
-async function handleLostUpdate(){
-
+async function handleLostUpdate() {
   lost++;
   console.log("New lost:", lost);
-  const {data} = await axios.patch("/players/update-lost", {_id, lost});
-  console.log(data)
+  const { data } = await axios.patch("/players/update-lost", { _id, lost });
+  console.log("The Data from handleLostUpdate:", data);
 }
 
-
-async function randerScoreBoard(){
-  const scoreBoardHtml = document.querySelector(".scoreBoard")
+async function randerScoreBoard() {
+  const scoreBoardHtml = document.querySelector(".scoreBoard");
   // not finish
   // for(i=0, i<)
   // scoreBoardHtml =+ "<li></li>"
-
 }
-
 
 function deleteCookies() {
   let allCookies = document.cookie.split(";");
@@ -499,5 +519,3 @@ function deleteCookies() {
   for (let i = 0; i < allCookies.length; i++)
     document.cookie = allCookies[i] + "=;expires=" + new Date(0).toUTCString();
 }
-
-

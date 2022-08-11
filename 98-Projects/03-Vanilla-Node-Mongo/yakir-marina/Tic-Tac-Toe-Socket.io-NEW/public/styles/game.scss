@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=BIZ+UDPMincho&family=Cairo:wght@300&family=Josefin+Sans:wght@300&family=Montserrat:wght@100;200&family=Rajdhani:wght@300&family=Red+Hat+Mono:wght@300;400&family=Special+Elite&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Monoton&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Audiowide&family=Faster+One&family=Sarpanch&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Audiowide&family=Faster+One&family=Sarpanch&display=swap');
 
 * {
     box-sizing: border-box;
@@ -10,9 +9,8 @@
     margin: 0;
 }
 
-
 body {
-    background: linear-gradient(150deg, #93AB8F 50%, #006D7A 50%);
+    background: linear-gradient(150deg, #93AB8F 49.7%, #c71d20ce 49.7% 50%, #006D7A 50%);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -27,56 +25,57 @@ body {
 }
 
 .nav {
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 4em;
     background-color: #1483665b;
     backdrop-filter: blur(6px);
-    box-shadow: 10px 10px 10px rgba(8, 8, 8, 0.322);
+    box-shadow: 10px 10px 10px #0303036f;
     border: 5px solid #aa1f215c;
     border-style: double;
-    position: absolute;
-    top: 0;
-    left: 0;
     border-bottom-left-radius: 30px;
     border-top-left-radius: 30px;
     padding: 10px 0;
-    display: flex;
 
     &__message {
         display: block;
         width: 105%;
-        transform: translateX(100%);
-        animation: move 15s linear infinite;
         align-items: center;
         justify-content: center;
         font-size: 1.3em;
         color: #163157ec;
         font-family: 'Monoton', cursive;
+        transform: translateX(100%);
+        animation: move 15s linear infinite;
     }
 
     @keyframes move {
         to {
-            transform: translateX(-20%);
+            transform: translateX(-50%);
         }
     }
 
     &__logo {
+        position: absolute;
+        top: -5%;
         width: 3%;
         cursor: pointer;
-        position: absolute;
-        top: 0%;
         z-index: 1;
     }
 
 }
 
+
 h1 {
-    margin-top: 0.5em;
     font-size: 2.8em;
     font-weight: normal;
-    color: #c71d1ff8;
-    text-shadow: 5px 5px 5px #03030360;
     font-family: 'Monoton', cursive;
+    color: #c71d1ff8;
+    text-shadow: 5px 5px 5px #030303c2;
+    margin-top: 0.5em;
 }
 
 .gameStatus {
@@ -84,15 +83,15 @@ h1 {
     gap: 2em;
 
     &--joinedGameRoom {
-        background: #28499d7a;
-        box-shadow: 10px 10px 10px rgba(8, 8, 8, 0.322);
+        font-size: 1.3em;
         font-weight: bold;
         color: #b50e118b;
-        font-size: 1.3em;
-        border: 5px solid #3156b21c;
+        text-shadow: 5px 5px 5px #0303032b;
+        background: #28499d7a;
+        box-shadow: 10px 10px 10px #0303037d;
+        border: 5px solid #365fc721;
         border-radius: 7px;
         padding: .1em .5em .1em .5em;
-        text-shadow: 5px 5px 5px #0303032b;
     }
 
 }
@@ -107,18 +106,18 @@ h1 {
         align-items: center;
         width: 25em;
         height: 36em;
-        border: 5px solid #aa1f215c;
-        border-style: double;
-        margin-right: 7em;
-        border-radius: 16px;
-        background-color: rgba(15, 14, 14, 0.463);
-        backdrop-filter: blur(10px);
-        box-shadow: 10px 10px 10px rgba(8, 8, 8, 0.322);
         position: relative;
         top: 3%;
+        border: 6px solid #aa1f215c;
+        border-radius: 16px;
+        border-style: double;
+        background-color: rgba(15, 14, 14, 0.463);
+        backdrop-filter: blur(6px);
+        box-shadow: 15px 15px 15px #03030398;
+        margin-right: 7em;
 
-        &__clock,
         h2,
+        &__clock,
         &__opponentName,
         &__playingSymbol {
             margin: 1em 0 1em 0;
@@ -136,7 +135,7 @@ h1 {
         &__playingSymbol,
         &__opponentName,
         &__gemerIcons {
-            text-shadow: 5px 5px 5px #0303032f;
+            text-shadow: 5px 5px 5px #0303033e;
         }
 
         &__playingSymbol {
@@ -144,9 +143,9 @@ h1 {
         }
 
         h2 {
-            color: #811618ad;
-            text-shadow: 5px 5px 5px #0303031d;
-            font-size: 1.7em;
+            color: #821113c3;
+            text-shadow: 5px 5px 5px #0303033b;
+            font-size: 2em;
         }
 
         &__opponentName,
@@ -156,20 +155,21 @@ h1 {
 
         &__gemerIcons {
             display: flex;
-            font-size: 1.3em;
             text-align: center;
+            font-size: 1.3em;
             margin: 0 .4em 0 .4em;
 
             .material-icons {
-                font-size: 1.3em;
-                color: rgba(15, 15, 130, 0.715);
-                text-shadow: 5px 5px 5px #0303032f;
+                font-size: 1.7em;
+                color: #0f0f82b6;
+                text-shadow: 5px 5px 5px #0303037f;
             }
         }
 
         &__wins {
             font-size: 2.3em;
         }
+
 
     }
 
@@ -190,17 +190,16 @@ h1 {
                 justify-content: center;
                 width: 150px;
                 height: 150px;
-                border: 5px solid #aa1f215c;
-                border-style: double;
-                border-radius: 16px;
                 font-size: 5.5em;
                 color: #aa1f21d5;
                 text-shadow: 5px 5px 5px #030303;
                 font-family: 'Monoton', cursive;
+                border: 6px solid #aa1f215c;
+                border-radius: 16px;
+                border-style: double;
                 background-color: rgba(15, 14, 14, 0.463);
                 backdrop-filter: blur(6px);
-                box-shadow: rgba(0, 0, 0, 0.437) 0px 14px 28px,
-                    rgba(0, 0, 0, 0.402) 0px 10px 10px;
+                box-shadow: 10px 10px 10px #03030398;
                 transition: all ease-in .7s;
                 cursor: pointer;
             }
@@ -234,8 +233,6 @@ h1 {
             border: 4px solid #c31b1e7e;
         }
 
-
-
         &__gameRoomForm {
             display: flex;
             flex-direction: row;
@@ -245,31 +242,31 @@ h1 {
 
             input[type="text"],
             button[type="submit"] {
+                font-size: 1.2em;
                 border: none;
                 border-radius: 5px;
-                font-size: 1.2em;
                 background: #1313136e;
-                box-shadow: rgba(0, 0, 0, 0.437) 0px 14px 28px,
-                    rgba(0, 0, 0, 0.212) 0px 10px 10px;
+                box-shadow: 10px 10px 10px #03030398;
             }
 
             input[type="text"] {
-                padding: .3em 0em .3em 1em;
                 color: rgba(255, 255, 255, 0.671);
+                font-weight: normal;
+                padding: .3em 0em .3em 1em;
             }
 
             button[type="submit"] {
+                color: rgba(255, 255, 255, 0.458);
                 padding: .3em 1em .3em 1em;
                 cursor: pointer;
-                color: rgba(255, 255, 255, 0.458);
                 transition: all ease-in-out .3s;
 
             }
 
             button[type="submit"]:hover {
-                background: #414f74;
                 color: rgba(255, 255, 255, 0.959);
                 font-weight: normal;
+                background: #414f74;
                 transform: scale(0.97);
             }
 
@@ -287,32 +284,31 @@ h1 {
         #chat-container {
             width: 25em;
             height: 30em;
+            border: 6px solid #aa1f215c;
             border-radius: 16px;
-            margin: 9% auto auto 9%;
-            overflow-y: auto;
+            border-style: double;
             background-color: rgba(15, 14, 14, 0.463);
             backdrop-filter: blur(5px);
-            box-shadow: 10px 10px 10px rgba(8, 8, 8, 0.322);
-            box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.657);
-            border: 5px solid #aa1f215c;
-            border-style: double;
+            box-shadow: 15px 15px 15px #03030398;
+            margin: 9% auto auto 9%;
+            overflow-y: auto;
         }
 
         #chat-container div {
+            font-size: 18px;
+            font-weight: bolder;
+            font-family: "Montserrat";
+            color: rgb(4, 4, 4);
             border-radius: 10px;
             background-color: rgba(44, 204, 137, 0.177);
-            font-family: "Montserrat";
-            font-weight: bolder;
             padding: 5px;
             text-align: left;
-            font-size: 18px;
-            color: rgb(4, 4, 4);
         }
 
         #chat-container div:nth-child(2n) {
-            background-color: rgba(162, 159, 159, 0);
-            color: rgba(235, 228, 228, 0.663);
             font-weight: normal;
+            color: rgba(235, 228, 228, 0.663);
+            background-color: rgba(162, 159, 159, 0);
         }
 
         &__chatForm {
@@ -325,24 +321,23 @@ h1 {
 
             input[type="text"],
             button[type="submit"] {
+                font-size: 1.2em;
                 border: none;
                 border-radius: 5px;
-                font-size: 1.2em;
                 background: #1313136e;
-                box-shadow: rgba(0, 0, 0, 0.437) 0px 14px 28px,
-                    rgba(0, 0, 0, 0.212) 0px 10px 10px;
+                box-shadow: 10px 10px 10px #03030398;
             }
 
             input[type="text"] {
-                padding: .3em 0em .3em 1em;
                 width: 95%;
                 color: rgba(255, 255, 255, 0.671);
+                padding: .3em 0em .3em 1em;
             }
 
             button[type="submit"] {
-                padding: .3em 1em .3em 1em;
                 cursor: pointer;
                 color: rgba(255, 255, 255, 0.458);
+                padding: .3em 1em .3em 1em;
                 transition: all ease-in-out .3s;
             }
 

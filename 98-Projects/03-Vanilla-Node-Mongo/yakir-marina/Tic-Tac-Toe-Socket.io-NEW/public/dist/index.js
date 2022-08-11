@@ -51,7 +51,7 @@ var min = 0;
 // const player1;
 function handleLoad() {
     return __awaiter(this, void 0, void 0, function () {
-        var data, player1, error_1;
+        var data, player1, player2, id, lost2, score2, div, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -60,11 +60,19 @@ function handleLoad() {
                     return [4 /*yield*/, axios.get("/players/player-by-cookie")];
                 case 1:
                     data = (_a.sent()).data;
-                    player1 = data.player1;
+                    player1 = data.player1, player2 = data.player2;
                     _id = player1.playerId;
+                    id = player2.playerId;
                     console.log("test: " + player1.name + " and id: " + _id);
+                    console.log("test: " + player2.name + " and id: " + id);
                     lost = player1.lost;
                     score = player1.score;
+                    lost2 = player2.lost;
+                    score2 = player2.score;
+                    div = document.createElement("div");
+                    div.textContent = "Name:  " + player1.name + ",  Score is:  " + score + ", Losts:  " + lost;
+                    div.textContent = "Name:  " + player2.name + ",  Score is:  " + score2 + ", Losts:  " + lost2;
+                    $("#scoreTable-container").append(div);
                     return [3 /*break*/, 3];
                 case 2:
                     error_1 = _a.sent();
@@ -75,7 +83,18 @@ function handleLoad() {
         });
     });
 }
-// CHAT ===========================================
+function loadStatistic() {
+    try {
+        handleLoad();
+        handleWinScoreUpdate();
+        handleLostUpdate();
+        // updateStats();
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+// CHAT
 socket.on("connect", function () {
     try {
         displayChatMessage("You connected with id: " + socket.id);
@@ -131,7 +150,7 @@ function displayChatMessage(message) {
         console.error(error.message);
     }
 }
-// GAME =================================================
+// GAME
 function getBoardState() {
     try {
         var obj_1 = {};
@@ -152,7 +171,7 @@ socket.on("game-begin", function (data) {
         $("#clock").css("display", "none");
         $("#timer").css("display", "block");
         renderTurnMessage();
-        $("#playingSymbol").html("<span style=\"color: #811618ad; font-size: 1.5em; font-weight: bold;\">" + data.symbol + " </span> is playing");
+        $("#playingSymbol").html("<span style=\"color: #0f0f82b6; font-size: 1.5em;font-weight: 600; font-family: 'Monoton';\">" + data.symbol + " </span> is playing");
     }
     catch (error) {
         console.error(error.message);
@@ -187,12 +206,12 @@ socket.on("move-made", function (data) {
         if (!myMove) {
             $("#" + data.position)
                 .text(data.symbol)
-                .css("color", "#ee272bfe");
+                .css("color", "#ee272ac8");
         }
         else {
             $("#" + data.position)
                 .text(data.symbol)
-                .css("color", "#1e1eedcb");
+                .css("color", "#1e1eedae");
         }
         if (!isGameOver()) {
             renderTurnMessage();
@@ -202,21 +221,24 @@ socket.on("move-made", function (data) {
             $("#timer").css("display", "none");
             if (myMove) {
                 $(".nav__message")
-                    .text("Ups..You lost :(")
+                    .text("Ups..You lost =(")
                     .css("font-family", "Monoton")
                     .css("color", "#202941c4")
-                    .css("font-size", "1.7em")
                     .css("letter-spacing", "2px");
+                $("#playingSymbol").css("display", "none");
                 handleLostUpdate();
+                console.log("Lost is:", lost);
             }
             else {
                 $(".nav__message")
-                    .text("Congrats! You Win! :)")
+                    .text("Congrats! You Win!")
                     .css("font-family", "Monoton")
                     .css("color", "#085861")
-                    .css("font-size", "1.7em")
                     .css("letter-spacing", "2px");
+                $("#playingSymbol").css("display", "none");
+                $(".container__game__board__cell").attr("disabled", true);
                 handleWinScoreUpdate();
+                console.log("score:", score);
             }
             $(".container__game__board__cell").attr("disabled", true); // Disable board
         }
@@ -227,7 +249,9 @@ socket.on("move-made", function (data) {
 });
 socket.on("opponent-left", function () {
     try {
-        $(".nav__message").text("Your opponent has left the game").css("letter-spacing", "2px");
+        $(".nav__message")
+            .text("Your opponent has left the game")
+            .css("letter-spacing", "2px");
         $(".container__game__board__cell").attr("disabled", true);
         $("#clock").css("display", "block");
         $("#timer").css("display", "none");
@@ -274,7 +298,9 @@ $(function () {
 function renderTurnMessage() {
     try {
         if (!myMove) {
-            $(".nav__message").text("Turn of your opponent").css("letter-spacing", "2px");
+            $(".nav__message")
+                .text("Turn of your opponent")
+                .css("letter-spacing", "2px");
             $(".container__game__board__cell").attr("disabled", true);
         }
         else {
@@ -324,7 +350,6 @@ function displayGameMessage(message) {
         console.error(error);
     }
 }
-// =====================================================
 function handleBackToGame() {
     try {
         window.location.href = "./game.html";
@@ -341,7 +366,7 @@ function handleGoToStats() {
         console.error(error);
     }
 }
-// REGISTER / LOGIN ========================================
+// REGISTER / LOGIN
 function handleRegister(e) {
     return __awaiter(this, void 0, void 0, function () {
         var _a, name, email, password, data, error, player, error_2;
@@ -450,7 +475,6 @@ function getPlayerByCookie() {
         });
     });
 }
-// =============================================
 function timeOfDay() {
     var realtoday = new Date();
     var realtime = realtoday.getHours();
@@ -511,7 +535,7 @@ function handleWinScoreUpdate() {
                 case 1:
                     data = (_a.sent()).data;
                     document.querySelector("#myScore").innerHTML = "" + score;
-                    console.log(data);
+                    console.log("The Data from handleWinScoreUpdate:", data);
                     return [2 /*return*/];
             }
         });
@@ -528,7 +552,7 @@ function handleLostUpdate() {
                     return [4 /*yield*/, axios.patch("/players/update-lost", { _id: _id, lost: lost })];
                 case 1:
                     data = (_a.sent()).data;
-                    console.log(data);
+                    console.log("The Data from handleLostUpdate:", data);
                     return [2 /*return*/];
             }
         });

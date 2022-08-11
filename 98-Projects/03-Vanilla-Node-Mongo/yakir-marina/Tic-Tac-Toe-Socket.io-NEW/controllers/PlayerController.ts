@@ -96,6 +96,10 @@ export const updateLostByID = async (req, res) => {
     
     const { lost } = req.body;
     const {_id} = req.body;
+
+    const playerDB = await PlayerModel.findOne({ _id });
+    let name = playerDB.name;
+
     PlayerModel.findOneAndUpdate({_id: _id},{lost: lost},(error, data) =>{
       if(error){
         console.log(error)
@@ -103,7 +107,7 @@ export const updateLostByID = async (req, res) => {
         console.log(data)
       }
     })
-    // res.send({ success: true, player: playerDB });
+    res.send({ success: true, player: playerDB, name });
   } catch (error) {
     console.error(error.message);
     res.send({ error: error.message });
@@ -115,6 +119,10 @@ export const updateScoreByID = async (req, res) => {
     
     const { score } = req.body;
     const {_id} = req.body;
+
+    const playerDB = await PlayerModel.findOne({ _id });
+    let name = playerDB.name;
+
     PlayerModel.findOneAndUpdate({_id: _id},{score: score},(error, data) =>{
       if(error){
         console.log(error)
@@ -122,7 +130,7 @@ export const updateScoreByID = async (req, res) => {
         console.log(data)
       }
     })
-    // res.send({ success: true, player: playerDB });
+    res.send({ success: true, player: playerDB, name });
   } catch (error) {
     console.error(error.message);
     res.send({ error: error.message });
