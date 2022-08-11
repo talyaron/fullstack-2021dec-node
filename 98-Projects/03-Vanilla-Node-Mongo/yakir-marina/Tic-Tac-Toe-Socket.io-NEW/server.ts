@@ -12,7 +12,7 @@ const io = new Server(server);
 
 require("dotenv").config();
 const url = process.env.MONGODB_URL as string;
-const port = process.env.PORT || 4007;
+const port = process.env.PORT || 3007;
 
 app.use(express.static("public"));
 app.use(express.json());
