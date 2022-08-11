@@ -1,0 +1,15 @@
+.card1 {
+  width: 100px;
+  height: 150px;
+  background-image: url("https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/surprising-flower-meanings-balloon-flowers-1650767465.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.card1 .text {
+  position: relative;
+  top: 50px;
+  display: none;
+}
+.card1 .text :hover {
+  display: block;
+}
