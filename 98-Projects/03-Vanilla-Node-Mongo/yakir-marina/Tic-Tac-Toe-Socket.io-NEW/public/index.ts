@@ -37,8 +37,8 @@ async function handleLoad() {
     let score2 = player2.score;
 
     const div = document.createElement("div");
-    div.textContent = `Name:  ${player1.name},  Score is:  ${score}, Losts:  ${lost}`;
-    div.textContent = `Name:  ${player2.name},  Score is:  ${score2}, Losts:  ${lost2}`;
+    div.innerHTML = `Name: <span style="color: #8c0b0df1;">${player1.name}</span>,  Score is:  <span style="color: #8c0b0df1;">${score}</span>, Losts:  <span style="color: #8c0b0df1;">${lost}</span>`;
+    div.innerHTML = `Name:  <span style="color: #8c0b0df1;">${player2.name}</span>,  Score is:  <span style="color: #8c0b0df1;">${score2}</span>, Losts:  <span style="color: #8c0b0df1;">${lost2}</span>`;
     $("#scoreTable-container").append(div);
   } catch (error) {
     console.error(error);
