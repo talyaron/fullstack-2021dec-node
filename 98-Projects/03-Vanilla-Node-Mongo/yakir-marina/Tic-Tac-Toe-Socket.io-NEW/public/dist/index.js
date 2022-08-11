@@ -70,8 +70,8 @@ function handleLoad() {
                     lost2 = player2.lost;
                     score2 = player2.score;
                     div = document.createElement("div");
-                    div.innerHTML = "Name: <span style=\"color: #8c0b0df1;\">" + player1.name + "</span>,  Score is:  <span style=\"color: #8c0b0df1;\">" + score + "</span>, Losts:  <span style=\"color: #8c0b0df1;\">" + lost + "</span>";
-                    div.innerHTML = "Name:  <span style=\"color: #8c0b0df1;\">" + player2.name + "</span>,  Score is:  <span style=\"color: #8c0b0df1;\">" + score2 + "</span>, Losts:  <span style=\"color: #8c0b0df1;\">" + lost2 + "</span>";
+                    div.innerHTML = "Name: <span style=\"color: #8c0b0df1;\">" + player1.name + "</span>&nbsp;&nbsp;  &#10044;  &nbsp;&nbsp;Score is:  <span style=\"color: #8c0b0df1;\">" + score + "</span>&nbsp;&nbsp;  &#10044;  &nbsp;&nbsp;Losts:  <span style=\"color: #8c0b0df1;\">" + lost + "</span>";
+                    div.innerHTML = "Name:  <span style=\"color: #8c0b0df1;\">" + player2.name + "</span>&nbsp;&nbsp;  &#10044;  &nbsp;&nbsp;Score is:  <span style=\"color: #8c0b0df1;\">" + score2 + "</span>&nbsp;&nbsp;  &#10044;  &nbsp;&nbsp;Losts:  <span style=\"color: #8c0b0df1;\">" + lost2 + "</span>";
                     $("#scoreTable-container").append(div);
                     return [3 /*break*/, 3];
                 case 2:
