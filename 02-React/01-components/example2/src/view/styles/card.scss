@@ -1,7 +1,14 @@
 .card{
     padding: 20px;
     border-radius: 10px;
-    background-color: wheat;
+    background-color: rgb(70, 49, 9);
     margin: 2px;
     color: $textColor;
+    
+    .tag{
+        padding: 20px;
+        border-radius: 10px;
+        background-color: rgb(152, 44, 44);
+    }
 }
+
