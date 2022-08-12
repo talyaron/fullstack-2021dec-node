@@ -4,13 +4,15 @@
     background-image: url('https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/surprising-flower-meanings-balloon-flowers-1650767465.jpg');
     background-size: cover;
     background-repeat: no-repeat;
+    display: block;
     
     .text{
         position: relative;
         top: 50px;
         display: none;
-        :hover{display: block;}
+        }
         
-    }
-    
+}
+.card1:hover .text{
+    display: inline-block;
 }
