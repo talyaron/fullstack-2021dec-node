@@ -2,7 +2,7 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import './view/styles/app.scss';
-import './view/components/card/Card';
+import Card from './view/components/card/Card';
 
 
 
@@ -13,7 +13,7 @@ function App() {
 
 
       <header className="App-header">
-       
+      <Card/> 
      
    
       </header>
