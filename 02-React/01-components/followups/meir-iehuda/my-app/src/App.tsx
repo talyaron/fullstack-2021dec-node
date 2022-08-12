@@ -2,7 +2,7 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import './view/styles/app.scss';
-import Card from './view/components/card/Card'
+import './view/components/card/Card';
 
 
 
@@ -22,6 +22,6 @@ function App() {
 }
 
 export default App;
-export{}
+
 
 
