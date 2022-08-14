@@ -22,22 +22,32 @@ const names: Name[] = [
 
 let factVar = "";
 
+interface Breed {
+  breed: string;
+  country: string;
+  origin: string;
+  coat: string;
+  pattern: string;
+}
+
 function App() {
-  const [counter, setCounter] = useState(0); //initial value
-  const [factVar, setFactVar] = useState(''); //initial value
+  const [counter, setCounter] = useState<number>(0); //initial value
+  const [factVar, setFactVar] = useState<string>(""); //initial value
+  const [breeds, setBreeds] = useState<Breed[]>([]);
 
   async function handleAddCounter() {
     try {
       // setCounter(counter + 1) //new value ... it will take some millisconds to update
       console.log("counter:", counter);
 
-      const { data } = await axios.get("https://catfact.ninja/fact"); //rest API
+      const { data } = await axios.get("https://catfact.ninja/breeds"); //rest API
       if (!data) throw new Error("No data");
-      const { fact } = data;
-      if (!fact) throw new Error("No fact");
-      setFactVar(fact);
-
-      
+      // const { fact } = data;
+      // if (!fact) throw new Error("No fact");
+      // setFactVar(fact);
+      console.log(data);
+      if(!('data' in data)) throw new Error('no data of breeds')
+      setBreeds(data.data);
     } catch (error) {
       console.error(error);
     }
@@ -50,8 +60,11 @@ function App() {
         <h3>{factVar}</h3>
         <h3>{counter}</h3>
         <div className="btn">OK</div>
-        {names.map((name: Name) => (
+        {/* {names.map((name: Name) => (
           <Card key={name.id} title={name.title} text={name.text} />
+        ))} */}
+        {breeds.map((breed) => (
+          <p key={breed.breed}>{breed.breed}</p>
         ))}
 
         <button>OK2</button>
