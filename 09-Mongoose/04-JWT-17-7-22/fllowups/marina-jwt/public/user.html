@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="dist/index.js" defer></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- font-awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="./dist/index.js" defer></script>
+    <script src="./dist/item.js" defer></script>
+    <link rel="stylesheet" href="./style/dist/user.css">
+    <title>records</title>
+</head>
+
+<body onload="handleLoad()">
+    <form class="form" onsubmit="handleAddItem(event)">
+        <input type="text" name="title" placeholder="Title" required>
+        <input type="number" name="year" placeholder="Year" required>
+        <input type="url" name="url" placeholder="url" required>
+        <button type="submit" <i class="fa-light fa-plus"></i></button>
+    </form>
+    <div class="render">
+        <div id="welcomeRoot"></div>
+        <div id="root"></div>
+    </div>
+
+</body>
+
+</html>
