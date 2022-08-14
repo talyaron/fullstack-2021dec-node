@@ -1,26 +1,36 @@
-import React from 'react';
+
 import logo from './logo.svg';
 import './App.css';
+import { useState } from "react";
+import axios from "axios";
+import "./styles/app.scss";
+
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        {/* <img src={logo} className="App-logo" alt="logo" /> */}
-        <p>
-          {/* Edit <code>src/App.tsx</code> and save to reload. */}
-        </p>
-        <a
-          // className="App-link"
-          // href="https://reactjs.org"
-          // target="_blank"
-          // rel="noopener noreferrer"
-        >
-          {/* Learn React */}
-        </a>
-      </header>
-    </div>
-  );
+  const [counter, setCounter] = useState(0); //initial value
+  const [factVar, setFactVar] = useState(''); //initial value
+
+  async function handleAddCounter() {
+    try {
+      // setCounter(counter + 1) //new value ... it will take some millisconds to update
+      console.log("counter:", counter);
+
+      const { data } = await axios.get("https://catfact.ninja/breeds"); //rest API
+      if (!data) throw new Error("No data");
+      const { fact } = data;
+      if (!fact) throw new Error("No fact");
+      setFactVar(fact);
+
+      
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  return(
+    <div>Hi</div>
+  )
 }
+
 
 export default App;
