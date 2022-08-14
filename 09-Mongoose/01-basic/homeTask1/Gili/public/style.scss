@@ -1,0 +1,94 @@
+* {
+    margin: 0%;
+    padding: 0%;
+    font-family: 'Raleway', sans-serif;
+}
+
+body {
+    width: 100vw;
+    overflow-x: hidden;
+}
+
+header {
+    width: 100vw;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-around;
+    background-color: rgb(255, 216, 177);
+
+    .forms {
+        &__field {
+            border: none;
+            padding: 15px 20px;
+            border-radius: 16px;
+        }
+
+        &__btn {
+            border: none;
+            padding: 15px 20px;
+            border-radius: 16px;
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+.root {
+    width: 100%;
+    display: grid;
+    margin: auto;
+    grid-template-columns: repeat(4, 1fr);
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+
+    &__catCard {
+        width: 250px;
+        height: 350px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        background: rgba(255, 255, 255, 0.35);
+        border-radius: 16px;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(12.1px);
+        -webkit-backdrop-filter: blur(12.1px);
+        border: 1px solid rgba(255, 255, 255, 0.57);
+
+        &__span {
+            font-size: x-large;
+        }
+
+        img {
+            width: 80%;
+            border-radius: 16px;
+        }
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .root {
+        width: 1200px;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .root {
+        width: 100%;
+        display: grid;
+        margin: auto;
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+@media screen and (max-width: 700px) {
+    .root {
+        width: 100%;
+        display: grid;
+        margin: auto;
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
