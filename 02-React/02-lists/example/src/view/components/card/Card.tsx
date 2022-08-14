@@ -3,8 +3,8 @@ interface CardProps {
   title: string;
 }
 
-const Card = (props: CardProps) => {
-  const { text, title } = props;
+const Card = ({ text, title }: CardProps) => {
+
   return (
     <div className="card">
       <h2> -- {title} -- </h2>
