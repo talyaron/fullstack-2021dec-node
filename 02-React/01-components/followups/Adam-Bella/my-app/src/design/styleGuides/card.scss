@@ -1,0 +1,30 @@
+.card{
+    padding: 20px;
+    border-radius: 10px;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(234, 234, 234);
+    margin: 2px;
+    display: flex;
+    flex-direction: column;
+    color: $textColor;
+    max-width: 250px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;    
+    .tag{
+        padding: 8px;
+        margin: 4px ;
+        border-radius: 4px;
+        background-color: rgb(241, 241, 241);
+        font-size: 14px;
+        color: rgb(123, 123, 123);
+    }
+    
+    .wrapper-tag{
+        display: flex; 
+        flex-wrap: wrap;
+    }
+}
+
+h3{
+    line-height:34px;
+    margin:4px;
+}
