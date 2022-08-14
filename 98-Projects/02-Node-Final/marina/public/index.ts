@@ -15,12 +15,14 @@ const state = {
 
 const loadNewGame = async function loadgame() {
   const { pairedCardArray, lastLoggedInPlayer } = await getDeck(); 
+  // console.log("this is loadNewGame data: ", pairedCardArray, lastLoggedInPlayer);
   renderDeck(pairedCardArray);
   renderPlayer(lastLoggedInPlayer);
 };
 
 const loadPlayersList = async function loadgame() {
   const { players, lastLoggedInPlayer } = await getDeck();
+  // console.log("this is loadPlayersList data: ", players, lastLoggedInPlayer);
   renderPlayerList(players);
   renderGeneralStatisticLastPlayer(lastLoggedInPlayer);
   showBestTime();
@@ -35,14 +37,19 @@ function handleToRegisterForm(): void {
   registerLink.style.display = "none";
   formLogin.style.display = "none";
   error.style.display = "none";
+  // console.log("this is handleToRegisterForm: ", formRegister);
 }
 
 async function getDeck() {
   try {
     const { data } = await axios.post("/game/get-deck");
     const { pairedCardArray, players, lastLoggedInPlayer } = data;
+    // console.log("this is the get-deck data:", data);
+    // console.log("players is:", players);   
+    // console.log("lastLoggedInPlayer.playerID is:", lastLoggedInPlayer.playerID);  
     state.playerID = lastLoggedInPlayer.playerID;
     state.userID.push(state.playerID);
+    // console.log("lastLoggedInPlayer.playerID is:", state.playerID);
     return data;
   } catch (error) {
     console.error(error);
@@ -51,12 +58,15 @@ async function getDeck() {
 
 async function handleRegester(e: any) {
   try {
+    // console.dir(e.target);
     e.preventDefault();
     let { name, password } = e.target.elements;
     name = name.value;
     password = password.value;
+    // console.log(name, password);
     const { data } = await axios.post("/game/player-add", { name, password });
     const { players } = data;
+    // console.log("this is handleRegester data:", players);
     window.location.href = "./game.html";
     e.target.reset();
   } catch (error) {
@@ -66,14 +76,16 @@ async function handleRegester(e: any) {
 
 async function handleLogin(e: any) {
   try {
+    // console.log(e.target);
     e.preventDefault();
     const name = e.target.elements.name.value;
     const password = e.target.elements.password.value;
-
+    console.log(name, password);
     const { data } = await axios.get(
       `/game/check-if-exist?name=${name}&password=${password}`
     );
     const { filteredPlayers } = data;
+    // console.log("this is handleLogin data:", data);
     e.target.reset();
 
     if (filteredPlayers.length > 0) {
@@ -111,8 +123,11 @@ const handleStartGame = () => {
         clearInterval(state.timeRemaining);
         gameOver();
       }
+
       state.seconds++;
       const timeStatist = state.seconds;
+      // console.log("timeStatist is:", timeStatist);
+
       const updateTime = async (playerID: string) => {
         try {
           console.log(playerID);
@@ -122,6 +137,9 @@ const handleStartGame = () => {
             timeStatist,
           });
           const { lastLoggedInPlayer, error } = data;
+          // console.log("this is the updateTime data:", data);
+          // console.log("this is updatePlayerStatistic:", lastLoggedInPlayer);
+          // console.log("this is updatePlayerStatistic:", playerID);
         } catch (error) {
           console.error(error);
           console.error(error.message);
@@ -145,14 +163,19 @@ const handleFlipCard = (e: any, playerID: string) => {
     state.totalFlipsStatist++;
     ticker.innerText = `${state.totalFlipsStatist}`;
     const totalFlip = ticker.innerText;
+    // console.log(totalFlip);
 
     const updateFlips = async (playerID: string) => {
       try {
+        // console.log(playerID);
         if (!playerID) throw new Error("no playerID");
         const { data } = await axios.put("/game/player-flips-update", {
           totalFlip,
         });
         const { lastLoggedInPlayer, error } = data;
+        // console.log("this is the player-statistic-update data:", data);
+        // console.log("this is updatePlayerStatistic:", lastLoggedInPlayer);
+        // console.log("this is updatePlayerStatistic:", playerID);
       } catch (error) {
         console.error(error);
         console.error(error.message);
@@ -192,6 +215,11 @@ const handleFlipCard = (e: any, playerID: string) => {
       flipBackUnPairedCards();
       state.clickNumber = 0;
     }
+    // console.dir(state.clickNumber);
+    // console.dir(e.target.id);
+    // console.log(element.id);
+    // console.log(element);
+    // console.log(state.matchedCards);
   } catch (error) {
     console.error(error.message);
   }
@@ -207,9 +235,11 @@ function flipBackUnPairedCards() {
 }
 
 async function handleSelectPlayer(e: any, playerID: string) {
-  let target = e.currentTarget; 
+  let target = e.currentTarget;
+  // console.log("THIS IS A TARGET:", target);  
   const { data } = await axios.post("/game/get-player-by-id", {playerID});
   let { player, index } = data;
+  // console.log("this is the playerID from handleSelectPlayer:", index, player[index].playerID); 
   const statisticRoot = document.querySelector("#statisticRoot");
   let playerhtml = "";
   playerhtml += `  
@@ -236,6 +266,8 @@ async function showBestTime() {
   try {
     const { data } = await axios.post("/game/best-time");
     const {minTime} = data;
+    // console.log('this is the best time score:', minTime);
+    // console.log('this is the data score:', data);
     const bestTime = document.querySelector("#bestTime");
     let html = "";
     html += `
@@ -274,7 +306,7 @@ function renderGeneralStatisticLastPlayer(lastLoggedInPlayer): void {
   const statisticRoot = document.querySelector("#statisticRoot");
   let html = "";
   html += ` 
-                <h3 ${lastLoggedInPlayer.playerID}><span class="material-icons user-icon">psychology</span>&nbsp;Name&nbsp;: &nbsp;&nbsp;&nbsp;&nbsp; <span style="color:rgba(130, 29, 18, 0.691); letter-spacing: 2px; font-family: 'Russo One', sans-serif;  font-weight: bold; font-size: 1.7rem;">${lastLoggedInPlayer.name}</span></h3>
+                <h3 ${lastLoggedInPlayer.playerID}><span class="material-icons user-icon">psychology</span>&nbsp;Name&nbsp;: &nbsp;&nbsp;&nbsp;&nbsp; <span style="color:rgba(130, 29, 18, 0.691); letter-spacing: 2px; font-family: 'Russo One', sans-serif;  font-weight: bold; font-size: 1.5rem;">${lastLoggedInPlayer.name}</span></h3>
             <div class="generalStatistic__info-time" ${state.playerID}>
               <div class="gen-stat-inner">               
                  <p>Time&nbsp;: <span style="color: rgba(130, 29, 18, 0.691); font-weight: bold;"></span></p>
@@ -298,10 +330,10 @@ function renderPlayerList(players): void {
   players.forEach((player) => {
     playerhtml += `  
         <div class="playersList-inner">
-        <span class="material-icons user-icon">psychology</span>&nbsp;
-        <p class="generalStatisicPlayerList" onclick="handleSelectPlayer(event,'${player.playerID}', '${player.name}', '${player.timeStatist}', '${player.totalFlip}')">Player&nbsp;: 
-        <span style="color: rgba(130, 29, 18, 0.691);  font-family: 'Russo One', sans-serif;  font-weight: bold; cursor: pointer;">&nbsp;${player.name}</span>
-        </p> 
+          <span class="material-icons user-icon">psychology</span>&nbsp;
+          <p class="generalStatisicPlayerList" onclick="handleSelectPlayer(event,'${player.playerID}', '${player.name}', '${player.timeStatist}', '${player.totalFlip}')">Player&nbsp;: 
+          <span style="color: rgba(130, 29, 18, 0.691);  font-family: 'Russo One', sans-serif;  font-weight: bold; cursor: pointer;">&nbsp;${player.name}</span>
+          </p> 
         </div>
     `;
   });
@@ -309,6 +341,9 @@ function renderPlayerList(players): void {
 }
 
 const winStateCheck = () => {
+  // console.log("i am winStateCheck from 288");
+  // console.log(state.matchedCards.length);
+  // console.log(state.totalMachedCards.length);
   if (state.totalMachedCards.length == 8) {
     victory();
   }

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.0.0-alpha.1/axios.js" integrity="sha512-uplugzeh2/XrRr7RgSloGLHjFV0b4FqUtbT5t9Sa/XcilDr1M3+88u/c+mw6+HepH7M2C5EVmahySsyilVHI/A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="./dist/style.css">
+</head>
+<body onload="handleLoadCoach()">
+    <div class="formCoach">
+    <form class="coachAddLessonForm" onsubmit="handleAddEvent(event)">
+    <input type="text" name="lesson" placeholder="lesson"><br>
+    <!-- <input type="text" name="day" placeholder="day"> <br> -->
+    <label for="days" class="labels">Choose a day:</label>
+
+<select name="day" id="days">
+  <option value="" selected disabled hidden >Choose day</option>
+  <option value="Sun">Sun</option>
+  <option value="Mon">Mon</option>
+  <option value="Tue">Tue</option>
+  <option value="WEd">Wed</option>
+  <option value="WEd">Thu</option>
+  <option value="WEd">Fri</option>
+  <option value="Sat">Sat</option>
+</select> <br>
+
+    <label for="dateS" class="labels">start date:</label>
+    <input type="date" name="dateStart" id="dateS">
+    <label for="dateE" class="labels">end date:</label>
+    <input type="date" name="dateEnd" id="dateE"><br>
+
+    <label for="time" class="labels">Choose a time for your meeting:</label>
+
+    <input type="time" id="hour" name="hour"
+    min="07:00" max="22:00" required> <br>
+       
+    <input type="number" name="price" placeholder="price">
+    <input type="text" name="coach" placeholder="coach"> <br>
+    <input type="submit" value="add lesson">
+    
+    </form>
+</div>
+    <div id="root1"></div>
+    <script src="./dist/events.js"></script>
+    <div id="totalToPay"></div>
+
+
+</body>
+</html>

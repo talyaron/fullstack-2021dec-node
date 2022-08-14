@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Login</title>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.0.0-alpha.1/axios.min.js"
+            integrity="sha512-xIPqqrfvUAc/Cspuj7Bq0UtHNo/5qkdyngx6Vwt+tmbvTLDszzXM0G6c91LXmGrRx8KEPulT+AfOOez+TeVylg=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"></script>
+        <link rel="stylesheet" href="./dist/style.css">
+    </head>
+    <body class="screen__login">
+        <div class="content">
+            <h1 class="screen__title-h1__white">Welcome back!<br> long time no seen</h1>
+            <form class="login" onsubmit="handleLogin(event)">
+                <label for="email">Enter email</label>
+                <input type="email" name="email" placeholder="Email">
+                <label for="password">And a password</label>
+                <input type="password" name="password" placeholder="Password">
+                <div id="check">
+                    <input type="checkbox" id="remember">
+                    <label for="remember">Remember me</label>
+                </div>
+                <br><br>
+                <input type="submit" name="submit" value="Login">
+                <a href="#">Forgot Password?</a>
+            </form>
+        </div>
+
+        <script src="./dist/index.js"></script>
+    </body>
+</html>

@@ -1,0 +1,149 @@
+body{
+    background-image: url('../Images/bar_refaeli.jpg');
+    min-height: 500px;
+    height: 100vh;
+    background-size: cover;
+    margin:auto;
+    input{
+        border-radius: 20px;
+        box-shadow: rgba(105, 100, 129, 0.15) 0px 48px 100px 0px;
+        width: 250px;
+        height: 40px;
+    }
+.userEnter{
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    &__userReg{
+        .titleSignUp{
+            color: aquamarine;
+        }
+        .formReg{
+           padding-right: 0.3rem;
+           input{
+            margin: 0.3rem;
+           }
+           .SignUpBtn{
+            background-color: aquamarine;
+           }
+        }
+    }
+    &__userLogin{
+        .titleLogin{
+            color: aquamarine;
+        }
+        .formLogin{
+            padding-left: 0.3rem;
+            input{
+                margin: 0.3rem;
+               }
+               .loginBtn{
+                background-color: aquamarine;
+               }
+
+            
+        }
+    }
+
+}
+
+.titleCoach{
+    color: blue;
+    text-align: center;
+}
+#coachLoginForm{
+    text-align: center;
+    input{
+        margin: 0.3rem;
+    }
+    .loginCoachBtn{
+        background-color: rgb(44, 73, 190);
+    }
+}
+.formCoach{
+    text-align: center;
+    padding: 0.5rem;
+    .coachAddLessonForm{
+        input{
+            margin: 0.4rem;
+        }
+        .labels{
+            color: aquamarine;
+        }
+        #dateS{
+        width: fit-content;
+        }
+        #dateE{
+            width: fit-content;
+            } #hour{
+                width: 90px;
+                }
+    }
+
+}
+#root1{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    width: 100%;
+    margin: 0.3rem;
+    .event1{
+        border: 1px solid;
+        background-color: darksalmon;
+        border-radius: 25px;
+        text-align: center;
+        margin: 0.3rem;
+        padding: 0.3rem;
+        .evDetails{
+            color: purple;
+        }
+    }
+}
+.moveToCart{ 
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin:auto;
+
+}
+
+#root2{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    width: 100%;
+    .event2{
+        border: 1px solid;
+        background-color: darksalmon;
+        border-radius: 25px;
+        text-align: center;
+        margin: 0.3rem;
+        padding: 0.3rem;
+        .evDetails1{
+            color: purple;
+        }
+    }
+}
+#root{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    width: 100%;
+    #cart{
+        border: 1px solid;
+        background-color: darksalmon;
+        border-radius: 25px;
+        text-align: center;
+        margin: 0.3rem;
+        padding: 0.3rem;
+        .evDetails2{
+            color: purple;
+        }
+    }
+}
+#totalToPay{
+    text-align: center;
+    color: blue;
+}
+
+}
