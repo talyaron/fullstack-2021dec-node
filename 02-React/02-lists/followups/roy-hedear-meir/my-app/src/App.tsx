@@ -9,7 +9,7 @@ import "./styles/app.scss";
 
 function App() {
   const [counter, setCounter] = useState(0); //initial value
-  const [factVar, setFactVar] = useState(''); //initial value
+  const [breedsVar, setBreedsVar] = useState([]); //initial value
 
   async function handleAddCounter() {
     try {
@@ -20,7 +20,7 @@ function App() {
       if (!data) throw new Error("No data");
       const { fact } = data;
       if (!fact) throw new Error("No fact");
-      setFactVar(fact);
+      setBreedsVar(fact);
 
       
     } catch (error) {
