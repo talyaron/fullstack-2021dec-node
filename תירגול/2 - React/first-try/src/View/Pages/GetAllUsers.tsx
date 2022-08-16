@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import UserAPI from "../Components/UserAPI";
 
 const GetAllUsers = () => {
   const [userFromAPI, setUserFromAPI] = useState([]);
@@ -17,11 +18,7 @@ const GetAllUsers = () => {
       <button onClick={handleGetUser}>Get User</button>
       {userFromAPI.map((user: any) => {
         return (
-          <div className="user">
-            <p>{user.name}</p>
-            <p>{user.phone}</p>
-            <p>{user.website}</p>
-          </div>
+          <UserAPI name={user.name} phone={user.phone} website={user.website} />
         );
       })}
     </div>
