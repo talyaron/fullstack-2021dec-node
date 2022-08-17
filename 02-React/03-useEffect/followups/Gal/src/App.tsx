@@ -2,6 +2,9 @@ import { useState, useEffect } from "react";
 import "./view/styles/app.scss";
 import axios from "axios";
 import Card from "./view/components/card/Card";
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Home from './view/components/home/Home';
+import Outside from './view/components/outside/Outside';
 
 interface Breed {
   breed: string,
@@ -49,6 +52,14 @@ function App() {
 
   return (
     <div className="App">
+
+       <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/Outside" element={<Outside/>} />
+        </Routes>
+      </BrowserRouter>
+
       <header className="App-header">
         <button onClick={handleAddCounter}>ADD</button>
         {/* <h3>{breedArray}</h3> */}
