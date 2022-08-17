@@ -62,6 +62,7 @@ function App() {
       <header className="App-header">
         <button onClick={handleAddCounter}>ADD</button>
  
+        
         <div className="btn">OK</div>
         
         {allBreeds.map((breed: Breed) => (
