@@ -1,33 +1,56 @@
+import { useState } from "react";
+import "./view/styles/app.scss";
+import axios from "axios";
+// import Card from "./view/components/card/Card";
 
-import './view/styles/app.scss';
-
-import Card from './view/components/card/Card';
-
-interface Name {
-  title:string,
-  text:string,
-  id:string
+interface Breed {
+  breed: string,
+  country: string,
+  origin: string,
+  coat: string,
+  pattern: string,
+  // key: string
 }
 
-const names:Name[] = [
-  {id:'2342', title:'Moshe', text:'let my people go'},
-  {id:'fdhdfhdffhd', title:'Nelson Mandela', text:'Eye for an eye, and the whole world will be blind'},
-  {id:'ryerhf', title:"Archimedes", text:"EUREKA!"}
-]
-
 function App() {
+  const [counter, setCounter] = useState(0);
+  const [breedArray, setbreedArray] = useState<Breed[]>([]);
+
+  async function handleAddCounter() {
+    try {
+      setCounter(counter + 1);
+      console.log("counter:", counter);
+      const { data } = await axios.get("https://catfact.ninja/breeds");
+      if (!data) throw new Error("No data"); 
+      console.log(data);
+      if (!data) throw new Error("No breed");
+      setbreedArray(data.data);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   return (
     <div className="App">
       <header className="App-header">
-      <div className="btn">OK</div>
-        {names.map((name:Name)=>{
-          return <Card key={name.id} title={name.title} text={name.text} />
-        })}
-       
+        <button onClick={handleAddCounter}>ADD</button>
+        {/* <h3>{breedArray}</h3> */}
+        <h3>{counter}</h3>
+        <div className="btn">OK</div>
+
+        {breedArray.map((breed) => (
+         <p>
+            breed={breed.breed}
+            country={breed.country}
+            origin={breed.origin}
+            coat={breed.coat}
+            pattern={breed.pattern}
+          </p>
+        ))}
+
         <button>OK2</button>
       </header>
     </div>
-  
   );
 }
 
