@@ -5,13 +5,16 @@ import Main from "./view/pages/main/Main";
 import Home from "./view/pages/home/Home";
 import About from "./view/pages/about/About";
 import Profile from "./view/pages/profile/Profile";
+import Page404 from "./view/pages/404/404";
 
 import './App.css'
+
 
 const App = () => {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="*" element={<Page404 />} />
         <Route path="/" element={<Main />}>
           {/* OUTLET */}
 
