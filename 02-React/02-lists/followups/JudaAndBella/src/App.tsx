@@ -1,77 +1,80 @@
-import { useState } from "react";
+import {useState, useEffect} from "react";
 import axios from "axios";
 import "./view/styles/app.scss";
 
 import Card from "./view/components/card/Card";
 
 interface Breed {
-
-  breed: string,
-  country: string,
-  origin: string,
-  coat: string,
-  pattern: string,
-
+    breed : string,
+    country : string,
+    origin : string,
+    coat : string,
+    pattern : string
 }
-
-// const names: Name[] = [
-//   { id: "2342", title: "Moshe", text: "let my people go" },
-//   {
-//     id: "fdhdfhdffhd",
-//     title: "Nelson Mandela",
-//     text: "Eye for an eye, and the whole world will be blind",
-//   },
-//   { id: "ryerhf", title: "Archimedes", text: "EUREKA!" },
-// ];
 
 let factVar = "";
 
 function App() {
-  const [counter, setCounter] = useState(0); //initial value
-  const [factVar, setFactVar] = useState(''); //initial value
-  const [allBreeds, setBreeds] = useState([]);
+    const [counter,
+        setCounter] = useState(0); //initial value
+    const [factVar,
+        setFactVar] = useState(''); //initial value
+    const [allBreeds,
+        setBreeds] = useState([]);
 
-  async function handleAddCounter() {
-    try {
-      // setCounter(counter + 1) //new value ... it will take some millisconds to update
-      console.log("counter:", counter);
+    async function handleAddCounter() {
+        try {
+            console.log("counter:", counter);
 
-      const { data } = await axios.get("https://catfact.ninja/breeds"); //rest API
+            const {data} = await axios.get("https://catfact.ninja/breeds"); //rest API
 
-      const allBreeds = data.data
-      console.log(allBreeds);
-      console.log(allBreeds[0].breed);
+            const allBreeds = data.data
+            console.log(allBreeds);
 
-      if (!allBreeds) throw new Error("No breeds");
+            if (!allBreeds) 
+                throw new Error("No breeds");
+            
+            setBreeds(allBreeds)
+            setCounter(counter + 1);
 
-      setBreeds(allBreeds)
-      // if (!data) throw new Error("No data");
-      // const { fact } = data;
-      // if (!fact) throw new Error("No fact");
-      // setFactVar(fact);
+        } catch (error) {
+            console.error(error);
+        }
+    };
 
+    const counterEffect = counter;
 
+    useEffect(() => {
+        const identifier = setTimeout(() => {
+            setCounter(counterEffect)
+        }, 300);
+        console.log("EFFECT RUNNING");
 
-    } catch (error) {
-      console.error(error);
-    }
-  }
+        return () => {
+            console.log("EFFECT CLEANUP");
+            clearTimeout(identifier);
+        };
+    }, [counterEffect]);
 
-  return (
-    <div className="App">
-      <header className="App-header">
-        <button onClick={handleAddCounter}>ADD</button>
- 
-        <div className="btn">OK</div>
-        
-        {allBreeds.map((breed: Breed) => (
-          <Card key={breed.breed} breed={breed.breed} country={breed.country} origin={breed.origin} coat={breed.coat} pattern={breed.pattern} />
-        ))}
+    return (
+        <div className="App">
+            <header className="App-header">
+                <button onClick={handleAddCounter}>ADD</button>
 
-        <button>OK2</button>
-      </header>
-    </div>
-  );
+                <div className="btn">OK</div>
+
+                {allBreeds.map((breed : Breed) => (<Card
+                    key={breed.breed}
+                    breed={breed.breed}
+                    country={breed.country}
+                    origin={breed.origin}
+                    coat={breed.coat}
+                    pattern={breed.pattern}/>))}
+
+                <button>OK2</button>
+            </header>
+        </div>
+    );
 }
 
 export default App;
