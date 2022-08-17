@@ -62,12 +62,11 @@ function App() {
       <header className="App-header">
         <button onClick={handleAddCounter}>ADD</button>
  
-        <p>{allBreeds}</p>
         <div className="btn">OK</div>
         
         {allBreeds.map((breed: Breed) => (
           <Card key={breed.breed} breed={breed.breed} country={breed.country} origin={breed.origin} coat={breed.coat} pattern={breed.pattern} />
-        ))}hguy
+        ))}
 
         <button>OK2</button>
       </header>
