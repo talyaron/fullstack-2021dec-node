@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import "./view/styles/app.scss";
 import axios from "axios";
-// import Card from "./view/components/card/Card";
+import Card from "./view/components/card/Card";
 
 interface Breed {
   breed: string,
@@ -35,7 +35,7 @@ function App() {
   useEffect(() => {
     const identifier = setTimeout(() => {
       setCounter(counterEffect)
-    }, 500);
+    }, 300);
     console.log("EFFECT RUNNING");
 
     return () => {
@@ -54,6 +54,8 @@ function App() {
         {/* <h3>{breedArray}</h3> */}
         <h3>{counter}</h3>
         <div className="btn">OK</div>
+
+        <Card text={"BEY"} title={"HEY"}/>
 
         {breedArray.map((breed) => (
          <p>
