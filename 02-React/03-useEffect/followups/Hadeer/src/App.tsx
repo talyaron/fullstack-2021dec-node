@@ -4,6 +4,24 @@ import "./view/styles/app.scss";
 
 import Card from "./view/components/card/Card";
 
+interface Name {
+  title: string;
+  text: string;
+  id: string;
+}
+
+const names: Name[] = [
+  { id: "2342", title: "Moshe", text: "let my people go" },
+  {
+    id: "fdhdfhdffhd",
+    title: "Nelson Mandela",
+    text: "Eye for an eye, and the whole world will be blind",
+  },
+  { id: "ryerhf", title: "Archimedes", text: "EUREKA!" },
+];
+
+
+
 interface Breed {
   breed: string;
   country: string;
