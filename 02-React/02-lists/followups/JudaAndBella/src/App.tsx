@@ -1,11 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import "./view/styles/app.scss";
 
 import Card from "./view/components/card/Card";
 
 interface Breed {
-
   breed: string,
   country: string,
   origin: string,
@@ -14,15 +13,6 @@ interface Breed {
 
 }
 
-// const names: Name[] = [
-//   { id: "2342", title: "Moshe", text: "let my people go" },
-//   {
-//     id: "fdhdfhdffhd",
-//     title: "Nelson Mandela",
-//     text: "Eye for an eye, and the whole world will be blind",
-//   },
-//   { id: "ryerhf", title: "Archimedes", text: "EUREKA!" },
-// ];
 
 let factVar = "";
 
@@ -33,30 +23,45 @@ function App() {
 
   async function handleAddCounter() {
     try {
-      // setCounter(counter + 1) //new value ... it will take some millisconds to update
       console.log("counter:", counter);
 
       const { data } = await axios.get("https://catfact.ninja/breeds"); //rest API
 
       const allBreeds = data.data
       console.log(allBreeds);
-      console.log(allBreeds[0].breed);
-
+      
       if (!allBreeds) throw new Error("No breeds");
 
       setBreeds(allBreeds)
-      // if (!data) throw new Error("No data");
-      // const { fact } = data;
-      // if (!fact) throw new Error("No fact");
-      // setFactVar(fact);
-
+      setCounter(counter + 1);
 
 
     } catch (error) {
       console.error(error);
     }
   }
+  
+  const counterEffect = counter;
 
+  useEffect(() => {
+    const identifier = setTimeout(() => {
+      setCounter(counterEffect)
+    }, 300);
+    console.log("EFFECT RUNNING");
+
+    return () => {
+      console.log("EFFECT CLEANUP");
+      clearTimeout(identifier);
+    };
+  }, [counterEffect]);
+  
+  
+  // useEffect(() => {
+  //   console.log("On useEffect")
+  //   handleAddCounter();
+  // },[]);
+  
+  
   return (
     <div className="App">
       <header className="App-header">
