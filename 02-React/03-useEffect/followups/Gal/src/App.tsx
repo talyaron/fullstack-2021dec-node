@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./view/styles/app.scss";
 import axios from "axios";
 // import Card from "./view/components/card/Card";
@@ -29,6 +29,23 @@ function App() {
       console.error(error);
     }
   }
+
+  const counterEffect = counter;
+
+  useEffect(() => {
+    const identifier = setTimeout(() => {
+      setCounter(counterEffect)
+    }, 500);
+    console.log("EFFECT RUNNING");
+
+    return () => {
+      console.log("EFFECT CLEANUP");
+      clearTimeout(identifier);
+    };
+  }, [counterEffect]);
+
+
+
 
   return (
     <div className="App">
