@@ -1,4 +1,4 @@
-
+import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { useState } from "react";
@@ -9,7 +9,7 @@ import "./styles/app.scss";
 
 function App() {
   const [counter, setCounter] = useState(0); //initial value
-  const [factVar, setFactVar] = useState(''); //initial value
+  const [breedsVar, setBreedsVar] = useState([]); //initial value
 
   async function handleAddCounter() {
     try {
@@ -18,9 +18,9 @@ function App() {
 
       const { data } = await axios.get("https://catfact.ninja/breeds"); //rest API
       if (!data) throw new Error("No data");
-      const { fact } = data;
-      if (!fact) throw new Error("No fact");
-      setFactVar(fact);
+      const { breeds } = data;
+      if (!breeds) throw new Error("No breeds");
+      setBreedsVar(breeds);
 
       
     } catch (error) {

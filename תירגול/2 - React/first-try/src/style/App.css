@@ -1,0 +1,7 @@
+.user {
+  display: flex;
+}
+
+.user p {
+  margin: 1% 5%;
+}
