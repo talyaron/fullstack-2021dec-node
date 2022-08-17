@@ -2,7 +2,9 @@ import { Link } from "react-router-dom";
 
 const Outside = () =>{
   return (
-    <Link to='/Outside'>Home</Link>
+    <>
+    <h1>Outside</h1><Link to='/'>Home</Link>
+    </>
   )
 }
 
