@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- axios -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"
+        integrity="sha512-odNmoc1XJy5x1TMVMdC7EMs3IVdItLPlCeL5vSUPN2llYKMJ2eByTTAIiiuqLg+GdNr9hF6z81p27DArRFKT7A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="./dist/style.css">
+    <title>Profile</title>
+</head>
+
+<body onload="toNextPage()">
+
+    <form class="profile" onsubmit="handleSubmit(event)">
+        <input type="text" name="name" placeholder="Name">
+        <input type="number" name="age" placeholder="Age">
+        <input type="url" name="url" placeholder="url" required>
+        <button type="submit">Submit</button>
+        <button type="submit">Update</button>
+    </form>
+
+    <form class="profile" onsubmit="handleUpdate(event)" style="display: none">
+        <input type="text" name="name" placeholder="Name">
+        <input type="number" name="age" placeholder="Age">
+        <input type="url" name="url" placeholder="url" required>
+        <button type="submit">Submit</button>
+    </form>
+ 
+    <div id="profileHTML"></div>
+    <script src="./dist/index.js"></script>
+
+    </script>
+</body>
+
+</html>

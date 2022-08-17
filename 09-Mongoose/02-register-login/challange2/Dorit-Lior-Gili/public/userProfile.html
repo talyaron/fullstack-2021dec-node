@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.0.0-alpha.1/axios.min.js" integrity="sha512-xIPqqrfvUAc/Cspuj7Bq0UtHNo/5qkdyngx6Vwt+tmbvTLDszzXM0G6c91LXmGrRx8KEPulT+AfOOez+TeVylg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <title id="pageTitle">User Profile:</title>
+</head>
+<body onload="handleGetUser()">
+    <header>
+        <nav>
+            <ul>
+                <a onclick="handleEditProfile()"><li>Edit Profile</li></a>
+                <li>User</li>
+                <a href="./index.html"><li>Logout</li></a>
+            </ul>
+        </nav>
+    </header>
+    <div id="mainRoot">
+        <img id="userProfilePicture" src="" alt="userProfilePicture">
+        <p>Username:</p>
+        <p>Email:</p>
+        <p>password:</p>
+        <p>proffesion:</p>
+        <p>address:</p>
+    </div>
+    <script src="./dist/userProfile.js"></script>
+</body>
+</html>
