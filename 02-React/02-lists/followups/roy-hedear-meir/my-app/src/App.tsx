@@ -18,9 +18,9 @@ function App() {
 
       const { data } = await axios.get("https://catfact.ninja/breeds"); //rest API
       if (!data) throw new Error("No data");
-      const { fact } = data;
-      if (!fact) throw new Error("No fact");
-      setBreedsVar(fact);
+      const { breeds } = data;
+      if (!breeds) throw new Error("No breeds");
+      setBreedsVar(breeds);
 
       
     } catch (error) {
