@@ -1,0 +1,143 @@
+body {
+  margin: 0%;
+  width: 100vw;
+  overflow: hidden;
+  font-family: "Mukta", sans-serif;
+}
+body .room_button_wrapper {
+  width: 50vw;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+}
+body .room_button_wrapper button {
+  border: none;
+  padding: 15px 30px;
+  border-radius: 20px;
+  font-size: 1.3rem;
+  font-family: "Mukta", sans-serif;
+}
+body .room_button_wrapper button:hover {
+  cursor: pointer;
+  background-color: #a2a2a2;
+}
+body .room_button_wrapper button a {
+  text-decoration: none;
+  text-decoration-color: black;
+}
+
+.game_wrapper {
+  margin: auto;
+  width: 902px;
+  height: 902px;
+  background-color: white;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  padding-top: 50px;
+}
+.game_wrapper .squre {
+  width: 250px;
+  height: 250px;
+  background-color: white;
+  font-size: 15rem;
+  align-content: center;
+  text-align: center;
+}
+
+.wrapper {
+  margin: auto;
+  width: 70vw;
+  text-align: center;
+}
+.wrapper img {
+  max-width: 500px;
+}
+.wrapper h1 {
+  font-size: 6rem;
+  margin: 5%;
+}
+.wrapper h2 {
+  font-size: 3rem;
+}
+.wrapper p {
+  font-size: 1.5rem;
+}
+
+.buttonsContainer {
+  width: 50vw;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.countersContainer {
+  width: 50vw;
+  height: 10vh;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: space-between;
+  font-size: 1.3rem;
+}
+
+#linkButton {
+  border: none;
+  padding: 15px 30px;
+  border-radius: 20px;
+  font-size: 1.3rem;
+  font-family: "Mukta", sans-serif;
+}
+#linkButton:hover {
+  cursor: pointer;
+  background-color: #a2a2a2;
+}
+
+#sq0 {
+  border-bottom: 3px solid black;
+  border-right: 3px solid black;
+}
+
+#sq1 {
+  border-bottom: 3px solid black;
+  border-right: 3px solid black;
+  border-left: 3px solid black;
+}
+
+#sq2 {
+  border-bottom: 3px solid black;
+  border-left: 3px solid black;
+}
+
+#sq3 {
+  border-bottom: 3px solid black;
+  border-right: 3px solid black;
+  border-top: 3px solid black;
+}
+
+#sq4 {
+  border: 3px solid black;
+}
+
+#sq5 {
+  border-bottom: 3px solid black;
+  border-left: 3px solid black;
+  border-top: 3px solid black;
+}
+
+#sq6 {
+  border-right: 3px solid black;
+  border-top: 3px solid black;
+}
+
+#sq7 {
+  border-right: 3px solid black;
+  border-left: 3px solid black;
+  border-top: 3px solid black;
+}
+
+#sq8 {
+  border-left: 3px solid black;
+  border-top: 3px solid black;
+}
