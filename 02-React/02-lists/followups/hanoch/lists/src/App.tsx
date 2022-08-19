@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import './view/styles/app.scss';
 import Card from './view/components/Cart';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 interface Props{
   title:string,
   text:string,
@@ -24,6 +24,9 @@ const names:Props[] =[
 
 function App() {
   const [facts, setFacts] = useState<catsFacts[]>([])
+  useEffect(()=>{
+    handleDisplayFacts()
+  })
   async function handleDisplayFacts(){
     try {
       const {data} = await axios.get('https://catfact.ninja/facts');
