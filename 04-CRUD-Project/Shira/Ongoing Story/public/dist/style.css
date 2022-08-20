@@ -1,0 +1,22 @@
+body {
+  background-color: #e1d7ca;
+}
+body .container {
+  position: absolute;
+  top: 10px;
+  left: 600px;
+}
+body .textTitle {
+  color: #760808;
+  font-size: larger;
+  font-weight: bolder;
+  font-style: italic;
+  margin-left: -105px;
+}
+body .publish {
+  border-radius: 20px;
+  background-color: #c03434;
+  height: 50px;
+  margin-top: 30px;
+  margin-left: 85px;
+}
