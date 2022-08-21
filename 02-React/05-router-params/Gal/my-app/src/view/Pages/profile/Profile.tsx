@@ -5,7 +5,7 @@ const Profile = () => {
     <div>
         
         <h1>Profile</h1>
-        <img src="https://cdn.pixabay.com/photo/2015/04/19/08/32/marguerite-729510__340.jpg" alt="some flower" />
+        <img src="https://medias.timeout.co.il/www/uploads/2014/11/1-t-600x600.jpg" alt="some shit" />
         </div>
   )
 }
