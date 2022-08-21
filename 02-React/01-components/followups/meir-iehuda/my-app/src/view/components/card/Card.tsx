@@ -1,8 +1,13 @@
-import React from 'react'
-
-const Card = () => {
+interface CardProps{
+    text:string;
+    src:string;
+}
+const Card = ({text, src}:CardProps) => {
     return (
-        <div>Card</div>
+        <div className="card">
+            <h2>{text}</h2>
+            <img src={src}></img>
+        </div>
     )
 }
 
