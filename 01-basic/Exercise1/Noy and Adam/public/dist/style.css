@@ -1,0 +1,42 @@
+body {
+  margin: 0 auto;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  background-color: #DBEBC0;
+}
+
+.wrapper {
+  width: 70%;
+  height: 90vh;
+  margin: auto;
+  padding: 10px;
+  background-color: #C3B299;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  box-shadow: 5px 10px #cbd4c2;
+}
+.wrapper .box {
+  display: flex;
+  flex-direction: row;
+}
+.wrapper h1 {
+  padding: 0;
+  margin: 0;
+  text-align: center;
+  color: #815355;
+  border-radius: 10px;
+}
+.wrapper h2 {
+  color: #523249;
+}
+.wrapper img {
+  width: 30%;
+  border-radius: 15px;
+  transition: all 1s;
+}
+.wrapper img:hover {
+  width: 31%;
+  cursor: pointer;
+}

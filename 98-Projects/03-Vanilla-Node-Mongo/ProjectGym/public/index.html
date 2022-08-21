@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.0.0-alpha.1/axios.js" integrity="sha512-uplugzeh2/XrRr7RgSloGLHjFV0b4FqUtbT5t9Sa/XcilDr1M3+88u/c+mw6+HepH7M2C5EVmahySsyilVHI/A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="./dist/style.css">
+</head>
+<body>
+    <div class="userEnter">
+        <div class="userEnter__userReg">
+    <h4 class="titleSignUp">SIGN - UP:</h4>
+            <div class="formReg">
+    <form onsubmit="handleRegister(event)">
+    <input type="email" name="email" placeholder="email"> <br>
+    <input type="password" name="password" placeholder="password"> 
+     <input class="SignUpBtn" type="submit" value="Sign Up">
+    </form>
+            </div>
+        </div> 
+        <div class="userEnter__userLogin">
+    <p class="titleLogin">Already registered? <br> Log in here:👇🏼</p>
+            <div class="formLogin">
+    <form onsubmit="handleLogin(event)">
+        <input type="email" name="email" placeholder="email"> <br>
+        <input type="password" name="password" placeholder="password"> 
+         <input class="loginBtn" type="submit" value="Login">
+    </form>
+            </div>
+        </div> 
+    </div>
+
+    <br><br>
+
+    <h1 class="titleCoach">If you are a coach please enter here:👇🏼</h1>
+    <form id="coachLoginForm" onsubmit="handleCoachLogin(event)">
+        <input type="email" name="email" placeholder="email">
+        <input type="password" name="password" placeholder="password"> <br>
+        <input class="loginCoachBtn" type="submit" value="loginCoach">
+    </form>
+
+    <script src="./dist/index.js"></script>
+</body>
+</html>

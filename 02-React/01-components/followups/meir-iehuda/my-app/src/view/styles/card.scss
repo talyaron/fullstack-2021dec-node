@@ -1,7 +1,14 @@
 .card{
     padding: 20px;
     border-radius: 10px;
-    background-color: rgb(252, 252, 252);
+    background-color: whitesmoke;
     margin: 2px;
-    color: black;
+    color: $textColor;
+    transition: all 0.5s ease-in-out;
+
+    &:hover{
+        opacity: .5;
+        width: 300px;
+        cursor: pointer;
+    }    
 }
