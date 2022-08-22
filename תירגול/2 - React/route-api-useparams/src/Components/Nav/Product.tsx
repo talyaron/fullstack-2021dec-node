@@ -6,6 +6,7 @@ const Product = (props: any) => {
 
   return (
     <div style={{ display: "flex", justifyContent: "space-around" }}>
+      {/* <Link to={`/${product.name}`}>{product.name}</Link> */}
       <Link to={`/product/${product.name}`}>{product.name}</Link>
       <Link to={`/${product.price}`}>{product.price}</Link>
     </div>

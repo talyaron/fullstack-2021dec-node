@@ -13,6 +13,7 @@ function App() {
           <Route index element={<Home />} />
           <Route path="products" element={<Products />} />
         </Route>
+        {/* <Route path=":name" element={<Name />} /> */}
         <Route path="product/:name" element={<Name />} />
         <Route path=":price" element={<Price />} />
       </Routes>
