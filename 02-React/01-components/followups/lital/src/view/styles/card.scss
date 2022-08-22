@@ -1,0 +1,17 @@
+.card{
+    padding: 20px;
+    border-radius: 10px;
+    background-color: wheat;
+    margin: 2px;
+    color: black;
+    width: 150px;
+    :hover{
+        width: 80%;
+        background-color: red;
+    }
+
+ img{
+    width: 100%;
+
+ }
+}
