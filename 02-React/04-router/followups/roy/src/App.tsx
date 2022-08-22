@@ -10,7 +10,7 @@ import Rose from "./view/pages/rose/Rose";
 import Lilly from "./view/pages/lilly/Lilly";
 import Main from "./view/pages/main/Main";
 import Lotus from "./view/pages/lotus/Lotus";
-
+import UnderRose from "./view/pages/UnderRose/underRose";
 import './App.css'
 
 
@@ -23,12 +23,15 @@ const App = () => {
           {/* OUTLET */}
 
           <Route index element={<Home />} />
-          <Route path='rose' element={<Rose />} />
-          <Route path="lilly" element={<Lilly />} />
-          <Route path="lotus" element={<Lotus />} />
-
+          <Route path='rose' element={<Rose />} ></Route>
+          <Route path="lilly" element={<Lilly />} ></Route>
+          <Route path="lotus" element={<Lotus />} ></Route>
+          <Route path="rose/:flowerId" element={<UnderRose />} ></Route>
         </Route>
-      </Routes>
+       
+        </Routes>
+      
+      
     </BrowserRouter>
   );
 };
