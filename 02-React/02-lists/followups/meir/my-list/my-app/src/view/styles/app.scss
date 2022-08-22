@@ -1,7 +1,6 @@
-$textColor: red;
+$textColor: blue;
 @import 'card';
 @import 'btns';
-
 
 .App {
     text-align: center;
@@ -40,5 +39,5 @@ $textColor: red;
     to {
       transform: rotate(360deg);
     }
-}
+  }
   
