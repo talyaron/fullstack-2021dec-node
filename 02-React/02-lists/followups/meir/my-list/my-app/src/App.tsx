@@ -1,6 +1,9 @@
 import React from 'react';
+import {useState} from 'react';
+import axios from 'axios';
 import './view/styles/app.scss';
 import Card from './view/Components/card/Card'
+import { factory } from 'typescript';
 
 interface Name {
   tittle:string,
@@ -15,20 +18,50 @@ const names:Name[]= [
   ]
 
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-      <div className="btn">PUSH HERE</div>
-          {names.map((name:Name) => {
-             return <Card key={name.id} tittle={name.tittle} text={name.text} />
-          })}
-          
+let factVar = '';
 
-          <button>RETURN</button>
-      </header>
-    </div>
-  );
-}
+function App() {
+
+  const [counter, setCounter] = useState(0); //initial value
+  const [factVar, setFactVar] = useState(''); //initial value
+
+
+  async function handleAddCounter() {
+    try {
+      // setCounter(counter +1) //new value --- it will take some miliseconds to uptade
+      console.log("counter:",counter)
+
+      const { data } = await axios.get('https://catfact.ninja/fact'); // rest API
+      if(!data) throw new Error("No data");
+      console.log(data);
+      const { fact } = data;
+      if(!fact) throw new Error("No fact");
+      setFactVar(fact);
+
+
+    } catch (error) {
+        console.error(error);
+      }
+  }
+  
+
+  return (
+      <div className="App">
+        <header className="App-header">
+          <button onClick={handleAddCounter}>ADD</button>
+          <h3>{factVar}</h3>
+          <h3>{counter}</h3>
+          <div className='btn'>OK</div>
+          
+          {names.map((name:Name) => <Card key={name.id} tittle={name.tittle} text={name.text} />)}
+  
+  
+        
+     
+        </header>
+      </div>
+    );
+  }
+
 
 export default App;

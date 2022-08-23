@@ -20,18 +20,42 @@ const jokes:Joke[] = [
 
 
 
+// "Array whith return" <----------
+
+// function App() {
+//   return (
+//     <div className="App">
+//       <header className="App-header">
+      
+//         <div className='btn'>OK</div>
+
+//         {jokes.map((joke:Joke)=>{
+//            return <Card key={joke.id} name={joke.name} text={joke.text} />
+//         })}
+
+
+      
+   
+//       </header>
+//     </div>
+//   );
+// }
+
+
+// Array without 'return' <--------
 
 
 function App() {
+
+  
+
   return (
     <div className="App">
       <header className="App-header">
-      
-        <div className='card'>OK</div>
-
-        {jokes.map((joke:Joke)=>{
-           return <Card key={joke.id} name={joke.name} text={joke.text} />
-        })}
+        
+        <div className='btn'>OK</div>
+        
+        {jokes.map((joke:Joke) => <Card key={joke.id} name={joke.name} text={joke.text} />)}
 
 
       
