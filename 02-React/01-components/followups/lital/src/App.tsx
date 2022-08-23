@@ -17,13 +17,13 @@ function App() {
   x++;
 
   const [counter, setCounter] = useState<number>(0); //initial value
-  // const [factVar, setFactVar] = useState<string>(""); //initial value
+  const [factVar, setFactVar] = useState<string>(""); //initial value
   const [breeds, setBreeds] = useState<Breed[]>([]);
 
-  useEffect(()=>{
-    console.log('run with use effect')
-    handleAddCounter();
-  },[])
+  // useEffect(()=>{
+  //   console.log('run with use effect')
+  //   handleAddCounter();
+  // },[])
 
   async function handleAddCounter() {
     try {
@@ -46,19 +46,21 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <button onClick={handleAddCounter}>Get</button>
+        <button onClick={handleAddCounter}>Get All Breeds Cat from API Data</button>
+        <br></br>
+      
         <button onClick={()=>{setCounter(counter + 1)}}>ADD To Counter</button>
-        {/* <h3>{factVar}</h3> */}
+        <h3>{factVar}</h3>
         <h3>{counter}</h3>
-        <div className="btn">OK</div>
-        {/* {names.map((name: Name) => (
-          <Card key={name.id} title={name.title} text={name.text} />
+   
+        {/* {names.map((name) => (
+          <Card id={name.id} title={name.title} text={name.text} img={name.img} />
         ))} */}
         {breeds.map((breed) => (
           <p key={breed.breed}>{breed.breed}</p>
         ))}
 
-        <button>OK2</button>
+        
       </header>
     </div>
   );

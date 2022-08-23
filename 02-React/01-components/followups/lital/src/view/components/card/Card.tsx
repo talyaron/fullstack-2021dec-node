@@ -1,4 +1,5 @@
 interface CardProps{
+  id:string;
     text:string;
     title:string;
     img:string;
