@@ -1,0 +1,103 @@
+.card {
+  padding: 20px;
+  border-radius: 10px;
+  background-color: wheat;
+  margin: 2px;
+  color: blue;
+}
+
+button, .btn {
+  background-color: transparent;
+  border-radius: 10px;
+  color: white;
+  border: 2px solid white;
+  padding: 20px 30px;
+  font-size: 1rem;
+}
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+html {
+  height: 100%;
+  background: -moz-linear-gradient(-45deg, #de437d 0%, #5b44b9 100%);
+  /* FF3.6-15 */
+  background: -webkit-linear-gradient(-45deg, #de437d 0%, #5b44b9 100%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(135deg, #de437d 0%, #5b44b9 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="#de437d", endColorstr="#5b44b9",GradientType=1 );
+  /* IE6-9 fallback on horizontal gradient */
+}
+
+body {
+  font-family: "open sans", sans-serif;
+  font-size: 3rem;
+  background-size: cover;
+  height: 100%;
+}
+
+svg {
+  margin: 0 auto;
+  text-align: center;
+  width: 100%;
+  padding-top: 40px;
+}
+
+polyline {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: dash 5s ease-in forwards;
+  animation-iteration-count: 10;
+  animation-direction: alternate;
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+p {
+  font-size: 2rem;
+  text-align: center;
+  color: #efefef;
+}
+
+.name {
+  font-size: 0.8rem;
+  font-weight: light;
+}
