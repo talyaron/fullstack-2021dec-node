@@ -11,7 +11,7 @@ let breeds={breed}
     <div className="card">
      <div className="cardinfo">
       <h3>{breed}</h3>
-      <img src="https://dog.ceo/api/breed/breeds/image" alt="" />
+      <img src="" alt="" />
      </div>
 
 
