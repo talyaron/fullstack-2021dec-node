@@ -3,6 +3,7 @@ import axios from "axios";
 import "./view/styles/app.scss";
 
 import Card from "./view/components/card/Card";
+import { DiagnosticCategory } from "typescript";
 
 interface Name {
   title: string;
