@@ -42,9 +42,10 @@
 
 .bar {
     transition: width 1s;
-    min-width: 200px;
+    min-width: 80px;
     min-height: 40px;
     rotate:0deg;
+    border-radius:100px;
 }
 
 @keyframes App-logo-spin {
