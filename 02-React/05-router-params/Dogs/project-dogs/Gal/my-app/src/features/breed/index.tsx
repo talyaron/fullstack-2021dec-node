@@ -1,9 +1,22 @@
-import React from 'react'
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import {Image, getBreedImageRandom } from "../breeds/getBreeds";
 
 const Breed = () => {
-  return (
-    <div>Breed</div>
-  )
-}
+  const { breed } = useParams();
+  const [breedImage, setBreedImage] = useState<Image>({ breed: "", src: "" });
 
-export default Breed
+  useEffect(() => {
+    if (breed)
+      getBreedImageRandom(breed).then((breedImage) => setBreedImage(breedImage)
+      );
+  }, [breed]);
+  return (
+    <div>
+      <h1>Breed:{breed}</h1>
+      <img src={breedImage.src} alt={breedImage.breed} />
+    </div>
+  );
+};
+
+export default Breed;

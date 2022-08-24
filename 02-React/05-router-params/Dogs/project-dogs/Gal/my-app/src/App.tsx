@@ -1,6 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Page404 from "./features/404/404";
-import "./App.css";
 import Breeds from "./features/breeds";
 import Breed from "./features/breed";
 
