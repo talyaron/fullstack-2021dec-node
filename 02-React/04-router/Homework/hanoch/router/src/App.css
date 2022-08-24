@@ -1,3 +1,40 @@
+@media(max-width:400px) {
+  
+ .nav{
+  display: flex;
+  position: absolute;
+  bottom: 0px;
+  margin: auto;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+
+}
+Link{
+  text-decoration: none;
+  width: 1rem;
+}
+.link{
+ text-decoration: none;
+ text-decoration-line: none;
+ /* padding: 3rem; */
+ border-bottom: none;
+}
+.link:link{
+  text-decoration: none;
+
+}
+img{
+  width: 2rem;
+  position: relative;
+   /* top: -1rem; */
+} 
+.dashboard, .myProduct, .analytics, .manage{
+  padding: 5px;
+}
+}
+
 .App {
   text-align: center;
 }
@@ -7,11 +44,11 @@
   pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
+/* @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
-}
+} */
 
 .App-header {
   background-color: #282c34;

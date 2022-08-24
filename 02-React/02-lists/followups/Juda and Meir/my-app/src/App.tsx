@@ -1,6 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
-// import './App.css';
 import  './view/style/style.scss';
 import Card from "./view/components/Card/Card";
 
@@ -15,26 +13,52 @@ const jokes:Joke[] = [
 
     {name: "What’s the best thing about Switzerland?" , text: "I don’t know, but the flag is a big plus.", id: "456df"},
     {name: "Helvetica and Times New Roman walk into a bar." , text: "“Get out of here!” shouts the bartender. “We don’t serve your type.”", id: "fjhjlbn"},
-  
+    {name: "Yesterday I saw a guy spill all his Scrabble letters on the road. I asked him, “What’s the word on the street?”", text:'Once my dog ate all the Scrabble tiles. For days he kept leaving little messages around the house. Don’t miss these hilarious egg puns that will absolutely crack you up.', id:'cacasdcsc'}
 ];
 
 
 
 
 
+// "Array whith return" <----------
+
+// function App() {
+//   return (
+//     <div className="App">
+//       <header className="App-header">
+      
+//         <div className='btn'>OK</div>
+
+//         {jokes.map((joke:Joke)=>{
+//            return <Card key={joke.id} name={joke.name} text={joke.text} />
+//         })}
+
+
+      
+   
+//       </header>
+//     </div>
+//   );
+// }
+
+
+// Array without 'return' <--------
+
+
 function App() {
+
+  
+
   return (
     <div className="App">
       <header className="App-header">
-   <div className='App-header'>
-<div className='card'>OK</div>
-
-{jokes.map((joke:Joke)=>{
-  return <Card key={joke.id} name={joke.name} text={joke.text} />
-})}
+        
+        <div className='btn'>OK</div>
+        
+        {jokes.map((joke:Joke) => <Card key={joke.id} name={joke.name} text={joke.text} />)}
 
 
-   </div>
+      
    
       </header>
     </div>
