@@ -2,6 +2,18 @@
   text-align: center;
 }
 
+
+img{
+  width: 200px;
+}
+
+
+.link{
+  padding: 20px;
+  background-color: navy;
+  color: white;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -35,8 +47,4 @@
   to {
     transform: rotate(360deg);
   }
-}
-
-body{
-  background-color: white;
 }

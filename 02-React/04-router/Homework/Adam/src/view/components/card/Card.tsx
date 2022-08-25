@@ -7,7 +7,7 @@ const Card = ({ text, title }: CardProps) => {
 
   return (
     <div className="card">
-      <h4> -- {title} -- </h4>
+      <h2> -- {title} -- </h2>
       <p>{text}</p>
     </div>
   );

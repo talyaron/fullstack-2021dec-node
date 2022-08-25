@@ -1,3 +1,10 @@
+$textColor: blue;
+
+@import "card";
+@import "btns";
+@import "nav";
+@import "Products";
+
 .App {
   text-align: center;
 }
@@ -35,8 +42,4 @@
   to {
     transform: rotate(360deg);
   }
-}
-
-body{
-  background-color: white;
 }
