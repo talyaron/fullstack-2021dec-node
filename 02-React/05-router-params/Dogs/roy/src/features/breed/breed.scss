@@ -1,0 +1,20 @@
+.cardbreed{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 65px;
+    img{
+        width: 40%;
+    }
+
+.nav{
+    position: fixed;
+    padding-top: 0%;
+    margin-top: 0%;
+    top: 0px;
+    width: 100%;
+    display: flex;
+    background-color: rgb(67, 25, 144); 
+}
+}
