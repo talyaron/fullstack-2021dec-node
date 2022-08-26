@@ -1,22 +1,15 @@
-import React, { FC } from "react";
-import Breed from "../breed"
-interface BreedCardProps {
-  breed: string;
-}
+import { BreedCardProps } from ".";
+import { Link } from "react-router-dom";
 
-const BreedCard: FC<BreedCardProps> = (props) => {
-  const {breed}= props
-let breeds={breed}
-  return(
+
+const BreedCard= ({ breed }: BreedCardProps)=> {
+  return(<Link to={`/breed/${breed.breedName}`}>
     <div className="card">
-     <div className="cardinfo">
-      <h3>{breed}</h3>
-      <img src="" alt="" />
+     <img src={breed.breedImage} />
+     <h1>{breed.breedName.toUpperCase()}</h1>
      </div>
-
-
-
-    </div>
+   
+    </Link>
   )
 }
 
