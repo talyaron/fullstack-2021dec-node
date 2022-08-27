@@ -2,30 +2,6 @@
   text-align: center;
 }
 
-.nav{
-  display: flex;
-  background-color: pink;
-  padding: 5px;
-}
-
-img{
-  width: 200px;
-}
-
-footer{
-  background-color: teal;
-  padding: 20px;
-  position: fixed;
-  bottom: 0px;
-  width: 100%;
-}
-
-.link{
-  padding: 20px;
-  background-color: navy;
-  color: white;
-}
-
 .App-logo {
   height: 40vmin;
   pointer-events: none;
