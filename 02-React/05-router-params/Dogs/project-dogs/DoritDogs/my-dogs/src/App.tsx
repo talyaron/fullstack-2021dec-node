@@ -7,7 +7,6 @@ import Page404 from "./features/404/404";
 
 import Breeds from "./features/breeds";
 import Breed from "./features/breed";
-import React from "react";
 
 const App = () => {
   return (
