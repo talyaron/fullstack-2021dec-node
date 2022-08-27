@@ -1,0 +1,45 @@
+.session {
+    width: 99vw;
+    position: relative;
+    top: 200px;
+
+
+    .background {
+        width: 700px;
+        position: fixed;
+        bottom: 0;
+        right: 0;
+    }
+}
+
+.breedWrapper {
+    * {
+        display: block;
+        margin: auto;
+        text-align: center;
+    }
+
+    .breedContainer {
+        img {
+            border-radius: 40px;
+        }
+
+        a {
+            background-color: rgb(255, 175, 34);
+            width: 250px;
+            text-decoration: none;
+            color: black;
+            font-size: 2rem;
+            padding: 10px 20px;
+            margin-top: 50px;
+            border-radius: 40px;
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+body {
+    background-color: rgb(210, 210, 210);
+}
