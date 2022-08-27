@@ -1,8 +1,6 @@
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
-import {Breeds} from './getData'
-
-import '../styles/category.css';
+import {Breeds} from './getData';
 
 interface CategoryProps{
   breed:Breeds;
@@ -11,7 +9,7 @@ interface CategoryProps{
 const Category = ({breed}:CategoryProps) => {
 
   return (
-    <Link to={`/breeds/`}>
+    <Link to={`/breeds/${breed.name}`}>
     <div className="category">
       <h2> -- {breed.name} -- </h2>
       <img className="catImg" src={breed.img} alt="dog-img" />
