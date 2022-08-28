@@ -8,8 +8,8 @@ function App() {
   function handleChangeImg(ev: any) {
     ev.preventDefault();
     try {
-      console.dir(ev.target);
-      setIsChange(ev.target);
+      console.dir(ev.target.checked);
+      setIsChange(ev.target.checked);
     } catch (error) {
       console.log(error);
     }
@@ -24,14 +24,14 @@ function App() {
             className="App-logo"
             alt="logo"
           />
-         : (
+         : 
           <img
             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIngN0irqurI5-I9nJB0S8GAbIeNljfACOMg&usqp=CAU"
             className="App-logo"
             alt="flower"
           />
-        )}
-        <button onClick={handleChangeImg}>ADD</button>
+        }
+        <input type='checkbox' onChange={handleChangeImg}/>
       </header>
     </div>
   );
