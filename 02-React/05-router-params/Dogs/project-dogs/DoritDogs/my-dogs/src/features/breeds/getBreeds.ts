@@ -11,12 +11,12 @@ export async function getBreeds(): Promise<NameAndImage[]> {
     const { data } = await axios.get("https://dog.ceo/api/breeds/list/all");
 
     const { message } = data;
-    console.log(message);
+    //console.log(message);
 
     const breeds = Object.keys(message); //array of breeds names without images
 
     const images = await Promise.all(breeds.map(breed=>getBreedImageRandom(breed)));//breed+"message"(src)
-    console.log(images);
+    //console.log(images);
    //return from getfunction: {breed, src:message};
 
     return images; //breed + src

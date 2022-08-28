@@ -17,9 +17,11 @@ const Breeds = () => {
   }, []);
 
   return (
-    <div>
-      <h1>Breeds</h1>
-      {breeds.map((breed, i)=><BreedCard breed={breed}/>)}
+    <div className="container">
+      <h1>All Dog Breeds Index</h1>
+      <div className="wrapper">
+        {breeds.map((breed, i) => <BreedCard breed={breed} />)}
+        </div>
     </div>
   );
 };
