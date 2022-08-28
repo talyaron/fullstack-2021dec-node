@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import {getBreedsData, Breeds} from './getData';
 import Category from "./CategoryCard";
-import './styles/categoryCard.css';
+
 
 const BreedsCategory = ()=>{
     const [breeds, setBreeds] = useState<Breeds[]>([]);
@@ -15,7 +15,7 @@ const BreedsCategory = ()=>{
     },[]);
     return(
         <div className="breedsCategory">
-            {breeds.map((brd, i)=><Category breed={brd}/>)}
+            {breeds.map((brd, i)=><Category key={i} breed={brd}/>)}
         </div>
     )
 };
