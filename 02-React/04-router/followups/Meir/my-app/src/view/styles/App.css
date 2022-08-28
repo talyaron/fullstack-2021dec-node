@@ -2,6 +2,17 @@
   text-align: center;
 }
 
+.nav{
+  display: flex;
+  background-color: pink;
+  padding: 5px;
+}
+
+.link{
+  padding: 20px;
+  background-color: navy;
+  color: white;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
