@@ -3,7 +3,7 @@ import './App.css';
 
 function App() {
   const [text, setText] = useState<string>('');
-  const [backgroundColor, setBackgroundColor] = useState<string>('red')
+  const [backgroundColor, setBackgroundColor]:any = useState<string>('red')
   const [size, setSize] = useState<string>('50%');
 
   function handleChangeSize(ev:any) {

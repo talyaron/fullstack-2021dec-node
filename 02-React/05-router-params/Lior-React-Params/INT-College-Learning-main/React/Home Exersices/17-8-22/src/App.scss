@@ -1,0 +1,65 @@
+@import './views/styles/container.scss';
+
+@import './views/styles/Navbar.scss';
+
+@import './views/styles/home.scss';
+@import './views/styles/profile.scss';
+@import './views/styles/cart.scss';
+
+@import './views/styles/Hero.scss';
+@import './views/styles/catalog.scss';
+@import './views/styles/catalogtitle.scss';
+
+@import './views/styles/browsecatalog.scss';
+@import './views/styles//browsesubtype.scss';
+@import './views/styles/browseItem.scss';
+
+:root {
+  --main-color: #ED1C24;
+  --secondry-color: #0173BC;
+}
+
+.App {
+
+}
+
+body{
+  display: grid;
+  place-items: center;
+  height: 100vh;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

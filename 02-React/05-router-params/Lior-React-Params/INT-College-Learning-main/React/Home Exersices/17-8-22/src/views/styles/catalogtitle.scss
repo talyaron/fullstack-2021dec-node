@@ -1,0 +1,51 @@
+.catalog-title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    height: 10%;
+    background-color: var(--main-color);
+    clip-path:polygon(25% 100%, 0% 50%, 0px -1px, 100% 0px, 100.00% 50%,75% 100%);
+    h1, p {
+        margin: 0;
+    }
+    &__heading {
+        text-decoration: underline var(--main-color);
+        color: #fff;
+        background-color: var(--main-color);
+        width: 100%;
+        text-align: center;
+        z-index: 1;
+        &::after {
+            content: '';
+            display: inline-block;
+            width: 33px;
+            height: 33px;
+            border-radius: 5rem;
+            background-color: #fff;
+            position: absolute;
+            top: 8%;
+            left: 79%;
+        }
+        &::before {
+            content: 'nvm';
+            font-weight: 900;
+            color: #000;
+            position: absolute;
+            font-size: 10px;
+            left: 80.15%;
+            top: 23%;
+            z-index: 1;
+        }
+    }
+    &__date{
+        background-color: var(--main-color);
+        color: #fff;
+        width: 100%;
+        text-align: center;
+        // clip-path: polygon(50% 80%, 0 -1px, 100% 0);
+        
+        height: 50px;
+    }
+}
+
