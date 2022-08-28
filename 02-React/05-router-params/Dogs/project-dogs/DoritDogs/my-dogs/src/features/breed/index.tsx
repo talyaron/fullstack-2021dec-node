@@ -2,6 +2,7 @@ import React from 'react' ;
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getBreedImageRandom, NameAndImage } from "../breeds/getBreeds";
+import { Link } from 'react-router-dom'
 
 const Breed = () => {
   const { breed } = useParams();
@@ -17,6 +18,7 @@ const Breed = () => {
     <div>
       <h1>Breed: {breed}</h1>
       <img src={breedImage.src} alt={breedImage.breed} />
+      <Link to="/">Go Back to Breeds</Link>
     </div>
   );
 };
