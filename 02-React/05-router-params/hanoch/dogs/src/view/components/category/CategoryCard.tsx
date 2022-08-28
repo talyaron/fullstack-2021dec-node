@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
 import {Breeds} from './getData';
+import './styles/categoryCard.scss';
 
 interface CategoryProps{
   breed:Breeds;
