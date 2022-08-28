@@ -1,11 +1,12 @@
-$textColor:blue;
+$textColor:rgb(0, 0, 0);
 
 @import 'card';
-@import 'btns';
+
 
 
 .App {
     text-align: center;
+
   }
   
   .App-logo {
@@ -43,3 +44,11 @@ $textColor:blue;
     }
   }
   
+  .wrapper{
+    display: flex;
+    gap:32px;
+  }
+  
+  p{
+    font-size:14px;
+  }

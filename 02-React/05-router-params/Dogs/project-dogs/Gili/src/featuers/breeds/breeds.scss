@@ -1,0 +1,47 @@
+.session {
+    width: 99vw;
+    position: relative;
+    top:200px;
+    .background {
+        width: 700px;
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        z-index: -1;
+    }
+}
+.breedsWrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: 50px;
+    grid-row-gap: 50px;
+    font-family: 'Aboreto', cursive;
+
+}
+
+.breedCard {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    border-radius: 40px;
+    border: 1px solid rgb(193, 193, 193);
+    margin: auto;
+    width: 1fr;
+    height: 1fr;
+    position: relative;
+    font-family: 'Aboreto', cursive;
+    justify-content: center;
+    align-items: center;
+
+    img {
+        border-radius: 40px 40px 0 0;
+        width: 100%;
+
+    }
+}
+
+a {
+    text-decoration: none;
+    font-size: 1.5rem;
+    color: black;
+}

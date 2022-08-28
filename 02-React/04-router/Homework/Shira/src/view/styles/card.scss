@@ -1,0 +1,33 @@
+.card{
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: rgb(201, 191, 170);
+    margin: 10px;
+
+
+ 
+
+    &__info{
+       color: rgb(208, 59, 59);
+    }
+
+    &__price{
+        width: fit-content;
+        display: flex;
+        color: rgb(135, 53, 53);
+        align-items: center;
+        justify-content: center;
+        // position: relative;
+        // left: 350px;
+    }
+
+    &__img{
+        img{
+            width: 100px;
+            height: 150px;
+        }
+     
+    }
+}
