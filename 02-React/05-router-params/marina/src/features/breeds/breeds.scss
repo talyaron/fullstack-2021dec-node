@@ -1,0 +1,46 @@
+
+.header {
+    color: $textColor2;
+    font-size: 1.4em;
+    text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.752);
+}
+
+.grid {
+    width: 80%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 2em;
+
+    .text-decoration {
+        text-decoration: none;
+    }
+
+    &__card {
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+        border: .5px solid rgba(128, 128, 128, 0.332);
+        margin-bottom: 1em;
+        border-radius: 10px;
+        box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.752);
+
+        &__img {
+            max-width: 250px;
+            margin: 1em;
+            display: flex;
+            justify-self: center;
+            cursor: pointer;
+            border-radius: 10px;
+            box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.224);
+            padding: none;
+        }
+
+        &__name {
+            color: rgba(137, 244, 22, 0.277);
+            font-size: .8em;
+            cursor: pointer;
+            text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.496);
+        }
+    }
+
+}

@@ -1,0 +1,16 @@
+$textColor: rgba(255, 255, 255, 0.453);
+$textColor2: #ff440071;
+@import '../features/404/404.scss';
+@import '../features/breeds/breeds.scss';
+@import '../features/breed/breed.scss';
+
+.App {
+    text-align: center;
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+}
