@@ -10,6 +10,8 @@ export async function getBreedsData (): Promise<Breeds[]>{
         
    
     const { data } = await axios.get("https://dog.ceo/api/breeds/list/all");
+    console.log(data);
+    
     const { message } = data;
     console.log(message);
     const breeds= Object.keys(message); //array of breeds
@@ -31,6 +33,8 @@ export  async function getCategoryImage (breed:string): Promise<Breeds>{
     const { data } = await axios.get(
         `https://dog.ceo/api/breed/${breed}/images/random`
       );
+      console.log(data);
+      
       if (!data) throw new Error(`No data on image of breed ${breed}`);
       const { message } = data;
       if (!message) throw new Error(`No data on image of breed ${breed} - 2`);
