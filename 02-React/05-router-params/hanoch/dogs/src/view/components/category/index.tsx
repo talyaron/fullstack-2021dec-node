@@ -5,6 +5,7 @@ import Category from "./CategoryCard";
 
 const BreedsCategory = ()=>{
     const [breeds, setBreeds] = useState<Breeds[]>([]);
+
     useEffect(()=>{
         getBreedsData().then((brds: Breeds[])=>{
             if (brds.length > 0) {
@@ -13,6 +14,7 @@ const BreedsCategory = ()=>{
             }
         })
     },[]);
+    
     return(
         <div className="breedsCategory">
             {breeds.map((brd, i)=><Category key={i} breed={brd}/>)}
