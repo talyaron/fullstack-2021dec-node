@@ -1,17 +1,27 @@
-import {useEffect} from 'react';
-import logo from './logo.svg';
-import './App.css';
-import axios from 'axios';
+import { useEffect } from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import axios from "axios";
 
 function App() {
+  useEffect(() => {
+    (async () => {
+      const { data } = await axios.get("/api/test");
+      console.log(data);
+    })();
 
-  useEffect(()=>{
-    (async ()=>{
-      const {data} = await axios.get('/api/test');
-      console.log(data)
-    })()
-  },[])
+    // async () => {
+    //   //....
+    // };
 
+    // (() => {})();
+
+    // const example = async () => {
+    //   //....
+    // };
+
+    // example();
+  }, []);
 
   return (
     <div className="App">
