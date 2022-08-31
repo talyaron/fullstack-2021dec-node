@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import { FactProps } from './factModel';
-
+import '../factList/factList.scss';
 
 
 interface FactCardProps {
@@ -12,7 +12,7 @@ export const FactCard: FC<FactCardProps> = (props) => {
   return (
     <div>
       <div>
-        <img src={fact.src} alt="img" />
+        <img className="grid" src={fact.src} alt="img" />
         <p>{fact.text}</p>
       </div>
     </div>

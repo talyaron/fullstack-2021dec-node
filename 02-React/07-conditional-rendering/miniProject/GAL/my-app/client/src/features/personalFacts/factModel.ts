@@ -1,5 +1,5 @@
 export interface FactProps {
-    src: any;
+    src: string;
     text: string;
     id: string;
   }

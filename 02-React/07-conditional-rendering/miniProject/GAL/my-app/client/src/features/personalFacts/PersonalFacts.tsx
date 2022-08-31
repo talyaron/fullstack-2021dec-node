@@ -1,9 +1,13 @@
 import { useParams, Link } from "react-router-dom";
 import { FactProps } from "./factModel";
-
+import { OptionCard } from "./OptionCard";
 
 interface FactsCompProps {
   facts: Array<FactProps>;
+  barca: Array<FactProps>;
+  realMadrid: Array<FactProps>;
+  atletic: Array<FactProps>;
+  sevilla: Array<FactProps>;
 }
 
 export const PersonalFacts = ({ facts }: FactsCompProps) => {
@@ -18,7 +22,12 @@ export const PersonalFacts = ({ facts }: FactsCompProps) => {
     return (
       <div>
         <Link to="/FactList">Back</Link>
-        <h1>Fact: {fact ? fact.text : null} </h1>
+
+        {/* <div className="flex">
+          {barca.map((element: FactProps) => (
+            <OptionCard key={element.id} option={element} />
+          ))}
+        </div> */}
       </div>
     );
   } else {
