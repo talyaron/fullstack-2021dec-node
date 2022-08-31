@@ -7,7 +7,7 @@ app.use(express.static("client/build"));
 app.use(express.json());
 
 // mongoose.connect(
-//   "mongodb+srv://tal1:rbBnTtoiIia3ddKK@tal-test1.m39if.mongodb.net/fs-2021-oct?retryWrites=true&w=majority"
+//   "mongodb+srv://galgross24:<6WebW-6P2sW7tTa>@cluster0.e2n3k.mongodb.net/?retryWrites=true&w=majority"
 // ).then(res=>{
 //   console.log("Connected to DB");
 // }).catch(err=>{
