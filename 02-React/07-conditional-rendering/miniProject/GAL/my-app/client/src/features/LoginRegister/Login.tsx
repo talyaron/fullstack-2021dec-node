@@ -35,7 +35,7 @@ const Login = () => {
             placeholder="password"
             required
           />
-          <button className="button" type="submit">Send</button>
+         <Link to="/FactList"><button className="button" type="submit">Send</button></Link>
         </form>
         {error !== null ? <p className="error">{error}</p> : null}
       </div>
@@ -43,7 +43,7 @@ const Login = () => {
   } else {
     return (
       <Link to="/">
-        <button>Go to Test</button>
+        <button>Go to Facts</button>
       </Link>
     );
   }

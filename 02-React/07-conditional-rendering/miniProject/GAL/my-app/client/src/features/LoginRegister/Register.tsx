@@ -2,7 +2,8 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import "../../style/LoginRegister.scss";
 
-const pass = "123456";
+
+const pass= 12346;
 
 const Register = () => {
     const [error, setError] = useState<string | null>(null);
@@ -37,7 +38,7 @@ const Register = () => {
             placeholder="password"
             required
           />
-          <button className="button" type="submit">Send</button>
+           <Link to="/FactList"><button className="button" type="submit">Send</button></Link>
         </form>
         {error !== null ? <p className="error">{error}</p> : null}
       </div>

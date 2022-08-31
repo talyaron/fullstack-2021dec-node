@@ -1,10 +1,13 @@
 import { useParams, Link } from "react-router-dom";
 import { FactProps } from "./factModel";
+import { OptionCard } from './OptionCard'
 
 
 interface FactsCompProps {
   facts: Array<FactProps>;
 }
+
+
 
 export const Fact = ({ facts }: FactsCompProps) => {
   console.log(facts);
@@ -14,12 +17,21 @@ export const Fact = ({ facts }: FactsCompProps) => {
 
   const fact = facts.find((fct) => fct.id === id);
 
-  // const answer = getFact(id, items)
+ 
   if (fact) {
     return (
       <div>
         <Link to="/list">Back</Link>
-        <h1>Fact: {fact ? fact.text : null} </h1>
+        {/* <h1>Fact: {fact ? fact.text : null} </h1> */}
+
+        <h2 className="header">Choose the wright answer</h2>
+
+        <div className="flex">
+         
+            <OptionCard  option={fact.options.true} />
+            <OptionCard  option={fact.options.false} />
+         
+        </div>
       </div>
     );
   } else {
@@ -31,10 +43,3 @@ export const Fact = ({ facts }: FactsCompProps) => {
   }
 };
 
-// function getFact(id: number, fact: FactInterface[]): FactInterface | undefined {
-//   if (id) {
-//     return items.find((item) => item.id === id);
-//   } else {
-//     return;
-//   }
-// }
