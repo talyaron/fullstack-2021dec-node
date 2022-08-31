@@ -11,7 +11,7 @@ interface FactsListProps {
 export const FactsList = ({ facts }: FactsListProps) => {
   return (
     <div>
-      <h2 className="header">Not Very Important Facts</h2>
+      <h2 className="header">True or False Facts Game</h2>
       <div className="grid">
         {facts.map((fact) => {
           return (

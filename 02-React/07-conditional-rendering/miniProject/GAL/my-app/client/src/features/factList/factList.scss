@@ -1,5 +1,4 @@
 .header {
-    margin-top: 40px;
     color: rgba(217, 0, 0, 0.52);
     letter-spacing: 1px;
     display: flex;
@@ -47,4 +46,10 @@
         }
     }
 
+}
+
+.text{
+    display: flex;
+    margin-bottom: 3px;
+    justify-content: center;
 }

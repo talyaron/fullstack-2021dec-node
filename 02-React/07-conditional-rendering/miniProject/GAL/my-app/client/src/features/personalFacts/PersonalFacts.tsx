@@ -1,5 +1,5 @@
 import { useParams, Link } from "react-router-dom";
-import { FactProps } from "./factModel";
+import { FactProps, } from "./factModel";
 import { OptionCard } from "./OptionCard";
 
 interface FactsCompProps {
@@ -11,8 +11,6 @@ interface FactsCompProps {
 }
 
 export const PersonalFacts = ({ facts }: FactsCompProps) => {
-  console.log(facts);
-
   const { id } = useParams();
   console.log(id);
 
@@ -23,11 +21,10 @@ export const PersonalFacts = ({ facts }: FactsCompProps) => {
       <div>
         <Link to="/FactList">Back</Link>
 
-        {/* <div className="flex">
-          {barca.map((element: FactProps) => (
-            <OptionCard key={element.id} option={element} />
-          ))}
-        </div> */}
+        <div>
+          <OptionCard option={fact.options.true} />
+          <OptionCard option={fact.options.false} />
+        </div>
       </div>
     );
   } else {
