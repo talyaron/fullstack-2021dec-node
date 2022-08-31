@@ -1,8 +1,9 @@
 import { FC } from 'react'
-import { FactInterface } from "../factsList/FactsList";
+import { FactProps } from '../fact/factModel';
+
 
 interface OptionCardProps {
-  option: FactInterface;
+  option: FactProps;
 }
 
 export const OptionCard: FC<OptionCardProps> = (props) => {

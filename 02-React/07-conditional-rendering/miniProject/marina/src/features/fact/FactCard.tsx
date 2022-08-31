@@ -1,8 +1,10 @@
 import { FC } from 'react'
-import { FactInterface } from "../factsList/FactsList";
+import { FactProps } from './factModel';
+
+
 
 interface FactCardProps {
-  fact: FactInterface;
+  fact: FactProps;
 }
 
 export const FactCard: FC<FactCardProps> = (props) => {
