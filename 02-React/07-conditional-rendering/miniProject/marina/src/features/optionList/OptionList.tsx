@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useState } from 'react'
 
-import { OptionCard } from '../optionList/OptionCard'
+import { OptionCard } from '../fact/OptionCard'
 import { Elephant } from '../../components/Elephant'
 
 

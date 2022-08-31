@@ -1,13 +1,19 @@
 import { FC } from 'react'
-import { FactProps } from '../fact/factModel';
+import { useParams, Link } from "react-router-dom";
+import { FactProps } from './factModel';
 
 
 interface OptionCardProps {
+  // facts: Array<FactProps>;
   option: FactProps;
 }
 
+
+
 export const OptionCard: FC<OptionCardProps> = (props) => {
   const { option } = props;
+  const { id } = useParams();
+  // const fact = option.find((item) => item.id === id);
 
   return (
     <div >

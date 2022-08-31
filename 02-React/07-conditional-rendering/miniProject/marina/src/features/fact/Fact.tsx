@@ -1,12 +1,16 @@
 import { useParams, Link } from "react-router-dom";
 import { FactProps } from "./factModel";
+import { OptionCard } from './OptionCard'
 
 
 interface FactsCompProps {
   facts: Array<FactProps>;
+  elephant: Array<FactProps>;
 }
 
-export const Fact = ({ facts }: FactsCompProps) => {
+
+
+export const Fact = ({ facts, elephant }: FactsCompProps) => {
   console.log(facts);
 
   const { id } = useParams();
@@ -14,12 +18,20 @@ export const Fact = ({ facts }: FactsCompProps) => {
 
   const fact = facts.find((fct) => fct.id === id);
 
-  // const answer = getFact(id, items)
+ 
   if (fact) {
     return (
       <div>
         <Link to="/list">Back</Link>
-        <h1>Fact: {fact ? fact.text : null} </h1>
+        {/* <h1>Fact: {fact ? fact.text : null} </h1> */}
+
+        <h2 className="header">Choose the wright answer</h2>
+
+        <div className="flex">
+          {elephant.map((element) => (
+            <OptionCard key={element.id} option={element} />
+          ))}
+        </div>
       </div>
     );
   } else {
@@ -31,10 +43,3 @@ export const Fact = ({ facts }: FactsCompProps) => {
   }
 };
 
-// function getFact(id: number, fact: FactInterface[]): FactInterface | undefined {
-//   if (id) {
-//     return items.find((item) => item.id === id);
-//   } else {
-//     return;
-//   }
-// }
