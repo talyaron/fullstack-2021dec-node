@@ -1,18 +1,14 @@
 import { FC } from 'react'
-import { useParams, Link } from "react-router-dom";
-import { FactProps, Option } from './factModel';
+import { FactProps } from '../fact/factModel';
 
 
 interface OptionCardProps {
-  option: Option;
+  option: FactProps;
 }
-
-
 
 export const OptionCard: FC<OptionCardProps> = (props) => {
   const { option } = props;
 
-  
   return (
     <div >
       <div className="flex__card">
