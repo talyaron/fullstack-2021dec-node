@@ -53,7 +53,7 @@ export const Login = () => {
 
   } else {
     return (
-      <Link className="text-decoration" to="list"><FactsList/></Link>
+      <Link className="text-decoration" to="/list">List</Link>
     )
   }
 };

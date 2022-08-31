@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useState } from 'react'
-import { FactInterface } from '../factsList/FactsList'
+
 import { OptionCard } from '../optionList/OptionCard'
 import { Elephant } from '../../components/Elephant'
 

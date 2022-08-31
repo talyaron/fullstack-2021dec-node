@@ -1,35 +1,40 @@
-import { useParams, Link } from 'react-router-dom'
-import { FactInterface } from '../factsList/FactsList'
-import { items } from "../factsList/FactsList";
-import { FactCard } from './FactCard'
+import { useParams, Link } from "react-router-dom";
+import { FactProps } from "./factModel";
 
-type FactProps = {
-  fact: {
-    src: string
-    text: string
-    id: number
-  }
+
+interface FactsCompProps {
+  facts: Array<FactProps>;
 }
 
-export const Fact = (props: FactProps) => {
+export const Fact = ({ facts }: FactsCompProps) => {
+  console.log(facts);
+
   const { id } = useParams();
-  
-  const answer = getFact(id, items)
+  console.log(id);
 
-  return (
-    <div>
-      <Link to="/list">Back</Link>
-      <h1>Fact: {items ? items.text : ""} </h1>
-    </div>
-  );
-}
+  const fact = facts.find((fct) => fct.id === id);
 
-
-
-function getFact(id: number, fact: FactInterface[]): FactInterface | undefined {
-  if (id) {
-    return items.find((item) => item.id === id);
+  // const answer = getFact(id, items)
+  if (fact) {
+    return (
+      <div>
+        <Link to="/list">Back</Link>
+        <h1>Fact: {fact ? fact.text : null} </h1>
+      </div>
+    );
   } else {
-    return;
+    return (
+      <h1>
+        Missing fact - <Link to="/list"> go back</Link>
+      </h1>
+    );
   }
-}
+};
+
+// function getFact(id: number, fact: FactInterface[]): FactInterface | undefined {
+//   if (id) {
+//     return items.find((item) => item.id === id);
+//   } else {
+//     return;
+//   }
+// }

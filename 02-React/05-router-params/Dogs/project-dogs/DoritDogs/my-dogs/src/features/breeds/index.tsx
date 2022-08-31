@@ -9,7 +9,7 @@ const Breeds = () => {
   //set state breeds
   const [breeds, setBreeds] = useState<NameAndImage[]>([]);
   const [text, setText] = useState<string>("");
-  const [breed,setBreed] = useState(null)
+  const [breed,setBreed] = useState<NameAndImage>()
 
   useEffect(() => {
     getBreeds().then((brds: NameAndImage[]) => {
@@ -26,14 +26,16 @@ const Breeds = () => {
       setText(ev.target.value);
       const brd = breeds.find(brd=>brd.breed === ev.target.value);
       if(brd){
-        setBreed(ev.target.value)
+        setBreed(brd)
       } else {
-        setBreed(null)
+        setBreed({ breed:"", src:""})
       }
     } catch (error) {
       console.error(error);
     }
   }
+
+  console.log(breed)
 
   function handleSubmit(ev: any) {
     console.log("handle submit")
@@ -58,7 +60,13 @@ const Breeds = () => {
       {
       <div className="chosen">
         <p>We need to find the breed</p>
-        <h1>{breed}</h1>
+        {/* <h1>{breed}</h1> */}
+      { breed? (
+        Object.keys(breed).length > 0?
+          <BreedCard breed={breed}/>:
+      null) :
+      ( null)
+      }
       </div>  
         /*
         const myBreed:NameAndImage= {breeds[myIndex]}
