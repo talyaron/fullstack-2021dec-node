@@ -5,12 +5,11 @@ import { OptionCard } from './OptionCard'
 
 interface FactsCompProps {
   facts: Array<FactProps>;
-  elephant: Array<FactProps>;
 }
 
 
 
-export const Fact = ({ facts, elephant }: FactsCompProps) => {
+export const Fact = ({ facts }: FactsCompProps) => {
   console.log(facts);
 
   const { id } = useParams();
@@ -28,9 +27,10 @@ export const Fact = ({ facts, elephant }: FactsCompProps) => {
         <h2 className="header">Choose the wright answer</h2>
 
         <div className="flex">
-          {elephant.map((element) => (
-            <OptionCard key={element.id} option={element} />
-          ))}
+         
+            <OptionCard  option={fact.options.true} />
+            <OptionCard  option={fact.options.false} />
+         
         </div>
       </div>
     );
