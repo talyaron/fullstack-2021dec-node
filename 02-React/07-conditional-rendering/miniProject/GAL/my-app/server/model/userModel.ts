@@ -7,5 +7,5 @@ const UserSchema = new mongoose.Schema({
     phone: String,
   });
   //create a collection
-  const User = mongoose.model("users", UserSchema);
+  const User = mongoose.model("User", UserSchema);
   export default User;
