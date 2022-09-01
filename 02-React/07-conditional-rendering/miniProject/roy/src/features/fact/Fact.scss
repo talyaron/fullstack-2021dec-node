@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Neuton&display=swap');
+
+
+
+
+.header1 {
+    color: rgba(118, 12, 12, 0.52);
+    text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.496);
+    font-family: 'Neuton', serif;
+    letter-spacing: 3px;
+}
+.right{
+    color: darkturquoise;
+    font-size: 2em;
+}
+.grid1 {
+    width: 80%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 0.5em;
+    margin: 10.5em;
+    align-items: center;
+    text-align: center;
+    margin-top: 0.5em;
+
+
+    &__card {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        margin-bottom: 0.5em;
+        align-items: center;
+        
+
+        &__img {
+            width: 400px;
+            height: 350px;
+            margin: 0.5em;
+            display: flex;
+            justify-self: center;
+            cursor: pointer;
+            padding: none;
+        }
+
+        &__text {
+            text-align: center;
+            max-width: 360px;
+            font-size: 1.4em;
+            cursor: pointer;
+            text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.496);
+            color: rgba(0, 1, 8, 0.984);
+            font-family: 'Neuton', serif;
+             letter-spacing: 1.5px;
+        }
+    }
+
+}

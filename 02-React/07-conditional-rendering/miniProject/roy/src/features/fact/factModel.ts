@@ -5,7 +5,7 @@ export interface FactProps {
     sons:Array <optionsProps>;
   }
 
-  interface optionsProps{
+  export interface optionsProps{
     src: string;
     text: string;
     id: string;
