@@ -3,11 +3,13 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Main from "./view/pages/main/Main";
 import Home from "./view/pages/home/Home";
-import About from "./view/pages/about/About";
+import Products from "./view/pages/products/Products";
 import Profile from "./view/pages/profile/Profile";
 import BabaSali from "./view/pages/babaSali/BabaSali";
 
-import './App.css'
+import './view/styles/app.scss'
+
+
 
 const App = () => {
   return (
@@ -17,7 +19,7 @@ const App = () => {
           {/* OUTLET */}
 
           <Route index element={<Home />} />
-          <Route path='about' element={<About />} />
+          <Route path='products' element={<Products />} />
           <Route path="profile" element={<Profile />} />
           <Route path="babaSali" element={<BabaSali />} />
         </Route>

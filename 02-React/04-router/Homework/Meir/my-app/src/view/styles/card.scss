@@ -4,4 +4,17 @@
     background-color: wheat;
     margin: 2px;
     color: $textColor;
+
+    display: flex;
+
+    &__info{
+        flex: auto;
+    }
+
+    &__price{
+        width: fit-content;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 }
