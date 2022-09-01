@@ -4,7 +4,6 @@ import { Login } from "./features/login/Login";
 import { FactsList } from "./features/factsList/FactsList";
 import { Fact } from "./features/fact/Fact";
 import { Page404 } from "./features/404/404";
-import { OptionList } from "./features/optionList/OptionList";
 import "./styles/App.scss";
 import { FactProps } from "./features/fact/factModel";
 
@@ -16,7 +15,7 @@ function uid():string{
 export const facts: FactProps[] = [
   {
     src: "https://img.freepik.com/free-vector/sport-equipment-concept_1284-13034.jpg?w=360",
-    text: "Sport facts",
+    text: "Sport Quiz",
     id: uid(),
     sons: [{src: "https://cdn-wp.thesportsrush.com/2021/11/2d7c33db-untitled-design-5.jpg",
     text: "The referee tossed a jump ball after every basket in basketball until 1937.",
@@ -34,12 +33,12 @@ export const facts: FactProps[] = [
   },
   {
     src: "https://a-z-animals.com/media/2021/01/mammals-400x300.jpg",
-    text: "Animals facts",
+    text: "Animals Quiz",
     id: uid(),
     sons: [{src: "https://kerenagam.co.il/wp-content/uploads/2021/06/Thinking-of-getting-a-cat.png",
     text: "Cats have 32 muscles in each ear.",
     id: `true`,},
-    {src: "https://upload.wikimedia.org/wikipedia/commons/0/00/Kareem-Abdul-Jabbar_Lipofsky.jpg",
+    {src: "https://img.wallscloud.net/uploads/cache/3378068484/sleeping-lion-D11B-1024x576-MM-90.webp",
     text: "Lions sleep about 12 hours each day.",
     id: `false`},
     {src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5ps8TZRyIWb6SoQdrElDc0BWnkwI9p0TiSQ&usqp=CAU",
@@ -52,7 +51,7 @@ export const facts: FactProps[] = [
   },
   {
     src: "https://empireweekly.com/wp-content/uploads/2022/02/fall-movies-index-1628968089.jpeg",
-    text: "Movie facts",
+    text: "Movie Quiz",
     id: uid(),
     sons: [{src: "https://i.insider.com/5abe4eca42e1cc583d4d9e90?width=800&format=jpeg&auto=webp",
     text: `The cat in "The Godfather" was a stray.`,
@@ -70,7 +69,7 @@ export const facts: FactProps[] = [
   },
   {
     src: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Collection-national-flags.png/1200px-Collection-national-flags.png",
-    text: "Flag facts",
+    text: "Flag Quiz",
     id: uid(),
     sons: [{src: "https://safety4sea.com/wp-content/uploads/2018/02/denmark-e1519646323215-700x375.jpg",
     text: `Denmark has the oldest flag in the world.`,
@@ -96,7 +95,6 @@ function App() {
           <Route path="/" element={<Login />} />
           <Route path="list" element={<FactsList facts={facts}/>} />
           <Route path="fact/:id" element={<Fact facts={facts}/>} />
-          <Route path="option" element={<OptionList />} />
           <Route path="*" element={<Page404 />} />
         </Routes>
       </BrowserRouter>
