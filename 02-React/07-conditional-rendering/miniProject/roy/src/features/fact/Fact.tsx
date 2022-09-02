@@ -1,5 +1,9 @@
 import { useParams, Link } from "react-router-dom";
+import { useState } from "react";
 import { FactProps } from "./factModel";
+import {SonsCard} from "./SonsCard"
+
+
 
 
 interface FactsCompProps {
@@ -7,8 +11,23 @@ interface FactsCompProps {
 }
 
 export const Fact = ({ facts }: FactsCompProps) => {
+  const [isRight, setIsRight] = useState<string>("");
+  const [backgroundColor, setBackgroundColor] = useState<string>("linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab)");
   console.log(facts);
+  function handleSelect(ev:any){
+   let id= ev.target.id
+   console.log(ev.target.id)
+   if(id=== `true`){
+    setBackgroundColor('red');
+    setIsRight(`You are wrong`)
+   }else if(id=== `false`){
+    setBackgroundColor('green');
+    setIsRight("You are right")
+  }
+   }
+   
 
+  
   const { id } = useParams();
   console.log(id);
 
@@ -19,9 +38,16 @@ export const Fact = ({ facts }: FactsCompProps) => {
     return (
       <div>
         <Link to="/list">Back</Link>
+        <div className="header1">
         <h1> {fact ? fact.text : null} </h1>
-        <h1> choose the wrong fact</h1>
-        
+        <h2> choose the wrong fact</h2>
+        <h3 className="right">{isRight}</h3>
+        </div>
+         
+          <button onClick={handleSelect} style={{background: backgroundColor}} className="grid1"> 
+          {sons?.map((text, id) => <SonsCard sons={text} key={id}/>)}
+          </button> 
+         
       </div>
     );
   } else {
@@ -31,12 +57,6 @@ export const Fact = ({ facts }: FactsCompProps) => {
       </h1>
     );
   }
-};
 
-// function getFact(id: number, fact: FactInterface[]): FactInterface | undefined {
-//   if (id) {
-//     return items.find((item) => item.id === id);
-//   } else {
-//     return;
-//   }
-// }
+
+}
