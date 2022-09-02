@@ -1,28 +1,26 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-// import your route components too
 
-import Main from "./view/pages/main/Main";
-import Home from "./view/pages/home/Home";
-import About from "./view/pages/about/About";
-import Profile from "./view/pages/profile/Profile";
+import "./styles/App.scss"
+import Dashboard from "./view/pages/dashboard/Dashboard";
 import Page404 from "./view/pages/404/404";
-
-import './App.css'
-
+import Main from "./view/pages/main/Main";
+import Analytics from "./view/pages/analytics/Analytics";
 
 const App = () => {
+
+
+
+
+
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="*" element={<Page404 />} />
+    <Routes>
+    <Route path="*" element={<Page404 />} />
         <Route path="/" element={<Main />}>
-          {/* OUTLET */}
-
-          <Route index element={<Home />} />
-          <Route path='about' element={<About />} />
-          <Route path="profile" element={<Profile />} />
-        </Route>
-      </Routes>
+      <Route path='dashboard' element={<Dashboard />} />
+      <Route path='analytics' element={<Analytics />} />
+      </Route>
+    </Routes>
     </BrowserRouter>
   );
 };
