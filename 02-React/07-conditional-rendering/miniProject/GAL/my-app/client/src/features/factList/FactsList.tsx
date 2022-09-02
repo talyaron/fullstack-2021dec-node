@@ -15,7 +15,7 @@ export const FactsList = ({ facts }: FactsListProps) => {
       <div className="grid">
         {facts.map((fact) => {
           return (
-            <Link key={fact.id} className="text-decoration" to={`/PersonalFact/${fact.id}`}>
+            <Link key={fact.id} to={`/PersonalFact/${fact.id}`}>
               <FactCard fact={fact} />
             </Link>
           );

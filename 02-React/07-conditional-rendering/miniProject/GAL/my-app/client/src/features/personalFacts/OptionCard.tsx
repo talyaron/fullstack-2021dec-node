@@ -1,5 +1,4 @@
 import { FC } from 'react'
-// import { useParams } from "react-router-dom";
 import {Option} from '../personalFacts/factModel'
 
 
@@ -11,7 +10,6 @@ interface OptionCardProps {
 
 export const OptionCard: FC<OptionCardProps> = (props) => {
   const { option } = props;
-  // const { id } = useParams();
 
   return (
     <div >
@@ -23,4 +21,4 @@ export const OptionCard: FC<OptionCardProps> = (props) => {
   );
 };
 
-
+export default OptionCard

@@ -1,17 +1,11 @@
-export interface Option{
-  text:string;
-  src:string;
-  id:string;
-}
-
 export interface FactProps {
-    src: string;
-    text: string;
-    id: string;
-    options:{
-      true:Option,
-      false:Option
-    }
-
-    
-  }
+  src: string;
+  text: string;
+  id: string;
+  options: Array<Option>;
+}
+export interface Option {
+  text: string;
+  src: string;
+  id: string;
+}
