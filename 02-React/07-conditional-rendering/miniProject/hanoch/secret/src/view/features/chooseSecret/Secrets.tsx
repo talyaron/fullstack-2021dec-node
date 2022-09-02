@@ -1,18 +1,22 @@
 import React from 'react';
+import { SecretListProps } from '../model';
+import SecretCard from './Secretcard';
 import { Link } from 'react-router-dom';
-export interface secretProps{
-        issue: string,
-        img: string,
-        id: string
-} 
+import { FC } from 'react';
 
-const Secrets = (secret: secretProps) => {
+export const Secrets: FC<SecretListProps> = ({secretArray}) => {
   return (
     <div>
-        <h1>{secret.issue}</h1>
-        <img src={secret.img} alt="secret" />
+        
+        {secretArray.map((scrt)=>{
+            return(
+                <Link key={scrt.issue} to={`/${scrt.issue}`}>
+                <SecretCard {...scrt}/>
+                {/* <SecretCard issue={scrt.issue} img={scrt.img}/> */}
+                </Link>
+            );
+        })}
+      
     </div>
   )
 }
-
-export default Secrets
