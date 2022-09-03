@@ -10,7 +10,7 @@ export const Secrets: FC<SecretListProps> = ({secretArray}) => {
         
         {secretArray.map((scrt)=>{
             return(
-                <Link key={scrt.issue} to={`/${scrt.issue}`}>
+                <Link key={scrt.issue} to={`/choose-secret/${scrt.issue}`}>
                 <SecretCard {...scrt}/>
                 {/* <SecretCard issue={scrt.issue} img={scrt.img}/> */}
                 </Link>

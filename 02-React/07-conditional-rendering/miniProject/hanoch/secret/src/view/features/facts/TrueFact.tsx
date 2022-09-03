@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { factsProps } from '../model';
+import { factsProps, factsPropsArray, true1 } from '../model';
 import { FC } from 'react';
 
-export const TrueFact = ({img, trueFact}:factsProps) => {
+export const TrueFact = ({img, fact}:true1) => {
     
     const [color, setColor] = useState<string>("gray");
    
@@ -18,7 +18,7 @@ export const TrueFact = ({img, trueFact}:factsProps) => {
     <button onClick={handleChangeColor}>
       <div className='trueFact' style={{backgroundColor: color}}>
         <img src={img} alt="image" />
-        <h3>{trueFact}</h3>
+        <h3>{fact}</h3>
       </div>
     </button>
   )

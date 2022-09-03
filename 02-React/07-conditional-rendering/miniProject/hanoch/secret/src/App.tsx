@@ -4,7 +4,8 @@ import { useState, useEffect } from 'react';
 import './view/styles/app.scss';
 import { Register } from './view/features/register/Register';
 import {Login} from './view/features/login/Login';
-import {Secrets} from './view/features/chooseSecret/Secrets'
+import {Secrets} from './view/features/chooseSecret/Secrets';
+import { Facts } from './view/features/facts/Facts';
 import { secretProps } from './view/features/model';
 import { factsProps } from './view/features/model';
 
@@ -73,7 +74,7 @@ function App() {
         <Route path='/' element={<Register/>}/>
         <Route path='/login' element={<Login/>}/>
         <Route path='/choose-secret' element={<Secrets secretArray={personLink}  />}/>
-        <Route path='/:'
+        <Route path='/choose-secret/:scrt' element={<Facts factsArray={personSecret}/>}/>
       </Routes>
       </BrowserRouter>
       
