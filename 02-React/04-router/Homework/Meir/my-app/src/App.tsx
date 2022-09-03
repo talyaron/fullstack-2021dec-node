@@ -6,7 +6,7 @@ import Home from "./view/pages/home/Home";
 import Products from "./view/pages/products/Products";
 import Profile from "./view/pages/profile/Profile";
 import BabaSali from "./view/pages/babaSali/BabaSali";
-
+import './view/styles/nav.scss'
 import './view/styles/app.scss'
 
 
