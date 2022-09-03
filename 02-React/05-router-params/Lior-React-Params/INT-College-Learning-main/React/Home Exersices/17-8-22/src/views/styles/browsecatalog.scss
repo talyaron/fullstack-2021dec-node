@@ -1,0 +1,65 @@
+.browse-catalog {
+    height: 90%;
+    &__header {
+        width: 100%;
+        height: fit-content;
+        position: relative;
+        &__title {
+            display: inline-block;
+            background-color: var(--main-color);
+            width: 100%;
+            box-sizing: border-box;
+            margin: 0;
+            padding: .35em .3em;
+            text-align: center;
+            color: #fff;
+        }
+        &__back {
+            position: absolute;
+            z-index: 1;
+            left: 5%;
+            top: 15%;
+        }
+    }
+    &__grid {
+        display: grid;
+        grid-template-columns: auto auto;
+        overflow-y: scroll;
+        height: 93.5%;
+        gap: 1em;
+        padding: 0.5em 1em;
+        box-sizing: border-box;
+        &::-webkit-scrollbar {
+            display: none;
+        }
+        a {
+            color: #000;
+        }
+        .browse-catalog__item{
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border: 2px solid black;
+            border-radius: 1em;
+            gap: .5em;
+            transition: all .35s ease-in-out;
+            letter-spacing: 1px;
+            text-decoration: underline;
+            p {
+                margin: 0;
+            }
+            img {
+                width: 10em;height: 10em;
+            }
+            &:hover {
+                border: 2px solid var(--main-color);
+                color: var(--main-color);
+                letter-spacing: 1.5px;
+                text-decoration: underline var(--main-color);
+                background-color: #fff4f4;
+                scale: 105%;
+            }
+        }
+    }
+}

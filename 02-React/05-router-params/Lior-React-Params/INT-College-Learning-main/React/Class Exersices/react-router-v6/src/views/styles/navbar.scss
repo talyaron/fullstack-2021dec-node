@@ -1,0 +1,10 @@
+.Navbar-items {
+    display: flex;
+    list-style: none;
+    gap: 1rem;
+    .Navbar-item {
+        padding: 1em 2em;
+        border: 1px solid black;
+    }
+}
+

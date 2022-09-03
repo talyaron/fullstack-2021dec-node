@@ -1,0 +1,20 @@
+.card{
+    padding: 20px;
+    border-radius: 10px;
+    background-color: rgb(179, 243, 245);
+    margin: 2px;
+    color: $textColor;
+
+    display: flex;
+
+    &__info{
+        flex: auto;
+    }
+
+    &__price{
+        width: fit-content;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
