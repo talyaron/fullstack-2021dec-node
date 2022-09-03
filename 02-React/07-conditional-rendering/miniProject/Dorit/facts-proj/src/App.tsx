@@ -9,11 +9,6 @@ import { FactProps } from "./features/fact/factModel";
 import axios from "axios";
 
 
-
-function uid():string{
-  return `${Math.round(Math.random() * 10000000)}`
-}
-
 // export const myFacts: FactProps[] = [
   // {
   //   src: "https://static.dw.com/image/45665028_303.jpg",

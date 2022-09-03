@@ -14,6 +14,9 @@ export const Login = () => {
 
       if (password.length < 6) {
         setError("The password must be at least 6 characters long");
+        return(
+          <h2>{error}</h2>
+        )
         
       } else if(password >= 6) {
         setpassTrue(true)
@@ -26,6 +29,7 @@ export const Login = () => {
 
 
   if (!passTrue) {
+    console.log(passTrue)
     return (
       <div>
         <form onSubmit={handleLogin} className="form">
@@ -52,8 +56,8 @@ export const Login = () => {
     );
 
   } else {
-    return (
-      <Link className="goToList" to="/list">List</Link>
-    )
+      return (
+          <Link to="/list"></Link>
+        );
   }
 };

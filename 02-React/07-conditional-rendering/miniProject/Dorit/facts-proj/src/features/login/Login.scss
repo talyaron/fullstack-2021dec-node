@@ -11,31 +11,25 @@
 
 .heading {
     text-align: center;
-    font-size: 80px;
-    margin-bottom: 50px;
-    color: rgba(207, 200, 198, 0.409);
+    font-size: 60px;
+    background-color: rgba(245, 227, 222, 0.409);
+    color:black
 }
 
 .form {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 700px;
-    height: auto;
-    border: 10px solid rgba(255, 51, 0, 0.231);
-    box-shadow: 10px 10px 10px 5px rgba(0, 0, 0, 0.781);
-    padding: 10%;
+    border: 10px solid rgba(31, 29, 29, 0.231);
+    padding: 10px;
 
     input,
     button {
-        border: none;
+        border: 10px solid rgba(31, 29, 29, 0.231);
         border-radius: 5px;
-        font-size: .8em;
-        background: #1313136e;
-        backdrop-filter: blur(4px);
-        box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.683);
+        font-size: 30px;
+        background: #f5f3f36e;
         padding: 10px;
-        margin-bottom: 2em;
         color: rgba(255, 255, 255, 0.233);
     }
 
@@ -46,18 +40,13 @@
     button {
         padding: .3em 1em .3em 1em;
         cursor: pointer;
-        transition: all ease-in-out .2s;
     }
 
     button:hover {
         background: #4a4d9d93;
         color: rgba(255, 255, 255, 0.831);
-        transform: scale(0.98);
     }
 
-    input::placeholder {
-        color: rgba(255, 255, 255, 0.233);
-    }
 
     input:focus,
     button:hover {
@@ -69,8 +58,4 @@
 
 .error {
     color: rgba(255, 115, 0, 0.346);
-}
-
-.goToList {
-    text-decoration: none;
 }
