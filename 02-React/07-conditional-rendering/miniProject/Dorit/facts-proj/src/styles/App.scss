@@ -1,0 +1,15 @@
+@import '../features/fact/Fact.scss';
+@import '../features/factsList/FactsList.scss';
+@import '../features/login/Login.scss';
+@import '../features/404/404.scss';
+
+.App {
+    text-align: center;
+    min-height: 100vh;
+    background-color: #bfd2f8;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+}
