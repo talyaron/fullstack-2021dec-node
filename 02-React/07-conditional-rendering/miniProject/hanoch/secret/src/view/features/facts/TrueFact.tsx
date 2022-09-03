@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { factsProps, factsPropsArray, true1 } from '../model';
+import { trueArray } from '../../../App';
 import { FC } from 'react';
 
 export const TrueFact = ({img, fact}:true1) => {
@@ -9,6 +10,7 @@ export const TrueFact = ({img, fact}:true1) => {
     function handleChangeColor(){
         try {
             setColor('green')
+            trueArray.push(1)
         } catch (error) {
             console.error(error)
         }

@@ -65,6 +65,9 @@ export const personSecret: factsProps[]  =[
  
  ]
 
+ export let trueArray:number[] = []
+ export let falseArray:number[]= []
+
 function App() {
  
   return (

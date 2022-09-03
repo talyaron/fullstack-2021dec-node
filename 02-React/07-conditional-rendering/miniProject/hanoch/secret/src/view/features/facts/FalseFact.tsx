@@ -2,6 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { factsProps, false1 } from '../model';
 import { FC } from 'react';
+import { falseArray } from '../../../App';
 
 export const FalseFact = ({img, fact}:false1) => {
     const [color, setColor] = useState<string>("gray");
@@ -9,6 +10,7 @@ export const FalseFact = ({img, fact}:false1) => {
     function handleChangeColor(){
         try {
             setColor('red')
+            falseArray.push(1)
         } catch (error) {
             console.error(error)
         }
