@@ -32,7 +32,7 @@ export const BreedContainer = () => {
 };
 
 async function findBreedOnWiki(breed: string) {
-	const endpoint = `https://en.wikipedia.org/w/api.php?action=query&list=search&prop=info&inprop=url&utf8=&format=json&origin=*&srlimit=1&srsearch=${breed}`;
+	const endpoint = `https://en.wikipedia.org/w/api.php?action=query&list=search&prop=info&inprop=url&utf8=&format=json&origin=*&srlimit=1&srsearch=${breed} dog`;
 	const response = await fetch(endpoint);
 	if (!response.ok) {
 		throw Error(response.statusText);

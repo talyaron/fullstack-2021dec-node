@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=BIZ+UDPMincho&family=Cairo:wght@300&family=Josefin+Sans:wght@300&family=Montserrat:wght@100;200&family=Rajdhani:wght@300&family=Red+Hat+Mono:wght@300;400&family=Special+Elite&display=swap');
+
+* {
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+*:focus {
+    outline: none;
+}
+
+.heading {
+    text-align: center;
+    font-size: 60px;
+    background-color: rgba(245, 227, 222, 0.409);
+    color:black
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 10px solid rgba(31, 29, 29, 0.231);
+    padding: 10px;
+
+    input,
+    button {
+        border: 10px solid rgba(31, 29, 29, 0.231);
+        border-radius: 5px;
+        font-size: 30px;
+        background: #f5f3f36e;
+        padding: 10px;
+        color: rgba(255, 255, 255, 0.233);
+    }
+
+    input {
+        padding: .3em 0em .3em 1em;
+    }
+
+    button {
+        padding: .3em 1em .3em 1em;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background: #4a4d9d93;
+        color: rgba(255, 255, 255, 0.831);
+    }
+
+
+    input:focus,
+    button:hover {
+        background: #414f747b;
+        color: rgba(255, 255, 255, 0.493);
+    }
+
+}
+
+.error {
+    color: rgba(255, 115, 0, 0.346);
+}
