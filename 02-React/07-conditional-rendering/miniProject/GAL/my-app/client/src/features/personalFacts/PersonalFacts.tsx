@@ -15,11 +15,11 @@ export const PersonalFacts = ({ facts }: FactsCompProps) => {
     let id = ev.target.id;
     console.log(ev.target.id);
     if (id === `true`) {
-      setBackgroundColor("red");
-      setGuessWho(`You are wrong`);
-    } else if (id === `false`) {
       setBackgroundColor("green");
       setGuessWho("You are right");
+    } else if (id === `false`) {
+      setBackgroundColor("red");
+      setGuessWho(`You are wrong`);
     }
   }
 
