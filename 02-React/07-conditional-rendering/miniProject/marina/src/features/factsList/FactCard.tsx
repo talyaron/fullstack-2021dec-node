@@ -1,14 +1,13 @@
 import { FC } from 'react'
-import { FactProps } from './factModel';
+import { FactProps } from '../fact/factModel';
 
 
-
-interface FactCardProps {
+type FactCardProps = {
   fact: FactProps;
 }
 
-export const FactCard: FC<FactCardProps> = (props) => {
-  const { fact } = props;
+export const FactCard: FC<FactCardProps> = ({ fact }) => {
+  // const { fact } = props;
   return (
     <div>
       <div className="grid__card">
