@@ -1,57 +1,52 @@
 import { Option } from "./factModel";
 import { useState } from "react";
+enum Correct {
+  TRUE = "true",
+  FALSE = "false",
+  NULL = "null",
+}
 
 type OptionCardProps = {
   option: Option;
-  styles: React.CSSProperties;
+  isCorrect: boolean;
 };
 
-
-
-
-export const OptionCard: React.FC<OptionCardProps> = ({ option}, props: OptionCardProps) => {
-  const [isTrue, setIsTrue] = useState(false);
-
-  // const yes = {
-  //   border: "4px solid darkgreen",
-  // };
-
-  // const no = {
-  //   border: "4px solid darkred",
-  // };
-
+export const OptionCard: React.FC<OptionCardProps> = (
+  { option, isCorrect },
+  props: OptionCardProps
+) => {
+  const [isTrue, setIsTrue] = useState<Correct>(Correct.NULL);
 
   const handleChoose = () => {
     try {
       console.log("clicked");
-
-      {isTrue ? (
-        <div
-          className="divflex__card"
-          style={props.styles}
-        ></div>
-
-      ) : (
-
-        <div
-          className="divflex__card"
-          style={props.styles}
-        ></div>
-        
-      )}  
-
+      if (isCorrect) {
+        setIsTrue(Correct.TRUE);
+      } else setIsTrue(Correct.FALSE);
     } catch (error) {
       console.error(error);
     }
   };
- 
-  
-  
-   
+
+  function responseColor(correct: Correct): string {
+    try {
+      switch (correct) {
+        case Correct.TRUE:
+          return "green";
+        case Correct.FALSE:
+          return "red";
+        default:
+          return "white";
+      }
+    } catch (error) {
+      console.error(error);
+      return "white";
+    }
+  }
+
   return (
     <div>
-      <div className="flex__card">
-
+      <div className="flex__card" style={{backgroundColor:`${responseColor(isTrue)}`}}>
         <img
           onClick={handleChoose}
           className="flex__card__img"
@@ -59,8 +54,7 @@ export const OptionCard: React.FC<OptionCardProps> = ({ option}, props: OptionCa
           alt="img"
         />
         <p className="flex__card__text">{option.text}</p>
-
-      </div>    
+      </div>
     </div>
   );
 };
