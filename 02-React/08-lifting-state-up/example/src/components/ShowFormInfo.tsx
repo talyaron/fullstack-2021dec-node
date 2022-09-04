@@ -1,12 +1,23 @@
 import React from 'react'
 
 interface ShowFormInfoProps{
-    name:string
+    name:string;
+    createNewColor:Function;
+    createNewSize:Function;
 } 
 
-const ShowFormInfo = ({name}:ShowFormInfoProps) => {
+const ShowFormInfo = ({name,createNewColor,createNewSize}:ShowFormInfoProps) => {
+
+   function handleClick(){
+    createNewColor();
+   }
   return (
-    <div>"{name}"</div>
+    <div><h2>
+         "{name}"
+    </h2>
+    <button onClick={handleClick}>Create new Color</button>
+    <button onClick={()=>createNewSize()}>Create new Size</button>
+    </div>
   )
 }
 
