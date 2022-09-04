@@ -45,7 +45,7 @@ export const Fact = ({ facts }: FactsCompProps) => {
         </>):
         (<>
           <div className="myFact" style={{ backgroundColor: "gray" }}>
-            <h1>Fact: {fact.text} </h1>
+            <h1>Fact: {fact.text}</h1>
             <img src={fact.src} alt=""/>
           </div> 
           <form onSubmit={handleSubmit}>
