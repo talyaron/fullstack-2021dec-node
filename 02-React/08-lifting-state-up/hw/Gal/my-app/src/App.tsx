@@ -1,55 +1,72 @@
-import {useState} from 'react';
-import './App.css';
-import Circle1 from './components/Circle1';
-import Circle2 from './components/Circle2'
-import Circle3 from './components/Circle3';
-import Circle4 from './components/Circle4';
+import { useState } from "react";
+import "./App.css";
+import Circle1 from "./components/Circle1";
+import Circle2 from "./components/Circle2";
+import Circle3 from "./components/Circle3";
+import Circle4 from "./components/Circle4";
+import H1 from './components/H1';
 
 function App() {
-  const [backgroundColor1, setBackgroundColor1] = useState<string>('');
-  const [backgroundColor2, setBackgroundColor2] = useState<string>('');
-  const [backgroundColor3, setBackgroundColor3] = useState<string>('');
-  const [backgroundColor4, setBackgroundColor4] = useState<string>('');
+  const [backgroundColor0, setBackgroundColor0] = useState<string>("white");
+  const [backgroundColor1, setBackgroundColor1] = useState<string>("");
+  const [backgroundColor2, setBackgroundColor2] = useState<string>("");
+  const [backgroundColor3, setBackgroundColor3] = useState<string>("");
+  const [backgroundColor4, setBackgroundColor4] = useState<string>("");
 
-  function changeBackgroundColor1(){
+  function changeBackgroundColor1() {
     try {
-      //make 'if' true / flase for return to default
-      setBackgroundColor1('red');
+      setBackgroundColor1("red");
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
   }
-  function changeBackgroundColor2(){
+  function changeBackgroundColor2() {
     try {
-      //make 'if' true / flase for return to default
-      setBackgroundColor2('green');
+      setBackgroundColor2("green");
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
   }
-  function changeBackgroundColor3(){
+  function changeBackgroundColor3() {
     try {
-      //make 'if' true / flase for return to default
-      setBackgroundColor3('yellow');
+      setBackgroundColor3("yellow");
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
   }
-  function changeBackgroundColor4(){
+  function changeBackgroundColor4() {
     try {
-      //make 'if' true / flase for return to default
-      setBackgroundColor4('blue');
+      setBackgroundColor4("blue");
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
   }
 
   return (
     <div className="App">
-      <Circle1  changeBackgroundColor1={changeBackgroundColor1} backgroundColor1={backgroundColor1} />
-      <Circle2  changeBackgroundColor2={changeBackgroundColor2} backgroundColor2={backgroundColor2} />
-      <Circle3  changeBackgroundColor3={changeBackgroundColor3} backgroundColor3={backgroundColor3} />
-      <Circle4  changeBackgroundColor4={changeBackgroundColor4} backgroundColor4={backgroundColor4} />
+      <H1 />
+      <div className="App">
+      <Circle1
+        changeBackgroundColor1={changeBackgroundColor1}
+        backgroundColor1={backgroundColor1}
+        backgroundColor={backgroundColor0}
+      />
+      <Circle2
+        changeBackgroundColor2={changeBackgroundColor2}
+        backgroundColor2={backgroundColor2}
+        backgroundColor={backgroundColor0}
+      />
+      <Circle3
+        changeBackgroundColor3={changeBackgroundColor3}
+        backgroundColor3={backgroundColor3}
+        backgroundColor={backgroundColor0}
+      />
+      <Circle4
+        changeBackgroundColor4={changeBackgroundColor4}
+        backgroundColor4={backgroundColor4}
+        backgroundColor={backgroundColor0}
+      />
+    </div>
     </div>
   );
 }
