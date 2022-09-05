@@ -1,12 +1,10 @@
 import { useParams, Link, useNavigate } from "react-router-dom";
-import { FactProps} from "./factModel";
-import { OptionCard } from './OptionCard'
-
+import { FactProps } from "./factModel";
+import { OptionCard } from "./OptionCard";
 
 type FactsCompProps = {
-  facts: FactProps[]
-}
-
+  facts: FactProps[];
+};
 
 export const Fact: React.FC<FactsCompProps> = ({ facts }) => {
   const navigate = useNavigate();
@@ -26,21 +24,12 @@ export const Fact: React.FC<FactsCompProps> = ({ facts }) => {
 
         <h2 className="header">Choose the right answer</h2>
         <div className="flex">
-
-          <OptionCard
-            styles={{ border: "4px solid darkgreen" }}
-            option={fact.options.true}
-          />
-          <OptionCard
-            styles={{ border: "4px solid darkred" }}
-            option={fact.options.false}
-          />
-
+          <OptionCard isCorrect={true} option={fact.options.true} />
+          <OptionCard isCorrect={false} option={fact.options.false} />
         </div>
       </div>
     );
   } else {
-
     return (
       <h1>
         The Fact is Missing &nbsp;&nbsp;&nbsp;
@@ -51,4 +40,3 @@ export const Fact: React.FC<FactsCompProps> = ({ facts }) => {
     );
   }
 };
-

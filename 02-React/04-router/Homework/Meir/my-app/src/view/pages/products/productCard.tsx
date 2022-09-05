@@ -18,6 +18,9 @@ const productCard:FC <ProductCardProps> = (props) => {
         <div className="card__price">
             {product.price}
         </div>
+        <div className="card__img">
+            <img src={product.img} alt="img" />
+        </div>
     </div>
   )
 }

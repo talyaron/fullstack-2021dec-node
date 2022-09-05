@@ -7,8 +7,6 @@ import { Link } from 'react-router-dom';
 import { FC } from 'react';
 
 export const Secrets: FC<SecretListProps> = ({secretArray}) => {
-  console.log(trueArray);
-  console.log(falseArray);
   
   
   return (

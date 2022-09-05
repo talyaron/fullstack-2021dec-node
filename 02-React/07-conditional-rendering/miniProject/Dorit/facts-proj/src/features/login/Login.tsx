@@ -57,7 +57,7 @@ export const Login = () => {
 
   } else {
       return (
-          <Link to="/list"></Link>
+          <Link to="/list">To facts list</Link>
         );
   }
 };
