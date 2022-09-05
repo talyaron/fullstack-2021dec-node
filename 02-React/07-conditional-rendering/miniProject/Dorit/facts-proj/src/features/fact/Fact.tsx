@@ -10,6 +10,7 @@ export const Fact = ({ facts }: FactsCompProps) => {
   let [answer, setAnswer] = useState<string>("");
   const [right, setRight] = useState<string>("");
   const [backgroundColor, setBackgroundColor] = useState<string>("")
+  const [fontSize, setFontSize] = useState<number>(0)
   const { id } = useParams();
 
   function handleWrite(ev: any) {
@@ -28,9 +29,11 @@ export const Fact = ({ facts }: FactsCompProps) => {
     if(answer === fact?.isTrue) {
       setRight("You are right")
       setBackgroundColor("green")
+      setFontSize(30)
     } else {
       setRight("You are wrong")
       setBackgroundColor("red")
+      setFontSize(30)
     }
   }
 
@@ -44,7 +47,7 @@ export const Fact = ({ facts }: FactsCompProps) => {
           </h1>
         </>):
         (<>
-          <div className="myFact" style={{ backgroundColor: "gray" }}>
+          <div className="myFact" style={{backgroundColor:backgroundColor}}>
             <h1>Fact: {fact.text}</h1>
             <img src={fact.src} alt=""/>
           </div> 
@@ -53,7 +56,7 @@ export const Fact = ({ facts }: FactsCompProps) => {
               <button>SEND</button>
           </form>
 
-          {right.length > 0 ? <div style={{backgroundColor:backgroundColor}}>{right}</div> : null}
+          {right.length > 0 ? <div className="mark" >{right}</div> : null}
         </>)
         }
     </>
