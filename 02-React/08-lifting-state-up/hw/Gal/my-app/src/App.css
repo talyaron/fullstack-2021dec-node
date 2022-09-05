@@ -1,5 +1,11 @@
 .App {
   text-align: center;
+  display: flex;
+  flex-direction: row;
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  justify-content: center;
 }
 
 .App-logo {
@@ -11,6 +17,19 @@
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
+}
+
+.godDiv{
+  margin-top: 100px;
+}
+
+.backgroundColor{
+  height: 200px;
+  width: 200px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  
 }
 
 .App-header {
