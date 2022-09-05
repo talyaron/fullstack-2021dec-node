@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-// import { Page404 } from "./features/404/404";
+import { Page404 } from "./features/404/404";
 import Login from "./features/LoginRegister/Login";
 import { FactProps } from "./features/personalFacts/factModel";
 import { PersonalFacts } from "./features/personalFacts/PersonalFacts";
@@ -117,7 +117,7 @@ const App = () => {
             path="PersonalFacts/:id"
             element={<PersonalFacts facts={facts} />}
           />
-          {/* <Route path="*" element={<Page404 />} /> */}
+          <Route path="*" element={<Page404 />} />
         </Routes>
       </BrowserRouter>
     </header>
