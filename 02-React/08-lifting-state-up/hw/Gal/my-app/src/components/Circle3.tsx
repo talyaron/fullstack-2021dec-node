@@ -3,10 +3,9 @@ import '../App.css';
 interface BackgroundColorProps {
   changeBackgroundColor3: Function;
   backgroundColor3: string;
-  backgroundColor: string;
 }
 
-const Circle3 = ({changeBackgroundColor3,backgroundColor3,backgroundColor}: BackgroundColorProps) => {
+const Circle3 = ({changeBackgroundColor3,backgroundColor3}: BackgroundColorProps) => {
   const [changecolor, setChangeColor] = useState(false)
 
   function handleClick() {
@@ -19,7 +18,7 @@ const Circle3 = ({changeBackgroundColor3,backgroundColor3,backgroundColor}: Back
     <div className="godDiv">
       <div
         className="backgroundColor"
-        style={{ backgroundColor: `${(changecolor === true)? backgroundColor3: backgroundColor }` }}
+        style={{ backgroundColor: `${(changecolor === true)? backgroundColor3: backgroundColor3 }` }}
         onClick={handleClick}
       >
         {backgroundColor3}

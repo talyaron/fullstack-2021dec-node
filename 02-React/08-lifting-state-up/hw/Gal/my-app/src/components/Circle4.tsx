@@ -3,11 +3,10 @@ import { useState } from "react";
 interface BackgroundColorProps {
   changeBackgroundColor4: Function;
   backgroundColor4: string;
-  backgroundColor: string;
 }
 
 const Circle4 = ({
-  changeBackgroundColor4,backgroundColor4,backgroundColor}: BackgroundColorProps) => {
+  changeBackgroundColor4,backgroundColor4}: BackgroundColorProps) => {
     const [changecolor, setChangeColor] = useState(false)
 
   function handleClick() {
@@ -19,7 +18,7 @@ const Circle4 = ({
     <div className="godDiv">
       <div
         className="backgroundColor"
-        style={{ backgroundColor: `${(changecolor === true)? backgroundColor4: backgroundColor}` }}
+        style={{ backgroundColor: `${(changecolor === true)? backgroundColor4: backgroundColor4}` }}
         onClick={handleClick}
       >
         {backgroundColor4}
