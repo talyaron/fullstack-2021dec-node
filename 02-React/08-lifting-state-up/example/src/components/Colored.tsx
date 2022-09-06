@@ -1,14 +1,19 @@
-import React from 'react'
+import React from "react";
 
-interface ColoredProps{
-    color:string;
-    size:number;
+interface ColoredProps {
+  color: string;
+  size: number;
 }
 
-const Colored = ({color, size}:ColoredProps) => {
+const Colored = ({ color, size }: ColoredProps) => {
   return (
-    <div className='colored' style={{backgroundColor:`#${color}`, width:`${size}px`}}>{color}</div>
-  )
-}
+    <div
+      className="colored"
+      style={{ backgroundColor: `#${color}`, width: `${size}px` }}
+    >
+      {color}
+    </div>
+  );
+};
 
-export default Colored
+export default Colored;
