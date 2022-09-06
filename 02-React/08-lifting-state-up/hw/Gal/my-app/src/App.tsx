@@ -7,64 +7,62 @@ import Circle4 from "./components/Circle4";
 import H1 from './components/H1';
 
 function App() {
-  const [backgroundColor0, setBackgroundColor0] = useState<string>("white");
-  const [backgroundColor1, setBackgroundColor1] = useState<string>("");
-  const [backgroundColor2, setBackgroundColor2] = useState<string>("");
-  const [backgroundColor3, setBackgroundColor3] = useState<string>("");
-  const [backgroundColor4, setBackgroundColor4] = useState<string>("");
+  const [color, setColor] = useState<string>("");
 
   function changeBackgroundColor1() {
     try {
-      setBackgroundColor1("red");
+      setColor("red");
     } catch (error) {
       console.error(error);
     }
   }
   function changeBackgroundColor2() {
     try {
-      setBackgroundColor2("green");
+      setColor("green");
     } catch (error) {
       console.error(error);
     }
   }
   function changeBackgroundColor3() {
     try {
-      setBackgroundColor3("yellow");
+      setColor("yellow");
     } catch (error) {
       console.error(error);
     }
   }
   function changeBackgroundColor4() {
     try {
-      setBackgroundColor4("blue");
+      setColor("blue");
     } catch (error) {
       console.error(error);
     }
   }
 
+  // Look at the dev tools (f12) the size of App 
+  //This App is changing all the 'app' background not screen
+
   return (
-    <div className="App">
+    <div className="App" style={{ backgroundColor: `${color}`}}> 
       <H1 />
-      <div className="App">
+      <div className="circles">
       <Circle1
-        changeBackgroundColor1={changeBackgroundColor1}
-        backgroundColor1={backgroundColor1}
-        backgroundColor={backgroundColor0}
+          changeBackgroundColor1={changeBackgroundColor1}
+          backgroundColor1={color}       
       />
       <Circle2
         changeBackgroundColor2={changeBackgroundColor2}
-        backgroundColor2={backgroundColor2}
-        backgroundColor={backgroundColor0}
+        backgroundColor2={color}
+     
       />
       <Circle3
         changeBackgroundColor3={changeBackgroundColor3}
-        backgroundColor3={backgroundColor3}
-        backgroundColor={backgroundColor0}
+        backgroundColor3={color}
+     
       />
       <Circle4
         changeBackgroundColor4={changeBackgroundColor4}
-        backgroundColor4={backgroundColor4}
-        backgroundColor={backgroundColor0}
+        backgroundColor4={color}
+   
       />
     </div>
     </div>

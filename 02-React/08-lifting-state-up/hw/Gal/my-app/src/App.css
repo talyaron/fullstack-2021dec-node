@@ -4,7 +4,6 @@
   flex-direction: row;
   display: flex;
   flex-direction: row;
-  gap: 15px;
   justify-content: center;
 }
 
@@ -21,17 +20,34 @@
 
 .godDiv{
   margin-top: 200px;
+  margin-right: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
+.circles{
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.circle1{
+  color: yellow;
+}
+
 .backgroundColor{
   height: 200px;
   width: 200px;
-  background-color: #bbb;
+  background-color: rgb(0, 0, 0);
   border-radius: 50%;
-  display: inline-block;
+  /* display: inline-block; */
+  display: flex;
+  flex-direction: row;
+  border: black;
 }
 
 .h1{
