@@ -5,7 +5,7 @@ import scull from "./scull.png";
 export const Page404 = () => {
   return (
     <div className="page404">
-      <h2>Upss... Wrong way..</h2>
+      <h2> Error</h2>
       <Link className="text-decoration" to="list">
         Go back Home
       </Link>
