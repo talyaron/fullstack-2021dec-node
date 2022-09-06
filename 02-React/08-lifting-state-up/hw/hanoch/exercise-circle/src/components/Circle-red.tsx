@@ -6,10 +6,11 @@ interface redProps{
 }
 
 export const CircleRed = ({color, createNewColor}: redProps) => {
-  function handleClick(){
-    createNewColor()
+  function handleClick(ev:any){
+    const color = ev.target.style.backgroundColor
+    createNewColor(color)
   }
   return (
-    <div className="circle" onClick={handleClick} style={{backgroundColor: `#${color}`}} ></div>
+    <div className="circle"  style={{backgroundColor: `#${color}`}} onClick={handleClick}></div>
   )
 }

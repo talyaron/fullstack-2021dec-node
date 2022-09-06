@@ -7,9 +7,10 @@ interface blueProps{
 
 export const CircleBlue = ({color, createNewColor}:blueProps) => {
   function handleClick(ev:any){
-    createNewColor(ev.style.backgroundColor)
+    const color = ev.target.style.backgroundColor
+    createNewColor(color)
   }
   return (
-    <div className='circle' onClick={handleClick} style={{backgroundColor: `#${color}`}}></div>
+    <div className='circle' style={{backgroundColor: `#${color}` }} onClick={handleClick}></div>
   )
 }
