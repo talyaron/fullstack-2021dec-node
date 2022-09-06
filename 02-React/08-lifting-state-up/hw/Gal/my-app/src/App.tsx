@@ -39,7 +39,8 @@ function App() {
   }
 
   // Look at the dev tools (f12) the size of App 
-  //This App is changing all the 'app' background not screen
+  //This App is changing all the 'app' background not responsive by the size of the screen - but by the size of the default screen which is my screen
+  //For fiting your screen go to - App.css/.godDiv/margin-top & change the '%' by your default (tnx and sorry, the mission is done).
 
   return (
     <div className="App" style={{ backgroundColor: `${color}`}}> 

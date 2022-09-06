@@ -17,7 +17,7 @@ const Circle1 = ({ changeBackgroundColor1,backgroundColor1}: BackgroundColorProp
     <div className="godDiv">
       <div
         className="backgroundColor"
-        style={{ backgroundColor: `${(changecolor === true)? backgroundColor1: backgroundColor1 }` }}
+        style={{ backgroundColor: `${(changecolor === true)? backgroundColor1: backgroundColor1}`}}
         onClick={handleClick}
       >
         {backgroundColor1}
