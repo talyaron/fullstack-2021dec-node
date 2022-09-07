@@ -1,13 +1,13 @@
-import React  from 'react';
-import { Products } from './Products';
-import { FC } from 'react';
+import React, { FC } from 'react';
+import { ProductsProps } from './Products';
 
 
-interface ProductCardProps{
-     product:Products;
+
+export interface ProductCardProps{
+     product:ProductsProps;
 }
 
-const productCard:FC <ProductCardProps> = (props) => {
+export const ProductCard:FC <ProductCardProps> = (props) => {
     const {product} = props;
   return (
     <div className='card'>
@@ -25,4 +25,4 @@ const productCard:FC <ProductCardProps> = (props) => {
   )
 }
 
-export default productCard
+export default ProductCard

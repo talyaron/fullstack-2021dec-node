@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
-import ProductCard from './productCard'
+import ProductCard from './ProductCard';
 
-export interface Products {
+
+export interface ProductsProps {
    id:string
    name:string,
    producer:string,
@@ -9,7 +10,7 @@ export interface Products {
    img:string
 }
 
-const products: Products[] = [
+export const products:ProductsProps[] = [
   {id:'12',name:'Shoes', producer:'Yves Saint Laurent', price:450, img:"https://n.nordstrommedia.com/id/sr3/733d3d2f-c1f7-4599-b66f-1bfce84f65ec.jpeg?h=365&w=240&dpr=2"},
   {id:'123',name:'Pants', producer:'Yves Saint Laurent', price:950, img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRF_iDZ6MUGMUtOJbq_Pi4jGAePD1PjenzUlA&usqp=CAU"},
   {id:'1234',name:'Elegant Shirts', producer:'Yves Saint Laurent', price:350, img:"https://cdn.modesens.com/product/509700_100?w=400&"},
@@ -18,12 +19,17 @@ const products: Products[] = [
 ]
 
 const Products = () => {
+  
   return (
     <div>
       <h1>Products</h1>
       <Link to="/">Go to Home</Link>
-      {products.map((product, i)=>{
-        return <Link to={`/product/${product.id}`}><ProductCard key={i} product={product} /></Link>
+      {products.map((product, i) => {
+        return (
+        <Link to={`/product/${product.id}`}>
+          <ProductCard key={product.id} product={product} />
+        </Link>
+        );
 })}
     </div>
   );
