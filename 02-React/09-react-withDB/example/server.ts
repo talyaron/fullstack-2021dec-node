@@ -3,17 +3,21 @@ import mongoose from "mongoose";
 const app = express();
 const port: number = 4000;
 
+require('dotenv').config()
+
 app.use(express.static("client/build"));
 app.use(express.json());
 
-// mongoose.connect(
-//   "mongodb+srv://tal1:rbBnTtoiIia3ddKK@tal-test1.m39if.mongodb.net/fs-2021-oct?retryWrites=true&w=majority"
-// ).then(res => {
-//   console.log("Connected to DB");
-// }).catch(err => {
-//   console.log('At mongoose.connect:')
-//   console.error(err.message)
-// });
+const url = process.env.MONGODB_URI
+
+mongoose.connect(
+  url
+).then(res => {
+  console.log("Connected to DB");
+}).catch(err => {
+  console.log('At mongoose.connect:')
+  console.error(err.message)
+});
 
 app.get('/api/test', (req, res) => {
   res.send({ ok: true })
