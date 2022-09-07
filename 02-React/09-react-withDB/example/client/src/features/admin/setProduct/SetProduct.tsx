@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 const SetProduct = () => {
   
   
@@ -25,10 +26,11 @@ const SetProduct = () => {
 
   return (
     <div>
+        <Link to='/'>Products</Link>
       <form onSubmit={handleSubmit}>
         <input type="text" name="title" placeholder="product name" />
-        <input type="text" name="imgSrc" placeholder="product name" />
-        <input type="number" name="price" placeholder="product name" />
+        <input type="text" name="imgSrc" placeholder="img url" />
+        <input type="number" name="price" placeholder="price" />
         <label htmlFor="publish">Publish</label>
         <input type="checkbox" name="publish" id="publish" />
         <button type="submit">ADD</button>
