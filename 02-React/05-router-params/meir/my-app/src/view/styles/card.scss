@@ -1,0 +1,30 @@
+.card{
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #282c34;
+    margin: 2px;
+    color: $textColor;
+
+    display: flex;
+
+    &__info{
+        flex: auto;
+    }
+
+    &__price{
+        width: fit-content;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &__img{
+        img{
+            width: 100px;
+            height: 150px;
+            border-radius: 10px;
+            
+        }
+     
+    }
+}

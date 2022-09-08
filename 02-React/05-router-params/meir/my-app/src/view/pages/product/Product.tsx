@@ -9,7 +9,7 @@ const Product = () => {
      
         <div>
           <Link to='/products'>Back</Link>
-          <h1>Product: {product?product.name : null}</h1>
+          
           <h1>Product: {product?product.id : null}</h1>
           
         </div>
