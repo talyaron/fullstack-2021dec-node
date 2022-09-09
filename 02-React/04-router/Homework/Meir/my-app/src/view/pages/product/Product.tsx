@@ -11,7 +11,9 @@ const Product = () => {
           <Link to='/products'>Back</Link>
           <h1>Product: {product?product.name : null}</h1>
           <h1>Product: {product?product.id : null}</h1>
-          
+          <h1>Product: {product?product.price : null}</h1>
+          <h1>Product: {product?product.producer : null}</h1>
+          <img src='${product?product.img : null}'></img>
         </div>
         
     );
