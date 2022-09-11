@@ -18,7 +18,7 @@ const SetProduct = () => {
 
       console.log(title, imgSrc, price, publish);
 
-      const { data } = await axios.post("/api/products/add-product",{}, {params: {title, imgSrc, price, publish}});
+      const { data } = await axios.post("/api/products/add-product",  {title, imgSrc, price, publish});
       console.log(data)
     } catch (error) {
       console.error(error);
