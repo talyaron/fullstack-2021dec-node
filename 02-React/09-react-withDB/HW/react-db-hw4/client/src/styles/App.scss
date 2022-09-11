@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=BIZ+UDPMincho&family=Cairo:wght@300&family=Josefin+Sans:wght@300&family=Montserrat:wght@100;200&family=Rajdhani:wght@300&family=Red+Hat+Mono:wght@300;400&family=Special+Elite&display=swap');
+@import '../features/admin/setProduct/SetProduct.scss';
+@import '../features/products/Products.scss';
+@import '../features/popup/Popup.scss';
+@import '../components/navBar/NavBar.scss';
+@import '../features/404/404.scss';
+
+
+.App {
+    text-align: center;
+    background-color: #282c34;
+    min-height: 100vh;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    font-family: 'Montserrat';
+    overflow: hidden;
+}
+
+
