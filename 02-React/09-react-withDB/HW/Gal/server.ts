@@ -1,7 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
 const app = express();
-const port: number = 5000;
+const port: number = 4000;
 
 require("dotenv").config();
 
