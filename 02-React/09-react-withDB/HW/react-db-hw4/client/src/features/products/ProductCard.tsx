@@ -2,20 +2,25 @@ import React, { useState, useEffect, useRef } from "react";
 import { Product } from "./ProductModel";
 import { AiOutlineEdit } from "react-icons/ai";
 import { RiDeleteBin5Line } from "react-icons/ri";
-import axios from 'axios'
+import axios from "axios";
 
 interface ProductCardProps {
-  product: Product;
+  product:Product;
   handleDelete: Function;
   setShowUpdatePopup: Function;
+  setSelelctedProduct:Function;
 }
 
-export const ProductCard: React.FC<ProductCardProps> = ({ product, handleDelete, setShowUpdatePopup }) => {
+export const ProductCard: React.FC<ProductCardProps> = ({
+  product,
+  handleDelete,
+  setShowUpdatePopup,
+  setSelelctedProduct
+}) => {
+ 
   const [priceColor, setPriceColor] = useState<string>("");
   const [update, setUpdate] = useState<boolean>(false);
-  const [updatePrice, setUpdatePrice] = useState<number>();
-
-
+  const [updatePrice, setUpdatePrice] = useState<number>(product.price);
 
   // DELETE
   function handleDeleteItem() {
@@ -26,8 +31,6 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, handleDelete,
     }
   }
 
-
-
   // SET PRICE COLOR
   let className = priceColor;
 
@@ -37,18 +40,15 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, handleDelete,
     className = "aboveForty";
   }
 
-
-
   // UPDATE HOLE CARD
   const handleUpdateProduct = () => {
     try {
       setShowUpdatePopup(true);
+      setSelelctedProduct(product)
     } catch (error) {
       console.error(error);
     }
   };
-
-
 
   // UPDATE CHECK
   const handleUpdatePrice = () => {
@@ -62,15 +62,17 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, handleDelete,
     }
   };
 
-
-
   // PRICE UPDATE DB
-  async function handleSubmitPriceUpdate(e: React.FormEvent<HTMLFormElement> | any, productID: string ) {
+  async function handleSubmitPriceUpdate(
+    e: React.FormEvent<HTMLFormElement> | any,
+    productID: string
+  ) {
     try {
       e.preventDefault();
       console.log(e, productID);
-
+      
       const price = e.target.elements.price.valueAsNumber;
+      setUpdatePrice(price);
       const { data } = await axios.patch("products/update-price", {
         productID,
         price,
@@ -78,14 +80,11 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, handleDelete,
 
       console.log(price, data);
 
-      setUpdatePrice(updatePrice);
+      
     } catch (error) {
       console.error(error);
     }
   }
-
-
-
 
   // INPUT FOCUS
   const inputRef = useRef<HTMLInputElement>(null);
@@ -96,8 +95,6 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, handleDelete,
       console.error(error);
     }
   }, [update]);
-
-
 
   return (
     <div className="card">
@@ -113,7 +110,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, handleDelete,
           <span className="card__details--span">Title:</span> {product.title}
         </p>
         <p className={`${className}`}>
-          <span>&#8362;</span> {product.price}
+          <span>&#8362;</span> {updatePrice}
         </p>
       </div>
 
@@ -124,26 +121,23 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, handleDelete,
 
         <form
           className="catd__btn--update"
-          onSubmit={(e) => handleSubmitPriceUpdate(e, product._id)}
-        >
+          onSubmit={(e) => handleSubmitPriceUpdate(e, product._id)}>
           {update && (
             <input
               className="update-input"
               type="number"
               name="price"
-              value={updatePrice}
+              defaultValue={updatePrice}
               onBlur={(e) => setUpdatePrice(e.target.valueAsNumber)}
               ref={inputRef}
             />
           )}
 
-
           <span
             className="update-icon"
             onClick={() => {
               handleUpdatePrice();
-            }}
-          >
+            }}>
             <AiOutlineEdit />
           </span>
         </form>

@@ -6,15 +6,18 @@ import { Product } from '../../products/ProductModel'
 
 interface UpdateProductProps {
   setShowUpdatePopup: Function;
-  product: Product;
+  selectedProduct:Product|null;
 }
 
-export const UpdateProduct: React.FC<UpdateProductProps> = ({ setShowUpdatePopup, product }) => {
+export const UpdateProduct: React.FC<UpdateProductProps> = ({ setShowUpdatePopup, selectedProduct }) => {
 
   async function handleSubmitCardUpdate(e: React.FormEvent<HTMLFormElement> | any) {
     try {
       e.preventDefault();
       // console.log(e, productID);
+      const productID = selectedProduct?._id
+
+      if(!productID) throw new Error('No Product Id')
       console.log(e);
 
       const elem = e.target.elements;
@@ -26,6 +29,7 @@ export const UpdateProduct: React.FC<UpdateProductProps> = ({ setShowUpdatePopup
       console.log(title, img, price, published);
 
       const { data } = await axios.patch("/products/update-card", {
+        productID,
         title,
         img,
         price,

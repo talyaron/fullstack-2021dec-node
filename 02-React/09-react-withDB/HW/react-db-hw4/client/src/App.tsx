@@ -7,7 +7,7 @@ import { SetProduct } from "./features/admin/setProduct/SetProduct";
 import { UpdateProduct } from "./features/admin/updateProduct/UpdateProduct";
 import { NavBar } from './components/navBar/NavBar'
 import { Page404 } from './features/404/404'
-import { Product } from "./features/products/ProductModel";
+
 
 
 
@@ -31,7 +31,7 @@ const App = () => {
                 showAddPopup={showAddPopup}
                 showUpdatePopup={showUpdatePopup}
                 setShowUpdatePopup={setShowUpdatePopup}
-                // product={product}
+             
               />
             }
           />
@@ -40,12 +40,7 @@ const App = () => {
             path="/add"
             element={<SetProduct setShowAddPopup={setShowAddPopup} />}
           />
-          <Route
-            path="/update"
-            element={
-              <UpdateProduct setShowUpdatePopup={setShowUpdatePopup}  />
-            }
-          />
+         
           <Route path="*" element={<Page404 />} />
         </Routes>
       </BrowserRouter>
