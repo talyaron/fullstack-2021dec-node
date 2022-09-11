@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+
 const SetProduct = () => {
   
   
@@ -17,7 +18,7 @@ const SetProduct = () => {
 
       console.log(title, imgSrc, price, publish);
 
-      const { data } = await axios.post("/api/products/add-product",{title, imgSrc, price, publish});
+      const { data } = await axios.post("/api/products/add-product",{}, {params: {title, imgSrc, price, publish}});
       console.log(data)
     } catch (error) {
       console.error(error);
