@@ -5,3 +5,5 @@ export interface Product{
     price:number;
     publish:boolean;
 }
+
+
