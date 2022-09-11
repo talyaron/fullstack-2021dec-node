@@ -39,7 +39,7 @@ function handleLoad() {
 }
 function handleRegister(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var email, password, data, register, error, error_1;
+        var email, password, name, data, register, error, userDB, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -49,19 +49,28 @@ function handleRegister(ev) {
                     _a.trys.push([1, 3, , 4]);
                     email = ev.target.email.value;
                     password = ev.target.password.value;
+                    name = ev.target.name.value;
+                    // console.log(ev.target.elements.role.value);
+                    // const role = ev.target.elements.role.value;
                     console.log(email, password);
                     return [4 /*yield*/, axios.post("/users/register", {
                             email: email,
-                            password: password
+                            password: password,
+                            name: name
                         })];
                 case 2:
                     data = (_a.sent()).data;
-                    register = data.register, error = data.error;
+                    register = data.register, error = data.error, userDB = data.userDB;
                     console.log(data);
                     if (error)
                         throw error;
-                    if (register) {
-                        window.location.href = "./profile.html?userId=" + register._id;
+                    if (register && userDB) {
+                        if (userDB.email === "GRJ@gmail.com") {
+                            window.location.href = "./adminProfile.html?userId=" + userDB._id;
+                        }
+                        else {
+                            window.location.href = "./profile.html?userId=" + userDB._id;
+                        }
                     }
                     if (error && error.includes("E11000"))
                         alert("email is already in use");
@@ -77,7 +86,7 @@ function handleRegister(ev) {
 }
 function handleLogin(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var email, password, data, login, user, error, error_2;
+        var email, password, data, userDB, error, error_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -95,12 +104,15 @@ function handleLogin(ev) {
                 case 2:
                     data = (_a.sent()).data;
                     console.log(data);
-                    login = data.login, user = data.user, error = data.error;
-                    console.log(user);
+                    userDB = data.userDB, error = data.error;
+                    console.log(userDB);
                     if (error)
                         throw error;
-                    if (login) {
-                        window.location.href = "./profile.html?userId";
+                    if (userDB.role === "admin") {
+                        window.location.href = "./adminProfile.html?userId=" + userDB._id;
+                    }
+                    else {
+                        window.location.href = "./profile.html?userId=" + userDB._id;
                     }
                     if (error)
                         throw error;
@@ -117,7 +129,7 @@ function handleLogin(ev) {
 }
 function handleSaveInfo(ev) {
     return __awaiter(this, void 0, void 0, function () {
-        var name, data, user, error, error_3;
+        var data, user, error, error_3;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -125,9 +137,7 @@ function handleSaveInfo(ev) {
                     _a.label = 1;
                 case 1:
                     _a.trys.push([1, 3, , 4]);
-                    name = ev.target.elements.name.value;
-                    console.log(name);
-                    return [4 /*yield*/, axios.post("/users/SaveInfo", { name: name })];
+                    return [4 /*yield*/, axios.post("/users/SaveInfo", {})];
                 case 2:
                     data = (_a.sent()).data;
                     user = data.user, error = data.error;

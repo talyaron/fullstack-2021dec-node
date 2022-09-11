@@ -1,9 +1,0 @@
-body {
-  background-color: bisque;
-}
-body #userEntryPage {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding: 2em;
-}
