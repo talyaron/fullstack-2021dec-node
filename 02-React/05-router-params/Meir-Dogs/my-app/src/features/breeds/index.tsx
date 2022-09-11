@@ -6,11 +6,12 @@ const Breeds = () => {
    const[breeds, setBreeds] = useState<string[] | undefined>([]);
   useEffect (()=>{
     getBreeds().then((brds) =>{
+        console.log(brds)
         if (brds) {
-            console.log(brds)
-            setBreeds(brds);
-        }
+        setBreeds(brds);
+    }
     });
+    
     
   }, []);
 
