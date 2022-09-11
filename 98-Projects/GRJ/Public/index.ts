@@ -7,19 +7,29 @@ async function handleRegister(ev: any) {
   try {
     const email = ev.target.email.value;
     const password = ev.target.password.value;
+    const name = ev.target.name.value;
+    // console.log(ev.target.elements.role.value);
+    // const role = ev.target.elements.role.value;
 
     console.log(email, password);
     //@ts-ignore
     const { data } = await axios.post("/users/register", {
       email,
       password,
+      name,
+      // role
     });
-    const { register, error } = data;
+
+    const { register, error, userDB } = data;
     console.log(data);
     if (error) throw error;
- 
-    if (register) {
-      window.location.href = `./profile.html?userId=${register._id}`;
+
+    if (register && userDB) {
+      if (userDB.email === "GRJ@gmail.com") {
+        window.location.href = `./adminProfile.html?userId=${userDB._id}`;
+      } else {
+        window.location.href = `./profile.html?userId=${userDB._id}`;
+      }
     }
 
     if (error && error.includes("E11000")) alert("email is already in use");
@@ -41,12 +51,14 @@ async function handleLogin(ev: any) {
       password,
     });
     console.log(data);
-    const { login, user, error } = data;
-    console.log(user);
+    const { userDB, error } = data;
+    console.log(userDB);
     if (error) throw error;
 
-    if (login) {
-      window.location.href = `./profile.html?userId`;
+    if (userDB.role === "admin") {
+      window.location.href = `./adminProfile.html?userId=${userDB._id}`;
+    } else {
+      window.location.href = `./profile.html?userId=${userDB._id}`;
     }
 
     if (error) throw error;
@@ -56,16 +68,13 @@ async function handleLogin(ev: any) {
   }
 }
 
-async function handleSaveInfo(ev: any) {
+async function handleSaveInfo(ev) {
   ev.preventDefault();
   try {
-    const name = ev.target.elements.name.value;
-
-    console.log(name);
     //@ts-ignore
-    const { data } = await axios.post("/users/SaveInfo", { name });
+    const { data } = await axios.post("/users/SaveInfo", {});
     const { user, error } = data;
-    console.log(user)
+    console.log(user);
     if (error) throw error;
 
     if (user) {
@@ -78,7 +87,6 @@ async function handleSaveInfo(ev: any) {
     console.error(error);
   }
 }
-
 
 async function getUserByCookie() {
   try {
@@ -99,4 +107,3 @@ async function getUserByCookie() {
     console.error(error);
   }
 }
-

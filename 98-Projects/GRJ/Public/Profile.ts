@@ -1,54 +1,79 @@
 function getUserId(): string | false {
-    try {
-      const queryString = window.location.search;
-      console.log(queryString);
-  
-      const urlParams = new URLSearchParams(queryString);
-      console.log(urlParams);
-      const userId = urlParams.get("userId");
-      return userId;
-    } catch (error) {
-      console.error(error);
-      return false;
-    }
+  try {
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const userId = urlParams.get("userId");
+    console.log(userId)
+    return userId;
+  } catch (error) {
+    console.error(error);
+    return false;
   }
+}
 
 
 async function onscondPageLoad() {
-    try {
-      //get params of userId
-      const userId = getUserId();
-  
-      if (!userId) throw new Error("couldnt find user id in url");
-  
-      // @ts-ignore
-      const { data } = await axios.get(`/users/get-user?userId=${userId}`);
-  
-      const { error, user } = data;
-      if (error) throw error;
-      console.log(user);
-      const { name, age, image } = user;
-  
+  try {
+    //get params of userId
+    const userId = getUserId();
+
+    if (!userId) throw new Error("couldnt find user id in url");
+
+    // @ts-ignore
+    const { data } = await axios.post("/profile/get-name", { userId });
+    const { error, userDB } = data;
+    console.log(data);
+    if (error) throw error;
+    const name = data.name
+
+
+    const email = data.email
+    if (name) {
       const nav = document.querySelector("#Navbar");
-      nav.innerHTML = `<h1>Hello ${name}! What would you like to do</h1>`;
-  
-      console.log(data);
-    } catch (error) {
-      console.log(error);
+      nav.innerHTML = `
+      <h1>Hello ${name}! What would you like to do?</h1>`;
+    } else {
+      const nav = document.querySelector("#Navbar");
+      nav.innerHTML = `<h1> Hello ${email}! What would you like to do?</h1>`;
     }
+    renderAll(data)
+  } catch (error) {
+    console.log(error);
   }
-  
-  function renderUsers(users) {
-    const html = users
-      .map((user) => {
-        console.log(user);
-        return `<div>${user.username} 
-          <input type='text' placeholder='role' value="${user.role}" onblur='handleUpdate(event, "${user._id}")'/>
-          <button onclick='handleDelete("${user._id}")'>DELETE</button>
-          </div>`;
-      })
-      .join("");
-    console.log(html);
-  
-    document.getElementById("users").innerHTML = html;
-  }
+}
+
+function renderAll(data) {
+  const userDB = data
+  let html = "";
+  html = `<div class="ScheduleApointmant">
+   <button class="scheduleMeeting">
+     <a href="./ScheduleAppo.html?userId=${userDB._id}" alt="scheduleMeeting">
+       <i id="calenderPlusIcon" class="fas fa-calendar-plus"></i>
+     </a>
+   </button>
+   <p>schedule a meeting</p>
+ </div>
+ <div>
+   <button class="scheduleMeeting">
+     <a href="./myMeetings.html?userId=${userDB._id}" alt="my meetings">
+     <i class="fas fa-calendar-check"></i>
+   </a>
+   </button>
+   <p>check my meetings</p>
+ </div>
+ <div>
+   <button class="ContactADoctor">
+     <a href="./Connect.html?userId=${userDB._id}" alt="online Doctor">
+       <i class="fas fa-comment-medical"></i>
+     </a>
+     </button>
+     <p>online Doctor</p>
+ </div>`
+
+
+
+  const actions = document.querySelector('#actions')
+  actions.innerHTML = html
+
+
+}
