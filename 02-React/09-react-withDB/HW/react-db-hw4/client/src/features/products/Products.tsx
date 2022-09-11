@@ -13,12 +13,12 @@ interface ProductsProps {
   setShowUpdatePopup: Function;
   showUpdatePopup: boolean;
   showAddPopup: boolean;
-  // product: Product
 }
 
 
 export const Products: React.FC<ProductsProps> = ({ setShowAddPopup, showAddPopup, showUpdatePopup, setShowUpdatePopup }) => {
   const [productsUI, setProductsUI] = useState<Product[]>([]);
+  const [selectedProduct, setSelelctedProduct] = useState<Product|null>(null)
 
   useEffect(() => {
     // axios.get("/products/get").then((data) => {
@@ -33,6 +33,7 @@ export const Products: React.FC<ProductsProps> = ({ setShowAddPopup, showAddPopu
       console.log(data);
 
       const { products, error } = data;
+      console.log(products)
       setProductsUI(products);
       console.log(products);
     })();
@@ -52,9 +53,6 @@ export const Products: React.FC<ProductsProps> = ({ setShowAddPopup, showAddPopu
     
 
   // },[])
-
-
- 
 
   async function handleDelete(productID: string) {
     try {
@@ -91,13 +89,14 @@ export const Products: React.FC<ProductsProps> = ({ setShowAddPopup, showAddPopu
 
   return (
     <div>
-      {productsUI.map((prd) => {
+      {productsUI.map((prd:Product) => {
         return (
           <ProductCard
             key={prd._id}
             product={prd}
             handleDelete={handleDelete}
             setShowUpdatePopup={setShowUpdatePopup}
+            setSelelctedProduct={setSelelctedProduct}
           />
         );
       })}
@@ -110,7 +109,7 @@ export const Products: React.FC<ProductsProps> = ({ setShowAddPopup, showAddPopu
 
       {showUpdatePopup && (
         <Popup handleClosePopup={handleClosePopup}>
-          <UpdateProduct setShowUpdatePopup={setShowUpdatePopup} product={prd} />
+          <UpdateProduct setShowUpdatePopup={setShowUpdatePopup}  selectedProduct={selectedProduct}/>
         </Popup>
       )}
 

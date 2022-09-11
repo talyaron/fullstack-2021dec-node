@@ -8,7 +8,6 @@ const port = process.env.PORT || 4004;
 app.use(express.static("client/build"));
 app.use(express.json());
 
-
 import productsRoutes from './API/products/productsRoutes';
 app.use("/products", productsRoutes);
 
