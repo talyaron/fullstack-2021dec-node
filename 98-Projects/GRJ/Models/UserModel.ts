@@ -32,5 +32,6 @@ export const UserValidation = Joi.object({
         .required(),
     password: Joi
         .string()
-        .required()
+        .required(),
+        
 })

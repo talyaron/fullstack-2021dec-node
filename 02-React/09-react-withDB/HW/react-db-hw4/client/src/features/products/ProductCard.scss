@@ -1,0 +1,103 @@
+.card {
+    width: 70%;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-bottom: 1em;
+    border-bottom: .5px solid rgba(128, 128, 128, 0.4);
+
+    &__img {
+        width: 300px;
+        height: 200px;
+        border-radius: 8px;
+        margin: .5em;
+        box-shadow: 5px 5px 5px black;
+    }
+
+    &__details {
+        display: flex;
+        flex-direction: column;
+        text-shadow: 5px 5px 5px black;
+
+        &--price {
+            color: rgb(193, 7, 59);
+        }
+
+        &--title {
+            color: rgba(255, 255, 255, 0.655);
+        }
+
+        &--span {
+            font-size: smaller;
+            color: grey;
+        }
+    }
+
+    &__btn {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        border-radius: 5px;
+        height: fit-content;
+
+        &--del {
+            cursor: pointer;
+            color: #de094563;
+        }
+
+        .update-icon {
+            color: #228b22;
+            cursor: pointer;
+        }
+
+        .update-input {
+            margin-right: 1em;
+            width: 4em;
+            outline: none;
+            border: .5px solid rgb(10, 10, 10);
+            background-color: transparent;
+            border-radius: 5px;
+            font-size: .6em;
+            color: rgba(255, 255, 255, 0.271);
+            font-weight: normal;
+        }
+
+        // &--del {
+        //     cursor: pointer;
+        //     padding: .3em .5em;
+        //     font-size: .6em;
+        //     border: none;
+        //     box-shadow: 5px 5px 5px black;
+        // }
+
+
+
+        // &--del,
+        // &--update {
+        //     background-color: beige;
+        //     cursor: pointer;
+        //     padding: .3em .5em;
+        //     font-size: .6em;
+        //     border: none;
+        //       box-shadow: 5px 5px 5px black;
+        // }
+
+        // &--del {
+        //     background-color: #c1073c82;
+        //     color: rgba(255, 255, 255, 0.523);
+        // }
+    }
+
+}
+
+.priceColor {
+    color: #228b22;
+}
+
+.aboveForty {
+    color: #c1073cda;
+}

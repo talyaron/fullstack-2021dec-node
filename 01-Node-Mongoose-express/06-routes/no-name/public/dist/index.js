@@ -34,61 +34,108 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+<<<<<<<< HEAD:01-Node-Mongoose-express/06-routes/no-name/public/dist/index.js
 function initUsers() {
     return __awaiter(this, void 0, void 0, function () {
         var data, users, error, error_1;
+========
+function handleRegister(ev) {
+    return __awaiter(this, void 0, void 0, function () {
+        var email, password, data, error_1;
+>>>>>>>> GRJ:98-Projects/03-Vanilla-Node-Mongo/shira-hanoch-meir/public/dist/index.js
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
+<<<<<<<< HEAD:01-Node-Mongoose-express/06-routes/no-name/public/dist/index.js
                     return [4 /*yield*/, axios.get("/users/user-get")];
+========
+                    ev.preventDefault();
+                    email = ev.target.email.value;
+                    password = ev.target.password.value;
+                    return [4 /*yield*/, axios.post('/users/register', { email: email, password: password })];
+>>>>>>>> GRJ:98-Projects/03-Vanilla-Node-Mongo/shira-hanoch-meir/public/dist/index.js
                 case 1:
                     data = (_a.sent()).data;
                     users = data.users, error = data.error;
                     if (error)
                         throw new Error(error);
                     console.log(data);
+<<<<<<<< HEAD:01-Node-Mongoose-express/06-routes/no-name/public/dist/index.js
                     renderUser(data);
+========
+                    if (!data)
+                        throw new Error;
+>>>>>>>> GRJ:98-Projects/03-Vanilla-Node-Mongo/shira-hanoch-meir/public/dist/index.js
                     return [3 /*break*/, 3];
                 case 2:
                     error_1 = _a.sent();
-                    console.error(error_1);
+                    console.log(error_1);
                     return [3 /*break*/, 3];
                 case 3: return [2 /*return*/];
             }
         });
     });
 }
+<<<<<<<< HEAD:01-Node-Mongoose-express/06-routes/no-name/public/dist/index.js
 function handleDeleteUser(userID) {
     return __awaiter(this, void 0, void 0, function () {
         var data, error_2;
+========
+function handleLogin(ev) {
+    return __awaiter(this, void 0, void 0, function () {
+        var email, password, data, ok, error_2;
+>>>>>>>> GRJ:98-Projects/03-Vanilla-Node-Mongo/shira-hanoch-meir/public/dist/index.js
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
+<<<<<<<< HEAD:01-Node-Mongoose-express/06-routes/no-name/public/dist/index.js
                     return [4 /*yield*/, axios.post("/users/user-delete", { userID: userID })];
                 case 1:
                     data = (_a.sent()).data;
                     renderUser(data);
                     console.log(data);
+========
+                    ev.preventDefault();
+                    email = ev.target.email.value;
+                    password = ev.target.password.value;
+                    return [4 /*yield*/, axios.post('/users/login', { email: email, password: password })];
+                case 1:
+                    data = (_a.sent()).data;
+                    ok = data.ok;
+                    if (!ok) {
+                        console.log('error');
+                    }
+                    else {
+                        window.location.href = './events.html';
+                    }
+>>>>>>>> GRJ:98-Projects/03-Vanilla-Node-Mongo/shira-hanoch-meir/public/dist/index.js
                     return [3 /*break*/, 3];
                 case 2:
                     error_2 = _a.sent();
-                    console.error(error_2);
+                    console.log(error_2);
                     return [3 /*break*/, 3];
                 case 3: return [2 /*return*/];
             }
         });
     });
 }
+<<<<<<<< HEAD:01-Node-Mongoose-express/06-routes/no-name/public/dist/index.js
 ;
 function handleAddUser(e) {
     return __awaiter(this, void 0, void 0, function () {
         var name, data, error_3;
+========
+function handleCoachLogin(ev) {
+    return __awaiter(this, void 0, void 0, function () {
+        var email, password, data, ok, error_3;
+>>>>>>>> GRJ:98-Projects/03-Vanilla-Node-Mongo/shira-hanoch-meir/public/dist/index.js
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
+<<<<<<<< HEAD:01-Node-Mongoose-express/06-routes/no-name/public/dist/index.js
                     e.preventDefault();
                     name = e.target.elements.name.value;
                     return [4 /*yield*/, axios.post("/users/user-add", { name: name })];
@@ -101,12 +148,29 @@ function handleAddUser(e) {
                 case 2:
                     error_3 = _a.sent();
                     console.error(error_3);
+========
+                    ev.preventDefault();
+                    email = ev.target.email.value;
+                    password = ev.target.password.value;
+                    return [4 /*yield*/, axios.post('/users/coachLogin', { email: email, password: password })];
+                case 1:
+                    data = (_a.sent()).data;
+                    ok = data.ok;
+                    if (ok) {
+                        window.location.href = './coach.html';
+                    }
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_3 = _a.sent();
+                    console.log(error_3);
+>>>>>>>> GRJ:98-Projects/03-Vanilla-Node-Mongo/shira-hanoch-meir/public/dist/index.js
                     return [3 /*break*/, 3];
                 case 3: return [2 /*return*/];
             }
         });
     });
 }
+<<<<<<<< HEAD:01-Node-Mongoose-express/06-routes/no-name/public/dist/index.js
 function renderUser(users) {
     try {
         var root = document.querySelector("#root");
@@ -120,3 +184,5 @@ function renderUser(users) {
         console.error(error);
     }
 }
+========
+>>>>>>>> GRJ:98-Projects/03-Vanilla-Node-Mongo/shira-hanoch-meir/public/dist/index.js

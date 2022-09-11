@@ -10,14 +10,23 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+<<<<<<<< HEAD:02-React/09-react-withDB/HW/roy/package.json
     "axios": "^0.27.2",
     "dotenv": "^16.0.2",
+========
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^16.0.1",
+>>>>>>>> GRJ:01-Node-Mongoose-express/08-cookies/example/package.json
     "express": "^4.17.3",
     "mongoose": "^6.2.6"
   },
   "devDependencies": {
     "@types/express": "^4.17.1",
+<<<<<<<< HEAD:02-React/09-react-withDB/HW/roy/package.json
     "ts-node": "^10.5.0",
+========
+    "ts-node": "^10.9.1",
+>>>>>>>> GRJ:01-Node-Mongoose-express/08-cookies/example/package.json
     "typescript": "^4.5.5"
   }
 }
