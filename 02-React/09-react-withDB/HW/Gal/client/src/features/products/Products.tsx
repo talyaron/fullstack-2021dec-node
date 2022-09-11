@@ -8,6 +8,13 @@ const Products = () => {
   const [productsUI, setProductsUI] = useState<Product[]>([]);
 
   useEffect(() => {
+    axios
+      .get("/api/products/get-products")
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((err) => console.error(err));
+
     (async () => {
       const { data } = await axios.get("/api/products/get-products");
       console.log(data);
