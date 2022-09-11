@@ -10,6 +10,8 @@ app.use(express.json());
 
 const url = process.env.MONGO_URI;
 
+console.log(url);
+
 mongoose.connect(url).then((res)=>{
     console.log('connected to DB');
 }).catch((err) => {
