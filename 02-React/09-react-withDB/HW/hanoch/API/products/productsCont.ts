@@ -19,3 +19,12 @@ export  const  getProduct = async (req, res) => {
         res.status(500).send({error: error.message})
     }
 }
+
+export const deleteProduct = async (req, res) => {
+    try {
+        const id = req.body;
+       await ProductModel.deleteOne({_id:id})
+    } catch (error) {
+        res.status(500).send({error: error.message})
+    }
+}

@@ -23,12 +23,13 @@ export const SetProducts = () => {
   return (
     <div>
         <form onSubmit={handleSubmit}>
-            <input type="text" name="title" />
-            <input type="number" name="price" />
-            <input type="text" name="imgSrc"  />
+            <input type="text" name="title" placeholder='title'/>
+            <input type="number" name="price" placeholder='price'/>
+            <input type="text" name="imgSrc"  placeholder='url image'/>
             <input type="checkbox" name="publish" />
             <input type="submit" value="add product" />
         </form>
+        
     </div>
   )
 }
