@@ -1,0 +1,17 @@
+@import './features/products/card.scss';
+@import './features/products/products.scss';
+@import './features/ModalCard/ModalCard.scss';
+
+
+
+.App {
+    background-color: cornsilk;
+    text-align: center;
+    min-height: 100vh;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    overflow: hidden;
+}
+
+

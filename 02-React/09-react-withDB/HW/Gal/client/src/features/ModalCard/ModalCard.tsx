@@ -1,46 +1,22 @@
 import React from 'react';
-import { Fragment } from 'react';
-import ReactDOM from 'react-dom';
 import '../ModalCard/ModalCard.scss';
+import {Product} from '../products/productsModelC'
 
+interface PopUpProps {
+  children: React.ReactNode;
+  hidePopUpHandler: React.MouseEventHandler<HTMLButtonElement>;
+}
 
-// const Backdrop = (props: { onClose: React.MouseEventHandler<HTMLDivElement> | undefined; }) => {
-//   return <div className="backdrop" onClick={props.onClose}/>;
-// };
-
-// const ModalOverlay = (props: { children: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal | null | undefined; }) => {
-//     return(
-//   <div className="modal">
-//     <div className="content">{props.children}</div>
-//   </div>
-//   );
-// };
-
-const Backdrop = (props) => {
-  return <div  className="backdrop" onClick={props.onClose}/>;
-};
-
-const ModalOverlay = (props) => {
-    return(
-  <div className="modal">
-    <div className="content">{props.children}</div>
-  </div>
-  );
-};
-
-const portalElment = document.getElementById("overlays")!;
-
-const Modal = (props: { onClose: any; children: any; }) => {
+const ModalCard:React.FC<PopUpProps> = ({children, hidePopUpHandler }) => {
   return (
-    <Fragment>
-      {ReactDOM.createPortal(<Backdrop onClose={props.onClose} />, portalElment)}
-      {ReactDOM.createPortal(
-        <ModalOverlay>{props.children}</ModalOverlay>,
-        portalElment
-      )}
-    </Fragment>
+    <div>
+      <div className='modal'>
+        {children}
+        <button onClick={hidePopUpHandler}>close</button>
+      </div>
+    </div>
   );
 };
 
-export default Modal;
+export default ModalCard;
 
