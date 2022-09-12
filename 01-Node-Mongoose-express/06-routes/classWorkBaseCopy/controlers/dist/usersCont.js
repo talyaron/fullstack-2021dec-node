@@ -36,14 +36,22 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
+<<<<<<<< HEAD:01-Node-Mongoose-express/06-routes/classWorkBaseCopy/controlers/dist/usersCont.js
 exports.uid = exports.getAllUsers = void 0;
 var users = [
     { username: 'Moshe', id: uid() },
     { username: 'Miriam,', id: uid() },
 ];
 function getAllUsers(req, res) {
+========
+exports.getMyProducts = void 0;
+var productsModel_1 = require("../models/productsModel");
+function getMyProducts(req, res) {
+>>>>>>>> GRJ:98-Projects/03-Vanilla-Node-Mongo/Dorit/controls/dist/productCont.js
     return __awaiter(this, void 0, void 0, function () {
+        var user, userId, productsDB, error_1;
         return __generator(this, function (_a) {
+<<<<<<<< HEAD:01-Node-Mongoose-express/06-routes/classWorkBaseCopy/controlers/dist/usersCont.js
             try {
                 res.send({ ok: true, users: users });
             }
@@ -64,3 +72,28 @@ function uid() {
     return uid;
 }
 exports.uid = uid;
+========
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    user = req.cookies.user;
+                    if (!user)
+                        throw new Error("User is missing!!!!!");
+                    console.log(user);
+                    userId = user.userId;
+                    return [4 /*yield*/, productsModel_1["default"].find({ ownerId: userId })];
+                case 1:
+                    productsDB = _a.sent();
+                    res.send({ ok: true, products: productsDB });
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_1 = _a.sent();
+                    res.send({ error: error_1.message });
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
+}
+exports.getMyProducts = getMyProducts;
+>>>>>>>> GRJ:98-Projects/03-Vanilla-Node-Mongo/Dorit/controls/dist/productCont.js
