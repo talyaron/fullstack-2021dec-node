@@ -1,11 +1,12 @@
 import React from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import ModalCard from "../../ModalCard/ModalCard";
 
-const SetProduct = () => {
-  
-  
+interface SetProductsProps{
+  setPopUpShown:Function;
+}
+
+const SetProduct:React.FC<SetProductsProps> = ({setPopUpShown}) => {
     async function handleSubmit(ev: any) {
     try {
       ev.preventDefault();
@@ -20,6 +21,8 @@ const SetProduct = () => {
       console.log(title, imgSrc, price, publish);
 
       const { data } = await axios.post("/api/products/add-product",  {title, imgSrc, price, publish});
+
+      setPopUpShown(false);
       console.log(data)
     } catch (error) {
       console.error(error);
