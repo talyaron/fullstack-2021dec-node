@@ -3,7 +3,6 @@ import axios from "axios";
 import ProductCard from "../../features/products/ProductCard";
 import { Product } from "../../features/products/productsModelC";
 import { Link } from "react-router-dom";
-import React from "react";
 import ModalCard from "../ModalCard/ModalCard";
 import SetProduct from "../admin/setProduct/SetProduct";
 
@@ -12,6 +11,8 @@ interface ProductsProps {
   setPopUpShown: Function;
   deleteItem: boolean;
   popUpShown: boolean;
+  setNewItem:Function;
+  newItem:boolean;
 }
 
 const Products: FC<ProductsProps> = ({
@@ -19,6 +20,8 @@ const Products: FC<ProductsProps> = ({
   deleteItem,
   popUpShown,
   setPopUpShown,
+  setNewItem,
+  newItem,
 }) => {
   const [productsUI, setProductsUI] = useState<Product[]>([]);
 
@@ -76,7 +79,7 @@ const Products: FC<ProductsProps> = ({
 
       {popUpShown && (
         <ModalCard hidePopUpHandler={hidePopUpHandler}>
-          <SetProduct setPopUpShown={setPopUpShown} />
+          <SetProduct setPopUpShown={setPopUpShown} setNewItem={setNewItem} />
         </ModalCard>
       )}
 

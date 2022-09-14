@@ -8,6 +8,7 @@ import SetProduct from "./features/admin/setProduct/SetProduct";
 
 function App() {
   const [deleteItem, setDeleteItem] = useState<boolean>(false);
+  const [newItem, setNewItem] = useState<boolean>(false);
   const [popUpShown, setPopUpShown] = useState<boolean>(false);
 
   return (
@@ -17,16 +18,17 @@ function App() {
           <Route
             path="/"
             element={
-              <Products setPopUpShown={setPopUpShown} popUpShown={popUpShown} setDeleteItem={setDeleteItem} deleteItem={deleteItem} />
+              <Products
+                setPopUpShown={setPopUpShown}
+                popUpShown={popUpShown}
+                setDeleteItem={setDeleteItem}
+                deleteItem={deleteItem}
+                setNewItem={setNewItem} newItem={newItem}              />
             }
           />
           <Route
             path="/add-product"
-            element={
-              <SetProduct
-                setPopUpShown={setPopUpShown}
-              />
-            }
+            element={<SetProduct setPopUpShown={setPopUpShown} setNewItem={setNewItem} />}
           />
         </Routes>
       </BrowserRouter>

@@ -4,9 +4,10 @@ import { Link } from "react-router-dom";
 
 interface SetProductsProps{
   setPopUpShown:Function;
+  setNewItem:Function;
 }
 
-const SetProduct:React.FC<SetProductsProps> = ({setPopUpShown}) => {
+const SetProduct:React.FC<SetProductsProps> = ({setPopUpShown, setNewItem}) => {
     async function handleSubmit(ev: any) {
     try {
       ev.preventDefault();
@@ -22,6 +23,7 @@ const SetProduct:React.FC<SetProductsProps> = ({setPopUpShown}) => {
 
       const { data } = await axios.post("/api/products/add-product",  {title, imgSrc, price, publish});
 
+      setNewItem(true);
       setPopUpShown(false);
       console.log(data)
     } catch (error) {
