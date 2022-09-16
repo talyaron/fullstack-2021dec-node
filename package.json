@@ -25,7 +25,7 @@
     "hero": "^0.0.0",
     "jwt-simple": "^0.5.6",
     "mongoose": "^6.6.0",
-    "react-router-dom": "^6.3.0",
+    "react-router-dom": "^6.4.0",
     "saas": "^1.0.0",
     "sass": "^1.54.8",
     "socket.io": "^4.5.1",

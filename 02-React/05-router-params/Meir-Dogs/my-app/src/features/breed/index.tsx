@@ -4,7 +4,8 @@ import { getBreedImageRandom, Image } from "../breeds/getBreeeds";
 
 const Breed = () => {
   const {breed} = useParams();
-  const[breedImage, setBreedImage] = useState<Image>({breed:"", src:"" })
+  const[breedImage, setBreedImage] = useState<Image>({breed:"", src:"" });
+
   useEffect(()=>{
     if(breed)
       getBreedImageRandom(breed).then(breedImage=>

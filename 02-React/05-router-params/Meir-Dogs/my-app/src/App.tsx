@@ -13,7 +13,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="*" element={<Page404 />} />
+        <Route path="*" element={<Page404 />}/>
         <Route path="/" element={<Breeds />}/>
         <Route path='/bred/:breed' element={<Breed/>}/>   
       </Routes>
