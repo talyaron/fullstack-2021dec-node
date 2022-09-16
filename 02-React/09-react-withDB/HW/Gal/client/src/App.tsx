@@ -10,6 +10,9 @@ function App() {
   const [deleteItem, setDeleteItem] = useState<boolean>(false);
   const [newItem, setNewItem] = useState<boolean>(false);
   const [popUpShown, setPopUpShown] = useState<boolean>(false);
+  const [updateItem, setUpdateItem] = useState<boolean>(false);
+  const [updatePopUp, setUpdatePopUp] = useState<boolean>(false);
+
 
   return (
     <div className="App">
@@ -23,7 +26,13 @@ function App() {
                 popUpShown={popUpShown}
                 setDeleteItem={setDeleteItem}
                 deleteItem={deleteItem}
-                setNewItem={setNewItem} newItem={newItem}              />
+                setNewItem={setNewItem} 
+                newItem={newItem}
+                updateItem={updateItem}
+                setUpdateItem={setUpdateItem}
+                updatePopUp={updatePopUp}
+                setUpdatePopUp={setUpdatePopUp}
+                />
             }
           />
           <Route

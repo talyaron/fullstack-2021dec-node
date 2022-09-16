@@ -5,6 +5,7 @@ import { Product } from "../../features/products/productsModelC";
 import { Link } from "react-router-dom";
 import ModalCard from "../ModalCard/ModalCard";
 import SetProduct from "../admin/setProduct/SetProduct";
+import Update from '../admin/update/Update';
 
 interface ProductsProps {
   setDeleteItem: Function;
@@ -13,6 +14,10 @@ interface ProductsProps {
   popUpShown: boolean;
   setNewItem:Function;
   newItem:boolean;
+  updatePopUp:boolean;
+  setUpdatePopUp:Function;
+  setUpdateItem:Function;
+  updateItem:boolean;
 }
 
 const Products: FC<ProductsProps> = ({
@@ -22,8 +27,13 @@ const Products: FC<ProductsProps> = ({
   setPopUpShown,
   setNewItem,
   newItem,
+  updatePopUp,
+  setUpdatePopUp,
+  setUpdateItem,
+  updateItem,
 }) => {
   const [productsUI, setProductsUI] = useState<Product[]>([]);
+  const [selectedProduct, setSelelctedProduct] = useState<Product>();
 
   useEffect(() => {
     (async () => {
@@ -51,7 +61,8 @@ const Products: FC<ProductsProps> = ({
 
   function hidePopUpHandler() {
     try {
-      setPopUpShown(true);
+      setPopUpShown(false);
+      setUpdatePopUp(false);
     } catch (error) {
       console.error(error);
     }
@@ -59,7 +70,7 @@ const Products: FC<ProductsProps> = ({
 
   const showPopupHandler = () => {
     try {
-      setPopUpShown(false);
+      setPopUpShown(true);
     } catch (error) {
       console.error(error);
     }
@@ -68,14 +79,18 @@ const Products: FC<ProductsProps> = ({
   return (
     <div>
       <Link to="/add-product">ADMIN</Link>
-      {productsUI.map((prd) => (
+      {productsUI.map((prd) => {
+        return(
         <ProductCard
           key={prd._id}
           product={prd}
           handleDelete={handleDelete}
           setDeleteItem={setDeleteItem}
-          setProductsUI={setProductsUI}        />
-      ))}
+          setProductsUI={setProductsUI} 
+          setSelelctedProduct={setSelelctedProduct}
+          setUpdatePopUp={setUpdatePopUp}
+          />
+      )})}
 
       {popUpShown && (
         <ModalCard hidePopUpHandler={hidePopUpHandler}>
@@ -83,7 +98,18 @@ const Products: FC<ProductsProps> = ({
         </ModalCard>
       )}
 
-      <span onClick={showPopupHandler}></span>
+{updatePopUp && (
+        <ModalCard hidePopUpHandler={hidePopUpHandler}>
+          <Update
+            selectedProduct={selectedProduct}
+            setProductsUI={setProductsUI}
+            setUpdatePopUp={setUpdatePopUp}
+            setUpdateItem={setUpdateItem}
+          />
+        </ModalCard>
+      )}
+
+      <span className='addPopup' onClick={showPopupHandler}></span>
     </div>
   );
 };

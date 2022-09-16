@@ -6,10 +6,11 @@ interface UpdateProps{
     setUpdatePopUp: Function;
     setProductsUI: Function;
     selectedProduct: Product;
+    setUpdateItem: Function;
 }
 
 
-const Update:FC<UpdateProps> = ({setUpdatePopUp, selectedProduct}) => {
+const Update:FC<UpdateProps> = ({setUpdatePopUp, selectedProduct,setUpdateItem}) => {
     async function submitUpdateHandler(ev:FormEvent<HTMLFormElement>|any) {
         try {
             ev.preventDefault();
@@ -27,16 +28,24 @@ const Update:FC<UpdateProps> = ({setUpdatePopUp, selectedProduct}) => {
 
             const {data} = await axios.patch('/products/update',{productID,cardConst});
             const {product} = data;
-            setUpdatePopUp(false)
-            
-            console.log(product, product._id, data)
+            setUpdatePopUp(false);
+            setUpdateItem(true);
+
+            console.log(product, product._id)
         } catch (error) {
             console.error(error)
         }
     }
 
   return (
-    <div>Update</div>
+    <div>
+        <form className="form" onSubmit={(ev) => submitUpdateHandler(ev)}>
+            <input type="text" name="title" placeholder="Product Name" />
+            <input type="text" name="img" placeholder="Product Source" />
+            <input type="number" name="price" placeholder="Product Price" />
+            <button>Update Product</button>
+        </form>
+    </div>
   )
 }
 
