@@ -12,7 +12,7 @@ interface ProductCardProps{
     setUpdatePopUp:Function;
 }
 
-const ProductCard:React.FC<ProductCardProps> = ({setUpdatePopUp,setSelelctedProduct,product,setProductsUI,setDeleteItem,handleDelete}) => {
+const ProductCard:React.FC<ProductCardProps> = ({setUpdatePopUp,setSelelctedProduct,product,handleDelete}) => {
   const [priceColor, setPriceColor] = useState<string>("");
   const [update, setUpdate] = useState<boolean>(false);
   const [updatePrice, setUpdatePrice] = useState<number>(product.price);
@@ -26,7 +26,7 @@ const ProductCard:React.FC<ProductCardProps> = ({setUpdatePopUp,setSelelctedProd
       setPriceColor("aboveForty");
     }
     
-  }, [priceColor]);
+  }, [product.price , priceColor]);
   
 
   function handleDeleteItem(){

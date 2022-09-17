@@ -1,6 +1,5 @@
 import React from 'react';
 import '../ModalCard/ModalCard.scss';
-import {Product} from '../products/productsModelC'
 
 interface PopUpProps {
   children: React.ReactNode;

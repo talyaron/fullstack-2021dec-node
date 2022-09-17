@@ -33,7 +33,10 @@ const SetProduct:React.FC<SetProductsProps> = ({setPopUpShown, setNewItem}) => {
 
   return (
     <div>
-        <Link to='/'>Products</Link>
+      <div className="Links">
+        <h1><Link to="/add-product">This page: ADMIN</Link></h1>
+        <Link to='/'>Go to: Products Page</Link>
+        </div>
       <form onSubmit={handleSubmit}>
         <input type="text" name="title" placeholder="product name" />
         <input type="text" name="imgSrc" placeholder="img url" />

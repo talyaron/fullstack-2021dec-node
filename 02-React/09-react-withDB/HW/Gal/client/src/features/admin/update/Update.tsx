@@ -5,7 +5,7 @@ import axios from 'axios';
 interface UpdateProps{
     setUpdatePopUp: Function;
     setProductsUI: Function;
-    selectedProduct: Product;
+    selectedProduct: Product | null;
     setUpdateItem: Function;
 }
 
@@ -14,7 +14,7 @@ const Update:FC<UpdateProps> = ({setUpdatePopUp, selectedProduct,setUpdateItem})
     async function submitUpdateHandler(ev:FormEvent<HTMLFormElement>|any) {
         try {
             ev.preventDefault();
-            const productID = selectedProduct._id;
+            const productID = selectedProduct?._id;
             console.log(productID);
             if(!productID) throw new Error ('Data didnt Update => Wrong ID')
              
@@ -26,7 +26,7 @@ const Update:FC<UpdateProps> = ({setUpdatePopUp, selectedProduct,setUpdateItem})
              console.log(cardConst) //just for my play
             console.log(title,published,img,price)
 
-            const {data} = await axios.patch('/products/update',{productID,cardConst});
+            const {data} = await axios.patch('/products/update-card',{productID,cardConst});
             const {product} = data;
             setUpdatePopUp(false);
             setUpdateItem(true);

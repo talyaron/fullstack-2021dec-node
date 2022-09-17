@@ -9,7 +9,7 @@ import {
 const router = express.Router();
 
 router
-  .post("/add", addProduct)
+  .post("/add-product", addProduct)
   .get("/get-products", getProducts)
   .delete("/delete", deleteProduct)
   .patch("/update-price", updatePrice)

@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import ModalCard from "../ModalCard/ModalCard";
 import SetProduct from "../admin/setProduct/SetProduct";
 import Update from '../admin/update/Update';
-
+import './products.scss';
 interface ProductsProps {
   setDeleteItem: Function;
   setPopUpShown: Function;
@@ -33,7 +33,7 @@ const Products: FC<ProductsProps> = ({
   updateItem,
 }) => {
   const [productsUI, setProductsUI] = useState<Product[]>([]);
-  const [selectedProduct, setSelelctedProduct] = useState<Product>();
+  const [selectedProduct, setSelelctedProduct] = useState<Product | null>(null);
 
   useEffect(() => {
     (async () => {
@@ -78,7 +78,10 @@ const Products: FC<ProductsProps> = ({
 
   return (
     <div>
-      <Link to="/add-product">ADMIN</Link>
+      <div className="Links">
+     <h1> <Link to='/'>This page: Products</Link></h1>
+      <Link to="/add-product">Go to: ADMIN PAGE</Link>
+      </div>
       {productsUI.map((prd) => {
         return(
         <ProductCard
