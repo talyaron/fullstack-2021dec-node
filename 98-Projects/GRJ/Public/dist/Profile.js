@@ -37,10 +37,9 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 function getUserId() {
     try {
         var queryString = window.location.search;
-        console.log(queryString);
         var urlParams = new URLSearchParams(queryString);
-        console.log(urlParams);
         var userId = urlParams.get("userId");
+        console.log(userId);
         return userId;
     }
     catch (error) {
@@ -50,7 +49,7 @@ function getUserId() {
 }
 function onscondPageLoad() {
     return __awaiter(this, void 0, void 0, function () {
-        var userId, data, error, user, name, age, image, nav, error_1;
+        var userId, data, error, userDB, name, email, nav, nav, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -58,17 +57,24 @@ function onscondPageLoad() {
                     userId = getUserId();
                     if (!userId)
                         throw new Error("couldnt find user id in url");
-                    return [4 /*yield*/, axios.get("/users/get-user?userId=" + userId)];
+                    return [4 /*yield*/, axios.post("/profile/get-name", { userId: userId })];
                 case 1:
                     data = (_a.sent()).data;
-                    error = data.error, user = data.user;
+                    error = data.error, userDB = data.userDB;
+                    console.log(data);
                     if (error)
                         throw error;
-                    console.log(user);
-                    name = user.name, age = user.age, image = user.image;
-                    nav = document.querySelector("#Navbar");
-                    nav.innerHTML = "<h1>Hello " + name + "! What would you like to do</h1>";
-                    console.log(data);
+                    name = data.name;
+                    email = data.email;
+                    if (name) {
+                        nav = document.querySelector("#Navbar");
+                        nav.innerHTML = "\n      <h1>Hello " + name + "! What would you like to do?</h1>";
+                    }
+                    else {
+                        nav = document.querySelector("#Navbar");
+                        nav.innerHTML = "<h1> Hello " + email + "! What would you like to do?</h1>";
+                    }
+                    renderAll(data);
                     return [3 /*break*/, 3];
                 case 2:
                     error_1 = _a.sent();
@@ -79,13 +85,10 @@ function onscondPageLoad() {
         });
     });
 }
-function renderUsers(users) {
-    var html = users
-        .map(function (user) {
-        console.log(user);
-        return "<div>" + user.username + " \n          <input type='text' placeholder='role' value=\"" + user.role + "\" onblur='handleUpdate(event, \"" + user._id + "\")'/>\n          <button onclick='handleDelete(\"" + user._id + "\")'>DELETE</button>\n          </div>";
-    })
-        .join("");
-    console.log(html);
-    document.getElementById("users").innerHTML = html;
+function renderAll(data) {
+    var userDB = data;
+    var html = "";
+    html = "<div class=\"ScheduleApointmant\">\n   <button class=\"scheduleMeeting\">\n     <a href=\"./ScheduleAppo.html?userId=" + userDB._id + "\" alt=\"scheduleMeeting\">\n       <i id=\"calenderPlusIcon\" class=\"fas fa-calendar-plus\"></i>\n     </a>\n   </button>\n   <p>schedule a meeting</p>\n </div>\n <div>\n   <button class=\"scheduleMeeting\">\n     <a href=\"./myMeetings.html?userId=" + userDB._id + "\" alt=\"my meetings\">\n     <i class=\"fas fa-calendar-check\"></i>\n   </a>\n   </button>\n   <p>check my meetings</p>\n </div>\n <div>\n   <button class=\"ContactADoctor\">\n     <a href=\"./Connect.html?userId=" + userDB._id + "\" alt=\"online Doctor\">\n       <i class=\"fas fa-comment-medical\"></i>\n     </a>\n     </button>\n     <p>online Doctor</p>\n </div>";
+    var actions = document.querySelector('#actions');
+    actions.innerHTML = html;
 }

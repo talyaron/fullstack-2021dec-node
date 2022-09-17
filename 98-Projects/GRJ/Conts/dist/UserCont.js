@@ -52,9 +52,11 @@ function login(req, res) {
                     error = UserModel_1.UserValidation.validate({ email: email, password: password }).error;
                     if (error)
                         throw error;
+                    console.log(email);
                     return [4 /*yield*/, UserModel_1["default"].findOne({ email: email })];
                 case 1:
                     userDB = _b.sent();
+                    console.log(userDB);
                     if (!userDB)
                         throw new Error("User name or password do not match");
                     if (!userDB.password)
@@ -71,7 +73,7 @@ function login(req, res) {
                     secret = process.env.JWT_SECRET;
                     JWTCookie = jwt_simple_1["default"].encode(cookie, secret);
                     res.cookie('user', JWTCookie);
-                    res.send({ login: true });
+                    res.send({ login: true, userDB: userDB });
                     return [3 /*break*/, 4];
                 case 3:
                     error_1 = _b.sent();
@@ -99,8 +101,10 @@ function register(req, res) {
                     return [4 /*yield*/, UserModel_1["default"].create({ email: email, name: name, password: hash })];
                 case 1:
                     userDB = _b.sent();
-                    // await user.save();
-                    res.send({ ok: true });
+                    // await userDB.save();
+                    // const role = userDB.role || "user";
+                    // console.log(role);
+                    res.send({ register: true, userDB: userDB });
                     return [3 /*break*/, 3];
                 case 2:
                     error_2 = _b.sent();
