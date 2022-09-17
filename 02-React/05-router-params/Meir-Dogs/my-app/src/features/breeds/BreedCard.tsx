@@ -1,7 +1,7 @@
 import { FC } from "react"
-import breed from "../breed"
+// import breed from "../breed"
 import { Image } from "./getBreeeds"
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 interface BreedCardProps{
   breed:Image;

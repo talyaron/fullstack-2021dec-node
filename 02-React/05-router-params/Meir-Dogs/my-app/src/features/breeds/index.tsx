@@ -9,7 +9,7 @@ const Breeds = () => {
    const[breeds, setBreeds] = useState<Image[]>([]);
 
   useEffect (()=>{
-    getBreeds().then((brds:Image[]) => {
+    getBreeds().then((brds: Image[]) => {
       if (brds.length > 0) {
         console.log(brds);
         setBreeds(brds);

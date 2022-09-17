@@ -1,35 +1,23 @@
 import React from 'react';
 import axios from 'axios';
+import { CardAdmin} from './CardAdmin';
+import {product} from '../user/ProductsModel'
+import { FormAdmin } from './FormAdmin';
+import { DisplayCardAdmin } from './DisplayCardAdmin';
+import { UpdateCard } from './UpdateCard';
+
 
 export const SetProducts = () => {
 
-   async function handleSubmit(ev: any){
-        ev.preventDefault()
-        try {
-            const elm = ev.target.elements;
-            const title = elm.title.value;
-            const price = elm.price.valueAsNumber;
-            const imgSrc = elm.imgSrc.value;
-            const publish = elm.publish.value;
-
-            const {data} = await axios.post('/api/products/add-product', {title, price, imgSrc, publish})
-            console.log(data);
-            
-        } catch (error) {
-            console.error(error)
-        }
-    }
+   
+    
 
   return (
     <div>
-        <form onSubmit={handleSubmit}>
-            <input type="text" name="title" placeholder='title'/>
-            <input type="number" name="price" placeholder='price'/>
-            <input type="text" name="imgSrc"  placeholder='url image'/>
-            <input type="checkbox" name="publish" />
-            <input type="submit" value="add product" />
-        </form>
-        
+        <FormAdmin/>
+        <DisplayCardAdmin/>
+        <UpdateCard/>
+
     </div>
   )
 }
