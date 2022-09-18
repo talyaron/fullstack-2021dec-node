@@ -1,1 +1,0 @@
-{"version":3,"file":"squareRoutes.js","sourceRoot":"","sources":["../../routes/squareRoutes.ts"],"names":[],"mappings":";;;;;AAAA,sDAA8B;AAC9B,MAAM,MAAM,GAAG,iBAAO,CAAC,MAAM,EAAE,CAAC;AAChC,uDAIiC;AAEjC,MAAM;KACH,GAAG,CAAC,mBAAmB,EAAE,0BAAc,CAAC;KACxC,KAAK,CAAC,aAAa,EAAE,qBAAS,CAAC;KAC/B,IAAI,CAAC,YAAY,EAAE,oBAAQ,CAAC,CAAA;AAE/B,kBAAe,MAAM,CAAC"}

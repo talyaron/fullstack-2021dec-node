@@ -1,5 +1,7 @@
+import { FC } from 'react'
 import {Option} from '../personalFacts/factModel'
-import './PersonalFacts.scss'
+import './PersonalFacts.scss';
+
 
 interface OptionCardProps {
   option: Option;
@@ -7,7 +9,8 @@ interface OptionCardProps {
 
 
 
-export const OptionCard = ({option}: OptionCardProps)  => {
+export const OptionCard: FC<OptionCardProps> = (props) => {
+  const { option } = props;
 
   return (
     <div >

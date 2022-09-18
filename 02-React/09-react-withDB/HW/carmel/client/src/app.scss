@@ -1,0 +1,62 @@
+@import "./features/user/user.scss";
+@import "./features/admin/admin.scss";
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+body{
+  background-color: #bde1ea;
+}
+button{
+  border: none;
+  margin: 2vw;
+    width: 15vw;
+    height: 6vh;
+    border-radius: 20px;
+}
+button:hover{
+  background-color: #61dafb;
+}
+.productCard{
+  display: flex;
+  width: 320px;
+  justify-content: space-between;
+  padding: 25px;
+  img{
+    width: 20vw;
+  }
+}
