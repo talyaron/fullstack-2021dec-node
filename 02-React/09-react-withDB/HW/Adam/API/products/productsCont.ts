@@ -6,7 +6,7 @@ export async function addProduct(req: any, res: any) {
     const product = new ProductModel({ title, price, img, published });
     await product.save();
 
-    res.send({ success: true, message: "Product has been succsesfuly added" });
+    res.send({ success: true, message: "Product was added" });
     console.log(product);
 
   } catch (error) {
@@ -17,7 +17,7 @@ export async function addProduct(req: any, res: any) {
 
 export async function getProducts(req: any, res: any) {
   try {
-    // getting the right product
+    // We want to get only the published product!
     const productsDB: any[] = await ProductModel.find({ published: true });
     // to get the length
     res.send({
@@ -42,7 +42,7 @@ export const deleteProduct = async (req: any, res: any) => {
       res.send({
         success: true,
         product: productDB,
-        message: "Product has been removed",
+        message: "Product deleted successfully",
       });
     }
 
@@ -75,9 +75,17 @@ export const updatePrice = async (req: any, res: any) => {
 export const updateCard = async (req: any, res: any) => {
   try {
     const { title, img, price, published, productID } = req.body;
+    console.log(productID)
+    const options = { new: true }
+    console.log(productID)
 
     if(productID || title || img || price || published) {
-      const product = await ProductModel.findOneAndUpdate({ title, img, price, published, _id: productID});
+      const product = await ProductModel.findByIdAndUpdate(productID, {
+        title: title,
+        img:img,
+        price:price,
+        published:published
+      }, options);
 
       res.send({ success: true, product, message: 'Product Card updated successfully'})
       console.log(product);
