@@ -1,12 +1,11 @@
 import { FC } from "react"
-// import breed from "../breed"
-import { Image } from "./getBreeeds"
+import { Image } from "./getBreeds"
 import { Link } from "react-router-dom";
 
 interface BreedCardProps{
   breed:Image;
 }
-const BreedsCard:FC<BreedCardProps> = ({breed}) => {
+const BreedCard:FC<BreedCardProps> = ({ breed }) => {
   return (
     <Link to={`/breed/${breed.breed}`}>
       <div className="card">
@@ -17,4 +16,4 @@ const BreedsCard:FC<BreedCardProps> = ({breed}) => {
   );
 };
 
-export default BreedsCard;
+export default BreedCard;

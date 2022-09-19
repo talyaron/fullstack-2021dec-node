@@ -1,27 +1,28 @@
 import axios from "axios";
 
+
 export interface Image {
-    breed: string;
-    src:string
+  breed: string;
+  src:string
 }
 
 export async function getBreeds(): Promise<Image[]> {
-    try {
-        const {data} = await axios.get('https://dog.ceo/api/breeds/list/all');
+  try {
+    const {data} = await axios.get("https://dog.ceo/api/breeds/list/all");
         
-        const {message} = data;
-        console.log(message);
+    const {message} = data;
+    console.log(message);
 
-        const breeds = Object.keys(message);  //array of breeds 
+    const breeds = Object.keys(message);  //array of breeds 
         
-        const images = await Promise.all(breeds.map(breed=>getBreedImageRandom(breed)));
-        console.log(images);
+    const images = await Promise.all(breeds.map(breed=>getBreedImageRandom(breed)));
+    console.log(images);
         
-      return images;
-    } catch (error) {
-        console.error(error)
-        return [];
-    }
+    return images;
+  } catch (error) {
+    console.error(error)
+    return [];
+  }
 } 
 
 

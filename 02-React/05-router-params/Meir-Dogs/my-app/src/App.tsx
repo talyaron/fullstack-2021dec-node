@@ -6,7 +6,7 @@ import Page404 from "./features/404/404";
 
 
 import Breeds from "./features/breeds";
-import Breed from "./features/breed"
+import Breed from "./features/breed";
 
 
 const App = () => {
@@ -16,7 +16,7 @@ const App = () => {
       <Routes>
           <Route path="*" element={<Page404 />}/>
           <Route path="/" element={<Breeds />}/>
-          <Route path='/bred/:breed' element={<Breed/>}/>   
+          <Route path="/bred/:breed" element={<Breed/>}/>   
       </Routes>
     </BrowserRouter>
    
