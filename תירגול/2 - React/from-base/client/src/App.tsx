@@ -1,22 +1,20 @@
-import { useState } from "react";
-import { products } from "./data/products";
-import Buttom from "./View/Components/Buttom";
-import ProductComponent from "./View/Components/Product";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Louyt from "./Louyt";
+import HomePage from "./View/Pages/HomePage";
+import MainPage from "./View/Pages/MainPage";
+import ProductInfo from "./View/Pages/ProductInfo";
 
 function App() {
-  const [number, setNumber] = useState<number>(3);
-
   return (
-    <div className="App">
-      <div>{number}</div>
-      <h1>Products</h1>
-      <div>
-        {products.map((item, index) => (
-          <ProductComponent item={item} index={index} setNumber={setNumber} />
-        ))}
-      </div>
-      <Buttom setNumber={setNumber} />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Louyt />}>
+          {/* <Route index element={<HomePage />} /> */}
+          <Route index element={<MainPage />} />
+          <Route path=":id" element={<ProductInfo />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
