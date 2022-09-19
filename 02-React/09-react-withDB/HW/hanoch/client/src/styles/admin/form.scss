@@ -1,0 +1,12 @@
+.formDiv{
+    position: relative;
+    top: 100px;
+    .form{
+       padding: 10px;
+       .boxes{
+        margin: 5px;
+        width: 100px;
+        height: 30px;
+       }
+    }
+}

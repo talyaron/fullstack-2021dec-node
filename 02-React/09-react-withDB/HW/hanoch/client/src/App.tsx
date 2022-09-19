@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import './App.css';
+import './styles/app.scss';
 import { SetProducts } from './featurs/admin/SetProducts';
 import { Products } from './featurs/user/Products';
 

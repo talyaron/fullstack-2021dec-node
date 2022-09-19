@@ -1,0 +1,14 @@
+body{
+    background-color: purple;
+    .welcome{
+        color: gray;
+    }
+    .products{
+        background-color: plum;
+        position: relative;
+        top: 100px;
+        display: grid;
+        grid-template-columns: auto auto auto;
+        
+    }
+}

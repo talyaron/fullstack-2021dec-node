@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import '../../styles/admin/form.scss'
 
 export const FormAdmin = () => {
 
@@ -12,9 +13,9 @@ export const FormAdmin = () => {
             const imgSrc = elm.imgSrc.value;
             const publish = elm.publish.checked;
 
-            console.log(publish);
-            const {data} = await axios.post('/api/products/add-product', {title, price, imgSrc, publish})
-            console.log(data);
+            
+            await axios.post('/api/products/add-product', {title, price, imgSrc, publish})
+            window.location.reload()
              
             
         } catch (error) {
@@ -23,13 +24,16 @@ export const FormAdmin = () => {
     }
 
   return (
-    <div>
-        <form onSubmit={handleSubmit}>
-            <input type="text" name="title" placeholder='title'/>
-            <input type="number" name="price" placeholder='price'/>
-            <input type="text" name="imgSrc"  placeholder='url image'/>
+    <div className='formDiv'>
+        <h1>Add product here</h1>
+        <form className='form' onSubmit={handleSubmit}>
+            <input className='boxes' type="text" name="title" placeholder='title'/>
+            <input className='boxes' type="number" name="price" placeholder='price'/>
+            <input className='boxes' type="text" name="imgSrc"  placeholder='url image'/> 
+            <br/>
+            <label className='boxes' htmlFor="publish">publish</label>
             <input type="checkbox" name="publish" />
-            <input type="submit" value="add product" />
+            <input className='boxes' type="submit" value="add product" />
         </form>
     </div>
   )

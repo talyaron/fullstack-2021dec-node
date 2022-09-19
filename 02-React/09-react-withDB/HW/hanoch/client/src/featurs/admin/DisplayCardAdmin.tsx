@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
+import '../../styles/admin/display.scss'
 import { product } from '../user/ProductsModel';
 import axios from 'axios';
 import { CardAdmin } from './CardAdmin';
 
-export const DisplayCardAdmin = () => {
+export const DisplayCardAdmin:FC<{setDisplayWindow:Function, setId:Function}> = ({setDisplayWindow, setId}) => {
     const [productManage, setProductManage] = useState<product[]>([])
     useEffect( ()=>{
         (async ()=>{
@@ -18,9 +19,9 @@ export const DisplayCardAdmin = () => {
         
     },[])
   return (
-    <div>
+    <div className='proManag'>
         {productManage.map((product)=>{
-           return <CardAdmin key={product._id} product={product}/>
+           return <CardAdmin key={product._id} setDisplayWindow={setDisplayWindow} setId={setId} product={product}/>
         })}
     </div>
   )
