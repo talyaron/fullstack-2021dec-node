@@ -11,6 +11,7 @@ function App() {
   function handleWrite(ev:any){
     try {
       setText(ev.target.value);
+      console.log(ev.target.value)
     } catch (error) {
       console.error(error)
     }
@@ -19,6 +20,7 @@ function App() {
   function handleBackgroundColor(ev:ChangeEvent<HTMLInputElement>) {
     try {
       setBackgroundColor(ev.target.value);
+      console.log(ev.target.value)
     } catch (error) {
       console.error(error)
     }
@@ -28,6 +30,7 @@ function App() {
     try {
 
       setRangeBar(ev.target.value)
+      console.log(ev.target.value)
 
     } catch (error) {
       console.error(error)
@@ -37,7 +40,7 @@ function App() {
   function handleRotateBar(ev:ChangeEvent<HTMLInputElement>) {
     try {
       setRotateBar(ev.target.value)
-      
+      console.log(ev.target.value)
     } catch (error) {
       console.error(error)
     }
