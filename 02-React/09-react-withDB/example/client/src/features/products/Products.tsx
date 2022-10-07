@@ -21,6 +21,7 @@ const Products = () => {
       const { products, error } = data;
       console.log(products, error);
       setProductsUI(products);
+      
     })();
   }, []);
   return <div>

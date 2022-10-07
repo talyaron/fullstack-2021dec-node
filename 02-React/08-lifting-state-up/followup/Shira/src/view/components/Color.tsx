@@ -13,3 +13,4 @@ return(
 }
 
 export default Color;
+
