@@ -1,4 +1,4 @@
-import {ChangeEvent, useState} from 'react';
+import {ChangeEvent, FormEvent, useState} from 'react';
 
 import './App.css';
 
@@ -45,18 +45,33 @@ function App() {
       console.error(error)
     }
   }
+
+  function handleSubmit(ev:any) {
+    ev.preventDefault();
+    try {
+      let {text, backgroundColor, rotate} = ev.target.elements;
+      text = text.value;
+      backgroundColor = backgroundColor.value;
+      rotate = rotate.value;
+      console.log(text, backgroundColor, rotate);
+    } catch (error) {
+      console.error(error)
+    }
+  } 
+
   return (
     <div className="App" style={{ backgroundColor: backgroundColor }}>
       
-
-      <input type="text" name="" id="" onChange={handleWrite} />
-      <input type="color" onChange={handleBackgroundColor} />
-      <input type="range" onChange={handleRangeBar} />
-      <input type="range" min={-180} max={180} onChange={handleRotateBar}/>
-      <p>{text}</p>
-      <div className="bar" style={{rotate: `${rotateBar}deg`}}></div>
-      <div className='bar' style={{width:`${rangeBar}vw`}}> </div>
-
+     <form onSubmit={handleSubmit}> 
+        <input type="text" name="text" id="" onChange={handleWrite} />
+        <input type="color" name="backgroundColor" onChange={handleBackgroundColor} />
+        <input type="range" name="rotate" onChange={handleRangeBar} />
+        <input type="range" min={-180} max={180} onChange={handleRotateBar}/>
+        <p>{text}</p>
+        <div className="bar" style={{rotate: `${rotateBar}deg`}}></div>
+        <div className='bar' style={{width:`${rangeBar}vw`}}> </div>
+        <button>SEND</button>
+     </form>
       
     </div>
   );
