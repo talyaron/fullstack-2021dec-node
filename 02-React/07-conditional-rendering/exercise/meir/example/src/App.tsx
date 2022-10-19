@@ -6,6 +6,7 @@ import './App.css';
 function App() {
    const [isChecked, setIsChecked] = useState<boolean>(false)
    const [counter, setCounter] =useState<number>(0);
+   
    function handleCheck(ev:any) {
      try {
       console.dir(ev.target.checked);

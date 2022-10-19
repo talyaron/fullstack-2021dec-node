@@ -27,7 +27,7 @@
     "mongoose": "^6.6.0",
     "react-router-dom": "^6.4.2",
     "saas": "^1.0.0",
-    "sass": "^1.54.8",
+    "sass": "^1.55.0",
     "socket.io": "^4.5.1",
     "ts-config": "^20.10.0"
   },
