@@ -28,6 +28,4 @@ export const { changeText  } = textSlice.actions;
 
 export const textSelector = (state:RootState) => state.text.text
 
-
-
 export default textSlice.reducer;
