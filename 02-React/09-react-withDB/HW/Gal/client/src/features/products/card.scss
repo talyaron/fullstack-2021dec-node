@@ -1,0 +1,24 @@
+.productCard {
+  width: 70%;
+  display: flex;
+  margin: auto;
+  flex-direction: row;
+  align-items: center;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.4);
+  justify-content: center;
+  justify-content: space-between;
+
+  &__img {
+    width: 30%;
+    height: 20%;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__delete{
+    background-color: black;
+  }
+}

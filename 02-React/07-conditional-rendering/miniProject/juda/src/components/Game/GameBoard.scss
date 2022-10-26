@@ -1,0 +1,91 @@
+body {
+    background-color: rgb(152, 235, 246);
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    margin: 0px auto;
+
+    h1 {
+        display: flex;
+        justify-content: center;
+    }
+
+    .navBar {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        border: 3px solid green;
+    }
+}
+
+.allOptions {
+    display: grid;
+    grid-template-columns: auto auto;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: 0px auto;
+    gap: 2rem;
+
+
+    img {
+        height: 20rem;
+        width: 20rem;
+        border: 8px solid rgb(252, 138, 56);
+    }
+}
+
+
+.optionBox {
+    position: relative;
+
+    h2 {
+        position: absolute;
+        top: 50%;
+        width: 100%;
+        text-align: center;
+        font-size: 3rem;
+        background-color: rgb(241, 255, 87);
+    }
+
+    &:hover {
+        background-color: rgba(5, 82, 191, 0.5);
+
+    }
+
+}
+
+.categoryWrapper {
+    display: grid;
+    grid-template-columns: auto auto;
+    width: fit-content;
+    gap: 4px;
+
+
+    img {
+        margin: 30px;
+        height: 12rem;
+        width: 12rem;
+    }
+
+    .categoryBox {
+        margin: 0px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border: 3px solid green;
+        height: 20rem;
+
+
+        &:hover {
+            background-color: yellow;
+        }
+    }
+
+    .returnSvg {
+        height: 50px;
+    }
+}

@@ -26,4 +26,13 @@ export async function getProducts(req: any, res: any) {
   }
 }
 
+export async function handleDelete(req, res){
+  const {appoId}= req.body;
+  console.log(appoId,"1")
 
+  const AppoDB= await ProductModel.findByIdAndRemove( {_id:appoId} )
+  console.log(AppoDB)
+  if(!AppoDB)throw new Error("couldn't be found");
+
+  res.send(AppoDB)
+}

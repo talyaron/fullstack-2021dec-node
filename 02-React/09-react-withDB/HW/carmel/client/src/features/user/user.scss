@@ -1,0 +1,32 @@
+.rapper{
+    height: 90vh;
+    overflow-y: scroll;
+    width: 99vw;
+}
+.navBar{
+    display: flex;
+    width: 99vw;
+    height: 10vh;
+    flex-direction: row;
+    justify-content: space-around;
+    background-color: aquamarine;
+    position: fixed;
+    bottom: 0;
+  a{
+        height: 10vh;
+        align-items: center;
+        width: 33vw;
+        background-color: rgb(20, 150, 106);
+        border: none;
+        display: flex;
+        justify-content: center;
+        text-decoration: none;
+        color: beige;
+        font-weight: bolder;
+        font-size: larger;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    a:hover{
+        background-color: rgb(132, 132, 243);
+    }
+}

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import BreedCard from "./BreedCard";
 import { getBreeds, Image } from "./getBreeds";
-import './breeds.scss';
+import "./breeds.scss";
 
 const Breeds = () => {
   //set state breeds

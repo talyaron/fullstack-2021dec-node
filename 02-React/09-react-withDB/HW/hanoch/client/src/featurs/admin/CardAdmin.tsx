@@ -1,26 +1,36 @@
-import React, { FC } from 'react';
-import {product} from '../user/ProductsModel'
-interface AdminCardProps{
-    product:product
+import React, { FC, createContext } from 'react';
+import { product } from '../user/ProductsModel';
+import {deleteProduct} from './SetDelete';
+
+interface CardAdminProps{
+    product:product,
+    setDisplayWindow:Function,
+    setId:Function
 }
 
-export const CardAdmin:FC<AdminCardProps> = ({product}) => {
+export const CardAdmin:FC<CardAdminProps> = ({product, setDisplayWindow, setId}) => {
+  // const { setCopy } = useGlobalContext()
 
-    function handleUpdate(){
+  //isEdit state
+  const display= () =>{
+    setId(product._id)
+    setDisplayWindow(true)
+  };
+  function delete1(){
+    
+    deleteProduct(product._id)
+    window.location.reload()
+  }
 
-    }
-
-    function handleDelete(){
-        
-    }
-
+  
   return (
+    
     <div>
         <h2>{product.title}</h2>
         <img src={product.imgSrc} alt={product.title} />
         <h2>{product.price}</h2>
-        <button onClick={handleUpdate} >update </button>
-        <button onClick={handleDelete} >delete</button>
+        <button onClick={() =>{ display()}} >update </button>
+        <button onClick={() => delete1()} >delete</button>
     </div>
   )
 }
