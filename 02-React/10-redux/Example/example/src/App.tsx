@@ -3,13 +3,27 @@ import logo from "./logo.svg";
 import { Counter } from "./features/counter/Counter";
 import "./App.css";
 import { useAppDispatch, useAppSelector } from "./app/hooks";
-import { changeText, textSelector } from "./features/text/textSlice";
+import { changeText, statusSelector, textSelector } from "./features/text/textSlice";
+import { getJoke } from "./features/text/textAPI";
+import Spinner from "./features/spinner/Spinner";
 
 function App() {
+  const status = useAppSelector(statusSelector)
+const dispatch = useAppDispatch();
+
+function handleGetJoke(){
+  try {
+    dispatch(getJoke())
+  } catch (error) {
+    console.error(error)
+  }
+}
+
   return (
     <div className="App">
       <Input />
-      <Output />
+      {status === 'loading'?<Spinner/>:<Output />}
+      <button onClick={handleGetJoke}>Get Joke</button>
     </div>
   );
 }
