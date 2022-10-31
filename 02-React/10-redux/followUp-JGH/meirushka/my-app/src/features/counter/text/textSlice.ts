@@ -3,6 +3,7 @@ import { text } from "stream/consumers";
 import { RootState, AppThunk } from "../../../app/store";
 import { getMyJoke } from "./textAPI";
 
+
 export interface TextState {
     text: string;
     status: "idle" | "loading" | "failed";

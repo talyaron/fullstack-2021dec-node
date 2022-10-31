@@ -5,6 +5,8 @@ import './App.css';
 import { useAppDispatch, useAppSelector } from './app/hooks';
 import { changeText, textSelector } from './features/counter/text/textSlice';
 import { getMyJoke } from "./features/counter/text/textAPI";
+import { statusSelector } from './features/counter/text/textSlice';
+import { Spinner } from "./features/spinner/Spinner";
 
 
 function App() {
@@ -21,7 +23,8 @@ function App() {
   }
   return (
     <div>
-      <input />
+      <Input />
+      {status === 'loading'?<Spinner/>:<Output />} 
       <button onClick={handleGetMyJoke}>Get My Joke</button>
     </div>
   );
