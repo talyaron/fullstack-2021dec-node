@@ -1,10 +1,11 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { useAppSelector } from '../../app/hooks';
 import { RootState, AppThunk } from '../../app/store';
 
 
 export interface BlogState {
   text: string;
-  src:string;
+  src: string;
   status: 'idle' | 'loading' | 'failed';
 }
 
@@ -29,7 +30,7 @@ export const blogSlice = createSlice({
 
 export const { changeBlog  } = blogSlice.actions;
 
-export const blogSelector = (state:RootState) => state.blog;
+export const blogSelector = useAppSelector(state:RootState) => state.blog;
 
 
 

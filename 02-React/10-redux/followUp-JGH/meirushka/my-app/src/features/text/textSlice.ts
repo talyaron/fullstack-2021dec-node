@@ -1,6 +1,5 @@
 import {createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { text } from "stream/consumers";
-import { RootState, AppThunk } from "../../../app/store";
+import { RootState, AppThunk } from "../../app/store";
 import { getMyJoke } from "./textAPI";
 
 
@@ -18,7 +17,7 @@ export const textSlice = createSlice({
     name: "text",
     initialState,
     reducers: {
-       changetext: (state, action) => {
+       changeText: (state, action) => {
         state.text = action.payload;
        }
     },
@@ -43,6 +42,6 @@ export const textSlice = createSlice({
 export const { changeText } = textSlice.actions;
 
 export const textSelector = (state: RootState) => state.text.text;
-export const statusSelector = (state: RootState) => state.text.status;
+export const statusSelector = (state: RootState) => state.text.text;
 
 export default textSlice.reducer;

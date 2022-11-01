@@ -3,10 +3,10 @@ import logo from './logo.svg';
 import { Counter } from './features/counter/Counter';
 import './App.css';
 import { useAppDispatch, useAppSelector } from './app/hooks';
-import { changeText, textSelector } from './features/counter/text/textSlice';
-import { getMyJoke } from "./features/counter/text/textAPI";
-import { statusSelector } from './features/counter/text/textSlice';
-import { Spinner } from "./features/spinner/Spinner";
+import { changeText, textSelector } from './features/text/textSlice';
+import { getMyJoke } from "./features/text/textAPI";
+import { statusSelector } from './features/text/textSlice';
+import  Spinner  from "./features/spinner/Spinner"
 
 
 function App() {
