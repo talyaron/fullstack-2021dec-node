@@ -6,7 +6,7 @@ import { useAppDispatch, useAppSelector } from './app/hooks';
 import { changeText, textSelector } from './features/text/textSlice';
 import { getMyJoke } from "./features/text/textAPI";
 import { statusSelector } from './features/text/textSlice';
-import  Spinner  from "./features/spinner/Spinner"
+import  Spinner  from "./features/spinner/Spinner";
 
 
 function App() {
@@ -21,13 +21,15 @@ function App() {
       console.error(error)
     }
   }
+
   return (
-    <div>
+    <div className='App'>
       <Input />
       {status === 'loading'?<Spinner/>:<Output />} 
       <button onClick={handleGetMyJoke}>Get My Joke</button>
     </div>
   );
+  
 }
 
 export default App;

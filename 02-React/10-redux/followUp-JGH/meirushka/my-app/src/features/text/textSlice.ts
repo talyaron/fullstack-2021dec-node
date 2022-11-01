@@ -17,9 +17,9 @@ export const textSlice = createSlice({
     name: "text",
     initialState,
     reducers: {
-       changeText: (state, action) => {
-        state.text = action.payload;
-       }
+        changeText: (state, action) => {
+          state.text = action.payload;
+        },
     },
 
     extraReducers: (builder) => {
