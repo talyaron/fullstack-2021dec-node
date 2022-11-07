@@ -20,4 +20,11 @@ export const TextSlice = createSlice({
             state.text = action.payload;
         }
     }
-})
+});
+
+
+export const { changeText } = TextSlice.actions;
+
+export const textSelector = (state: RootState) => state.text.text;
+export const statusSelector = (state: RootState) => state.text.status;
+export default TextSlice.reducer;
