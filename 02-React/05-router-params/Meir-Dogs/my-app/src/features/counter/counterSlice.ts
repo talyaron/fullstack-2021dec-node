@@ -8,12 +8,18 @@ export interface CounterState {
   value: number
 }
 
-const initialState: CounterState = {
+// const initialState: CounterState = {
+//   value: 0,
+// }
+
+// Workaround: cast state instead of declaring variable type
+const initialState = {
   value: 0,
-}
+} as CounterState
 
 export const counterSlice = createSlice({
   name: 'counter',
+    // `createSlice` will infer the state type from the `initialState` argument
   initialState,
   reducers: {
     increment: (state) => {
@@ -36,4 +42,5 @@ export const counterSlice = createSlice({
 export const { increment, decrement, incrementByAmount } = counterSlice.actions
 
 export const selectCount = (state: RootState) => state.counter.value
+
 export default counterSlice.reducer
