@@ -30,7 +30,7 @@ export const textSlice = createSlice({
         state.status = "idle";
         state.text = action.payload;
       })
-      .addCase(getJoke.rejected, (state, action) => {
+      .addCase(getJoke.rejected, (state) => {
         state.status = "failed";
       });
   },
