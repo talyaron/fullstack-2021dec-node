@@ -9,7 +9,7 @@ import Spinner from "./features/spinner/Spinner";
 
 function App() {
   const status = useAppSelector(statusSelector)
-const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch();
 
 function handleGetJoke(){
   try {

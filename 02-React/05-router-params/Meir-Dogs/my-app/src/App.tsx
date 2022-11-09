@@ -2,11 +2,14 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 // import your route components too
 
 
+
+
 import Page404 from "./features/404/404";
 
 
 import Breeds from "./features/breeds";
 import Breed from "./features/breed";
+import { Counter } from "./features/counter/Counter";
 
 
 const App = () => {
