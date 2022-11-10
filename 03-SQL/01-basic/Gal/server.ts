@@ -1,7 +1,8 @@
 import express from "express";
 const app = express();
 const port = process.env.PORT || 4000;
-import mysql from "mysql";
+// import mysql from "mysql";
+const mysql = require('mysql2');
 
 app.use(express.json());
 
@@ -83,7 +84,7 @@ app.post("/api/create-table", (req, res) => {
 app.post("/api/create-row", (req, res) => {
     const { title, year, director } = req.body;
     console.log(title, year, director)
-    const query = "INSERT INTO `movie`.`movies` (`title`, `year`, `director`) VALUES ('" + title + "', "+ year +", '"+director+"');";    
+    const query = "INSERT INTO `movies`.`movies` (`title`, `year`, `director`) VALUES ('" + title + "', "+ year +", '"+director+"');";    
     
     connection.query(query, (err, results, fields) => {
         try {
