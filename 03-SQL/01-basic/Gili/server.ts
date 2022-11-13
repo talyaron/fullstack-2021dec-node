@@ -1,6 +1,6 @@
 import express from "express";
 const app = express();
-const port = process.env.PORT || 4000;
+const port = process.env.PORT || 4001;
 import mysql from "mysql";
 
 app.use(express.json());
@@ -106,6 +106,22 @@ app.post("/api/find-by-year", (req, res) => {
   const { year } = req.body;
   console.log(year);
   const query = `SELECT * FROM movie.movies WHERE year='${year}';`;
+
+  connection.query(query, (err, results, fields) => {
+    try {
+      if (err) throw err;
+      res.send({ ok: true, message: results });
+    } catch (error) {
+      console.log(err);
+      res.status(500).send({ ok: false });
+    }
+  });
+});
+app.post("/api/find-by-year-specific", (req, res) => {
+  const { years } = req.body;
+  console.log(years);
+
+  const query = `SELECT * FROM movie.movies WHERE year IN (${years});`;
 
   connection.query(query, (err, results, fields) => {
     try {
