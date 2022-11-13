@@ -105,7 +105,7 @@ app.post("/api/create-row", (req, res) => {
 app.post("/api/find-by-year", (req, res) => {
   const { year } = req.body;
   console.log(year);
-  const query = "SELECT * FROM movie.movies WHERE year='" + year + "';";
+  const query = `SELECT * FROM movie.movies WHERE year='${year}';`;
 
   connection.query(query, (err, results, fields) => {
     try {
