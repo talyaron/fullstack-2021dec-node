@@ -81,22 +81,43 @@ app.post("/api/create-table", (req, res) => {
 });
 
 app.post("/api/create-row", (req, res) => {
-    const { title, year, director } = req.body;
-    console.log(title, year, director)
-    const query = "INSERT INTO `movie`.`movies` (`title`, `year`, `director`) VALUES ('" + title + "', "+ year +", '"+director+"');";    
-    
-    connection.query(query, (err, results, fields) => {
-        try {
-          if(err) throw err
-          res.send({ ok: true, message: "new row created" });
-        } catch (error) {
-          console.log(err)
-          res.status(500).send({ok: false})
-        }
+  const { title, year, director } = req.body;
+  console.log(title, year, director);
+  const query =
+    "INSERT INTO `movie`.`movies` (`title`, `year`, `director`) VALUES ('" +
+    title +
+    "', " +
+    year +
+    ", '" +
+    director +
+    "');";
 
-    });
+  connection.query(query, (err, results, fields) => {
+    try {
+      if (err) throw err;
+      res.send({ ok: true, message: "new row created" });
+    } catch (error) {
+      console.log(err);
+      res.status(500).send({ ok: false });
+    }
+  });
+});
+app.post("/api/find-by-year", (req, res) => {
+  const { year } = req.body;
+  console.log(year);
+  const query = "SELECT * FROM movie.movies WHERE year='" + year + "';";
+
+  connection.query(query, (err, results, fields) => {
+    try {
+      if (err) throw err;
+      res.send({ ok: true, message: results });
+    } catch (error) {
+      console.log(err);
+      res.status(500).send({ ok: false });
+    }
+  });
 });
 
 app.listen(port, () => {
-  console.log(`listening on port ${port}`)
-})
+  console.log(`listening on port ${port}`);
+});
