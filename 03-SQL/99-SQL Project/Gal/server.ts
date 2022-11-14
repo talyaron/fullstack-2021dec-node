@@ -1,9 +1,7 @@
 import express from "express";
 const app = express();
 const port = process.env.PORT || 4000;
-// import mysql from "mysql";
 const mysql = require("mysql2");
-
 app.use(express.json());
 
 const connection = mysql.createConnection({
