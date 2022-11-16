@@ -1,8 +1,10 @@
 import mysql from "mysql";
 
-export const db = mysql.createPool({
+export const db = mysql.createConnection({
   host: "localhost",
+  port: "3306",
   user: "root",
-  password: ")3a09o0vJ73>B+1M",
+  password: "12345678",
   database: "blog",
 });
+

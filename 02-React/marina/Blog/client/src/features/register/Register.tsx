@@ -29,11 +29,11 @@ export const Register = () => {
       console.log(data);
       navigate("/login");
       // const error = new AxiosError();
-    } catch (error) {
+    } catch (error:any) {
       console.error(error);
       // console.dir({ error: AxiosError });
       // console.dir(err.response.data);
-      // setError(error.response.data);
+      setError(error.message);
     }
   };
 

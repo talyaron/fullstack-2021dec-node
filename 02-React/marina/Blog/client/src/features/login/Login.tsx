@@ -1,4 +1,4 @@
-import React, { useState, ReactNode, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import User from "../../userInterface";
 import axios from "axios";
@@ -9,7 +9,7 @@ import { updateUser, userSelector } from "./userSlice";
 
 export const Login = () => {
   const [error, setError] = useState<any>(null);
-  const [currentUser, setCurrentUser] = useState({});
+  const [currentUser, setCurrentUser] = useState(null);
   const [inputs, setInputs] = useState({
     username: "",
     password: "",
@@ -29,14 +29,16 @@ export const Login = () => {
       console.log("data:", data);
       console.log("other:", other);
       // console.log("other:", other.user_id);
-   
 
       if (other) {
         navigate("/");
         dispatch(login());
         dispatch(show());
+        console.log("setCurrentUser.....", other);
         setCurrentUser(other);
-        dispatch(updateUser(user))
+        console.log("currentUser", other);
+        localStorage.setItem("currentUser", JSON.stringify(other));
+        dispatch(updateUser(user));
       }
       // const error = new AxiosError();
     } catch (error) {
@@ -48,6 +50,7 @@ export const Login = () => {
   };
 
   useEffect(() => {
+    console.log("currentUser", currentUser);
     localStorage.setItem("currentUser", JSON.stringify(currentUser));
   }, [currentUser]);
 
