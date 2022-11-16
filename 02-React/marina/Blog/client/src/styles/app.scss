@@ -1,0 +1,23 @@
+@import '../features/login/login.scss';
+@import '../features/home/home.scss';
+@import '../features/single/single.scss';
+@import '../features/write/write.scss';
+@import '../components/footer/footer.scss';
+@import '../components/navbar/navbar.scss';
+@import '../components/menu/menu.scss';
+$lightGreen: #b4e7f2;
+
+
+
+.App {
+  display: flex;
+  justify-content: center;
+ 
+  .container {
+
+    .link {
+      text-decoration: none;
+      color: inherit;
+    }
+  }
+}
