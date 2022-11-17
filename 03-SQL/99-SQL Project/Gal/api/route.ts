@@ -1,9 +1,9 @@
 import express from "express";
-import {} from "./controller";
+import {register} from "./controller";
 
 const router = express.Router();
 
-router
+router.post('/register',register);
 
 
 

@@ -12,7 +12,7 @@ app.use('/api/users', route)
 
 const sqlpassword = process.env.SQLPASSWORD;
 
-const connection = mysql.createConnection({
+export const connection = mysql.createConnection({
   host: "localhost",
   port: "3306",
   user: "root",
