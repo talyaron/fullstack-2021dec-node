@@ -23,7 +23,7 @@ connection.connect((err) => {
     }
 });
 
-app.post("/api/create-databse", (req, res) => {
+app.post("/api/create-database", (req, res) => {
     const query = `INSERT INTO movies (movie_id, title, year) VALUES ('8', 'Back to the future', '1986')`;
     
   
@@ -42,6 +42,26 @@ app.post("/api/create-databse", (req, res) => {
     });
 });
   
+
+  
+app.get("/api/filter-data", (req, res) => {
+
+    connection.query(query, (err, results, flieds) =>{
+        const query = 'SELECT * FROM `movies` WHERE YEAR = 2003'
+        try {
+            if (err) throw err;
+            res.send({ ok: true }); 
+
+            console.log(results);
+            console.log(flieds);
+        } catch (error) {
+            console.error(error);
+            res.send({ ok: false, error: error.message });
+        
+        }
+    })
+});
+
 app.delete("/api/delete-databse", (req, res) => {
     console.log("/api/delete-databse");
     const query = `DROP DATABASE testDB1;`;
@@ -57,21 +77,6 @@ app.delete("/api/delete-databse", (req, res) => {
         res.send({ ok: false, error: error.message });
       }
     });
-});
-  
-app.post('/api/find-database', (req, res) => {
-
-    connection.query(query, (err, results, fields) =>{
-        const query = 'SELECT * FROM movie.movies where year = 1977';
-
-        try {
-            console.log(results);
-            console.log(fields);
-            res.send({ ok: true }); 
-        } catch (error) {
-            console.error(error);
-        }
-    })
 });
 
 app.post("/api/create-table", (req, res) => {
