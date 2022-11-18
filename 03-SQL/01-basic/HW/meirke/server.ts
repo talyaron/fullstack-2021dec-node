@@ -29,12 +29,11 @@ app.post("/api/create-database", (req, res) => {
   
     connection.query(query, (err, results, fields) => {
       try {
-        res.send({ ok: true });
         if (err) throw err;
   
         console.log(results);
         console.log(fields);
-        
+        res.send({ ok: true });
       } catch (error) {
         console.error(error);
         res.send({ ok: false, error: error.message });
@@ -45,15 +44,17 @@ app.post("/api/create-database", (req, res) => {
 
   
 app.get("/api/filter-data", (req, res) => {
-
+    const query = 'SELECT * FROM `movie`.`movies` WHERE `year` = 2003';
     connection.query(query, (err, results, flieds) =>{
-        const query = 'SELECT * FROM `movies` WHERE YEAR = 2003'
+        
         try {
             if (err) throw err;
-            res.send({ ok: true }); 
+            
 
             console.log(results);
             console.log(flieds);
+            
+            res.send({ ok: true });
         } catch (error) {
             console.error(error);
             res.send({ ok: false, error: error.message });
