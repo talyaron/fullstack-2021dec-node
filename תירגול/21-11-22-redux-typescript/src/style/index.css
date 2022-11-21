@@ -1,0 +1,25 @@
+body {
+    margin: 0;
+    background: linear-gradient(180deg, rgba(27, 154, 172, 1) 35%, rgba(99, 88, 142, 1) 100%);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 100vh;
+}
+
+a {
+    text-decoration: none;
+}
+
+nav {
+    background: rgba(198, 191, 191, 0.24);
+    padding: 1% 2%;
+    font-size: 1.5rem;
+}
+
+nav a {
+    color: white;
+}
+
+@import "./form.css";
+@import "./homePage.css";
