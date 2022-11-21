@@ -15,7 +15,7 @@ export const addGuid = createAsyncThunk(
     async({fullName, country, city, telephon, email, formData}: guideReg) => {
         const result = await axios.post
             ('/api-guides/add-guide',
-            {'full name':fullName, country, city, telephon, email, image: formData});
+            {'full name':fullName, country, city, telephon, email, 'image': formData});
          console.log(result.data);
          return result.data;
          

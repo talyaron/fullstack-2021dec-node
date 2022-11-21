@@ -1,10 +1,10 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
-import { guideSlice } from '../features/guides/guideSlice';
+import guideSlice from '../features/guides/guideSlice';
 
 
 export const store = configureStore({
   reducer: {
-    guides: guideSlice
+    guides: guideSlice,
   },
 });
 

@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../../app/store";
 import { addGuid } from "./guideAPI";
 
@@ -6,7 +6,7 @@ export interface GuideDetails{
     fullName: string,
     country: string,
     city: string,
-    telephon: number,
+    telephon: string,
     email: string, 
     image: any,
 }
@@ -21,8 +21,8 @@ const initialState: GuideState = {
     status: 'idle',
   };
 
-export const guideSlice = createSlice({
-    name: 'guides',
+ const guideSlice = createSlice({
+    name: "guides",
     initialState,
     reducers: {},
     extraReducers: (builder) => {
@@ -33,12 +33,15 @@ export const guideSlice = createSlice({
             .addCase(addGuid.fulfilled, (state, action: PayloadAction<any>) => {
                 state.status = 'idle'
                 const {guide} = action.payload
-                state.
+                state.guides = guide
             })
             .addCase(addGuid.rejected, (state) => {
                 state.status = 'failed';
-            })
-    }
+            });
+    },
 })
 
-export const selectedGuid = (state: RootState) => state.guides.guides
+export const selectedGuid = (state: RootState) => state.guides;
+export const selectedGuidStatus = (state: RootState) => state.
+
+export default guideSlice;

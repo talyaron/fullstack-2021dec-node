@@ -3,6 +3,8 @@ const port = process.env.PORT || 4000;
 import mysql from "mysql";
 export const app = express();
 
+app.use(express.static("./find-guid/build"));
+
 app.use(express.json());
 
 export const connection = mysql.createConnection({

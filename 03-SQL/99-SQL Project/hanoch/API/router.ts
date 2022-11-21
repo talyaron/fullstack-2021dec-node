@@ -3,8 +3,8 @@ import { addCostumer } from "./controllers/costumer";
 import { addGuid, findAllGuides } from "./controllers/guids";
 const router = express.Router();
 
-router.post('add-costumer', addCostumer)
-      .post('add-guide', addGuid)
-      .get('find-all-guides', findAllGuides)
+router.post('/add-costumer', addCostumer)
+      .post('/add-guide', addGuid)
+      .get('/find-all-guides', findAllGuides)
 
 export default router;
