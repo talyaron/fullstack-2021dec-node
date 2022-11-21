@@ -24,15 +24,16 @@ connection.connect((err) => {
 });
 
 app.post("/api/create-database", (req, res) => {
-    const query = `INSERT INTO movies (movie_id, title, year) VALUES ('8', 'Back to the future', '1986')`;
-    
-  
+    const {title, movieyear, director_id } = req.body
+    const query = `INSERT INTO movies (title, movieyear, director_id) VALUES ("${title}", ${movieyear}, ${director_id})`;
+
     connection.query(query, (err, results, fields) => {
       try {
         if (err) throw err;
   
         console.log(results);
         console.log(fields);
+
         res.send({ ok: true });
       } catch (error) {
         console.error(error);
@@ -44,17 +45,16 @@ app.post("/api/create-database", (req, res) => {
 
   
 app.get("/api/filter-data", (req, res) => {
-    const query = 'SELECT * FROM `movie`.`movies` WHERE `year` = 2003';
+    const query = 'SELECT * FROM movie.movies WHERE year = 2003';
     connection.query(query, (err, results, flieds) =>{
         
         try {
             if (err) throw err;
             
-
             console.log(results);
-            console.log(flieds);
-            
-            res.send({ ok: true });
+            // console.log(flieds);
+
+             res.send({ ok: true, results });
         } catch (error) {
             console.error(error);
             res.send({ ok: false, error: error.message });
