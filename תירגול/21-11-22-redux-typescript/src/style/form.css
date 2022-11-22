@@ -1,0 +1,12 @@
+form {
+    background-color: white;
+    padding: 2%;
+    margin: 3% 0%;
+    border-radius: 2rem;
+    width: 50%;
+}
+
+form input {
+    width: 80%;
+    padding: 1% 2%;
+}

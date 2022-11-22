@@ -3,6 +3,8 @@ const port = process.env.PORT || 4000;
 import mysql from "mysql";
 export const app = express();
 
+app.use(express.static("./find-guid/build"));
+
 app.use(express.json());
 
 export const connection = mysql.createConnection({
@@ -21,6 +23,9 @@ connection.connect((err) => {
         console.error(error);
         }
 });
+
+import guidesRouter from './API/router'
+app.use('api-guides', guidesRouter)
 
 app.listen(port, () => {
     return console.log(`Server is listening at port:${port} 🔥`);

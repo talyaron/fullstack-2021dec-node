@@ -25,8 +25,10 @@ export const findAllGuides = (req, res) => {
         const query = `SELECT * FROM find-guid.guids`;
         connection.query(query, (err, result) => {
             try {
+                
                 if (err) throw err;
                 res.send({result: result})
+            
             } catch (error) {
                 console.error(error);
                 
