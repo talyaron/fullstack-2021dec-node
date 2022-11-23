@@ -1,4 +1,4 @@
-import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
+import { configureStore, ThunkAction, Action, AnyAction } from '@reduxjs/toolkit';
 import guideSlice from '../features/guides/guideSlice';
 
 
@@ -14,5 +14,5 @@ export type AppThunk<ReturnType = void> = ThunkAction<
   ReturnType,
   RootState,
   unknown,
-  Action<string>
+  Action<AnyAction>
 >;

@@ -5,14 +5,17 @@ interface guideReg{
     fullName: string,
     country: string,
     city: string,
-    telephon: number,
+    telephon: string,
     email: string,
-    formData: File
+    image: File
 }
 
 export const addGuid = createAsyncThunk(
     'addGuid',
-    async({fullName, country, city, telephon, email, formData}: guideReg) => {
+    async({fullName, country, city, telephon, email, image}: guideReg) => {
+        const formData = new FormData();
+        formData.append('image', image)
+
         const result = await axios.post
             ('/api-guides/add-guide',
             {'full name':fullName, country, city, telephon, email, 'image': formData});

@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { RootState } from "../../app/store";
+import { RootState, AppThunk } from "../../app/store";
 import { addGuid } from "./guideAPI";
 
 export interface GuideDetails{
@@ -13,7 +13,7 @@ export interface GuideDetails{
 
 export interface GuideState{
     guides: GuideDetails | null,
-    status: "idle" | "loading" | "failed";
+    status: "idle" | "loading" | "failed",
 };
 
 const initialState: GuideState = {
@@ -41,7 +41,7 @@ const initialState: GuideState = {
     },
 })
 
-export const selectedGuid = (state: RootState) => state.guides;
-export const selectedGuidStatus = (state: RootState) => state.
+export const selectedGuid = (state: RootState) => state.guides.guides;
+export const selectedGuidStatus = (state: RootState) => state.guides.status;
+export default guideSlice.reducer
 
-export default guideSlice;
