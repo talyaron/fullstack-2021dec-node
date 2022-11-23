@@ -25,7 +25,7 @@ connection.connect((err) => {
   }
 })
 
-import usersRoute from './API/users/usersRoute';
+import usersRoute from '../../../fullstack-2021dec-node/03-SQL/03-with-client/API/users/usersRoute';
 app.use('/api/users', usersRoute);
 
 
