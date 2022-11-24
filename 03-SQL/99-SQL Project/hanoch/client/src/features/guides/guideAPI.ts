@@ -1,5 +1,7 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
+
 import axios from 'axios';
+import { config } from 'dotenv';
 
 interface guideReg{
     fullName: string,
@@ -7,19 +9,19 @@ interface guideReg{
     city: string,
     telephon: string,
     email: string,
-    image: File
+    image: string
 }
 
 export const addGuid = createAsyncThunk(
     'addGuid',
     async({fullName, country, city, telephon, email, image}: guideReg) => {
-        const formData = new FormData();
-        formData.append('image', image)
-
+        
+        const imgSrc = Buffer.from(image, 'base64')
         const result = await axios.post
             ('/api-guides/add-guide',
-            {'full name':fullName, country, city, telephon, email, 'image': formData});
+            {fullName, country, city, telephon, email, image: imgSrc});
          console.log(result.data);
+         
          return result.data;
          
 

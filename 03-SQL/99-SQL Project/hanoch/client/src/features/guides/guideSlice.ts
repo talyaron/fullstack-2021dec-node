@@ -8,7 +8,7 @@ export interface GuideDetails{
     city: string,
     telephon: string,
     email: string, 
-    image: any,
+    image: string,
 }
 
 export interface GuideState{

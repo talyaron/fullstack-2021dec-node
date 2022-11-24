@@ -1,3 +1,4 @@
+import { buffer } from 'node:stream/consumers';
 import React from 'react'
 import { useAppDispatch } from '../../app/hooks';
 import { addGuid } from '../guides/guideAPI';
@@ -14,7 +15,9 @@ export const RegGuide = () => {
       city = city.value;
       telephon = telephon.value;
       email = email.value;
-      const image = ev.target.files[0];
+      const file = ev.target.image.files[0];
+      const image = JSON.stringify(file)
+       
       console.log(fullName, country, city, telephon, email, image);
       console.log(ev.target.elements);
       
@@ -29,13 +32,15 @@ export const RegGuide = () => {
   
   return (
     <form onSubmit={handleRegGuide}>
-      <input type="text" name="fullName"  />
-      <input type="text" name='country' />
-      <input type="text" name='city' />
-      <input type="text" name='telephon' />
-      <input type="email" name='email' />
+      <input type="text" name="fullName" placeholder='full name' />
+      <input type="text" name='country' placeholder='country'/>
+      <input type="text" name='city' placeholder='city'/>
+      <input type="text" name='telephon' placeholder='telephone'/>
+      <input type="email" name='email' placeholder='email'/>
       <input type="file" name="image" />
       <input type="submit" value="register" />
     </form>
-  )
+    )
+    
+  
 }
