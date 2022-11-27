@@ -1,7 +1,8 @@
 import express from "express";
 const app = express();
-const port = process.env.PORT || 4001;
-import mysql from "mysql";
+const port = process.env.PORT || 4000;
+// import mysql from "mysql";
+const mysql = require('mysql2');
 
 app.use(express.json());
 
@@ -9,8 +10,8 @@ const connection = mysql.createConnection({
   host: "localhost",
   port: "3306",
   user: "root",
-  password: "Rdsdyne6",
-  database: "movie",
+  password: "12345678",
+  database: "movies",
 });
 
 connection.connect((err) => {
@@ -81,59 +82,22 @@ app.post("/api/create-table", (req, res) => {
 });
 
 app.post("/api/create-row", (req, res) => {
-  const { title, year, director } = req.body;
-  console.log(title, year, director);
-  const query =
-    "INSERT INTO `movie`.`movies` (`title`, `year`, `director`) VALUES ('" +
-    title +
-    "', " +
-    year +
-    ", '" +
-    director +
-    "');";
+    const { title, year, director } = req.body;
+    console.log(title, year, director)
+    const query = "INSERT INTO `movies`.`movies` (`title`, `year`, `director`) VALUES ('" + title + "', "+ year +", '"+director+"');";    
+    
+    connection.query(query, (err, results, fields) => {
+        try {
+          if(err) throw err
+          res.send({ ok: true, message: "new row created" });
+        } catch (error) {
+          console.log(err)
+          res.status(500).send({ok: false})
+        }
 
-  connection.query(query, (err, results, fields) => {
-    try {
-      if (err) throw err;
-      res.send({ ok: true, message: "new row created" });
-    } catch (error) {
-      console.log(err);
-      res.status(500).send({ ok: false });
-    }
-  });
-});
-app.post("/api/find-by-year", (req, res) => {
-  const { year } = req.body;
-  console.log(year);
-  const query = `SELECT * FROM movie.movies WHERE year='${year}';`;
-
-  connection.query(query, (err, results, fields) => {
-    try {
-      if (err) throw err;
-      res.send({ ok: true, message: results });
-    } catch (error) {
-      console.log(err);
-      res.status(500).send({ ok: false });
-    }
-  });
-});
-app.post("/api/find-by-year-specific", (req, res) => {
-  const { years } = req.body;
-  console.log(years);
-
-  const query = `SELECT * FROM movie.movies WHERE year IN (${years});`;
-
-  connection.query(query, (err, results, fields) => {
-    try {
-      if (err) throw err;
-      res.send({ ok: true, message: results });
-    } catch (error) {
-      console.log(err);
-      res.status(500).send({ ok: false });
-    }
-  });
+    });
 });
 
 app.listen(port, () => {
-  console.log(`listening on port ${port}`);
-});
+  console.log(`listening on port ${port}`)
+})
