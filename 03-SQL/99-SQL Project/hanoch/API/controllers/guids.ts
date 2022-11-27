@@ -3,14 +3,13 @@ import { connection } from "../../server";
 
 export const addGuid = (req, res) => {
     try {
-        const {fullName, country, city, telephon, email, imgSrc} = req.body;
-        // const image = req.File.formData
-        const query = `INSERT INTO find-guid.guids (full name, country, city, telephon, email, image)
-         VALUES (${fullName}, ${country}, ${city}, ${telephon}, ${email}, ${imgSrc})`;
+        
+        const {fullName, country, city, telephon, email, image} = req.body;
+        const query = `INSERT INTO guids (fullname, country, city, telephon, email, image)
+         VALUES ('${fullName}', '${country}', '${city}', '${telephon}', '${email}', '${image}')`;
         connection.query(query, (err, result) => {
             try {
                 if (err) throw err;
-                if (!result) throw ('no data')
                 res.send({ok: true})
                 console.log(result.data);
                 
@@ -26,7 +25,7 @@ export const addGuid = (req, res) => {
 
 export const findAllGuides = (req, res) => {
     try {
-        const query = `SELECT * FROM find-guid.guids`;
+        const query = `SELECT * FROM guids`;
         connection.query(query, (err, result) => {
             try {
                 
