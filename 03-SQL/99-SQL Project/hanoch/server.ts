@@ -8,6 +8,7 @@ export const app = express();
 app.use(express.static("./client/build"));
 
 app.use(express.json());
+app.use(cors());
 
 // const storage = multer.diskStorage({
 //     destination: (req, file, cb) => {
