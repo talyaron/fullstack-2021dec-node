@@ -1,0 +1,34 @@
+.regGuide{
+    text-align: center;
+    .headLine{
+        color: rgb(9, 72, 39);
+        display: inline-block;
+    }
+.formReg{
+    display: flex;
+    flex-direction: column;
+    width: 17rem;
+    margin: auto;
+    padding: 2rem;
+    .inputReg{
+        padding: 0.5rem;
+        margin: 1rem;
+    }
+}
+}
+
+.headLine{
+    text-align: center;
+    color: rgb(9, 72, 39);
+}
+.formRegTour{
+    display: flex;
+    flex-direction: column;
+    width: 17rem;
+    margin: auto;
+    padding: 2rem;
+    .inputRegTour{
+        padding: 0.5rem;
+        margin: 1rem;
+    }
+}

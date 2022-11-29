@@ -5,6 +5,11 @@ import axios from 'axios';
 import { config } from 'dotenv';
 import { GuideDetails } from './guideSlice';
 
+interface FilterGuide{
+    country: any,
+    city: any
+}
+
 export const addGuid = createAsyncThunk(
     'addGuid',
     async({fullName, country, city, telephon, email, image}: GuideDetails) => {
@@ -23,6 +28,16 @@ export const allGuidesAsync = createAsyncThunk(
     const results = await axios.get('/api-guides/find-all-guides')
     console.log(results.data);
     return results.data;
+    
+   }
+);
+
+export const guidesByFilterAsync = createAsyncThunk(
+    'guidByFilter',
+   async ({country, city}: FilterGuide) => {
+    const results = await axios.get(`/api-guides/find-by-filter?country=${country}&city=${city}`)
+    console.log(results);
+    return results;
     
    }
 )
