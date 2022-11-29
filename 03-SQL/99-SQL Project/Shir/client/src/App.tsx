@@ -1,6 +1,6 @@
 
 import React from 'react';
-import './app.scss';
+// import './app.scss';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Apartment from './features/apartments/appartInterface';
 import { Add } from './features/add/addAp';
