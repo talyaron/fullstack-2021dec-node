@@ -11,20 +11,25 @@ export const RenderAllGuides = () => {
     dispatch(allGuidesAsync())
   },[])
   const allGuides = useAppSelector(selectedAllGuides);
+  console.log(allGuides);
   const status = useAppSelector(selectedAllStatus);
   return (
     <div>
-      <h1>all the guides</h1>
-        {status === 'idle' && allGuides.map((guide) => {
+      <h1 className='headLine'>all the guides</h1>
+      <div className='cardAll'>
+        { allGuides.map((guide) => {
           return(
-            <GuidesCard fullName={guide.fullName}
-                        country={guide.country}
-                        city={guide.city}
-                        telephon={guide.telephon}
-                        email={guide.email}
-                        image={guide.image}/>
+            
+                  <GuidesCard fullName={guide.fullName}
+                              country={guide.country}
+                              city={guide.city}
+                              telephon={guide.telephon}
+                              email={guide.email}
+                              image={guide.image}/>
+           
           )
         })}
+      </div>
     </div>
   )
 }

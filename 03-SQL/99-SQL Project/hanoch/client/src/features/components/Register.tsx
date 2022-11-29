@@ -26,12 +26,13 @@ export const Register = () => {
   
   return (
     <div>
-      <form onSubmit={handleRegister}>
-        <input type="text" name="fullname" placeholder='full name' />
-        <input type="text" name="telephon" placeholder='telephone'/>
-        <input type="email" name='email' placeholder='email'/>
-        <input type="password" name="password" placeholder='password' />
-        <input type="submit" value="register" />
+      <h1 className='headLine'>register as a tourist</h1>
+      <form className='formRegTour' onSubmit={handleRegister}>
+        <input className='inputRegTour' type="text" name="fullname" placeholder='full name' />
+        <input className='inputRegTour' type="text" name="telephon" placeholder='telephone'/>
+        <input className='inputRegTour' type="email" name='email' placeholder='email'/>
+        <input className='inputRegTour' type="password" name="password" placeholder='password' />
+        <input className='inputRegTour' type="submit" value="register" />
       </form>
     </div>
   )

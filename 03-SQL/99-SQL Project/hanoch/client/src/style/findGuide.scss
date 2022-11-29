@@ -1,0 +1,47 @@
+.findMain{
+    text-align: center;
+    // margin: auto;
+    padding: 3rem;
+    position: relative;
+    top: 7rem;
+    .headLine{
+        color: rgb(234, 24, 24);
+        font-size: 4rem;
+    }
+    .cardAll{
+        display: grid;
+        grid-template-columns: auto auto auto;
+        text-align: center;
+        margin: auto;
+    }
+}
+
+.link{
+    padding: 2rem;
+    margin: 2rem;
+    gap: 2rem;
+    .filLink{
+        margin: 1rem;
+        text-decoration: none;
+        color: cadetblue;
+        font-size: 2rem;
+        background-color: rgb(207, 79, 20);
+        border-radius: 50px;
+        padding: 0.5rem;
+    }
+    .allLink{
+        margin: 1rem;
+        text-decoration: none;
+        color: cadetblue;
+        font-size: 2rem;
+        background-color: rgb(207, 79, 20);
+        border-radius: 50px;
+        padding: 0.5rem;
+    }
+}
+
+.card{
+    display: grid;
+    grid-template-columns: auto auto auto;
+}
+

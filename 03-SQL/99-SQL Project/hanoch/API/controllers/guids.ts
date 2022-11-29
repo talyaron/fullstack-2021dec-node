@@ -30,13 +30,31 @@ export const findAllGuides = (req, res) => {
             try {
                 
                 if (err) throw err;
-                res.send({result: result})
+                res.send( result )
             
             } catch (error) {
                 console.error(error);
                 
             }
         })
+    } catch (error) {
+        res.send({error: error.message})
+    }
+};
+
+export const guidesByFilter = (req, res) => {
+    try {
+        const {country, city} = req.query;
+       const query = `SELECT * FROM guids WHERE country = '${country}' AND city = '${city}'` 
+       connection.query(query, (err, result) => {
+        try {
+            if (err) throw new err;
+            res.send(result)
+        } catch (error) {
+            console.error(error);
+            
+        }
+       })
     } catch (error) {
         res.send({error: error.message})
     }

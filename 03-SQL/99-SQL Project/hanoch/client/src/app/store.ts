@@ -8,7 +8,7 @@ export const store = configureStore({
   reducer: {
     guides: guideSlice,
     costumers: costumerSlice,
-    allGuides: allGuidesSlice
+    allGuides: allGuidesSlice,
   },
 });
 
