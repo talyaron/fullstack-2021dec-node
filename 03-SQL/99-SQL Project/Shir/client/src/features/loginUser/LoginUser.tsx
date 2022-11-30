@@ -2,10 +2,8 @@ import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const Login: React.FC = () => {
-  const [homePage, setHomePage] = useState<boolean>(false);
+export const LoginUser = () => {
   const [error, setError] = useState<string | null>(null);
-  const navigate = useNavigate();
 
   const handleLogin = (e: any) => {
     try {
@@ -15,8 +13,6 @@ const Login: React.FC = () => {
       if (password.length < 3) {
         setError("The password must be at least 3 characters long");
       } else if (password >= 3) {
-        setHomePage(true);
-        navigate("/list");
       }
     } catch (error) {
       console.error(error);
@@ -44,5 +40,3 @@ const Login: React.FC = () => {
     </div>
   );
 };
-
-export default Login;

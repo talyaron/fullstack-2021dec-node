@@ -7,7 +7,8 @@ import React from 'react';
 // import { Apartments } from './features/apartments/Apartment';
 // import { Update } from './features/update/Update';
 import Register from './features/register/Register';
-import { Login } from './features/login/Login';
+import Login from './features/login/Login';
+import { LoginUser } from './features/loginUser/LoginUser';
 
 function App() {
   return (
@@ -21,8 +22,9 @@ function App() {
     //   </BrowserRouter>
     // </div>
     <div>
-      <Login />
-      <Register/>
+      {/* <Login /> */}
+      <LoginUser/>
+      {/* <Register/> */}
       
     </div>
   );
