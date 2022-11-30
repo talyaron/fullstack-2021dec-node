@@ -7,6 +7,7 @@ import React from 'react';
 // import { Apartments } from './features/apartments/Apartment';
 // import { Update } from './features/update/Update';
 import Register from './features/register/Register';
+import { Login } from './features/login/Login';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
     //   </BrowserRouter>
     // </div>
     <div>
+      <Login />
       <Register/>
       
     </div>

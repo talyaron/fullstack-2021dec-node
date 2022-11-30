@@ -9,7 +9,7 @@ export function register(req, res){
        if (error) throw error;
 
 
-       const query = `INSERT INTO users (email, password, name) VALUES ('${email}', '${name}', '${password}')`;
+       const query = `INSERT INTO users (email, password, name) VALUES ('${email}', '${password}', '${name}')`;
        db.query(query, (err)=>{
         try {
             if(err) throw err;
