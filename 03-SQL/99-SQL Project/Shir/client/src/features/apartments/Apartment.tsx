@@ -35,7 +35,7 @@ export const Apartments = () => {
         <div className="apartments">
           {apartments.map((apartment: Apartment) => (
             <div className="apartment" key={apartment.id}>
-              {apartment.cover && <img src={apartment.cover} alt="" />}
+              {apartment.image && <img src={apartment.image} alt="" />}
               <span>
                 Price: (apartment.price)
               </span>

@@ -5,5 +5,5 @@ export default interface Apartment {
     size: number;
     rooms: number;
     price: number;
-    cover: string;
+    image: string;
 }
