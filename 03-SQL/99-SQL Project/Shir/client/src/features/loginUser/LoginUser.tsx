@@ -12,7 +12,9 @@ export const LoginUser = () => {
 
       if (password.length < 3) {
         setError("The password must be at least 3 characters long");
-      } else if (password >= 3) {
+      } 
+    
+      else if (password >= 3) {
       }
     } catch (error) {
       console.error(error);

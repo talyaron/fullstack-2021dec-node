@@ -6,4 +6,5 @@ export default interface Apartment {
     rooms: number;
     price: number;
     image: string;
+    owner: string;
 }

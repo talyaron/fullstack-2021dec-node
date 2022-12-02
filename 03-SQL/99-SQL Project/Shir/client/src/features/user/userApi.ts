@@ -10,7 +10,7 @@ interface userRegister{
 export const registerAsync = createAsyncThunk(
     'user/register',
     async ({email, password, name}:userRegister) => {
-      const response = await axios.post('./api/users/register',{email, password, name});
+      const response = await axios.post('/api/users/register',{email, password, name});
       // The value we return becomes the `fulfilled` action payload
       console.log(response.data);
       return response.data;
