@@ -15,7 +15,12 @@ const dispatch = useAppDispatch();
 
     console.log(email, password, name);
 
-    dispatch(registerAsync({email, password, name}))
+    const pass= dispatch(registerAsync({email, password, name}))
+    if(pass.arg.email =email){
+      window.location.href= '../homepage'
+      console.log('work')
+  }
+
   }
   return (
     <div>

@@ -28,6 +28,9 @@ connection.connect((err) => {
 import usersRoute from '../movies/API/users/usersRoute';
 app.use('/api/users', usersRoute);
 
+import homeRoute from '../movies/API/homePage/homeRoute';
+app.use('/api/home', homeRoute);
+
 
 
 
