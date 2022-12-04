@@ -46,7 +46,6 @@ export const Post = ({ post }: PostProps) => {
     const getLikes = async () => {
       try {
         const { data } = await axios.get(`/likes?postId=${post.id}`);
-        // console.log(" from getLikes:", data.data);
         setLikedNum(data.data.length);
       } catch (error) {
         console.error(error);
@@ -64,13 +63,11 @@ export const Post = ({ post }: PostProps) => {
     try {
       if (liked) {
         const { data } = await axios.post("/likes", { postId: post.id });
-        // console.log("from handleLike: ", data.data);
         setLikedNum(data.data.length);
       }
 
       if (!liked) {
         const { data } = await axios.delete(`/likes?postId=${post.id}`);
-        // console.log("from handleLike: ", data.data);
         setLikedNum(data.data.length);
       }
     } catch (error) {
