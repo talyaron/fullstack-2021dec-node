@@ -60,19 +60,18 @@ export const Post = ({ post }: PostProps) => {
 
   // UPDATE LIKE ( ADD / DELETE )
   const handleLike = async () => {
+    setLiked(!liked);
     try {
       if (liked) {
         const { data } = await axios.post("/likes", { postId: post.id });
-        console.log("from handleLike: ", data.data);
+        // console.log("from handleLike: ", data.data);
         setLikedNum(data.data.length);
-        setLiked(!liked);
       }
 
       if (!liked) {
         const { data } = await axios.delete(`/likes?postId=${post.id}`);
-        console.log("from handleLike: ", data.data);
+        // console.log("from handleLike: ", data.data);
         setLikedNum(data.data.length);
-        setLiked(!liked);
       }
     } catch (error) {
       console.error(error);
