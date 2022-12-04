@@ -53,7 +53,7 @@ export const Post = ({ post }: PostProps) => {
     };
     getLikes();
   }, []);
-  // console.log("likes:", likes);
+ 
 
 
 
@@ -73,6 +73,7 @@ export const Post = ({ post }: PostProps) => {
     } catch (error) {
       console.error(error);
     }
+    console.log("likes:", liked);
   };
 
   return (
