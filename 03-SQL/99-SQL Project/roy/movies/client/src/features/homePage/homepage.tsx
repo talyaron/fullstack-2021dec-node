@@ -5,7 +5,7 @@ import Search from "./searchByName/search"
 
 
 const HomePage=()=>{
-    
+
 
 return(
    <div>
