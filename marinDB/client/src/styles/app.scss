@@ -1,0 +1,39 @@
+@import '../features/home/home.scss';
+@import '../features/login/login.scss';
+@import '../features/profile/profile.scss';
+@import '../features/register/register.scss';
+@import '../components/navbar/navbar.scss';
+@import '../components/rightbar/rightbar.scss';
+@import '../components/leftbar/leftbar.scss';
+@import '../components/posts/posts.scss';
+@import '../components/stories/stories.scss';
+@import '../components/post/post.scss';
+@import '../components/comments/comments.scss';
+@import '../components/share/share.scss';
+@import '../components/update/update.scss';
+@import '../features/profile/profile.scss';
+@import '../features/404/404.scss';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.like {
+  color: red;
+  filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.401));
+  &.darkMode {
+    filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.992));
+  }
+}
+
+.commentIcon {
+  color: #078d3a;
+  filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.401));
+
+  &.darkMode {
+    color: #03843560;
+    filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.992));
+  }
+}
