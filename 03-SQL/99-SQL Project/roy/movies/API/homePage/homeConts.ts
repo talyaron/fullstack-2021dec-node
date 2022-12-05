@@ -10,7 +10,7 @@ export function search(req, res) {
         try {
           if (err) throw err;
           console.log(result)
-          res.send({ result });
+          res.send({result} );
         } catch (error) {
           console.error(error);
           res.status(500).send({ error: error.message });

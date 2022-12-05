@@ -1,7 +1,7 @@
 
-    interface CardProps {
+     export interface CardProps {
         movie_id:string,
-        imgUrl: string,
+        imgUrl?: string,
         movie_name: string,
         year?: string,
         type?: string,
