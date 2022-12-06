@@ -1,6 +1,6 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom"
 import GetALL from "./getall/getAll"
 import Search from "./searchByName/search"
+import SearchResult from "./searchByName/searchResult"
 
 
 

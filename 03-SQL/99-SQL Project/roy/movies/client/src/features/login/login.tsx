@@ -1,25 +1,26 @@
-import React from 'react'
-import { useAppDispatch } from '../../app/hooks';
-import { loginAsync } from '../user/userApi';
-import { Link } from 'react-router-dom'
+import React, { useReducer } from 'react'
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 
-const Login = () => {
-const dispatch = useAppDispatch();
 
-  function handleLogin(ev:any){
+
+
+const Login=()=>{
+ async function handleLogin(ev:any){
     ev.preventDefault();
-    console.log('login')
     let  {email, password} = ev.target.elements;
     email = email.value;
     password =password.value;
-
-     const pass = dispatch(loginAsync({email, password}));
-    if(pass.arg.email =email){
-        window.location.href= '../homepage'
-        console.log('work')
+    const response = await axios.get(`/api/users/login?email=${email}&password=${password}`);
+      console.log(response.data.user[0].user_id)
+      const data = response.data.user[0].user_id;
+      const Uemail =response.data.user[0].email;
+      if (email= Uemail)
+      window.location.href= `../homepage?userId=${data}`
     }
-  }
+  
   return (
     <div>
       <form onSubmit={handleLogin}>
@@ -30,6 +31,6 @@ const dispatch = useAppDispatch();
       <Link className="Register" to="/Register"><button>Don't have account? click to sign in</button></Link>
     </div>
   )
-  }
+}
 
 export default Login

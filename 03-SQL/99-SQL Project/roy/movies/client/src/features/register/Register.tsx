@@ -1,27 +1,28 @@
 import React from 'react'
 import { useAppDispatch } from '../../app/hooks';
 import { registerAsync } from '../user/userApi';
+import axios from 'axios';
 
 const Register = () => {
-const dispatch = useAppDispatch();
 
-  function handleRegister(ev:any){
+ async function handleRegister(ev:any){
     ev.preventDefault();
     console.log('register')
     let  {email, password, name} = ev.target.elements;
     email = email.value;
     password =password.value;
     name = name.value;
+    const response = await axios.post('/api/users/register',{email, password, name});
+    // The value we return becomes the `fulfilled` action payload
+    console.log(response.data.email)
+      const data = response.data.user_id.insertId;
+      const Uemail =response.data.email;
+      if (email= Uemail)
+     window.location.href= `../homepage?userId=${data}`
+ }
+    
+ 
 
-    console.log(email, password, name);
-
-    const pass= dispatch(registerAsync({email, password, name}))
-    if(pass.arg.email =email){
-      window.location.href= '../homepage'
-      console.log('work')
-  }
-
-  }
   return (
     <div>
       <form onSubmit={handleRegister}>

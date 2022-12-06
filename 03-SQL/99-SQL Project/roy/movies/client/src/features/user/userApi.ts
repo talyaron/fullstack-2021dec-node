@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { send } from 'process';
 
 interface userRegister{
     email:string
@@ -21,11 +22,4 @@ export const registerAsync = createAsyncThunk(
     }
   );
 
-  export const loginAsync = createAsyncThunk(
-    'user/login',
-    async ({email, password}:userLogin) => {
-      const response = await axios.get(`/api/users/login?email=${email}&password=${password}`);
-      console.log(response.data);
-      return response.data;
-    }
-  );
+   
