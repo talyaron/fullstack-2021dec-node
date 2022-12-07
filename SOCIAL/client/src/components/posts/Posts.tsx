@@ -16,7 +16,7 @@ export const Posts = () => {
   useEffect(() => {
     const getPosts = async () => {
       try {
-        const { data } = await axios.get("/posts");
+        const { data } = await axios.get("/api/posts");
         dispatch(updatePosts(data.data));
 
       } catch (error) {

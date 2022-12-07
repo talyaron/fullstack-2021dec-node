@@ -1,5 +1,5 @@
 import FacebookTwoToneIcon from "@mui/icons-material/FacebookTwoTone";
-import avatar from '../../assets/avatar.jpg'
+import avatar from "../../assets/avatar.jpg";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import PinterestIcon from "@mui/icons-material/Pinterest";
@@ -17,8 +17,6 @@ import { Posts } from "../../components/posts/Posts";
 import { Update } from "../../components/update/Update";
 import axios from "axios";
 
-
-
 export const Profile = () => {
   const [openUpdate, setOpenUpdate] = useState(false);
   const [postUser, setPostUser] = useState<{}>({});
@@ -28,42 +26,39 @@ export const Profile = () => {
   const userId = parseInt(useLocation().pathname.split("/")[2]);
   const dispatch = useAppDispatch();
 
-
   // GET PROFILE USER
   useEffect(() => {
-    const getUser = async () => {
+    (async () => {
       try {
-        const { data } = await axios.get("/users/find/" + userId);
-        const { postUser } = data;
+        const { data } = await axios.get("/api/users/find/" + userId);
+        // const { postUser } = data;
         setPostUser(data.postUser);
       } catch (error) {
         console.error(error);
       }
-    };
-    getUser();
+    })();
+
     console.log("postUser: ", postUser);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userId]);
 
-  
   // GET PROFILE`S USER RELATIONSHIP
   useEffect(() => {
-    const getRelationships = async () => {
+    (async () => {
       try {
         const { data } = await axios.get(
-          `/relationships?followedUserId=${userId}`
-        );        
+          `/api/relationships/getRelationships?followedUserId=${userId}`
+        );
+        console.log(data);
         setRalationshipData(data.data);
       } catch (error) {
         console.error(error);
       }
-    };
-    getRelationships();
+    })();
     console.log("from getRelationships: ", ralationshipData);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userId]);
 
-
-
-  
   // FOLLOW / UNFOLLOW USER
   const handleFollow = async () => {
     try {

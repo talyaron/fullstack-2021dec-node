@@ -36,7 +36,7 @@ function App() {
   // // GET USER BY COOKIE:
   const getUserByCookie = async () => {
     try {
-      const { data } = await axios.get("/auth/user-by-cookie");
+      const { data } = await axios.get("/api/auth/user-by-cookie");
       const { userCookie, decodedCookie } = data;
       if (!userCookie || !decodedCookie)
         throw new Error("userCookie not found");

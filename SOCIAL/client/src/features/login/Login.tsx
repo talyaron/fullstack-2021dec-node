@@ -22,7 +22,7 @@ export const Login = () => {
   const handleLogin = async (e: React.FormEvent<Element> | any) => {
     e.preventDefault();
     try {
-      const { data } = await axios.post("/auth/login", inputs, {
+      const { data } = await axios.post("/api/auth/login", inputs, {
         withCredentials: true,
       });
       const { user } = data;

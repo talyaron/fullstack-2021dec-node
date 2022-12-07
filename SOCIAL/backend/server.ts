@@ -4,7 +4,7 @@ import usersRoute from "./routes/usersRoute";
 import postsRoute from "./routes/postsRoute";
 import likesRoute from "./routes/likesRoute";
 import commentsRoute from "./routes/commentsRoute";
-import relationshipsRoute from "./routes/commentsRoute";
+import relationshipsRoute from "./routes/relationshipsRoute";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import multer from "multer";

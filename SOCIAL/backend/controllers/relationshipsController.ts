@@ -1,25 +1,31 @@
 import { db } from "../db";
 import jwt from "jsonwebtoken";
 
-
-
-
 // GET RELATIONSHIPS
 export const getRelationships = (req, res) => {
-  const q = "SELECT followerUserId FROM relationships WHERE followedUserId = ?";
-  console.log(q);
+  try {
+    const { followedUserId } = req.query;
+    if(!followedUserId) throw new Error('couldnt find in query followedUserId');
+    
+    console.log("getRelationships",followedUserId);
+    const q = `SELECT followerUserId FROM relationships WHERE followedUserId = ${followedUserId}`;
+    console.log(q);
 
-  db.query(q, [req.query.followedUserId], (err, data) => {
-    try {
-      if (err) throw err;
+    db.query(q, (err, data) => {
+      try {
+        if (err) throw err;
 
-      res.status(200).send({ success: true, data });
-      console.log(data);
-    } catch (error) {
-      console.error(error);
-      res.status(500).send({ error: error.message });
-    }
-  });
+        res.status(200).send({ success: true, data });
+        console.log(data);
+      } catch (error) {
+        console.error(error);
+        res.status(500).send({ error: error.message });
+      }
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send({ error: error.message });
+  }
 };
 
 // ADD RELATIONSHIP
@@ -28,14 +34,11 @@ export const addRelationship = (req, res) => {
   // const secret = process.env.JWT_SECRET;
   // if (!userCookie)
   //   return res.status(401).send({ message: "User not logged in" });
-
   // jwt.verify(userCookie, secret, (err, cookieId) => {
   //   if (err)
   //     return res.status(401).send({ message: "userCookie is not valid!" });
-
   //   const q =
   //     "INSERT INTO relationships (`followerUserId`,`followedUserId`) VALUES (?)";
-
   //   db.query(q, [cookieId.id, req.body.userId], (err, data) => {
   //     try {
   //       if (err) throw err;
@@ -44,7 +47,6 @@ export const addRelationship = (req, res) => {
   //         massege: "Following",
   //         data,
   //       });
-
   //       console.log(data);
   //     } catch (error) {
   //       console.error(error);
@@ -60,14 +62,11 @@ export const deleteRelationship = (req, res) => {
   // const secret = process.env.JWT_SECRET;
   // if (!userCookie)
   //   return res.status(401).send({ message: "User not logged in" });
-
   // jwt.verify(userCookie, secret, (err, cookieId) => {
   //   if (err)
   //     return res.status(401).send({ message: "userCookie is not valid!" });
-
   //   const q =
   //     "DELETE FROM relationships WHERE `followerUserId` = ? AND `followedUserId` = ?";
-
   //   db.query(q, [cookieId.id, req.query.userId], (err, data) => {
   //     try {
   //       if (err) throw err;
@@ -76,7 +75,6 @@ export const deleteRelationship = (req, res) => {
   //         massege: "Unfollow",
   //         data,
   //       });
-
   //       console.log(data);
   //     } catch (error) {
   //       console.error(error);

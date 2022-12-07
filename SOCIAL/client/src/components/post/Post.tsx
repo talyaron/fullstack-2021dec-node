@@ -34,7 +34,7 @@ export const Post = ({ post }: PostProps) => {
   useEffect(() => {
     const getCommentsAmount = async () => {
       try {
-        const { data } = await axios.get(`/comments?postId=${post.id}`);
+        const { data } = await axios.get(`/api//comments?postId=${post.id}`);
         setCommentAmount(data.data.length);
       } catch (error) {
         console.error(error);
@@ -48,7 +48,7 @@ export const Post = ({ post }: PostProps) => {
   useEffect(() => {
     const getLikes = async () => {
       try {
-        const { data } = await axios.get(`/likes?postId=${post.id}`);
+        const { data } = await axios.get(`/api/likes?postId=${post.id}`);
         setLikedAmount(data.data.length);
       } catch (error) {
         console.error(error);
@@ -63,12 +63,12 @@ export const Post = ({ post }: PostProps) => {
     setLiked(!liked);
     try {
       if (liked) {
-        const { data } = await axios.post("/likes", { postId: post.id });
+        const { data } = await axios.post("/api/likes", { postId: post.id });
         setLikedAmount(data.data.length);
       }
 
       if (!liked) {
-        const { data } = await axios.delete(`/likes?postId=${post.id}`);
+        const { data } = await axios.delete(`/api/likes?postId=${post.id}`);
         setLikedAmount(data.data.length);
       }
     } catch (error) {
@@ -80,7 +80,7 @@ export const Post = ({ post }: PostProps) => {
 
   const handleDeletePost = async (postId: number | null) => {
     try {
-      const { data } = await axios.delete(`/posts/${postId}`);
+      const { data } = await axios.delete(`/api/posts/${postId}`);
       dispatch(updatePost(data.data));
     } catch (error) {
       console.error(error);

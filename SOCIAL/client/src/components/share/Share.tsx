@@ -21,7 +21,7 @@ export const Share = () => {
       const formData = new FormData();
       formData.append("file", file);
       console.log("from formData: ", formData);
-      const { data } = await axios.post("/upload", formData, {
+      const { data } = await axios.post("/api/upload", formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
 
@@ -38,7 +38,7 @@ export const Share = () => {
     if (file) imgUrl = await upload();
     console.log("from ShareComponent imgUrl from handleShare: ", imgUrl);
     try {
-      const { data } = await axios.post("/posts", {
+      const { data } = await axios.post("/api/posts", {
         description,
         img: imgUrl,
       });

@@ -8,7 +8,7 @@ import {
 } from "../controllers/relationshipsController";
 
 router
-  .get('/', getRelationships)
+  .get('/getRelationships', getRelationships)
   .post('/', addRelationship)
   .delete('/', deleteRelationship)
 export default router;
