@@ -1,0 +1,112 @@
+.leftbar {
+    flex: 2;
+    padding: 1.2em;
+    position: sticky;
+    top: 4.5em;
+    height: calc(100vh - 4.5em);
+    overflow: scroll;
+    background-color: var(--bg);
+    color: var(--textColor);
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+    .container {
+        .hr {
+            margin: 20px 0;
+            border: none;
+            height: 0.5px;
+            background-color: var(--border);
+        }
+
+        .menu {
+            display: flex;
+            flex-direction: column;
+            gap: 1em;
+
+            span {
+                font-size: smaller;
+            }
+
+            .user {
+                display: flex;
+                align-items: center;
+                gap: 1em;
+                font-weight: 500;
+                color: rgb(230, 73, 16);
+                cursor: pointer;
+
+                img {
+                    width: 2.3em;
+                    height: 2.3em;
+                    border-radius: 50%;
+                    border: 2px solid rgba(236, 101, 52, 0.455);
+                    filter: var(--iconShadow);
+                }
+
+                span {
+                    font-size: smaller;
+                }
+            }
+
+            .item {
+                display: flex;
+                align-items: center;
+                gap: 1em;
+                cursor: pointer;
+                filter: var(--iconShadow);
+
+                img {
+                    width: 2.1em;
+                }
+
+                span {
+                    font-size: smaller;
+                }
+            }
+        }
+    }
+}
+
+
+@media (max-width: 960px) {
+    .leftbar {
+        flex: 1.5;
+
+        .container {
+
+            .menu {
+
+                .user {
+
+                    span {
+                        display: none;
+                    }
+                }
+
+                .item {
+
+                    img {
+                        display: none;
+                    }
+
+                }
+            }
+        }
+
+    }
+}
+
+@media (max-width: 655px) {
+    .leftbar {
+        display: none;
+    }
+}
+
+
+@media (max-width: 480px) {
+    .leftbar {
+        display: none;
+    }
+}
