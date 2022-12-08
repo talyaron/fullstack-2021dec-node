@@ -1,7 +1,7 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit'
 import counterReducer from '../features/counter/counterSlice'
 import { combineReducers } from '@reduxjs/toolkit'
-import rootReducer from './rootReducer'
+import { rootCertificates } from 'tls'
 
 
 
@@ -12,8 +12,8 @@ const rootReducer = combineReducers({})
 
 export const store = configureStore({
   reducer: {
-    one: oneSlice.reducer,
-    two: twoSlice.reducer,
+    // one: oneSlice.reducer,
+    // two: twoSlice.reducer,
     counter: counterReducer,
     reducer: rootReducer,
   },
