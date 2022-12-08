@@ -13,7 +13,6 @@ export async function getUserMeeting(req, res) {
       
         
         if (!userDB) throw new Error("userId does not match");
-        
         res.send(userDB)
 
     } catch (error) {

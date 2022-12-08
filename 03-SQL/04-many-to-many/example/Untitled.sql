@@ -4,3 +4,4 @@ JOIN students_classes as c
 ON a.student_id = c.student_id
 JOIN classes as b
 on b.class_id = c.class_id;
+
