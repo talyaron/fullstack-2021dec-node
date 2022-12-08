@@ -7,9 +7,12 @@ import HomePage from './features/homePage/homepage';
 import {BrowserRouter, Routes, Route } from 'react-router-dom';
 import SearchResult from './features/homePage/searchByName/searchResult';
 import PresentFav from './features/homePage/addToFav/presentFav';
+import "../src/styles/app.scss";
 
 function App() {
   return (
+    <div className='App'>
+      <h1>The Movies Place</h1>
  <BrowserRouter>
     <Routes>
     <Route index element={<Login/>}/>
@@ -19,6 +22,7 @@ function App() {
     <Route path="/presentFav" element={<PresentFav/>}></Route>
     </Routes>
     </BrowserRouter>
+    </div>
   );
 }
 

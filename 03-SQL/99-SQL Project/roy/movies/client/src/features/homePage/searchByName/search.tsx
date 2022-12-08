@@ -23,14 +23,14 @@ const Search=()=>{
     const response = await axios.post('/api/home/search',{search});
         // The value we return becomes the `fulfilled` action payload
         const data= response.data.result
-        console.log(data[0]);
+        console.dir(data);
         if (data){
-        window.location.href= `../searchResult?data=${data[0].movie_id}&userId=${user_id}`
+       window.location.href= `../searchResult?data=${data[0].movie_id}&userId=${user_id}`
    };
 }
     return(
-        <div>
-            <form onSubmit={handleSearch}>
+        <div id="wrap">
+            <form onSubmit={handleSearch} className="form">
                 <input type="search" name="search" placeholder="search movie by name" />
                 <button type="submit">search</button>
             </form>

@@ -21,6 +21,7 @@ const SearchResult=()=>{
     const response = await axios.get(`/api/home/search?search=${search}`);
         // The value we return becomes the `fulfilled` action payload
         const data= response.data.result
+        console.dir(response)
         console.log(data);
         setData(data)
         console.log(Data);
@@ -33,7 +34,7 @@ const SearchResult=()=>{
         handleSearch()
       },[]);
     return(
-        <div>
+        <div className="container">
             {Data.map((data:CardProps) => (
           <Card
           key={data.movie_id}

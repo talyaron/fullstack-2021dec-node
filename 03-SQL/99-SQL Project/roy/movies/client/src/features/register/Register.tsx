@@ -24,12 +24,12 @@ const Register = () => {
  
 
   return (
-    <div>
-      <form onSubmit={handleRegister}>
+    <div className='body'>
+      <form onSubmit={handleRegister} className="form">
         <input type="email" name="email" required placeholder='email'/>
         <input type="text" name="name" required placeholder='name'/>
         <input type="password" name="password" required placeholder='password'/>
-        <button type="submit">Register</button>
+        <button type="submit" className='button'>Register</button>
       </form>
     </div>
   )
