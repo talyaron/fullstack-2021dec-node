@@ -1,0 +1,292 @@
+.righrbar {
+    flex: 3;
+    padding: 1.2em;
+    position: sticky;
+    top: 4.5em;
+    height: calc(100vh - 4.5em);
+    overflow: scroll;
+    background-color: var(--bgSoft);
+    
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+    .container {
+        padding: 20px;
+
+        .item {
+            -webkit-box-shadow: var(--rightBarItemWebkitShadow);
+            -moz-box-shadow: var(--rightBarItemMozShadow);
+            box-shadow: var(--rightBarItemShadow);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-bottom-left-radius: 15px;
+            background-color: var(--bg);
+
+            span {
+                color: gray;
+            }
+
+            .user {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin: 1em 0;
+
+                .userInfo {
+                    display: flex;
+                    align-items: center;
+                    gap: .9em;
+                    position: relative;
+
+                    img {
+                        width: 3em;
+                        height: 3em;
+                        border-radius: 50%;
+                        border: 2px solid rgba(236, 101, 52, 0.455);
+                        object-fit: cover;
+                        cursor: pointer;
+                    }
+
+                    .online {
+                        width: 12px;
+                        height: 12px;
+                        border-radius: 50%;
+                        background-color: limegreen;
+                        position: absolute;
+                        top: 0;
+                        left: 2.5em;
+                        cursor: pointer;
+                        filter: var(--iconShadow);
+                    }
+
+                    p {
+                        color: var(--textColorSoft);
+                    }
+
+                    .span {
+                        color: var(--textColorSoft2);
+                        font-weight: var(--rightBatFW);
+                    }
+                }
+
+                .buttons {
+                    display: flex;
+                    align-items: center;
+                    gap: .9em;
+
+                    button {
+                        border: none;
+                        padding: 5px 10px;
+                        color: #fff;
+                        border-radius: 2px;
+                        cursor: pointer;
+                        filter: var(--iconShadow);
+
+                        &:first-child {
+                            background-color: #5271ff;
+                        }
+
+                        &:last-child {
+                            background-color: #f0544f;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 1600px) {
+    .righrbar {
+
+        .container {
+
+            .item {
+
+                .user {
+
+                    .userInfo {
+                        p {
+                            font-size: 14px;
+                        }
+
+                        span {
+                            font-size: 14px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+}
+
+@media (max-width: 1450px) {
+    .righrbar {
+        flex: 3.5;
+
+        .container {
+
+            .item {
+
+                .user {
+
+                    .userInfo {
+                        p {
+                            font-size: 14px;
+                        }
+
+                        span {
+                            font-size: 14px;
+                        }
+                    }
+
+
+                    
+                }
+            }
+        }
+    }
+
+}
+
+@media (max-width: 1350px) {
+    .righrbar {
+        flex: 3.5;
+
+        .container {
+            padding: 5px;
+
+            .item {
+
+                .user {
+
+                    .userInfo {
+                        p {
+                            font-size: 14px;
+                        }
+
+                        span {
+                            font-size: 14px;
+                        }
+                    }
+
+
+                    .buttons {
+                        flex-direction: column;
+
+                        button {
+                            padding: 3px 8px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+}
+
+
+@media (max-width: 1200px) {
+    .righrbar {
+        flex: 3.5;
+
+        .container {
+            padding: 5px;
+
+            .item {
+
+                .user {
+
+                    .userInfo {
+
+                        flex-direction: column;
+
+                        p {
+                            font-size: 14px;
+                        }
+
+                        img {
+                            display: none;
+                        }
+
+                        .online {
+                            display: none;
+                        }
+                    }
+
+                    .buttons {
+                        flex-direction: column;
+
+                        button {
+                            padding: 3px 8px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+}
+
+@media (max-width: 1000px) {
+    .righrbar {
+        flex: 4;
+    }
+
+}
+
+
+@media (max-width: 960px) {
+    .righrbar {
+        flex: 3.5;
+
+        .container {
+            padding: 5px;
+
+            .item {
+
+                .user {
+
+                    .userInfo {
+
+                        flex-direction: column;
+
+                        img {
+                            display: none;
+                        }
+
+                        .online {
+                            display: none;
+                        }
+                    }
+
+                    .buttons {
+                        flex-direction: column;
+
+                        button {
+                            padding: 3px 8px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+
+}
+
+@media (max-width: 800px) {
+    .righrbar {
+        display: none;
+    }
+
+}
+
+@media (max-width: 480px) {
+    .righrbar {
+        display: none;
+    }
+
+}
