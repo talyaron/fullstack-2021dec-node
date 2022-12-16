@@ -2,7 +2,6 @@
   "name": "example",
   "version": "1.0.0",
   "description": "",
-  "proxy": "http//localhost:4000",
   "main": "server.ts",
   "scripts": {
     "start": "react-scripts start",

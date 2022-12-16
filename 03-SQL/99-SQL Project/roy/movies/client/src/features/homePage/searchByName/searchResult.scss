@@ -1,0 +1,39 @@
+*  {
+    margin: 20;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body {
+    color: aliceblue;
+    display: grid;
+    place-items: center;
+  }
+  img {
+    width: 353.21px;
+    height: 592px;
+    object-fit: cover;
+    margin-top: 20px;
+  
+    -webkit-box-reflect: below 2px
+      linear-gradient(transparent, transparent, #0004);
+  
+    transform-origin: center;
+    transform: perspective(800px) rotateY(25deg);
+    transition: 0.5s;
+  }
+  .container {
+    width: 100vw;;
+    height:100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 100px;
+  }
+  .container:hover img {
+    opacity: 0.3;
+  }
+  .container img:hover {
+    transform: perspective(800px) rotateY(0deg);
+    opacity: 1;
+  }
+  

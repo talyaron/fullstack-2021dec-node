@@ -40,11 +40,13 @@ export const userSlice = createSlice({
         state.status = Status.FAILED;
       });
   },
+  
 });
 
 // export const { } = userSlice.actions;
 
 export const selectUser = (state: RootState) => state.user.user;
 export const selectUserStatus = (state: RootState) => state.user.status;
+
 
 export default userSlice.reducer;

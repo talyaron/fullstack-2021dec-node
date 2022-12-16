@@ -8,11 +8,12 @@ export function register(req, res) {
     const { error } = UserJoi.validate({ email, password, name });
     if (error) throw error;
 
-    const query = `INSERT INTO users (email, name, password) VALUES ('${email}','${name}', '${password}')`;
-    connection.query(query, (err) => {
+    const query = `INSERT INTO movies.users (email, name, password) VALUES ('${email}','${name}', '${password}');`; `SELECT user_id FROM movies.users WHERE email='${email}'`;
+    connection.query(query, (err, user_id) => {
       try {
         if (err) throw err;
-        res.send({ ok: true, user: { email, name }});
+        console.log(user_id)
+        res.send({ ok: true, email, user_id });
       } catch (error) {
         console.error(error);
         res.status(500).send({ error: error.message });
@@ -27,24 +28,19 @@ export function register(req, res) {
 
 export function login(req, res) {
   try {
-    const { email, password } = req.query;
-    console.log(email)
-    // const { error } = UserJoi.validate({ email, password, });
-    // if (error) throw error;
-
-    const query = `SELECT * FROM movies.users WHERE email='${email}' AND password='${password}' `;
-    connection.query(query, (err) => {
+   const { email, password } = req.query;
+    const query = `SELECT * FROM movies.users WHERE email='${email}' AND password='${password}' `; `SELECT user_id FROM movies.users WHERE email='${email}'`;
+    connection.query(query, (err,user_id) => {
       try {
         if (err) throw err;
-        console.log(email)
-        res.send({ ok: true, user: email});
+        console.log(user_id)
+        res.send({ ok: true, user: user_id});
       } catch (error) {
         console.error(error);
         res.status(500).send({ error: error.message });
       }
     });
-  } catch (error) {
-    console.error(error);
-    res.status(500).send({ error: error.message });
-  }
-}
+} catch (error) {
+  console.error(error);
+  res.status(500).send({ error: error.message });
+}};
