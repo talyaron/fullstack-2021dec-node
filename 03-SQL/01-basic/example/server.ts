@@ -9,7 +9,7 @@ const connection = mysql.createConnection({
   host: "localhost",
   port: "3306",
   user: "root",
-  password: "12345678",
+  password: "123123",
   database: "movie",
 });
 
@@ -84,8 +84,8 @@ app.post("/api/create-table", (req, res) => {
 app.post("/api/add-car", (req, res) => {
   console.log("api/add-car");
 
-  const {license, model, year,manufacturer} = req.body;
-  if(!year || !license || !model || !manufacturer) throw new Error ('Missing data');
+  const { license, model, year, manufacturer } = req.body;
+  if (!year || !license || !model || !manufacturer) throw new Error('Missing data');
 
   const query = `INSERT INTO cars2 (license, model, year, manufacturer) VALUES ("${license}", "${model}", ${year}, "${manufacturer}");`;
 
@@ -108,8 +108,8 @@ app.post("/api/add-car", (req, res) => {
 app.post("/api/add-buyer", (req, res) => {
   console.log("api/add-buyer");
 
-  const {name, year_of_birth,buyerId} = req.body;
-  if( !name || !year_of_birth || !buyerId) throw new Error ('Missing data');
+  const { name, year_of_birth, buyerId } = req.body;
+  if (!name || !year_of_birth || !buyerId) throw new Error('Missing data');
 
   const query = `INSERT INTO buyers (name, year_of_birth, buyerId) VALUES ("${name}", "${year_of_birth}", "${buyerId}");`;
 
@@ -142,7 +142,7 @@ app.get("/api/get-buyers", (req, res) => {
 
       console.log(results);
       console.log(fields);
-      res.send({ ok: true, buyers:results, message: "buyer were quired" });
+      res.send({ ok: true, buyers: results, message: "buyer were quired" });
     } catch (error) {
       console.error(error);
       res.send({ ok: false, error: error.message });
@@ -153,8 +153,8 @@ app.get("/api/get-buyers", (req, res) => {
 app.get("/api/get-buyers-by-year", (req, res) => {
   console.log("api/get-buyers");
 
-const {year} = req.query;
-if(!year) throw new Error('year is missing')
+  const { year } = req.query;
+  if (!year) throw new Error('year is missing')
 
   const query = `SELECT * FROM buyers WHERE year_of_birth <= ${year} ORDER BY year_of_birth ASC;`;
 
@@ -164,7 +164,7 @@ if(!year) throw new Error('year is missing')
 
       console.log(results);
       console.log(fields);
-      res.send({ ok: true, buyers:results, message: "buyer were quired" });
+      res.send({ ok: true, buyers: results, message: "buyer were quired" });
     } catch (error) {
       console.error(error);
       res.send({ ok: false, error: error.message });
@@ -176,9 +176,9 @@ if(!year) throw new Error('year is missing')
 app.get("/api/get-youngest-buyer", (req, res) => {
   console.log("api/get-youngest-buyers");
 
-//SELECT id, MAX(rev)
-//FROM YourTable
-//GROUP BY id
+  //SELECT id, MAX(rev)
+  //FROM YourTable
+  //GROUP BY id
 
   const query = `SELECT MAX(year_of_birth) AS Youngest FROM buyers;`;
 
@@ -188,7 +188,7 @@ app.get("/api/get-youngest-buyer", (req, res) => {
 
       console.log(results);
       console.log(fields);
-      res.send({ ok: true, buyer:results, message: "buyer were quired" });
+      res.send({ ok: true, buyer: results, message: "buyer were quired" });
     } catch (error) {
       console.error(error);
       res.send({ ok: false, error: error.message });
@@ -201,8 +201,8 @@ app.get("/api/get-youngest-buyer", (req, res) => {
 app.get("/api/search-buyers", (req, res) => {
   console.log("api/get-buyers");
 
-const {name} = req.query;
-if(!name) throw new Error('year is missing')
+  const { name } = req.query;
+  if (!name) throw new Error('year is missing')
 
   const query = `SELECT * FROM buyers WHERE name LIKE "%${name}%"`;
 
@@ -212,7 +212,7 @@ if(!name) throw new Error('year is missing')
 
       console.log(results);
       console.log(fields);
-      res.send({ ok: true, buyers:results, message: "buyer were quired" });
+      res.send({ ok: true, buyers: results, message: "buyer were quired" });
     } catch (error) {
       console.error(error);
       res.send({ ok: false, error: error.message });
