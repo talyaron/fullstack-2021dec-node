@@ -1,0 +1,13 @@
+@import '../features/login/Login.scss';
+
+
+.App {
+    text-align: center;
+    background-color: #c3c8d2;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+}

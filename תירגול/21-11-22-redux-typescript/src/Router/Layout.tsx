@@ -7,7 +7,7 @@ const Layout: FC = () => {
                 <Link to='/'>Home</Link>
             </nav>
 
-            <Outlet />
+            <Outlet /> {/* door to exit */}
 
             <footer>Dorit is the best!</footer>
         </>

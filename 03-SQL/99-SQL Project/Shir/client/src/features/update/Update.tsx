@@ -25,7 +25,7 @@ export const Update = () => {
   const handleAddApartment = async (e: React.FormEvent<Element> | any) => {
     e.preventDefault();
     try {
-      const { data } = await axios.put("http://localhost:4000/books/" + apartmentId, apartment);
+      const { data } = await axios.put("http://localhost:4000/apartments/" + apartmentId, apartment);
       navigate("/");
     } catch (error) {
       console.error(error);
@@ -35,13 +35,7 @@ export const Update = () => {
   return (
     <>
       <h2>Update the Apartment</h2>
-     
-   
-    
-    rooms: null,
-    price: null,
-    cover: "",
-
+  
       <form onSubmit={handleAddApartment}>
         <input
           type="text"
@@ -75,9 +69,9 @@ export const Update = () => {
         />
         <input
           type="text"
-          name="cover"
+          name="image"
           onChange={handleChange}
-          placeholder="cover"
+          placeholder="image"
         />
         <button type="submit">Update apartment</button>
       </form>
