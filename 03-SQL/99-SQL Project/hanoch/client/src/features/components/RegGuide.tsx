@@ -21,7 +21,7 @@ export const RegGuide = () => {
       
       
       dispatch(addGuid({fullName, country, city, telephon, email, image}))
-      
+      window.location.reload();
     } catch (error) {
       console.log(error);
       

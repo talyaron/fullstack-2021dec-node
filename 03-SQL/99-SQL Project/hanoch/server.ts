@@ -48,7 +48,7 @@ connection.connect((err:any) => {
 
 
 
-import guidesRouter from './API/router'
+import guidesRouter from './contRoute/router'
 app.use('/api-guides', guidesRouter)
 
 app.listen(port, () => {
