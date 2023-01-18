@@ -1,0 +1,124 @@
+[
+
+{
+    "id":2,
+    "name":"wool coat" ,
+    "price":200,
+    "category":"women",
+    "imageUrl":"/imgs/women-coat1.jpg"
+
+},
+{
+    "id":3,
+    "name":"colorful socks" ,
+    "price":40,
+    "category":"men",
+    "imageUrl":"/imgs/men-socks.jpg"
+},
+{
+    "id":3,
+    "name":"Plaid shirt" ,
+    "price":37,
+    "category":"men",
+    "imageUrl":"/imgs/men-shirt3.jpg"
+},
+{
+    "id":4,
+    "name":"socks" ,
+    "price":8,
+    "category":"women",
+    "imageUrl":"/imgs/socks2.jpg"
+},
+{
+    "id":1,
+    "name":"men tailored shirt" ,
+    "price":50,
+    "category":"men",
+    "imageUrl":"/imgs/men-shirt1.jpg"
+ },
+{
+    "id":5,
+    "name":"black-shirt" ,
+    "price":35,
+    "category":"men",
+    "imageUrl":"/imgs/men-shirt2.jpg"
+},
+{
+    "id":6,
+    "name":"mini skirt" ,
+    "price":70,
+    "category":"men",
+    "imageUrl":"/imgs/skirt1.jpg"
+},
+{
+    "id":7,
+    "name":"long flamingo skirt" ,
+    "price":77,
+    "category":"men",
+    "imageUrl":"/imgs/skirt2.jpg"
+    
+},
+{
+    "id":8,
+    "name":"white socks" ,
+    "price":9,
+    "category":"women",
+    "imageUrl":"/imgs/socks4.jpg"
+},
+{
+    "id":8,
+    "name":"stripes socks" ,
+    "price":7,
+    "category":"men",
+    "imageUrl":"/imgs/socks3.jpg"
+},
+{
+    "id":8,
+    "name":"strawberry dress" ,
+    "price":7,
+    "category":"men",
+    "imageUrl":"/imgs/dress1.jpg"
+},
+{
+    "id":8,
+    "name":"pink dress" ,
+    "price":7,
+    "category":"women",
+    "imageUrl":"/imgs/dress2.jpg"
+
+},
+{
+    "id":8,
+    "name":"orange dress" ,
+    "price":7,
+    "category":"women",
+    "imageUrl":"/imgs/dress3.jpg"
+
+},
+{
+    "id":8,
+    "name":"suit" ,
+    "price":80,
+    "category":"women",
+    "imageUrl":"/imgs/suit1.jpg"
+},
+{
+    "id":8,
+    "name":"brown pants" ,
+    "price":76,
+    "category":"men",
+    "imageUrl":"/imgs/pants1.jpg"
+}
+,
+{
+    "id":8,
+    "name":"camel pants" ,
+    "price":80,
+    "category":"men",
+    "imageUrl":"/imgs/pants2.jpg"
+}
+
+
+
+]
+
