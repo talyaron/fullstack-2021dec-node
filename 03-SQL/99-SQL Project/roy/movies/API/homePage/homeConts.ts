@@ -61,7 +61,7 @@ export function getMyFav(req, res) {
     console.error(error);
     res.status(500).send({ error: error.message });
   }
-}
+}3
 
 export function getAll(req, res) {
   try {
