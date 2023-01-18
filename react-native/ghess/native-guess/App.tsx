@@ -15,6 +15,8 @@ export default function App() {
     
     
     const guessNo = Number(guess)
+    console.log(guessNo);
+    
     if( guessNo &&  guessNo > randomNo){
       alert('go lower')
       setCounter(counter + 1)
