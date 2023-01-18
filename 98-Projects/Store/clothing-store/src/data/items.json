@@ -11,7 +11,7 @@
 {
     "id":3,
     "name":"colorful socks" ,
-    "price":40,
+    "price":8,
     "category":"men",
     "imageUrl":"/imgs/men-socks.jpg"
 },
