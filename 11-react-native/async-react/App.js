@@ -13,9 +13,10 @@ export default function App() {
         );
         if (!data) throw new Error("couldnt get data");
         if (!data.message) throw new Error("No images");
-        if(!Array.isArray(data.message)) throw new Error('Images is not an array');
-        console.log(data.message.length);
-        setImages(data.message.slice(0, 5));
+        if (!Array.isArray(data.message))
+          throw new Error("Images is not an array");
+
+        setImages(data.message.slice(0, 15));
       } catch (error) {
         console.error(error);
       }
@@ -27,9 +28,9 @@ export default function App() {
       <Text>Open up App.js to start working on your app!</Text>
       <StatusBar style="auto" />
       <ScrollView>
-        {images.map((image,i) => (
+        {images.map((image, i) => (
           <Image
-          key={i}
+            key={i}
             style={styles.imageStyle}
             source={{
               uri: image,
