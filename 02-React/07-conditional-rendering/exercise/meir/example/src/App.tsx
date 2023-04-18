@@ -27,7 +27,7 @@ function App() {
     return (
       <div className="App">
         <header className="App-header" style={{backgroundColor:isChecked?`yellow`:`navy`}}>
-          <img src={logo} className="App-logo" alt="logo" />
+          {counter%2 === 1?<img src={logo} className="App-logo" alt="logo" />:<img src="https://thumbs.gfycat.com/AcrobaticShowyAlbertosaurus-max-1mb.gif" alt="logo"/>}          
           <input type="checkbox" name="" id="" onChange={handleCheck}/>
           {isChecked?<h2>Checked</h2>:<h2>Not Checked</h2>}
           <h2>{counter}</h2>
