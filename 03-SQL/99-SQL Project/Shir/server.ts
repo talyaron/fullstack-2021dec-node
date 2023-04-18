@@ -34,10 +34,13 @@ db.connect((error)=>{
 
 import userRoute from './API/users/userRoute';
 
+import apartmentRoute from './API/apartments/apartmentRoute'
+
 
 // import { Client } from "socket.io/dist/client";
 
 app.use('/api/users',userRoute)
+app.use('/api/apartments',apartmentRoute)
 
 
 app.get("/apartments", (req, res) => {
