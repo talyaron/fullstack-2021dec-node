@@ -7,6 +7,7 @@ const port: number = 4000;
 app.use(express.static("./client/build"));
 app.use(express.json());
 
+
 export const connection = mysql.createConnection({
   host: "localhost",
   port: "3306",
