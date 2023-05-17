@@ -16,8 +16,8 @@ const Login = () => {
 
       if(password.length < 6){
         setError("Your Password must be more than six characters");
-      }
-      if(password === pass) {
+      } 
+       if(password === pass) {
          setNewPage(true);
       }
     } catch (error) {
