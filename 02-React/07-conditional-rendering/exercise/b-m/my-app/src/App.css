@@ -28,7 +28,13 @@
   color: #61dafb;
 }
 
-
+button {
+  margin-top: 20rem;
+  /* display: grid;
+  grid-auto-flow: column; */
+  justify-content: center;
+  margin-left: 50rem;
+}
 
 @keyframes App-logo-spin {
   from {
