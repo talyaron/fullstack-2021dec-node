@@ -24,8 +24,8 @@
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+body {
+  background-color: #61dafb;
 }
 
 .grid-container {
@@ -34,6 +34,7 @@
   grid-template-columns:repeat(2, auto);
   gap: 10px;
   justify-content: center; 
+  
 }
 
 button {
@@ -43,7 +44,7 @@ button {
   border-radius: 5px;
 }
 
-@keyframes App-logo-spin {
+@keyframes grid-container   {
   from {
     transform: rotate(0deg);
   }
