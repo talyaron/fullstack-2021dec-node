@@ -44,6 +44,10 @@ button {
   border-radius: 5px;
 }
 
+img {
+  border-radius: 5px;
+}
+
 @keyframes grid-container   {
   from {
     transform: rotate(0deg);
