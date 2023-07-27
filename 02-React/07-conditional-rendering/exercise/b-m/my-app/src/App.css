@@ -24,17 +24,39 @@
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+body {
+  background-color: #61dafb;
 }
 
+.grid-container {
+  margin-top: 10rem;
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  gap: 19px;
+  justify-content: center; 
+  
+}
 
+button {
+  background-color: #282c34;
+  margin: 2px;
+  padding: 5px;
+  border-radius: 5px;
+  box-shadow: 5px 0px 5px 0px black;
+}
 
-@keyframes App-logo-spin {
+img {
+  border-radius: 8px;
+  width: 100%;
+  height: auto;
+  /* box-shadow: 0px 0px 0px #000; */
+}
+
+/* @keyframes grid-container   {
   from {
     transform: rotate(0deg);
   }
   to {
     transform: rotate(360deg);
   }
-}
+} */

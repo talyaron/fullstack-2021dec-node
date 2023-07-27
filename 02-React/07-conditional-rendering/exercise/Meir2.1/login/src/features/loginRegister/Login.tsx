@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
 import './Login.scss';
+import { Link } from 'react-router-dom';
 
 const Login = () => {
   const [error, setError] = useState<string | null>(null);
+  const [newPage, setNewPage] = useState<boolean>(false);
+  
+  const pass = "1234";
+
   function handleLogin(ev:any) {
     ev.preventDefault();
     try {
@@ -11,12 +16,16 @@ const Login = () => {
 
       if(password.length < 6){
         setError("Your Password must be more than six characters");
+      } 
+       if(password === pass) {
+         setNewPage(true);
       }
     } catch (error) {
       console.error(error);
     }
   }
 
+ if (!newPage){
   return (
     <div>
       <h2>Login</h2>
@@ -29,6 +38,9 @@ const Login = () => {
       {error !== null? <p className="error">{error}</p>:null}
     </div>
   )
-}
+ } else {
+  return(<Link to='/'><button>Go to Test</button></Link>)
+ }
+};
 
 export default Login
